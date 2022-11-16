@@ -1,0 +1,174 @@
+#!/bin/bash
+
+###############################################################################
+
+# HEAP_LIMIT: the maximum amount of memory to be allocated by the
+# Java Virtual Machine (JVM) in megabytes.
+# Corresponds to the "-Xmx" JVM option.
+# The obsolete JCHEM_JAVA_OPTS environment variable may override this setting if
+# specified.
+# The default setting is "500".
+
+HEAP_LIMIT=500
+
+# SERVER_MODE: if set to "true", the Java Virtual Machine (JVM) spends more
+# time with run time code opimization, resulting slower startup but higher
+# execution speed after a prolonged period.
+# Suitable for long runnig tasks.
+# Corresponds to the "-server" JVM option.
+# The obsolete JCHEM_JAVA_OPTS environment variable may override this setting if
+# specified.
+# The default setting is "false".
+
+SERVER_MODE=false
+
+###############################################################################
+
+pathconvert() {
+    cygpath.exe -a -w "$1"
+}
+
+# @param find the ini tile under this location
+# The config file looks like this:
+#
+# [Java Runtime Environment]
+# Java-Path=/opt/java/jre1.6/
+#
+# Path have to be ended with file separator
+#
+getJavaPathFromIni() {
+if [ -f "$1" ]; then
+	grep "^Java Path=" "$1" |sed -e "s/^Java Path=//"
+fi
+}
+
+if [ -z "$OSTYPE" ]; then
+    if [ -f "/usr/bin/cygpath.exe" ]; then
+        OSTYPE=cygwin
+    fi
+fi
+
+case "$OSTYPE" in
+cygwin*)
+	dir=`pathconvert "$0"`
+	dir=`dirname "$dir"`
+	JCHEMHOME=`dirname "$dir"`
+        CLASSPATH="$JCHEMHOME\\lib\\jchem.jar;$CLASSPATH"
+	# detect java
+	java_path=`getJavaPathFromIni "${JCHEMHOME}\\bin\\java.ini"`
+	if [ "${java_path}" == "" ]; then
+		JVMPATH="java"
+	else
+		JVMPATH="${java_path}bin\\java"
+		JVMPATH=`cygpath -u "$JVMPATH"`
+	fi
+        ;;
+*)
+	mypath=$0
+	while [ -h "$mypath" ]; do # Resolve symlinks
+		ls=`/bin/ls -ld "$mypath"`
+		link=`/usr/bin/expr "$ls" : '.*-> \(.*\)$'`
+		if /usr/bin/expr "$link" : '\/' > /dev/null; then
+			mypath="$link"
+		else
+			mypath=`/usr/bin/dirname "$mypath"`/"$link"
+		fi
+	done
+    dir=`dirname "$mypath"`
+	JCHEMHOME="$dir/.."
+    CLASSPATH="$JCHEMHOME/lib/jchem.jar:$CLASSPATH"
+	# detect java
+	java_path=`getJavaPathFromIni "$JCHEMHOME/bin/java.ini"`
+	if [ "${java_path}" == "" ]; then
+		JVMPATH="java"
+	else
+		JVMPATH="${java_path}bin/java"
+	fi
+
+        ;;
+esac
+export CLASSPATH
+
+# ---------------------------
+# Parse JVM parameters 
+# ---------------------------
+
+IS_SERVER_MODE_DEFINED="false"
+IS_HEAP_LIMIT_DEFINED="false"
+
+javaopts=""
+for ARG in "$@"; do
+	case $ARG in
+		-server)
+			# to preserve set server mode twice
+			IS_SERVER_MODE_DEFINED="true"
+			;;
+		-client)
+			# to preserve set server mode twice
+			IS_SERVER_MODE_DEFINED="true"
+			;;
+		-Xmx*)
+			# to preserve set -Xmx option twice
+			IS_HEAP_LIMIT_DEFINED="true"
+			;;
+		-X*)
+			;;
+		*)
+			break
+	esac
+	javaopts="$javaopts $ARG"
+	shift;
+done
+
+# seek server mode and heap size options in JCHEM_JAVA_OPTS
+for ARG in "$JCHEM_JAVA_OPTS"; do
+	case $ARG in
+		-server)
+			# to preserve set server mode twice
+			IS_SERVER_MODE_DEFINED="true"
+			;;
+		-client)
+			# to preserve set server mode twice
+			IS_SERVER_MODE_DEFINED="true"
+			;;
+		-Xmx*)
+			# to preserve set -Xmx option twice
+			IS_HEAP_LIMIT_DEFINED="true"
+			;;
+		-X*)
+			;;
+		*)
+			break
+	esac
+done
+
+# Assign JCHEM_JAVA_OPTS to Java params
+if [ "$JCHEM_JAVA_OPTS" != "" ]; then
+	if [ "$javaopts" = "" ]; then
+		javaopts="$JCHEM_JAVA_OPTS"
+	else
+		javaopts="$JCHEM_JAVA_OPTS $javaopts"
+	fi
+fi
+
+# Set -Xmx if it is not specified yet
+if [ "$IS_HEAP_LIMIT_DEFINED" = "false" ]; then	
+	javaopts="$javaopts -Xmx${HEAP_LIMIT}M"
+fi
+
+# Set server mode if it is not specified yet
+if [ "$IS_SERVER_MODE_DEFINED" = "false" ]; then
+	if [ "$SERVER_MODE" = "true" ]; then
+		javaopts="$javaopts -server"
+	fi
+fi
+
+# ------------------------------------------------
+# end of parsing JVM params
+# ------------------------------------------------
+
+# ------------------------ END OF HEADER ---------------------------
+
+
+
+"$JVMPATH" $javaopts chemaxon.clustering.NearestNeighbors "$@"

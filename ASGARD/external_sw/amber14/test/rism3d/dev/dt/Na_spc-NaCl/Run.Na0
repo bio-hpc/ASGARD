@@ -1,0 +1,94 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+echo "SANDER: 3D-RISM"
+
+if( ! $?TESTsanderRISM ) set TESTsanderRISM = "$AMBERHOME/bin/sander"
+
+if ! { ../checkrismunsupported.sh $TESTsander } exit 0
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+        set numprocs=`echo $DO_PARALLEL | awk -f ../../numprocs.awk `
+        if ( $numprocs > 2 ) then
+            echo " DO_PARALLEL set to $DO_PARALLEL"
+            goto toomany
+        else if ( $?MP_PROCS)then
+            if ($MP_PROCS > 3)then
+#               --- For IBM AIX ---
+                echo "    MP_PROCS set to "$MP_PROCS
+                goto toomany
+            endif
+        endif
+endif
+
+cat > mdin <<EOF
+Alanine dipeptide run
+ &cntrl
+    ntx=1, ntpr=1, ntwx=0,ntwr=0
+    nstlim=0,dt=0.001,
+    ntt=0, ig=314159, tempi=0,
+    ntp=0,
+    ntc=1,ntf=1,
+    ntb=0,
+    nrespa=1,
+    irism=1
+    cut=999,
+ /
+ &rism
+    tolerance=1e-6
+    ng3=64,64,64,
+    solvbox=32d0,32d0,32d0,
+    buffer = -1,
+    solvcut=12d0
+    verbose=2
+    ntwrism=5
+    entropicDecomp=1
+ /
+EOF
+
+$DO_PARALLEL $TESTsanderRISM -O -i mdin -o Na0.out\
+   -p Na0.parm7 -c Na0.rst7 -xvv ../../../xvv/spc-nacl.xvv \
+   || goto error
+
+$DO_PARALLEL $TESTsanderRISM -O -i mdin -o Na0_ht.out\
+   -p Na0.parm7 -c Na0.rst7 -xvv ../../../xvv/spc-nacl_ht.xvv \
+   || goto error
+
+$DO_PARALLEL $TESTsanderRISM -O -i mdin -o Na0_lt.out\
+   -p Na0.parm7 -c Na0.rst7 -xvv ../../../xvv/spc-nacl_lt.xvv \
+   || goto error
+
+set XMU_HT=`awk '/rism_exchem /{print $2}' Na0_ht.out`
+set XMU_LT=`awk '/rism_exchem /{print $2}' Na0_lt.out`
+set ANALIT=`awk '/rism_-TS /{print $2}' Na0.out`
+
+#convert to explicit scientific notation: aEb -> a*10^b
+set XMU_HT = `echo ${XMU_HT} | sed 's/E/\\*10\\^/' | sed 's/+//'`
+set XMU_LT = `echo ${XMU_LT} | sed 's/E/\\*10\\^/' | sed 's/+//'`
+set ANALIT = `echo ${ANALIT} | sed 's/E/\\*10\\^/' | sed 's/+//'`
+
+set FINITE=`echo "scale=8; (${XMU_HT} - ${XMU_LT}) / 10 * 298" | bc`
+
+echo XMU_HT "$XMU_HT"
+echo XMU_LT "$XMU_LT"
+echo ANALIT "$ANALIT"
+echo FINITE "$FINITE"
+set DIFF=`echo "scale=10; sqrt((${ANALIT} - ${FINITE})^2) " | bc`
+
+echo 'difference between the analytical result and the finite difference: '`printf "%8.5f" $DIFF`' kcal/mol.'
+
+echo "${DIFF}" > difference
+$AMBERHOME/test/dacdif -a 0.001 difference.save difference
+rm -f *.out
+exit(0)
+
+toomany:
+    echo " too many processors for this test, exiting"
+    echo "============================================================"
+    exit(0)
+

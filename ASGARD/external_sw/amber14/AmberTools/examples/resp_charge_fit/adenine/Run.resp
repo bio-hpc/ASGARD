@@ -1,0 +1,30 @@
+#!/bin/csh -f
+echo " "
+echo "  Amber 5 RESP demo: adenine - 2 stage fit on 2 conformations"
+echo " "
+
+echo "RESP stage 1:"
+../../../bin/resp -O \
+		-i ade_1st.in \
+		-o ade_1st.out \
+		-p ade_1st.pch \
+		-t ade_1st.chg \
+		-e esp_ade.dat \
+		-s ade_1st_calc.esp  		||  goto error
+
+echo "RESP stage 2:"
+../../../bin/resp -O \
+		-i ade_2nd.in \
+		-o ade_2nd.out \
+		-p ade_2nd.pch \
+		-q ade_1st.chg \
+		-t ade_2nd.chg \
+		-e esp_ade.dat \
+		-s ade_2nd_calc.esp			|| goto error
+
+echo No errors detected
+exit 0
+
+error:
+echo Error: check .out and try again
+exit(1)

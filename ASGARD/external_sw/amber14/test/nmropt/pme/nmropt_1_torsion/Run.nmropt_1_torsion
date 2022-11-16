@@ -1,0 +1,59 @@
+#!/bin/sh
+#TEST-PROGRAM sander pmemd
+#TEST-DESCRIP Test dihedral restraints using nmropt = 1
+#TEST-PURPOSE regression basic pedogogical
+#TEST-STATE   ok
+
+. ../../../program_error.sh
+
+if [ -z "$TESTsander" ]; then
+  TESTsander="../../../../bin/sander"
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+  export DO_PARALLEL=" "
+fi
+
+cat > mdin <<EOF
+Test of angle restraints using nmropt=1
+ &cntrl                                                                        
+   nstlim=20,
+   ntpr=1, ntt=1,
+   dt=0.001,
+   igb=0, 
+   nmropt=1,
+   ig=71277,
+ /
+ &ewald
+   nfft1=64, nfft2=64, nfft3=64,
+ /
+ &wt type='DUMPFREQ', istep1=2  /
+ &wt type='END'   /
+DISANG=torsion_pbc.RST
+DUMPAVE=torsion_pbc.dat
+LISTIN=POUT
+LISTOUT=POUT
+/
+EOF
+
+cat > torsion_pbc.RST << EOF
+#  torsion restraint for residue 34
+ &rst  iat=720,719,710,711 r1=-180.0, r2=70.0, r3=70.0, r4=180.0, rk2 = 40.0,
+       rk3 = 40.0, 
+ /
+EOF
+
+prmtop=../myoglobin_pbc.prmtop
+inpcrd=../myoglobin_pbc.inpcrd
+
+$DO_PARALLEL $TESTsander -O -c $inpcrd -p $prmtop < /dev/null || error
+
+if [ `basename $TESTsander` = "pmemd.mic_offload.MPI" ]; then
+../../../dacdif -r 1.0e-07 mdout.save mdout
+else
+../../../dacdif mdout.save mdout
+fi
+../../../dacdif torsion_pbc.dat.save torsion_pbc.dat
+/bin/rm -f mdin restrt mdinfo profile_mpi logfile torsion_pbc.RST
+exit 0
+

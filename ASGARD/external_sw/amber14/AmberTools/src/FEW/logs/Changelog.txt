@@ -1,0 +1,145 @@
+Major modifications of FEW after running calculations with FEW_v1  presented in
+Homeyer, N. and Gohlke, H., FEW: A workflow tool for free energy calculations of 
+ligand binding, J. Comput. Chem. 2013, 34, 965-973.
+
+2013-01-17 : Ensured that rights of shell scripts for automated submission of 
+             batch jobs are correctly set.
+
+2013-01-16 : Added check for 'add_lib' and 'add_frcmod' existence.
+
+2013-01-17 : Ensured that default 'coord_templ' and 'mmpbsa_templ' is used if no
+             template file is provided.
+
+2013-01-28 : Changed REC_res to rec_res in imaging.
+
+2013-02-09 : Implemented additional checks for Mol2-file format and ensured that  
+             provided Mol2-files can be read by antechamber.
+
+2013-02-09 : Fixed insertion of TER card between REC and LIG upon generation of
+             complex PDB file. Enabled recognition of "HOH" in addition to "WAT".
+
+2013-02-13 : Changed handling of template files for complex, receptor, and ligand,
+             in 'leap' folder such that existing files are maintained, but renumbered.
+
+2013-02-19 : Improved Mol2-file check and implemented / corrected checks of 'tot_inter'
+             value and of Start, Stop, and Offset consistency.
+
+2013-03-05 : Added subroutine for automated reading of trajectories if 'all' is specified.
+
+2013-03-05 : Creation of separate MD folders for 1- and 3-trajectory approach
+             was changed into creation of only one MD folder indepented of approach.
+
+2013-03-06 : Implemented check for uniqueness of atom names.
+
+2013-03-14 : Corrected residue number handling in checking of receptor structure,
+             so that also structures where the residue numbering does not start at 1
+             can be handled.
+
+2013-03-18 : Corrected error message for non-matching single atom in V1.
+
+2013-03-25 : Implemented check ensuring that ligand names starting with a digit 
+             or identical to a residue of the ff99SB cannot be used. 
+
+2013-03-26 : Changed snapshot based to trajectory based LIE analysis by 
+             post-processing with igb=6.
+
+2013-03-26 : Retired key word 'sander_t'.
+
+2013-03-26 : Included check that ensures that LIE analysis is only performed
+             for 3 or more snapshots.
+
+2013-03-26 : Corrected bug in charge modification procedure for library files.
+
+2013-03-26 : Forced neutrality even if not required for counter ion addition to avoid
+             inconsistency in LIE calculations with and without igb=6.
+
+2013-03-26 : Ensured detection of wrong / unsuccessful S-S bond placement by LEaP.
+
+2013-03-26 : Fixed bug in TI setup procedure for determination of new soft-core after
+             automated re-naming of atoms by LEaP.
+
+2013-04-15 : Retirement of keywords calc_ener, get_snaps, Nstop, Nstart, Nfreq
+             and change of del_snaps in del_trajs
+
+2013-04-15 : Ensured that Mol2 files without spaces at the beginning of the atom
+             entry lines can be correctly processed.
+
+2013-06-10 : Removed additional module Statistics::Normality.pm and added message 
+             in FEW.pl requesting download of this module from CPAN by the user, if
+             the module cannot be found.
+
+2013-06-10 : Renamed miscellaneous script kruskal.pl to identify_transformations.pl
+             and added message to identify_transformations.pl requesting download
+             and installation of Graph::Kruskal, if module is not found.
+
+2013-06-11 : Renamed additional module Atom.pm to AtomWithType.pm and added detailed
+             description of modifications made in the Atom.pm module.
+
+2013-06-11 : Provided detailed description of functionality in MOL2.pm module.
+
+2013-06-11 : Updated manual.
+
+2013-10-16 : Modified detection of time interval in out-files of TI simulations.
+
+2014-02-06 : Added subroutine for setting default values to global.pm
+
+2014-02-10 : Implemented check for detection of presence of imaged trajectories for WAMM
+             procedure. 
+
+2014-02-10 : Implemented checks for:
+             A) Detection of wrong input for ligand mulit-structure files.
+             B) Existence of program 'babel' if sdf-format is provided.
+             C) Correct combination of mol2/sdf flags
+
+2014-02-11 : Ensured that mm_pbsa.pl is also executed, if executable is not provided
+             in command file.
+
+2014-02-12 : Implemented error for checking consistency between provided no. or receptor
+             residues and residues found in receptor structure. Currently MM-PBSA and LIE
+             cannot be run, if only a subset of the residues present in the receptor
+             is specified.
+
+2014-02-12 : Ensured that termination of antechamber due to system errors is reported to user.
+
+2014-02-12 : Introduced new, more intuitive keywords; ensured backwards compartibility. 
+
+2014-02-12 : Made definition of path for gaussian batch script optional.
+
+2014-02-13 : Migration of ff99SB to ff12SB with frcmod.ionsjc_tip3p
+
+2014-02-16 : Added functionality for backwards compatibility for ff99SB calculations.
+
+2014-02-18 : Migration from ptraj to cpptraj usage.
+
+2014-02-22 : Adapted module calls for integration of FEW.pl link in AMBERHOME/bin directory.
+
+2014-06-05 : Fixed bug in complex creation (subroutine create_complex) that led to wrong
+             assignment of water coordinates in case more than 9999 water molecules were
+             present.
+
+2014-12-10 : Fixed bug in handling of protein files in which some of the cysteins are
+             connected via S-S-bonds. Made path detection independent of directory in which
+             FEW resides. 
+
+2015-01-14 : Fixed bug in CYS -> CYX renaming section, to ensure that the renaming section
+             is only processed if file with disulfide-bridge definition is provided.
+
+2015-02-18 : Fixed bug in handling of protein files in which some of the cysteins are
+             connected via S-S-bonds in TI setup.
+
+2015-02-24 : New procedure for handling of imaged trajectories implemented. This new functio-
+             nality allows to keep imaged files and to use them for more than one analysis.
+
+2015-02-24 : Functionality for implicit membrane calculations implemented.
+
+2015-02-25 : Imaging with respect to the geometric center was made the default procedure to
+             ensure consistency the with imaging procedure used for implicit membrane MM-PBSA
+             calculations. 'image_mass_origin' keyword was introduced to ensure backwards
+             compartibility.
+
+2015-02-27 : Changed generation of PQR files with Parse radii from ptraj based to cpptraj
+             based procedure.
+
+2015-03-19 : Updated parmchk to parmchk2. Older input files can be reproduced with any FEW
+             version distributed before this date using parmchk of Amber14 or Amber12,
+             respectively.

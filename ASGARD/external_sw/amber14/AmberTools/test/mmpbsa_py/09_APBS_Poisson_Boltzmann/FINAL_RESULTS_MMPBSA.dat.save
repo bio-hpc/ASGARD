@@ -1,0 +1,91 @@
+| Run on Mon Oct 24 19:19:03 2011
+|
+|Input file:
+|--------------------------------------------------------------
+|MMPBSA input file for running GB
+|&general
+|   startframe=1, endframe=2, interval=1,
+|   keep_files=0, debug_printlevel=2,
+|/
+|&pb
+|   istrng=0.1, sander_apbs=1,
+|/
+|--------------------------------------------------------------
+|MMPBSA.py Version=3.0
+|Solvated complex topology file:  ../EstRAL_Files/sol.top
+|Complex topology file:           ../EstRAL_Files/com.top
+|Receptor topology file:          ../EstRAL_Files/rec.top
+|Ligand topology file:            ../EstRAL_Files/lig.top
+|Initial mdcrd(s):                ../EstRAL_Files/test.mdcrd
+|
+|Receptor mask:                  ":1-240"
+|Ligand mask:                    ":241"
+|Ligand residue name is "RAL"
+|
+|Calculations performed using 2 complex frames.
+|Poisson Boltzmann calculations performed using iAPBS interface to sander (sander.APBS)
+|
+|All units are reported in kcal/mole.
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+POISSON BOLTZMANN:
+
+Complex:
+Energy Component            Average              Std. Dev.   Std. Err. of Mean
+-------------------------------------------------------------------------------
+VDWAALS                  -2027.4585                6.6828              4.7254
+EEL                     -17102.0128               39.7611             28.1154
+EPB                      -3343.9258               15.8815             11.2299
+ENPOLAR                     69.6361                0.1648              0.1165
+
+G gas                   -19129.4713               46.4439             32.8408
+G solv                   -3274.2897               16.0463             11.3464
+
+TOTAL                   -22403.7610               30.3976             21.4943
+
+
+Receptor:
+Energy Component            Average              Std. Dev.   Std. Err. of Mean
+-------------------------------------------------------------------------------
+VDWAALS                  -1963.0469                6.3796              4.5110
+EEL                     -17062.3941               41.4017             29.2755
+EPB                      -3367.2848               15.6375             11.0574
+ENPOLAR                     71.4510                0.2149              0.1520
+
+G gas                   -19025.4410               47.7813             33.7865
+G solv                   -3295.8338               15.8525             11.2094
+
+TOTAL                   -22321.2749               31.9289             22.5771
+
+
+Ligand:
+Energy Component            Average              Std. Dev.   Std. Err. of Mean
+-------------------------------------------------------------------------------
+VDWAALS                     -2.1842                0.9276              0.6559
+EEL                         -5.8905                0.2643              0.1869
+EPB                        -39.4604                1.5462              1.0933
+ENPOLAR                      4.3281                0.0108              0.0076
+
+G gas                       -8.0747                1.1919              0.8428
+G solv                     -35.1323                1.5570              1.1009
+
+TOTAL                      -43.2071                2.7488              1.9437
+
+
+Differences (Complex - Receptor - Ligand):
+Energy Component            Average              Std. Dev.   Std. Err. of Mean
+-------------------------------------------------------------------------------
+VDWAALS                    -62.2274                1.2308              0.8703
+EEL                        -33.7281                1.3763              0.9732
+EPB                         62.8195                1.3022              0.9208
+ENPOLAR                     -6.1429                0.0610              0.0431
+
+DELTA G gas                -95.9555                0.1455              0.1029
+DELTA G solv                56.6765                1.3631              0.9639
+
+DELTA TOTAL                -39.2790                1.2176              0.8609
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------

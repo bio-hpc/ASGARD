@@ -1,0 +1,30 @@
+Revision history for Perl extension Chemistry::Ring
+
+0.19  Mar 29 2005
+        - Fixed memory leak.
+        - Added 'ring/rings' attribute to molecule on aromatize_mol.
+
+0.18  Aug 12 2004
+        - Fixed non-deterministic ring order test failure.
+
+0.17  Aug 11 2004
+        - Fixed bug where find_rings didn't find all the rings in disconnected
+          structures.
+
+0.16  Aug 2 2004
+        - Make it warnings-clean.
+        - ring/rings attribute added by aromatize_mol
+
+0.15  Jun 30 2004
+        - Find the "almost SSSR" in the molecule.
+        - Improved aromatize_mol.
+
+0.11  Jun 17 2004
+        - New subroutine in Chemistry::Ring: aromatize_mol
+        - Added some tests.
+        - Fixed mirror bug in ring_find.
+        - Fixed is_aromatic to use implicit hydrogens.
+
+0.10  Jun 16 2004
+	- First CPAN release
+

@@ -1,0 +1,38 @@
+Chemistry/MidasPattern version 0.11
+===================================
+
+This module partially implements a pattern matching engine for selecting atoms
+in macromolecules by using Midas/Chimera patterns. See
+L<http://www.cmpharm.ucsf.edu/~troyer/troff2html/midas/Midas-uh-3.html#sh-2.1>
+for a detailed description of this language.
+
+CHANGES SINCE VERSION 0.10
+        - Chain support.
+        - Be more lenient with whitespace.
+        - Refactored parsing and execution.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+        Chemistry::Mol         0.24
+        Chemistry::MacroMol    0.05
+        Chemistry::Pattern     0.20
+        Chemistry::File::PDB   0.21
+        Test::Simple           0
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2005 Ivan Tubert <itub@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

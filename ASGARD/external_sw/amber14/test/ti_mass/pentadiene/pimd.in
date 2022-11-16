@@ -1,0 +1,28 @@
+PIMD TI wrt mass simulation
+
+&cntrl
+   ntx = 1, ! Read in formatted coords, no vels.
+
+   ntb = 0   ! No periodic box.
+   cut = 1000.0,   ! Nonbonded cutoff.
+   dt = 0.001, ! Time step in MD.
+   nstlim=5,   ! Number of MD steps to be performed. 
+   ! nscm = 1000 ! Default=1000, for NM PIMD should be larger than nstlim. 
+
+   ipimd=1,   ! Do primitive PIMD
+   ! ipimd=2,   ! Do normal-mode PIMD.
+
+   itimass=1,   ! Thermodynamic integr. w.r.t. mass, virial estimator.
+   ! itimass=2, ! Thermodynamic integr. w.r.t. mass, thermodynamic estimator.
+   clambda=0.50,    ! Value of lambda in TI.
+
+   temp0 = 478.45,   ! Reference temperature.
+   tempi = 478.45,   ! Initial temperature.
+   ntt = 3, ! Langevin dynamics.
+   gamma_ln = 20.0, ! Collision frequency for Langevin dynamics.
+   ! ntt = 4, ! Nose-Hoover chain.
+   ! nchain = 4, 
+
+   ntpr = 1, ! How often to print energy.
+   ntwx = 0, ! How often to write coordinates.
+/

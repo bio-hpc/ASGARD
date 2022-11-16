@@ -1,0 +1,557 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/15/2014 at 08:50:26
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: stem.csa_min.o                                                        
+|INPCRD: mincrd                                                                
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+ 
+ Here is the input file:
+ 
+  test of rdc and pseudo-csa restraints for an RNA stem, allowing              
+  the molecule to move                                                         
+ &cntrl                                                                        
+    pencut=0.05, nmropt=1,                                                     
+    imin=1, maxcyc=20, igb=1, rgbmax=15.,                                      
+    ntpr=1,                                                                    
+    ipnlty=1, cut=25.0, ntb=0, iscale=5, scalm=300.,                           
+    ntc=1, ntb=0,                                                              
+ /                                                                             
+ &wt type='END'  /                                                             
+LISTOUT=POUT                                                                   
+DIPOLE=RST.dip3                                                                
+CSA=RST.csa3                                                                   
+END                                                                            
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 09/06/07 Time = 10:35:58
+ NATOM  =     510 NTYPES =      14 NBONH =     176 MBONA  =     372
+ NTHETH =     400 MTHETA =     576 NPHIH =     900 MPHIA  =    1058
+ NHPARM =       0 NPARM  =       0 NNB   =    2842 NRES   =      16
+ NBONA  =     372 NTHETA =     576 NPHIA =    1058 NUMBND =      35
+ NUMANG =      72 NPTRA  =      40 NATYP =      24 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      34 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are modified Bondi radii (mbondi)                                                   
+
+|     Memory Use     Allocated
+|     Real               36105
+|     Hollerith           1548
+|     Integer            47485
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total              473 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       1, nmropt  =       1
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       1, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =  25.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  15.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =      20, ncyc    =      10, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+
+NMR refinement options:
+     iscale  =       5, noeskp  =       1, ipnlty  =       1, mxsub   =       1
+     scalm   = 300.00000, pencut  =   0.05000, tausw   =   0.10000
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+
+
+           Begin reading energy term weight changes/NMR restraints
+ WEIGHT CHANGES:
+                         ** No weight changes given **
+
+ RESTRAINTS:
+ Requested file redirections:
+  LISTOUT   = POUT
+  DIPOLE    = RST.dip3
+  CSA       = RST.csa3
+                          ** No restraint defined **
+
+                  Done reading weight changes/NMR restraints
+
+
+ Alignment info will be read from file: RST.dip3
+ Here are comments from the alignment input file:
+ 
+ CSA info will be read from file: RST.csa3
+ Here are comments from the csa input file:
+ #   C2/C8/C6/C5 pseudo-CSA's from Mike, values in Hz for 13C=150 MHz           
+  
+ 
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1      -3.4244E+03     8.9945E-01     2.7156E+01     C2        184
+
+ BOND    =       27.4951  ANGLE   =       83.2333  DIHED      =      314.5098
+ VDWAALS =     -295.4238  EEL     =     1311.0660  EGB        =    -3363.7059
+ 1-4 VDW =      116.6975  1-4 EEL =    -1628.4706  RESTRAINT  =       10.1991
+ EAMBER  =    -3434.5986
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=    10.199
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      2      -3.4249E+03     1.2248E+00     3.5591E+01     C2        184
+
+ BOND    =       27.4862  ANGLE   =       83.2398  DIHED      =      314.5331
+ VDWAALS =     -295.4254  EEL     =     1314.1947  EGB        =    -3366.7843
+ 1-4 VDW =      116.6989  1-4 EEL =    -1628.4738  RESTRAINT  =        9.6721
+ EAMBER  =    -3434.5308
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     9.672
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      3      -3.4257E+03     1.5662E+00     4.4297E+01     C2        184
+
+ BOND    =       27.4870  ANGLE   =       83.2369  DIHED      =      314.6320
+ VDWAALS =     -295.4309  EEL     =     1311.4743  EGB        =    -3364.0875
+ 1-4 VDW =      116.6990  1-4 EEL =    -1628.4713  RESTRAINT  =        8.7772
+ EAMBER  =    -3434.4605
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     8.777
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      4      -3.4268E+03     1.8501E+00     5.0773E+01     C2        184
+
+ BOND    =       27.4914  ANGLE   =       83.2360  DIHED      =      314.8424
+ VDWAALS =     -295.4382  EEL     =     1311.5323  EGB        =    -3364.1326
+ 1-4 VDW =      116.6969  1-4 EEL =    -1628.4684  RESTRAINT  =        7.3936
+ EAMBER  =    -3434.2402
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     7.394
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      5      -3.4284E+03     1.9468E+00     5.1265E+01     C2        184
+
+ BOND    =       27.5016  ANGLE   =       83.2390  DIHED      =      315.2143
+ VDWAALS =     -295.4480  EEL     =     1311.6016  EGB        =    -3364.1871
+ 1-4 VDW =      116.6920  1-4 EEL =    -1628.4646  RESTRAINT  =        5.4453
+ EAMBER  =    -3433.8511
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     5.445
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      6      -3.4302E+03     1.6335E+00     3.9499E+01     C2        184
+
+ BOND    =       27.5204  ANGLE   =       83.2529  DIHED      =      315.8064
+ VDWAALS =     -295.4609  EEL     =     1311.6837  EGB        =    -3364.2515
+ 1-4 VDW =      116.6837  1-4 EEL =    -1628.4595  RESTRAINT  =        3.0383
+ EAMBER  =    -3433.2249
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     3.038
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      7      -3.4316E+03     6.9696E-01     1.8327E+01     H2        185
+
+ BOND    =       27.5454  ANGLE   =       83.2935  DIHED      =      316.6455
+ VDWAALS =     -295.4777  EEL     =     1311.7750  EGB        =    -3364.3204
+ 1-4 VDW =      116.6725  1-4 EEL =    -1628.4543  RESTRAINT  =        0.7686
+ EAMBER  =    -3432.3204
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.769
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      8      -3.4319E+03     1.0579E+00     3.1362E+01     C2        184
+
+ BOND    =       27.4888  ANGLE   =       83.3578  DIHED      =      317.0605
+ VDWAALS =     -295.4929  EEL     =     1311.7937  EGB        =    -3364.3059
+ 1-4 VDW =      116.6829  1-4 EEL =    -1628.4690  RESTRAINT  =        0.0047
+ EAMBER  =    -3431.8841
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.005
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      9      -3.4315E+03     1.5088E+00     3.6780E+01     C2        184
+
+ BOND    =       27.4575  ANGLE   =       83.2844  DIHED      =      315.6459
+ VDWAALS =     -295.4578  EEL     =     1311.5803  EGB        =    -3364.1163
+ 1-4 VDW =      116.7257  1-4 EEL =    -1628.5264  RESTRAINT  =        1.9331
+ EAMBER  =    -3433.4068
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     1.933
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     10      -3.4323E+03     4.8765E-01     1.3731E+01     H2        185
+
+ BOND    =       27.4946  ANGLE   =       83.3038  DIHED      =      316.1932
+ VDWAALS =     -295.4658  EEL     =     1311.6614  EGB        =    -3364.1845
+ 1-4 VDW =      116.6855  1-4 EEL =    -1628.5149  RESTRAINT  =        0.5011
+ EAMBER  =    -3432.8266
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.501
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     11      -3.4322E+03     1.1939E+00     3.5136E+01     C2        184
+
+ BOND    =       27.5224  ANGLE   =       83.3220  DIHED      =      316.7753
+ VDWAALS =     -295.4641  EEL     =     1311.7076  EGB        =    -3364.2289
+ 1-4 VDW =      116.6481  1-4 EEL =    -1628.4840  RESTRAINT  =        0.0079
+ EAMBER  =    -3432.2016
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.008
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     12      -3.4325E+03     4.8549E-01     1.2191E+01     H2        185
+
+ BOND    =       27.4778  ANGLE   =       83.2824  DIHED      =      316.0824
+ VDWAALS =     -295.4543  EEL     =     1311.6162  EGB        =    -3364.1465
+ 1-4 VDW =      116.6865  1-4 EEL =    -1628.4965  RESTRAINT  =        0.4489
+ EAMBER  =    -3432.9520
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.449
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     13      -3.4325E+03     2.3933E-01     5.6410E+00     H2        185
+
+ BOND    =       27.4876  ANGLE   =       83.2907  DIHED      =      316.2500
+ VDWAALS =     -295.4570  EEL     =     1311.6406  EGB        =    -3364.1681
+ 1-4 VDW =      116.6764  1-4 EEL =    -1628.4933  RESTRAINT  =        0.2270
+ EAMBER  =    -3432.7731
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.227
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     14      -3.4326E+03     2.1497E-01     5.7390E+00     H2        185
+
+ BOND    =       27.4921  ANGLE   =       83.2846  DIHED      =      316.2288
+ VDWAALS =     -295.4588  EEL     =     1311.6366  EGB        =    -3364.1617
+ 1-4 VDW =      116.6768  1-4 EEL =    -1628.4938  RESTRAINT  =        0.2215
+ EAMBER  =    -3432.7954
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.222
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     15      -3.4326E+03     4.6435E-01     1.1280E+01     C2        184
+
+ BOND    =       27.5638  ANGLE   =       83.2623  DIHED      =      316.1401
+ VDWAALS =     -295.4680  EEL     =     1311.6155  EGB        =    -3364.1291
+ 1-4 VDW =      116.6791  1-4 EEL =    -1628.4963  RESTRAINT  =        0.1922
+ EAMBER  =    -3432.8327
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.192
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     16      -3.4328E+03     2.8377E-01     6.2194E+00     C2        184
+
+ BOND    =       27.5232  ANGLE   =       83.2498  DIHED      =      316.0975
+ VDWAALS =     -295.4516  EEL     =     1311.5713  EGB        =    -3364.1035
+ 1-4 VDW =      116.6754  1-4 EEL =    -1628.4905  RESTRAINT  =        0.1437
+ EAMBER  =    -3432.9284
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.144
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     17      -3.4328E+03     2.8940E-01     3.8530E+00     C5        178
+
+ BOND    =       27.5079  ANGLE   =       83.2492  DIHED      =      316.1116
+ VDWAALS =     -295.4336  EEL     =     1311.5246  EGB        =    -3364.0787
+ 1-4 VDW =      116.6716  1-4 EEL =    -1628.4842  RESTRAINT  =        0.0966
+ EAMBER  =    -3432.9316
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.097
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     18      -3.4328E+03     5.3310E-01     8.7588E+00     C5        178
+
+ BOND    =       27.5600  ANGLE   =       83.1347  DIHED      =      316.1086
+ VDWAALS =     -295.4446  EEL     =     1311.4273  EGB        =    -3364.0274
+ 1-4 VDW =      116.7306  1-4 EEL =    -1628.3771  RESTRAINT  =        0.0680
+ EAMBER  =    -3432.8879
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.068
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     19      -3.4329E+03     1.8638E-01     2.6698E+00     N1        183
+
+ BOND    =       27.5006  ANGLE   =       83.1891  DIHED      =      316.1082
+ VDWAALS =     -295.4387  EEL     =     1311.4804  EGB        =    -3364.0552
+ 1-4 VDW =      116.6984  1-4 EEL =    -1628.4356  RESTRAINT  =        0.0830
+ EAMBER  =    -3432.9528
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.083
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     20      -3.4329E+03     1.6199E-01     2.2756E+00     C2        184
+
+ BOND    =       27.4728  ANGLE   =       83.1824  DIHED      =      316.0865
+ VDWAALS =     -295.4436  EEL     =     1311.4910  EGB        =    -3364.0548
+ 1-4 VDW =      116.7072  1-4 EEL =    -1628.4215  RESTRAINT  =        0.0839
+ EAMBER  =    -3432.9798
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.084
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+
+
+  Maximum number of minimization cycles reached.
+
+
+                    FINAL RESULTS
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+     20      -3.4329E+03     1.6199E-01     2.2756E+00     C2        184
+
+ BOND    =       27.4728  ANGLE   =       83.1824  DIHED      =      316.0865
+ VDWAALS =     -295.4436  EEL     =     1311.4910  EGB        =    -3364.0548
+ 1-4 VDW =      116.7072  1-4 EEL =    -1628.4215  RESTRAINT  =        0.0839
+ EAMBER  =    -3432.9798
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+ Energy (this step): Align=     0.000  CSA=     0.084
+          Alignment tensor:   -83.279    -3.714   -25.475
+                               -3.714   -47.623   -58.971
+                              -25.475   -58.971   130.902
+===============================================================================
+ ------------------------------------------------------------------------------
+
+
+ Final Restraint Analysis for coords: restrt                                  
+
+
+ Restraints, deviations, and energy contributions:    pencut =    0.05
+
+ ------------------------------------------------------------------------------
+     First atom        Last atom    curr. value target deviation  penalty
+ ------------------------------------------------------------------------------
+|                               RMS deviation from ideal bonds :      0.0111
+|                               RMS deviation from ideal angles:      2.404
+ ------------------------------------------------------------------------------
+
+
+  Residual dipolar splittings:
+
+
+ ------------------------------------------------------------------------------ 
+ First atom        Last atom    curr. value target deviation  penalty  distance 
+ ------------------------------------------------------------------------------ 
+ C8   RG     2 -- H8   RG     2:    6.147    4.800    1.347    0.000    1.090   
+ C8   RG     3 -- H8   RG     3:   15.997    8.800    7.197    0.000    1.090   
+ C6   RC     4 -- H6   RC     4:   35.510   31.100    4.410    0.000    1.090   
+ C6   RU     5 -- H6   RU     5:   38.016   40.800   -2.784    0.000    1.090   
+ C2   RA     6 -- H2   RA     6:   36.744   38.000   -1.256    0.000    1.090   
+ C8   RA     6 -- H8   RA     6:   36.955   42.600   -5.645    0.000    1.090   
+ C2   RA     7 -- H2   RA     7:   37.320   39.500   -2.180    0.000    1.090   
+ C8   RA     7 -- H8   RA     7:   27.253   32.600   -5.347    0.000    1.090   
+ C6   RU    10 -- H6   RU    10:   26.721   27.300   -0.579    0.000    1.090   
+ C6   RU    11 -- H6   RU    11:   30.493   37.700   -7.207    0.000    1.090   
+ C2   RA    12 -- H2   RA    12:   30.359   31.300   -0.941    0.000    1.090   
+ C8   RA    12 -- H8   RA    12:   37.353   44.200   -6.847    0.000    1.090   
+ C8   RG    13 -- H8   RG    13:   39.620   38.400    1.220    0.000    1.090   
+ C6   RC    14 -- H6   RC    14:   17.001   13.800    3.201    0.000    1.090   
+ C6   RC    15 -- H6   RC    15:   -5.449    1.600   -7.049    0.000    1.090   
+                                        Total align    constraint:    0.00      
+ Diagonalize the alignment matrix:                                              
+      -90.30597          0.91295     0.35571     0.19997                        
+      -60.64546         -0.39579     0.89117     0.22172                        
+      150.95143         -0.09933    -0.28157     0.95439                        
+ Diagonalize the moment of interia tensor:                                      
+   240003.87903         -0.53423    -0.23887     0.81089         17.55425       
+   404450.80664         -0.39585     0.91826     0.00970         11.99469       
+   452485.95325         -0.74692    -0.31581    -0.58512          9.79216       
+ ------------------------------------------------------------------------------
+
+
+  Residual CSA splittings:
+
+
+ ------------------------------------------------------------------------------ 
+     atom         curr. value target  deviation  penalty                        
+ ------------------------------------------------------------------------------ 
+ C2   RA     6 :  -21.670  -21.380   -0.290    0.084                            
+                                        Total csa    constraint:    0.08        
+ ------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.12% of Total)
+|                Calc gb radii              0.11 (20.16% of Gen B)
+|                Calc gb diag               0.16 (30.51% of Gen B)
+|                Calc gb off-diag           0.26 (49.33% of Gen B)
+|             Gen Born time              0.52 (100.0% of Nonbo)
+|          Nonbond force              0.52 (98.08% of Force)
+|          Bond/Angle/Dihedral        0.01 ( 1.58% of Force)
+|          Other                      0.00 ( 0.33% of Force)
+|       Force time                 0.53 (100.0% of Runmd)
+|    Runmd Time                 0.53 (97.59% of Total)
+|    Other                      0.01 ( 2.28% of Total)
+| Total time                 0.55 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 08:50:26.155  on 01/15/2014
+|           Setup done at 08:50:26.164  on 01/15/2014
+|           Run   done at 08:50:26.702  on 01/15/2014
+|     wallclock() was called     388 times

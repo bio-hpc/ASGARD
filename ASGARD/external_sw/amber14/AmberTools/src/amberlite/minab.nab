@@ -1,0 +1,100 @@
+//=======================================================================
+// minab version 0.7 (May 2010)
+// copyright Novartis Institutes for Biomedical Research
+// Basel, Switzerland
+// Author: Romain M. Wolf
+//=======================================================================
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//=======================================================================
+
+molecule mol;         //the molecule
+string outpdb;        //the final output in PDB format
+string diel, gb, pdb, prmtop, aexp_move, aexp_restrain, mmopt;
+float mol_xyz[dynamic], reference_xyz[dynamic];
+float gradient[dynamic], velocity[dynamic];
+float cut, fret, en0, rgbmax, wcons, rmsgrad;
+int nsnb, niter, ntpr, imin, ncycle;
+//all arguments except the three last ones (restraints) must be given!
+if(!argv[2] || !argv[3] || !argv[4] || !argv[5] || !argv[6]){
+  printf("\n---------------------------------------------------------\n");
+  printf(" minab version 0.7 (May 2010)\n");
+  printf("---------------------------------------------------------\n");
+  printf("version with no non-bonded list update, cutoff = 100 A, rgbmax = 15 A \n");
+  printf("usage: minab pdb prm outpdb gbflag niter ['restraints' resforce cutoff]\n"); 
+  printf("where: pdb        = PDB file with initial coordinates\n");
+  printf("       prm        = parameter-topology file name\n");
+  printf("       outpdb     = file name for refined coordinates (PDB format)\n");
+  printf("       gbflag     = integer (1, 2, 5, 7, or 8 for GB ON, else GB OFF)\n");
+  printf("       niter      = integer (number of iterations)\n");
+  printf("       restraints = atom expression for restrained atoms (':residues:atoms')\n");
+  printf("                    (must be included in 'quotes')!\n");
+  printf("       resforce   = force constant for restraints (kcal/mol/A2)\n");
+  printf("                    (must be given when restraints are specified!)\n");
+  exit(0);
+ }
+pdb    = sprintf("%s", argv[2]); // the pdb file
+prmtop = sprintf("%s", argv[3]); // the parameter-topolgy file
+outpdb = sprintf("%s", argv[4]); // name for the refined PDB file 
+gb     = sprintf("%s", argv[5]); // the GB flag (can be 1, 2, 5, 7, or 8
+                                 // corresponding to the igb values in AMBER 9
+                                 // or 0 to switch to dist-dep. dielectrics eps =r)     
+niter =  atoi(argv[6]);          // maximum number of iterations if gradient
+                                 // requirement not met
+
+aexp_move = NULL;                // all atoms move, but some can be tethered
+
+if(!argv[7]){
+  aexp_restrain = "::ZZZZ";
+  wcons = 0.0;
+ }
+ else{
+	aexp_restrain = sprintf("%s", argv[7]);
+	  if(!argv[8]){
+		 printf("\nyou have specified atoms to be restrained...\n"); 
+		 printf("the restraint force constant must also be given\n\n"); 
+		 exit(0);
+	  }
+	  wcons = atof(argv[8]);
+ }
+mol = getpdb(pdb); readparm(mol, prmtop); // reads PDB and prm file
+allocate mol_xyz[3*mol.natoms]; 
+allocate reference_xyz[3*mol.natoms];
+allocate gradient[3*mol.natoms]; 
+setxyz_from_mol(mol, NULL, mol_xyz); 
+setxyz_from_mol(mol ,NULL, reference_xyz);
+
+if(gb == "1" || gb == "2" || gb == "5" || gb == "7" || gb == "8") {diel="C";} // GB option
+ else{gb = "0"; diel="R";} // simple epsilon = R function
+
+cut = 100; rgbmax = 15.0; 
+nsnb = niter+1; //ensures that non-bondeds are never updated
+mmopt = sprintf("cut=%lf,nsnb=%d,diel=%s,gb=%s,rgbmax=%lf,wcons=%lf,ntpr=10",
+					 cut, nsnb, diel, gb, rgbmax, wcons);
+mm_options(mmopt);
+mme_init(mol,aexp_move, aexp_restrain, reference_xyz, NULL);
+en0 = mme(mol_xyz, gradient, 1); //returns the initial energy
+rmsgrad = 0.1; //should be enough for standard purposes
+imin = conjgrad(mol_xyz, 3*mol.natoms, fret, mme, rmsgrad, 10.0, niter);
+printf("------------------------------\ninitial energy: %8.3lf kcal/mol\n", en0);
+printf("final   energy: %8.3lf kcal/mol\n", fret);
+if(imin == -1){printf("minimizer stopped because of bad line search\n");}
+else if(imin == -2){printf("minimizer stopped because search direction was uphill\n");}
+else if(imin == -3){printf("minimizer stopped because number of iterations was exceeded\n");}
+else if(imin == -4){printf("minimizer stopped because function value could not be reduced further\n");}
+else printf("minimizer finished after %d iterations\n", imin);
+setmol_from_xyz(mol, NULL,mol_xyz); // get refined coordinates and
+putpdb(outpdb, mol);                // write them to output PDB file
+printf("refined coordinates written to %s\n", outpdb);
+printf("------------------------------\n");
+exit(0);

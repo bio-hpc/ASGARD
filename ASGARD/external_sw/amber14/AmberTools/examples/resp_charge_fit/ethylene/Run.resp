@@ -1,0 +1,27 @@
+#!/bin/csh -f
+echo " "
+echo "  Amber 5   RESP demo: ethylene, 2-stage fit on one conformation"
+echo " "
+echo RESP stage 1:
+../../../bin/resp -O \
+		-i eth_1st.in \
+		-o eth_1st.out \
+		-p eth_1st.pch \
+		-e esp_eth.dat \
+		-t eth_1st.chg			|| goto error
+
+echo RESP stage 2:
+../../../bin/resp -O \
+		-i eth_2nd.in \
+		-o eth_2nd.out \
+		-p eth_2nd.pch \
+		-e esp_eth.dat \
+		-t eth_2nd.chg \
+		-q eth_1st.chg			|| goto error
+
+echo No errors detected
+exit(0)
+
+error:
+echo Error: check .out and try again
+exit(1)

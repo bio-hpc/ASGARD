@@ -1,0 +1,55 @@
+#!/bin/sh
+
+. ../../program_error.sh
+
+if [ -z "$parmed" ]; then
+   parmed="../../../bin/parmed.py"
+fi
+
+output=parmed.out
+
+/bin/rm -f new_ala3.parm7 new_ala3_2.parm7 new_gly3.parm7 new_gly3_2.parm7
+
+cat > change.parmed << EOF
+change CHARGE :1 0
+change MASS :3 0
+EOF
+
+cat > parmed.in << EOF
+parm ala3.parm7
+source change.parmed
+
+parm gly3.parm7
+source change.parmed
+
+parm select ala3.parm7
+outparm new_ala3.parm7
+
+parm select gly3.parm7
+outparm new_gly3.parm7
+EOF
+
+cat > noparms.in << EOF
+setOverwrite
+parm select ala3.parm7
+source change.parmed
+outparm new_ala3_2.parm7
+
+parm select gly3.parm7
+source change.parmed
+outparm new_gly3_2.parm7
+EOF
+
+$parmed -O -i parmed.in > $output 2>&1 || error
+
+../../dacdif new_ala3.parm7.save new_ala3.parm7
+../../dacdif new_gly3.parm7.save new_gly3.parm7
+
+$parmed --parm ala3.parm7 --parm gly3.parm7 < noparms.in > $output 2>&1 || error
+
+../../dacdif new_ala3.parm7.save new_ala3_2.parm7
+../../dacdif new_gly3.parm7.save new_gly3_2.parm7
+
+/bin/rm -f $output noparms.in parmed.in change.parmed
+
+exit 0

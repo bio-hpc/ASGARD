@@ -1,0 +1,275 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 10/08/2013 at 12:02:36
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: ph1-nacl.out                                                          
+|INPCRD: ph1.x                                                                 
+|  PARM: ph1.top                                                               
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+|   Xvv: tip3p-nacl.xvv
+|   Guv: guv.dx
+
+ Here is the input file:
+
+ simple check for phosphate                                                    
+ &cntrl                                                                        
+    ntx=1, ntpr=1, ntwx=0,                                                     
+    imin=0,nstlim=2,                                                           
+    ntp=0,                                                                     
+    ntc=3,ntf=3,                                                               
+    ntb=0,                                                                     
+    nrespa=1,                                                                  
+    cut=12,                                                                    
+    irism=1,                                                                   
+/                                                                              
+&rism                                                                          
+    buffer = 12d0                                                              
+    npropagate=0                                                               
+ /                                                                             
+|3D-RISM Forcing igb=6
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 03/18/12 Time = 15:07:48
+ NATOM  =       6 NTYPES =       3 NBONH =       1 MBONA  =       4
+ NTHETH =       1 MTHETA =       6 NPHIH =       3 MPHIA  =       0
+ NHPARM =       0 NPARM  =       0 NNB   =      16 NRES   =       1
+ NBONA  =       4 NTHETA =       6 NPHIA =       0 NUMBND =       3
+ NUMANG =       3 NPTRA  =       1 NATYP =       4 NPHB   =       0
+ IFBOX  =       1 NMXRS  =       6 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are modified Bondi radii (mbondi)                                                   
+
+|     Memory Use     Allocated
+|     Real                 640
+|     Hollerith             21
+|     Integer            20176
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total               83 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+     BOX TYPE: RECTILINEAR
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+po4                                                                             
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       3, ntb     =       0, igb     =       6, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =  12.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =         2, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+SHAKE:
+     ntc     =       3, jfastw  =       0
+     tol     =   0.00001
+3D-RISM:
+     closure   =  KH      
+     solvcut   =  12.00000, buffer  =  12.00000
+     grd_spc   =   0.50000    0.50000    0.50000
+     ng3       =        -1         -1         -1
+     solvbox   =  -1.00000   -1.00000   -1.00000
+     tolerance =  1.00E-05
+     mdiis_del =   0.70000, mdiis_nv=         5
+     mdiis_meth=         2, mdiis_re=  1.00E+01
+     maxstep   =     10000, npropaga=         0
+     centering =         1, zerofrc =         1
+     apply_rism=         1 asympcorr=         T
+     rismnrespa=         1, fcestrid=         0, fcecut  =9999.00000
+     fcenbasis =        20, fcenbase=        20, fcecrd  =         0
+     polardecom=         0 entropicd=         0
+     write_ther=         1 volfmt   =  dx      
+     saveprogre=         0, ntwrism =        -1, verbose =         0
+     progress  =         1
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+po4                                                                             
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):      13.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =       7.     NUM_NOSHAKE =      0     CORRECTED RNDFP =       7.
+|  TOTAL # of degrees of freedom (RNDF) =       7.
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =      -308.5581  EKtot   =         0.0000  EPtot      =      -308.5581
+ BOND   =         0.0000  ANGLE   =        14.7473  DIHED      =         0.0128
+ 1-4 NB =         0.0000  1-4 EEL =       -95.6915  VDWAALS    =         0.0000
+ EELEC  =         0.0000  ERISM   =      -227.6267  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot         -3.08558116E+002   0.00000000E+000   0.00000000E+000   0.00000000E+000   1.47473220E+001   1.27917743E-002   0.00000000E+000   0.00000000E+000  -9.56915302E+001   0.00000000E+000  -2.27626700E+002
+rism_exchem         -2.27626700E+002   3.13108617E+004  -3.14891834E+004  -9.66237242E+001   4.73187217E+001
+rism_exchGF         -2.33915570E+002   3.13075430E+004  -3.14920853E+004  -9.67880748E+001   4.74148373E+001
+rism_potUV          -2.32891672E+002   1.54558533E+004  -1.56524037E+004  -5.60386398E+001   1.96973661E+001
+rism_volume          8.50723823E+001
+rism_exNumb                           -2.16768635E+000  -4.33510590E+000   1.07862213E+000  -9.21383359E-001
+rism_exChrg          2.00011674E+000   1.80785042E+000  -1.80773916E+000   1.07862213E+000   9.21383359E-001
+rism_KB                               -6.50956724E+001  -6.50916663E+001   1.79109539E+004  -1.52999410E+004
+rism_DCFI                             -1.54548060E+006   7.72120132E+005   1.84572570E+006  -1.84634407E+006
+
+ NSTEP =        1   TIME(PS) =       0.001  TEMP(K) =   703.29  PRESS =     0.0
+ Etot   =      -303.6666  EKtot   =         4.8915  EPtot      =      -308.5581
+ BOND   =         0.0000  ANGLE   =        14.7473  DIHED      =         0.0128
+ 1-4 NB =         0.0000  1-4 EEL =       -95.6915  VDWAALS    =         0.0000
+ EELEC  =         0.0000  ERISM   =      -227.6267  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot         -3.08558116E+002   0.00000000E+000   0.00000000E+000   0.00000000E+000   1.47473220E+001   1.27917743E-002   0.00000000E+000   0.00000000E+000  -9.56915302E+001   0.00000000E+000  -2.27626700E+002
+rism_exchem         -2.27626700E+002   3.13108617E+004  -3.14891834E+004  -9.66237242E+001   4.73187217E+001
+rism_exchGF         -2.33915570E+002   3.13075430E+004  -3.14920853E+004  -9.67880748E+001   4.74148373E+001
+rism_potUV          -2.32891672E+002   1.54558533E+004  -1.56524037E+004  -5.60386398E+001   1.96973661E+001
+rism_volume          8.50723823E+001
+rism_exNumb                           -2.16768635E+000  -4.33510590E+000   1.07862213E+000  -9.21383359E-001
+rism_exChrg          2.00011674E+000   1.80785042E+000  -1.80773916E+000   1.07862213E+000   9.21383359E-001
+rism_KB                               -6.50956724E+001  -6.50916663E+001   1.79109539E+004  -1.52999410E+004
+rism_DCFI                             -1.54548060E+006   7.72120132E+005   1.84572570E+006  -1.84634407E+006
+
+ NSTEP =        2   TIME(PS) =       0.002  TEMP(K) =   756.72  PRESS =     0.0
+ Etot   =      -305.5836  EKtot   =         5.2631  EPtot      =      -310.8467
+ BOND   =         0.0000  ANGLE   =        13.9209  DIHED      =         0.0128
+ 1-4 NB =         0.0000  1-4 EEL =       -96.1481  VDWAALS    =         0.0000
+ EELEC  =         0.0000  ERISM   =      -228.6323  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot         -3.10846726E+002   0.00000000E+000   0.00000000E+000   0.00000000E+000   1.39208914E+001   1.27541744E-002   0.00000000E+000   0.00000000E+000  -9.61480672E+001   0.00000000E+000  -2.28632305E+002
+rism_exchem         -2.28632305E+002   3.13159454E+004  -3.14952447E+004  -9.66567036E+001   4.73237005E+001
+rism_exchGF         -2.34887140E+002   3.13126448E+004  -3.14981308E+004  -9.68213418E+001   4.74201508E+001
+rism_potUV          -2.33771273E+002   1.54597402E+004  -1.56571402E+004  -5.60702480E+001   1.96989783E+001
+rism_volume          8.37186952E+001
+rism_exNumb                           -2.12354925E+000  -4.24451263E+000   1.07874746E+000  -9.21261224E-001
+rism_exChrg          2.00108699E+000   1.77104007E+000  -1.76996176E+000   1.07874746E+000   9.21261224E-001
+rism_KB                               -6.37702341E+001  -6.37314072E+001   1.79130350E+004  -1.52979129E+004
+rism_DCFI                             -1.54559101E+006   7.72185407E+005   1.84589170E+006  -1.84646188E+006
+
+      A V E R A G E S   O V E R       2 S T E P S
+
+
+ NSTEP =        2   TIME(PS) =       0.002  TEMP(K) =   730.01  PRESS =     0.0
+ Etot   =      -304.6251  EKtot   =         5.0773  EPtot      =      -309.7024
+ BOND   =         0.0000  ANGLE   =        14.3341  DIHED      =         0.0128
+ 1-4 NB =         0.0000  1-4 EEL =       -95.9198  VDWAALS    =         0.0000
+ EELEC  =         0.0000  ERISM   =      -228.1295  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =        2   TIME(PS) =       0.002  TEMP(K) =    26.71  PRESS =     0.0
+ Etot   =         0.9585  EKtot   =         0.1858  EPtot      =         1.1443
+ BOND   =         0.0000  ANGLE   =         0.4132  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.2283  VDWAALS    =         0.0000
+ EELEC  =         0.0000  ERISM   =         0.5028  RESTRAINT  =         0.0000
+|E(PBS) =         0.8155
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|                LJ Grid time               0.19 ( 0.24% of 3D-RI)
+|                Ewald Grid time            0.14 ( 0.17% of 3D-RI)
+|                Asymptotics time           0.85 ( 1.08% of 3D-RI)
+|                      FFT time                  28.68 (38.39% of R1RIS)
+|                         LAPACK time                0.00 ( 0.02% of MDIIS)
+|                         DATA time                  3.44 (30.33% of MDIIS)
+|                         Other                      7.89 (69.64% of MDIIS)
+|                      MDIIS time                11.33 (15.16% of R1RIS)
+|                      Other                     34.71 (46.45% of R1RIS)
+|                   R1RISM time               74.72 (100.0% of RXRIS)
+|                   Other                      0.06 ( 0.08% of RXRIS)
+|                RXRISM time               74.78 (94.32% of 3D-RI)
+|                EXCHEM time                0.12 ( 0.15% of 3D-RI)
+|                FF time                    0.63 ( 0.80% of 3D-RI)
+|                Resize Solvent Box t       2.56 ( 3.23% of 3D-RI)
+|                Solution Propagation       0.01 ( 0.01% of 3D-RI)
+|             3D-RISM time              79.29 (100.0% of Nonbo)
+|          Nonbond force             79.29 (100.0% of Force)
+|       Force time                79.29 (99.37% of Runmd)
+|       Verlet update time         0.34 ( 0.42% of Runmd)
+|       Other                      0.17 ( 0.21% of Runmd)
+|    Runmd Time                79.79 (99.67% of Total)
+|    Other                      0.27 ( 0.33% of Total)
+| Total time                80.06 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =      79.79 Per Step(ms) =   39895.43
+|         ns/day =       0.00   seconds/ns = **********
+| -----------------------------------------------------
+
+|           Job began  at 10:14:15.157  on 06/01/2012
+|           Setup done at 10:14:15.424  on 06/01/2012
+|           Run   done at 10:15:35.215  on 06/01/2012
+|     wallclock() was called    3195 times

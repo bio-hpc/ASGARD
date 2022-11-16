@@ -1,0 +1,28 @@
+March 19, 2006
+
+This test case is to test the icfe=2 option. This is a explicitely solvated
+structure of (GGCC)_2 -> (iGiGiCiC)_2 transformation.
+
+Run.test1: 
+icfe=1,klambda=1,clambda=0.5
+The outputs should give you the same results as out_icfe1_klambda_1_clambda_0.5.save.
+
+Run.test2:
+icfe=1,klambda=6,clambda=0.5
+The outputs should give you the same results as out_icfe1_klambda_6_clambda_0.5.save.
+
+Run.test3
+icfe=2,klambda=6,clambda=0.5
+The outputs should give you the same results as out_icfe2_klambda_6_clambda_0.5.save.
+
+Run.test4:
+icfe=2,klambda=1,clambda=0.5
+The outputs should give you the same results as out_icfe2_klambda_1_clambda_0.5.save.
+
+PS: Test1 and Test2 should give the same results because 
+    (icfe=1 & klambda=1) == (icfe=2 & klambda=1).
+
+Also, be careful when turning SHAKE on. In this test case, there are dummy atoms in both 
+initial and final case and SHAKE is turned on (ntc=2 & ntf=1). Use 'noshakemask'
+option to remove the SHAKE option from the perturbed hydrogen and dummy
+atoms. For more information, look at the AMBER 9 manual.

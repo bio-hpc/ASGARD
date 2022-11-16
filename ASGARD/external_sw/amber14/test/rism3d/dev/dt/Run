@@ -1,0 +1,257 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Getopt::Long;
+
+
+#defaults
+my @closure;
+my $solute;
+my $solvent;
+my $polar=1;
+my $nsite;
+my $temperature;
+my $delta;
+my $error = 1e-3;
+my $testOnly;
+
+
+GetOptions(
+           "-closure=s{,}"=>\@closure,
+           "-solute=s"=>\$solute,
+           "-solvent=s"=>\$solvent,
+           "-nsite=i"=>\$nsite,
+           "-polar!"=>\$polar,
+           "-testOnly!"=>\$testOnly,
+           "-temperature=f"=>\$temperature,
+           "-error=f"=>\$error,
+           "-delta=f"=>\$delta);
+
+usage() if(!$nsite || !@closure || !$solute || !$solvent);
+
+my $closureList = join(',', @closure);
+my $highRun = "${solute}_${closureList}_ht.out";
+my $lowRun = "${solute}_${closureList}_lt.out";
+my $analyticRun = "${solute}_${closureList}.out";
+my $highSolv = "${solvent}_ht.kh.xvv";
+my $lowSolv = "${solvent}_lt.kh.xvv";
+my $analyticSolv = "${solvent}.kh.xvv";
+
+print "SANDER: 3D-RISM-$closureList Thermodynamic Derivative: $solute in $solvent\n";
+
+if(!$testOnly){
+  checkParallel();
+  run();
+}
+compareAll();
+exit 0;
+
+#create input file and run for high, low and analytic input solvents
+sub run {
+  my $closureList = '"'.join('","', @closure).'"';
+
+  my @mdin;
+  push(@mdin,"Alanine dipeptide run");
+  push(@mdin," &cntrl");
+  push(@mdin,"    ntx=1, ntpr=1, ntwx=0,ntwr=0");
+  push(@mdin,"    nstlim=0,dt=0.001,");
+  push(@mdin,"    ntt=0, ig=314159, tempi=0,");
+  push(@mdin,"    ntp=0,");
+  push(@mdin,"    ntc=1,ntf=1,");
+  push(@mdin,"    ntb=0,");
+  push(@mdin,"    nrespa=1,");
+  push(@mdin,"    irism=1");
+  push(@mdin,"    cut=999,");
+  push(@mdin," /");
+  push(@mdin," &rism");
+  push(@mdin,"    closure=$closureList");
+  push(@mdin,"    tolerance=1e-2,1e-8");
+  push(@mdin,"    buffer = 12,");
+  push(@mdin,"!the tighter gridspacing is needed to achieve the desired precision");
+  push(@mdin,"    grdspc=0.25,0.25,0.25");
+  push(@mdin,"!    grdspc=25,25,25");
+  push(@mdin,"    solvcut=999d0");
+  push(@mdin,"    verbose=2");
+  push(@mdin,"    progress=1");
+  push(@mdin,"    ntwrism=5");
+  push(@mdin,"    entropicDecomp=1");
+  push(@mdin,"    polarDecomp=1");
+  push(@mdin," /");
+
+  open(MDIN,">mdin") || die "ERROR: could not open mdin:$!\n";
+  printf MDIN "%s\n", join("\n",@mdin);
+  close MDIN;
+
+  my $cmd = "$ENV{DO_PARALLEL} $ENV{TESTsanderRISM} -O -i mdin -o %s "
+    ."-p ${solute}.parm7 -c ${solute}.rst7 -xvv ../../../xvv/%s";
+
+  !system(sprintf($cmd,$analyticRun,$analyticSolv)) 
+    || die "ERROR: ".sprintf($cmd,$analyticRun,$analyticSolv)." failed\n";
+  !system(sprintf($cmd,$highRun,$highSolv)) 
+    || die "ERROR: ".sprintf($cmd,$highRun,$highSolv)." failed\n";
+  !system(sprintf($cmd,$lowRun,$lowSolv)) 
+    || die "ERROR: ".sprintf($cmd,$lowRun,$lowSolv)." failed\n";
+}
+
+#check environment variables to ensure that this is setup correctly for MPI or serial
+sub checkParallel {
+  if ( !defined($ENV{TESTsanderRISM}) ){
+    $ENV{TESTsanderRISM}="$ENV{AMBERHOME}/bin/sander";
+  }
+  
+  if (!defined($ENV{DO_PARALLEL})) {
+    $ENV{DO_PARALLEL}=" ";
+  }else{
+    my $numprocs=`echo $ENV{DO_PARALLEL} | awk -f ../../numprocs.awk `;
+    if ( $numprocs > 2 ){
+      print " DO_PARALLEL set to $ENV{DO_PARALLEL}";
+      toomany();
+    }elsif (defined($ENV{MP_PROCS})){
+      if ($ENV{MP_PROCS} > 3){
+        #               --- For IBM AIX ---
+        print "    MP_PROCS set to $ENV{MP_PROCS}\n";
+        toomany();
+      }
+    }
+  }
+  
+}
+
+sub toomany {
+    print " too many processors for this test, exiting\n";
+    print "============================================================\n";
+    exit 0;
+}
+
+#run a standardized set of analytic and finite difference
+#comparisons for temperature derivative tests. Expects analytic
+#derivatives in a file at the target temperature and regular
+#calculations for finite difference at the target temperature
+#+-delta/2. The properties tested can be expanded by modifying the
+#'properties' hash.
+sub compareAll {
+
+  #labels to test.
+  #The key is the analytic derivative property,
+  #finite - label to use for the finiti difference calculation
+  #coef - value to multiply the finite difference by. Typically the
+  #       temperature for -TS calculations.
+  #total - '1' - perform the comparison on the total. 
+  #        '0' - there is no total. 
+  #        'skip' - there is a total value but it should be ignored.
+  #sites - perform comparison on each site
+  #units - for output to the screen
+  my %property = ( "-TS" => {"finite" => "exchem",
+                             "coef" => $temperature,
+                             "total" => 1,
+                             "sites" => 1,
+                             "units" => "kcal/mol"},
+                   "-TS_GF" => {"finite" => "exchGF",
+                                "coef" => $temperature,
+                                "total" => 1,
+                                "sites" => 1,
+                                "units" => "kcal/mol"},
+                   "-TS_UC" => {"finite" => "exchUC",
+                                "coef" => $temperature,
+                                "total" => 1,
+                                "sites" => 0,
+                                "units" => "kcal/mol"},
+                   "volume_dT" => {"finite" => "volume",
+                                   "coef" => 1,
+                                   "total" => 1,
+                                   "sites" => 0,
+                                   "units" => "A^3/K"},
+                   "KB_dT" =>{"finite" => "KB",
+                              "coef" => 1,
+                              "total" => 0,
+                              "sites" => 1,
+                              "units" => "A^3/K"},
+                   "DCFI_dT" =>{"finite" => "DCFI",
+                                "coef" => 1,
+                                "total" => 0,
+                                "sites" => 1,
+                                "units" => "A^3/K"},
+                   "exNumb_dT" =>{"finite" => "exNumb",
+                                  "coef" => 1,
+                                  "total" => 0,
+                                  "sites" => 1,
+                                  "units" => "#/K"},
+                   "exChrg_dT" =>{"finite" => "exChrg",
+                                  "coef" => 1,
+                                  "total" => "skip",
+                                  "sites" => 1,
+                                  "units" => "e/K"},
+                 );
+
+  #prefix to modify the search label to do polar/apolar decomposition as well
+  my @labelPrefix = ("");
+  push(@labelPrefix, ("pol", "apol")) if($polar);
+
+  #cycle through each property
+  foreach my $key (keys %property) {
+    #do standard plus polar decomp comparisons
+    foreach my $prefix (@labelPrefix) {
+      my $finiteLabel = $property{$key}{finite};
+      my $analyticLabel = $key;
+      #exchem has non-standard naming scheme for polar/apolar decomp
+      if ($prefix) {
+        $finiteLabel =~ s/exch//;
+        $analyticLabel =~ s/exch//;
+        $finiteLabel =~ s/em/ar/;
+        $analyticLabel =~ s/em/ar/;
+      }
+
+      #total
+      if ($property{$key}{total} && $property{$key}{total} ne "skip") {
+        my $cmd = "$ENV{AMBERHOME}/AmberTools/test/rism1d/dev/dt/derivativeCompare "
+          ."-error $error "
+            ."-finite _$prefix$finiteLabel "
+              ."-analytic _$prefix$analyticLabel "
+                ."-col 1 -del $delta -coef $property{$key}{coef} -units $property{$key}{units} "
+                  ."-id $closureList "
+                  ."$highRun $lowRun $analyticRun";
+        print "$cmd\n";
+        system($cmd);
+      }
+      #sites
+      if ($property{$key}{sites}) {
+        my $col = 1;
+        $col++ if($property{$key}{total});
+        for (;$col <= $nsite + ($property{$key}{total}?1:0); $col++) {
+          my $cmd = "$ENV{AMBERHOME}/AmberTools/test/rism1d/dev/dt/derivativeCompare "
+            ."-error $error "
+              ."-finite _$prefix$finiteLabel "
+                ."-analytic _$prefix$analyticLabel "
+                  ."-col $col -del $delta -coef $property{$key}{coef} -units $property{$key}{units} "
+                  ."-id $closureList "
+                    ."$highRun $lowRun $analyticRun";
+          print "$cmd\n";
+          system($cmd);
+        }
+      }
+    }
+  }
+}
+
+sub usage {
+    print "USAGE: derivativeCompareAll -closure <closure1>[ <closure2>[..]]\n";
+    print "                            -solute <solute> -solvent <solvent>\n";
+    print "                            -nsite <# of sites> [-[no]polar]\n";
+    print "                            -temperature <temp> -delta <del>\n";
+    print "                            [-testOnly]\n";
+    print "\n";
+    print "  -closure                  Space separated closure list.\n";
+    print "  -solute                   Root name of solute in local directory.\n";
+    print "  -solvent                  Root name of solvent in test/rism3d/xvv.\n";
+    print "  -nsite:                   Number of sites in the solvent.\n";
+    print "  -error:                   Error tolerance for comparison.\n";
+    print "  -[no]polar:               Check polar decomposition values.\n";
+    print "  -temperature:             temperature for the analytic derivative.\n";
+    print "  -delta:                   temperature difference for the finite difference.\n";
+    print "  -testOnly:                Do not run RISM calculation, just test existing\n";
+    print "                            output files.\n";
+    print "Runs standard comparison between finite difference and analytic derivatives\n";
+    print "for all quantities.\n";
+
+exit 1;
+}

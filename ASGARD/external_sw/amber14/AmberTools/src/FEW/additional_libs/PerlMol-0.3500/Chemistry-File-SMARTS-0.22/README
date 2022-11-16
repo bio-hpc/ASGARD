@@ -1,0 +1,39 @@
+Chemistry::File::SMARTS version 0.22
+====================================
+
+This object-oriented module is used for reading SMARTS patterns, returning
+Chemistry::Pattern objects.
+
+For more information about SMARTS, see the SMARTS Theory Manual at
+http://www.daylight.com/dayhtml/doc/theory/theory.smarts.html
+
+CHANGES SINCE VERSION 0.21
+    - Added the original SMARTS string as the $patt->name property.
+    - Added support for atom mapping numbers
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+        Chemistry::Mol          0.24
+        Chemistry::Pattern      0.25
+        Chemistry::Ring         0.16
+        Chemistry::File::SMILES 0.41
+        List::Util              0
+        Test::More              0
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2005 Ivan Tubert-Brohman <itub@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

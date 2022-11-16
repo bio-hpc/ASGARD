@@ -1,0 +1,39 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+set output = mdout.sugarlp
+
+cat > gbin <<EOF
+  test of lone-pairs on oxygens
+ &cntrl
+   nstlim=5, ntpr=1, ntb=0,
+ /
+EOF
+
+touch dummy
+$DO_PARALLEL $TESTsander -O -i gbin -o $output < dummy || goto error
+
+../dacdif $output.save $output
+/bin/rm -f gbin restrt mdinfo dummy
+exit(0)
+
+error:
+set no_12_10 = "not compiled with -DHAS_10_12."
+#Exit with zero status if $no_12_10 is found, and echo ignored.
+grep "$no_12_10" $output > /dev/null
+if ( $status ) then
+    echo "  ${0}:  Program error"
+else
+    # found
+    echo "  Ignored"
+endif
+exit(1)

@@ -1,0 +1,296 @@
+
+          -------------------------------------------------------
+          Amber 9  SANDER                 Scripps/UCSF 2004
+          -------------------------------------------------------
+
+| Run on 03/03/2004 at 19:43:30
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: bpti/aa2/20652.inp.cmd                                                
+| MDOUT: bpti/aa2/mdout.bpti                                                   
+|INPCRD: bpti/aa2/20652.inpcoor                                                
+|  PARM: bpti.prmtop                                                           
+|RESTRT: bpti/aa2/restart                                                      
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: 20652.mdinf                                                           
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+ 
+ Here is the input file:
+ 
+ dynamics                                                                      
+ &cntrl                                                                        
+  imin=0, ntmin=1, ntpr=1,                                                     
+  ntx=1,                                                                       
+  cut=12.0,                                                                    
+  igb=1, gbsa=0,                                                               
+  extdiel=80.000000,                                                           
+  nstlim=999999999, dt=0.002000, temp0=300.000000, tempi=300.000000, ig=1069,  
+  mmtsb_switch=1, mmtsb_iterations=3,                                          
+  ntt=1, ntc=2, ntf=2,                                                         
+  ntb=0, ntr=0                                                                 
+ &end
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MMTSB                                                                  
+| New format PARM file being parsed.
+| Version =    1.000 Date = 03/03/04 Time = 18:57:00
+ NATOM  =     882 NTYPES =      12 NBONH =     433 MBONA  =     463
+ NTHETH =     985 MTHETA =     623 NPHIH =    1798 MPHIA  =    1101
+ NHPARM =       0 NPARM  =       0 NNB   =    4863 NRES   =      57
+ NBONA  =     463 NTHETA =     623 NPHIA =    1101 NUMBND =      24
+ NUMANG =      53 NPTRA  =      24 NATYP =      16 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      26 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real               22183
+|     Hollerith           5351
+|     Integer            64201
+|     Max Pairs              1
+|     Max Rstack             1
+|     Max Istack             1
+|       Total              445 kbytes
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       0, igb     =       1, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =  12.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000
+     
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =********, nscm    =    1000, nrespa  =       1
+     t       =   0.00000, dt      =   0.00200, vlimit  =  20.00000
+
+Berendsen (weak-coupling) temperature regulation:
+     temp0   = 300.00000, tempi   = 300.00000, tautp   =   1.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00001
+
+MMTSB Replica Exchange:
+     mmtsb_iterations  =        3
+     Reading MMTSB setup from file: bpti/aa2/amberrex.job                      
+     chainlength  =        0
+     sendfiles    =        0
+     jobid        = aa2                                                         
+     servername   = redfish.scripps.edu                                         
+     serverport   = 4100                                                        
+     serverid     = 223303                                                      
+     datadir      = bpti/aa2                                                    
+     temp0    =  350.00000
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =   375.07  PRESS =     0.0
+ Etot   =     -1440.4110  EKtot   =       822.4794  EPtot      =     -2262.8904
+ BOND   =       106.2223  ANGLE   =       185.9402  DIHED      =       278.0736
+ 1-4 NB =       236.8496  1-4 EEL =      1799.5550  VDWAALS    =      -378.3577
+ EELEC  =     -3304.3032  EGB     =     -1186.8703  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+Setting new random velocities at step        1
+
+ NSTEP =        1   TIME(PS) =       0.002  TEMP(K) =  1031.93  PRESS =     0.0
+ Etot   =         0.0000  EKtot   =      2262.8904  EPtot      =     -2262.8904
+ BOND   =       106.2223  ANGLE   =       185.9402  DIHED      =       278.0736
+ 1-4 NB =       236.8496  1-4 EEL =      1799.5550  VDWAALS    =      -378.3577
+ EELEC  =     -3304.3032  EGB     =     -1186.8703  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =       0.004  TEMP(K) =   349.18  PRESS =     0.0
+ Etot   =     -1465.9236  EKtot   =       765.6982  EPtot      =     -2231.6218
+ BOND   =       102.8906  ANGLE   =       227.6719  DIHED      =       281.7575
+ 1-4 NB =       234.4947  1-4 EEL =      1794.4652  VDWAALS    =      -384.8583
+ EELEC  =     -3246.6578  EGB     =     -1241.3856  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =       0.006  TEMP(K) =   287.60  PRESS =     0.0
+ Etot   =     -1457.1447  EKtot   =       630.6601  EPtot      =     -2087.8048
+ BOND   =       130.0125  ANGLE   =       345.5626  DIHED      =       295.5372
+ 1-4 NB =       234.4866  1-4 EEL =      1783.7596  VDWAALS    =      -391.6916
+ EELEC  =     -3329.6306  EGB     =     -1155.8411  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+MMTSB Replica Exchange iterations completed at NSTEP =        3
+MMTSB Replica Exchange potential energy =   -2087.8048
+MMTSB Replica Exchange temperature unchanged
+
+ NSTEP =        4   TIME(PS) =       0.008  TEMP(K) =   240.17  PRESS =     0.0
+ Etot   =     -1449.7519  EKtot   =       526.6707  EPtot      =     -1976.4226
+ BOND   =       155.1807  ANGLE   =       429.4106  DIHED      =       314.0055
+ 1-4 NB =       234.4261  1-4 EEL =      1768.5347  VDWAALS    =      -397.9545
+ EELEC  =     -3284.0039  EGB     =     -1196.0218  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =       0.010  TEMP(K) =   248.11  PRESS =     0.0
+ Etot   =     -1455.0575  EKtot   =       544.0757  EPtot      =     -1999.1332
+ BOND   =       156.2450  ANGLE   =       411.5732  DIHED      =       330.7800
+ 1-4 NB =       232.3914  1-4 EEL =      1750.0276  VDWAALS    =      -404.5026
+ EELEC  =     -3413.5868  EGB     =     -1062.0609  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =       0.012  TEMP(K) =   287.25  PRESS =     0.0
+ Etot   =     -1463.4185  EKtot   =       629.9107  EPtot      =     -2093.3292
+ BOND   =       148.6799  ANGLE   =       335.7329  DIHED      =       341.9399
+ 1-4 NB =       229.1552  1-4 EEL =      1729.4929  VDWAALS    =      -409.9600
+ EELEC  =     -3410.5920  EGB     =     -1057.7780  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+MMTSB Replica Exchange iterations completed at NSTEP =        6
+MMTSB Replica Exchange potential energy =   -2093.3292
+MMTSB Replica Exchange temperature unchanged
+
+ NSTEP =        7   TIME(PS) =       0.014  TEMP(K) =   303.61  PRESS =     0.0
+ Etot   =     -1467.0044  EKtot   =       665.7810  EPtot      =     -2132.7854
+ BOND   =       159.2225  ANGLE   =       298.6337  DIHED      =       347.0091
+ 1-4 NB =       226.9258  1-4 EEL =      1708.3592  VDWAALS    =      -411.8610
+ EELEC  =     -3504.3392  EGB     =      -956.7356  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =       0.016  TEMP(K) =   280.19  PRESS =     0.0
+ Etot   =     -1461.7867  EKtot   =       614.4275  EPtot      =     -2076.2142
+ BOND   =       184.5583  ANGLE   =       338.6115  DIHED      =       347.5272
+ 1-4 NB =       226.5212  1-4 EEL =      1688.2543  VDWAALS    =      -409.5927
+ EELEC  =     -3552.6985  EGB     =      -899.3954  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =       0.018  TEMP(K) =   250.76  PRESS =     0.0
+ Etot   =     -1456.0832  EKtot   =       549.8812  EPtot      =     -2005.9644
+ BOND   =       195.7085  ANGLE   =       403.2331  DIHED      =       345.2972
+ 1-4 NB =       226.5417  1-4 EEL =      1670.7565  VDWAALS    =      -405.2449
+ EELEC  =     -3574.2757  EGB     =      -867.9808  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+MMTSB Replica Exchange iterations completed at NSTEP =        9
+MMTSB Replica Exchange potential energy =   -2005.9644
+MMTSB Replica Exchange temperature unchanged
+
+ NSTEP =       10   TIME(PS) =       0.020  TEMP(K) =   251.01  PRESS =     0.0
+ Etot   =     -1457.1068  EKtot   =       550.4315  EPtot      =     -2007.5383
+ BOND   =       181.1151  ANGLE   =       422.3537  DIHED      =       341.7254
+ 1-4 NB =       225.1765  1-4 EEL =      1657.1662  VDWAALS    =      -401.9381
+ EELEC  =     -3598.4061  EGB     =      -834.7309  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       11   TIME(PS) =       0.022  TEMP(K) =   276.01  PRESS =     0.0
+ Etot   =     -1460.6698  EKtot   =       605.2638  EPtot      =     -2065.9336
+ BOND   =       164.1252  ANGLE   =       386.9883  DIHED      =       337.8800
+ 1-4 NB =       222.3027  1-4 EEL =      1648.4602  VDWAALS    =      -400.9069
+ EELEC  =     -3492.2484  EGB     =      -932.5348  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       12   TIME(PS) =       0.024  TEMP(K) =   294.05  PRESS =     0.0
+ Etot   =     -1463.1830  EKtot   =       644.8155  EPtot      =     -2107.9985
+ BOND   =       168.7591  ANGLE   =       346.8808  DIHED      =       334.5907
+ 1-4 NB =       219.3422  1-4 EEL =      1645.3118  VDWAALS    =      -401.0691
+ EELEC  =     -3512.2510  EGB     =      -909.5631  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+MMTSB Replica Exchange iterations completed at NSTEP =       12
+MMTSB Replica Exchange potential energy =   -2107.9985
+
+      A V E R A G E S   O V E R      12 S T E P S
+
+
+ NSTEP =       12   TIME(PS) =       0.024  TEMP(K) =   341.66  PRESS =     0.0
+ Etot   =     -1338.0942  EKtot   =       749.2089  EPtot      =     -2087.3030
+ BOND   =       154.3933  ANGLE   =       344.3827  DIHED      =       324.6769
+ 1-4 NB =       229.0511  1-4 EEL =      1720.3453  VDWAALS    =      -399.8281
+ EELEC  =     -3435.2494  EGB     =     -1025.0749  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       12   TIME(PS) =       0.024  TEMP(K) =   210.11  PRESS =     0.0
+ Etot   =       403.4785  EKtot   =       460.7404  EPtot      =        85.5466
+ BOND   =        27.7780  ANGLE   =        73.0505  DIHED      =        24.7007
+ 1-4 NB =         5.2606  1-4 EEL =        55.9001  VDWAALS    =         9.8147
+ EELEC  =       116.0157  EGB     =       136.9336  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.01 ( 0.15% of Total)
+|                Calc gb radii              0.64 (28.23% of Gen B)
+|                Calc gb diag               1.22 (54.14% of Gen B)
+|                Calc gb off-diag           0.40 (17.63% of Gen B)
+|                Other                      0.00 ( 0.01% of Gen B)
+|             Gen Born time              2.25 (100.0% of Nonbo)
+|          Nonbond force              2.25 (98.44% of Force)
+|          Bond/Angle/Dihedral        0.04 ( 1.55% of Force)
+|          Other                      0.00 ( 0.01% of Force)
+|       Force time                 2.29 (65.37% of Runmd)
+|       Shake time                 0.00 ( 0.04% of Runmd)
+|       Verlet update time         0.93 (26.53% of Runmd)
+|       Other                      0.28 ( 8.06% of Runmd)
+|    Runmd Time                 3.50 (98.69% of Total)
+|    Other                      0.04 ( 1.16% of Total)
+| Total time                 3.55 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 19:43:30.235  on 03/03/2004
+|           Setup done at 19:43:30.282  on 03/03/2004
+|           Run   done at 19:43:33.783  on 03/03/2004
+|     wallclock() was called     263 times

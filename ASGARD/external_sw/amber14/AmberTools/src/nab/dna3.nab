@@ -1,0 +1,37 @@
+molecule dna3( int numberOfBases, float roll, float tilt, float twist, float rise ){
+	molecule mLastResidue, mres, m;
+	residue res;
+	int i;
+	matrix rotationMatrix, riseMatrix;
+	mLastResidue = NULL;
+
+	rotationMatrix = newtransform( 0., 0., 0., roll, tilt, twist );	
+	riseMatrix = newtransform( 0., 0., rise, 0., 0., 0. );
+
+	res = getresidue( "3NA", "dna3.rlb" );
+
+	m = newmolecule();
+	addstrand( m, "1" );
+
+	mres = newmolecule();
+	addstrand( mres, "1" );
+	addresidue( mres, "1", res );
+
+	for ( i = 1; i <= numberOfBases; i++ ){
+		alignframe( mres, mLastResidue );
+		transformmol( rotationMatrix, mres, NULL );
+		transformmol( riseMatrix, mres, NULL );
+		mLastResidue = copymolecule( mres );
+		setframe( 0, mLastResidue, "::CE", "::CE", "::SI", "::CE", "::MA" );
+		mergestr( m, "1", "last", mres, "1", "first" );
+		if ( i > 1 )
+			connectres( m, "1", i-1, "CE", i, "CE" );
+		mres = newmolecule();
+		addstrand( mres, "1" );
+		addresidue( mres, "1", res );
+		setframe( 0, mres, "::CE", "::CE", "::SI", "::CE", "::MA" );
+	}
+
+	return( m );
+};
+

@@ -1,0 +1,64 @@
+"peptide" is an nab program that will generate a pdb file given a structure
+type and a sequence.  It was created by Paul Beroza.
+Please see the COPYING file for information on copyright and license issues.
+
+You must have the "nab" compiler (in AmberTools):
+  info on nab = http://ambermd.org
+
+Once you have AmberTools installed, you can compile peptide:
+
+$ make
+
+The command line syntax for peptide is:
+
+% peptide  structure sequence [ -lib libfile ]
+
+where "structure" defines the type of structure to be created and "sequence"
+is a string o of 1 letter amino acid codes.  For example:
+
+% peptide ALPHA  AAAAA -lib conf.lib
+
+will create and alanine pentapeptide in an alpha helical structure.
+
+The structure definitions are stored in a library file that can be specified
+on the command line  (the "-lib libfile" option) or by default are taken
+from $NABHOME/reslib/conf.lib.
+
+I've included a sample library  "conf.lib" This file looks like:
+
+--------------------
+ALPHA  1 	alpha helix
+phi    -57.0 psi    -47.0 omega  180.0
+
+ABETA 1 	anti-parallel beta sheet
+phi    -139.0 psi    135.0 omega  -178.0
+	.
+	.
+	.etc.
+--------------------
+
+The file contains sets of definitions, one for each structure type.  The
+definitions above are separated by a blank line, but that is not necessary.
+Each time peptide finds a line that begins with an alphanumeric character,
+it initializes a new structure type with the first string in the line as its
+identifying string.  The <structure> on the command line must match one of
+the structure types in the "conf.lib" file.
+
+The next field on the structure type line is the number of residues in the
+structure.  The following lines must contain the phi psi and omega values
+for each of the residues in the structure type.  The angles may be in any
+order, but the string defining the angle must precede its floating point
+value.
+
+If the number of residues = 1, it is a special structure for which the phi
+psi and omega values are the same for all residues in the structure.  For
+these structure types, the <sequence> may be of any length.  For other
+structure types, the number of residues in <sequence> must agree with the
+number of residues in the corresponding structure type in the "conf.lib"
+file.  The resulting pdb file is written to standard out.
+
+Please let me know of any bugs or suggestions.
+
+Enjoy,
+
+Paul Beroza  <pberoza@telik.com>

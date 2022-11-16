@@ -1,0 +1,220 @@
+   0  $accept : Datablocks $end
+
+   1  Datablocks : Lines
+   2             | Datablocks Datablock
+
+   3  Datablock : DatablockName Lines
+
+   4  Lines :
+   5        | Lines Line
+
+   6  Line : ItemName Value
+   7       | ItemNameList ValueList
+
+   8  ItemNameList : Loop ItemName
+   9               | ItemNameList ItemName
+
+  10  ValueList : Value
+  11            | ValueList Value
+
+  12  ItemName : ITEMNAME
+
+  13  Loop : LOOP
+
+  14  Value : VALUE
+  15        | UNKNOWN
+  16        | MISSING
+
+  17  DatablockName : DATABLOCK
+
+state 0
+	$accept : . Datablocks $end  (0)
+	Lines : .  (4)
+
+	.  reduce 4
+
+	Datablocks  goto 1
+	Lines  goto 2
+
+
+state 1
+	$accept : Datablocks . $end  (0)
+	Datablocks : Datablocks . Datablock  (2)
+
+	$end  accept
+	DATABLOCK  shift 3
+	.  error
+
+	Datablock  goto 4
+	DatablockName  goto 5
+
+
+state 2
+	Datablocks : Lines .  (1)
+	Lines : Lines . Line  (5)
+
+	ITEMNAME  shift 6
+	LOOP  shift 7
+	$end  reduce 1
+	DATABLOCK  reduce 1
+
+	ItemName  goto 8
+	Line  goto 9
+	ItemNameList  goto 10
+	Loop  goto 11
+
+
+state 3
+	DatablockName : DATABLOCK .  (17)
+
+	.  reduce 17
+
+
+state 4
+	Datablocks : Datablocks Datablock .  (2)
+
+	.  reduce 2
+
+
+state 5
+	Datablock : DatablockName . Lines  (3)
+	Lines : .  (4)
+
+	.  reduce 4
+
+	Lines  goto 12
+
+
+state 6
+	ItemName : ITEMNAME .  (12)
+
+	.  reduce 12
+
+
+state 7
+	Loop : LOOP .  (13)
+
+	.  reduce 13
+
+
+state 8
+	Line : ItemName . Value  (6)
+
+	VALUE  shift 13
+	UNKNOWN  shift 14
+	MISSING  shift 15
+	.  error
+
+	Value  goto 16
+
+
+state 9
+	Lines : Lines Line .  (5)
+
+	.  reduce 5
+
+
+state 10
+	Line : ItemNameList . ValueList  (7)
+	ItemNameList : ItemNameList . ItemName  (9)
+
+	ITEMNAME  shift 6
+	VALUE  shift 13
+	UNKNOWN  shift 14
+	MISSING  shift 15
+	.  error
+
+	ItemName  goto 17
+	Value  goto 18
+	ValueList  goto 19
+
+
+state 11
+	ItemNameList : Loop . ItemName  (8)
+
+	ITEMNAME  shift 6
+	.  error
+
+	ItemName  goto 20
+
+
+state 12
+	Datablock : DatablockName Lines .  (3)
+	Lines : Lines . Line  (5)
+
+	ITEMNAME  shift 6
+	LOOP  shift 7
+	$end  reduce 3
+	DATABLOCK  reduce 3
+
+	ItemName  goto 8
+	Line  goto 9
+	ItemNameList  goto 10
+	Loop  goto 11
+
+
+state 13
+	Value : VALUE .  (14)
+
+	.  reduce 14
+
+
+state 14
+	Value : UNKNOWN .  (15)
+
+	.  reduce 15
+
+
+state 15
+	Value : MISSING .  (16)
+
+	.  reduce 16
+
+
+state 16
+	Line : ItemName Value .  (6)
+
+	.  reduce 6
+
+
+state 17
+	ItemNameList : ItemNameList ItemName .  (9)
+
+	.  reduce 9
+
+
+state 18
+	ValueList : Value .  (10)
+
+	.  reduce 10
+
+
+state 19
+	Line : ItemNameList ValueList .  (7)
+	ValueList : ValueList . Value  (11)
+
+	VALUE  shift 13
+	UNKNOWN  shift 14
+	MISSING  shift 15
+	$end  reduce 7
+	ITEMNAME  reduce 7
+	LOOP  reduce 7
+	DATABLOCK  reduce 7
+
+	Value  goto 21
+
+
+state 20
+	ItemNameList : Loop ItemName .  (8)
+
+	.  reduce 8
+
+
+state 21
+	ValueList : ValueList Value .  (11)
+
+	.  reduce 11
+
+
+8 terminals, 11 nonterminals
+18 grammar rules, 22 states

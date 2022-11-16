@@ -1,0 +1,40 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander.LES
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsanderLES ) set TESTsanderLES = "../../bin/sander.LES"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+echo " "
+echo "  Amber 8 ADDLES and SANDER.LES test: "
+echo " "
+
+echo "addles:"
+../../bin/addles < input_addles \
+    | grep -v 'There were' | grep -v ick | grep -v Making | grep -v orig> output_addles \
+    || goto error
+
+../dacdif -r 1.e-6 output_addles.save output_addles
+../dacdif LES.crd.save LES.crd
+../dacdif -r 1.e-5  LES.prmtop.save LES.prmtop
+
+echo "sander.LES:"
+$DO_PARALLEL $TESTsanderLES  -O \
+		  -i md.in \
+		  -o md.LES.out \
+		  -p LES.prmtop.save \
+      	  -c md.LES.x \
+		  -r md.LES.rst 		|| goto error
+
+../dacdif md.LES.out.save  md.LES.out
+/bin/rm -f md.LES.rst mdinfo mdcrd
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

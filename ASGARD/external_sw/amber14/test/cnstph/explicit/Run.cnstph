@@ -1,0 +1,45 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+. ../../program_error.sh
+
+if [ -z "$TESTsander" ]; then
+   TESTsander="../../../bin/sander"
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+   export DO_PARALLEL=" "
+fi
+
+cat > mdin <<EOF
+Explicit solvent molecular dynamics constant pH MD
+ &cntrl
+   imin=0, irest=1, ntx=5,
+   ntpr=5, ntwx=0, nstlim=100,
+   dt=0.002, ntt=3, tempi=300,
+   temp0=300, gamma_ln=1.0, ig=45,
+   ntp=1, ntc=2, ntf=2, cut=8,
+   ntb=2, iwrap=1, ioutfm=1,
+   icnstph=2, ntcnstph=10, solvph=8.5,
+   ntrelax=10, saltcon=0.1,
+ /
+EOF
+
+$DO_PARALLEL $TESTsander -O -c min.x < /dev/null || error
+
+if [ "`basename $TESTsander`" = "pmemd" -o "`basename $TESTsander`" = "pmemd.MPI"  -o "`basename $TESTsander`" = "pmemd.mic_offload.MPI" ]; then
+if [ "`basename $TESTsander`" = "pmemd.mic_offload.MPI" ]; then
+   ../../dacdif -r 1.0e-05 mdout.pmemd.save mdout
+else   
+   ../../dacdif mdout.pmemd.save mdout
+fi
+else
+   ../../dacdif mdout.save mdout
+fi
+../../dacdif cpout.save cpout
+
+/bin/rm -f mdin restrt mdinfo profile_mpi cprestrt
+exit 0

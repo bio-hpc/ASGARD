@@ -1,0 +1,324 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 08/19/2014 at 20:26:55
+
+|   Executable path: ../../bin/sander.MPI
+| Working directory: /net/cottus/u1/jdeckman/source/amber/test/sander_OIN_MPI
+|          Hostname: casegroup.rutgers.edu
+
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: gbin                                                                  
+| MDOUT: mdout.sander.OIN.MPI                                                  
+|INPCRD: trpcge.crds                                                           
+|  PARM: TC5b.top                                                              
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+|    REMLOG: rem.log
+|   REMTYPE: rem.type
+|  REMSTRIP: 
+|   SAVEENE: saveene
+|CLUSTERINF: cluster.info
+| RESERVOIR: reserv/frame
+|   REMDDIM: 
+
+
+ Here is the input file:
+
+ Relaxtion of trip cage using OIN (isokinetic ensemble)                        
+ &cntrl                                                                        
+  imin=0, irest=0, ntx=1,                                                      
+  nstlim=10, dt=0.001,                                                         
+  ntc=1, ntf=1, ioutfm=1                                                       
+  ntt=9, tautp=0.5,                                                            
+  tempi=298.0, temp0=298.0,                                                    
+  ntpr=1, ntwx=20,                                                             
+  ntb=0, igb=8,                                                                
+  nkija=3, gamma_ln=0.01,                                                      
+  cut=999.0,rgbmax=999.0,                                                      
+  idistr=0                                                                     
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+| New format PARM file being parsed.
+| Version =    1.000 Date = 05/30/14 Time = 14:51:53
+ NATOM  =     304 NTYPES =      12 NBONH =     150 MBONA  =     160
+ NTHETH =     346 MTHETA =     219 NPHIH =     678 MPHIA  =     552
+ NHPARM =       0 NPARM  =       0 NNB   =    1701 NRES   =      20
+ NBONA  =     160 NTHETA =     219 NPHIA =     552 NUMBND =      32
+ NUMANG =      70 NPTRA  =      37 NATYP =      21 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      24 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are ArgH and AspGluO modified Bondi2 radii (mbondi3)                                
+ Replacing prmtop screening parameters with GBn2 (igb=8) values
+
+|     Memory Use     Allocated
+|     Real               26282
+|     Hollerith            934
+|     Integer            36591
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total              351 kbytes
+
+| Note: 1-4 EEL scale factors are being read from the topology file.
+
+| Note: 1-4 VDW scale factors are being read from the topology file.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =      20, ntwv    =       0, ntwe    =       0
+     ioutfm  =       1, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       8, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     = 999.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.19514, surften =   0.00500
+     rdt     =   0.00000, rgbmax  = 999.00000  extdiel =  78.50000
+     alpb  =        0
+     gbalphaH  =   0.78844, gbbetaH   =   0.79870,  gbgammaH  =    0.43733
+     gbalphaC  =   0.73376, gbbetaC   =   0.50638,  gbgammaC  =    0.20584
+     gbalphaN  =   0.50336, gbbetaN   =   0.31683,  gbgammaN  =    0.19292
+     gbalphaOS =   0.86781, gbbetaOS  =   0.87664,  gbgammaOS =    0.38788
+     gbalphaP  =   1.00000, gbbetaP   =   0.80000,  gbgammaP  =    4.85000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+Canonical-isokinetic ensemble regulation:
+     temp0   = 298.00000, tempi   = 298.00000, gamma_ln=   0.01000
+     nkija   =         3, idistr  =         0
+
+
+| MPI Timing options:
+|      profile_mpi =        0
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+ begin time read from input coords = 10000.000 ps
+
+ Number of triangulated 3-point waters found:        0
+|  Atom division among processors:
+|         0     304
+|  Running AMBER/MPI version on    1 nodes
+
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):     912.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =     912.     NUM_NOSHAKE =      0     CORRECTED RNDFP =     912.
+|  TOTAL # of degrees of freedom (RNDF) =     912.
+
+ NSTEP =        0   TIME(PS) =   10000.000  TEMP(K) =   289.79  PRESS =     0.0
+ Etot   =      -185.7129  EKtot   =       262.5994  EPtot      =      -448.3123
+ BOND   =        62.1744  ANGLE   =       179.6554  DIHED      =       213.5848
+ 1-4 NB =        57.2035  1-4 EEL =       890.8458  VDWAALS    =       -99.1056
+ EELEC  =     -1375.5435  EGB     =      -377.1271  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+Using random generation of initial velocities and thermostat variables
+
+ Max deviations in the kinetic constraints:   0.114E-12 %
+ Mean fluctuations in the conservation laws:   0.386E-18
+
+ NSTEP =        1   TIME(PS) =   10000.001  TEMP(K) =   299.24  PRESS =     0.0
+ Etot   =      -177.1545  EKtot   =       271.1578  EPtot      =      -448.3123
+ BOND   =        62.1744  ANGLE   =       179.6554  DIHED      =       213.5848
+ 1-4 NB =        57.2035  1-4 EEL =       890.8458  VDWAALS    =       -99.1056
+ EELEC  =     -1375.5435  EGB     =      -377.1271  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+ Max deviations in the kinetic constraints:   0.191E-12 %
+ Mean fluctuations in the conservation laws:   0.190E-17
+
+ NSTEP =        2   TIME(PS) =   10000.002  TEMP(K) =   290.40  PRESS =     0.0
+ Etot   =      -183.6177  EKtot   =       263.1484  EPtot      =      -446.7661
+ BOND   =        67.9872  ANGLE   =       174.3365  DIHED      =       214.0583
+ 1-4 NB =        57.3072  1-4 EEL =       891.2377  VDWAALS    =       -99.0898
+ EELEC  =     -1375.2318  EGB     =      -377.3714  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+ Max deviations in the kinetic constraints:   0.381E-12 %
+ Mean fluctuations in the conservation laws:   0.644E-17
+
+ NSTEP =        3   TIME(PS) =   10000.003  TEMP(K) =   276.28  PRESS =     0.0
+ Etot   =      -183.5519  EKtot   =       250.3503  EPtot      =      -433.9022
+ BOND   =        86.6632  ANGLE   =       167.2161  DIHED      =       214.7998
+ 1-4 NB =        57.5247  1-4 EEL =       891.9316  VDWAALS    =       -98.9194
+ EELEC  =     -1375.4691  EGB     =      -377.6490  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+ Max deviations in the kinetic constraints:   0.458E-12 %
+ Mean fluctuations in the conservation laws:   0.163E-16
+
+ NSTEP =        4   TIME(PS) =   10000.004  TEMP(K) =   271.26  PRESS =     0.0
+ Etot   =      -184.6807  EKtot   =       245.8045  EPtot      =      -430.4852
+ BOND   =        95.8106  ANGLE   =       159.8086  DIHED      =       215.7651
+ 1-4 NB =        57.7976  1-4 EEL =       892.9711  VDWAALS    =       -98.5692
+ EELEC  =     -1376.2750  EGB     =      -377.7939  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+ Max deviations in the kinetic constraints:   0.572E-12 %
+ Mean fluctuations in the conservation laws:   0.306E-16
+
+ NSTEP =        5   TIME(PS) =   10000.005  TEMP(K) =   276.12  PRESS =     0.0
+ Etot   =      -197.7827  EKtot   =       250.2046  EPtot      =      -447.9872
+ BOND   =        82.3632  ANGLE   =       153.6218  DIHED      =       216.8421
+ 1-4 NB =        58.0693  1-4 EEL =       894.3450  VDWAALS    =       -98.0480
+ EELEC  =     -1377.4960  EGB     =      -377.6846  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+ Max deviations in the kinetic constraints:   0.572E-12 %
+ Mean fluctuations in the conservation laws:   0.479E-16
+
+ NSTEP =        6   TIME(PS) =   10000.006  TEMP(K) =   278.36  PRESS =     0.0
+ Etot   =      -218.4157  EKtot   =       252.2411  EPtot      =      -470.6568
+ BOND   =        61.9307  ANGLE   =       148.8410  DIHED      =       217.8864
+ 1-4 NB =        58.3205  1-4 EEL =       895.9874  VDWAALS    =       -97.4280
+ EELEC  =     -1378.8024  EGB     =      -377.3925  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+ Max deviations in the kinetic constraints:   0.706E-12 %
+ Mean fluctuations in the conservation laws:   0.686E-16
+
+ NSTEP =        7   TIME(PS) =   10000.007  TEMP(K) =   273.61  PRESS =     0.0
+ Etot   =      -231.6434  EKtot   =       247.9370  EPtot      =      -479.5804
+ BOND   =        54.0430  ANGLE   =       145.0425  DIHED      =       218.7844
+ 1-4 NB =        58.5671  1-4 EEL =       897.8607  VDWAALS    =       -96.8181
+ EELEC  =     -1380.0254  EGB     =      -377.0347  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+ Max deviations in the kinetic constraints:   0.706E-12 %
+ Mean fluctuations in the conservation laws:   0.942E-16
+
+ NSTEP =        8   TIME(PS) =   10000.008  TEMP(K) =   263.54  PRESS =     0.0
+ Etot   =      -231.4570  EKtot   =       238.8079  EPtot      =      -470.2649
+ BOND   =        63.6289  ANGLE   =       142.0726  DIHED      =       219.4687
+ 1-4 NB =        58.8301  1-4 EEL =       899.8883  VDWAALS    =       -96.3271
+ EELEC  =     -1381.0990  EGB     =      -376.7273  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+ Max deviations in the kinetic constraints:   0.801E-12 %
+ Mean fluctuations in the conservation laws:   0.126E-15
+
+ NSTEP =        9   TIME(PS) =   10000.009  TEMP(K) =   254.86  PRESS =     0.0
+ Etot   =      -221.9631  EKtot   =       230.9417  EPtot      =      -452.9048
+ BOND   =        80.6596  ANGLE   =       140.1196  DIHED      =       219.8916
+ 1-4 NB =        59.1248  1-4 EEL =       901.8867  VDWAALS    =       -96.0527
+ EELEC  =     -1381.9299  EGB     =      -376.6047  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+ Max deviations in the kinetic constraints:   0.858E-12 %
+ Mean fluctuations in the conservation laws:   0.162E-15
+
+ NSTEP =       10   TIME(PS) =   10000.010  TEMP(K) =   256.37  PRESS =     0.0
+ Etot   =      -212.8319  EKtot   =       232.3114  EPtot      =      -445.1434
+ BOND   =        87.6119  ANGLE   =       139.3705  DIHED      =       220.0494
+ 1-4 NB =        59.4466  1-4 EEL =       903.5752  VDWAALS    =       -96.0286
+ EELEC  =     -1382.3780  EGB     =      -376.7903  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      10 S T E P S
+
+
+ NSTEP =       10   TIME(PS) =   10000.010  TEMP(K) =   274.00  PRESS =     0.0
+ Etot   =      -204.3099  EKtot   =       248.2905  EPtot      =      -452.6003
+ BOND   =        74.2873  ANGLE   =       155.0085  DIHED      =       217.1130
+ 1-4 NB =        58.2192  1-4 EEL =       896.0529  VDWAALS    =       -97.6387
+ EELEC  =     -1378.4250  EGB     =      -377.2175  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       10   TIME(PS) =   10000.010  TEMP(K) =    13.15  PRESS =     0.0
+ Etot   =        20.2280  EKtot   =        11.9152  EPtot      =        15.2778
+ BOND   =        13.2752  ANGLE   =        13.8779  DIHED      =         2.3303
+ 1-4 NB =         0.7333  1-4 EEL =         4.3394  VDWAALS    =         1.2032
+ EELEC  =         2.6549  EGB     =         0.4038  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.16% of Total)
+|                Calc gb radii              0.06 (23.45% of Gen B)
+|                Calc gb diag               0.10 (40.07% of Gen B)
+|                Calc gb off-diag           0.09 (36.47% of Gen B)
+|                Other                      0.00 ( 0.01% of Gen B)
+|             Gen Born time              0.25 (100.0% of Nonbo)
+|          Nonbond force              0.25 (96.81% of Force)
+|          Bond/Angle/Dihedral        0.01 ( 3.14% of Force)
+|          Other                      0.00 ( 0.05% of Force)
+|       Force time                 0.26 (18.83% of Runmd)
+|       Verlet update time         1.11 (79.53% of Runmd)
+|       Other                      0.02 ( 1.64% of Runmd)
+|    Runmd Time                 1.39 (96.18% of Total)
+|    Other                      0.05 ( 3.65% of Total)
+| Total time                 1.45 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       1.45 Per Step(ms) =     145.24
+|         ns/day =       0.59   seconds/ns =  145237.80
+| -----------------------------------------------------
+
+|           Job began  at 20:26:55.165  on 08/19/2014
+|           Setup done at 20:26:55.220  on 08/19/2014
+|           Run   done at 20:26:56.611  on 08/19/2014
+|     wallclock() was called     357 times

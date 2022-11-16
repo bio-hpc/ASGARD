@@ -1,0 +1,54 @@
+-I: Adding /usr/local/amber/dat/leap/prep to search path.
+-I: Adding /usr/local/amber/dat/leap/lib to search path.
+-I: Adding /usr/local/amber/dat/leap/parm to search path.
+-I: Adding /usr/local/amber/dat/leap/cmd to search path.
+-s: Ignoring startup file: leaprc
+-f: Source leap.in.
+
+Welcome to LEaP!
+Sourcing: ./leap.in
+----- Source: /usr/local/amber/dat/leap/cmd/leaprc.gaff
+----- Source of /usr/local/amber/dat/leap/cmd/leaprc.gaff done
+Log file: ./leap.log
+Loading parameters: /usr/local/amber/dat/leap/parm/gaff.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 1.7, Nov 2013)
+Loading parameters: ./frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+remark goes here
+Loading Prep file: ./DGN.prepin
+Loaded UNIT: DGN
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+old PREP-specified impropers:
+ <DGN 1>:  C1'  C8   N9   C4  
+ <DGN 1>:  H8   N9   C8   N7  
+ <DGN 1>:  C6   C4   C5   N7  
+ <DGN 1>:  C5   N1   C6   O6  
+ <DGN 1>:  C6   C2   N1   H1  
+ <DGN 1>:  N1   N3   C2   N2  
+ <DGN 1>:  C2   H21  N2   H22 
+ <DGN 1>:  C5   N9   C4   N3  
+--Impropers:
+  1	C1'<DGN> - C8<DGN> - N9<DGN> - C4<DGN>
+  1	C2<DGN> - H21<DGN> - N2<DGN> - H22<DGN>
+  1	C5<DGN> - O6<DGN> - C6<DGN> - N1<DGN>
+  1	C6<DGN> - H1<DGN> - N1<DGN> - C2<DGN>
+  1	N1<DGN> - N2<DGN> - C2<DGN> - N3<DGN>
+  1	N3<DGN> - N9<DGN> - C4<DGN> - C5<DGN>
+  1	N7<DGN> - C6<DGN> - C5<DGN> - C4<DGN>
+  1	N9<DGN> - H8<DGN> - C8<DGN> - N7<DGN>
+ total 8 improper torsions applied
+ 8 improper torsions in old prep form
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+ (no restraints)
+	Quit

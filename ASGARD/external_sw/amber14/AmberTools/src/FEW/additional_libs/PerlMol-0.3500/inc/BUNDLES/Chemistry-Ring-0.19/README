@@ -1,0 +1,41 @@
+Chemistry::Ring version 0.19
+============================
+
+The Chemistry::Ring module provides some basic methods for representing a ring.
+A ring is a subclass of molecule, because it has atoms and bonds. Besides that,
+it has some useful geometric methods for finding the centroid and the ring
+plane, and methods for aromaticity detection.
+
+The Chemistry::Ring::Find module implements a breadth-first ring finding
+algorithm, and it can find all rings that contain a given atom or bond, the
+Smallest Set of Smallest Rings (SSSR), or the "almost SSSR", which is an
+unambiguous set of rings for cases such as cubane.
+
+This module is part of the PerlMol project, L<http://www.perlmol.org/>.
+
+CHANGES SINCE VERSION 0.18
+    - Fixed memory leak.
+    - Added 'ring/rings' attribute to molecule on aromatize_mol.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+        Chemistry::Mol              0.24
+        Statistics::Regression      0.15
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2005 Ivan Tubert-Brohman <itub@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

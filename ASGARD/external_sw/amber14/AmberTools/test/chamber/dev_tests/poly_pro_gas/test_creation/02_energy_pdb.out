@@ -1,0 +1,206 @@
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                   (CHARMM) - Developmental Version 35b1     August 15, 2008   
+       Copyright(c) 1984-2001  President and Fellows of Harvard College
+                              All Rights Reserved
+      Current operating system: Linux-2.6.9-78.0.1.ELsmp(x86_64)@caffeine.sd
+                 Created on  1/27/ 9 at 13:23:18 by user: rcw         
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+            Current HEAP size:        10240000, and STACK size:  10000000
+
+ RDTITL> * POLY PROLINE IN GAS PHASE
+ RDTITL> * BY ROSS WALKER & MARK WILLIAMSON (SDSC)
+ RDTITL> *
+  
+ CHARMM>    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ CHARMM>    ! Read in Topology and parameter file for ALL22
+ CHARMM>     
+  
+ CHARMM>        OPEN READ CARD UNIT 1 NAME "../../../../dat/chamber/top_all22_prot.inp"
+ VOPEN> Attempting to open::../../../../dat/chamber/top_all22_prot.inp::
+ OPNLGU> Unit  1 opened for READONLY access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/../../../../dat/chamber/top_all22_prot.inp
+  
+ CHARMM>        READ RTF CARD UNIT 1
+ MAINIO> Residue topology file being read from unit   1.
+ TITLE> *>>>>>>>>CHARMM22 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+  
+ CHARMM>        CLOSE UNIT 1
+ VCLOSE: Closing unit    1 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>        OPEN READ CARD UNIT 2 NAME "../../../../dat/chamber/par_all22_prot.inp"
+ VOPEN> Attempting to open::../../../../dat/chamber/par_all22_prot.inp::
+ OPNLGU> Unit  2 opened for READONLY access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/../../../../dat/chamber/par_all22_prot.inp
+  
+ CHARMM>        READ PARAM CARD UNIT 2
+
+          PARAMETER FILE BEING READ FROM UNIT  2
+ TITLE> *>>>>> CHARMM22 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+  
+ CHARMM>        CLOSE UNIT 2
+ VCLOSE: Closing unit    2 with status "KEEP"
+  
+ CHARMM>    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ CHARMM>     
+  
+ CHARMM>    ! Turn off CMAP - Needed since the default for all22 was changed
+ CHARMM>    !                 in C35B1 (A dangerous change in my opinion since
+ CHARMM>    !                 it effectively silently turns on CMAP but oh well.)
+ CHARMM>        SKIPE CMAP
+ SKIPE> The following energy terms will be computed :
+  BOND ANGL UREY DIHE IMPR VDW  ELEC HBON USER HARM CDIH CIC  CDRO NOE  SBOU
+  IMNB IMEL IMHB EWKS EWSE EXTE RXNF ST2  IMST TSM  QMEL QMVD ASP  EHAR GEO 
+  MDIP PINT PRMS PANG SSBP BK4D SHEL RESD SHAP STRB OOPL PULL POLA DMC  RGY 
+  EWEX EWQC EWUT PBEL PBNP MBDE MBEL STRS BNDB BNDT EBST MBST BBT  SST  GBEN
+  HMCM ADUM HYDR GSBP FQPO GRVD GREL SASL ELRC OLAP UMBR RREP RPHO RHBN RBDO
+  RBAC RARO PHEN VMOD CROS FCTP FCTN
+  
+ CHARMM>     
+  
+ CHARMM>    ! Read in Poly Pro Gas Phase PSF and pdb
+ CHARMM>        open unit 3 form read name "poly_pro_gas_all22.psf"
+ VOPEN> Attempting to open::poly_pro_gas_all22.psf::
+ OPNLGU> Unit  3 opened for READONLY access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/poly_pro_gas_all22.psf
+  
+ CHARMM>        read psf card unit 3
+ MAINIO> Protein structure file being read from unit   3.
+ TITLE>  * POLY PROLINE IN GAS PHASE
+ TITLE>  * BY ROSS WALKER & MARK WILLIAMSON (SDSC)
+ TITLE>  *  DATE:     1/27/ 9     13:23:18      CREATED BY USER: rcw
+ TITLE>  *
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =        5
+         Number of atoms         =       65   Number of groups     =       18
+         Number of bonds         =       67   Number of angles     =      129
+         Number of dihedrals     =      196   Number of impropers  =        9
+         Number of cross-terms   =        3
+         Number of HB acceptors  =        6   Number of HB donors  =        4
+         Number of NB exclusions =        0   Total charge =    0.00000
+  
+ CHARMM>        close unit 3
+ VCLOSE: Closing unit    3 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>        read coor pdb name "01_minimize.pdb"
+ VOPEN> Attempting to open::01_minimize.pdb::
+  read CHARMM-pdb format
+          SPATIAL COORDINATES BEING READ FROM UNIT 90
+ TITLE>   POLY PROLINE IN GAS PHASE
+ TITLE>   BY ROSS WALKER & MARK WILLIAMSON (SDSC)
+ TITLE>    DATE:     1/27/ 9     13:23:18      CREATED BY USER: RCW
+ TITLE>  *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    !**********************************************************
+ CHARMM>    !**********************************************************
+ CHARMM>    !
+ CHARMM>    !       Energy - Gas Phase
+ CHARMM>    !
+ CHARMM>    !**********************************************************
+ CHARMM>    !**********************************************************
+ CHARMM>     
+  
+ CHARMM>      update bycb  switch vswitch  -
+ CHARMM>             cutnb 9999.0   ctofnb 9998.0   ctonnb 9997.0
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYCB     NOEXtnd  NOEWald 
+ CUTNB  =******* CTEXNB =999.000 CTONNB =******* CTOFNB =*******
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are        0 atom  pairs and        0 atom  exclusions.
+ There are        0 group pairs and        0 group exclusions.
+ <MAKINB> with mode   5 found    196 exclusions and    181 interactions(1-4)
+ <MAKGRP> found     47 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR        0 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        0 ATOM PAIRS AND        0 GROUP PAIRS
+  
+ =========================================
+              TRIAL run of list...........
+ =========================================
+Using Image CUBE search
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+  
+ CHARMM>     
+  
+ CHARMM>      ener
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYCB     NOEXtnd  NOEWald 
+ CUTNB  =******* CTEXNB =999.000 CTONNB =******* CTOFNB =*******
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are     1884 atom  pairs and      377 atom  exclusions.
+ There are        0 group pairs and       47 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        0 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+ENER ENR:  Eval#     ENERgy      Delta-E         GRMS
+ENER INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+ENER EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+ENER>        0    142.65278      0.00000      0.99779
+ENER INTERN>        4.07190     25.50281      0.66982     36.09255      0.47649
+ENER EXTERN>        1.70539     74.13382      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>     
+  
+ CHARMM>      stop
+$$$$$$  New timer profile $$$$$
+      xdistm setup                    0.00 Other:            0.00
+      xdistm Build list               0.00 Other:            0.00
+   List time                       0.00 Other:            0.00
+         Electrostatic & VDW             0.00 Other:            0.00
+      Nonbond force                   0.00 Other:            0.00
+         Bond energy                     0.00 Other:            0.00
+         Angle energy                    0.00 Other:            0.00
+         Dihedral energy                 0.00 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.00 Other:            0.00
+   Energy time                     0.00 Other:            0.00
+ Total time                      0.15 Other:            0.15
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    MAXIMUM STACK SPACE USED IS   32026
+                    STACK CURRENTLY IN USE IS         0
+                    NO WARNINGS WERE ISSUED
+                    HEAP PRINTOUT-  HEAP SIZE         10240000
+                    SPACE CURRENTLY IN USE IS            13824
+                    MAXIMUM SPACE USED IS                19920
+                    FREE LIST
+  PRINHP> ADDRESS:               1 LENGTH:        10225676 NEXT:        10239501
+  PRINHP> ADDRESS:        10239501 LENGTH:             500 NEXT:               0
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     0.15  SECONDS 
+                         CPU TIME:     0.10  SECONDS 

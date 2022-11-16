@@ -1,0 +1,24 @@
+inpcrd->refcrd tgtmd: regular vacuum md, backbone restrained
+ &cntrl
+        imin = 0, ntx = 1, nstlim = 1000,
+        dt = 0.002, ntc = 2, ntf = 2, tol = 0.000001,
+        tempi = 300.0, temp0 = 300.0,
+        cut = 10.0,
+        ntpr = 50, ntwx = 50, ntwr = 500,
+        ntb = 0, ntt = 1, tautp = 0.5, ntp = 0,
+        igb = 0, nscm = 0, nmropt = 1, ntr = 1,
+        restraintmask="@CA,C,O,N,H,HA", restraint_wt=5.0,
+        itgtmd = 1, tgtrmsd = 5.516, tgtmdfrc = 2.0,
+        tgtrmsmask=":TYR & !@CA,C,O,N,H,HA",
+ /
+ &ewald
+        use_pme = 0, vdwmeth = 0, eedmeth = 4,
+ /
+ &wt
+        TYPE='TGTRMSD', istep1=1, istep2=1000,
+        value1 = 5.516, value2 = 0.0,
+ /
+ &wt
+   type="END",
+ /
+

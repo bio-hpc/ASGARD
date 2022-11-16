@@ -1,0 +1,172 @@
+ 
+|                *****************************************************
+|                *   CHAMBER: Charmm psf to AMBER prmtop convertor   *
+|                *                                                   *
+|                *                       v1.0                        *
+|                *                                                   *
+|                *                    Written by:                    *
+|                *                 Mark J. Williamson                *
+|                *                 Michael F. Crowley                *
+|                *                   Ross C. Walker                  *
+|                *                                                   *
+|                *****************************************************
+ 
+
+===========================================================
+          PSF input parsing summary
+===========================================================
+
+                        Number of PSF flags found:        3
+
+                            Number of atoms found:       24
+                         Number of residues found:        1
+
+                            Number of bonds found:       24
+                           Number of angles found:       42
+                        Number of dihedrals found:       66
+                        Number of impropers found:        0
+
+                           Number of donors found:        5
+                        Number of acceptors found:        6
+    Number of explicit nonbonded exclusions found:        0
+
+                           Number of groups found:        5
+                       Number of ST2 waters found:        0
+
+===========================================================
+
+   --- Found all ATOM TYPES in topology file
+
+   --- Found all nonbond parameters
+Possible issue with assigning a -ve sign to zero valued k dihedral index
+    Hence, reversing dihedral order
+    Dihedral number       28
+  Old internal index       9       6       0      18
+         Old i,j,k,l       4       3       1       7
+ 
+  New internal index      18       0       6       9
+         New i,j,k,l       7       1       3       4
+ 
+ 
+Possible issue with assigning a -ve sign to zero valued k dihedral index
+    Hence, reversing dihedral order
+    Dihedral number       29
+  Old internal index       9       6       0      18
+         Old i,j,k,l       4       3       1       7
+ 
+  New internal index      18       0       6       9
+         New i,j,k,l       7       1       3       4
+ 
+ 
+Possible issue with assigning a -ve sign to zero valued k dihedral index
+    Hence, reversing dihedral order
+    Dihedral number       30
+  Old internal index       9       6       0      18
+         Old i,j,k,l       4       3       1       7
+ 
+  New internal index      18       0       6       9
+         New i,j,k,l       7       1       3       4
+ 
+ 
+Possible issue with assigning a -ve sign to zero valued k dihedral index
+    Hence, reversing dihedral order
+    Dihedral number       31
+  Old internal index       9       6       0      21
+         Old i,j,k,l       4       3       1       8
+ 
+  New internal index      21       0       6       9
+         New i,j,k,l       8       1       3       4
+ 
+ 
+Possible issue with assigning a -ve sign to zero valued k dihedral index
+    Hence, reversing dihedral order
+    Dihedral number       32
+  Old internal index       9       6       0      21
+         Old i,j,k,l       4       3       1       8
+ 
+  New internal index      21       0       6       9
+         New i,j,k,l       8       1       3       4
+ 
+ 
+Possible issue with assigning a -ve sign to zero valued k dihedral index
+    Hence, reversing dihedral order
+    Dihedral number       33
+  Old internal index       9       6       0      21
+         Old i,j,k,l       4       3       1       8
+ 
+  New internal index      21       0       6       9
+         New i,j,k,l       8       1       3       4
+ 
+ 
+Possible issue with assigning a -ve sign to zero valued k dihedral index
+    Hence, reversing dihedral order
+    Dihedral number       22
+  Old internal index      12      18       0      21
+         Old i,j,k,l       5       7       1       8
+ 
+  New internal index      21       0      18      12
+         New i,j,k,l       8       1       7       5
+ 
+ 
+Possible issue with assigning a -ve sign to zero valued k dihedral index
+    Hence, reversing dihedral order
+    Dihedral number       23
+  Old internal index      12      18       0      21
+         Old i,j,k,l       5       7       1       8
+ 
+  New internal index      21       0      18      12
+         New i,j,k,l       8       1       7       5
+ 
+ 
+Possible issue with assigning a -ve sign to zero valued k dihedral index
+    Hence, reversing dihedral order
+    Dihedral number       24
+  Old internal index      12      18       0      21
+         Old i,j,k,l       5       7       1       8
+ 
+  New internal index      21       0      18      12
+         New i,j,k,l       8       1       7       5
+ 
+ 
+
+===========================================================
+          Parameter assignment summary             
+===========================================================
+
+CHARMM ff version:   27
+   CHARMM ff type: *>>>>>>>>CHARMM22 All-Hydrogen Topology 
+
+                    Number of atom types assigned:        7
+
+                    Number of bond types assigned:       12
+                   Number of angle types assigned:       26
+                   Number of UB angle terms found:        0
+                Number of UB angle types assigned:        0
+               Number of dihedrals types assigned:      132
+                               Explicit:        132
+                               WildCard:          0
+                Number of improper types assigned:        0
+
+===========================================================
+
+
+===========================================================
+        Created prmtop summary
+===========================================================
+
+                    Number of bonds with hydrogen:       12
+                 Number of bonds without hydrogen:       12
+
+                   Number of angles with hydrogen:       25
+                Number of angles without hydrogen:       17
+
+                Number of dihedrals with hydrogen:      132
+             Number of dihedrals without hydrogen:       66
+===========================================================
+
+ Determining filetype of coordinate file: glucmin.pdb
+ Assuming PDB File.
+
+
+<write_prmtop_header> NPHB      0
+| Conversion carried out in     0.05 seconds

@@ -1,0 +1,171 @@
+//=======================================================================
+// mdnab version 1.0 (October 2009)
+// copyright Novartis Institutes for Biomedical Research
+// Basel, Switzerland
+// Author: Romain M. Wolf
+//=======================================================================
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//=======================================================================
+
+molecule mol;       //the molecule
+file trajectory;    //the trajectory output file (binpos format)
+string diel, pdb, prmtop, traj;
+string aexp_move, aexp_restrain; //free and restrain
+string mmoptglobal, mmoptoutput, mmopttemp, mmopt, swcons; 
+string gb;
+float mol_xyz[dynamic], reference_xyz[dynamic]; 
+float gradient[dynamic], velocity[dynamic];
+float cut, dt, epsext, gamma_ln, tautp, temp0, tempi, rgbmax, wcons;
+int nsnb, nsteps, ntpr, ntpr_md, ntwx, rattle, zerov, mdsteps;
+if(!argv[2] || !argv[3] || !argv[4] || !argv[5] || !argv[6]){
+  printf("\n---------------------------------------------------------\n");
+  printf(" mdnab version 1.0 (October 2009)\n");
+  printf("---------------------------------------------------------\n");
+  printf("usage: mdnab pdb prm traj gbflag picosecs ['restraints' resforce]\n\n"); 
+  printf("where: pdb        = PDB file name\n");
+  printf("       prm        = parameter-topology file name\n");
+  printf("       traj       = file name for trajectory (binpos format)\n");
+  printf("                    (the extension binpos is automatically added)\n");
+  printf("       gbflag     = integer (0 for GB OFF, 1, 2, 5, 7, or 8 for GB ON)\n");
+  printf("       picosecs   = integer (time of production phase)\n");
+  printf("                    (mdsteps = picosecs * 1000/2, because rattle is used)\n");
+  printf("       restraints = atom expression for restrained atoms ':residues:atoms'\n");
+  printf("                    (the expression must be included in 'quotes')!\n");
+  printf("       resforce   = force constant for restraints (kcal/mol/A2)\n");
+  printf("                    (must be given when restraints are specified!)\n");
+  exit(0);
+ }
+pdb    = sprintf("%s", argv[2]);        // the pdb file
+prmtop = sprintf("%s", argv[3]);        // the parameter-topology file
+traj   = sprintf("%s.binpos", argv[4]); // name for the final trajectory
+gb     = sprintf("%s", argv[5]);
+mdsteps = 500 * atoi(argv[6]); //rattle on in this version
+aexp_move = NULL;  //all atoms move
+if(!argv[7]){
+  aexp_restrain = "::ZZZZ";
+  wcons = 0.0;
+ }
+ else{
+	aexp_restrain = sprintf("%s", argv[7]);
+	  if(!argv[8]){
+		 printf("\nyou have specified atoms to be restrained...\n"); exit(0);
+		 printf("the restraint force constant must also be given\n"); exit(0);
+	  }
+	  wcons = atof(argv[8]);
+ }		  
+mol = getpdb(pdb); readparm(mol, prmtop);
+allocate mol_xyz[3*mol.natoms]; 
+allocate reference_xyz[3*mol.natoms];
+allocate gradient[3*mol.natoms]; 
+allocate velocity[3*mol.natoms]; 
+setxyz_from_mol(mol, NULL, mol_xyz); 
+setxyz_from_mol(mol ,NULL, reference_xyz);
+trajectory = fopen(traj, "w");
+cut = 12.0; // short
+rgbmax = cut; // rgbmax = nonbonded cutoff
+nsnb = 25; // more expensive, to ensure stability with the fairly short cutoff
+zerov = 0; // will be 0 for all cycles, including heat-up
+rattle = 1; dt = 0.002; 
+if(gb == "1" || gb == "2" || gb == "5" || gb == "7" || gb == "8") {diel="C";} // GB option
+ else{gb = "0"; diel="R";}                          // simple epsilon = R function
+/* global MD options that do not change during any simulation phase
+   cutoff, nonbonded update, dielectric function, GB cutoff,rattle, and step size */
+mmoptglobal = sprintf("cut=%lf,nsnb=%d,diel=%s,gb=%s,rgbmax=%lf,rattle=%d,dt=%lf",
+		      cut, nsnb, diel, gb, rgbmax, rattle, dt);
+/* following are heat-up phases 50-100-150-200-250-300 K;
+   each phase uses different gamma_ln values!;
+   nothing is written to the trajectory during heat-up; */
+
+// heating from 50 to 100 (100 steps)
+tempi = 50; temp0 = 100; gamma_ln = 20;
+nsteps = 100; ntpr = nsteps + 1; ntpr_md = nsteps/10; ntwx = 0;
+mmoptoutput = sprintf("ntpr=%d,ntpr_md=%d,ntwx=%d",
+		      ntpr, ntpr_md, ntwx);
+mmopttemp = sprintf("zerov=%d, tempi=%lf,temp0=%lf,gamma_ln=%lf,wcons=%lf",
+		    zerov, tempi, temp0, gamma_ln, wcons);
+mmopt = sprintf("%s,%s,%s", mmoptglobal, mmoptoutput, mmopttemp);
+mm_options(mmopt);
+mme_init(mol,aexp_move, aexp_restrain, reference_xyz, NULL);
+md(3*mol.natoms, nsteps, mol_xyz, gradient, velocity, mme);
+
+//heating from 100 to 150 (300 steps)
+tempi = 0; temp0 = 150; gamma_ln = 20;
+nsteps = 300; ntpr = nsteps + 1; ntpr_md = nsteps/10; ntwx = 0;
+mmoptoutput = sprintf("ntpr=%d,ntpr_md=%d,ntwx=%d",
+		      ntpr, ntpr_md, ntwx);
+mmopttemp = sprintf("zerov=%d, tempi=%lf,temp0=%lf,gamma_ln=%lf,wcons=%lf",
+		    zerov, tempi, temp0, gamma_ln, wcons);
+mmopt = sprintf("%s,%s,%s", mmoptglobal, mmoptoutput, mmopttemp);
+mm_options(mmopt);
+mme_init(mol, aexp_move, aexp_restrain, reference_xyz, NULL);
+md(3*mol.natoms, nsteps, mol_xyz, gradient, velocity, mme);
+
+//heating from 150 to 200 (600 steps)
+tempi = 0; temp0 = 200; gamma_ln = 10;
+nsteps = 600; ntpr = nsteps + 1; ntpr_md = nsteps/10; ntwx = 0;
+mmoptoutput = sprintf("ntpr=%d,ntpr_md=%d,ntwx=%d",
+		      ntpr, ntpr_md, ntwx);
+mmopttemp = sprintf("zerov=%d, tempi=%lf,temp0=%lf,gamma_ln=%lf,wcons=%lf",
+			  zerov, tempi, temp0, gamma_ln, wcons);
+mmopt = sprintf("%s,%s,%s", mmoptglobal, mmoptoutput, mmopttemp);
+mm_options(mmopt);
+mme_init(mol, aexp_move, aexp_restrain, reference_xyz, NULL);
+md(3*mol.natoms, nsteps, mol_xyz, gradient, velocity, mme);
+
+//heating from 200 to 250 (1000 steps)
+tempi = 0; temp0 = 250; gamma_ln = 5;
+nsteps = 1000; ntpr = nsteps + 1; ntpr_md = nsteps/10; ntwx = 0;
+mmoptoutput = sprintf("ntpr=%d,ntpr_md=%d,ntwx=%d",
+		      ntpr, ntpr_md, ntwx);
+mmopttemp = sprintf("zerov=%d, tempi=%lf,temp0=%lf,gamma_ln=%lf,wcons=%lf",
+		  zerov, tempi, temp0, gamma_ln,wcons);
+mmopt = sprintf("%s,%s,%s", mmoptglobal, mmoptoutput, mmopttemp);
+mm_options(mmopt);
+mme_init(mol, aexp_move, aexp_restrain, reference_xyz, NULL);
+md(3*mol.natoms, nsteps, mol_xyz, gradient, velocity, mme);
+
+//heating from 250 to 300 (3000 steps)
+tempi = 0; temp0 = 300; gamma_ln = 2;
+nsteps = 3000; ntpr = nsteps + 1; ntpr_md = nsteps/10; ntwx = 0;
+mmoptoutput = sprintf("ntpr=%d,ntpr_md=%d,ntwx=%d",
+		      ntpr, ntpr_md, ntwx);
+mmopttemp = sprintf("zerov=%d, tempi=%lf,temp0=%lf,gamma_ln=%lf,wcons=%lf",
+			zerov, tempi, temp0, gamma_ln, wcons);
+mmopt = sprintf("%s,%s,%s", mmoptglobal, mmoptoutput, mmopttemp);
+mm_options(mmopt);
+mme_init(mol, aexp_move, aexp_restrain, reference_xyz, NULL);
+md(3*mol.natoms, nsteps, mol_xyz, gradient, velocity, mme);
+
+//equilibration at 300 K (5000 steps)
+nsteps = 5000; ntpr = nsteps + 1; ntpr_md = nsteps/10; ntwx = 0;
+mmoptoutput = sprintf("ntpr=%d,ntpr_md=%d,ntwx=%d",
+		      ntpr, ntpr_md, ntwx);
+mmopttemp = sprintf("zerov=%d, tempi=%lf,temp0=%lf,gamma_ln=%lf,wcons=%lf",
+		 zerov, tempi, temp0, gamma_ln, wcons);
+mmopt = sprintf("%s,%s,%s", mmoptglobal, mmoptoutput, mmopttemp);
+mm_options(mmopt);
+mme_init(mol, aexp_move, aexp_restrain, reference_xyz, NULL);
+md(3*mol.natoms, nsteps, mol_xyz, gradient, velocity, mme);
+
+//production at 300 K, reset time to zero
+nsteps = mdsteps ; ntpr = nsteps + 1; ntpr_md = 500; ntwx = 500;
+mmoptoutput = sprintf("ntpr=%d,ntpr_md=%d,ntwx=%d",
+		      ntpr, ntpr_md, ntwx);
+mmopttemp = sprintf("t=0., zerov=%d, tempi=%lf,temp0=%lf,gamma_ln=%lf,wcons=%lf",
+						  zerov, tempi, temp0, gamma_ln, wcons);
+mmopt = sprintf("%s,%s,%s", mmoptglobal, mmoptoutput, mmopttemp);
+mm_options(mmopt);
+mme_init(mol, aexp_move, aexp_restrain, reference_xyz, trajectory);
+md(3*mol.natoms, nsteps, mol_xyz, gradient, velocity, mme);
+printf("\ntrajectory with %s picoseconds was written to %s...\n\n", argv[6], traj);

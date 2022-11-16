@@ -1,0 +1,121 @@
+##################################################################################
+#
+# EMIL module for calculation of absolute free energies of biomolecules.
+# By Joshua T Berryman, University of Luxembourg, 2013.
+#
+# This code is covered by the GPL, except when distributed with non-gpl parts of
+# AMBER (when it is covered by the same licence as the rest of that distribution).
+# See licence.txt in the source directory.
+#
+# If you use this module for research, please cite:
+#                         Joshua T Berryman and Tanja Schilling,
+#                         J. Chem. Theory Comput., 2013, 9 (1), 679-686.
+#
+#
+##################################################################################
+# Setting up emil, with boxinfo: 72.985 73.5808 74.6288
+# read parameters:
+# N 1341
+# seed 1992 Displ 0.2
+#
+# Setting well types
+# marking 919 of 1341 atoms as heavy
+# matching 435 atoms as chain roots
+# mask DC,DG,DA,DT,DA5,DT5,DA3,DT3,DG5,DG3,DC5,DC3 sets type of 754 atom wells as 1 of 7
+# mask Na+ sets type of 189 atom wells as 4 of 7
+#    ...created liquid with exchange-symmetry between 189 chains.
+# mask Cl- sets type of 167 atom wells as 4 of 7
+#    ...created liquid with exchange-symmetry between 167 chains.
+# mask WAT sets type of 231 atom wells as 4 of 7
+#    ...created liquid with exchange-symmetry between 77 chains.
+#
+# Initialising wells
+# Well type Einstein Molecule has parameters:
+#   r s.t. E=0: 1
+#   epsilon:    5
+#   A/well:    -4.30294
+#
+# Well type Wingwell Liquid   has parameters:
+#   k1:         1.112
+#   r1:         1
+#   wing force: 1.111
+#   r2:         5
+#   depth:      5
+#   A/well:    -12.8998
+#
+# Well type Relative position has parameters:
+#   r s.t. E=0: 1
+#   epsilon:    5
+#   A/well:    -4.30294
+#
+#
+# Reading well positions from wellsIn.dat
+# msd part-well is: 3398.33
+# Finished setting particle well types:
+# Null              0
+# Einstein Molecule 754
+# Conewell Liquid   0
+# Harmonic Liquid   0
+# Wingwell Liquid   433
+# Wobblium          0
+# Relative position 154
+# 1187 heavy or solute atoms.
+# Building well neighbour list. 
+# Linking particles to wells. 
+# Linked particles to wells, rms distance (heavies): 5.33032e-15
+# N heavies or roots: 1187
+# Molecule-Well assignment for indistinguishable fluid: 1 will be updated using:
+# Monte Carlo      
+# Molecule-Well assignment for indistinguishable fluid: 2 will be updated using:
+# Monte Carlo      
+# Molecule-Well assignment for indistinguishable fluid: 3 will be updated using:
+# Monte Carlo      
+# done setup.
+#
+# Energy units: initial beta  1.67741 == 1.0 / 0.596158
+# Scaling forces using polynomial mixing functions, at lambda = 0.9 :
+# accepting amber forces pre-scaled and softcored.
+# not adding local 'soft force'.
+# scaling EMIL forces by  0.81
+# Uncorrected EABS is: -6705
+# With offset of 0 this is: -6705
+#
+# Reporting EMIL abstract Helmholtz free energy,
+# according to equations in supp. data of Berryman & Schilling, JCTC 2013: 
+# liquid 1 has nchains: 189 and log(N!): 8.052304e+02
+# liquid 2 has nchains: 167 and log(N!): 6.911834e+02
+# liquid 3 has nchains: 77 and log(N!): 2.605649e+02
+# Total free energy A of abstract model (units kT): -7.735712e+03
+# A-Solid: -3.244415e+03 A-Liquid: -6.248275e+03 A-degen: 1.756979e+03
+#
+# Total free energy A of abstract model (units of calling program): -4.611703e+03
+# A-Solid: -1.934182e+03 A-Liquid: -3.724956e+03 A-degen: 1.047436e+03
+#
+#
+# Generalised forces will be reported in units of calling program, not in kT/A
+#
+# emil mol_lambda: 0.9 abstract_lambda: 0.9
+#
+# (mixed)  ABS_ENTH(kT) -5431.05 MOL_ENTH 0 TOT      -5431.05
+# (native) ABS_ENTH(kT) -6705 MOL_ENTH 0 TOT      -6705
+#
+Swap acceptance rate: 0.0232558
+nstep:  0 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.72912450e+04 abstr_dHdL:  -7.18429409e+03
+Swap acceptance rate: 0.0465116
+nstep:  1 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.71939092e+04 abstr_dHdL:  -7.17160813e+03
+Swap acceptance rate: 0.0542636
+nstep:  2 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.69339059e+04 abstr_dHdL:  -7.13907662e+03
+Swap acceptance rate: 0.0465116
+nstep:  3 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.65713551e+04 abstr_dHdL:  -7.14079796e+03
+Swap acceptance rate: 0.0511628
+nstep:  4 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.61778235e+04 abstr_dHdL:  -7.11835774e+03
+Swap acceptance rate: 0.0503876
+nstep:  5 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.58161634e+04 abstr_dHdL:  -7.09387158e+03
+Swap acceptance rate: 0.0498339
+nstep:  6 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.55190495e+04 abstr_dHdL:  -7.05718420e+03
+Swap acceptance rate: 0.0581395
+nstep:  7 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.52808362e+04 abstr_dHdL:  -7.03559439e+03
+Swap acceptance rate: 0.0749354
+nstep:  8 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.50759183e+04 abstr_dHdL:  -6.99721790e+03
+Swap acceptance rate: 0.0697674
+nstep:  9 soft_dHdL:  0.00000000e+00 molec_dHdL:  2.48803172e+04 abstr_dHdL:  -6.98520403e+03

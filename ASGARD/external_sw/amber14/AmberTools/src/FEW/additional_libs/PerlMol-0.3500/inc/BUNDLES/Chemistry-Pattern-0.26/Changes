@@ -1,0 +1,23 @@
+Revision history for Perl extension Chemistry::Pattern.
+
+0.26  16 May 2005
+        - Fixed mapping bug for overlap => 0
+
+0.25  5 Aug 2004
+        - Allow anchored matches: extended match interface.
+        - Document reset method.
+
+0.21  17 Jun 2004
+        - Added atom_class and bond_class methods to Pattern.pm.
+
+0.20  31 May 2004
+        - Added support for disconnected patterns.
+        - Completely replaced the algorithm with a simpler and somewhat more
+          readable one.
+
+0.15  07 May 2004
+        - Some optimizations (most notable when doing a global match on a large
+          molecule) and improved encapsulation
+
+0.10  27 Feb 2004
+        - First release

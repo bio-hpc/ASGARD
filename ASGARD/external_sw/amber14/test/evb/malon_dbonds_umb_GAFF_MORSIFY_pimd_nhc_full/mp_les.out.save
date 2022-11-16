@@ -1,0 +1,593 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 03/18/2010 at 12:10:01
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: mp_les.out                                                            
+|INPCRD: mr_les.crd                                                            
+|  PARM: mp_les.top                                                            
+|RESTRT: mp_les.rst                                                            
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+
+ Here is the input file:
+
+POH: EVB MD in the NVT ensemble                                                
+ &cntrl                                                                        
+  imin   = 0,                                                                  
+  ievb   = 1,                                                                  
+  irest  = 1,                                                                  
+  ntx    = 7,                                                                  
+  ntb    = 0,                                                                  
+  cut    = 9999.0,                                                             
+  tempi  = 300.0,                                                              
+  temp0  = 300.0,                                                              
+  ipimd  = 1,                                                                  
+  ntt    = 4,                                                                  
+  nchain = 4,                                                                  
+  nstlim = 20, dt = 0.0005, nscm = 10000,                                      
+  ntpr = 1, ntwx = 2000, ntwr = 2000                                           
+ /                                                                             
+                                                                               
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI LES                                                                
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|  *** cutoff > system size, list only builds once
+|Largest sphere to fit in unit cell has radius =    31.212
+ NATOM  =     288 NTYPES =       6 NBONH =     128 MBONA  =     128
+ NTHETH =     224 MTHETA =      96 NPHIH =     352 MPHIA  =      64
+ NHPARM =       0 NPARM  =       1 NNB   =   41073 NRES   =       1
+ NBONA  =     128 NTHETA =      96 NPHIA =      64 NUMBND =      16
+ NUMANG =      20 NPTRA  =      10 NATYP =       8 NPHB   =       0
+ IFBOX  =       0 NMXRS  =     288 IFCAP =       0 NEXTRA =       0
+ NCOPY  =      32
+
+
+|     Memory Use     Allocated
+|     Real               15770
+|     Hollerith            867
+|     Integer           273424
+|     Max Pairs          41328
+|     nblistReal          3456
+|     nblist Int        969105
+|       Total             5168 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+ LES parameters were found
+       0 LES atom pairs require adjustment
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+MP                                                                              
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       7, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =    2000
+     iwrap   =       0, ntwx    =    2000, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =9999.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        20, nscm    =         0, nrespa  =         1
+     t       =   0.00000, dt      =   0.00050, vlimit  =  20.00000
+
+Nose-Hoover chains
+     gamma_ln=   0.00000
+     number of oscillators=       4
+
+| MPI Timing options:
+|      profile_mpi =        0
+
+
+Reading EVB input file from mp_les.evb_template_L_0_S4
+
+EVB options:
+     nevb =      2, nbias  =      1, nmorse =      1, ntw_evb =      1
+     xch_type = constant
+     evb_dyn  = dbonds_umb
+     dia_shift( 1) =    0.00000
+     dia_shift( 2) =    0.00000
+     morsify(         7,         9) ::  d =   11.14281, a =    1.04600, r0 =    1.00000
+     dbonds_umb(         8,         9,         7) ::    k =  100.00000    ezero=    0.00000
+     xch_cnst(   1,   2) =   11.50000
+
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+MR                                                                              
+ begin time read from input coords =  1625.000 ps
+
+ Number of triangulated 3-point waters found:        0
+|  Atom division among processors:
+|         0     288
+
+
+| Initializing EVB-PIMD: scaling the diabatic energy shifts
+| OLD C_evb =    0.00000   0.00000
+| NEW C_evb =    0.00000   0.00000
+| nbead         =       32
+| natom         =      288
+| natomCL       =        9
+| natomPCL      =        0
+| natomPQM      =      288
+| worldsize     =        2
+| jobs_per_node =        0
+|
+| evb_begin =   17
+| evb_end   =   32
+| nslice/node =   16
+| lpimd_dcrypt(1:lpimd_size,  1) =   17     0     1
+| lpimd_dcrypt(1:lpimd_size,  2) =   18     0     1
+| lpimd_dcrypt(1:lpimd_size,  3) =   19     0     1
+| lpimd_dcrypt(1:lpimd_size,  4) =   20     0     1
+| lpimd_dcrypt(1:lpimd_size,  5) =   21     0     1
+| lpimd_dcrypt(1:lpimd_size,  6) =   22     0     1
+| lpimd_dcrypt(1:lpimd_size,  7) =   23     0     1
+| lpimd_dcrypt(1:lpimd_size,  8) =   24     0     1
+| lpimd_dcrypt(1:lpimd_size,  9) =   25     0     1
+| lpimd_dcrypt(1:lpimd_size, 10) =   26     0     1
+| lpimd_dcrypt(1:lpimd_size, 11) =   27     0     1
+| lpimd_dcrypt(1:lpimd_size, 12) =   28     0     1
+| lpimd_dcrypt(1:lpimd_size, 13) =   29     0     1
+| lpimd_dcrypt(1:lpimd_size, 14) =   30     0     1
+| lpimd_dcrypt(1:lpimd_size, 15) =   31     0     1
+| lpimd_dcrypt(1:lpimd_size, 16) =   32     0     1
+morsify root =          7         9
+bead_dcrypt =        193       257
+bead_dcrypt =        194       258
+bead_dcrypt =        195       259
+bead_dcrypt =        196       260
+bead_dcrypt =        197       261
+bead_dcrypt =        198       262
+bead_dcrypt =        199       263
+bead_dcrypt =        200       264
+bead_dcrypt =        201       265
+bead_dcrypt =        202       266
+bead_dcrypt =        203       267
+bead_dcrypt =        204       268
+bead_dcrypt =        205       269
+bead_dcrypt =        206       270
+bead_dcrypt =        207       271
+bead_dcrypt =        208       272
+bead_dcrypt =        209       273
+bead_dcrypt =        210       274
+bead_dcrypt =        211       275
+bead_dcrypt =        212       276
+bead_dcrypt =        213       277
+bead_dcrypt =        214       278
+bead_dcrypt =        215       279
+bead_dcrypt =        216       280
+bead_dcrypt =        217       281
+bead_dcrypt =        218       282
+bead_dcrypt =        219       283
+bead_dcrypt =        220       284
+bead_dcrypt =        221       285
+bead_dcrypt =        222       286
+bead_dcrypt =        223       287
+bead_dcrypt =        224       288
+MORSIFIED BONDS
+         1       193       257     11.14281250      1.04600000      1.00000000
+         2       194       258     11.14281250      1.04600000      1.00000000
+         3       195       259     11.14281250      1.04600000      1.00000000
+         4       196       260     11.14281250      1.04600000      1.00000000
+         5       197       261     11.14281250      1.04600000      1.00000000
+         6       198       262     11.14281250      1.04600000      1.00000000
+         7       199       263     11.14281250      1.04600000      1.00000000
+         8       200       264     11.14281250      1.04600000      1.00000000
+         9       201       265     11.14281250      1.04600000      1.00000000
+        10       202       266     11.14281250      1.04600000      1.00000000
+        11       203       267     11.14281250      1.04600000      1.00000000
+        12       204       268     11.14281250      1.04600000      1.00000000
+        13       205       269     11.14281250      1.04600000      1.00000000
+        14       206       270     11.14281250      1.04600000      1.00000000
+        15       207       271     11.14281250      1.04600000      1.00000000
+        16       208       272     11.14281250      1.04600000      1.00000000
+        17       209       273     11.14281250      1.04600000      1.00000000
+        18       210       274     11.14281250      1.04600000      1.00000000
+        19       211       275     11.14281250      1.04600000      1.00000000
+        20       212       276     11.14281250      1.04600000      1.00000000
+        21       213       277     11.14281250      1.04600000      1.00000000
+        22       214       278     11.14281250      1.04600000      1.00000000
+        23       215       279     11.14281250      1.04600000      1.00000000
+        24       216       280     11.14281250      1.04600000      1.00000000
+        25       217       281     11.14281250      1.04600000      1.00000000
+        26       218       282     11.14281250      1.04600000      1.00000000
+        27       219       283     11.14281250      1.04600000      1.00000000
+        28       220       284     11.14281250      1.04600000      1.00000000
+        29       221       285     11.14281250      1.04600000      1.00000000
+        30       222       286     11.14281250      1.04600000      1.00000000
+        31       223       287     11.14281250      1.04600000      1.00000000
+        32       224       288     11.14281250      1.04600000      1.00000000
+VDW EXCLUSIONS
+
+     Sum of charges from parm topology file =  -0.00000001
+     Forcing neutrality...
+|  Running AMBER/MPI version on    1 nodes
+
+|  MULTISANDER:    2 groups.    1 processors out of    2 total.
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+THIS IS A PRIMITIVE PIMD RUN
+Parameters:
+number of beads           =     32
+number of classical atoms =      9
+temperature (Kelvin)      =   300.00
+# degrees of freedom in non-LES region:     864.
+# degrees of freedom in     LES region:       0.
+ Single temperature bath for LES and non-LES
+ ---------------------------------------------------
+
+     eedmeth=4: Setting switch to one everywhere
+
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =        256
+| TOTAL SIZE OF NONBOND LIST =        256
+
+ NSTEP =        1   TIME(PS) =    1625.001  TEMP(K) =    98.16  PRESS =     0.0
+ Etot   =       -31.2659  EKtot   =        25.3862  EPtot      =       -56.6521
+ BOND   =        23.2477  ANGLE   =         6.9388  DIHED      =         3.7789
+ 1-4 NB =         2.6852  1-4 EEL =      -144.1249  VDWAALS    =        13.1127
+ EELEC  =        37.7096  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -62.9261  V_EVB   =       -63.3841  V_UMB      =         0.4580
+ C_0^2  =           0.2438          0.7562
+ EVB RC =           0.0957
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =    1625.001  TEMP(K) =   237.02  PRESS =     0.0
+ Etot   =       -39.5312  EKtot   =        21.0535  EPtot      =       -60.5847
+ BOND   =        20.3193  ANGLE   =         6.2261  DIHED      =         3.4243
+ 1-4 NB =         2.7257  1-4 EEL =      -144.2256  VDWAALS    =        12.9217
+ EELEC  =        38.0239  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -66.9343  V_EVB   =       -67.3499  V_UMB      =         0.4156
+ C_0^2  =           0.2542          0.7458
+ EVB RC =           0.0912
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =    1625.002  TEMP(K) =   142.11  PRESS =     0.0
+ Etot   =       -40.0004  EKtot   =        20.3921  EPtot      =       -60.3924
+ BOND   =        20.7624  ANGLE   =         6.0773  DIHED      =         3.3541
+ 1-4 NB =         2.7758  1-4 EEL =      -144.3261  VDWAALS    =        12.7922
+ EELEC  =        38.1719  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -67.3025  V_EVB   =       -67.6636  V_UMB      =         0.3612
+ C_0^2  =           0.2725          0.7275
+ EVB RC =           0.0850
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) =    1625.002  TEMP(K) =   207.14  PRESS =     0.0
+ Etot   =       -42.6651  EKtot   =        18.6631  EPtot      =       -61.3281
+ BOND   =        20.5474  ANGLE   =         5.6506  DIHED      =         3.1995
+ 1-4 NB =         2.8091  1-4 EEL =      -144.4535  VDWAALS    =        12.6701
+ EELEC  =        38.2486  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -68.7970  V_EVB   =       -69.0892  V_UMB      =         0.2922
+ C_0^2  =           0.2911          0.7089
+ EVB RC =           0.0764
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =    1625.003  TEMP(K) =   171.07  PRESS =     0.0
+ Etot   =       -42.9348  EKtot   =        18.0912  EPtot      =       -61.0260
+ BOND   =        21.2101  ANGLE   =         5.5567  DIHED      =         3.2059
+ 1-4 NB =         2.8563  1-4 EEL =      -144.6156  VDWAALS    =        12.5513
+ EELEC  =        38.2093  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -69.1375  V_EVB   =       -69.3513  V_UMB      =         0.2138
+ C_0^2  =           0.3149          0.6851
+ EVB RC =           0.0654
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =    1625.003  TEMP(K) =   188.16  PRESS =     0.0
+ Etot   =       -43.0462  EKtot   =        17.4812  EPtot      =       -60.5274
+ BOND   =        22.2775  ANGLE   =         5.4360  DIHED      =         3.1600
+ 1-4 NB =         2.9032  1-4 EEL =      -144.8069  VDWAALS    =        12.4065
+ EELEC  =        38.0963  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -69.3503  V_EVB   =       -69.4878  V_UMB      =         0.1375
+ C_0^2  =           0.3401          0.6599
+ EVB RC =           0.0524
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) =    1625.004  TEMP(K) =   187.26  PRESS =     0.0
+ Etot   =       -41.7407  EKtot   =        17.6810  EPtot      =       -59.4217
+ BOND   =        23.8580  ANGLE   =         5.5048  DIHED      =         3.0419
+ 1-4 NB =         2.9533  1-4 EEL =      -145.0208  VDWAALS    =        12.2594
+ EELEC  =        37.9818  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -68.8775  V_EVB   =       -68.9521  V_UMB      =         0.0745
+ C_0^2  =           0.3534          0.6466
+ EVB RC =           0.0386
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =    1625.004  TEMP(K) =   173.16  PRESS =     0.0
+ Etot   =       -39.8994  EKtot   =        18.1111  EPtot      =       -58.0105
+ BOND   =        25.5754  ANGLE   =         5.7515  DIHED      =         2.9801
+ 1-4 NB =         3.0039  1-4 EEL =      -145.2805  VDWAALS    =        12.0993
+ EELEC  =        37.8598  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -68.1793  V_EVB   =       -68.2092  V_UMB      =         0.0299
+ C_0^2  =           0.3675          0.6325
+ EVB RC =           0.0245
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =    1625.005  TEMP(K) =   197.14  PRESS =     0.0
+ Etot   =       -37.8975  EKtot   =        18.6817  EPtot      =       -56.5792
+ BOND   =        27.4343  ANGLE   =         5.9050  DIHED      =         2.9222
+ 1-4 NB =         3.0464  1-4 EEL =      -145.5797  VDWAALS    =        11.9397
+ EELEC  =        37.7530  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -67.2854  V_EVB   =       -67.2905  V_UMB      =         0.0051
+ C_0^2  =           0.3829          0.6171
+ EVB RC =           0.0101
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =    1625.005  TEMP(K) =   156.82  PRESS =     0.0
+ Etot   =       -33.9063  EKtot   =        20.1490  EPtot      =       -54.0554
+ BOND   =        30.2472  ANGLE   =         6.2491  DIHED      =         2.8985
+ 1-4 NB =         3.0930  1-4 EEL =      -145.9201  VDWAALS    =        11.7817
+ EELEC  =        37.5952  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -65.5255  V_EVB   =       -65.5264  V_UMB      =         0.0009
+ C_0^2  =           0.4000          0.6000
+ EVB RC =          -0.0042
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       11   TIME(PS) =    1625.006  TEMP(K) =   205.19  PRESS =     0.0
+ Etot   =       -32.7983  EKtot   =        20.2559  EPtot      =       -53.0542
+ BOND   =        31.8232  ANGLE   =         6.4449  DIHED      =         2.7757
+ 1-4 NB =         3.1293  1-4 EEL =      -146.3035  VDWAALS    =        11.5881
+ EELEC  =        37.4880  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -65.1358  V_EVB   =       -65.1516  V_UMB      =         0.0158
+ C_0^2  =           0.4185          0.5815
+ EVB RC =          -0.0178
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       12   TIME(PS) =    1625.006  TEMP(K) =   177.88  PRESS =     0.0
+ Etot   =       -31.4570  EKtot   =        20.6388  EPtot      =       -52.0959
+ BOND   =        33.2612  ANGLE   =         6.5958  DIHED      =         2.7327
+ 1-4 NB =         3.1574  1-4 EEL =      -146.6927  VDWAALS    =        11.3905
+ EELEC  =        37.4593  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -64.6814  V_EVB   =       -64.7235  V_UMB      =         0.0420
+ C_0^2  =           0.4310          0.5690
+ EVB RC =          -0.0290
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       13   TIME(PS) =    1625.007  TEMP(K) =   206.11  PRESS =     0.0
+ Etot   =       -31.0560  EKtot   =        20.5210  EPtot      =       -51.5769
+ BOND   =        34.3428  ANGLE   =         6.5957  DIHED      =         2.6549
+ 1-4 NB =         3.1716  1-4 EEL =      -147.0965  VDWAALS    =        11.1378
+ EELEC  =        37.6167  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -65.0071  V_EVB   =       -65.0731  V_UMB      =         0.0660
+ C_0^2  =           0.4419          0.5581
+ EVB RC =          -0.0363
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       14   TIME(PS) =    1625.007  TEMP(K) =   214.80  PRESS =     0.0
+ Etot   =       -30.6606  EKtot   =        20.4908  EPtot      =       -51.1514
+ BOND   =        35.0472  ANGLE   =         6.6395  DIHED      =         2.6958
+ 1-4 NB =         3.1755  1-4 EEL =      -147.4955  VDWAALS    =        10.8339
+ EELEC  =        37.9522  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -65.4064  V_EVB   =       -65.4836  V_UMB      =         0.0772
+ C_0^2  =           0.4529          0.5471
+ EVB RC =          -0.0393
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       15   TIME(PS) =    1625.008  TEMP(K) =   216.05  PRESS =     0.0
+ Etot   =       -29.7594  EKtot   =        20.7539  EPtot      =       -50.5133
+ BOND   =        35.7497  ANGLE   =         6.6272  DIHED      =         2.9084
+ 1-4 NB =         3.1695  1-4 EEL =      -147.9098  VDWAALS    =        10.5232
+ EELEC  =        38.4184  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -65.4472  V_EVB   =       -65.5193  V_UMB      =         0.0721
+ C_0^2  =           0.4649          0.5351
+ EVB RC =          -0.0380
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       16   TIME(PS) =    1625.008  TEMP(K) =   223.22  PRESS =     0.0
+ Etot   =       -28.2063  EKtot   =        21.3659  EPtot      =       -49.5722
+ BOND   =        36.2913  ANGLE   =         6.8321  DIHED      =         3.1153
+ 1-4 NB =         3.1633  1-4 EEL =      -148.3445  VDWAALS    =        10.2098
+ EELEC  =        39.1605  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -64.8837  V_EVB   =       -64.9390  V_UMB      =         0.0553
+ C_0^2  =           0.4795          0.5205
+ EVB RC =          -0.0332
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       17   TIME(PS) =    1625.009  TEMP(K) =   219.07  PRESS =     0.0
+ Etot   =       -27.4014  EKtot   =        21.6893  EPtot      =       -49.0906
+ BOND   =        36.7154  ANGLE   =         6.9034  DIHED      =         3.1834
+ 1-4 NB =         3.1584  1-4 EEL =      -148.7761  VDWAALS    =         9.9132
+ EELEC  =        39.8116  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -64.6476  V_EVB   =       -64.6815  V_UMB      =         0.0339
+ C_0^2  =           0.4823          0.5177
+ EVB RC =          -0.0261
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       18   TIME(PS) =    1625.009  TEMP(K) =   251.21  PRESS =     0.0
+ Etot   =       -26.4342  EKtot   =        22.0185  EPtot      =       -48.4527
+ BOND   =        37.2618  ANGLE   =         7.0142  DIHED      =         3.2080
+ 1-4 NB =         3.1558  1-4 EEL =      -149.1971  VDWAALS    =         9.6550
+ EELEC  =        40.4498  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -64.1089  V_EVB   =       -64.1244  V_UMB      =         0.0155
+ C_0^2  =           0.4872          0.5128
+ EVB RC =          -0.0176
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       19   TIME(PS) =    1625.010  TEMP(K) =   227.97  PRESS =     0.0
+ Etot   =       -26.5139  EKtot   =        21.9077  EPtot      =       -48.4216
+ BOND   =        36.5745  ANGLE   =         7.4434  DIHED      =         3.4619
+ 1-4 NB =         3.1542  1-4 EEL =      -149.5565  VDWAALS    =         9.4031
+ EELEC  =        41.0977  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -63.5331  V_EVB   =       -63.5372  V_UMB      =         0.0040
+ C_0^2  =           0.4848          0.5152
+ EVB RC =          -0.0090
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       20   TIME(PS) =    1625.010  TEMP(K) =   266.13  PRESS =     0.0
+ Etot   =       -27.6074  EKtot   =        21.0366  EPtot      =       -48.6440
+ BOND   =        35.9078  ANGLE   =         7.6914  DIHED      =         3.7469
+ 1-4 NB =         3.1422  1-4 EEL =      -149.8184  VDWAALS    =         9.1235
+ EELEC  =        41.5626  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -63.4797  V_EVB   =       -63.4797  V_UMB      =         0.0000
+ C_0^2  =           0.4892          0.5108
+ EVB RC =          -0.0005
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      20 S T E P S
+
+
+ NSTEP =       20   TIME(PS) =    1625.010  TEMP(K) =   198.28  PRESS =     0.0
+ Etot   =       -34.2391  EKtot   =        20.3184  EPtot      =       -54.5575
+ BOND   =        29.4227  ANGLE   =         6.4042  DIHED      =         3.1224
+ 1-4 NB =         3.0214  1-4 EEL =      -146.4772  VDWAALS    =        11.4156
+ EELEC  =        38.5333  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =       -66.0323  V_EVB   =       -66.1509  V_UMB      =         0.1185
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       20   TIME(PS) =    1625.010  TEMP(K) =    37.77  PRESS =     0.0
+ Etot   =         5.9016  EKtot   =         1.8137  EPtot      =         4.7318
+ BOND   =         6.3838  ANGLE   =         0.6276  DIHED      =         0.3116
+ 1-4 NB =         0.1651  1-4 EEL =         1.8790  VDWAALS    =         1.2214
+ EELEC  =         1.1955  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+
+ EVB:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ V_TOT  =         1.9876  V_EVB   =         2.0237  V_UMB      =         0.1433
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 1.33% of Total)
+|    Fast Water setup           0.00 ( 0.01% of Total)
+|                Build the list             0.00 (45.88% of List )
+|                Other                      0.00 (54.12% of List )
+|             List time                  0.00 (58.96% of Nonbo)
+|                   Short_ene time             0.00 (93.00% of Direc)
+|                   Other                      0.00 ( 7.00% of Direc)
+|                Direct Ewald time          0.00 (94.97% of Ewald)
+|                Force Adjust               0.00 ( 3.16% of Ewald)
+|                Virial junk                0.00 ( 0.72% of Ewald)
+|                Start synchronizatio       0.00 ( 0.69% of Ewald)
+|                Other                      0.00 ( 0.47% of Ewald)
+|             Ewald time                 0.00 (40.85% of Nonbo)
+|             IPS excludes               0.00 ( 0.02% of Nonbo)
+|             Other                      0.00 ( 0.18% of Nonbo)
+|          Nonbond force              0.01 (28.39% of Force)
+|          Bond/Angle/Dihedral        0.01 (25.51% of Force)
+|          FRC Collect time           0.00 ( 0.02% of Force)
+|          Other                      0.01 (46.08% of Force)
+|       Force time                 0.02 (52.46% of Runmd)
+|       Verlet update time         0.02 (42.46% of Runmd)
+|       Other                      0.00 ( 5.07% of Runmd)
+|    Runmd Time                 0.04 (35.80% of Total)
+|    Other                      0.07 (62.86% of Total)
+| Total time                 0.11 (100.0% of ALL  )
+
+| Highest rstack allocated:         10
+| Highest istack allocated:          2
+|           Job began  at 12:10:01.693  on 03/18/2010
+|           Setup done at 12:10:01.763  on 03/18/2010
+|           Run   done at 12:10:01.801  on 03/18/2010
+|     wallclock() was called     672 times

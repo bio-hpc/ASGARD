@@ -1,0 +1,47 @@
+#!/bin/sh
+
+toomany() {
+    echo "${0}: This test requires 1-6, 10, 12, 15, 20 or 30 processes"
+    echo "for meaningful comparison."
+    exit 0
+}
+
+if [ -n "${DO_PARALLEL}" ] ; then
+    numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+    if [ ! \( "$numprocs" -eq "60"\
+        -o "$numprocs" -eq "30" -o "$numprocs" -eq "20"\
+        -o "$numprocs" -eq "15" -o "$numprocs" -eq "12"\
+        -o "$numprocs" -eq "10" -o "$numprocs" -le "6" \) ]; then
+            echo " DO_PARALLEL set to $DO_PARALLEL"
+            toomany 
+    elif [ -n "${MP_PROCS}" ]; then
+        if [  ! \( "$MP_PROCS" -eq "60"\
+            -o "$MP_PROCS" -eq "30" -o "$MP_PROCS" -eq "20"\
+            -o "$MP_PROCS" -eq "15" -o "$MP_PROCS" -eq "12"\
+            -o "$MP_PROCS" -eq "10" -o "$MP_PROCS" -le "6" \) ]; then
+#               --- For IBM AIX ---
+            echo "    MP_PROCS set to "$MP_PROCS
+            toomany 
+        fi
+    fi
+fi
+
+. ../program_error.sh
+
+if [ "$DO_PARALLEL" != "" ];  then
+    NAB="mpinab"
+else
+    NAB="nab"
+fi
+
+echo "Running test to do simple minimization (librism)"
+echo "(this tests the 3D-RISM implementation)"
+echo ""
+../../bin/$NAB -o rismdmp rismdmp.nab || error
+$DO_PARALLEL ./rismdmp > rismdmp.out || error
+
+../dacdif rismdmp.out.check rismdmp.out
+
+rm -f rismdmp rismdmp.c
+exit 0
+

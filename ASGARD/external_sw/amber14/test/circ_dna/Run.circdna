@@ -1,0 +1,39 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+cat > gbin <<EOF
+  minimization
+ &cntrl                                                                        
+   imin=1, maxcyc=5,
+   cut=12.0, igb=1, rgbmax=15.,
+   ntpr=1, ntwr=100000,
+   ntx=1, 
+   ntc=1, ntf=1, tol=0.000001,
+   dt=0.001, ntb=0,
+ /
+EOF
+
+set output = mdout.circdna
+
+$DO_PARALLEL $TESTsander -O -i gbin -c min1.x  -o $output || goto error
+
+if ( "`basename $TESTsander`" == "pmemd.mic_offload.MPI" ) then
+../dacdif -r 1.0e-08 $output.save $output
+else
+../dacdif $output.save $output
+endif
+/bin/rm -f gbin restrt mdinfo
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

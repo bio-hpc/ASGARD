@@ -1,0 +1,28 @@
+molgrep example
+Added by Ivan Tubert-Brohman, itub@cpan.org
+
+usage: ./molgrep.pl <SMARTS pattern> <file(s)...>
+
+prints to STDOUT a table with the filenames, names, formulas, and SMILES
+strings for the matching molecules in the files given in the command line
+
+
+FILES
+
+molgrep.pl  - the program
+output.txt  - the result of running ./molgrep.pl CCC *.smi *.pdb *.mol
+
+
+Some files with molecules, borrowed from the other examples:
+
+acid_chlorides.smi
+ala.mol
+amines.smi
+example.pdb
+gly.mol
+input.smi
+lava.mol
+leu.mol
+output.smi
+val.mol
+

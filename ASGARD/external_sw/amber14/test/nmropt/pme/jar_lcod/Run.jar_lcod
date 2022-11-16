@@ -1,0 +1,53 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP Run steered MD using a linear combination of distances as the reaction coordinate
+#TEST-PURPOSE regression advanced pedagogical
+#TEST-STATE   ok
+
+. ../../../program_error.sh
+
+if [ -z "$TESTsander" ]; then
+   TESTsander="../../../../bin/sander"
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+   export DO_PARALLEL=" "
+fi
+
+cat > mdin <<EOF
+ Test LCOD in sander and PME      
+ &cntrl                                                                        
+ nmropt=1, 
+ ntx=5, irest=1,
+ ntpr=1,ntwr=50,
+ nstlim=20, dt=0.001,
+ ntt=1, temp0=300.0, tempi=300.0, tautp=2.0,
+ ntb=1,
+ ntc=2, ntf=2,
+ cut=8.0,
+ nrespa=1,
+ tol=0.000001,
+ jar=1,
+ /
+ &wt type='DUMPFREQ', istep1=5, /
+ &wt type="END", / 
+ DISANG=lcod.RST
+ DUMPAVE=lcod_vs_t.dat
+EOF
+
+cat > lcod.RST <<EOF
+ &rst
+ iat=1045,799,802,73, r2=6.1, rk2=20.0, r2a=7.0, rstwt= 1.0, 1.0,
+ &end
+EOF
+
+
+$DO_PARALLEL $TESTsander -O -p ../myoglobin_pbc.prmtop -c ../myoglobin_pbc.inpcrd \
+                            < /dev/null || error
+
+        
+../../../dacdif -a 0.0002 mdout.save mdout
+../../../dacdif lcod_vs_t.dat.save lcod_vs_t.dat
+
+/bin/rm -f mdinfo restrt mdcrd profile_mpi lcod.RST mdin
+exit 0

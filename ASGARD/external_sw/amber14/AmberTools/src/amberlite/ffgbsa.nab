@@ -1,0 +1,66 @@
+//=======================================================================
+// ffgbsa version 1.1 (September 2009)
+// copyright Novartis Institutes for Biomedical Research
+// Basel, Switzerland
+// Author: Romain M. Wolf
+//=======================================================================
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//=======================================================================
+
+atom a; molecule mol;
+float epot, gradient[dynamic], mol_xyz[dynamic], dummy[3], sasa, proberad;
+string molmec_opt, pdb_file, prmtop_file, gb, rgbmax, cutoff, diel, sa;
+if(!argv[2] || !argv[3] || !argv[4] || !argv[5]){
+  printf("\n---------------------------------------------------------\n");
+  printf(" ffgbsa version 1.1 (September 2009)\n");
+  printf("---------------------------------------------------------\n");
+  printf("usage: ffgbsa pdb prm gbflag saflag\n"); 
+  printf("where: pdb        = PDB file name\n");
+  printf("       prm        = parameter-topology file name\n");
+  printf("       gbflag     = integer (1, 2, 5, 7 or 8 for GB ON, else OFF)\n");
+  printf("       saflag     = integer (0 for SA OFF, 1 for SA ON)\n\n");
+  exit(0);
+ }
+pdb_file    = sprintf("%s", argv[2]); prmtop_file = sprintf("%s", argv[3]);
+gb          = sprintf("%s", argv[4]); sa          = sprintf("%s", argv[5]);
+if(gb == "1" || gb == "2" || gb == "5" || gb == "7" || gb == "8"){diel = "C";} else {gb = "0"; diel = "R";}
+molmec_opt = sprintf("cut=100, rgbmax=100 ,diel=%s, gb=%s", diel, gb); 
+mol = getpdb(pdb_file); readparm(mol, prmtop_file);
+allocate mol_xyz[3*mol.natoms]; allocate gradient[3*mol.natoms];
+setxyz_from_mol(mol, NULL, mol_xyz);
+mm_options(molmec_opt); mme_init(mol, "::", "::ZZZ", dummy, NULL);
+epot = mme(mol_xyz, gradient, 0);
+if(sa != "0"){
+// assign radii (should work for common atom names, otherwise defaults to 1.5 A)
+  for(a in mol){
+	 if(substr(a.atomname,1,1) == "H"){a.radius = 1.20 + 1.40;}
+	 else if(substr(a.atomname,1,1) == "N"){a.radius = 1.55 + 1.40;}
+ 	 else if(substr(a.atomname,1,1) == "O"){a.radius = 1.50 + 1.40;}
+	 else if(substr(a.atomname,1,1) == "C"){a.radius = 1.70 + 1.40;}
+	 else if(substr(a.atomname,1,1) == "S"){a.radius = 1.80 + 1.40;} 	 
+	 else if(substr(a.atomname,1,1) == "F"){a.radius = 1.47 + 1.40;}
+	 else if(substr(a.atomname,1,1) == "P"){a.radius = 1.80 + 1.40;}
+	 else if(substr(a.atomname,1,2) == "Br" || substr(a.atomname,1,2) == "BR")
+	 										    {a.radius = 1.85 + 1.40;}
+	 else if(substr(a.atomname,1,2) == "Cl" || substr(a.atomname,1,2) == "CL")
+	                                  {a.radius = 1.75 + 1.40;}
+	 else if(substr(a.atomname,1,1) == "I"){a.radius = 1.98 + 1.40;}	 
+    //default (consensus) radius when atom name is not recognized
+	 else {a.radius = 1.50 + 1.40;} 
+	 }
+// the standard definition of SASA, when atom radii include the probe:
+	proberad=0.0;	
+	sasa = molsurf(mol,"::",proberad); printf("sasa: %10.2lf\n", sasa); 
+	printf("Esasa = 0.0072 * sasa = %10.2lf\n", sasa*0.0072);
+}

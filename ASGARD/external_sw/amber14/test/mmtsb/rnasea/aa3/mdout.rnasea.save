@@ -1,0 +1,243 @@
+
+          -------------------------------------------------------
+          Amber 9  SANDER                 Scripps/UCSF 2004
+          -------------------------------------------------------
+
+| Run on 03/03/2004 at 17:23:01
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: rnasea/aa3/13350.inp.cmd                                              
+| MDOUT: rnasea/aa3/mdout.rnasea                                               
+|INPCRD: rnasea/aa3/13350.inpcoor                                              
+|  PARM: prmtop.prt.rnase.GB                                                   
+|RESTRT: rnasea/aa3/restart                                                    
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: 13350.mdinf                                                           
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+ 
+ Here is the input file:
+ 
+ dynamics                                                                      
+ &cntrl                                                                        
+  imin=0, ntmin=1, ntpr=10,                                                    
+  ntx=1,                                                                       
+  cut=9999.0,                                                                  
+  igb=2, gbsa=0,                                                               
+  extdiel=80.000000,                                                           
+  nstlim=999999999, dt=0.002000, temp0=300.000000, tempi=300.000000, ig=1955459
+  mmtsb_switch=1, mmtsb_iterations=4,                                          
+  icfe=1, clambda=0.500000,                                                    
+  ntt=1, ntc=2, ntf=2,                                                         
+  ntb=0, ntr=0                                                                 
+ &end                                                                          
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MMTSB                                                                  
+| New format PARM file being parsed.
+| Version =    1.000 Date = 04/11/03 Time = 11:41:53
+ NATOM  =    1861 NTYPES =      14 NBONH =     909 MBONA  =     968
+ NTHETH =    2060 MTHETA =    1310 NPHIH =    4040 MPHIA  =    2440
+ NHPARM =       0 NPARM  =       0 NNB   =   10237 NRES   =     124
+ NBONA  =     968 NTHETA =    1310 NPHIA =    2440 NUMBND =      33
+ NUMANG =      71 NPTRA  =      38 NATYP =      22 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      24 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real               48537
+|     Hollerith          11292
+|     Integer           116823
+|     Max Pairs              1
+|     Max Rstack          5584
+|     Max Istack             1
+|       Total              923 kbytes
+
+Running a free energy calculation with lambda =  0.500
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =      10, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       0, igb     =       2, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =9999.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    0.80000
+     gbbeta  =   0.00000, gbgamma =   2.90912, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000
+     
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =********, nscm    =    1000, nrespa  =       1
+     t       =   0.00000, dt      =   0.00200, vlimit  =  20.00000
+
+Berendsen (weak-coupling) temperature regulation:
+     temp0   = 300.00000, tempi   = 300.00000, tautp   =   1.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00001
+
+Free energy options:
+     klambda =       1
+     clambda =   0.50000
+
+MMTSB Replica Exchange:
+     mmtsb_iterations  =        4
+     Reading MMTSB setup from file: rnasea/aa3/amberrex.job                    
+     chainlength  =        0
+     sendfiles    =        0
+     jobid        = aa3                                                         
+     servername   = redfish.scripps.edu                                         
+     serverport   = 4100                                                        
+     serverid     = 545681                                                      
+     datadir      = rnasea/aa3                                                  
+     temp0    =  306.52380
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =   361.39  PRESS =     0.0
+ Etot   =     -1933.6634  EKtot   =      1676.1865  EPtot      =     -3609.8499
+ BOND   =       377.4246  ANGLE   =       954.1867  DIHED      =       892.7560
+ 1-4 NB =       386.7328  1-4 EEL =      5480.3401  VDWAALS    =      -894.0398
+ EELEC  =     -8315.4962  EGB     =     -2491.7542  RESTRAINT  =         0.0000
+ DV/DL  =       -70.8328
+ ------------------------------------------------------------------------------
+
+Setting new random velocities at step        1
+MMTSB Replica Exchange iterations completed at NSTEP =        4
+MMTSB Replica Exchange potential energy =   -3554.3151
+MMTSB Replica Exchange temperature change from   306.52 to   313.19
+Setting new random velocities at step        5
+MMTSB Replica Exchange iterations completed at NSTEP =        8
+MMTSB Replica Exchange potential energy =   -3531.6656
+MMTSB Replica Exchange temperature change from   313.19 to   320.00
+Setting new random velocities at step        9
+
+ NSTEP =       10   TIME(PS) =       0.020  TEMP(K) =   396.98  PRESS =     0.0
+ Etot   =     -1809.7970  EKtot   =      1841.2248  EPtot      =     -3651.0218
+ BOND   =       350.9720  ANGLE   =       961.4794  DIHED      =       866.9207
+ 1-4 NB =       389.0254  1-4 EEL =      5471.9634  VDWAALS    =      -899.1736
+ EELEC  =     -8298.3192  EGB     =     -2493.8900  RESTRAINT  =         0.0000
+ DV/DL  =       -65.4276
+ ------------------------------------------------------------------------------
+
+MMTSB Replica Exchange iterations completed at NSTEP =       12
+MMTSB Replica Exchange potential energy =   -3483.6431
+MMTSB Replica Exchange temperature unchanged
+MMTSB Replica Exchange iterations completed at NSTEP =       16
+MMTSB Replica Exchange potential energy =   -3492.5563
+MMTSB Replica Exchange temperature change from   320.00 to   313.19
+Setting new random velocities at step       17
+
+ NSTEP =       20   TIME(PS) =       0.040  TEMP(K) =   342.21  PRESS =     0.0
+ Etot   =     -1907.5194  EKtot   =      1587.2028  EPtot      =     -3494.7222
+ BOND   =       420.5182  ANGLE   =      1059.4461  DIHED      =       869.6686
+ 1-4 NB =       388.4756  1-4 EEL =      5453.6271  VDWAALS    =      -897.7774
+ EELEC  =     -8309.2831  EGB     =     -2479.3974  RESTRAINT  =         0.0000
+ DV/DL  =       -52.6989
+ ------------------------------------------------------------------------------
+
+MMTSB Replica Exchange iterations completed at NSTEP =       20
+MMTSB Replica Exchange potential energy =   -3494.7222
+
+      A V E R A G E S   O V E R      20 S T E P S
+
+
+ NSTEP =       20   TIME(PS) =       0.040  TEMP(K) =   371.27  PRESS =     0.0
+ Etot   =     -1830.9460  EKtot   =      1721.9692  EPtot      =     -3552.9152
+ BOND   =       390.5286  ANGLE   =      1017.0422  DIHED      =       873.9371
+ 1-4 NB =       389.9686  1-4 EEL =      5467.0318  VDWAALS    =      -894.4210
+ EELEC  =     -8309.7945  EGB     =     -2487.2081  RESTRAINT  =         0.0000
+ DV/DL  =       -63.5600
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       20   TIME(PS) =       0.040  TEMP(K) =    98.47  PRESS =     0.0
+ Etot   =       436.8818  EKtot   =       456.7139  EPtot      =       161.3233
+ BOND   =        49.6866  ANGLE   =       102.2987  DIHED      =        11.1575
+ 1-4 NB =         4.6283  1-4 EEL =         7.5487  VDWAALS    =         3.3497
+ EELEC  =        13.0334  EGB     =         8.2563  RESTRAINT  =         0.0000
+ DV/DL  =         7.8626
+ ------------------------------------------------------------------------------
+
+
+      DV/DL, AVERAGES OVER      20 STEPS
+
+
+ NSTEP =       20   TIME(PS) =       0.040  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =         0.0000  EKtot   =         0.0000  EPtot      =       -63.5600
+ BOND   =         0.9439  ANGLE   =        -1.5100  DIHED      =        -5.0601
+ 1-4 NB =        -0.2084  1-4 EEL =        22.9548  VDWAALS    =         0.0744
+ EELEC  =      -213.5359  EGB     =       132.7813  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.02 ( 0.02% of Total)
+|                Calc gb radii             16.44 (22.35% of Gen B)
+|                Calc gb diag              29.39 (39.94% of Gen B)
+|                Calc gb off-diag          27.75 (37.71% of Gen B)
+|             Gen Born time             73.59 (100.0% of Nonbo)
+|          Nonbond force             73.59 (99.34% of Force)
+|          Bond/Angle/Dihedral        0.49 ( 0.66% of Force)
+|       Force time                74.08 (86.15% of Runmd)
+|       Shake time                 0.01 ( 0.01% of Runmd)
+|       Verlet update time         9.48 (11.02% of Runmd)
+|       Other                      2.42 ( 2.81% of Runmd)
+|    Runmd Time                85.98 (99.77% of Total)
+|    Other                      0.19 ( 0.22% of Total)
+| Total time                86.19 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 17:23:01.368  on 03/03/2004
+|           Setup done at 17:23:01.570  on 03/03/2004
+|           Run   done at 17:24:27.554  on 03/03/2004
+|     wallclock() was called     717 times

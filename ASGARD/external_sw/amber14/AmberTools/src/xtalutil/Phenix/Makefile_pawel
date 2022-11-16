@@ -1,0 +1,50 @@
+include ../../config.h
+
+TARGET    = phenix_amber_interface.so
+
+LIBFLAGS  = -lboost_python
+
+OBJS = phenix_amber_interface.o getmdgxfrc.o
+
+$(TARGET): $(OBJS)
+	$(CXX) -shared -o $(TARGET) $(OBJS) -L$(LIBDIR) \
+	 -lnetcdf -lfftw3 -lmdgx -lboost_python -lpython2.7
+
+#  last two libraries above are in /usr/lib on my Ubuntu 12.04 distro
+#  to get boost:
+#  sudo apt-get install libboost-all-dev
+
+.PHONY: clean
+clean:
+	rm -f *.o
+
+install:$(TARGET)
+
+
+#If the user has Phenix installed
+#Note: need to check the includes: they are hardwired for
+#    a phenix distribution rooted at /usr/local and python at /usr/include/python2.7
+phenix_amber_interface.o: phenix_amber_interface.cpp 
+	$(CXX) -fPIC $(CXXFLAGS) -DAMBERPHENIX \
+	-I/usr/include/python2.7/ \
+	-I/net/casegroup2/u2/pjanowsk/bin/phenix_svn/source/cctbx_project/ \
+	-I/net/casegroup2/u2/pjanowsk/bin/phenix_svn/build/include/ \
+    -I$(INCDIR) \
+    -c $<
+
+#If the user does not have Phenix installed
+#Note: need to check the include: it is hardwired for a 
+# python distribution at /usr/include
+#phenix_amber_interface.o: phenix_amber_interface.cpp 
+	#$(CXX) -fPIC $(CXXFLAGS) \
+	#-I/usr/include/python2.7/ \
+  #-I$(INCDIR) \
+  #-c $<
+
+
+getmdgxfrc.o: getmdgxfrc.c
+	 $(CC) -fPIC $(CFLAGS) -I$(INCDIR) -c $<
+
+
+
+

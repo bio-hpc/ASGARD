@@ -1,0 +1,37 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+cat > gbin <<EOF
+ short minimization
+ &cntrl
+   ntx=7, irest=1,
+   ntc=2, ntf=2, tol=0.0000001, 
+   imin=1, maxcyc=5,
+   ntpr=1, ntwr=10000, 
+ /
+ &ewald
+   nfft1 = 72, nfft2 = 60, nfft3 = 54,
+ /
+EOF
+
+set output = mdout.dhfr.noboxinfo
+
+touch dummy
+$DO_PARALLEL $TESTsander -O -i gbin -c md12noboxinfo.x -o $output < dummy >& /dev/null
+
+../dacdif $output.save $output
+/bin/rm -f gbin restrt mdinfo dummy
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

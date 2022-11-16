@@ -1,0 +1,47 @@
+#!/bin/csh -f
+
+echo  [31mHere is a bad structure in pdb format, mpd.pdb. We want to use acdoctor to [0m
+echo  [34mfind the problem and fix it. First of all, run acdoctor[0m
+echo 
+echo [32m ../../../bin/acdoctor -i mpd.pdb -f pdb [0m 
+../../../bin/acdoctor -i mpd.pdb -f pdb >& mpd_pdb.out || goto error
+echo  [31mSince acdoctor tells us that there are more than one unit in the molecule, it
+echo  is highly possible there are some missing bonds. We convert the pdb file to mol2
+echo  without judging bond types by using flag "-j 5" [0m
+echo
+echo [32m ../../../bin/antechamber -i mpd.pdb -fi pdb -o mpd.mol2 -fo mol2 -j 5 -at sybyl[0m 
+echo
+../../../bin/antechamber -i mpd.pdb -fi pdb -o mpd.mol2 -fo mol2 -j 5 -at sybyl || goto error
+echo  [31mNow check mpd.mol2 using visulization program or run acdoctor again[0m
+echo [32m ../../../bin/acdoctor -i mpd.mol2 -f mol2 [0m 
+../../../bin/acdoctor -i mpd.mol2 -f mol2 >& mpd_mol2.out 
+echo 
+echo  [34macdoctor found that CD has weird valence, therefore it is highly possible that it is 
+echo  CD involved in the missing bonds. With a graphic program, we can see that the bond is missed
+echo  between CD and HD and the distance is 1.42. Because of the bad structure, antechamber failed to
+echo  make a correct judgement about bond formation. You may manually add a bond or run a simple
+echo  mopac job to see if the structure can be improved ...[0m
+echo
+echo [32m ../../../bin/antechamber -i mpd.pdb -fi pdb -o mpd.mopout -fo mopout[0m 
+echo 
+../../../bin/antechamber -i mpd.pdb -fi pdb -o mpd.mopout -fo mopout || goto error
+echo 
+echo  [31mAfter we optimized the structure with mopac, we check the structure again.[0m
+echo 
+echo [32m ../../../bin/acdoctor -i mpd.mopout -f mopout [0m 
+../../../bin/acdoctor -i mpd.mopout -f mopout >& mpd_mopout.out || goto error
+echo 
+echo
+
+echo  [34mFinally we have corrected the error [0m
+/bin/rm -f ACDOCT* ANTE* ATOMTYPE.INF 
+#../../dacdif mpd.pdb.save mpd.pdb 
+../../dacdif mpd.mol2.save mpd.mol2 
+../../dacdif mpd_pdb.out.save mpd_pdb.out 
+../../dacdif mpd_mol2.out.save mpd_mol2.out 
+../../dacdif mpd_mopout.out.save mpd_mopout.out 
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

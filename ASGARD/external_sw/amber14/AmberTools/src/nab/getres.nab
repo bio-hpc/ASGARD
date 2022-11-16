@@ -1,0 +1,29 @@
+//  wrapper for getresidue(), but intercepts call to convert Brookhaven
+//     one-letter residue names to three-letter code
+
+residue	getres( string r, string rlib )
+{
+	residue	res;
+	string map1to3[ hashed ];          // convert residue names
+
+	map1to3["A"] = "ADE";
+	map1to3["C"] = "CYT";
+	map1to3["G"] = "GUA";
+	map1to3["T"] = "THY";
+	map1to3["U"] = "URA";
+
+	map1to3["a"] = "ADE";
+	map1to3["c"] = "CYT";
+	map1to3["g"] = "GUA";
+	map1to3["t"] = "THY";
+	map1to3["u"] = "URA";
+
+	if( r in map1to3 ) {
+		res = getresidue( map1to3[ r ], rlib );
+	}else{
+		fprintf( stderr, "undefined residue \"%s\"\n", r );
+		exit( 1 );
+	}
+	return( res );
+};
+

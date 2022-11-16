@@ -1,0 +1,724 @@
+#
+#   Please do not edit the "depend" file directly, since it is created by the
+#   "makedepend" script.  If changes are needed, edit "makedepend" itself.
+#
+amber_rism_interface.o: \
+                    ../include/dprec.fh\
+                    rism3d_c.o\
+                    rism3d_solv_c.o\
+                    rism3d_solu_c.o\
+                    fce_c.o\
+                    rism_report_c.o\
+                    rism_timer_c.o\
+                    safemem.o\
+                    constants.o\
+                    rism_util.o\
+                    def_time.h\
+                    rism3d_opendx.o\
+                    rism3d_xyzv.o\
+                    files.h
+
+
+amber_rism_interface.o:   amber_rism_interface.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ amber_rism_interface.F90
+
+amber_rism_interface.NAB.o: \
+                    ../include/dprec.fh\
+                    rism3d_c.o\
+                    rism3d_solv_c.o\
+                    rism3d_solu_c.o\
+                    fce_c.o\
+                    rism_report_c.o\
+                    rism_timer_c.o\
+                    safemem.o\
+                    constants.o\
+                    rism_util.o\
+                    def_time.h\
+                    rism3d_opendx.o\
+                    rism3d_xyzv.o\
+                    files.h
+
+
+amber_rism_interface.NAB.o:   amber_rism_interface.F90
+	if [ -n "$(RISMSFF)" ]; then \
+		$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ amber_rism_interface.F90; \
+	else \
+		touch amber_rism_interface.NAB.o ;\
+	fi
+
+amber_rism_interface.SANDER.o: \
+                    ../include/dprec.fh\
+                    rism3d_c.o\
+                    rism3d_solv_c.o\
+                    rism3d_solu_c.o\
+                    fce_c.o\
+                    rism_report_c.o\
+                    rism_timer_c.o\
+                    safemem.o\
+                    constants.o\
+                    rism_util.o\
+                    def_time.h\
+                    rism3d_opendx.o\
+                    rism3d_xyzv.o\
+                    files.h
+
+
+amber_rism_interface.SANDER.o:   amber_rism_interface.F90
+	if [ -n "$(RISMSANDER)" ]; then \
+		$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		-DSANDER -DRISM_CRDINTERP \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ amber_rism_interface.F90; \
+	else \
+		touch amber_rism_interface.SANDER.o ;\
+	fi
+
+
+array_util.o:   array_util.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ array_util.F90
+
+blend.o: \
+                    ../include/dprec.fh
+
+
+blend.o:   blend.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ blend.F90
+
+constants.o: \
+                    ../include/dprec.fh
+
+
+constants.o:   constants.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ constants.F90
+
+erfcfun.o: \
+                    ../include/dprec.fh\
+                    constants.o
+
+
+erfcfun.o:   erfcfun.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ erfcfun.F90
+
+fce_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o
+
+
+fce_c.o:   fce_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ fce_c.F90
+
+
+fftw3.o:   fftw3.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ fftw3.F90
+
+getopts_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    array_util.o\
+                    rism_report_c.o
+
+
+getopts_c.o:   getopts_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ getopts_c.F90
+
+mdiis_blas2_c.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o\
+                    rism_timer_c.o\
+                    safemem.o\
+                    def_time.h
+
+
+mdiis_blas2_c.o:   mdiis_blas2_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ mdiis_blas2_c.F90
+
+mdiis_blas_c.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o\
+                    rism_timer_c.o\
+                    safemem.o\
+                    def_time.h
+
+
+mdiis_blas_c.o:   mdiis_blas_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ mdiis_blas_c.F90
+
+mdiis_c.o: \
+                    ../include/dprec.fh\
+                    mdiis_orig_c.o\
+                    mdiis_blas_c.o\
+                    mdiis_blas2_c.o\
+                    rism_timer_c.o
+
+
+mdiis_c.o:   mdiis_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ mdiis_c.F90
+
+mdiis_orig_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    rism_timer_c.o\
+                    rism_util.o\
+                    def_time.h
+
+
+mdiis_orig_c.o:   mdiis_orig_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ mdiis_orig_c.F90
+
+
+mkl_fft.o:   mkl_fft.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ mkl_fft.F90
+
+pubfft.o: \
+                    ../include/dprec.fh\
+                    constants.o
+
+
+pubfft.o:   pubfft.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ pubfft.F90
+
+quaternion.o: \
+                    ../include/dprec.fh
+
+
+quaternion.o:   quaternion.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ quaternion.F90
+
+rism1d.o: \
+                    ../include/dprec.fh\
+                    rism1d_c.o\
+                    rism_report_c.o\
+                    rism_timer_c.o\
+                    rism_util.o\
+                    array_util.o\
+                    constants.o\
+                    solvmdl_c.o\
+                    rism1d_nub_c.o\
+                    ../xblas/f77/blas_namedconstants.fh
+
+
+rism1d.o:   rism1d.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d.F90
+
+rism1d_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    rism1d_potential_c.o\
+                    rism1d_closure_c.o\
+                    rism_report_c.o\
+                    rism_timer_c.o\
+                    mdiis_c.o\
+                    constants.o\
+                    rism_util.o\
+                    solvmdl_c.o\
+                    ../xblas/f77/blas_namedconstants.fh
+
+
+rism1d_c.o:   rism1d_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_c.F90
+
+rism1d_closure_c.o: \
+                    ../include/dprec.fh\
+                    rism1d_kh_c.o\
+                    rism1d_hnc_c.o\
+                    rism1d_py_c.o\
+                    rism1d_mv0_c.o\
+                    rism1d_psen_c.o\
+<<<<<<< HEAD
+                    rism1d_nub_c.o\
+=======
+                    rism1d_polyt_c.o\
+>>>>>>> 76d6ab1... Revert "rism1d: disabled the 'polyt' closure"
+                    rism1d_potential_c.o\
+                    safemem.o\
+                    constants.o\
+                    rism_util.o\
+                    ../xblas/f77/blas_namedconstants.fh
+
+
+rism1d_closure_c.o:   rism1d_closure_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_closure_c.F90
+
+rism1d_hnc_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    constants.o
+
+
+rism1d_hnc_c.o:   rism1d_hnc_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_hnc_c.F90
+
+rism1d_kh_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    constants.o
+
+
+rism1d_kh_c.o:   rism1d_kh_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_kh_c.F90
+
+rism1d_mv0_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    constants.o
+
+
+rism1d_mv0_c.o:   rism1d_mv0_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_mv0_c.F90
+
+<<<<<<< HEAD
+rism1d_nub_c.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o\
+                    rism1d_potential_c.o\
+                    safemem.o\
+                    rism_util.o
+
+
+rism1d_nub_c.o:   rism1d_nub_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 -DRISM -DRISM_CRDINTERP -DRISM_DX -DRISM_LINPROJ \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_nub_c.F90
+=======
+rism1d_polyt_c.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o\
+                    safemem.o
+
+
+rism1d_polyt_c.o:   rism1d_polyt_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 -DRISM -DRISM_CRDINTERP -DRISM_DX -DRISM_LINPROJ \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_polyt_c.F90
+>>>>>>> 76d6ab1... Revert "rism1d: disabled the 'polyt' closure"
+
+rism1d_potential_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    constants.o\
+                    rism_util.o\
+                    solvmdl_c.o\
+                    ../xblas/f77/blas_namedconstants.fh
+
+
+rism1d_potential_c.o:   rism1d_potential_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_potential_c.F90
+
+rism1d_psen_c.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o\
+                    safemem.o\
+                    constants.o
+
+
+rism1d_psen_c.o:   rism1d_psen_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_psen_c.F90
+
+rism1d_py_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    constants.o
+
+
+rism1d_py_c.o:   rism1d_py_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism1d_py_c.F90
+
+rism3d.orave.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    getopts_c.o\
+                    rism_report_c.o\
+                    rism3d_grid_c.o\
+                    rism3d_opendx.o\
+                    constants.o\
+                    rism_util.o\
+                    quaternion.o
+
+
+rism3d.orave.o:   rism3d.orave.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d.orave.F90
+
+rism3d.thermo.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    getopts_c.o\
+                    rism_report_c.o\
+                    rism3d_solv_c.o\
+                    rism3d_solu_c.o\
+                    rism3d_potential_c.o\
+                    rism3d_grid_c.o\
+                    rism3d_closure_c.o\
+                    rism3d_opendx.o\
+                    rism_util.o\
+                    constants.o
+
+
+rism3d.thermo.o:   rism3d.thermo.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d.thermo.F90
+
+rism3d_c.o: \
+                    ../include/dprec.fh\
+                    rism3d_solu_c.o\
+                    rism3d_solv_c.o\
+                    rism3d_potential_c.o\
+                    rism3d_grid_c.o\
+                    rism3d_closure_c.o\
+                    rism_report_c.o\
+                    rism_timer_c.o\
+                    mdiis_c.o\
+                    rism3d_fft.o\
+                    def_time.h\
+                    safemem.o\
+                    rism_util.o\
+                    rism3d_csv.o
+
+
+rism3d_c.o:   rism3d_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_c.F90
+
+rism3d_closure_c.o: \
+                    ../include/dprec.fh\
+                    rism3d_potential_c.o\
+                    rism3d_grid_c.o\
+                    rism3d_kh_c.o\
+                    rism3d_hnc_c.o\
+                    rism3d_psen_c.o\
+                    rism_report_c.o\
+                    safemem.o\
+                    rism_util.o
+
+
+rism3d_closure_c.o:   rism3d_closure_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_closure_c.F90
+
+rism3d_csv.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o
+
+
+rism3d_csv.o:   rism3d_csv.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_csv.F90
+
+rism3d_debug_c.o: \
+                    ../include/dprec.fh\
+                    rism3d_grid_c.o\
+                    rism3d_solv_c.o\
+                    safemem.o
+
+
+rism3d_debug_c.o:   rism3d_debug_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_debug_c.F90
+
+rism3d_fft.o: \
+                    ../include/dprec.fh\
+                    mkl_fft.o\
+                    fftw3.o\
+                    rism3d_grid_c.o\
+                    safemem.o
+
+
+rism3d_fft.o:   rism3d_fft.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_fft.F90
+
+rism3d_grid_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    constants.o\
+                    rism_util.o
+
+
+rism3d_grid_c.o:   rism3d_grid_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_grid_c.F90
+
+rism3d_hnc_c.o: \
+                    ../include/dprec.fh\
+                    rism3d_potential_c.o\
+                    rism3d_grid_c.o
+
+
+rism3d_hnc_c.o:   rism3d_hnc_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_hnc_c.F90
+
+rism3d_kh_c.o: \
+                    ../include/dprec.fh\
+                    rism3d_potential_c.o\
+                    rism3d_grid_c.o
+
+
+rism3d_kh_c.o:   rism3d_kh_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_kh_c.F90
+
+rism3d_opendx.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    rism_report_c.o\
+                    rism_util.o
+
+
+rism3d_opendx.o:   rism3d_opendx.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_opendx.F90
+
+rism3d_potential_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    rism3d_solu_c.o\
+                    rism3d_solv_c.o\
+                    rism3d_grid_c.o\
+                    rism_timer_c.o\
+                    def_time.h\
+                    rism_util.o\
+                    constants.o
+
+
+rism3d_potential_c.o:   rism3d_potential_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_potential_c.F90
+
+rism3d_psen_c.o: \
+                    ../include/dprec.fh\
+                    rism3d_potential_c.o\
+                    rism3d_grid_c.o
+
+
+rism3d_psen_c.o:   rism3d_psen_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_psen_c.F90
+
+rism3d_solu_c.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    rism_report_c.o\
+                    constants.o\
+                    rism_util.o\
+                    rism_parm.o
+
+
+rism3d_solu_c.o:   rism3d_solu_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_solu_c.F90
+
+rism3d_solv_c.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o\
+                    safemem.o\
+                    rism_util.o\
+                    constants.o\
+                    rism_parm.o
+
+
+rism3d_solv_c.o:   rism3d_solv_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_solv_c.F90
+
+rism3d_xyzv.o: \
+                    ../include/dprec.fh\
+                    safemem.o\
+                    rism_report_c.o\
+                    rism_util.o
+
+
+rism3d_xyzv.o:   rism3d_xyzv.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism3d_xyzv.F90
+
+
+rism_parm.o:   rism_parm.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism_parm.F90
+
+rism_report_c.o: \
+                    ../include/dprec.fh
+
+
+rism_report_c.o:   rism_report_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism_report_c.F90
+
+rism_timer_c.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o
+
+
+rism_timer_c.o:   rism_timer_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism_timer_c.F90
+
+rism_util.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o\
+                    constants.o\
+                    quaternion.o\
+                    safemem.o
+
+
+rism_util.o:   rism_util.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ rism_util.F90
+
+safemem.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o\
+                    fftw3.o
+
+
+safemem.o:   safemem.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ safemem.F90
+
+solvmdl_c.o: \
+                    ../include/dprec.fh\
+                    rism_report_c.o\
+                    rism_util.o\
+                    rism_parm.o\
+                    constants.o\
+                    safemem.o
+
+
+solvmdl_c.o:   solvmdl_c.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ solvmdl_c.F90
+
+volslice.o: \
+                    ../include/dprec.fh\
+                    rism3d_opendx.o\
+                    getopts_c.o
+
+
+volslice.o:   volslice.F90
+	$(FC) -c $(FPPFLAGS) $(AMBERFPPFLAGS) \
+		 \
+		$(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) \
+		-o $@ volslice.F90
+

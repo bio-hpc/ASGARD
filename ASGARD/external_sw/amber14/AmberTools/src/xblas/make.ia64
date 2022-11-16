@@ -1,0 +1,30 @@
+#
+# Basic include options.
+# CC is the C compiler, normally invoked with options CFLAGS.
+# LINKER and LDFLAGS function as CC and CFLAGS, but for linking stages.
+#
+CC = icc
+F2C_CONFIG=-DCONFIG_FC_UNDERSCORE
+CFLAGS = -O2 -mp $(F2C_CONFIG)
+LINKER = $(CC)
+LDFLAGS = 
+EXTRA_LIBS = -lm
+
+# M4 macro preprocessor
+M4 	= m4
+M4_OPTS = -B65536
+INDENT	= indent
+INDENT_OPTS = -ce -i2 -nfc1 -br -brs -cs -npcs -nprs -npsl
+
+#
+#  The name of the libraries to be created/linked to
+#
+XBLASLIB = libxblas.a
+
+#
+#  The archiver and the flag(s) to use when building archive (library)
+#  If your system has no ranlib, set RANLIB = echo.
+#
+ARCH         = ar
+ARCHFLAGS    = cr
+RANLIB       = ranlib

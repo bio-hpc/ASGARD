@@ -1,0 +1,50 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+. ../program_error.sh
+sander=../../bin/sander.MPI
+
+if [ ! -z "$TESTsander" ]; then
+   sander=$TESTsander
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+   echo "REM requires a parallel environment!"
+   exit 0
+fi
+
+numprocs=`$DO_PARALLEL ../numprocs`
+
+if [ "`basename $sander`" = 'pmemd.MPI' -o "`basename $sander`" = 'pmemd.mic_offload.MPI' ]; then
+   if [ $numprocs -lt 4 ]; then
+      echo "REM with pmemd.MPI  or pmemd.mic_offload.MPI requires a multiple of 2 processors, but at least 4!"
+      echo "Only using $numprocs"
+      exit 0
+   fi
+fi
+
+log=rem.log
+output=rem.out
+/bin/rm -f $log $output.00? groupfile
+
+cat > groupfile << EOF
+#
+#
+-O -rem 1 -remlog $log -i ./rem.in.000 -p ./ala3.sol.top -c ./mdrestrt -o ./$output.000 -inf reminfo.000 -r ./rem.r.000
+-O -rem 1 -remlog $log -i ./rem.in.001 -p ./ala3.sol.top -c ./mdrestrt -o ./$output.001 -inf reminfo.001 -r ./rem.r.001
+#
+EOF
+
+$DO_PARALLEL $sander -O -ng 2 -groupfile groupfile < /dev/null || error
+if [ "`basename $sander`" = 'pmemd.mic_offload.MPI' ]; then
+../dacdif -r 1.e-05 $log.save $log
+else
+../dacdif $log.save $log
+fi
+../dacdif -r 1.e-4 $output.000.save $output.000
+
+/bin/rm -f rem.r* mdinfo* mdcrd* reminfo.* rem.type $output.001 groupfile logfile.00?
+exit 0

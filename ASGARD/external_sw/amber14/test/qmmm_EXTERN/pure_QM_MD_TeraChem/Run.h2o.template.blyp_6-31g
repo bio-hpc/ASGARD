@@ -1,0 +1,103 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+../../check_TeraChem.x
+if( $status > 0) then
+  exit(0)
+endif
+
+set sander = "../../../bin/sander"
+if( $?TESTsander ) then
+    set sander = $TESTsander
+endif
+
+set can_do_mpi=0
+if( `echo $sander | grep "MPI"` != '') then
+ echo 'Using MPI version of sander'
+ set can_do_mpi=1
+endif
+
+set mpi=0
+if( ! $?DO_PARALLEL ) then
+  set DO_PARALLEL=' '
+  echo "Running test using file-based exchange (DO_PARALLEL not set)"
+  echo "Parallelism treated within TeraChem"
+else
+  if( $can_do_mpi == 1 ) then
+    echo "Running test using MPI data exchange (DO_PARALLEL is set)"
+    echo "Parallelism treated within TeraChem"
+    set mpi=1
+    
+    set numprocs = `$DO_PARALLEL ../../numprocs`
+
+    if ( $numprocs > 1 ) then
+	echo "This test requires >> mpirun -np 1 <<"
+	echo "You specified >> mpirun -np $numprocs <<"
+	exit 0
+    endif
+endif
+
+  else
+    echo "Can not do an MPI run using serial version of sander."
+    echo "Unset DO_PARALLEL to perform serial test"
+    exit(1)
+  endif
+endif
+
+cat > mdin <<EOF
+Geometry optimization with TeraChem, 2 steps steepest descent
+ &cntrl
+  imin=1,     ! do a minimization
+  maxcyc=2,   ! max 2 minimization steps
+  ncyc=2 ,    ! switch to conjugate gradient after 2 steps of steepest descent
+  drms=0.5,   ! RMS gradient convergence criterium 0.5 (kcal/mol)/A = 2.d-3 au
+  cut=9999.0, ! non-bonded cutoff (irrelevant for now with pure QM)
+  ntb=0,      ! no periodic boundary conditions
+  ntpr=1,     ! print every minimization step
+  ntwx=1,     ! write coordinates each step
+  ntwr=2,     ! write restart file each 10 steps
+  ioutfm = 1, ! NetCDF MDCRD.
+  ifqnt=1     ! do QM/MM
+ /
+ &qmmm
+  qmmask    ='@*',
+  qmcharge  = 0,
+  qm_theory ='EXTERN',
+  verbosity = 0,
+ /
+ &tc
+  basis  = '6-31g',
+  method = 'blyp',
+  mpi    = $mpi,
+  ngpus  = 0,
+  use_template = 1,
+ /
+EOF
+
+set output = h2o.template.blyp_6-31g.out
+cp template tc_job.tpl
+rm -f $output
+
+echo "mpi=$mpi"
+if ( $mpi == 1 ) then
+ mpirun -np 1 terachem -UseMPI > tc_job.dat &
+endif
+
+touch dummy
+$DO_PARALLEL $sander -O -p h2o.prmtop -c h2o.inpcrd -o $output < dummy || goto error
+
+cat $output | grep -v 'mpi' | grep -v 'ngpus' | grep -v 'gpuids' | grep -v 'root_number' | grep -v 'executable' > $output.tmp
+mv $output.tmp $output
+
+../../dacdif  $output.save $output
+
+/bin/rm -f dummy mdin mdinfo mdcrd dummy restrt inpfile.xyz startfile tc_job.* old.tc_job.*
+/bin/rm -r scr
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

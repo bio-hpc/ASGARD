@@ -1,0 +1,982 @@
+<HTML>
+<HEAD>
+   <TITLE>PTRAJ/RDPARM HTML DOCUMENTATION</TITLE>
+</HEAD>
+<body bgcolor=#ffffff text=#000000>
+
+<H1>
+<FONT COLOR="#FF0000">ptraj/rdparm HTML documentation</FONT></H1>
+The current version of ptraj (previously called rdparm) is really two programs:
+
+<UL>
+<LI>
+<tt>rdparm</tt>: a program to read, print (and modify) AMBER prmtop files</LI>
+
+<UL><B>usage</B>: <tt>rdparm</tt> <I>prmtop</I></UL>
+</UL>
+
+<UL>
+<LI>
+<tt>ptraj</tt>: a program to process coordinate/trajectories</LI>
+
+<UL><B>usage</B>: <tt>ptraj</tt> <I>prmtop</I> <i>script</i>
+</UL>
+
+</UL>
+
+Which code is used at runtime depends on the name of the executable
+(note that both <tt>rdparm</tt> and <tt>ptraj</tt> are created by
+default from the same source code when the supplied Makefile is used).
+If the executable name contains the string "rdparm", then the <tt>rdparm</tt>
+functionality is obtained. <tt>rdparm</tt> is semi-interactive (type
+<tt>?</tt> or <tt>help</tt> for a list of commands) and requires
+specification of an AMBER prmtop file (this <i>prmtop</i> is specified as a
+filename typed on the command line; note that if no filename is
+specified you (the user) will be prompted for a filename).
+For more information about <tt>rdparm</tt> follow <A
+HREF="rdparm.html">this link to rdparm.html</A>.
+<p>
+If the executable name does not contain the string "rdparm",
+<tt>ptraj</tt> is run instead. <tt>ptraj</tt> also requires
+specification of parameter/topology information, however it currently
+supports both the AMBER prmtop format and CHARMM psf files.  Note that
+the <tt>ptraj</tt> program can also be accessed from <tt>rdparm</tt>
+by typing <tt>ptraj</tt> (or <tt>newtransform</tt>).
+
+The commands to <tt>ptraj</tt> can either be piped in through standard
+input or supplied in a file, where the filename (<i>script</i>) is
+passed in as the second command line argument.  Note that if the
+<I>prmtop</I> filename is absent, the user will be prompted for a
+filename.
+
+<H2>
+<FONT COLOR="#FF0000">ptraj</FONT>: <I>process</I>
+trajectories...</H2> <tt>ptraj</tt> is a program to process and
+analyze sets of 3-D coordinates read in from a series of input
+coordinate files (in various formats as discussed below). For each
+coordinate set read in, a sequence of events or <I><FONT
+SIZE=+1>actions</FONT></I> is performed (in the order specified) on
+each of the configurations (set of coordinates) read in.  Trajectory
+files can also be output.
+
+<P>
+To use the program it is necessary to (1) <i>read in a parameter/topology
+file</i>, (2) <i>set up a list of input coordinate files</i>, (3) <i>optionally specify
+an output file</i>, (4) <i>specify a series of actions to be performed on each
+coordinate set read in</i>, and <5> optionally analyze any accumulated
+results.
+<UL>
+<LI>
+<I>reading in a parameter/topology file</I>: <p>This is done at startup and
+currently either an AMBER prmtop or CHARMM psf file can be read
+in. The type of the file is autodetected. The information in these files is used
+to setup the <I><FONT SIZE=+1>state</FONT></I> (ptrajState *) which gives
+information about the number of atoms, residues, atom names, residue names,
+residue boundaries, <I>etc</I>. This information is used to guide the reading
+of input coordinates which MUST match the order specified by the
+state, otherwise garbage may be obtained (although this may be detected by
+the program for some file formats, leading to a warning to the user). In other
+words, when reading a pdb file, the atom order must correspond exactly
+to that of the parameter/topology information; in the pdb the
+names/residues are ignored and only the coordinates are read in based.</LI>
+<p>
+<LI>
+
+<I>set up a list of input coordinate files</I>: <p>This is done with the
+<tt>trajin</tt> command (described in
+more detail below) which specifies the name of a coordinate file and
+optionally the start, stop and offset for reading coordinates. The
+type of coordinate file is detected automatically and currently the
+following input coordinate types are supported:</LI>
+
+<UL>
+<LI>
+AMBER trajectory</LI>
+
+<LI>
+AMBER restart (or inpcrd)</LI>
+
+<LI>
+PDB</LI>
+
+<LI>
+CHARMM (binary) trajectory</LI>
+
+<LI>
+Scripps "binpos" binary trajectory</LI>
+</UL>
+<p>
+
+<LI>
+<I>optionally specify an output trajectory file</I>:<p> This is done with
+the <tt>trajout</tt> command (discussed
+in more detail below). Trajectories can currently be written in AMBER
+trajectory (default), AMBER restrt, Scripps binpos, PDB or CHARMM
+trajectory (in little or big endian binary format).</LI>
+<p>
+
+<LI>
+<I>specify a list of actions</I>:<p> There are a variety of coordinate analysis/manipulation
+<FONT SIZE=+1>actions</FONT> provided and each is applied sequentially to the coordinates in
+the order listed by the user in the input file.</LI>
+<p>
+<LI>
+<I>analyze any accumulated data</I>:<p>
+Anaysis tools are currently under development to aid in processing
+data accumulated on the <tt>scalarStack</tt> (with reference to a
+particular entry via the name
+assignments in routines such as <b>distance</b>, <b>angle</b>,
+<b>dihedral</b>, <b>pucker</b> and <b>rms</b>).  All of the analyze commands
+are preceeded by the <FONT SIZE=+1>analyze</FONT> keyword and are
+discussed in more detail below.
+
+</UL>
+
+As mentioned above, input to <I>ptraj</I> is in the form of commands
+listed in a script (or if absent, from text on standard input).
+An example input file to
+<tt>ptraj</tt> follows: <BR><BR>
+<pre>
+trajin traj1.Z 1 20
+trajin traj2.Z 1 100
+trajin restrt.Z
+trajout fixed.traj
+rms first out rms @CA,C,N
+center :1-20
+image
+strip :WAT
+go
+</pre>
+<BR>This reads in three files of coordinates (which can be compressed and
+the type is autodetected), a trajectory file is output (by default to
+AMBER trajectory
+format), rms fitting is performed to the first coordinate frame using
+atoms names CA, C and N (storing the RMSd values to a file named "rms"), the
+center of geometry of residues 1-20 is placed at the origin, the coordinates
+are imaged (which requires periodic boundary conditions) to move coordinates
+outside the periodic box back in, and then the coordinates of all the residues
+named "WAT" are deleted.
+
+<H3>
+<FONT COLOR="#FF0000">
+ptraj command prerequisites:
+</FONT>
+</H3>
+
+Before going into the details of each of the commands, some prerequisites
+are necessary to describe standard argument types.  The command is
+listed in bold type.  Words in italics are values that need to be
+specified by the user, and words in standard text are keywords to
+specify an option (which may or may not be followed by a value).
+<br>
+In the specification of the commands, arguments in <TT>[]</TT>'s
+are optional and <TT>|</TT> represents "or".  Arguments not in
+<TT>[]</TT>'s are required.
+
+<UL>
+<LI>
+<I>mask</I>: this is an atom or residue mask; it represents the list of
+active atoms. The current parser recognizes a simplified midas style format
+for picking atoms and residues. <TT>@</TT> represents atom and <TT>:</TT>
+represents residue. Atom/residue names or numbers can be specified. The
+<TT>-</TT> character represents a continuation. The <TT>~</TT> represents
+"not" and if specified anywhere in the string will turn on the "not". The
+<TT>*</TT> is a wild card and will match all the atoms if specified alone.
+When specified in atom or residue name specifications, sometimes it will
+correctly work as a wildcard. <TT>?</TT> is also a wildcard, however only
+one character is matched.</LI>
+
+
+<P>Note that the current parser is really very stupid. Hopefully this
+will be fixed to properly handle 
+quoted strings and spaces.  Until this is "fixed", check the output
+very carefully; note that whenever an atom mask is used, a summary of
+the atoms selected is printed.
+<p>
+<LI>
+<I>filename</I>: this refers to the full path to a file and note that
+no checking is done for existing files, i.e. data will be overwritten
+if you attempt to write to an existing file.</LI>
+</UL>
+
+<H4>
+<FONT COLOR="#FF0000">
+ptraj input/output commands
+</FONT>
+</H4>
+
+<UL>
+<LI>
+<B>trajin</B> <I>filename</I> [ <I>start</I> <I>stop</I> <I>offset</I>
+]</LI>
+
+
+<P>Load the trajectory file specified by <I>filename</I> using only
+the frames starting with <I>start</I> (default 1) and ending with (and
+including) <I>stop</I> (default, the final configuration) using an
+offset of <I>offset</I> (default 1) if specified...  AMBER trajectory,
+restrt/inpcrd, PDB, Scripps BINPOS and CHARMM binary trajectory files
+are all currently supported. Note that the coordinates must match the
+names/ordering of the parameter/topology information previously read
+in.  Compressed files (filenames with a .Z or .gz appended) are also
+auto-detected and treated appropriately.
+<p>
+
+<LI>
+<B>reference</B> <I>filename</I> 
+
+<P>Loads up a single coordinate set for use as a reference structure.
+Currently reference structures are only used (optionally) in RMS
+fitting (via the "rms" command).  This command can be called multiple
+times, but note that the most recent "reference" structure will be used
+when an "rms" action is set up, for example:
+<pre>
+   reference A.pdb
+   rms reference out rms_to_A
+   reference B.pdb
+   rms reference out rms_to_B
+</pre>
+The above loads up "A.pdb" as a reference structure; this structure is
+used in the subsequent rms call (with data output to a file
+rms_to_A).  Then, "B.pdb" is loaded up as a reference structure and
+the next rms uses this in the fitting.
+<p>
+Note that as the state is modified (for example by \fBstrip\fR or
+\fBclosestwaters\fR), the reference coordinates are also modified
+internally.
+
+<p>
+
+<LI>
+<B>trajout</B> <I>filename</I> [ <I>format</I> ] [nobox] 
+   [little | big] [dumpq | parse] [nowrap] </LI>
+<p>
+
+&nbsp&nbsp&nbsp<i>format</i>:
+<ul>
+<li> "trajectory": AMBER trajectory format (note: specify "nobox" to
+omit box info!)
+<li> "restart": AMBER restart file
+<li> "binpos": The Scripps binary file format.  NOTE: doesn't store
+box information!
+<li> "pdb": A file in the form of a Protein Data Bank file.
+<li> "charmm": A CHARMM trajectory (see: little vs. big for endian format!)
+</ul> 
+
+<P>This command is used to specify the name of the single output 
+trajectory file (<i>filename</i>) to create.  An optional argument
+<I>format</I> specifies the format, currently "trajectory" (default),
+"restart", "binpos", "pdb" or "charmm" are supported. With CHARMM
+files it is possible to specify the byte ordering as "little" or "big"
+endian.  With the PDB output, it is possible to include charges and
+radii in the temperature/occupancy columns with the additional keyword
+"dumpq" (or "parse" if you want the parse radii).  By default, atom
+names are wrapped in the PDB file to put the 4th letter of the atom
+name first; if you want to avoid this behavior, specify "nowrap"; the
+former is more consistent with standard PDB usage but departs from the
+format written in previous versions of this program.  Note that if more
+than one coordinate set is to be output, with the pdb and
+restrt/inpcrd formats, extensions (based on the current configuration
+number) will be appended to the filenames and therefore only one
+coordinate set will be written per file. The optional keyword "nobox"
+will prevent box coordinates from being dumped to trajectory files;
+this is useful if one is stripping the solvent from a trajectory file
+and you don't want that pesky box information cluttering up the trajectory
+and messing with other programs... Note that if periodic box
+information is present in the CHARMM trajectory file, when a new
+CHARMM trajectory file is written (in versions > 22) the symmetric box
+information will be *very* slightly different due to numerical issues
+in the diagonalization procedure; this will not effect analysis but
+shows up if diffing the binary files.
+
+<p>
+</ul>
+
+
+<H4>
+<FONT COLOR="#FF0000">
+ptraj commands which modify the ``state''
+</FONT>
+</H4>
+
+<ul>
+
+<li><b>box</b> [x <i>value</i>] [y <i>value</i>] [z <i>value</i>]
+               [alpha <i>value</i>] [beta <i>value</i>] [gamma <i>value</i>] 
+               [fixx] [fixy] [fixz] [fixalpha] [fixbeta] [fixgamma]
+<p>
+This command allows specification of the initial box parameters.
+Using this command, it is also possible to fix various values
+throughout the run, via the "fixN" commands above.  These will
+override those values read from the prmtop or coordinate files (only
+if fixed).
+<p>
+
+<li><b>solvent</b> [byres | bytype | byname] <i>mask1</i> [<i>mask2</i>] [<i>mask3</i>] ...
+<p>
+This command can be used to override the solvent information specified
+in the AMBER prmtop file or that which is set by default (based on residue name)
+upon reading a CHARMM psf.  Applying this command overwrites any
+previously set solvent definitions.  The solvent can be selected by
+residue with the "byres" modifier using all the residues specified in
+the one or more atom masks listed.
+The byname option searches for solvent by residue name (where
+the mask contains the name of the residue), searching over all
+residues.  The "bytype" option is intended for use in selecting
+solvents that span multiple residues, however it is not yet
+implemented since I haven't found a case where it is necessary (and
+setting the solvent information in the code is a real nightmare).
+<p>
+As an example, say you want to select the solvent to be all residues
+from 20-100, then you would do
+<pre>
+   solvent byres :20-100
+</pre>
+Note that if you don't know the final residue number of your system
+offhand, yet you do know that the solvent spans all residues starting
+at residue 20 until the end of the system, just chose an upper bound
+and the program will reset accordingly, <i>i.e.</i>
+<pre>
+   solvent byres :20-9999
+</pre> 
+To select all residues named "WAT" and "TIP3" and "ST2": 
+<pre>
+   solvent byname WAT TIP3 ST2
+</pre>
+<i>Note</i> that if you just want to peruse what the current solvent
+information is (or more generally get some information about the
+current state), specify <b>solvent</b> with no arguments and a summary
+of the current state will be printed.
+<p>
+<li> Other commands which also modify the state are <b>strip</b> and
+<b>closestwaters</b>.  These commands are described in the next
+section since they also modify the coordinates.
+</ul>
+
+<h3>
+<FONT COLOR="#FF0000">
+ptraj ``action'' commands
+</FONT>
+</h3>
+
+The following are commands that involve an <b>action</b> performed on each
+coordinate set as it is read in.  The commands are listed in
+alphabetical order.  Note that in the script the commands are applied
+in the order specified and some may change the overall state (more on
+this later).  All of the <b>actions</b> can be applied repeatedly.
+
+<ul>
+
+
+<li><b>angle</b> <i>name</i> <i>mask1</i> <i>mask2</i> <i>mask3</i>
+    [out <i>filename</i>] [time <i>interval</i>]
+<p>
+Calculated the angle between the three atoms listed, each specified in a
+mask, <i>mask1</i> through <i>mask3</i>.  If more than one atom is listed in
+each mask, treat the position of that atom as the center of mass of
+the atoms in that mask.  The results are saved internally with the name
+<i>name</i>.  Data will be dumped to a file named <i>filename</i> if
+"out" is specified (with a time interval between configurations of
+<i>interval</i> if time is listed).  All the angles are listed in degrees.
+<p>
+<pre>
+     <i>mask2</i>-----<i>mask3</i>
+      /   <FONT COLOR="#0000FF">/</FONT>
+     /<FONT COLOR="#0000FF">--angle</FONT>
+    /
+<i>mask1</i>
+</pre>
+<p>
+
+<LI>
+<b>atomicfluct</b> [out <i>filename</i>] [<i>mask</i>] [start <i>start</i>] 
+  [stop <i>stop</i>] [offset <i>offset</i>] [byres | byatom | bymask] [bfactor]
+
+<p>
+Compute the atomic positional fluctuations for all the atoms; output
+is performed only for the atoms in <i>mask</i>.  If "byatom" is specified,
+dump the calculated fluctuations by atom (default).  If "byres" is
+specified, dump the average (mass-weighted) for each residue.  If
+"bymask" is specified, dump the average (mass-weighted) over all the
+atoms in the original <i>mask</i>.  If "out" is specified, the data
+will be dumped to <i>filename</i> (otherwise the values will be dumped
+to the standard output).  The "start", "stop" and "offset" keywords
+can be used to specify the range of coordinates processed (as a subset
+of all of those read in across all input files, not to be confused
+with the individual specification in each <tt>trajin</tt> command).  If
+the keyword "bfactor" is specified, the data is output as B-factors
+rather than atomic positional fluctuations (which means
+multiplying the <i>squared</i> fluctuations by (8/3)pi**2).
+<p>
+So, to dump the mass-weighted B-factors for the protein backbone
+atoms, by residue:
+<pre>
+  atomicfluct out back.apf @C,CA,N byres bfactor
+</pre>
+<p>
+
+<li>
+<b>average</b> <i>filename</i> [<i>mask</i>] [start <i>start</i>] [stop <i>stop</i>]
+   [offset <i>offset</i>] [pdb [parse | dumpq] | binpos | rest] [nobox] [stddev]
+<p>      
+Compute the average structure over all the configurations read in
+(subject to start, stop and offset if set) dumping the results to a
+file named <i>filename</i>.  If the keyword "stddev" is present, save
+the standard deviations (fluctuations) instead of the average
+coordinates.  Output is by default to an AMBER trajectory, however can
+also be to a pdb, binpos or restrt file (depending on the keyword
+chosen).  The "nobox" keyword will suppress box coordinates, and with
+the PDB format, it is possible to dump charges and radii (with the
+"dumpq" keyword for AMBER radii and charges or the "parse" for parse
+radii and AMBER charges).  The optional <i>mask</i> trims the output
+coordinates (but does not change the state).
+<p>
+
+<LI>
+<B>center</B> [<I>mask</I>] [ origin ] [ mass ]</LI>
+
+<P>If we are in periodic boundary conditions, center all the atoms
+based on the center of geometry of the atoms in the <I>mask</I> to the
+center of the periodic box or the origin if the optional argument
+"origin" is specified.  If the trajectory is not a periodic boundary
+trajectory, then the molecule is implicitly centered to the origin. If
+no <I>mask</I> is specified, centering is relative to all the
+atoms. If "mass" is specified, center with respect to the center of
+mass instead.
+
+<p>
+
+
+<LI>
+<B>checkoverlap</B> [<I>mask</I>] [min <I>value</I>] [max
+<I>value</I>] [noimage] [around <I>mask</I>]</LI>
+
+<p>This command is useful to find if there are atomic overlaps (vdw
+conflicts) or more generally to see if atoms are close to other atoms.
+Without the optional "around" keyword, this will search for pair
+distances in the selected atoms (all by default) that are less than
+the specified minimum value (in angstroms, 0.95 by default) apart or
+greater than the maximum value (if specified).  To avoid checking for
+all overlaps within a single selection, it is possible to only search
+for close/distant approach for two atoms in different atom
+selections, i.e. for one set of atoms around another set of atoms.
+For example, to check if ions are too close to the solute atoms.
+<p>
+Note that this command is rather computationally demanding,
+particularly if imaging is turned on (by default), since a double loop
+over all atoms is performed.  Therefore, it is not recommended to
+apply this command to an entire trajectory.  To look at ion contact,
+for example, the "hbond" command is better.
+<p>
+
+Example 1: Check for strong vdw overlaps in your inpcrd
+<pre>
+  trajin inpcrd
+  checkoverlap
+  go
+</pre>
+
+Example 2: Check for direct ion interaction of DNA residues 1-40 to
+all of the ions in the system (located after the DNA).  It is assumed,
+in this example, that all the solvent is in residues named "WAT".
+<pre>
+  trajin inpcrd
+  strip :WAT
+  checkoverlap :41-99999 min 3.5 around :1-40
+  go
+</pre>
+
+
+<p>
+
+<LI>
+<B>closest</B> <I>total</I> <I>mask </I>[oxygen | first] [noimage]</LI>
+
+
+<P>Retain only <I>total</I> solvent molecules (using the solvent
+information specified, see <b>solvent</b> above) in each coordinate
+set.  The solvent molecules saved are those which are
+closest to the atoms in the <I>mask</I>.  If "oxygen" or "first" are
+specified, only the distance to the first atom in the solvent molecule (to each
+atom in the mask) is measured.  This command is rather time consuming since many
+distances need to be measured.  Note that imaging is implicitly
+performed on the distances and this gets extremely expensive in
+non-orthorhomic systems due to the need to possibly check all the distances of
+the nearest images (up to 26!).  Imaging can be disabled by specifying
+the "noimage" keyword.  
+<p>
+Note that the behavior of this command is slightly different than
+in previous <tt>ptraj</tt> versions; now the solvent molecules are ordered at
+output such that the closest solvent is first and the PDB file residue
+numbers no longer represent the identity of the water in the original
+coordinate set.  This command should now work with non-sequential solvent
+molecules and be independent of where the water is located.  Like the
+strip command, this modifies the current state (i.e. pars down the
+size of the trajectory in cases where subsets of a trajectory may be
+loaded into memory).  A restriction of this command is that each of
+the solvent molecules must have the same number of atoms; this leads
+to a fixed size "configuration" in each coordinate set output which is
+necessary for most of the file formats.
+
+<p>
+
+<LI>
+<b>dihedral</b> <i>name</i> <i>mask1</i> <i>mask2</i> <i>mask3</i>
+<i>mask4</i>  [out <i>filename</i>]
+<p>
+Calculated the dihedral angle for the four atoms listed in
+<i>mask1</i> through <i>mask4</i> (representing rotation about the
+bond from <i>mask2</i> to <i>mask3</i>).  If more than one atom is listed in
+each mask, treat the position of that atom as the center of mass of
+the atoms in the mask.  The results are saved internally with the name
+<i>name</i>.  Data will be dumped to a file if "out" is specified
+(with a <i>filename</i> appended).  All the angles are listed in
+degrees and are in the range from -180.0 to 180.0 degrees.
+<p>  
+
+
+<LI>
+<B>diffusion</B> <I>mask</I> <I>time_per_frame</I> [ average ] [ filenameroot
+]</LI>
+
+
+<P>Compute a mean square displacement plot for the atoms in the <I>mask</I>.
+The time between frames in picoseconds is specified by <I>time_per_frame</I>.
+If "average" is specified, then the average mean square displacement is
+calculated and dumped (only). If "average" is not specified, then the average
+and individual mean squared displacements are dumped. They are all dumped
+to a file in the format appropriate for xmgr (dumped in multicolumn format
+if necessary, i.e. use xmgr -nxy). The units are displacements (in angstroms**2)
+vs time (in ps). The "filenameroot" is used as the root of the filename
+to be dumped. The average mean square displacements are dumped to "filenameroot_r.xmgr",
+the x, y and z mean square displacements to "filenameroot_x.xmgr", etc
+and the total distance travelled to "filenameroot_a.xmgr".
+<p>This will fail if a coordinate moves more than 1/2 the box in a single
+step.  Also, this command implicitly unfolds the trajectory (in
+periodic boundary simulations) hence will currently only work with
+orthorhombic unit cells.
+
+<p>
+
+<LI>
+<B>dipole</B> <I>filename</I> <I>nx</I> <I>x_spacing</I> <I>ny y_spacing
+nz z_spacing</I> <I>mask1</I> (origin | box ) [max max_percent]</LI>
+
+
+<P>Same as <b>grid</b> (see below) except that dipoles of the solvent molecules are binned.
+Dumping is to a grid in a format for Chris Bayly's discern  delegate
+that comes with Midas/Plus.
+
+<p>
+
+<LI>
+<B>distance</B> <I>name</I> <I>mask1</I> <I>mask2</I> [out
+<I>filename</I>] [noimage]</LI>
+
+<P>This command will calculate a distance between the center of mass of
+the atoms in <I>mask1</I> to the center of mass of the atoms in <I>mask2</I>
+and store this information into an array with <I>name</I> as the identifier
+for each frame in the trajectory. If the optional keyword "out" is specified,
+then the data is dumped to a file named <I>filename</I>. The arrays are
+named (<I>name</I>) so that post-processing of the array can be performed,
+if necessary.  The distance is implicitly
+imaged and the shortest imaged distance will be saved (unless the
+"noimage" keyword is specified which disables imaging).
+
+<p>
+
+
+<LI>
+<B>grid</B> <I>filename</I> <I>nx</I> <I>x_spacing</I> <I>ny y_spacing
+nz z_spacing</I> <I>mask1</I> [origin | box] [negative] [max <i>fraction</i>]</LI>
+
+
+<P>Create a grid representing the histogram of atoms in <I>mask1</I>
+on the 3D grid that is "<I>nx</I> * <I>x_spacing</I> by <I>ny</I> *
+<I>y_spacing</I> by <I>nz</I> * <I>z_spacing</I> angstroms
+(cubed). Either "origin" or "box" can be specified and this states
+whether the grid is centered on the origin or half box (however note
+that centering to the half-box is currently disabled in
+non-orthorhombic unit cells). Note that to provide any meaningful
+representation of the density, the solute of interest (about which the
+atomic densities are binned) should be rms fit, centered and imaged
+prior to the <b>grid</b> call. If the optional keyword "negative" is
+also specified, then these density will be stored as negative
+numbers. Output is in the format of a XPLOR formatted contour file
+(which can be visualized by the density delegate to Midas/Plus or
+other programs).  Upon dumping the file, pseudo-pdb HETATM records are
+also dumped to standard out which have the most probable grid entries
+(those that are 80% of the maximum by default which can be changed
+with the max keyword, i.e. max .5 makes the dumping at 50% of the
+maximum).
+
+<p>
+
+
+
+<LI>
+<B>image</B> [ origin ] [ center ] <I>mask</I> [bymol | byres | byatom
+| bymask] [triclinic | familiar [com <i>mask</i>] ] </LI>
+
+<p><i>NOTE</i>: the behavior on this command has changed slightly!
+
+<P>Image the current snapshot. If the optional argument "origin" is specified,
+then the imaging will occur to the coordinate origin (like in SPASMS) rather
+than the center of the box (as is the AMBER standard). The goal here is
+to place atoms outside the periodic box back into the box. By default
+all atoms are imaged by molecule based on the position of the first atom
+(or the center of mass of the molecule if "center" is specified; the latter
+is recommended). If the <I>mask</I> is specified, only the atoms in the
+<I>mask</I> will be imaged. It is now possible to image by atom (byatm),
+by residue (byres), by molecule (bymol, default) or by atom mask
+(where all the atoms in the mask are treated as belonging to a single
+molecule).  The behavior of the "by molecule" imaging is different in
+CHARMM and AMBER; with AMBER the molecules are specified directly by
+the periodic box information whereas with the CHARMM
+parameter/topology, each segid is treated as a different
+molecule. With this newer implementation of the imaging code, it is
+possible to avoid breaking up double stranded DNA during imaging, i.e.:
+<pre>
+   image :1-20 bymask :1-20
+   image byres :WAT
+</pre>
+Imaging only makes sense if there is periodic box information present.
+<p>
+<b>Note: non-orthorhomic unit cells are now supported by
+default!!!</b><p>Use of the triclinic imaging can be forced with the
+"triclinic" keyword.  Note that this puts the box into the triclinic
+shape, not the more familiar, more spherical shapes one might expect
+for some of the unit cells (i.e. truncated octahedron).  To get into
+the more familiar shape, specify the "familiar" keyword.  In this
+case, to specify atoms that imaged molecules should be closest to,
+specify a center of the atoms in the mask specified with the "com"
+keyword.  Note that imaging "familiar" is time consuming since each of
+the possible imaged distances (27) are checked to see which is closest
+to the center.
+
+<p>
+
+<LI>
+<B>principal</B> <I>mask</I></LI>
+
+
+<P>Principal axis align the atoms specified in <I>mask</I>.  This is
+more or less functional as there are issues with degenerate
+eigenvalues and swapping, however it basically works...
+
+<p>
+
+<li><b>pucker</b> <i>name</i> <i>mask1</i> <i>mask2</i> <i>mask3</i>
+   <i>mask4</i> <i>mask5</i> [out <i>filename</i>] [amplitude] 
+   [altona | cremer ] [offset <i>offset</i>]
+<p>
+Calculate the pucker for the five atoms specified in each of the
+mask's, <i>mask1</i> through <i>mask5</i>, associating <i>name</i>
+with the calculated values.  If more than one atom is
+specified in a given mask, the center of mass of all the atoms in that
+mask is used to define the position.  If the "out" keyword is
+specified the data is dumped to <i>filename</i>.  If the keyword
+"amplitude" is present, the amplitudes are saved rather than the
+pseudorotation values.  If the keyword "altona" is listed, use the
+Altona & Sundarlingam conventions/algorithm (for nucleic acids) (the
+default) [see Altona & Sundaralingam, <i>JACS</i> 94, 8205-8212 (1972) or
+Harvey & Prabhakaran, <i>JACS</i> 108, 6128-6136 (1986).]  In this
+convention, both the pseudorotation phase and amplitude are in
+degrees.  The phases are in the range from -180.0 to 180.0 degrees.
+
+If "cremer" is specified, use the Cremer & Pople conventions/algorithm
+[see Cremer & Pople, <i>JACS</i> 97:6, 1354-1358 (1975).]
+<p>
+
+Note that to calculate nucleic acid puckers, specify C1' first,
+followed by C2', C3', C4' and finally O4'.  Also note that the Cremer
+& Pople convention is offset from the Altona & Sundarlingam convention
+(with nucleic acids) by 90.0; to add in an extra 90.0 to "cremer"
+(offset -90.0) or subtract 90.0 from the "Altona" (offset 90.0)
+specify an <i>offset</i> with the offset keyword; this value is
+subtracted from the calculated psueodorotation value (or amplitude).
+Note that carnal calculates using the Cremer & Pople convention,
+adding in the offset...
+<p>
+
+<LI>
+<B>radial</B> <I>root-filename</I> <I>spacing</I> <I>maximum</I> <I>solvent-mask</I>
+[<I>solute-mask</I>] [closest] [density <I>value</I>] [noimage]</LI>
+
+
+<P>Compute radial distribution functions and store the results into files
+with <I>root-filename</I> as the root of the filename. Three files are
+currently produced, "<I>root-filename</I>_carnal.xmgr" (which corresponds
+to a carnal style RDF), "<I>root-filename</I>_standard.xmgr" (which uses
+the more traditional RDF with a density input by the user) and "<I>root-filename</I>_volume.xmgr"
+(which uses the more traditional RDF and the average volume of the system).
+The total number of bins for the histogram is determined by the spacing
+between bins (<I>spacing</I>) and the range which runs from zero to <I>maximum</I>.
+If only a <I>solvent-mask</I> is listed (i.e. a list of atoms) then the
+RDF will be calculated for the interaction of every solute-mask atom with
+ALL the other solute-mask atoms.
+
+<P>If the optional <I>solute-mask</I> is specified, then the RDF will represent
+the interaction of each solute-mask atom with ALL of the solvent-mask atoms.
+If the optional keyword "closest" is specified, then the histogram will
+bin, over all the solvent-mask atoms, the distance of the closest atom
+in the solute mask. [This later case is similar to the behavior in carnal
+when the ALL keyword is not specified.] If the <I>solute-mask</I> and <I>solvent-mask</I>
+atoms are not mutually exclusive, zero distances will be binned (although
+this should not break the code). If the optional keyword "density", followed
+by the density <I>value</I> is specified, this will be used in the calculations.
+The default value is 0.033456 molecules/angstrom**3 which corresponds to
+a density of water equal to 1.0 g/mL. To convert a standard density in
+g/mL, multiply the density by "6.022 / (10 * weight)" where "weight" is
+the mass of the molecule in atomic mass units. This will only effect the
+"<I>root-filename</I>_standard.xmgr" file.
+
+<p>Note that although imaging of distances is performed (to find the
+shortest imaged distance unless the "noimage" keyword is specified),
+minimum image conventions are applied and therefore the RDF will tail
+to zero outside of the periodic cell.
+
+
+<p>
+
+
+<LI>
+<B>randomizeions</B> <I>ion-mask</I> [around <I>mask</I> by
+<I>distance</I>] [overlap <i>value</i>] [noimage]
+
+<P>
+
+For the ions in the selected set of atoms (as specified by the
+<i>ion-mask</i>), swap positions with randomly chosen solvent
+molecules (WAT residue by default or those defined with the
+<b>solvent</b> command.  The "overlap" keyword specifies the closest
+approach of any two ions (default is 3.5 angstroms).  If the optional
+keyword "around" is specified, along with an addition set of selected
+atoms, the randomly placed ions cannot come any closer to any atom in
+the selected set than the value specified with the "by" keyword (or 3.5
+angstroms by default).  The noimage keyword disables imaging.
+<p>
+This is a time consuming command.
+<p>
+This command is useful to randomize the ion positions in a coordinate
+set.  For example, for a "inpcrd" that has DNA in residues 1-20 and
+ions in residues 21-38, if we want to randomize the ion positions
+(swap with waters) such that the ions can come no closer than 5.0 to
+the DNA or 3.5 angstroms from each other:
+<pre>
+  trajin inpcrd
+  trajout inpcrd.moved_ions restart
+  randomizeions :21-38 around :1-20 by 5.0 overlap 3.5
+  go
+</pre>
+
+<p>
+
+
+
+<LI>
+<B>rms</B> <I>mode</I> [<I>mass</I>] [<I>out</I> filename] [time
+<i>interval</i>] <I>mask</I></LI> [name <i>name</i>] [nofit]
+
+
+<P>This will RMS fit all the atoms in the <I>mask</I> based on the current
+<I>mode</I> which is:
+<UL>
+<LI>
+<b>previous</b>: fit to previous frame</LI>
+
+<LI>
+<b>first</b>: fit to the "start" frame of the first trajectory specified.</LI>
+
+<LI>
+<b>reference</b>: fit to a the reference structure (which must have been
+previously read in with the <b>reference</b> command)</LI>
+</UL>
+If the keyword "mass" is specified, then a mass-weighted RMSd will be performed.
+If the keyword "out" is specified (followed immediately by a <i>filename</i>),
+the RMSd values will be dumped to a file.  If you want to specify an
+time interval between frames (used only when dumping the RMSd vs
+time), this can be done with the "time" keyword.  To save the
+calculated values for later processing, associate a name with the
+"name" keyword.  If the keyword "nofit" is present, calculate the RMSd
+values but do not modify the coordinates (i.e. do not do the
+coordinate fitting).
+
+<p>
+
+
+<LI>
+<B>scale</B><I>mask </I>x <I>x-value</I> y <I>y-value</I> z <I>z-value</I></LI>
+<P>
+Scale the atoms in the <I>mask</I> in each direction by the offset specified.
+<p>
+
+<LI>
+<B>strip</B> <I>mask</I></LI>
+
+<P>Strip all atoms matching the atoms in <I>mask</I>.  This changes
+the state of the system such that all commands following the strip
+(including output of the coordinates which is done last) are
+performed on the stripped coordinates (i.e. if you strip all the
+waters and then on a later action try to do something with the waters,
+you will have trouble since the waters are gone).  A benefit of
+stripping, beyong paring down trajectories is with the data intensive
+commands that read entire sections of the trajectory into memory; with
+the strip to retain only selected atoms, it is much less likely that
+you will blow memory.
+
+<p>
+
+<p>
+<LI>
+<B>translate </B><I>mask </I>x <I>x-value</I> y <I>y-value</I> z <I>z-value</I></LI>
+
+<P>Move the atoms in the <I>mask</I> in each direction by the offset specified.
+
+<p>
+
+<li>
+<b>truncoct</b> <i>mask</i> <i>distance</i> prmtop <i>filename</i>
+<p>
+Create a truncated octahedron box with solvent stripped to a distance
+<i>distance</i> away from the atoms in the <i>mask</i>.  Coordinates
+are output to the trajectory specified with the <b>trajout</b>
+command.  <i>Note that this is a special command</i> and will only really
+make sense if a single coordinate set is processed (i.e. any prmtop written
+out will only correspond to the first configuration!!!) and commands
+after the truncoct will have undefined behavior since the state will
+not be consistent.  It is intended only as a aid for creating
+truncated octahedron restrt files for running in AMBER.
+<p>
+The "prmtop" keyword can be used to specify the writing of a new
+prmtop (to a file named <i>filename</i>; this prmtop is only
+consistent with the first set of coordinates written.  Moreover, this
+command will only work with AMBER prmtop files and assumes an AMBER
+prmtop file has previously been read in (rather than a CHARMM PSF).
+This command also assumes that all the solvent is located contiguously
+at the end of the file and that the solvent information has previously
+been set (see the <b>solvent</b> command).
+<p>
+
+<LI>
+<B>vector</B> <I>name</I> <I>mask</I> {principal [x | y | z] | dipole |
+ <I>mask2</I> | box} [out <I>filename</I>]</LI>
+
+
+<P>This command will keep track of a vector value (and it's origin) over
+the trajectory; the data can be referenced for later use based on the <I>name</I>
+specified. If the optional keyword "out" is specified, the data will be
+dumped to the file named <I>filename</I>. The format is frame number, followed
+by the value of the vector, the reference point, and the reference point
+plus the vector. What kind of vector is stored depends on the keyword chosen.
+<UL>
+<LI>
+<B>principal</B> [x | y | z]: store one of the principal axis vectors
+determined by diagonalization of the <I>mask</I> atom's inertia matrix.
+If none of x | y | z are specified, then the principal axis (i.e. the
+eigenvector associated with the largest eigenvalue) is stored. The eigenvector
+with the largest eigenvalue is "x" (i.e. the hardest axis to rotate around)
+and the eigenvector with the smallest eigenvalue is "z" and if one of x
+| y | z are specified, that eigenvector will be dumped. The reference
+point for the vector is the center of mass of the <I>mask</I> atoms.</LI>
+
+<LI>
+<B>dipole</B>: store the dipole and center of mass of the atoms specified
+in the <I>mask</I>. The vector is not normalized, nor converted to appropriate
+units, nor is the value likely defined if the atoms in the mask are
+not overall charge neutral.</LI>
+
+<LI>
+<B><I>mask2</I></B>: store the vector between the center of mass of the
+atoms in <I>mask</I> with the center of mass of the atoms in the additional
+mask (<I>mask2</I>). The center of mass of the first mask is the reference point.</LI>
+
+<LI>
+<B>box</B>: store the box coordinates of the trajectory. The reference
+point is the origin or (0.0, 0.0, 0.0).</LI>
+</UL>
+
+<p>
+
+
+<LI>
+<B>watershell</B> <I>mask</I> <I>filename</I> [lower <I>lower</I> upper
+<I>upper</I>] [<I>solvent-mask</I>]</LI>
+
+
+<P>This option will count the number of waters within a certain distance
+of the atoms in the <I>mask</I> in order to represent the first and second
+solvation shells. The output is a file into <I>filename</I> (appropriate
+for xmgr) which has, on each line, the frame number, number of waters in
+the first shell and number of waters in the second shell. If <I>lower</I>
+is specified, this represents the distance from the <I>mask</I> which represents
+the first solvation shell; if this is absent 3.4 angstroms is assumed.
+Likewise, <I>upper</I> represents the range of the second solvation shell
+and if absent is assumed to be 5.0 angstroms. The optional <I>solvent-mask</I>
+can be used to consider other atoms as the solvent; the default is
+":WAT".  The distances are implicitly imaged unless the "noimage"
+keyword is specified.
+
+<p>
+
+<LI>
+<B>2drms</B> [out <i>filename</i>] [raw | ps | plotmtv] [mass] [<i>mask</i>]
+<P>
+Calculate a 2D RMS plot for the atoms specified, dumping the output to
+one of the specified file formats.
+<p>
+</UL>
+
+
+<h3>
+<FONT COLOR="#FF0000">
+ptraj ``analzye'' commands
+</FONT>
+</h3>
+
+These commands are used to analyze any accumulated data on the
+scalarStack.  This is usually done by reference to the <i>name</i>
+specified in commands such as <b>distance</b>, <b>angle</b>, etc.
+This code is currently under development!!!  Contact the author for
+recent information...
+
+<ul>
+
+<li>
+<b>analyze correlationcoefficient</b> {<i>name1</i> | ALL} {<i>name2</i> | ALL}
+
+<p>
+Calculate the correlation coefficient between the data specified by
+<i>name1</i> and <i>name2</i>.  If the ALL keyword is specified treat
+the (first or second or both) sets of data to represent ALL the data
+on the scalarStack.  Output of the calculated correlation coefficient
+is to standard output.
+<p>
+
+<li>
+<b>analyze statistics</b> {<i>name</i> | ALL} [shift <i>value</i>] 
+<p>
+Calculate the average and standard deviation of the
+<tt>scalarStack</tt> name <i>name</i> or all entries if the "all"
+keyword is specified.  The optional keyword "shift" can be used
+to shift the values during averaging; this can be particularly important with
+dihedral angles.  Dihedral angle values are currently all stored in the
+range of -180.0 to 180.0; if the actual average value is near 180.0, raw
+averaging of the values will tend to distort the average towards zero
+due to the presence of the negative values.  To avoid this, an
+shift value of 180.0 can be applied which will shift the values
+for the averaging; after calculating the shifted average, the average
+value will automatically be shifted back.  Note that the shift is
+applied in a periodic fashion to keep the (shifted) values between
+-180.0 and 180.0 for angular quantities.
+
+</ul>
+
+
+<ADDRESS>
+thomas &lt;cheatham@helix.nih.gov></ADDRESS>
+
+<BR><!-- hhmts start -->Last modified: Mon May  3 15:43:39 EDT 1999<!-- hhmts end --></UL>
+
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+#!/bin/sh
+
+toomany() {
+    echo "${0}: This test requires 1, 2, 4, 8, 16, 32 or 64 processes"
+    echo "for meaningful comparison."
+    exit 0
+}
+
+if [ -n "${DO_PARALLEL}" ] ; then
+    numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+    if [ ! \( "$numprocs" -eq "64"\
+        -o "$numprocs" -eq "32"  -o "$numprocs" -eq "16"\
+        -o "$numprocs" -eq "8" -o "$numprocs" -eq "4"\
+        -o "$numprocs" -eq "2" -o "$numprocs" -le "1" \) ]; then
+            echo " DO_PARALLEL set to $DO_PARALLEL"
+            toomany 
+    elif [ -n "${MP_PROCS}" ]; then
+        if [  ! \( "$MP_PROCS" -eq "64"\
+            -o "$MP_PROCS" -eq "32"  -o "$MP_PROCS" -eq "16"\
+            -o "$MP_PROCS" -eq "8" -o "$MP_PROCS" -eq "4"\
+            -o "$MP_PROCS" -eq "2" -o "$MP_PROCS" -le "1" \) ]; then
+#               --- For IBM AIX ---
+            echo "    MP_PROCS set to "$MP_PROCS
+            toomany 
+        fi
+    fi
+fi
+. ../program_error.sh
+
+if [ "$DO_PARALLEL" != "" ];  then
+    NAB="mpinab"
+else
+    NAB="nab"
+fi
+
+echo "Running test to do basic MD (librism)"
+echo "(this tests the 3D-RISM-KH implementation)"
+echo ""
+../../bin/$NAB -o rismala-mdiis0 rismala-mdiis0.nab || error
+$DO_PARALLEL ./rismala-mdiis0 > rismala-mdiis0.out || error
+
+../dacdif rismala-mdiis0.out.check rismala-mdiis0.out
+
+rm -f rismala-mdiis0 rismala-mdiis0.c
+exit 0

@@ -1,0 +1,87 @@
+#!/bin/csh -f
+
+echo  [31mCheck dimensions[0m
+echo  [34mRead in the second GPCR protein, 2RH1 and  make check its dimensions.[0m
+echo 
+echo [32m ../../../bin/translate -i 2rh1.pdb -f pdb -c check [0m 
+../../../bin/translate -i 2rh1.pdb -f pdb -c check
+echo  [31mAlign to Z-axis[0m
+echo
+echo  [34mFrom a graphic program, we can see that the 7TM helixes is parallel to Y-axis. 
+echo  Now we want to align the molecule to make the helixes in Z-axis. To do so, we need to 
+echo  specify two points so that after the alignment, the origin is the center of the two 
+echo  and both points are in Z-axis. Here are the two points: x1 and x2 are -33.088 "(the average x)"
+echo  z1 and z2 are 7.0287 "(the averge z)" and y1 = -14.578 "(the min y)", y2 = 50.061 "(the max y)"  
+echo  Of course, one may use pick up other points,for instance, using the coordinates of two atoms.[0m
+echo [32m ../../../bin/translate -i 2rh1.pdb -f pdb -c alignz -x1 -33.088 -x2 -33.088 
+echo  -y1 -14.578 -y2 50.061 -z1 7.0287 -z2 7.0287 -o 2rh1_Z.pdb [0m 
+echo 
+echo
+../../../bin/translate -i 2rh1.pdb -f pdb -c alignz -x1 -33.088 -x2 -33.088 \
+	-y1 -14.578 -y2 50.061 -z1 7.0287 -z2 7.0287 -o 2rh1_Z.pdb
+
+echo
+echo  [31mCheck dimensions again[0m
+echo 
+echo [32m ../../../bin/translate -i 2rh1_Z.pdb -f pdb -c check [0m 
+../../../bin/translate -i 2rh1_Z.pdb -f pdb -c check
+echo 
+echo
+echo  [34mNow we want to rotate 60 degree the molecule along Z-axis. first select two points in Z-axis  
+echo  Here are the two points: x1, x2, y1, y2 are 0, z1 = 10, z2 = -10 
+echo  "(of course you could use other numbers for z1 and z2)" [0m
+echo
+echo [32m ../../../bin/translate -i 2rh1_Z.pdb -f pdb -c rotate2 -x1 0 -x2 0 
+echo -y1 0 -y2 0 -z1 10 -z2 -10 -o 2rh1_Z60.pdb -d 60 [0m 
+echo 
+../../../bin/translate -i 2rh1_Z.pdb -f pdb -c rotate2 -x1 0 -x2 0 -y1 0 -y2 0 -z1 -10 -z2 10 -o 2rh1_Z60.pdb -d 60
+echo 
+echo  [31mCheck dimensions again[0m
+echo 
+echo [32m ../../../bin/translate -i 2rh1_Z60.pdb -f pdb -c check [0m 
+../../../bin/translate -i 2rh1_Z60.pdb -f pdb -c check
+echo 
+echo
+
+echo  [34mNow we want to rotate 90 degree the molecule along Z-axis. first select two points in Z-axis  
+echo  Here are the two points: x1, x2, y1, y2 are 0, z1 = 10, z2 = -10 
+echo  "(of course you could use other numbers for z1 and z2)" [0m
+echo
+echo [32m ../../../bin/translate -i 2rh1_Z.pdb -f pdb -c rotate2 -x1 0 -x2 0 
+echo -y1 0 -y2 0 -z1 10 -z2 -10 -o 2rh1_Z90.pdb -d 90 [0m 
+echo 
+../../../bin/translate -i 2rh1_Z.pdb -f pdb -c rotate2 -x1 0 -x2 0 -y1 0 -y2 0 -z1 -10 -z2 10 -o 2rh1_Z90.pdb -d 90
+echo 
+echo  [31mCheck dimensions again[0m
+echo 
+echo [32m ../../../bin/translate -i 2rh1_Z90.pdb -f pdb -c check [0m 
+../../../bin/translate -i 2rh1_Z90.pdb -f pdb -c check
+echo 
+echo
+
+echo  [34mNow we want to rotate 180 degree the molecule along Z-axis. first select two points in Z-axis  
+echo  Here are the two points: x1, x2, y1, y2 are 0, z1 = 10, z2 = -10 
+echo  "(of course you could use other numbers for z1 and z2)" [0m
+echo
+echo [32m ../../../bin/translate -i 2rh1_Z.pdb -f pdb -c rotate2 -x1 0 -x2 0 
+echo -y1 0 -y2 0 -z1 10 -z2 -10 -o 2rh1_Z180.pdb -d 180 [0m 
+echo 
+../../../bin/translate -i 2rh1_Z.pdb -f pdb -c rotate2 -x1 0 -x2 0 -y1 0 -y2 0 -z1 -10 -z2 10 -o 2rh1_Z180.pdb -d 180
+echo 
+echo  [31mCheck dimensions again[0m
+echo 
+echo [32m ../../../bin/translate -i 2rh1_Z180.pdb -f pdb -c check [0m 
+../../../bin/translate -i 2rh1_Z180.pdb -f pdb -c check
+echo 
+echo
+
+
+../../dacdif 2rh1_Z.pdb.save 2rh1_Z.pdb
+../../dacdif 2rh1_Z60.pdb.save 2rh1_Z60.pdb
+../../dacdif 2rh1_Z90.pdb.save 2rh1_Z90.pdb
+../../dacdif 2rh1_Z180.pdb.save 2rh1_Z180.pdb
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

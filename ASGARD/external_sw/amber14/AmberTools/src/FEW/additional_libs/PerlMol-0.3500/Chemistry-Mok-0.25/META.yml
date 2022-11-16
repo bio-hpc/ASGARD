@@ -1,0 +1,20 @@
+# http://module-build.sourceforge.net/META-spec.html
+#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
+name:         Chemistry-Mok
+version:      0.25
+version_from: lib/Chemistry/Mok.pm
+installdirs:  site
+requires:
+    Chemistry::3DBuilder:          0.1
+    Chemistry::Bond::Find:         0.21
+    Chemistry::File::SMARTS:       0.11
+    Chemistry::Isotope:            0.1
+    Chemistry::Mol:                0.3
+    Chemistry::Pattern:            0.21
+    Math::VectorReal:              1
+    Scalar::Util:                  1.01
+    Test::Simple:                  0
+    Text::Balanced:                1.87
+
+distribution_type: module
+generated_by: ExtUtils::MakeMaker version 6.17

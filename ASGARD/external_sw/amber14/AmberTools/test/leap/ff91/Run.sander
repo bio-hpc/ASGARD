@@ -1,0 +1,51 @@
+#!/bin/csh -f
+echo ""
+echo "Getting energies for canonical leap prmtop,prmcrd files"
+echo "     generated with Weiner et al. parameters ('parm91') "
+echo ""
+
+if ( ! ( $?AMBERHOME ) ) then
+	echo "Error - must define AMBERHOME environment variable"
+	echo "    (Note - users shouldn't run this script anyway)"
+	exit(1)
+endif
+
+set SANDER = $AMBERHOME/bin/sander
+
+if ( ( ! -e $SANDER ) ) then
+	echo "Error - $SANDER does not exist"
+	exit(1)
+endif
+echo "Sander is $SANDER "
+set SANDER = " $SANDER -O -i sander_ff91.in "
+
+echo ""
+echo "All-atom amino acids, '91 - omits ASH/GLH since missing parms"
+echo "    -aminoan"
+$SANDER		-o sander_aminoan91.out \
+		-p all_aminoan91.top \
+		-c all_aminoan91.crd			|| goto error
+echo "    -aminonc"
+$SANDER		-o sander_aminonc91.out \
+		-p all_aminonc91.top \
+		-c all_aminonc91.crd			|| goto error
+
+echo ""
+echo "All-atom nucleic acids"
+echo "    -dna"
+$SANDER		-o sander_dna91.out \
+		-p all_dna91.top \
+		-c all_dna91.crd			|| goto error
+echo "    -rna"
+$SANDER		-o sander_rna91.out \
+		-p all_rna91.top \
+		-c all_rna91.crd			|| goto error
+
+/bin/rm -f restrt mdinfo
+echo ""
+echo "No errors detected"
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

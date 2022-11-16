@@ -1,0 +1,7 @@
+#!/bin/sh
+
+../../bin/reduce -build 1ubq.pdb > 1ubqH.pdb 2> messages
+
+../dacdif 1ubqH.pdb.save 1ubqH.pdb
+../dacdif messages.save messages
+

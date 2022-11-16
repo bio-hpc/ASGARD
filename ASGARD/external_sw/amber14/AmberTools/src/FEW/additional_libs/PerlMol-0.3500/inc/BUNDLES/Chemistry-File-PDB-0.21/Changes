@@ -1,0 +1,26 @@
+Revision history for Perl extension Chemistry::File::PDB.
+
+0.21  Mon May 16 2005
+        - Changed parse_file to read_mol
+        - Read multi-model files (each model read as one molecule)
+        - Read chain id and insertion code
+
+0.20  Fri Jul 02 2004
+        - Added name_is, write_string
+        - Changed "sequence_number" to "serial_number" for atoms to comply
+          with standard PDB nomenclature (INCOMPATIBLE CHANGE!!!)
+
+0.15  Fri Jun 18 2004
+        - Added support for HETATM records.
+        - Updated obsolete documentation.
+        - Improved compatibility with Chemistry::File interface.
+        - Support for creating Chemistry::Mol objects.
+        - Fixed crash with sequence number of zero.
+        - Added some tests.
+
+0.10  Mon Nov 03 2003
+        - Works with Chemistry::Mol 0.10.
+
+0.05  Fri Sep 26 2003
+	- original release
+

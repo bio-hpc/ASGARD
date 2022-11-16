@@ -1,0 +1,4337 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/14/2014 at 18:30:14
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: adqmmm-6-4-fixedR.mdin                                                
+| MDOUT: adqmmm-6-4-fixedR.mdout.001                                           
+|INPCRD: na-28spcfw.restrt                                                     
+|  PARM: na-28spcfw.prmtop                                                     
+|RESTRT: adqmmm-6-4-fixedR.restrt.001                                          
+|  REFC: refc                                                                  
+| MDVEL: mdvel.000                                                             
+| MDFRC: mdfrc.000                                                             
+|  MDEN: mden.000                                                              
+| MDCRD: adqmmm-6-4-fixedR.mdcrd.001                                           
+|MDINFO: adqmmm-6-4-fixedR.mdinfo.001                                          
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+|    REMLOG: rem.log
+|   REMTYPE: rem.type
+|  REMSTRIP: 
+|   SAVEENE: saveene
+|CLUSTERINF: cluster.info
+| RESERVOIR: reserv/frame
+|   REMDDIM: 
+
+
+ Here is the input file:
+
+adQMMM NVT run for Na+ surrounded by 6 QM + 1 or 3 adQM SPC(fw) waters         
+ &cntrl                                                                        
+  irest    = 1,      ! restart trajectory                                      
+  ntx      = 5,      ! read coordinates and velocities                         
+  dt       = 0.0005  ! 0.5fs time step                                         
+  cut      = 999.9,  ! non-bonded cutoff                                       
+  ntb      = 0,      ! no periodic boundary conditions                         
+  ntt      = 3,      ! use Langevin thermostat                                 
+  tempi    = 300.0,  ! initial temp = 300K                                     
+  temp0    = 300.0,  ! final temp = 300K                                       
+  gamma_ln = 5.0,    ! collision frequency 5/ps                                
+  ig       = 7,      ! use fixed random seed such that all groups have the same seed
+  ntpr     = 1,      ! print every step                                        
+  ntwx     = 1,      ! write coordinates every step                            
+  ntwr     = 100,    ! write restart file at last step                         
+  nstlim   = 100,    ! run for 100 steps                                       
+  nscm     = 1000,   ! remove COM motion every 1000 steps                      
+  jfastw   = 4,      ! do not use routines for fast triangulated water         
+  ioutfm   = 1,      ! NetCDF MDCRD.                                           
+  ifqnt    = 1,      ! do QMMM simulation                                      
+ /                                                                             
+ &qmmm                                                                         
+  qmmask       = ':1',                                                         
+  qm_theory    = 'PM6',                                                        
+  qmcharge     = 1,                                                            
+  scfconv      = 1.0d-10,                                                      
+  tight_p_conv = 1,                                                            
+  adjust_q     = 0,                                                            
+  vsolv        = 3,  ! adQM/MM with fixed RA and RT                            
+  verbosity    = 0,                                                            
+ /                                                                             
+ &vsolv                                                                        
+  nearest_qm_solvent = 6,                                                      
+  nearest_qm_solvent_resname = 'WAT',                                          
+  nearest_qm_solvent_fq = 1,                                                   
+  nearest_qm_solvent_center_id = 1,                                            
+  qm_center_atom_id = 1,                                                       
+  verbosity = 1,                                                               
+  debug = 0,                                                                   
+ /                                                                             
+ &adqmmm                                                                       
+  n_partition     = 4, ! n partitionings (multiple of n threads needed) = (n-1)  molecules in transition region
+  RA              = 3.68,                                                      
+  RT              = 4.6,                                                       
+  debug           = 0,                                                         
+  verbosity       = 2,                                                         
+  print_qm_coords = 0,                                                         
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|  *** cutoff > system size, list only builds once
+|Largest sphere to fit in unit cell has radius =    35.259
+| New format PARM file being parsed.
+| Version =    1.000 Date = 01/17/11 Time = 20:42:30
+ NATOM  =      85 NTYPES =       3 NBONH =      56 MBONA  =       0
+ NTHETH =      28 MTHETA =       0 NPHIH =       0 MPHIA  =       0
+ NHPARM =       0 NPARM  =       0 NNB   =     113 NRES   =      29
+ NBONA  =       0 NTHETA =       0 NPHIA =       0 NUMBND =       1
+ NUMANG =       1 NPTRA  =       0 NATYP =       3 NPHB   =       1
+ IFBOX  =       0 NMXRS  =       3 IFCAP =       1 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real                5932
+|     Hollerith            286
+|     Integer            21907
+|     Max Pairs           3570
+|     nblistReal          1020
+|     nblist Int       1210526
+|       Total             4883 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+LOADING THE QUANTUM ATOMS AS GROUPS
+     Mask :1; matches     1 atoms
+ 
+QMMM:         Variable QM Solvent Region is Active
+QMMM: ------------------------------------------------------
+QMMM:             Residue name of solvent molecules : WAT
+QMMM:                    Atoms per solvent molecule :      3
+QMMM: Total number of solvent molecules to consider :     28
+QMMM:                      Atoms in fixed QM region :      1
+QMMM:           Atoms in variable QM solvent region :     18
+QMMM:                      Total atoms in QM region :     19
+QMMM:    QM Solvent region update frequency (steps) :      1
+QMMM: ------------------------------------------------------
+ 
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       5, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     100
+     iwrap   =       0, ntwx    =       1, ntwv    =       0, ntwe    =       0
+     ioutfm  =       1, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     = 999.90000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =       100, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00050, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =       7
+     temp0   = 300.00000, tempi   = 300.00000, gamma_ln=   5.00000
+
+Water cap:
+     ivcap   =       0, natcap  =       1
+     fcap    =   1.50000, cutcap  =   7.00000
+     xcap    =   0.00000, ycap    =   0.00000, zcap    =   0.00000
+
+QMMM options:
+             ifqnt = True       nquant =       19
+              qmgb =        0  qmcharge =        1   adjust_q =        0
+              spin =        1     qmcut = 999.9000    qmshake =        1
+          qmmm_int =        1
+     lnk_atomic_no =        1   lnk_dis =   1.0900 lnk_method =        1
+          qm_theory =     PM6 verbosity =        0
+            qmqmdx = Analytical
+      tight_p_conv = True (converge density to SCFCRT)
+           scfconv = 0.100E-09  itrmax =     1000
+      printcharges = False      printdipole = False      peptide_corr = False
+    qmmmrij_incore = True 
+  qmqm_erep_incore = True 
+       pseudo_diag = True pseudo_diag_criteria =   0.0500
+      diag_routine =        0
+          qm_ewald =        0 qm_pme = False 
+
+QMMM VSOLV options:
+   debug                        =     F
+   verbosity                    =     1
+   nearest_qm_solvent           =     6
+   nearest_qm_solvent_fq        =     1
+   nearest_qm_solvent_resname   = WAT
+   nearest_qm_solvent_center_id =     1
+   qm_center_atom_id            =     1
+
+| MPI Timing options:
+|      profile_mpi =        0
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =    20.000 ps
+
+ Number of triangulated 3-point waters found:        0
+|  Atom division among processors:
+|         0      85
+
+|QMMM: Running QMMM calculation in parallel mode on    1 threads.
+|QMMM: All atom division among threads:
+|QMMM:                  Start       End      Count
+|QMMM: Thread(   0):        1->      85  (      85)
+
+|QMMM: Quantum atom + link atom division among threads:
+|QMMM:                  Start       End      Count
+|QMMM: Thread(   0):        1->      19  (      19)
+
+     Sum of charges from parm topology file =   1.00000000
+|  Running AMBER/MPI version on    1 nodes
+
+|  MULTISANDER:    4 groups.    1 processors out of    4 total.
+|  # of SOLUTE  degrees of freedom (RNDFP):     255.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  QMSHAKE_NOSHAKEMASK_OVERLAP =      0
+|  NDFMIN =     255.     NUM_NOSHAKE =      0     CORRECTED RNDFP =     255.
+|  TOTAL # of degrees of freedom (RNDF) =     255.
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        14           2.355
+QMMM:          2        24           2.401
+QMMM:          3        15           2.490
+QMMM:          4        16           2.510
+QMMM:          5        21           2.568
+QMMM:          6        29           3.370
+QMMM:
+ ---------------------------------------------------
+
+     eedmeth=4: Setting switch to one everywhere
+
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =       3333
+| TOTAL SIZE OF NONBOND LIST =       3333
+
+QMMM: Link Atom Information
+QMMM: ------------------------------------------------------------------------
+QMMM: nlink =     0
+QMMM: ------------------------------------------------------------------------
+
+  QMMM: QM Region Cartesian Coordinates (*=link atom) 
+  QMMM: QM_NO.   MM_NO.  ATOM         X         Y         Z
+  QMMM:     1        1      Na       0.2963   -3.6991    0.9759
+  QMMM:     2       38      O        2.4799   -4.0471    1.7860
+  QMMM:     3       39      H        2.7861   -3.7902    2.7353
+  QMMM:     4       40      H        3.3720   -4.1562    1.2831
+  QMMM:     5       68      O       -0.8199   -1.8167    1.9632
+  QMMM:     6       69      H       -0.7916   -1.2372    2.8148
+  QMMM:     7       70      H       -1.2544   -1.3904    1.1715
+  QMMM:     8       41      O       -1.3237   -4.1829   -0.8519
+  QMMM:     9       42      H       -2.1305   -4.7810   -0.7008
+  QMMM:    10       43      H       -1.4216   -3.8658   -1.8503
+  QMMM:    11       44      O       -0.6991   -5.6563    2.1921
+  QMMM:    12       45      H       -0.4800   -6.5962    2.5382
+  QMMM:    13       46      H       -0.6503   -4.9609    2.9711
+  QMMM:    14       59      O        0.6937   -1.6076   -0.4594
+  QMMM:    15       60      H        0.2184   -0.8925   -1.0740
+  QMMM:    16       61      H        1.1561   -1.0778    0.2757
+  QMMM:    17       83      O        0.4759   -3.6982    4.3413
+  QMMM:    18       84      H        0.1882   -2.7852    4.0489
+  QMMM:    19       85      H        0.2515   -3.8253    5.3445
+
+--------------------------------------------------------------------------------
+  3.1 QM CALCULATION INFO
+--------------------------------------------------------------------------------
+
+| QMMM: Citation for AMBER QMMM Run:
+| QMMM: R.C. Walker, M.F. Crowley and D.A. Case, J. COMP. CHEM. 29:1019, 2008
+
+QMMM: SINGLET STATE CALCULATION
+QMMM: RHF CALCULATION, NO. OF DOUBLY OCCUPIED LEVELS = 24
+
+| QMMM: *** Selected Hamiltonian *** 
+| QMMM: PM6         
+| QMMM: J.J.P. Stewart, J. Mol. Mod., 13, 1173, (2007)
+| QMMM: and unpublished corrections
+
+| QMMM: *** Parameter sets in use ***
+| QMMM: Na: J.J.P. Stewart, J. Mol. Mod., 13, 1173, (2007)
+| QMMM: O : J.J.P. Stewart, J. Mol. Mod., 13, 1173, (2007)
+| QMMM: H : J.J.P. Stewart, J. Mol. Mod., 13, 1173, (2007)
+
+| QMMM: *** Diagonalization Routine Information ***
+| QMMM: Pseudo diagonalizations are allowed.
+| QMMM: Auto diagonalization routine selection is disabled.
+| QMMM: Using internal diagonalization routine (diag_routine=1).
+
+| QMMM: Estimated QM Dynamic Memory Usage (per thread)
+| QMMM: ---------------------------------------------------
+| QMMM:              QM Atom Type Info :          840 bytes
+| QMMM:         QM RESP Charge Storage :          152 bytes
+| QMMM:            QM Atom Number List :           76 bytes
+| QMMM:                Link Atom Pairs :            0 bytes
+| QMMM:          QM Atomic Number List :           76 bytes
+| QMMM:                QM-MM Pair List :          268 bytes
+| QMMM:                   QM Atom Mask :          170 bytes
+| QMMM:           QM Coordinate Arrays :         3176 bytes
+| QMMM:         Scaled MM Charge Array :          680 bytes
+| QMMM:    SCF Mulliken Charge Storage :          152 bytes
+| QMMM:                QM Force Arrays :         2496 bytes
+| QMMM:                 Density Matrix :         6560 bytes
+| QMMM:          Density Matrix Copies :         6880 bytes
+| QMMM: Fock2 Density Matrix Workspace :         2432 bytes
+| QMMM:                    Fock Matrix :         6560 bytes
+| QMMM:           Eigen Vector Storage :        12800 bytes
+| QMMM: QM-QM Elec Repulsion Integrals :        30096 bytes
+| QMMM:  QM 2-Elec Repulsion Integrals :        24048 bytes
+| QMMM:              1-Electron Matrix :         6560 bytes
+| QMMM:       _REAL_ parameter storage :        39216 bytes
+| QMMM:      integer parameter storage :          548 bytes
+| QMMM:         QM-MM RIJ Eqns storage :       110352 bytes
+| QMMM:          _REAL_ Scratch arrays :        40896 bytes
+| QMMM:         Integer Scratch arrays :         4244 bytes
+| QMMM: ---------------------------------------------------
+| QMMM:        Total Dynamic Memory Usage:      0.285 Mb
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+| Citations for ADAPTIVE SOLVENT QM/MM run:
+
+| A. W. G"otz, K. Park, R. E. Bulo, F. Paesani, R. C. Walker
+| "Efficient adaptive QM/MM implementation: Application to
+|  ion binding by peptides in solution"
+| in preparation.
+
+| R. E. Bulo, B. Ensing, J. Sikkema, L. Visscher
+| "Toward a practical method for adaptive QM/MM simulations"
+| J. Chem. Theory Comput. 9 (2009) 2212-2221.
+| DOI: 10.1021/ct900148e
+
+QMMM ADQMMM options: (check also QMMM VSOLV options above)
+   debug           =     F
+   verbosity       =     2
+   print_qm_coords =     F
+   calc_wbk        =     F
+   n_partition     =     4
+   RA              =  3.68
+   RT              =  4.60
+adQMMM setup done
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.370176
+group id, outermost atom id, outermost distance:
+    1    29   13.126432    3.623042
+    2    77   16.662485    4.081971
+    3    47   19.523641    4.418556
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     0
+    1   83    3.370176    0.000000
+    2   29    3.623042    0.000000
+    3   77    4.081971    0.405889
+    4   47    4.418556    0.898654
+    5   71    4.620147    1.000000
+Sigma values at step:     0
+    1   83    0.000000
+    2   29    0.405889
+    3   77    0.492765
+    4   47    0.101346
+
+ NSTEP =        1   TIME(PS) =      20.000  TEMP(K) =   248.13  PRESS =     0.0
+ Etot   =      -337.2585  EKtot   =        62.8681  EPtot      =      -400.1266
+ BOND   =        20.8907  ANGLE   =        14.0956  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        46.7976
+ EELEC  =      -210.2422  EHBOND  =         0.0000  RESTRAINT  =         0.1947
+ PM6ESCF=      -271.8630
+ EAMBER (non-restraint)  =      -400.3214
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        14           2.357
+QMMM:          2        24           2.396
+QMMM:          3        15           2.492
+QMMM:          4        16           2.511
+QMMM:          5        21           2.573
+QMMM:          6        29           3.370
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.369551
+group id, outermost atom id, outermost distance:
+    1    29   13.140622    3.625000
+    2    77   16.644765    4.079800
+    3    47   19.508373    4.416828
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     1
+    1   83    3.369551    0.000000
+    2   29    3.625000    0.000000
+    3   77    4.079800    0.402408
+    4   47    4.416828    0.896863
+    5   71    4.621252    1.000000
+Sigma values at step:     1
+    1   83    0.000000
+    2   29    0.402408
+    3   77    0.494455
+    4   47    0.103137
+
+ NSTEP =        2   TIME(PS) =      20.001  TEMP(K) =   258.22  PRESS =     0.0
+ Etot   =      -337.5236  EKtot   =        65.4243  EPtot      =      -402.9480
+ BOND   =        18.3578  ANGLE   =        13.4601  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        46.6639
+ EELEC  =      -208.4015  EHBOND  =         0.0000  RESTRAINT  =         0.2038
+ PM6ESCF=      -273.2321
+ EAMBER (non-restraint)  =      -403.1518
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        14           2.359
+QMMM:          2        24           2.391
+QMMM:          3        15           2.495
+QMMM:          4        16           2.512
+QMMM:          5        21           2.578
+QMMM:          6        29           3.369
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.369219
+group id, outermost atom id, outermost distance:
+    1    29   13.154525    3.626917
+    2    77   16.627763    4.077715
+    3    47   19.498737    4.415737
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     2
+    1   83    3.369219    0.000000
+    2   29    3.626917    0.000000
+    3   77    4.077715    0.399070
+    4   47    4.415737    0.895726
+    5   71    4.622474    1.000000
+Sigma values at step:     2
+    1   83    0.000000
+    2   29    0.399070
+    3   77    0.496656
+    4   47    0.104274
+
+ NSTEP =        3   TIME(PS) =      20.001  TEMP(K) =   267.17  PRESS =     0.0
+ Etot   =      -337.6081  EKtot   =        67.6933  EPtot      =      -405.3014
+ BOND   =        16.6519  ANGLE   =        12.6348  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        46.5555
+ EELEC  =      -206.3409  EHBOND  =         0.0000  RESTRAINT  =         0.2131
+ PM6ESCF=      -275.0158
+ EAMBER (non-restraint)  =      -405.5145
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        14           2.361
+QMMM:          2        24           2.386
+QMMM:          3        15           2.498
+QMMM:          4        16           2.512
+QMMM:          5        21           2.583
+QMMM:          6        29           3.369
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.368984
+group id, outermost atom id, outermost distance:
+    1    29   13.169644    3.629000
+    2    77   16.611318    4.075699
+    3    47   19.491257    4.414890
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     3
+    1   83    3.368984    0.000000
+    2   29    3.629000    0.000000
+    3   77    4.075699    0.395843
+    4   47    4.414890    0.894839
+    5   71    4.624049    1.000000
+Sigma values at step:     3
+    1   83    0.000000
+    2   29    0.395843
+    3   77    0.498996
+    4   47    0.105161
+
+ NSTEP =        4   TIME(PS) =      20.002  TEMP(K) =   272.51  PRESS =     0.0
+ Etot   =      -337.8900  EKtot   =        69.0462  EPtot      =      -406.9362
+ BOND   =        15.9546  ANGLE   =        11.6530  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        46.4674
+ EELEC  =      -204.2286  EHBOND  =         0.0000  RESTRAINT  =         0.2218
+ PM6ESCF=      -277.0043
+ EAMBER (non-restraint)  =      -407.1580
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        14           2.364
+QMMM:          2        24           2.381
+QMMM:          3        15           2.500
+QMMM:          4        16           2.513
+QMMM:          5        21           2.589
+QMMM:          6        29           3.369
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.369226
+group id, outermost atom id, outermost distance:
+    1    29   13.181911    3.630690
+    2    77   16.596181    4.073841
+    3    47   19.485453    4.414233
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     4
+    1   83    3.369226    0.000000
+    2   29    3.630690    0.000000
+    3   77    4.073841    0.392876
+    4   47    4.414233    0.894150
+    5   71    4.625660    1.000000
+Sigma values at step:     4
+    1   83    0.000000
+    2   29    0.392876
+    3   77    0.501274
+    4   47    0.105850
+
+ NSTEP =        5   TIME(PS) =      20.002  TEMP(K) =   273.56  PRESS =     0.0
+ Etot   =      -338.0795  EKtot   =        69.3114  EPtot      =      -407.3909
+ BOND   =        16.0910  ANGLE   =        10.6451  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        46.4082
+ EELEC  =      -202.2056  EHBOND  =         0.0000  RESTRAINT  =         0.2282
+ PM6ESCF=      -278.5577
+ EAMBER (non-restraint)  =      -407.6190
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        14           2.367
+QMMM:          2        24           2.377
+QMMM:          3        15           2.503
+QMMM:          4        16           2.514
+QMMM:          5        21           2.594
+QMMM:          6        29           3.370
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.369616
+group id, outermost atom id, outermost distance:
+    1    29   13.195787    3.632601
+    2    77   16.581426    4.072030
+    3    47   19.480261    4.413645
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     5
+    1   83    3.369616    0.000000
+    2   29    3.632601    0.000000
+    3   77    4.072030    0.389985
+    4   47    4.413645    0.893531
+    5   71    4.627625    1.000000
+Sigma values at step:     5
+    1   83    0.000000
+    2   29    0.389985
+    3   77    0.503545
+    4   47    0.106469
+
+ NSTEP =        6   TIME(PS) =      20.003  TEMP(K) =   276.95  PRESS =     0.0
+ Etot   =      -337.0461  EKtot   =        70.1699  EPtot      =      -407.2160
+ BOND   =        16.4541  ANGLE   =         9.6754  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        46.3384
+ EELEC  =      -200.4722  EHBOND  =         0.0000  RESTRAINT  =         0.2314
+ PM6ESCF=      -279.4433
+ EAMBER (non-restraint)  =      -407.4474
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        14           2.371
+QMMM:          2        24           2.373
+QMMM:          3        15           2.505
+QMMM:          4        16           2.516
+QMMM:          5        21           2.599
+QMMM:          6        29           3.371
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.370505
+group id, outermost atom id, outermost distance:
+    1    29   13.208703    3.634378
+    2    77   16.564512    4.069952
+    3    47   19.474681    4.413013
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     6
+    1   83    3.370505    0.000000
+    2   29    3.634378    0.000000
+    3   77    4.069952    0.386675
+    4   47    4.413013    0.892864
+    5   71    4.629707    1.000000
+Sigma values at step:     6
+    1   83    0.000000
+    2   29    0.386675
+    3   77    0.506189
+    4   47    0.107136
+
+ NSTEP =        7   TIME(PS) =      20.003  TEMP(K) =   281.77  PRESS =     0.0
+ Etot   =      -335.3296  EKtot   =        71.3907  EPtot      =      -406.7203
+ BOND   =        16.6378  ANGLE   =         8.7376  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        46.2733
+ EELEC  =      -199.1638  EHBOND  =         0.0000  RESTRAINT  =         0.2303
+ PM6ESCF=      -279.4356
+ EAMBER (non-restraint)  =      -406.9506
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.369
+QMMM:          2        14           2.374
+QMMM:          3        15           2.508
+QMMM:          4        16           2.517
+QMMM:          5        21           2.604
+QMMM:          6        29           3.372
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.371847
+group id, outermost atom id, outermost distance:
+    1    29   13.221078    3.636080
+    2    77   16.545706    4.067641
+    3    47   19.469824    4.412462
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     7
+    1   83    3.371847    0.000000
+    2   29    3.636080    0.000000
+    3   77    4.067641    0.382997
+    4   47    4.412462    0.892282
+    5   65    4.630269    1.000000
+Sigma values at step:     7
+    1   83    0.000000
+    2   29    0.382997
+    3   77    0.509285
+    4   47    0.107718
+
+ NSTEP =        8   TIME(PS) =      20.004  TEMP(K) =   285.80  PRESS =     0.0
+ Etot   =      -333.6151  EKtot   =        72.4133  EPtot      =      -406.0284
+ BOND   =        16.5456  ANGLE   =         7.9234  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        46.1796
+ EELEC  =      -198.4302  EHBOND  =         0.0000  RESTRAINT  =         0.2251
+ PM6ESCF=      -278.4719
+ EAMBER (non-restraint)  =      -406.2535
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.365
+QMMM:          2        14           2.377
+QMMM:          3        15           2.510
+QMMM:          4        16           2.518
+QMMM:          5        21           2.610
+QMMM:          6        29           3.373
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.373385
+group id, outermost atom id, outermost distance:
+    1    29   13.235407    3.638050
+    2    77   16.527211    4.065367
+    3    47   19.468324    4.412292
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     8
+    1   83    3.373385    0.000000
+    2   29    3.638050    0.000000
+    3   77    4.065367    0.379384
+    4   47    4.412292    0.892102
+    5   65    4.630221    1.000000
+Sigma values at step:     8
+    1   83    0.000000
+    2   29    0.379384
+    3   77    0.512718
+    4   47    0.107898
+
+ NSTEP =        9   TIME(PS) =      20.004  TEMP(K) =   291.14  PRESS =     0.0
+ Etot   =      -331.2408  EKtot   =        73.7652  EPtot      =      -405.0060
+ BOND   =        16.4787  ANGLE   =         7.2580  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        46.0871
+ EELEC  =      -198.2851  EHBOND  =         0.0000  RESTRAINT  =         0.2171
+ PM6ESCF=      -276.7617
+ EAMBER (non-restraint)  =      -405.2231
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.361
+QMMM:          2        14           2.380
+QMMM:          3        15           2.513
+QMMM:          4        16           2.520
+QMMM:          5        21           2.615
+QMMM:          6        29           3.375
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.375385
+group id, outermost atom id, outermost distance:
+    1    29   13.249393    3.639972
+    2    77   16.507872    4.062988
+    3    47   19.466102    4.412041
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:     9
+    1   83    3.375385    0.000000
+    2   29    3.639972    0.000000
+    3   77    4.062988    0.375610
+    4   47    4.412041    0.891835
+    5   65    4.630116    1.000000
+Sigma values at step:     9
+    1   83    0.000000
+    2   29    0.375610
+    3   77    0.516225
+    4   47    0.108165
+
+ NSTEP =       10   TIME(PS) =      20.005  TEMP(K) =   295.23  PRESS =     0.0
+ Etot   =      -328.3287  EKtot   =        74.8012  EPtot      =      -403.1299
+ BOND   =        17.2206  ANGLE   =         6.8364  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.9814
+ EELEC  =      -198.7529  EHBOND  =         0.0000  RESTRAINT  =         0.2068
+ PM6ESCF=      -274.6223
+ EAMBER (non-restraint)  =      -403.3368
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.357
+QMMM:          2        14           2.383
+QMMM:          3        15           2.515
+QMMM:          4        16           2.521
+QMMM:          5        21           2.620
+QMMM:          6        29           3.378
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.377809
+group id, outermost atom id, outermost distance:
+    1    29   13.264077    3.641988
+    2    77   16.487454    4.060475
+    3    47   19.464048    4.411808
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    10
+    1   83    3.377809    0.000000
+    2   29    3.641988    0.000000
+    3   77    4.060475    0.371631
+    4   47    4.411808    0.891588
+    5   65    4.629969    1.000000
+Sigma values at step:    10
+    1   83    0.000000
+    2   29    0.371631
+    3   77    0.519957
+    4   47    0.108412
+
+ NSTEP =       11   TIME(PS) =      20.005  TEMP(K) =   296.35  PRESS =     0.0
+ Etot   =      -325.2734  EKtot   =        75.0853  EPtot      =      -400.3587
+ BOND   =        19.3671  ANGLE   =         6.6809  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.8442
+ EELEC  =      -199.8503  EHBOND  =         0.0000  RESTRAINT  =         0.1956
+ PM6ESCF=      -272.5962
+ EAMBER (non-restraint)  =      -400.5543
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.352
+QMMM:          2        14           2.387
+QMMM:          3        15           2.517
+QMMM:          4        16           2.522
+QMMM:          5        21           2.626
+QMMM:          6        29           3.380
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.380268
+group id, outermost atom id, outermost distance:
+    1    29   13.278186    3.643925
+    2    77   16.467648    4.058035
+    3    47   19.459925    4.411340
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    11
+    1   83    3.380268    0.000000
+    2   29    3.643925    0.000000
+    3   77    4.058035    0.367776
+    4   47    4.411340    0.891092
+    5   65    4.630015    1.000000
+Sigma values at step:    11
+    1   83    0.000000
+    2   29    0.367776
+    3   77    0.523316
+    4   47    0.108908
+
+ NSTEP =       12   TIME(PS) =      20.006  TEMP(K) =   293.24  PRESS =     0.0
+ Etot   =      -322.5765  EKtot   =        74.2976  EPtot      =      -396.8741
+ BOND   =        23.0371  ANGLE   =         6.8334  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.6938
+ EELEC  =      -201.4504  EHBOND  =         0.0000  RESTRAINT  =         0.1838
+ PM6ESCF=      -271.1718
+ EAMBER (non-restraint)  =      -397.0579
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.348
+QMMM:          2        14           2.390
+QMMM:          3        15           2.518
+QMMM:          4        16           2.524
+QMMM:          5        21           2.631
+QMMM:          6        29           3.383
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.382876
+group id, outermost atom id, outermost distance:
+    1    29   13.292388    3.645873
+    2    77   16.448120    4.055628
+    3    47   19.455356    4.410823
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    12
+    1   83    3.382876    0.000000
+    2   29    3.645873    0.000000
+    3   77    4.055628    0.363980
+    4   47    4.410823    0.890541
+    5   65    4.630000    1.000000
+Sigma values at step:    12
+    1   83    0.000000
+    2   29    0.363980
+    3   77    0.526561
+    4   47    0.109459
+
+ NSTEP =       13   TIME(PS) =      20.006  TEMP(K) =   285.37  PRESS =     0.0
+ Etot   =      -321.1044  EKtot   =        72.3045  EPtot      =      -393.4090
+ BOND   =        27.7075  ANGLE   =         7.2029  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.5274
+ EELEC  =      -203.3379  EHBOND  =         0.0000  RESTRAINT  =         0.1733
+ PM6ESCF=      -270.6822
+ EAMBER (non-restraint)  =      -393.5823
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.343
+QMMM:          2        14           2.393
+QMMM:          3        15           2.520
+QMMM:          4        16           2.525
+QMMM:          5        21           2.636
+QMMM:          6        29           3.385
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.385438
+group id, outermost atom id, outermost distance:
+    1    29   13.306510    3.647809
+    2    77   16.429961    4.053389
+    3    47   19.448337    4.410027
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    13
+    1   83    3.385438    0.000000
+    2   29    3.647809    0.000000
+    3   77    4.053389    0.360455
+    4   47    4.410027    0.889692
+    5   65    4.630031    1.000000
+Sigma values at step:    13
+    1   83    0.000000
+    2   29    0.360455
+    3   77    0.529237
+    4   47    0.110308
+
+ NSTEP =       14   TIME(PS) =      20.007  TEMP(K) =   277.83  PRESS =     0.0
+ Etot   =      -320.4542  EKtot   =        70.3926  EPtot      =      -390.8468
+ BOND   =        32.2711  ANGLE   =         7.8236  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.3564
+ EELEC  =      -205.3689  EHBOND  =         0.0000  RESTRAINT  =         0.1652
+ PM6ESCF=      -271.0941
+ EAMBER (non-restraint)  =      -391.0120
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.338
+QMMM:          2        14           2.396
+QMMM:          3        15           2.521
+QMMM:          4        16           2.526
+QMMM:          5        21           2.642
+QMMM:          6        29           3.388
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.387875
+group id, outermost atom id, outermost distance:
+    1    29   13.320282    3.649696
+    2    77   16.413207    4.051322
+    3    47   19.437945    4.408848
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    14
+    1   83    3.387875    0.000000
+    2   29    3.649696    0.000000
+    3   77    4.051322    0.357207
+    4   47    4.408848    0.888430
+    5   65    4.630311    1.000000
+Sigma values at step:    14
+    1   83    0.000000
+    2   29    0.357207
+    3   77    0.531223
+    4   47    0.111570
+
+ NSTEP =       15   TIME(PS) =      20.007  TEMP(K) =   272.57  PRESS =     0.0
+ Etot   =      -320.5596  EKtot   =        69.0612  EPtot      =      -389.6208
+ BOND   =        35.8665  ANGLE   =         8.6539  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.1844
+ EELEC  =      -207.3936  EHBOND  =         0.0000  RESTRAINT  =         0.1596
+ PM6ESCF=      -272.0915
+ EAMBER (non-restraint)  =      -389.7804
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.333
+QMMM:          2        14           2.400
+QMMM:          3        15           2.522
+QMMM:          4        16           2.527
+QMMM:          5        21           2.647
+QMMM:          6        29           3.390
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.389775
+group id, outermost atom id, outermost distance:
+    1    29   13.335769    3.651817
+    2    77   16.398264    4.049477
+    3    47   19.427610    4.407676
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    15
+    1   83    3.389775    0.000000
+    2   29    3.651817    0.000000
+    3   77    4.049477    0.354313
+    4   47    4.407676    0.887169
+    5   65    4.630844    1.000000
+Sigma values at step:    15
+    1   83    0.000000
+    2   29    0.354313
+    3   77    0.532855
+    4   47    0.112831
+
+ NSTEP =       16   TIME(PS) =      20.008  TEMP(K) =   273.85  PRESS =     0.0
+ Etot   =      -320.8947  EKtot   =        69.3843  EPtot      =      -390.2790
+ BOND   =        37.4960  ANGLE   =         9.6135  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.0208
+ EELEC  =      -209.2771  EHBOND  =         0.0000  RESTRAINT  =         0.1565
+ PM6ESCF=      -273.2887
+ EAMBER (non-restraint)  =      -390.4355
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.329
+QMMM:          2        14           2.403
+QMMM:          3        15           2.523
+QMMM:          4        16           2.529
+QMMM:          5        21           2.653
+QMMM:          6        29           3.392
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.391599
+group id, outermost atom id, outermost distance:
+    1    29   13.351923    3.654028
+    2    77   16.384156    4.047735
+    3    47   19.416723    4.406441
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    16
+    1   83    3.391599    0.000000
+    2   29    3.654028    0.000000
+    3   77    4.047735    0.351585
+    4   47    4.406441    0.885833
+    5   65    4.631293    1.000000
+Sigma values at step:    16
+    1   83    0.000000
+    2   29    0.351585
+    3   77    0.534249
+    4   47    0.114167
+
+ NSTEP =       17   TIME(PS) =      20.008  TEMP(K) =   278.74  PRESS =     0.0
+ Etot   =      -321.9255  EKtot   =        70.6239  EPtot      =      -392.5494
+ BOND   =        36.8510  ANGLE   =        10.5421  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.8568
+ EELEC  =      -210.7942  EHBOND  =         0.0000  RESTRAINT  =         0.1563
+ PM6ESCF=      -274.1614
+ EAMBER (non-restraint)  =      -392.7057
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.324
+QMMM:          2        14           2.406
+QMMM:          3        15           2.525
+QMMM:          4        16           2.530
+QMMM:          5        21           2.658
+QMMM:          6        29           3.393
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.393180
+group id, outermost atom id, outermost distance:
+    1    29   13.367389    3.656144
+    2    77   16.369772    4.045957
+    3    47   19.408397    4.405496
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    17
+    1   83    3.393180    0.000000
+    2   29    3.656144    0.000000
+    3   77    4.045957    0.348806
+    4   47    4.405496    0.884808
+    5   65    4.632191    1.000000
+Sigma values at step:    17
+    1   83    0.000000
+    2   29    0.348806
+    3   77    0.536002
+    4   47    0.115192
+
+ NSTEP =       18   TIME(PS) =      20.009  TEMP(K) =   286.56  PRESS =     0.0
+ Etot   =      -323.9940  EKtot   =        72.6045  EPtot      =      -396.5984
+ BOND   =        33.5903  ANGLE   =        11.3820  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.6847
+ EELEC  =      -211.9177  EHBOND  =         0.0000  RESTRAINT  =         0.1583
+ PM6ESCF=      -274.4960
+ EAMBER (non-restraint)  =      -396.7567
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.320
+QMMM:          2        14           2.409
+QMMM:          3        15           2.526
+QMMM:          4        16           2.531
+QMMM:          5        21           2.663
+QMMM:          6        29           3.395
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.394972
+group id, outermost atom id, outermost distance:
+    1    29   13.381309    3.658047
+    2    77   16.356416    4.044307
+    3    47   19.399363    4.404471
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    18
+    1   83    3.394972    0.000000
+    2   29    3.658047    0.000000
+    3   77    4.044307    0.346229
+    4   47    4.404471    0.883691
+    5   65    4.632919    1.000000
+Sigma values at step:    18
+    1   83    0.000000
+    2   29    0.346229
+    3   77    0.537462
+    4   47    0.116309
+
+ NSTEP =       19   TIME(PS) =      20.009  TEMP(K) =   293.39  PRESS =     0.0
+ Etot   =      -326.6315  EKtot   =        74.3361  EPtot      =      -400.9676
+ BOND   =        29.0562  ANGLE   =        12.0900  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.5226
+ EELEC  =      -212.6274  EHBOND  =         0.0000  RESTRAINT  =         0.1633
+ PM6ESCF=      -274.1723
+ EAMBER (non-restraint)  =      -401.1309
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.315
+QMMM:          2        14           2.412
+QMMM:          3        15           2.527
+QMMM:          4        16           2.532
+QMMM:          5        21           2.669
+QMMM:          6        29           3.397
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.396721
+group id, outermost atom id, outermost distance:
+    1    29   13.396459    3.660117
+    2    77   16.346398    4.043068
+    3    47   19.391286    4.403554
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    19
+    1   83    3.396721    0.000000
+    2   29    3.660117    0.000000
+    3   77    4.043068    0.344298
+    4   47    4.403554    0.882688
+    5   65    4.633988    1.000000
+Sigma values at step:    19
+    1   83    0.000000
+    2   29    0.344298
+    3   77    0.538390
+    4   47    0.117312
+
+ NSTEP =       20   TIME(PS) =      20.010  TEMP(K) =   296.44  PRESS =     0.0
+ Etot   =      -329.7274  EKtot   =        75.1075  EPtot      =      -404.8349
+ BOND   =        24.1817  ANGLE   =        12.6255  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.3772
+ EELEC  =      -212.9444  EHBOND  =         0.0000  RESTRAINT  =         0.1708
+ PM6ESCF=      -273.2457
+ EAMBER (non-restraint)  =      -405.0056
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.311
+QMMM:          2        14           2.415
+QMMM:          3        15           2.528
+QMMM:          4        16           2.533
+QMMM:          5        21           2.674
+QMMM:          6        29           3.399
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.398549
+group id, outermost atom id, outermost distance:
+    1    29   13.410334    3.662012
+    2    77   16.338391    4.042078
+    3    47   19.383982    4.402724
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    20
+    1   83    3.398549    0.000000
+    2   29    3.662012    0.000000
+    3   77    4.042078    0.342755
+    4   47    4.402724    0.881778
+    5   65    4.635051    1.000000
+Sigma values at step:    20
+    1   83    0.000000
+    2   29    0.342755
+    3   77    0.539023
+    4   47    0.118222
+
+ NSTEP =       21   TIME(PS) =      20.010  TEMP(K) =   294.88  PRESS =     0.0
+ Etot   =      -332.7595  EKtot   =        74.7136  EPtot      =      -407.4731
+ BOND   =        20.0140  ANGLE   =        13.0022  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.2574
+ EELEC  =      -213.0195  EHBOND  =         0.0000  RESTRAINT  =         0.1792
+ PM6ESCF=      -271.9064
+ EAMBER (non-restraint)  =      -407.6523
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.307
+QMMM:          2        14           2.418
+QMMM:          3        15           2.530
+QMMM:          4        16           2.534
+QMMM:          5        21           2.679
+QMMM:          6        29           3.400
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.400471
+group id, outermost atom id, outermost distance:
+    1    29   13.424803    3.663987
+    2    77   16.332585    4.041359
+    3    47   19.379894    4.402260
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    21
+    1   83    3.400471    0.000000
+    2   29    3.663987    0.000000
+    3   77    4.041359    0.341638
+    4   47    4.402260    0.881268
+    5   65    4.636136    1.000000
+Sigma values at step:    21
+    1   83    0.000000
+    2   29    0.341638
+    3   77    0.539630
+    4   47    0.118732
+
+ NSTEP =       22   TIME(PS) =      20.011  TEMP(K) =   289.40  PRESS =     0.0
+ Etot   =      -335.1812  EKtot   =        73.3236  EPtot      =      -408.5048
+ BOND   =        17.2122  ANGLE   =        13.2365  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.1417
+ EELEC  =      -212.8570  EHBOND  =         0.0000  RESTRAINT  =         0.1879
+ PM6ESCF=      -270.4261
+ EAMBER (non-restraint)  =      -408.6927
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.303
+QMMM:          2        14           2.421
+QMMM:          3        15           2.532
+QMMM:          4        16           2.536
+QMMM:          5        21           2.685
+QMMM:          6        29           3.402
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.402409
+group id, outermost atom id, outermost distance:
+    1    29   13.438146    3.665808
+    2    77   16.326214    4.040571
+    3    47   19.374146    4.401607
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    22
+    1   83    3.402409    0.000000
+    2   29    3.665808    0.000000
+    3   77    4.040571    0.340412
+    4   47    4.401607    0.880549
+    5   65    4.637059    1.000000
+Sigma values at step:    22
+    1   83    0.000000
+    2   29    0.340412
+    3   77    0.540136
+    4   47    0.119451
+
+ NSTEP =       23   TIME(PS) =      20.011  TEMP(K) =   283.25  PRESS =     0.0
+ Etot   =      -336.5948  EKtot   =        71.7652  EPtot      =      -408.3600
+ BOND   =        15.9220  ANGLE   =        13.3598  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.0407
+ EELEC  =      -212.6720  EHBOND  =         0.0000  RESTRAINT  =         0.1950
+ PM6ESCF=      -269.2056
+ EAMBER (non-restraint)  =      -408.5550
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.299
+QMMM:          2        14           2.425
+QMMM:          3        15           2.533
+QMMM:          4        16           2.537
+QMMM:          5        21           2.690
+QMMM:          6        29           3.405
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.404577
+group id, outermost atom id, outermost distance:
+    1    29   13.451530    3.667633
+    2    77   16.322320    4.040089
+    3    47   19.367764    4.400882
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    23
+    1   83    3.404577    0.000000
+    2   29    3.667633    0.000000
+    3   77    4.040089    0.339663
+    4   47    4.400882    0.879748
+    5   65    4.637796    1.000000
+Sigma values at step:    23
+    1   83    0.000000
+    2   29    0.339663
+    3   77    0.540084
+    4   47    0.120252
+
+ NSTEP =       24   TIME(PS) =      20.012  TEMP(K) =   275.68  PRESS =     0.0
+ Etot   =      -337.5273  EKtot   =        69.8493  EPtot      =      -407.3766
+ BOND   =        16.2575  ANGLE   =        13.3787  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.9516
+ EELEC  =      -212.5951  EHBOND  =         0.0000  RESTRAINT  =         0.1997
+ PM6ESCF=      -268.5691
+ EAMBER (non-restraint)  =      -407.5763
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.296
+QMMM:          2        14           2.428
+QMMM:          3        15           2.535
+QMMM:          4        16           2.539
+QMMM:          5        21           2.695
+QMMM:          6        29           3.407
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.406701
+group id, outermost atom id, outermost distance:
+    1    29   13.465619    3.669553
+    2    77   16.317827    4.039533
+    3    47   19.361260    4.400143
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    24
+    1   83    3.406701    0.000000
+    2   29    3.669553    0.000000
+    3   77    4.039533    0.338800
+    4   47    4.400143    0.878929
+    5   65    4.638662    1.000000
+Sigma values at step:    24
+    1   83    0.000000
+    2   29    0.338800
+    3   77    0.540130
+    4   47    0.121071
+
+ NSTEP =       25   TIME(PS) =      20.012  TEMP(K) =   272.40  PRESS =     0.0
+ Etot   =      -337.3908  EKtot   =        69.0161  EPtot      =      -406.4069
+ BOND   =        17.5474  ANGLE   =        13.3661  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.8603
+ EELEC  =      -212.7298  EHBOND  =         0.0000  RESTRAINT  =         0.2009
+ PM6ESCF=      -268.6519
+ EAMBER (non-restraint)  =      -406.6078
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.292
+QMMM:          2        14           2.432
+QMMM:          3        15           2.537
+QMMM:          4        16           2.541
+QMMM:          5        21           2.700
+QMMM:          6        29           3.409
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.408809
+group id, outermost atom id, outermost distance:
+    1    29   13.477869    3.671222
+    2    77   16.314618    4.039136
+    3    47   19.351854    4.399074
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    25
+    1   83    3.408809    0.000000
+    2   29    3.671222    0.000000
+    3   77    4.039136    0.338183
+    4   47    4.399074    0.877742
+    5   65    4.639135    1.000000
+Sigma values at step:    25
+    1   83    0.000000
+    2   29    0.338183
+    3   77    0.539559
+    4   47    0.122258
+
+ NSTEP =       26   TIME(PS) =      20.013  TEMP(K) =   274.07  PRESS =     0.0
+ Etot   =      -336.9254  EKtot   =        69.4398  EPtot      =      -406.3653
+ BOND   =        19.1031  ANGLE   =        13.3454  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.7665
+ EELEC  =      -213.2344  EHBOND  =         0.0000  RESTRAINT  =         0.1991
+ PM6ESCF=      -269.5450
+ EAMBER (non-restraint)  =      -406.5643
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.289
+QMMM:          2        14           2.436
+QMMM:          3        15           2.539
+QMMM:          4        16           2.543
+QMMM:          5        21           2.705
+QMMM:          6        29           3.411
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.411171
+group id, outermost atom id, outermost distance:
+    1    29   13.493530    3.673354
+    2    77   16.309719    4.038529
+    3    47   19.342198    4.397977
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    26
+    1   83    3.411171    0.000000
+    2   29    3.673354    0.000000
+    3   77    4.038529    0.337242
+    4   47    4.397977    0.876517
+    5   65    4.640035    1.000000
+Sigma values at step:    26
+    1   83    0.000000
+    2   29    0.337242
+    3   77    0.539275
+    4   47    0.123483
+
+ NSTEP =       27   TIME(PS) =      20.013  TEMP(K) =   278.58  PRESS =     0.0
+ Etot   =      -337.1616  EKtot   =        70.5817  EPtot      =      -407.7433
+ BOND   =        20.1273  ANGLE   =        13.3238  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.6751
+ EELEC  =      -213.9291  EHBOND  =         0.0000  RESTRAINT  =         0.1940
+ PM6ESCF=      -271.1343
+ EAMBER (non-restraint)  =      -407.9373
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.287
+QMMM:          2        14           2.439
+QMMM:          3        15           2.541
+QMMM:          4        16           2.545
+QMMM:          5        21           2.710
+QMMM:          6        29           3.414
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.413907
+group id, outermost atom id, outermost distance:
+    1    29   13.507813    3.675298
+    2    77   16.303268    4.037731
+    3    47   19.332342    4.396856
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    27
+    1   83    3.413907    0.000000
+    2   29    3.675298    0.000000
+    3   77    4.037731    0.336004
+    4   47    4.396856    0.875262
+    5   65    4.641078    1.000000
+Sigma values at step:    27
+    1   83    0.000000
+    2   29    0.336004
+    3   77    0.539259
+    4   47    0.124738
+
+ NSTEP =       28   TIME(PS) =      20.014  TEMP(K) =   289.22  PRESS =     0.0
+ Etot   =      -336.8141  EKtot   =        73.2791  EPtot      =      -410.0932
+ BOND   =        20.8000  ANGLE   =        13.3181  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.5981
+ EELEC  =      -214.9649  EHBOND  =         0.0000  RESTRAINT  =         0.1864
+ PM6ESCF=      -273.0309
+ EAMBER (non-restraint)  =      -410.2795
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.284
+QMMM:          2        14           2.443
+QMMM:          3        15           2.544
+QMMM:          4        16           2.547
+QMMM:          5        21           2.716
+QMMM:          6        29           3.417
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.416628
+group id, outermost atom id, outermost distance:
+    1    29   13.523843    3.677478
+    2    77   16.294285    4.036618
+    3    47   19.320689    4.395531
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    28
+    1   83    3.416628    0.000000
+    2   29    3.677478    0.000000
+    3   77    4.036618    0.334280
+    4   47    4.395531    0.873771
+    5   65    4.642360    1.000000
+Sigma values at step:    28
+    1   83    0.000000
+    2   29    0.334280
+    3   77    0.539491
+    4   47    0.126229
+
+ NSTEP =       29   TIME(PS) =      20.014  TEMP(K) =   304.57  PRESS =     0.0
+ Etot   =      -335.7834  EKtot   =        77.1683  EPtot      =      -412.9516
+ BOND   =        21.2923  ANGLE   =        13.4303  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.5233
+ EELEC  =      -216.4118  EHBOND  =         0.0000  RESTRAINT  =         0.1771
+ PM6ESCF=      -274.9629
+ EAMBER (non-restraint)  =      -413.1287
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.283
+QMMM:          2        14           2.447
+QMMM:          3        15           2.547
+QMMM:          4        16           2.549
+QMMM:          5        21           2.721
+QMMM:          6        29           3.420
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.419570
+group id, outermost atom id, outermost distance:
+    1    29   13.541207    3.679838
+    2    77   16.285253    4.035499
+    3    47   19.306573    4.393924
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    29
+    1   83    3.419570    0.000000
+    2   29    3.679838    0.000000
+    3   77    4.035499    0.332549
+    4   47    4.393924    0.871956
+    5   65    4.643582    1.000000
+Sigma values at step:    29
+    1   83    0.000000
+    2   29    0.332549
+    3   77    0.539407
+    4   47    0.128044
+
+ NSTEP =       30   TIME(PS) =      20.015  TEMP(K) =   313.98  PRESS =     0.0
+ Etot   =      -336.0459  EKtot   =        79.5526  EPtot      =      -415.5984
+ BOND   =        21.7424  ANGLE   =        13.6373  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.4595
+ EELEC  =      -218.0254  EHBOND  =         0.0000  RESTRAINT  =         0.1673
+ PM6ESCF=      -276.5795
+ EAMBER (non-restraint)  =      -415.7657
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.281
+QMMM:          2        14           2.451
+QMMM:          3        15           2.549
+QMMM:          4        16           2.552
+QMMM:          5        21           2.727
+QMMM:          6        29           3.423
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.422843
+group id, outermost atom id, outermost distance:
+    1    29   13.556785    3.681954
+    2    77   16.276070    4.034361
+    3    47   19.290549    4.392101
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    30
+    1   83    3.422843    0.000000
+    2   29    3.681954    0.000014
+    3   77    4.034361    0.330791
+    4   47    4.392101    0.869882
+    5   65    4.645139    1.000000
+Sigma values at step:    30
+    1   83    0.000014
+    2   29    0.330777
+    3   77    0.539091
+    4   47    0.130118
+
+ NSTEP =       31   TIME(PS) =      20.015  TEMP(K) =   318.39  PRESS =     0.0
+ Etot   =      -337.0214  EKtot   =        80.6702  EPtot      =      -417.6916
+ BOND   =        22.0716  ANGLE   =        13.8849  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3957
+ EELEC  =      -219.6804  EHBOND  =         0.0000  RESTRAINT  =         0.1589
+ PM6ESCF=      -277.5223
+ EAMBER (non-restraint)  =      -417.8505
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.280
+QMMM:          2        14           2.455
+QMMM:          3        15           2.552
+QMMM:          4        16           2.554
+QMMM:          5        21           2.733
+QMMM:          6        29           3.426
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.426160
+group id, outermost atom id, outermost distance:
+    1    29   13.575734    3.684526
+    2    77   16.264863    4.032972
+    3    47   19.269910    4.389751
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    31
+    1   83    3.426160    0.000000
+    2   29    3.684526    0.000072
+    3   77    4.032972    0.328647
+    4   47    4.389751    0.867190
+    5   65    4.646686    1.000000
+Sigma values at step:    31
+    1   83    0.000072
+    2   29    0.328574
+    3   77    0.538544
+    4   47    0.132810
+
+ NSTEP =       32   TIME(PS) =      20.016  TEMP(K) =   320.71  PRESS =     0.0
+ Etot   =      -337.6914  EKtot   =        81.2563  EPtot      =      -418.9477
+ BOND   =        22.2590  ANGLE   =        14.1970  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3512
+ EELEC  =      -221.2458  EHBOND  =         0.0000  RESTRAINT  =         0.1528
+ PM6ESCF=      -277.6619
+ EAMBER (non-restraint)  =      -419.1005
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.280
+QMMM:          2        14           2.459
+QMMM:          3        15           2.554
+QMMM:          4        16           2.556
+QMMM:          5        21           2.738
+QMMM:          6        29           3.430
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.429544
+group id, outermost atom id, outermost distance:
+    1    29   13.594693    3.687098
+    2    77   16.253079    4.031511
+    3    47   19.248508    4.387312
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    32
+    1   83    3.429544    0.000000
+    2   29    3.687098    0.000178
+    3   77    4.031511    0.326395
+    4   47    4.387312    0.864375
+    5   65    4.648439    1.000000
+Sigma values at step:    32
+    1   83    0.000178
+    2   29    0.326217
+    3   77    0.537980
+    4   47    0.135625
+
+ NSTEP =       33   TIME(PS) =      20.016  TEMP(K) =   319.38  PRESS =     0.0
+ Etot   =      -338.2795  EKtot   =        80.9206  EPtot      =      -419.2001
+ BOND   =        22.3121  ANGLE   =        14.5032  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3026
+ EELEC  =      -222.5172  EHBOND  =         0.0000  RESTRAINT  =         0.1499
+ PM6ESCF=      -276.9508
+ EAMBER (non-restraint)  =      -419.3500
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.279
+QMMM:          2        14           2.463
+QMMM:          3        15           2.556
+QMMM:          4        16           2.558
+QMMM:          5        21           2.743
+QMMM:          6        29           3.433
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.433033
+group id, outermost atom id, outermost distance:
+    1    29   13.613093    3.689593
+    2    77   16.237947    4.029634
+    3    47   19.228270    4.385005
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    33
+    1   83    3.433033    0.000000
+    2   29    3.689593    0.000324
+    3   77    4.029634    0.323508
+    4   47    4.385005    0.861691
+    5   65    4.650405    1.000000
+Sigma values at step:    33
+    1   83    0.000324
+    2   29    0.323184
+    3   77    0.538183
+    4   47    0.138309
+
+ NSTEP =       34   TIME(PS) =      20.017  TEMP(K) =   314.50  PRESS =     0.0
+ Etot   =      -338.5840  EKtot   =        79.6841  EPtot      =      -418.2681
+ BOND   =        22.4616  ANGLE   =        14.8408  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2634
+ EELEC  =      -223.3928  EHBOND  =         0.0000  RESTRAINT  =         0.1505
+ PM6ESCF=      -275.5916
+ EAMBER (non-restraint)  =      -418.4186
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.280
+QMMM:          2        14           2.467
+QMMM:          3        15           2.558
+QMMM:          4        16           2.560
+QMMM:          5        21           2.749
+QMMM:          6        29           3.437
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.436777
+group id, outermost atom id, outermost distance:
+    1    29   13.629863    3.691864
+    2    77   16.222133    4.027671
+    3    47   19.208164    4.382712
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    34
+    1   83    3.436777    0.000000
+    2   29    3.691864    0.000495
+    3   77    4.027671    0.320495
+    4   47    4.382712    0.859003
+    5   65    4.652689    1.000000
+Sigma values at step:    34
+    1   83    0.000495
+    2   29    0.320000
+    3   77    0.538508
+    4   47    0.140997
+
+ NSTEP =       35   TIME(PS) =      20.017  TEMP(K) =   309.98  PRESS =     0.0
+ Etot   =      -337.9769  EKtot   =        78.5381  EPtot      =      -416.5149
+ BOND   =        22.6061  ANGLE   =        15.1994  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2485
+ EELEC  =      -223.8701  EHBOND  =         0.0000  RESTRAINT  =         0.1540
+ PM6ESCF=      -273.8529
+ EAMBER (non-restraint)  =      -416.6690
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.280
+QMMM:          2        14           2.470
+QMMM:          3        15           2.560
+QMMM:          4        16           2.562
+QMMM:          5        21           2.755
+QMMM:          6        29           3.441
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.440550
+group id, outermost atom id, outermost distance:
+    1    29   13.645855    3.694030
+    2    77   16.204152    4.025438
+    3    47   19.187861    4.380395
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    35
+    1   83    3.440550    0.000000
+    2   29    3.694030    0.000691
+    3   77    4.025438    0.317076
+    4   47    4.380395    0.856267
+    5   65    4.655145    1.000000
+Sigma values at step:    35
+    1   83    0.000691
+    2   29    0.316385
+    3   77    0.539191
+    4   47    0.143733
+
+ NSTEP =       36   TIME(PS) =      20.018  TEMP(K) =   308.06  PRESS =     0.0
+ Etot   =      -336.0732  EKtot   =        78.0532  EPtot      =      -414.1265
+ BOND   =        23.1086  ANGLE   =        15.5895  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2400
+ EELEC  =      -223.9171  EHBOND  =         0.0000  RESTRAINT  =         0.1601
+ PM6ESCF=      -272.3076
+ EAMBER (non-restraint)  =      -414.2866
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.280
+QMMM:          2        14           2.473
+QMMM:          3        15           2.562
+QMMM:          4        16           2.564
+QMMM:          5        21           2.761
+QMMM:          6        29           3.444
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.444040
+group id, outermost atom id, outermost distance:
+    1    29   13.661040    3.696084
+    2    77   16.186616    4.023259
+    3    47   19.168639    4.378200
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    36
+    1   83    3.444040    0.000000
+    2   29    3.696084    0.000906
+    3   77    4.023259    0.313748
+    4   47    4.378200    0.853657
+    5   65    4.657797    1.000000
+Sigma values at step:    36
+    1   83    0.000906
+    2   29    0.312842
+    3   77    0.539909
+    4   47    0.146343
+
+ NSTEP =       37   TIME(PS) =      20.018  TEMP(K) =   304.57  PRESS =     0.0
+ Etot   =      -334.2473  EKtot   =        77.1684  EPtot      =      -411.4157
+ BOND   =        24.1407  ANGLE   =        15.9539  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2271
+ EELEC  =      -223.4005  EHBOND  =         0.0000  RESTRAINT  =         0.1685
+ PM6ESCF=      -271.5054
+ EAMBER (non-restraint)  =      -411.5842
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.280
+QMMM:          2        14           2.476
+QMMM:          3        15           2.563
+QMMM:          4        16           2.566
+QMMM:          5        21           2.766
+QMMM:          6        29           3.447
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.447478
+group id, outermost atom id, outermost distance:
+    1    29   13.673560    3.697778
+    2    77   16.167228    4.020849
+    3    47   19.153125    4.376428
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    37
+    1   83    3.447478    0.000000
+    2   29    3.697778    0.001106
+    3   77    4.020849    0.310077
+    4   47    4.376428    0.851537
+    5   65    4.660570    1.000000
+Sigma values at step:    37
+    1   83    0.001106
+    2   29    0.308971
+    3   77    0.541460
+    4   47    0.148463
+
+ NSTEP =       38   TIME(PS) =      20.019  TEMP(K) =   301.68  PRESS =     0.0
+ Etot   =      -332.3794  EKtot   =        76.4363  EPtot      =      -408.8157
+ BOND   =        25.5860  ANGLE   =        16.2576  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2135
+ EELEC  =      -222.3865  EHBOND  =         0.0000  RESTRAINT  =         0.1785
+ PM6ESCF=      -271.6647
+ EAMBER (non-restraint)  =      -408.9942
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.281
+QMMM:          2        14           2.478
+QMMM:          3        15           2.564
+QMMM:          4        16           2.568
+QMMM:          5        21           2.772
+QMMM:          6        29           3.451
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.450884
+group id, outermost atom id, outermost distance:
+    1    29   13.683151    3.699074
+    2    77   16.146598    4.018283
+    3    47   19.139261    4.374844
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    38
+    1   83    3.450884    0.000000
+    2   29    3.699074    0.001272
+    3   77    4.018283    0.306180
+    4   47    4.374844    0.849632
+    5   65    4.663438    1.000000
+Sigma values at step:    38
+    1   83    0.001272
+    2   29    0.304908
+    3   77    0.543452
+    4   47    0.150368
+
+ NSTEP =       39   TIME(PS) =      20.019  TEMP(K) =   300.55  PRESS =     0.0
+ Etot   =      -330.2825  EKtot   =        76.1498  EPtot      =      -406.4323
+ BOND   =        27.4695  ANGLE   =        16.4177  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1876
+ EELEC  =      -220.9463  EHBOND  =         0.0000  RESTRAINT  =         0.1893
+ PM6ESCF=      -272.7501
+ EAMBER (non-restraint)  =      -406.6216
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.281
+QMMM:          2        14           2.481
+QMMM:          3        15           2.566
+QMMM:          4        16           2.570
+QMMM:          5        21           2.777
+QMMM:          6        29           3.454
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.453980
+group id, outermost atom id, outermost distance:
+    1    29   13.693865    3.700522
+    2    77   16.125381    4.015642
+    3    47   19.129550    4.373734
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    39
+    1   83    3.453980    0.000000
+    2   29    3.700522    0.001471
+    3   77    4.015642    0.302182
+    4   47    4.373734    0.848291
+    5   65    4.666546    1.000000
+Sigma values at step:    39
+    1   83    0.001471
+    2   29    0.300711
+    3   77    0.546109
+    4   47    0.151709
+
+ NSTEP =       40   TIME(PS) =      20.020  TEMP(K) =   300.35  PRESS =     0.0
+ Etot   =      -328.2964  EKtot   =        76.0998  EPtot      =      -404.3962
+ BOND   =        29.4688  ANGLE   =        16.4287  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1754
+ EELEC  =      -219.2722  EHBOND  =         0.0000  RESTRAINT  =         0.1992
+ PM6ESCF=      -274.3960
+ EAMBER (non-restraint)  =      -404.5954
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.281
+QMMM:          2        14           2.483
+QMMM:          3        15           2.567
+QMMM:          4        16           2.571
+QMMM:          5        21           2.782
+QMMM:          6        29           3.457
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.457012
+group id, outermost atom id, outermost distance:
+    1    29   13.703446    3.701817
+    2    77   16.106002    4.013228
+    3    47   19.123878    4.373086
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    40
+    1   83    3.457012    0.000000
+    2   29    3.701817    0.001660
+    3   77    4.013228    0.298540
+    4   47    4.373086    0.847506
+    5   65    4.669533    1.000000
+Sigma values at step:    40
+    1   83    0.001660
+    2   29    0.296880
+    3   77    0.548966
+    4   47    0.152494
+
+ NSTEP =       41   TIME(PS) =      20.020  TEMP(K) =   299.03  PRESS =     0.0
+ Etot   =      -327.2994  EKtot   =        75.7634  EPtot      =      -403.0628
+ BOND   =        30.9200  ANGLE   =        16.3468  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1612
+ EELEC  =      -217.4902  EHBOND  =         0.0000  RESTRAINT  =         0.2076
+ PM6ESCF=      -276.2082
+ EAMBER (non-restraint)  =      -403.2705
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.282
+QMMM:          2        14           2.485
+QMMM:          3        15           2.569
+QMMM:          4        16           2.573
+QMMM:          5        21           2.787
+QMMM:          6        29           3.460
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.459700
+group id, outermost atom id, outermost distance:
+    1    29   13.710419    3.702758
+    2    77   16.085631    4.010690
+    3    47   19.122854    4.372969
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    41
+    1   83    3.459700    0.000000
+    2   29    3.702758    0.001806
+    3   77    4.010690    0.294721
+    4   47    4.372969    0.847364
+    5   65    4.672601    1.000000
+Sigma values at step:    41
+    1   83    0.001806
+    2   29    0.292916
+    3   77    0.552643
+    4   47    0.152636
+
+ NSTEP =       42   TIME(PS) =      20.021  TEMP(K) =   300.00  PRESS =     0.0
+ Etot   =      -326.7034  EKtot   =        76.0110  EPtot      =      -402.7145
+ BOND   =        31.3633  ANGLE   =        16.1397  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1729
+ EELEC  =      -215.7579  EHBOND  =         0.0000  RESTRAINT  =         0.2131
+ PM6ESCF=      -277.8455
+ EAMBER (non-restraint)  =      -402.9276
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.282
+QMMM:          2        14           2.488
+QMMM:          3        15           2.570
+QMMM:          4        16           2.574
+QMMM:          5        21           2.792
+QMMM:          6        29           3.462
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.462034
+group id, outermost atom id, outermost distance:
+    1    29   13.719395    3.703970
+    2    77   16.066599    4.008316
+    3    47   19.122532    4.372932
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    42
+    1   83    3.462034    0.000000
+    2   29    3.703970    0.002001
+    3   77    4.008316    0.291163
+    4   47    4.372932    0.847320
+    5   65    4.675516    1.000000
+Sigma values at step:    42
+    1   83    0.002001
+    2   29    0.289162
+    3   77    0.556157
+    4   47    0.152680
+
+ NSTEP =       43   TIME(PS) =      20.021  TEMP(K) =   305.88  PRESS =     0.0
+ Etot   =      -325.9522  EKtot   =        77.5004  EPtot      =      -403.4526
+ BOND   =        30.4855  ANGLE   =        15.7330  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1922
+ EELEC  =      -214.1907  EHBOND  =         0.0000  RESTRAINT  =         0.2153
+ PM6ESCF=      -278.8879
+ EAMBER (non-restraint)  =      -403.6679
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.282
+QMMM:          2        14           2.490
+QMMM:          3        15           2.571
+QMMM:          4        16           2.575
+QMMM:          5        21           2.797
+QMMM:          6        29           3.464
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.464369
+group id, outermost atom id, outermost distance:
+    1    29   13.726781    3.704967
+    2    77   16.045991    4.005745
+    3    47   19.125498    4.373271
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    43
+    1   83    3.464369    0.000000
+    2   29    3.704967    0.002169
+    3   77    4.005745    0.287321
+    4   47    4.373271    0.847731
+    5   65    4.678109    1.000000
+Sigma values at step:    43
+    1   83    0.002169
+    2   29    0.285151
+    3   77    0.560410
+    4   47    0.152269
+
+ NSTEP =       44   TIME(PS) =      20.022  TEMP(K) =   308.66  PRESS =     0.0
+ Etot   =      -326.5453  EKtot   =        78.2033  EPtot      =      -404.7486
+ BOND   =        28.6246  ANGLE   =        15.2037  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2186
+ EELEC  =      -212.8994  EHBOND  =         0.0000  RESTRAINT  =         0.2158
+ PM6ESCF=      -279.1120
+ EAMBER (non-restraint)  =      -404.9645
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.282
+QMMM:          2        14           2.493
+QMMM:          3        15           2.573
+QMMM:          4        16           2.576
+QMMM:          5        21           2.802
+QMMM:          6        29           3.467
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.466804
+group id, outermost atom id, outermost distance:
+    1    29   13.731186    3.705561
+    2    77   16.024348    4.003042
+    3    47   19.130850    4.373883
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    44
+    1   83    3.466804    0.000000
+    2   29    3.705561    0.002273
+    3   77    4.003042    0.283298
+    4   47    4.373883    0.848471
+    5   65    4.680478    1.000000
+Sigma values at step:    44
+    1   83    0.002273
+    2   29    0.281025
+    3   77    0.565173
+    4   47    0.151529
+
+ NSTEP =       45   TIME(PS) =      20.022  TEMP(K) =   308.62  PRESS =     0.0
+ Etot   =      -328.1817  EKtot   =        78.1940  EPtot      =      -406.3756
+ BOND   =        26.1797  ANGLE   =        14.5569  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2376
+ EELEC  =      -212.0364  EHBOND  =         0.0000  RESTRAINT  =         0.2139
+ PM6ESCF=      -278.5273
+ EAMBER (non-restraint)  =      -406.5896
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.282
+QMMM:          2        14           2.496
+QMMM:          3        15           2.574
+QMMM:          4        16           2.577
+QMMM:          5        21           2.806
+QMMM:          6        29           3.469
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.469039
+group id, outermost atom id, outermost distance:
+    1    29   13.736039    3.706216
+    2    77   16.005946    4.000743
+    3    47   19.136272    4.374503
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    45
+    1   83    3.469039    0.000000
+    2   29    3.706216    0.002390
+    3   77    4.000743    0.279887
+    4   47    4.374503    0.849220
+    5   65    4.683189    1.000000
+Sigma values at step:    45
+    1   83    0.002390
+    2   29    0.277497
+    3   77    0.569333
+    4   47    0.150780
+
+ NSTEP =       46   TIME(PS) =      20.023  TEMP(K) =   308.40  PRESS =     0.0
+ Etot   =      -330.2408  EKtot   =        78.1387  EPtot      =      -408.3795
+ BOND   =        23.1058  ANGLE   =        13.8573  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2412
+ EELEC  =      -211.5287  EHBOND  =         0.0000  RESTRAINT  =         0.2104
+ PM6ESCF=      -277.2655
+ EAMBER (non-restraint)  =      -408.5899
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.281
+QMMM:          2        14           2.499
+QMMM:          3        15           2.576
+QMMM:          4        16           2.578
+QMMM:          5        21           2.811
+QMMM:          6        29           3.471
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.471086
+group id, outermost atom id, outermost distance:
+    1    29   13.740116    3.706766
+    2    77   15.990143    3.998768
+    3    47   19.139002    4.374815
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    46
+    1   83    3.471086    0.000000
+    2   29    3.706766    0.002490
+    3   77    3.998768    0.276965
+    4   47    4.374815    0.849596
+    5   65    4.685781    1.000000
+Sigma values at step:    46
+    1   83    0.002490
+    2   29    0.274475
+    3   77    0.572630
+    4   47    0.150404
+
+ NSTEP =       47   TIME(PS) =      20.023  TEMP(K) =   308.76  PRESS =     0.0
+ Etot   =      -332.2087  EKtot   =        78.2307  EPtot      =      -410.4394
+ BOND   =        20.0194  ANGLE   =        13.1124  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2287
+ EELEC  =      -211.3762  EHBOND  =         0.0000  RESTRAINT  =         0.2064
+ PM6ESCF=      -275.6301
+ EAMBER (non-restraint)  =      -410.6458
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.281
+QMMM:          2        14           2.502
+QMMM:          3        15           2.578
+QMMM:          4        16           2.578
+QMMM:          5        21           2.815
+QMMM:          6        29           3.473
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.472988
+group id, outermost atom id, outermost distance:
+    1    29   13.744494    3.707357
+    2    77   15.975247    3.996905
+    3    47   19.138491    4.374756
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    47
+    1   83    3.472988    0.000000
+    2   29    3.707357    0.002600
+    3   77    3.996905    0.274218
+    4   47    4.374756    0.849526
+    5   65    4.688292    1.000000
+Sigma values at step:    47
+    1   83    0.002600
+    2   29    0.271618
+    3   77    0.575308
+    4   47    0.150474
+
+ NSTEP =       48   TIME(PS) =      20.024  TEMP(K) =   309.41  PRESS =     0.0
+ Etot   =      -334.0194  EKtot   =        78.3940  EPtot      =      -412.4134
+ BOND   =        17.3893  ANGLE   =        12.3398  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2108
+ EELEC  =      -211.6582  EHBOND  =         0.0000  RESTRAINT  =         0.2026
+ PM6ESCF=      -273.8977
+ EAMBER (non-restraint)  =      -412.6160
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.281
+QMMM:          2        14           2.506
+QMMM:          3        16           2.578
+QMMM:          4        15           2.580
+QMMM:          5        21           2.819
+QMMM:          6        29           3.475
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.474964
+group id, outermost atom id, outermost distance:
+    1    29   13.746630    3.707645
+    2    77   15.963345    3.995416
+    3    47   19.135704    4.374438
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    48
+    1   83    3.474964    0.000000
+    2   29    3.707645    0.002655
+    3   77    3.995416    0.272027
+    4   47    4.374438    0.849141
+    5    5    4.690455    1.000000
+Sigma values at step:    48
+    1   83    0.002655
+    2   29    0.269373
+    3   77    0.577114
+    4   47    0.150859
+
+ NSTEP =       49   TIME(PS) =      20.024  TEMP(K) =   307.44  PRESS =     0.0
+ Etot   =      -335.8546  EKtot   =        77.8949  EPtot      =      -413.7496
+ BOND   =        16.1323  ANGLE   =        11.5658  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1926
+ EELEC  =      -212.3094  EHBOND  =         0.0000  RESTRAINT  =         0.1993
+ PM6ESCF=      -272.5302
+ EAMBER (non-restraint)  =      -413.9488
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.281
+QMMM:          2        14           2.510
+QMMM:          3        16           2.579
+QMMM:          4        15           2.583
+QMMM:          5        21           2.823
+QMMM:          6        29           3.477
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.476961
+group id, outermost atom id, outermost distance:
+    1    29   13.747404    3.707749
+    2    77   15.952102    3.994008
+    3    47   19.130896    4.373888
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    49
+    1   83    3.476961    0.000000
+    2   29    3.707749    0.002674
+    3   77    3.994008    0.269962
+    4   47    4.373888    0.848477
+    5    5    4.691837    1.000000
+Sigma values at step:    49
+    1   83    0.002674
+    2   29    0.267288
+    3   77    0.578515
+    4   47    0.151523
+
+ NSTEP =       50   TIME(PS) =      20.025  TEMP(K) =   304.84  PRESS =     0.0
+ Etot   =      -337.2281  EKtot   =        77.2375  EPtot      =      -414.4657
+ BOND   =        16.4982  ANGLE   =        10.7754  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1692
+ EELEC  =      -213.1668  EHBOND  =         0.0000  RESTRAINT  =         0.1979
+ PM6ESCF=      -271.9396
+ EAMBER (non-restraint)  =      -414.6636
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.282
+QMMM:          2        14           2.514
+QMMM:          3        16           2.579
+QMMM:          4        15           2.586
+QMMM:          5        21           2.827
+QMMM:          6        29           3.479
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.479040
+group id, outermost atom id, outermost distance:
+    1    29   13.747348    3.707742
+    2    77   15.943782    3.992967
+    3    47   19.123690    4.373064
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    50
+    1   83    3.479040    0.000000
+    2   29    3.707742    0.002673
+    3   77    3.992967    0.268436
+    4   47    4.373064    0.847480
+    5    5    4.693366    1.000000
+Sigma values at step:    50
+    1   83    0.002673
+    2   29    0.265763
+    3   77    0.579044
+    4   47    0.152520
+
+ NSTEP =       51   TIME(PS) =      20.025  TEMP(K) =   302.34  PRESS =     0.0
+ Etot   =      -337.9200  EKtot   =        76.6027  EPtot      =      -414.5227
+ BOND   =        18.3507  ANGLE   =        10.0050  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1522
+ EELEC  =      -214.1216  EHBOND  =         0.0000  RESTRAINT  =         0.1990
+ PM6ESCF=      -272.1081
+ EAMBER (non-restraint)  =      -414.7217
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.282
+QMMM:          2        14           2.517
+QMMM:          3        16           2.580
+QMMM:          4        15           2.589
+QMMM:          5        21           2.831
+QMMM:          6        29           3.481
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.481217
+group id, outermost atom id, outermost distance:
+    1    29   13.747338    3.707740
+    2    77   15.937726    3.992208
+    3    47   19.113781    4.371931
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    51
+    1   83    3.481217    0.000000
+    2   29    3.707740    0.002673
+    3   77    3.992208    0.267326
+    4   47    4.371931    0.846105
+    5    5    4.694746    1.000000
+Sigma values at step:    51
+    1   83    0.002673
+    2   29    0.264654
+    3   77    0.578778
+    4   47    0.153895
+
+ NSTEP =       52   TIME(PS) =      20.026  TEMP(K) =   301.10  PRESS =     0.0
+ Etot   =      -338.1023  EKtot   =        76.2891  EPtot      =      -414.3914
+ BOND   =        21.0766  ANGLE   =         9.2589  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1422
+ EELEC  =      -214.9930  EHBOND  =         0.0000  RESTRAINT  =         0.2021
+ PM6ESCF=      -273.0781
+ EAMBER (non-restraint)  =      -414.5935
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.283
+QMMM:          2        14           2.521
+QMMM:          3        16           2.581
+QMMM:          4        15           2.593
+QMMM:          5        21           2.834
+QMMM:          6        29           3.484
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.483597
+group id, outermost atom id, outermost distance:
+    1    29   13.744762    3.707393
+    2    77   15.930306    3.991279
+    3    47   19.102933    4.370690
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    52
+    1   83    3.483597    0.000000
+    2   29    3.707393    0.002607
+    3   77    3.991279    0.265968
+    4   47    4.370690    0.844593
+    5    5    4.695850    1.000000
+Sigma values at step:    52
+    1   83    0.002607
+    2   29    0.263362
+    3   77    0.578625
+    4   47    0.155407
+
+ NSTEP =       53   TIME(PS) =      20.026  TEMP(K) =   303.99  PRESS =     0.0
+ Etot   =      -337.6581  EKtot   =        77.0219  EPtot      =      -414.6800
+ BOND   =        23.8192  ANGLE   =         8.6586  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1463
+ EELEC  =      -215.7296  EHBOND  =         0.0000  RESTRAINT  =         0.2074
+ PM6ESCF=      -274.7819
+ EAMBER (non-restraint)  =      -414.8874
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.283
+QMMM:          2        14           2.524
+QMMM:          3        16           2.581
+QMMM:          4        15           2.597
+QMMM:          5        21           2.838
+QMMM:          6        29           3.486
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.485946
+group id, outermost atom id, outermost distance:
+    1    29   13.744431    3.707348
+    2    77   15.920526    3.990053
+    3    47   19.094343    4.369707
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    53
+    1   83    3.485946    0.000000
+    2   29    3.707348    0.002598
+    3   77    3.990053    0.264181
+    4   47    4.369707    0.843392
+    5    5    4.696595    1.000000
+Sigma values at step:    53
+    1   83    0.002598
+    2   29    0.261583
+    3   77    0.579211
+    4   47    0.156608
+
+ NSTEP =       54   TIME(PS) =      20.027  TEMP(K) =   311.99  PRESS =     0.0
+ Etot   =      -336.8335  EKtot   =        79.0468  EPtot      =      -415.8803
+ BOND   =        25.6887  ANGLE   =         8.2087  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1465
+ EELEC  =      -216.2597  EHBOND  =         0.0000  RESTRAINT  =         0.2142
+ PM6ESCF=      -276.8787
+ EAMBER (non-restraint)  =      -416.0945
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.285
+QMMM:          2        14           2.528
+QMMM:          3        16           2.582
+QMMM:          4        15           2.602
+QMMM:          5        21           2.842
+QMMM:          6        29           3.489
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.488534
+group id, outermost atom id, outermost distance:
+    1    29   13.743552    3.707230
+    2    77   15.912579    3.989057
+    3    47   19.085742    4.368723
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    54
+    1   83    3.488534    0.000000
+    2   29    3.707230    0.002576
+    3   77    3.989057    0.262731
+    4   47    4.368723    0.842186
+    5    5    4.697451    1.000000
+Sigma values at step:    54
+    1   83    0.002576
+    2   29    0.260155
+    3   77    0.579455
+    4   47    0.157814
+
+ NSTEP =       55   TIME(PS) =      20.027  TEMP(K) =   323.13  PRESS =     0.0
+ Etot   =      -336.0197  EKtot   =        81.8697  EPtot      =      -417.8894
+ BOND   =        26.0038  ANGLE   =         7.8886  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1585
+ EELEC  =      -216.2753  EHBOND  =         0.0000  RESTRAINT  =         0.2222
+ PM6ESCF=      -278.8871
+ EAMBER (non-restraint)  =      -418.1116
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.286
+QMMM:          2        14           2.532
+QMMM:          3        16           2.582
+QMMM:          4        15           2.606
+QMMM:          5        21           2.846
+QMMM:          6        29           3.491
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.491263
+group id, outermost atom id, outermost distance:
+    1    29   13.743860    3.707271
+    2    77   15.904822    3.988085
+    3    47   19.077076    4.367731
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    55
+    1   83    3.491263    0.000000
+    2   29    3.707271    0.002584
+    3   77    3.988085    0.261317
+    4   47    4.367731    0.840967
+    5    5    4.698284    1.000000
+Sigma values at step:    55
+    1   83    0.002584
+    2   29    0.258733
+    3   77    0.579649
+    4   47    0.159033
+
+ NSTEP =       56   TIME(PS) =      20.028  TEMP(K) =   328.89  PRESS =     0.0
+ Etot   =      -336.6630  EKtot   =        83.3291  EPtot      =      -419.9921
+ BOND   =        24.9948  ANGLE   =         7.7447  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1646
+ EELEC  =      -215.7783  EHBOND  =         0.0000  RESTRAINT  =         0.2296
+ PM6ESCF=      -280.3475
+ EAMBER (non-restraint)  =      -420.2217
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.289
+QMMM:          2        14           2.536
+QMMM:          3        16           2.583
+QMMM:          4        15           2.611
+QMMM:          5        21           2.850
+QMMM:          6        29           3.495
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.494670
+group id, outermost atom id, outermost distance:
+    1    29   13.743299    3.707196
+    2    77   15.897413    3.987156
+    3    47   19.066928    4.366569
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    56
+    1   83    3.494670    0.000000
+    2   29    3.707196    0.002570
+    3   77    3.987156    0.259969
+    4   47    4.366569    0.839534
+    5    5    4.699097    1.000000
+Sigma values at step:    56
+    1   83    0.002570
+    2   29    0.257399
+    3   77    0.579565
+    4   47    0.160466
+
+ NSTEP =       57   TIME(PS) =      20.028  TEMP(K) =   330.43  PRESS =     0.0
+ Etot   =      -337.5623  EKtot   =        83.7202  EPtot      =      -421.2824
+ BOND   =        23.2785  ANGLE   =         7.7826  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.1888
+ EELEC  =      -214.8084  EHBOND  =         0.0000  RESTRAINT  =         0.2358
+ PM6ESCF=      -280.9598
+ EAMBER (non-restraint)  =      -421.5183
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.291
+QMMM:          2        14           2.540
+QMMM:          3        16           2.583
+QMMM:          4        15           2.615
+QMMM:          5        21           2.854
+QMMM:          6        29           3.498
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.498186
+group id, outermost atom id, outermost distance:
+    1    29   13.743389    3.707208
+    2    77   15.891758    3.986447
+    3    47   19.061114    4.365904
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    57
+    1   83    3.498186    0.000000
+    2   29    3.707208    0.002572
+    3   77    3.986447    0.258941
+    4   47    4.365904    0.838711
+    5    5    4.700139    1.000000
+Sigma values at step:    57
+    1   83    0.002572
+    2   29    0.256369
+    3   77    0.579771
+    4   47    0.161289
+
+ NSTEP =       58   TIME(PS) =      20.029  TEMP(K) =   332.97  PRESS =     0.0
+ Etot   =      -337.1600  EKtot   =        84.3634  EPtot      =      -421.5234
+ BOND   =        21.2425  ANGLE   =         7.9615  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2287
+ EELEC  =      -213.4768  EHBOND  =         0.0000  RESTRAINT  =         0.2407
+ PM6ESCF=      -280.7201
+ EAMBER (non-restraint)  =      -421.7641
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.294
+QMMM:          2        14           2.543
+QMMM:          3        16           2.583
+QMMM:          4        15           2.620
+QMMM:          5        21           2.858
+QMMM:          6        29           3.502
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.501694
+group id, outermost atom id, outermost distance:
+    1    29   13.743489    3.707221
+    2    77   15.885621    3.985677
+    3    47   19.058784    4.365637
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    58
+    1   83    3.501694    0.000000
+    2   29    3.707221    0.002575
+    3   77    3.985677    0.257826
+    4   47    4.365637    0.838381
+    5    5    4.701568    1.000000
+Sigma values at step:    58
+    1   83    0.002575
+    2   29    0.255252
+    3   77    0.580555
+    4   47    0.161619
+
+ NSTEP =       59   TIME(PS) =      20.029  TEMP(K) =   328.90  PRESS =     0.0
+ Etot   =      -337.0936  EKtot   =        83.3325  EPtot      =      -420.4262
+ BOND   =        19.3093  ANGLE   =         8.2717  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.2748
+ EELEC  =      -211.9031  EHBOND  =         0.0000  RESTRAINT  =         0.2440
+ PM6ESCF=      -279.6228
+ EAMBER (non-restraint)  =      -420.6701
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.297
+QMMM:          2        14           2.547
+QMMM:          3        16           2.583
+QMMM:          4        15           2.624
+QMMM:          5        21           2.863
+QMMM:          6        29           3.505
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.505322
+group id, outermost atom id, outermost distance:
+    1    29   13.743236    3.707187
+    2    77   15.882103    3.985236
+    3    47   19.061047    4.365896
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    59
+    1   83    3.505322    0.000000
+    2   29    3.707187    0.002568
+    3   77    3.985236    0.257188
+    4   47    4.365896    0.838702
+    5    5    4.703567    1.000000
+Sigma values at step:    59
+    1   83    0.002568
+    2   29    0.254619
+    3   77    0.581514
+    4   47    0.161298
+
+ NSTEP =       60   TIME(PS) =      20.030  TEMP(K) =   320.86  PRESS =     0.0
+ Etot   =      -336.7291  EKtot   =        81.2963  EPtot      =      -418.0254
+ BOND   =        17.8825  ANGLE   =         8.7324  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3176
+ EELEC  =      -210.3515  EHBOND  =         0.0000  RESTRAINT  =         0.2460
+ PM6ESCF=      -277.8524
+ EAMBER (non-restraint)  =      -418.2715
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.300
+QMMM:          2        14           2.550
+QMMM:          3        16           2.583
+QMMM:          4        15           2.628
+QMMM:          5        21           2.867
+QMMM:          6        29           3.509
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.508979
+group id, outermost atom id, outermost distance:
+    1    29   13.743539    3.707228
+    2    77   15.876510    3.984534
+    3    47   19.063109    4.366132
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    60
+    1   83    3.508979    0.000000
+    2   29    3.707228    0.002576
+    3   77    3.984534    0.256174
+    4   47    4.366132    0.838994
+    5    5    4.705963    1.000000
+Sigma values at step:    60
+    1   83    0.002576
+    2   29    0.253598
+    3   77    0.582820
+    4   47    0.161006
+
+ NSTEP =       61   TIME(PS) =      20.030  TEMP(K) =   315.37  PRESS =     0.0
+ Etot   =      -334.9439  EKtot   =        79.9034  EPtot      =      -414.8473
+ BOND   =        16.9504  ANGLE   =         9.3187  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3607
+ EELEC  =      -208.9001  EHBOND  =         0.0000  RESTRAINT  =         0.2456
+ PM6ESCF=      -275.8226
+ EAMBER (non-restraint)  =      -415.0929
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.303
+QMMM:          2        14           2.553
+QMMM:          3        16           2.583
+QMMM:          4        15           2.632
+QMMM:          5        21           2.871
+QMMM:          6        29           3.513
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.512748
+group id, outermost atom id, outermost distance:
+    1    29   13.742907    3.707143
+    2    77   15.871646    3.983923
+    3    47   19.070983    4.367034
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    61
+    1   83    3.512748    0.000000
+    2   29    3.707143    0.002560
+    3   77    3.983923    0.255293
+    4   47    4.367034    0.840107
+    5    5    4.709038    1.000000
+Sigma values at step:    61
+    1   83    0.002560
+    2   29    0.252733
+    3   77    0.584815
+    4   47    0.159893
+
+ NSTEP =       62   TIME(PS) =      20.031  TEMP(K) =   310.71  PRESS =     0.0
+ Etot   =      -332.7616  EKtot   =        78.7232  EPtot      =      -411.4849
+ BOND   =        16.6279  ANGLE   =         9.9916  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3748
+ EELEC  =      -207.6696  EHBOND  =         0.0000  RESTRAINT  =         0.2438
+ PM6ESCF=      -274.0533
+ EAMBER (non-restraint)  =      -411.7286
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.306
+QMMM:          2        14           2.557
+QMMM:          3        16           2.583
+QMMM:          4        15           2.636
+QMMM:          5        21           2.875
+QMMM:          6        29           3.516
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.516487
+group id, outermost atom id, outermost distance:
+    1    29   13.742064    3.707029
+    2    77   15.867990    3.983465
+    3    47   19.078421    4.367885
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    62
+    1   83    3.516487    0.000000
+    2   29    3.707029    0.002539
+    3   77    3.983465    0.254631
+    4   47    4.367885    0.841156
+    5    5    4.712218    1.000000
+Sigma values at step:    62
+    1   83    0.002539
+    2   29    0.252092
+    3   77    0.586525
+    4   47    0.158844
+
+ NSTEP =       63   TIME(PS) =      20.031  TEMP(K) =   304.89  PRESS =     0.0
+ Etot   =      -331.0746  EKtot   =        77.2482  EPtot      =      -408.3227
+ BOND   =        17.0166  ANGLE   =        10.7600  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3907
+ EELEC  =      -206.7992  EHBOND  =         0.0000  RESTRAINT  =         0.2406
+ PM6ESCF=      -272.9314
+ EAMBER (non-restraint)  =      -408.5633
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.309
+QMMM:          2        14           2.560
+QMMM:          3        16           2.583
+QMMM:          4        15           2.640
+QMMM:          5        21           2.879
+QMMM:          6        29           3.520
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.520143
+group id, outermost atom id, outermost distance:
+    1    29   13.739434    3.706674
+    2    77   15.864173    3.982985
+    3    47   19.086315    4.368789
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    63
+    1   83    3.520143    0.000000
+    2   29    3.706674    0.002473
+    3   77    3.982985    0.253940
+    4   47    4.368789    0.842266
+    5    5    4.715418    1.000000
+Sigma values at step:    63
+    1   83    0.002473
+    2   29    0.251467
+    3   77    0.588326
+    4   47    0.157734
+
+ NSTEP =       64   TIME(PS) =      20.032  TEMP(K) =   301.26  PRESS =     0.0
+ Etot   =      -329.2502  EKtot   =        76.3299  EPtot      =      -405.5801
+ BOND   =        18.2773  ANGLE   =        11.6733  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3826
+ EELEC  =      -206.4709  EHBOND  =         0.0000  RESTRAINT  =         0.2362
+ PM6ESCF=      -272.6787
+ EAMBER (non-restraint)  =      -405.8163
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.312
+QMMM:          2        14           2.563
+QMMM:          3        16           2.582
+QMMM:          4        15           2.644
+QMMM:          5        21           2.884
+QMMM:          6        29           3.524
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.523725
+group id, outermost atom id, outermost distance:
+    1    29   13.735411    3.706132
+    2    77   15.859696    3.982423
+    3    47   19.097116    4.370025
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    64
+    1   83    3.523725    0.000000
+    2   29    3.706132    0.002374
+    3   77    3.982423    0.253131
+    4   47    4.370025    0.843780
+    5    5    4.719003    1.000000
+Sigma values at step:    64
+    1   83    0.002374
+    2   29    0.250757
+    3   77    0.590649
+    4   47    0.156220
+
+ NSTEP =       65   TIME(PS) =      20.032  TEMP(K) =   299.97  PRESS =     0.0
+ Etot   =      -327.6301  EKtot   =        76.0019  EPtot      =      -403.6320
+ BOND   =        20.1595  ANGLE   =        12.5990  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3591
+ EELEC  =      -206.6170  EHBOND  =         0.0000  RESTRAINT  =         0.2317
+ PM6ESCF=      -273.3643
+ EAMBER (non-restraint)  =      -403.8637
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.315
+QMMM:          2        14           2.565
+QMMM:          3        16           2.582
+QMMM:          4        15           2.647
+QMMM:          5        21           2.888
+QMMM:          6        29           3.527
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.527456
+group id, outermost atom id, outermost distance:
+    1    29   13.729901    3.705388
+    2    77   15.855932    3.981951
+    3    47   19.109307    4.371419
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    65
+    1   83    3.527456    0.000000
+    2   29    3.705388    0.002243
+    3   77    3.981951    0.252451
+    4   47    4.371419    0.845482
+    5    5    4.722633    1.000000
+Sigma values at step:    65
+    1   83    0.002243
+    2   29    0.250209
+    3   77    0.593031
+    4   47    0.154518
+
+ NSTEP =       66   TIME(PS) =      20.033  TEMP(K) =   300.43  PRESS =     0.0
+ Etot   =      -326.6398  EKtot   =        76.1182  EPtot      =      -402.7580
+ BOND   =        22.3384  ANGLE   =        13.4795  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3414
+ EELEC  =      -207.3653  EHBOND  =         0.0000  RESTRAINT  =         0.2283
+ PM6ESCF=      -274.7804
+ EAMBER (non-restraint)  =      -402.9863
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.317
+QMMM:          2        14           2.568
+QMMM:          3        16           2.582
+QMMM:          4        15           2.651
+QMMM:          5        21           2.892
+QMMM:          6        29           3.531
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.531183
+group id, outermost atom id, outermost distance:
+    1    29   13.723958    3.704586
+    2    77   15.855124    3.981849
+    3    47   19.118787    4.372504
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    66
+    1   83    3.531183    0.000000
+    2   29    3.704586    0.002104
+    3   77    3.981849    0.252305
+    4   47    4.372504    0.846800
+    5    5    4.726120    1.000000
+Sigma values at step:    66
+    1   83    0.002104
+    2   29    0.250201
+    3   77    0.594495
+    4   47    0.153200
+
+ NSTEP =       67   TIME(PS) =      20.033  TEMP(K) =   305.67  PRESS =     0.0
+ Etot   =      -325.4211  EKtot   =        77.4467  EPtot      =      -402.8678
+ BOND   =        24.2088  ANGLE   =        14.2818  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3342
+ EELEC  =      -208.6316  EHBOND  =         0.0000  RESTRAINT  =         0.2270
+ PM6ESCF=      -276.2878
+ EAMBER (non-restraint)  =      -403.0948
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.320
+QMMM:          2        14           2.570
+QMMM:          3        16           2.582
+QMMM:          4        15           2.655
+QMMM:          5        21           2.896
+QMMM:          6        29           3.535
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.534612
+group id, outermost atom id, outermost distance:
+    1    29   13.718292    3.703821
+    2    77   15.856474    3.982019
+    3    47   19.128411    4.373604
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    67
+    1   83    3.534612    0.000000
+    2   29    3.703821    0.001977
+    3   77    3.982019    0.252549
+    4   47    4.373604    0.848134
+    5    5    4.729417    1.000000
+Sigma values at step:    67
+    1   83    0.001977
+    2   29    0.250573
+    3   77    0.595585
+    4   47    0.151866
+
+ NSTEP =       68   TIME(PS) =      20.034  TEMP(K) =   310.36  PRESS =     0.0
+ Etot   =      -324.8797  EKtot   =        78.6342  EPtot      =      -403.5139
+ BOND   =        25.6836  ANGLE   =        14.8919  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3229
+ EELEC  =      -210.2160  EHBOND  =         0.0000  RESTRAINT  =         0.2278
+ PM6ESCF=      -277.4242
+ EAMBER (non-restraint)  =      -403.7417
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.322
+QMMM:          2        14           2.571
+QMMM:          3        16           2.582
+QMMM:          4        15           2.658
+QMMM:          5        21           2.900
+QMMM:          6        29           3.538
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.538345
+group id, outermost atom id, outermost distance:
+    1    29   13.711335    3.702882
+    2    77   15.860514    3.982526
+    3    47   19.135203    4.374380
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    68
+    1   83    3.538345    0.000000
+    2   29    3.702882    0.001825
+    3   77    3.982526    0.253279
+    4   47    4.374380    0.849072
+    5    5    4.732250    1.000000
+Sigma values at step:    68
+    1   83    0.001825
+    2   29    0.251454
+    3   77    0.595793
+    4   47    0.150928
+
+ NSTEP =       69   TIME(PS) =      20.034  TEMP(K) =   312.60  PRESS =     0.0
+ Etot   =      -325.2570  EKtot   =        79.2014  EPtot      =      -404.4583
+ BOND   =        26.4045  ANGLE   =        15.2546  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3141
+ EELEC  =      -211.9353  EHBOND  =         0.0000  RESTRAINT  =         0.2307
+ PM6ESCF=      -277.7268
+ EAMBER (non-restraint)  =      -404.6890
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.325
+QMMM:          2        14           2.573
+QMMM:          3        16           2.582
+QMMM:          4        15           2.662
+QMMM:          5        21           2.905
+QMMM:          6        29           3.542
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.542221
+group id, outermost atom id, outermost distance:
+    1    29   13.703408    3.701812
+    2    77   15.867232    3.983369
+    3    47   19.140078    4.374938
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    69
+    1   83    3.542221    0.000000
+    2   29    3.701812    0.001660
+    3   77    3.983369    0.254494
+    4   47    4.374938    0.849744
+    5    5    4.734755    1.000000
+Sigma values at step:    69
+    1   83    0.001660
+    2   29    0.252834
+    3   77    0.595251
+    4   47    0.150256
+
+ NSTEP =       70   TIME(PS) =      20.035  TEMP(K) =   316.39  PRESS =     0.0
+ Etot   =      -325.5052  EKtot   =        80.1634  EPtot      =      -405.6685
+ BOND   =        26.2024  ANGLE   =        15.3598  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3085
+ EELEC  =      -213.7222  EHBOND  =         0.0000  RESTRAINT  =         0.2373
+ PM6ESCF=      -277.0542
+ EAMBER (non-restraint)  =      -405.9058
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.327
+QMMM:          2        14           2.575
+QMMM:          3        16           2.582
+QMMM:          4        15           2.666
+QMMM:          5        21           2.909
+QMMM:          6        29           3.546
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.546370
+group id, outermost atom id, outermost distance:
+    1    29   13.694860    3.700657
+    2    77   15.874306    3.984257
+    3    47   19.141816    4.375136
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    70
+    1   83    3.546370    0.000000
+    2   29    3.700657    0.001490
+    3   77    3.984257    0.255774
+    4   47    4.375136    0.849984
+    5    5    4.736858    1.000000
+Sigma values at step:    70
+    1   83    0.001490
+    2   29    0.254285
+    3   77    0.594209
+    4   47    0.150016
+
+ NSTEP =       71   TIME(PS) =      20.035  TEMP(K) =   318.79  PRESS =     0.0
+ Etot   =      -325.9621  EKtot   =        80.7710  EPtot      =      -406.7332
+ BOND   =        25.4184  ANGLE   =        15.3454  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3289
+ EELEC  =      -215.4930  EHBOND  =         0.0000  RESTRAINT  =         0.2464
+ PM6ESCF=      -275.5792
+ EAMBER (non-restraint)  =      -406.9795
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.329
+QMMM:          2        14           2.576
+QMMM:          3        16           2.582
+QMMM:          4        15           2.670
+QMMM:          5        21           2.913
+QMMM:          6        29           3.551
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.550693
+group id, outermost atom id, outermost distance:
+    1    29   13.687079    3.699605
+    2    77   15.881776    3.985195
+    3    47   19.141672    4.375120
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    71
+    1   83    3.550693    0.000000
+    2   29    3.699605    0.001343
+    3   77    3.985195    0.257128
+    4   47    4.375120    0.849964
+    5    5    4.738657    1.000000
+Sigma values at step:    71
+    1   83    0.001343
+    2   29    0.255785
+    3   77    0.592835
+    4   47    0.150036
+
+ NSTEP =       72   TIME(PS) =      20.036  TEMP(K) =   317.36  PRESS =     0.0
+ Etot   =      -327.2692  EKtot   =        80.4090  EPtot      =      -407.6782
+ BOND   =        24.2061  ANGLE   =        15.2446  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3545
+ EELEC  =      -217.0362  EHBOND  =         0.0000  RESTRAINT  =         0.2572
+ PM6ESCF=      -273.7044
+ EAMBER (non-restraint)  =      -407.9354
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.332
+QMMM:          2        14           2.577
+QMMM:          3        16           2.582
+QMMM:          4        15           2.675
+QMMM:          5        21           2.917
+QMMM:          6        29           3.555
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.555087
+group id, outermost atom id, outermost distance:
+    1    29   13.678228    3.698409
+    2    77   15.890506    3.986290
+    3    47   19.141128    4.375057
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    72
+    1   83    3.555087    0.000000
+    2   29    3.698409    0.001185
+    3   77    3.986290    0.258713
+    4   47    4.375057    0.849889
+    5    5    4.740234    1.000000
+Sigma values at step:    72
+    1   83    0.001185
+    2   29    0.257528
+    3   77    0.591176
+    4   47    0.150111
+
+ NSTEP =       73   TIME(PS) =      20.036  TEMP(K) =   315.19  PRESS =     0.0
+ Etot   =      -328.7946  EKtot   =        79.8578  EPtot      =      -408.6525
+ BOND   =        22.6139  ANGLE   =        15.1025  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.3966
+ EELEC  =      -218.1009  EHBOND  =         0.0000  RESTRAINT  =         0.2685
+ PM6ESCF=      -271.9330
+ EAMBER (non-restraint)  =      -408.9209
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.335
+QMMM:          2        14           2.579
+QMMM:          3        16           2.582
+QMMM:          4        15           2.679
+QMMM:          5        21           2.922
+QMMM:          6        29           3.560
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.559876
+group id, outermost atom id, outermost distance:
+    1    29   13.668815    3.697136
+    2    77   15.902327    3.987772
+    3    47   19.139554    4.374878
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    73
+    1   83    3.559876    0.000000
+    2   29    3.697136    0.001028
+    3   77    3.987772    0.260863
+    4   47    4.374878    0.849672
+    5    5    4.741754    1.000000
+Sigma values at step:    73
+    1   83    0.001028
+    2   29    0.259835
+    3   77    0.588809
+    4   47    0.150328
+
+ NSTEP =       74   TIME(PS) =      20.037  TEMP(K) =   313.84  PRESS =     0.0
+ Etot   =      -329.9044  EKtot   =        79.5156  EPtot      =      -409.4200
+ BOND   =        21.2759  ANGLE   =        14.9857  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.4358
+ EELEC  =      -218.7202  EHBOND  =         0.0000  RESTRAINT  =         0.2793
+ PM6ESCF=      -270.6765
+ EAMBER (non-restraint)  =      -409.6994
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.338
+QMMM:          2        14           2.580
+QMMM:          3        16           2.583
+QMMM:          4        15           2.684
+QMMM:          5        21           2.926
+QMMM:          6        29           3.565
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.564707
+group id, outermost atom id, outermost distance:
+    1    29   13.661452    3.696140
+    2    77   15.914767    3.989332
+    3    47   19.138852    4.374797
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    74
+    1   83    3.564707    0.000000
+    2   29    3.696140    0.000913
+    3   77    3.989332    0.263130
+    4   47    4.374797    0.849575
+    5    5    4.742888    1.000000
+Sigma values at step:    74
+    1   83    0.000913
+    2   29    0.262217
+    3   77    0.586445
+    4   47    0.150425
+
+ NSTEP =       75   TIME(PS) =      20.037  TEMP(K) =   314.13  PRESS =     0.0
+ Etot   =      -330.3253  EKtot   =        79.5897  EPtot      =      -409.9150
+ BOND   =        20.3917  ANGLE   =        14.9052  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.4874
+ EELEC  =      -218.7051  EHBOND  =         0.0000  RESTRAINT  =         0.2885
+ PM6ESCF=      -270.2827
+ EAMBER (non-restraint)  =      -410.2035
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.342
+QMMM:          2        14           2.582
+QMMM:          3        16           2.583
+QMMM:          4        15           2.688
+QMMM:          5        21           2.931
+QMMM:          6        29           3.570
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.569555
+group id, outermost atom id, outermost distance:
+    1    29   13.655344    3.695314
+    2    77   15.929397    3.991165
+    3    47   19.139217    4.374839
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    75
+    1   83    3.569555    0.000000
+    2   29    3.695314    0.000822
+    3   77    3.991165    0.265802
+    4   47    4.374839    0.849626
+    5    5    4.744450    1.000000
+Sigma values at step:    75
+    1   83    0.000822
+    2   29    0.264980
+    3   77    0.583824
+    4   47    0.150374
+
+ NSTEP =       76   TIME(PS) =      20.038  TEMP(K) =   314.18  PRESS =     0.0
+ Etot   =      -330.6844  EKtot   =        79.6029  EPtot      =      -410.2872
+ BOND   =        20.1478  ANGLE   =        14.9573  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.5758
+ EELEC  =      -218.2281  EHBOND  =         0.0000  RESTRAINT  =         0.2968
+ PM6ESCF=      -271.0368
+ EAMBER (non-restraint)  =      -410.5840
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.345
+QMMM:          2        14           2.583
+QMMM:          3        16           2.584
+QMMM:          4        15           2.693
+QMMM:          5        21           2.936
+QMMM:          6        29           3.574
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.574083
+group id, outermost atom id, outermost distance:
+    1    29   13.651311    3.694768
+    2    77   15.944417    3.993046
+    3    47   19.142477    4.375212
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    76
+    1   83    3.574083    0.000000
+    2   29    3.694768    0.000765
+    3   77    3.993046    0.268552
+    4   47    4.375212    0.850074
+    5    5    4.745922    1.000000
+Sigma values at step:    76
+    1   83    0.000765
+    2   29    0.267787
+    3   77    0.581522
+    4   47    0.149926
+
+ NSTEP =       77   TIME(PS) =      20.038  TEMP(K) =   314.47  PRESS =     0.0
+ Etot   =      -331.1136  EKtot   =        79.6770  EPtot      =      -410.7906
+ BOND   =        20.4675  ANGLE   =        15.0270  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.6504
+ EELEC  =      -217.3903  EHBOND  =         0.0000  RESTRAINT  =         0.3022
+ PM6ESCF=      -272.8474
+ EAMBER (non-restraint)  =      -411.0928
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.349
+QMMM:          2        14           2.585
+QMMM:          3        16           2.585
+QMMM:          4        15           2.698
+QMMM:          5        21           2.941
+QMMM:          6        29           3.579
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.578905
+group id, outermost atom id, outermost distance:
+    1    29   13.646772    3.694154
+    2    77   15.957718    3.994711
+    3    47   19.148241    4.375870
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    77
+    1   83    3.578905    0.000000
+    2   29    3.694154    0.000703
+    3   77    3.994711    0.270993
+    4   47    4.375870    0.850867
+    5    5    4.747428    1.000000
+Sigma values at step:    77
+    1   83    0.000703
+    2   29    0.270291
+    3   77    0.579874
+    4   47    0.149133
+
+ NSTEP =       78   TIME(PS) =      20.039  TEMP(K) =   316.43  PRESS =     0.0
+ Etot   =      -331.4134  EKtot   =        80.1739  EPtot      =      -411.5873
+ BOND   =        20.9647  ANGLE   =        15.1102  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.7186
+ EELEC  =      -216.1802  EHBOND  =         0.0000  RESTRAINT  =         0.3065
+ PM6ESCF=      -275.5071
+ EAMBER (non-restraint)  =      -411.8938
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.354
+QMMM:          2        16           2.587
+QMMM:          3        14           2.587
+QMMM:          4        15           2.704
+QMMM:          5        21           2.946
+QMMM:          6        29           3.584
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.583819
+group id, outermost atom id, outermost distance:
+    1    29   13.643937    3.693770
+    2    77   15.969920    3.996238
+    3    47   19.156791    4.376847
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    78
+    1   83    3.583819    0.000000
+    2   29    3.693770    0.000665
+    3   77    3.996238    0.273237
+    4   47    4.376847    0.852039
+    5    5    4.749254    1.000000
+Sigma values at step:    78
+    1   83    0.000665
+    2   29    0.272572
+    3   77    0.578802
+    4   47    0.147961
+
+ NSTEP =       79   TIME(PS) =      20.039  TEMP(K) =   317.59  PRESS =     0.0
+ Etot   =      -332.1596  EKtot   =        80.4671  EPtot      =      -412.6267
+ BOND   =        21.3716  ANGLE   =        15.2868  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.7751
+ EELEC  =      -214.9154  EHBOND  =         0.0000  RESTRAINT  =         0.3082
+ PM6ESCF=      -278.4530
+ EAMBER (non-restraint)  =      -412.9349
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.358
+QMMM:          2        16           2.588
+QMMM:          3        14           2.589
+QMMM:          4        15           2.709
+QMMM:          5        21           2.951
+QMMM:          6        29           3.589
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.588798
+group id, outermost atom id, outermost distance:
+    1    29   13.642292    3.693547
+    2    77   15.982811    3.997851
+    3    47   19.166111    4.377912
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    79
+    1   83    3.588798    0.000000
+    2   29    3.693547    0.000644
+    3   77    3.997851    0.275612
+    4   47    4.377912    0.853312
+    5    5    4.751476    1.000000
+Sigma values at step:    79
+    1   83    0.000644
+    2   29    0.274968
+    3   77    0.577700
+    4   47    0.146688
+
+ NSTEP =       80   TIME(PS) =      20.040  TEMP(K) =   322.73  PRESS =     0.0
+ Etot   =      -332.2184  EKtot   =        81.7679  EPtot      =      -413.9862
+ BOND   =        21.2011  ANGLE   =        15.4241  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.8317
+ EELEC  =      -213.6472  EHBOND  =         0.0000  RESTRAINT  =         0.3085
+ PM6ESCF=      -281.1045
+ EAMBER (non-restraint)  =      -414.2947
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.362
+QMMM:          2        16           2.590
+QMMM:          3        14           2.591
+QMMM:          4        15           2.713
+QMMM:          5        21           2.956
+QMMM:          6        29           3.594
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.593708
+group id, outermost atom id, outermost distance:
+    1    29   13.641344    3.693419
+    2    77   15.995280    3.999410
+    3    47   19.181526    4.379672
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    80
+    1   83    3.593708    0.000000
+    2   29    3.693419    0.000632
+    3   77    3.999410    0.277914
+    4   47    4.379672    0.855409
+    5    5    4.754191    1.000000
+Sigma values at step:    80
+    1   83    0.000632
+    2   29    0.277282
+    3   77    0.577495
+    4   47    0.144591
+
+ NSTEP =       81   TIME(PS) =      20.040  TEMP(K) =   328.47  PRESS =     0.0
+ Etot   =      -332.0952  EKtot   =        83.2246  EPtot      =      -415.3198
+ BOND   =        20.5304  ANGLE   =        15.5662  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.8731
+ EELEC  =      -212.4749  EHBOND  =         0.0000  RESTRAINT  =         0.3080
+ PM6ESCF=      -283.1226
+ EAMBER (non-restraint)  =      -415.6278
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.367
+QMMM:          2        16           2.592
+QMMM:          3        14           2.593
+QMMM:          4        15           2.718
+QMMM:          5        21           2.962
+QMMM:          6        29           3.599
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.598721
+group id, outermost atom id, outermost distance:
+    1    29   13.641109    3.693387
+    2    77   16.006556    4.000819
+    3    47   19.201025    4.381897
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    81
+    1   83    3.598721    0.000000
+    2   29    3.693387    0.000629
+    3   77    4.000819    0.280000
+    4   47    4.381897    0.858043
+    5    5    4.757050    1.000000
+Sigma values at step:    81
+    1   83    0.000629
+    2   29    0.279371
+    3   77    0.578043
+    4   47    0.141957
+
+ NSTEP =       82   TIME(PS) =      20.041  TEMP(K) =   331.17  PRESS =     0.0
+ Etot   =      -332.4925  EKtot   =        83.9084  EPtot      =      -416.4010
+ BOND   =        19.5053  ANGLE   =        15.7131  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.9081
+ EELEC  =      -211.7072  EHBOND  =         0.0000  RESTRAINT  =         0.3061
+ PM6ESCF=      -284.1264
+ EAMBER (non-restraint)  =      -416.7071
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.372
+QMMM:          2        16           2.593
+QMMM:          3        14           2.595
+QMMM:          4        15           2.723
+QMMM:          5        21           2.968
+QMMM:          6        29           3.603
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.603399
+group id, outermost atom id, outermost distance:
+    1    29   13.641537    3.693445
+    2    77   16.018931    4.002366
+    3    47   19.221749    4.384261
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    82
+    1   83    3.603399    0.000000
+    2   29    3.693445    0.000634
+    3   77    4.002366    0.282293
+    4   47    4.384261    0.860821
+    5    5    4.760278    1.000000
+Sigma values at step:    82
+    1   83    0.000634
+    2   29    0.281658
+    3   77    0.578529
+    4   47    0.139179
+
+ NSTEP =       83   TIME(PS) =      20.041  TEMP(K) =   334.47  PRESS =     0.0
+ Etot   =      -332.2455  EKtot   =        84.7437  EPtot      =      -416.9892
+ BOND   =        18.1902  ANGLE   =        15.8499  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.9224
+ EELEC  =      -211.1855  EHBOND  =         0.0000  RESTRAINT  =         0.3047
+ PM6ESCF=      -284.0710
+ EAMBER (non-restraint)  =      -417.2939
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.377
+QMMM:          2        16           2.595
+QMMM:          3        14           2.596
+QMMM:          4        15           2.728
+QMMM:          5        21           2.974
+QMMM:          6        29           3.608
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.608187
+group id, outermost atom id, outermost distance:
+    1    29   13.642265    3.693544
+    2    77   16.031088    4.003884
+    3    47   19.243072    4.386693
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    83
+    1   83    3.608187    0.000000
+    2   29    3.693544    0.000644
+    3   77    4.003884    0.284549
+    4   47    4.386693    0.863656
+    5    5    4.763907    1.000000
+Sigma values at step:    83
+    1   83    0.000644
+    2   29    0.283906
+    3   77    0.579107
+    4   47    0.136344
+
+ NSTEP =       84   TIME(PS) =      20.042  TEMP(K) =   335.74  PRESS =     0.0
+ Etot   =      -331.3664  EKtot   =        85.0642  EPtot      =      -416.4306
+ BOND   =        17.2252  ANGLE   =        15.9696  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.9201
+ EELEC  =      -210.9154  EHBOND  =         0.0000  RESTRAINT  =         0.3044
+ PM6ESCF=      -282.9346
+ EAMBER (non-restraint)  =      -416.7351
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.382
+QMMM:          2        16           2.596
+QMMM:          3        14           2.597
+QMMM:          4        15           2.732
+QMMM:          5        21           2.980
+QMMM:          6        29           3.613
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.612564
+group id, outermost atom id, outermost distance:
+    1    29   13.642104    3.693522
+    2    77   16.043811    4.005473
+    3    47   19.265812    4.389284
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    84
+    1   83    3.612564    0.000000
+    2   29    3.693522    0.000642
+    3   77    4.005473    0.286915
+    4   47    4.389284    0.866653
+    5    5    4.767732    1.000000
+Sigma values at step:    84
+    1   83    0.000642
+    2   29    0.286273
+    3   77    0.579738
+    4   47    0.133347
+
+ NSTEP =       85   TIME(PS) =      20.042  TEMP(K) =   330.16  PRESS =     0.0
+ Etot   =      -330.8051  EKtot   =        83.6526  EPtot      =      -414.4577
+ BOND   =        16.9610  ANGLE   =        16.0368  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.9419
+ EELEC  =      -210.7354  EHBOND  =         0.0000  RESTRAINT  =         0.3065
+ PM6ESCF=      -280.9685
+ EAMBER (non-restraint)  =      -414.7642
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.386
+QMMM:          2        16           2.598
+QMMM:          3        14           2.598
+QMMM:          4        15           2.736
+QMMM:          5        21           2.986
+QMMM:          6        29           3.617
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.617295
+group id, outermost atom id, outermost distance:
+    1    29   13.639095    3.693114
+    2    77   16.053779    4.006717
+    3    47   19.286476    4.391637
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    85
+    1   83    3.617295    0.000000
+    2   29    3.693114    0.000604
+    3   77    4.006717    0.288772
+    4   47    4.391637    0.869353
+    5    5    4.771433    1.000000
+Sigma values at step:    85
+    1   83    0.000604
+    2   29    0.288168
+    3   77    0.580581
+    4   47    0.130647
+
+ NSTEP =       86   TIME(PS) =      20.043  TEMP(K) =   323.57  PRESS =     0.0
+ Etot   =      -329.3712  EKtot   =        81.9813  EPtot      =      -411.3525
+ BOND   =        17.8833  ANGLE   =        16.0555  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        43.9659
+ EELEC  =      -210.7773  EHBOND  =         0.0000  RESTRAINT  =         0.3099
+ PM6ESCF=      -278.7898
+ EAMBER (non-restraint)  =      -411.6625
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.391
+QMMM:          2        16           2.599
+QMMM:          3        14           2.600
+QMMM:          4        15           2.740
+QMMM:          5        21           2.992
+QMMM:          6        29           3.622
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.621807
+group id, outermost atom id, outermost distance:
+    1    29   13.637073    3.692841
+    2    77   16.064802    4.008092
+    3    47   19.306483    4.393914
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    86
+    1   83    3.621807    0.000000
+    2   29    3.692841    0.000579
+    3   77    4.008092    0.290828
+    4   47    4.393914    0.871944
+    5    5    4.775001    1.000000
+Sigma values at step:    86
+    1   83    0.000579
+    2   29    0.290249
+    3   77    0.581117
+    4   47    0.128056
+
+ NSTEP =       87   TIME(PS) =      20.043  TEMP(K) =   317.45  PRESS =     0.0
+ Etot   =      -326.6269  EKtot   =        80.4312  EPtot      =      -407.0581
+ BOND   =        20.3883  ANGLE   =        15.9698  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.0075
+ EELEC  =      -210.8828  EHBOND  =         0.0000  RESTRAINT  =         0.3148
+ PM6ESCF=      -276.8557
+ EAMBER (non-restraint)  =      -407.3729
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.395
+QMMM:          2        16           2.601
+QMMM:          3        14           2.601
+QMMM:          4        15           2.744
+QMMM:          5        21           2.998
+QMMM:          6        29           3.626
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.626042
+group id, outermost atom id, outermost distance:
+    1    29   13.635872    3.692678
+    2    77   16.076158    4.009508
+    3    47   19.325603    4.396090
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    87
+    1   83    3.626042    0.000000
+    2   29    3.692678    0.000564
+    3   77    4.009508    0.292949
+    4   47    4.396090    0.874401
+    5    5    4.778127    1.000000
+Sigma values at step:    87
+    1   83    0.000564
+    2   29    0.292385
+    3   77    0.581452
+    4   47    0.125599
+
+ NSTEP =       88   TIME(PS) =      20.044  TEMP(K) =   312.74  PRESS =     0.0
+ Etot   =      -323.3351  EKtot   =        79.2390  EPtot      =      -402.5740
+ BOND   =        23.8930  ANGLE   =        15.7547  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.0627
+ EELEC  =      -210.9160  EHBOND  =         0.0000  RESTRAINT  =         0.3226
+ PM6ESCF=      -275.6911
+ EAMBER (non-restraint)  =      -402.8967
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.399
+QMMM:          2        16           2.601
+QMMM:          3        14           2.603
+QMMM:          4        15           2.748
+QMMM:          5        21           3.004
+QMMM:          6        29           3.630
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.630349
+group id, outermost atom id, outermost distance:
+    1    29   13.635608    3.692642
+    2    77   16.092247    4.011514
+    3    47   19.341340    4.397879
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    88
+    1   83    3.630349    0.000000
+    2   29    3.692642    0.000561
+    3   77    4.011514    0.295960
+    4   47    4.397879    0.876408
+    5    5    4.781031    1.000000
+Sigma values at step:    88
+    1   83    0.000561
+    2   29    0.295399
+    3   77    0.580448
+    4   47    0.123592
+
+ NSTEP =       89   TIME(PS) =      20.044  TEMP(K) =   310.79  PRESS =     0.0
+ Etot   =      -319.4937  EKtot   =        78.7436  EPtot      =      -398.2373
+ BOND   =        28.3124  ANGLE   =        15.3867  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.1321
+ EELEC  =      -210.9648  EHBOND  =         0.0000  RESTRAINT  =         0.3330
+ PM6ESCF=      -275.4367
+ EAMBER (non-restraint)  =      -398.5703
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.404
+QMMM:          2        16           2.602
+QMMM:          3        14           2.605
+QMMM:          4        15           2.752
+QMMM:          5        21           3.010
+QMMM:          6        29           3.634
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.634378
+group id, outermost atom id, outermost distance:
+    1    29   13.634214    3.692454
+    2    77   16.109767    4.013697
+    3    47   19.356251    4.399574
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    89
+    1   83    3.634378    0.000000
+    2   29    3.692454    0.000545
+    3   77    4.013697    0.299247
+    4   47    4.399574    0.878297
+    5    5    4.783834    1.000000
+Sigma values at step:    89
+    1   83    0.000545
+    2   29    0.298702
+    3   77    0.579051
+    4   47    0.121703
+
+ NSTEP =       90   TIME(PS) =      20.045  TEMP(K) =   311.64  PRESS =     0.0
+ Etot   =      -315.7742  EKtot   =        78.9596  EPtot      =      -394.7338
+ BOND   =        32.7818  ANGLE   =        14.8782  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.2032
+ EELEC  =      -210.8311  EHBOND  =         0.0000  RESTRAINT  =         0.3448
+ PM6ESCF=      -276.1108
+ EAMBER (non-restraint)  =      -395.0786
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.408
+QMMM:          2        16           2.603
+QMMM:          3        14           2.606
+QMMM:          4        15           2.755
+QMMM:          5        21           3.016
+QMMM:          6        29           3.638
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.638393
+group id, outermost atom id, outermost distance:
+    1    29   13.633036    3.692294
+    2    77   16.128762    4.016063
+    3    47   19.370197    4.401159
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    90
+    1   83    3.638393    0.000000
+    2   29    3.692294    0.000531
+    3   77    4.016063    0.302818
+    4   47    4.401159    0.880053
+    5    5    4.786468    1.000000
+Sigma values at step:    90
+    1   83    0.000531
+    2   29    0.302287
+    3   77    0.577235
+    4   47    0.119947
+
+ NSTEP =       91   TIME(PS) =      20.045  TEMP(K) =   313.92  PRESS =     0.0
+ Etot   =      -312.8618  EKtot   =        79.5364  EPtot      =      -392.3982
+ BOND   =        36.6475  ANGLE   =        14.2832  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.2935
+ EELEC  =      -210.4535  EHBOND  =         0.0000  RESTRAINT  =         0.3578
+ PM6ESCF=      -277.5267
+ EAMBER (non-restraint)  =      -392.7560
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.411
+QMMM:          2        16           2.603
+QMMM:          3        14           2.608
+QMMM:          4        15           2.759
+QMMM:          5        21           3.022
+QMMM:          6        29           3.642
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.642488
+group id, outermost atom id, outermost distance:
+    1    29   13.631662    3.692108
+    2    77   16.151473    4.018890
+    3    47   19.382010    4.402500
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    91
+    1   83    3.642488    0.000000
+    2   29    3.692108    0.000515
+    3   77    4.018890    0.307100
+    4   47    4.402500    0.881532
+    5    5    4.788846    1.000000
+Sigma values at step:    91
+    1   83    0.000515
+    2   29    0.306585
+    3   77    0.574432
+    4   47    0.118468
+
+ NSTEP =       92   TIME(PS) =      20.046  TEMP(K) =   315.61  PRESS =     0.0
+ Etot   =      -310.8484  EKtot   =        79.9653  EPtot      =      -390.8137
+ BOND   =        39.6796  ANGLE   =        13.7375  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.4071
+ EELEC  =      -209.8569  EHBOND  =         0.0000  RESTRAINT  =         0.3711
+ PM6ESCF=      -279.1522
+ EAMBER (non-restraint)  =      -391.1848
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.415
+QMMM:          2        16           2.603
+QMMM:          3        14           2.610
+QMMM:          4        15           2.762
+QMMM:          5        21           3.028
+QMMM:          6        29           3.647
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.646525
+group id, outermost atom id, outermost distance:
+    1    29   13.627415    3.691533
+    2    77   16.177818    4.022166
+    3    47   19.396240    4.404116
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    92
+    1   83    3.646525    0.000000
+    2   29    3.691533    0.000467
+    3   77    4.022166    0.312081
+    4   47    4.404116    0.883303
+    5    5    4.791165    1.000000
+Sigma values at step:    92
+    1   83    0.000467
+    2   29    0.311614
+    3   77    0.571222
+    4   47    0.116697
+
+ NSTEP =       93   TIME(PS) =      20.046  TEMP(K) =   321.30  PRESS =     0.0
+ Etot   =      -309.0200  EKtot   =        81.4062  EPtot      =      -390.4262
+ BOND   =        41.0500  ANGLE   =        13.1489  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.5144
+ EELEC  =      -208.9503  EHBOND  =         0.0000  RESTRAINT  =         0.3828
+ PM6ESCF=      -280.5720
+ EAMBER (non-restraint)  =      -390.8090
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.420
+QMMM:          2        16           2.602
+QMMM:          3        14           2.611
+QMMM:          4        15           2.765
+QMMM:          5        21           3.034
+QMMM:          6        29           3.650
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.650447
+group id, outermost atom id, outermost distance:
+    1    29   13.622832    3.690912
+    2    77   16.207549    4.025860
+    3    47   19.411893    4.405893
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    93
+    1   83    3.650447    0.000000
+    2   29    3.690912    0.000419
+    3   77    4.025860    0.317721
+    4   47    4.405893    0.885239
+    5    5    4.793238    1.000000
+Sigma values at step:    93
+    1   83    0.000419
+    2   29    0.317303
+    3   77    0.567517
+    4   47    0.114761
+
+ NSTEP =       94   TIME(PS) =      20.047  TEMP(K) =   328.64  PRESS =     0.0
+ Etot   =      -307.3316  EKtot   =        83.2669  EPtot      =      -390.5985
+ BOND   =        40.9697  ANGLE   =        12.5740  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.6413
+ EELEC  =      -207.7878  EHBOND  =         0.0000  RESTRAINT  =         0.3937
+ PM6ESCF=      -281.3895
+ EAMBER (non-restraint)  =      -390.9922
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.424
+QMMM:          2        16           2.602
+QMMM:          3        14           2.613
+QMMM:          4        15           2.768
+QMMM:          5        21           3.040
+QMMM:          6        29           3.654
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.654426
+group id, outermost atom id, outermost distance:
+    1    29   13.617149    3.690142
+    2    77   16.243219    4.030288
+    3    47   19.429572    4.407899
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    94
+    1   83    3.654426    0.000000
+    2   29    3.690142    0.000362
+    3   77    4.030288    0.324513
+    4   47    4.407899    0.887408
+    5    5    4.795845    1.000000
+Sigma values at step:    94
+    1   83    0.000362
+    2   29    0.324151
+    3   77    0.562895
+    4   47    0.112592
+
+ NSTEP =       95   TIME(PS) =      20.047  TEMP(K) =   330.36  PRESS =     0.0
+ Etot   =      -307.2891  EKtot   =        83.7028  EPtot      =      -390.9919
+ BOND   =        39.6680  ANGLE   =        12.0540  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.7533
+ EELEC  =      -206.4266  EHBOND  =         0.0000  RESTRAINT  =         0.4025
+ PM6ESCF=      -281.4431
+ EAMBER (non-restraint)  =      -391.3944
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.428
+QMMM:          2        16           2.601
+QMMM:          3        14           2.615
+QMMM:          4        15           2.770
+QMMM:          5        21           3.046
+QMMM:          6        29           3.658
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.658287
+group id, outermost atom id, outermost distance:
+    1    29   13.611828    3.689421
+    2    77   16.281535    4.035038
+    3    47   19.448713    4.410070
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    95
+    1   83    3.658287    0.000000
+    2   29    3.689421    0.000312
+    3   77    4.035038    0.331837
+    4   47    4.410070    0.889737
+    5    5    4.798805    1.000000
+Sigma values at step:    95
+    1   83    0.000312
+    2   29    0.331524
+    3   77    0.557901
+    4   47    0.110263
+
+ NSTEP =       96   TIME(PS) =      20.048  TEMP(K) =   327.04  PRESS =     0.0
+ Etot   =      -308.5084  EKtot   =        82.8620  EPtot      =      -391.3705
+ BOND   =        37.3619  ANGLE   =        11.6076  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.8621
+ EELEC  =      -204.8813  EHBOND  =         0.0000  RESTRAINT  =         0.4091
+ PM6ESCF=      -280.7299
+ EAMBER (non-restraint)  =      -391.7796
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.432
+QMMM:          2        16           2.601
+QMMM:          3        14           2.617
+QMMM:          4        15           2.773
+QMMM:          5        21           3.052
+QMMM:          6        29           3.662
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.662252
+group id, outermost atom id, outermost distance:
+    1    29   13.604501    3.688428
+    2    77   16.318796    4.039653
+    3    47   19.473572    4.412887
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    96
+    1   83    3.662252    0.000000
+    2   29    3.688428    0.000250
+    3   77    4.039653    0.338986
+    4   47    4.412887    0.892731
+    5    5    4.802148    1.000000
+Sigma values at step:    96
+    1   83    0.000250
+    2   29    0.338736
+    3   77    0.553745
+    4   47    0.107269
+
+ NSTEP =       97   TIME(PS) =      20.048  TEMP(K) =   324.43  PRESS =     0.0
+ Etot   =      -309.7490  EKtot   =        82.1990  EPtot      =      -391.9479
+ BOND   =        34.2278  ANGLE   =        11.2272  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.9690
+ EELEC  =      -203.4303  EHBOND  =         0.0000  RESTRAINT  =         0.4125
+ PM6ESCF=      -279.3541
+ EAMBER (non-restraint)  =      -392.3604
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.437
+QMMM:          2        16           2.600
+QMMM:          3        14           2.618
+QMMM:          4        15           2.775
+QMMM:          5        21           3.058
+QMMM:          6        29           3.666
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.666266
+group id, outermost atom id, outermost distance:
+    1    29   13.596410    3.687331
+    2    77   16.357758    4.044473
+    3    47   19.501317    4.416029
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    97
+    1   83    3.666266    0.000000
+    2   29    3.687331    0.000189
+    3   77    4.044473    0.346488
+    4   47    4.416029    0.896031
+    5    5    4.805735    1.000000
+Sigma values at step:    97
+    1   83    0.000189
+    2   29    0.346298
+    3   77    0.549543
+    4   47    0.103969
+
+ NSTEP =       98   TIME(PS) =      20.049  TEMP(K) =   318.41  PRESS =     0.0
+ Etot   =      -312.0563  EKtot   =        80.6757  EPtot      =      -392.7320
+ BOND   =        30.6009  ANGLE   =        10.8934  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.0698
+ EELEC  =      -202.0722  EHBOND  =         0.0000  RESTRAINT  =         0.4128
+ PM6ESCF=      -277.6366
+ EAMBER (non-restraint)  =      -393.1448
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.441
+QMMM:          2        16           2.599
+QMMM:          3        14           2.620
+QMMM:          4        15           2.778
+QMMM:          5        21           3.063
+QMMM:          6        29           3.670
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.670174
+group id, outermost atom id, outermost distance:
+    1    29   13.588174    3.686214
+    2    77   16.397600    4.049395
+    3    47   19.532916    4.419606
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    98
+    1   83    3.670174    0.000000
+    2   29    3.686214    0.000136
+    3   77    4.049395    0.354185
+    4   47    4.419606    0.899735
+    5    5    4.809680    1.000000
+Sigma values at step:    98
+    1   83    0.000136
+    2   29    0.354049
+    3   77    0.545550
+    4   47    0.100265
+
+ NSTEP =       99   TIME(PS) =      20.049  TEMP(K) =   310.55  PRESS =     0.0
+ Etot   =      -314.6887  EKtot   =        78.6825  EPtot      =      -393.3712
+ BOND   =        27.3634  ANGLE   =        10.5807  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.1286
+ EELEC  =      -200.9302  EHBOND  =         0.0000  RESTRAINT  =         0.4106
+ PM6ESCF=      -275.9244
+ EAMBER (non-restraint)  =      -393.7818
+ ------------------------------------------------------------------------------
+
+QMMM: Updating nearest solvent list.
+QMMM: New solvent residue list is:
+QMMM: Nearest ID    Res ID     Distance(A)
+QMMM:          1        24           2.446
+QMMM:          2        16           2.599
+QMMM:          3        14           2.622
+QMMM:          4        15           2.781
+QMMM:          5        21           3.069
+QMMM:          6        29           3.674
+QMMM:
+I am the master of group   0
+Outermost atom_id  =     83
+Outermost distance =     3.674206
+group id, outermost atom id, outermost distance:
+    1    29   13.579482    3.685035
+    2    77   16.438637    4.054459
+    3    47   19.568574    4.423638
+RA and RT :      3.680     4.600
+T-region distances, Lambda values at step:    99
+    1   83    3.674206    0.000000
+    2   29    3.685035    0.000090
+    3   77    4.054459    0.362138
+    4   47    4.423638    0.903845
+    5    5    4.813777    1.000000
+Sigma values at step:    99
+    1   83    0.000090
+    2   29    0.362049
+    3   77    0.541707
+    4   47    0.096155
+
+ NSTEP =      100   TIME(PS) =      20.050  TEMP(K) =   306.89  PRESS =     0.0
+ Etot   =      -316.3646  EKtot   =        77.7546  EPtot      =      -394.1192
+ BOND   =        24.6853  ANGLE   =        10.2939  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        45.1735
+ EELEC  =      -200.1838  EHBOND  =         0.0000  RESTRAINT  =         0.4066
+ PM6ESCF=      -274.4947
+ EAMBER (non-restraint)  =      -394.5258
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R     100 S T E P S
+
+
+ NSTEP =      100   TIME(PS) =      20.050  TEMP(K) =   305.00  PRESS =     0.0
+ Etot   =      -329.4158  EKtot   =        77.2779  EPtot      =      -406.6937
+ BOND   =        23.6443  ANGLE   =        12.6376  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =        44.0644
+ EELEC  =      -211.6177  EHBOND  =         0.0000  RESTRAINT  =         0.2405
+ PM6ESCF=      -275.6628
+ EAMBER (non-restraint)  =      -406.9343
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =      100   TIME(PS) =      20.050  TEMP(K) =    18.23  PRESS =     0.0
+ Etot   =         8.1597  EKtot   =         4.6189  EPtot      =         8.4576
+ BOND   =         6.4593  ANGLE   =         2.8497  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         1.0202
+ EELEC  =         6.0616  EHBOND  =         0.0000  RESTRAINT  =         0.0701
+ PM6ESCF=         3.6027
+ EAMBER (non-restraint)  =         8.3875
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|                Build the list             0.00 (90.59% of List )
+|                Other                      0.00 ( 9.41% of List )
+|             List time                  0.00 ( 1.62% of Nonbo)
+|                   Short_ene time             0.07 (99.08% of Direc)
+|                   Other                      0.00 ( 0.92% of Direc)
+|                Direct Ewald time          0.07 (96.19% of Ewald)
+|                Force Adjust               0.00 ( 0.25% of Ewald)
+|                Virial junk                0.00 ( 0.23% of Ewald)
+|                Start synchronizatio       0.00 ( 0.09% of Ewald)
+|                Other                      0.00 ( 3.24% of Ewald)
+|             Ewald time                 0.07 (98.17% of Nonbo)
+|             IPS excludes               0.00 ( 0.07% of Nonbo)
+|             Other                      0.00 ( 0.15% of Nonbo)
+|          Nonbond force              0.08 ( 3.06% of Force)
+|             QMMM setup                 0.00 ( 0.08% of QMMM )
+|             QMMM Var Solv Calc         0.01 ( 0.29% of QMMM )
+|             QMMM list build            0.00 ( 0.04% of QMMM )
+|             QMMM RIJ Eqns Calc         0.02 ( 0.71% of QMMM )
+|                   QMMM hcore QM-QM           0.07 (86.95% of QMMM )
+|                   QMMM hcore QM-MM           0.01 (13.01% of QMMM )
+|                   Other                      0.00 ( 0.04% of QMMM )
+|                QMMM hcore calc            0.09 ( 3.92% of QMMM )
+|                   QMMM fock build            0.98 (46.69% of QMMM )
+|                   QMMM fock dist             0.00 ( 0.19% of QMMM )
+|                   QMMM elec-energy cal       0.01 ( 0.59% of QMMM )
+|                   QMMM full matrix dia       0.89 (42.68% of QMMM )
+|                   QMMM pseudo matrix d       0.13 ( 6.25% of QMMM )
+|                   QMMM density build         0.07 ( 3.57% of QMMM )
+|                   QMMM density dist          0.00 ( 0.03% of QMMM )
+|                QMMM scf                   2.10 (96.08% of QMMM )
+|             QMMM energy                2.18 (91.91% of QMMM )
+|             QMMM QM-QM force           0.13 ( 5.55% of QMMM )
+|             QMMM QM-MM force           0.03 ( 1.42% of QMMM )
+|             QMMM Collate Forces        0.00 ( 0.02% of QMMM )
+|          QMMM                       2.37 (96.89% of Force)
+|          Bond/Angle/Dihedral        0.00 ( 0.05% of Force)
+|       Force time                 2.45 (29.09% of Runmd)
+|       Verlet update time         0.05 ( 0.64% of Runmd)
+|       Other                      5.92 (70.27% of Runmd)
+|    Runmd Time                 8.42 (100.0% of Total)
+|    Other                      0.00 ( 0.05% of Total)
+| Total time                 8.43 (100.0% of ALL  )
+
+| Highest rstack allocated:        275
+| Highest istack allocated:         55
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       8.42 Per Step(ms) =      84.21
+|         ns/day =       0.51   seconds/ns =  168412.30
+| -----------------------------------------------------
+
+|           Job began  at 18:30:14.927  on 01/14/2014
+|           Setup done at 18:30:14.941  on 01/14/2014
+|           Run   done at 18:30:23.361  on 01/14/2014
+|     wallclock() was called   40429 times

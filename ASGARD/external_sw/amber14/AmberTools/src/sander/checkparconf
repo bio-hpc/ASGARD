@@ -1,0 +1,13 @@
+#!/bin/sh
+
+file = "../config.h"
+
+grep 'DMPI' $file > checkpar
+if [ -s checkpar ]; then
+	/bin/rm -f checkpar
+	exit 0
+else
+	/bin/rm -f checkpar
+	echo "Error: $file is not set up for parallel compilation"
+	exit 1
+fi

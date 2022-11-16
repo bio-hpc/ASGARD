@@ -1,0 +1,848 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| PMEMD implementation of SANDER, Release 14
+
+| Run on 01/20/2015 at 12:29:27
+
+|   Executable path: pmemd
+| Working directory: /home/swails/build_amber/amber/test/tip4p
+|          Hostname: Unknown
+  [-O]verwriting output
+
+File Assignments:
+|   MDIN: mdin2                                                                 
+|  MDOUT: mdout.mcbar_aniso.tip4p                                               
+| INPCRD: eq12.x                                                                
+|   PARM: prmtop                                                                
+| RESTRT: restrt                                                                
+|   REFC: refc                                                                  
+|  MDVEL: mdvel                                                                 
+|   MDEN: mden                                                                  
+|  MDCRD: mdcrd                                                                 
+| MDINFO: mdinfo                                                                
+|  MDFRC: mdfrc                                                                 
+
+
+ Here is the input file:
+
+ equilibration, anisotropic scaling                                            
+ &cntrl                                                                        
+  irest  = 1, ntx    = 7,                                                      
+  ntb    = 2, ntp    = 2, taup=0.5,                                            
+  cut    = 8.0,                                                                
+  ntf=2, ntc=2, tol=0.000001,                                                  
+  nstlim=50, ntpr=1,                                                           
+  ntt=1, temp0=300., tautp=0.5,                                                
+  dt=0.001,                                                                    
+  jfastw=1, watnam='TP4', barostat=2                                           
+  mcbarint=2,                                                                  
+ /                                                                             
+ &ewald                                                                        
+   skinnb=1.0, nfft1=18, nfft2=18, nfft3=18,                                   
+ /                                                                             
+
+
+ 
+ 
+| Conditional Compilation Defines Used:
+| PUBFFT
+| BINTRAJ
+| EMIL
+
+| Largest sphere to fit in unit cell has radius =     9.214
+
+| New format PARM file being parsed.
+| Version =    1.000 Date = 12/27/01 Time = 11:35:32
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+ getting new box info from bottom of inpcrd
+ NATOM  =     864 NTYPES =       2 NBONH =     648 MBONA  =     216
+ NTHETH =       0 MTHETA =       0 NPHIH =       0 MPHIA  =       0
+ NHPARM =       0 NPARM  =       0 NNB   =    1512 NRES   =     216
+ NBONA  =     216 NTHETA =       0 NPHIA =       0 NUMBND =       3
+ NUMANG =       0 NPTRA  =       0 NATYP =       3 NPHB   =       1
+ IFBOX  =       1 NMXRS  =       4 IFCAP =       0 NEXTRA =     216
+ NCOPY  =       0
+
+| Coordinate Index Table dimensions:     4    4    4
+| Direct force subcell size =     4.6852    4.6068    4.7159
+
+     BOX TYPE: RECTILINEAR
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       7, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       2, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   8.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        50, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+Berendsen (weak-coupling) temperature regulation:
+     temp0   = 300.00000, tempi   =   0.00000, tautp   =   0.50000
+
+Pressure regulation:
+     ntp     =       2
+     pres0   =   1.00000, comp    =  44.60000, taup    =   0.50000
+     Monte-Carlo Barostat:
+     mcbarint  =       2
+
+SHAKE:
+     ntc     =       2, jfastw  =       1
+     tol     =   0.00000
+
+| Intermolecular bonds treatment:
+|     no_intermolecular_bonds =       1
+
+| Energy averages sample interval:
+|     ene_avg_sampling =       1
+
+Extra-points options:
+     frameon =       1, chngmask=       1
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       1
+     Box X =   18.741   Box Y =   18.427   Box Z =   18.864
+     Alpha =   90.000   Beta  =   90.000   Gamma =   90.000
+     NFFT1 =   18       NFFT2 =   18       NFFT3 =   18
+     Cutoff=    8.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.34864
+     Interpolation order =    4
+|      EXTRA_PTS, trim_bonds: num bonds BEFORE trim =   648     0
+|      EXTRA_PTS, trim_bonds: num bonds AFTER  trim =   648     0
+|      EXTRA_PTS, trim_bonds: num bonds BEFORE trim =   216     0
+|      EXTRA_PTS, trim_bonds: num bonds AFTER  trim =     0     0
+|      EXTRA_PTS, trim_theta: num angle BEFORE trim =     0     0
+|      EXTRA_PTS, trim_theta: num angle AFTER  trim =     0     0
+|      EXTRA_PTS, trim_theta: num angle BEFORE trim =     0     0
+|      EXTRA_PTS, trim_theta: num angle AFTER  trim =     0     0
+|      EXTRA_PTS, trim_phi:  num diheds BEFORE trim =     0     0
+|      EXTRA_PTS, trim_phi:  num diheds AFTER  trim =     0     0
+|      EXTRA_PTS, trim_phi:  num diheds BEFORE trim =     0     0
+|      EXTRA_PTS, trim_phi:  num diheds AFTER  trim =     0     0
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =    32.200 ps
+
+ 
+ Number of triangulated 3-point waters found:      216
+
+     Sum of charges from parm topology file =   0.00000000
+     Forcing neutrality...
+
+| Dynamic Memory, Types Used:
+| Reals              156673
+| Integers            40831
+
+| Nonbonded Pairs Initial Allocation:      144309
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.2738E-14   at   2.422500
+| CHECK d/dx switch(x): max rel err =   0.8332E-11   at   2.782960
+ ---------------------------------------------------
+|---------------------------------------------------
+| APPROXIMATING direct energy using CUBIC SPLINE INTERPOLATION
+|  with   50.0 points per unit in tabled values
+| Relative Error Limit not exceeded for r .gt.   2.47
+| APPROXIMATING direct force using CUBIC SPLINE INTERPOLATION
+|  with   50.0 points per unit in tabled values
+| Relative Error Limit not exceeded for r .gt.   2.89
+|---------------------------------------------------
+
+ NSTEP =        1   TIME(PS) =      32.201  TEMP(K) =   293.25  PRESS =     0.0
+ Etot   =     -1756.2018  EKtot   =       376.7454  EPtot      =     -2132.9472
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       378.4039
+ EELEC  =     -2511.3511  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6514.3661
+                                                    Density    =         0.9920
+ Ewald error estimate:   0.8897E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =      32.202  TEMP(K) =   292.67  PRESS =     0.0
+ Etot   =     -1756.0808  EKtot   =       375.9927  EPtot      =     -2132.0736
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       376.9430
+ EELEC  =     -2509.0165  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6519.2228
+                                                    Density    =         0.9912
+ Ewald error estimate:   0.9467E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =      32.203  TEMP(K) =   291.82  PRESS =     0.0
+ Etot   =     -1756.0691  EKtot   =       374.9068  EPtot      =     -2130.9759
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       377.7007
+ EELEC  =     -2508.6766  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6519.2228
+                                                    Density    =         0.9912
+ Ewald error estimate:   0.9890E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) =      32.204  TEMP(K) =   290.78  PRESS =     0.0
+ Etot   =     -1756.0000  EKtot   =       373.5643  EPtot      =     -2129.5644
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       378.0161
+ EELEC  =     -2507.5804  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6520.1529
+                                                    Density    =         0.9911
+ Ewald error estimate:   0.8606E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =      32.205  TEMP(K) =   289.61  PRESS =     0.0
+ Etot   =     -1755.9364  EKtot   =       372.0660  EPtot      =     -2128.0024
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       378.7407
+ EELEC  =     -2506.7430  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6520.1529
+                                                    Density    =         0.9911
+ Ewald error estimate:   0.6659E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =      32.206  TEMP(K) =   288.41  PRESS =     0.0
+ Etot   =     -1755.3022  EKtot   =       370.5216  EPtot      =     -2125.8238
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       373.7285
+ EELEC  =     -2499.5522  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6533.3383
+                                                    Density    =         0.9891
+ Ewald error estimate:   0.5893E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) =      32.207  TEMP(K) =   287.24  PRESS =     0.0
+ Etot   =     -1755.2404  EKtot   =       369.0228  EPtot      =     -2124.2631
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       374.4189
+ EELEC  =     -2498.6821  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6533.3383
+                                                    Density    =         0.9891
+ Ewald error estimate:   0.5288E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =      32.208  TEMP(K) =   286.19  PRESS =     0.0
+ Etot   =     -1755.1772  EKtot   =       367.6692  EPtot      =     -2122.8465
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       366.5864
+ EELEC  =     -2489.4328  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6550.3992
+                                                    Density    =         0.9865
+ Ewald error estimate:   0.5263E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =      32.209  TEMP(K) =   285.28  PRESS =     0.0
+ Etot   =     -1755.0485  EKtot   =       366.5031  EPtot      =     -2121.5516
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       367.2018
+ EELEC  =     -2488.7534  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6550.3992
+                                                    Density    =         0.9865
+ Ewald error estimate:   0.1974E-04
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =      32.210  TEMP(K) =   284.55  PRESS =     0.0
+ Etot   =     -1755.5937  EKtot   =       365.5682  EPtot      =     -2121.1619
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       373.2538
+ EELEC  =     -2494.4157  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6537.5816
+                                                    Density    =         0.9884
+ Ewald error estimate:   0.1459E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       11   TIME(PS) =      32.211  TEMP(K) =   284.05  PRESS =     0.0
+ Etot   =     -1755.6083  EKtot   =       364.9257  EPtot      =     -2120.5340
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       373.8253
+ EELEC  =     -2494.3592  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6537.5816
+                                                    Density    =         0.9884
+ Ewald error estimate:   0.2863E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       12   TIME(PS) =      32.212  TEMP(K) =   283.81  PRESS =     0.0
+ Etot   =     -1755.5810  EKtot   =       364.6179  EPtot      =     -2120.1988
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       373.8481
+ EELEC  =     -2494.0469  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6538.6555
+                                                    Density    =         0.9883
+ Ewald error estimate:   0.3981E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       13   TIME(PS) =      32.213  TEMP(K) =   283.86  PRESS =     0.0
+ Etot   =     -1755.5412  EKtot   =       364.6747  EPtot      =     -2120.2159
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       374.3495
+ EELEC  =     -2494.5654  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6538.6555
+                                                    Density    =         0.9883
+ Ewald error estimate:   0.3797E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       14   TIME(PS) =      32.214  TEMP(K) =   284.20  PRESS =     0.0
+ Etot   =     -1755.5007  EKtot   =       365.1134  EPtot      =     -2120.6141
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       374.8308
+ EELEC  =     -2495.4450  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6538.6555
+                                                    Density    =         0.9883
+ Ewald error estimate:   0.3955E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       15   TIME(PS) =      32.215  TEMP(K) =   284.83  PRESS =     0.0
+ Etot   =     -1755.4740  EKtot   =       365.9326  EPtot      =     -2121.4066
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       375.2933
+ EELEC  =     -2496.6999  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6538.6555
+                                                    Density    =         0.9883
+ Ewald error estimate:   0.5355E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       16   TIME(PS) =      32.216  TEMP(K) =   285.75  PRESS =     0.0
+ Etot   =     -1755.3568  EKtot   =       367.1039  EPtot      =     -2122.4607
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       367.7161
+ EELEC  =     -2490.1768  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6554.8354
+                                                    Density    =         0.9858
+ Ewald error estimate:   0.6850E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       17   TIME(PS) =      32.217  TEMP(K) =   286.88  PRESS =     0.0
+ Etot   =     -1755.3040  EKtot   =       368.5588  EPtot      =     -2123.8628
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       368.1375
+ EELEC  =     -2492.0003  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6554.8354
+                                                    Density    =         0.9858
+ Ewald error estimate:   0.5860E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       18   TIME(PS) =      32.218  TEMP(K) =   288.19  PRESS =     0.0
+ Etot   =     -1755.8912  EKtot   =       370.2474  EPtot      =     -2126.1386
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       375.3129
+ EELEC  =     -2501.4515  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6539.2789
+                                                    Density    =         0.9882
+ Ewald error estimate:   0.6661E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       19   TIME(PS) =      32.219  TEMP(K) =   289.66  PRESS =     0.0
+ Etot   =     -1755.8806  EKtot   =       372.1327  EPtot      =     -2128.0133
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       375.7402
+ EELEC  =     -2503.7535  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6539.2789
+                                                    Density    =         0.9882
+ Ewald error estimate:   0.8427E-03
+ ------------------------------------------------------------------------------
+
+| MC Barostat: Increasing size of volume moves
+
+ NSTEP =       20   TIME(PS) =      32.220  TEMP(K) =   291.23  PRESS =     0.0
+ Etot   =     -1755.5897  EKtot   =       374.1535  EPtot      =     -2129.7432
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       367.9483
+ EELEC  =     -2497.6915  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6556.0135
+                                                    Density    =         0.9857
+ Ewald error estimate:   0.7808E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       21   TIME(PS) =      32.221  TEMP(K) =   292.85  PRESS =     0.0
+ Etot   =     -1755.5715  EKtot   =       376.2363  EPtot      =     -2131.8078
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       368.3625
+ EELEC  =     -2500.1703  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6556.0135
+                                                    Density    =         0.9857
+ Ewald error estimate:   0.7455E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       22   TIME(PS) =      32.222  TEMP(K) =   294.49  PRESS =     0.0
+ Etot   =     -1755.3475  EKtot   =       378.3408  EPtot      =     -2133.6884
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       364.8418
+ EELEC  =     -2498.5302  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6564.2256
+                                                    Density    =         0.9844
+ Ewald error estimate:   0.6836E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       23   TIME(PS) =      32.223  TEMP(K) =   296.10  PRESS =     0.0
+ Etot   =     -1755.3296  EKtot   =       380.4112  EPtot      =     -2135.7407
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       365.3019
+ EELEC  =     -2501.0426  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6564.2256
+                                                    Density    =         0.9844
+ Ewald error estimate:   0.6556E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       24   TIME(PS) =      32.224  TEMP(K) =   297.66  PRESS =     0.0
+ Etot   =     -1755.5641  EKtot   =       382.4080  EPtot      =     -2137.9721
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       370.1098
+ EELEC  =     -2508.0819  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6554.6022
+                                                    Density    =         0.9859
+ Ewald error estimate:   0.9197E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       25   TIME(PS) =      32.225  TEMP(K) =   299.13  PRESS =     0.0
+ Etot   =     -1755.5806  EKtot   =       384.2973  EPtot      =     -2139.8779
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       370.6157
+ EELEC  =     -2510.4936  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6554.6022
+                                                    Density    =         0.9859
+ Ewald error estimate:   0.1085E-02
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       26   TIME(PS) =      32.226  TEMP(K) =   300.48  PRESS =     0.0
+ Etot   =     -1755.8610  EKtot   =       386.0278  EPtot      =     -2141.8887
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       375.6102
+ EELEC  =     -2517.4990  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6544.5645
+                                                    Density    =         0.9874
+ Ewald error estimate:   0.9325E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       27   TIME(PS) =      32.227  TEMP(K) =   301.68  PRESS =     0.0
+ Etot   =     -1755.8441  EKtot   =       387.5741  EPtot      =     -2143.4182
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       376.1415
+ EELEC  =     -2519.5597  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6544.5645
+                                                    Density    =         0.9874
+ Ewald error estimate:   0.7665E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       28   TIME(PS) =      32.228  TEMP(K) =   302.72  PRESS =     0.0
+ Etot   =     -1755.1145  EKtot   =       388.9088  EPtot      =     -2144.0233
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       366.6649
+ EELEC  =     -2510.6882  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6565.4204
+                                                    Density    =         0.9843
+ Ewald error estimate:   0.6369E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       29   TIME(PS) =      32.229  TEMP(K) =   303.56  PRESS =     0.0
+ Etot   =     -1755.1315  EKtot   =       389.9944  EPtot      =     -2145.1259
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       367.1912
+ EELEC  =     -2512.3171  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6565.4204
+                                                    Density    =         0.9843
+ Ewald error estimate:   0.6370E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       30   TIME(PS) =      32.230  TEMP(K) =   304.22  PRESS =     0.0
+ Etot   =     -1755.1549  EKtot   =       390.8398  EPtot      =     -2145.9947
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       367.7084
+ EELEC  =     -2513.7031  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6565.4204
+                                                    Density    =         0.9843
+ Ewald error estimate:   0.6332E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       31   TIME(PS) =      32.231  TEMP(K) =   304.70  PRESS =     0.0
+ Etot   =     -1755.2201  EKtot   =       391.4492  EPtot      =     -2146.6694
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       368.2248
+ EELEC  =     -2514.8942  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6565.4204
+                                                    Density    =         0.9843
+ Ewald error estimate:   0.9984E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       32   TIME(PS) =      32.232  TEMP(K) =   304.98  PRESS =     0.0
+ Etot   =     -1755.5013  EKtot   =       391.8144  EPtot      =     -2147.3157
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       374.6684
+ EELEC  =     -2521.9842  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6552.1626
+                                                    Density    =         0.9862
+ Ewald error estimate:   0.1038E-02
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       33   TIME(PS) =      32.233  TEMP(K) =   305.06  PRESS =     0.0
+ Etot   =     -1755.5259  EKtot   =       391.9172  EPtot      =     -2147.4431
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       375.0999
+ EELEC  =     -2522.5430  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6552.1626
+                                                    Density    =         0.9862
+ Ewald error estimate:   0.1104E-02
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       34   TIME(PS) =      32.234  TEMP(K) =   304.89  PRESS =     0.0
+ Etot   =     -1754.9404  EKtot   =       391.7026  EPtot      =     -2146.6430
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       368.8312
+ EELEC  =     -2515.4743  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6566.1199
+                                                    Density    =         0.9841
+ Ewald error estimate:   0.1068E-02
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       35   TIME(PS) =      32.235  TEMP(K) =   304.41  PRESS =     0.0
+ Etot   =     -1754.9156  EKtot   =       391.0774  EPtot      =     -2145.9930
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       369.1330
+ EELEC  =     -2515.1260  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6566.1199
+                                                    Density    =         0.9841
+ Ewald error estimate:   0.7756E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       36   TIME(PS) =      32.236  TEMP(K) =   303.54  PRESS =     0.0
+ Etot   =     -1755.1225  EKtot   =       389.9639  EPtot      =     -2145.0864
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       374.5298
+ EELEC  =     -2519.6163  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6554.7648
+                                                    Density    =         0.9859
+ Ewald error estimate:   0.6544E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       37   TIME(PS) =      32.237  TEMP(K) =   302.27  PRESS =     0.0
+ Etot   =     -1755.1761  EKtot   =       388.3295  EPtot      =     -2143.5056
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       374.7014
+ EELEC  =     -2518.2070  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6554.7648
+                                                    Density    =         0.9859
+ Ewald error estimate:   0.9233E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       38   TIME(PS) =      32.238  TEMP(K) =   300.58  PRESS =     0.0
+ Etot   =     -1755.3413  EKtot   =       386.1605  EPtot      =     -2141.5018
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       380.4871
+ EELEC  =     -2521.9889  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6542.2701
+                                                    Density    =         0.9877
+ Ewald error estimate:   0.1031E-02
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       39   TIME(PS) =      32.239  TEMP(K) =   298.52  PRESS =     0.0
+ Etot   =     -1755.3117  EKtot   =       383.5195  EPtot      =     -2138.8312
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       380.5374
+ EELEC  =     -2519.3685  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6542.2701
+                                                    Density    =         0.9877
+ Ewald error estimate:   0.9244E-03
+ ------------------------------------------------------------------------------
+
+| MC Barostat: Increasing size of volume moves
+
+ NSTEP =       40   TIME(PS) =      32.240  TEMP(K) =   296.19  PRESS =     0.0
+ Etot   =     -1755.2703  EKtot   =       380.5256  EPtot      =     -2135.7959
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       380.5080
+ EELEC  =     -2516.3039  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6542.2701
+                                                    Density    =         0.9877
+ Ewald error estimate:   0.6307E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       41   TIME(PS) =      32.241  TEMP(K) =   293.72  PRESS =     0.0
+ Etot   =     -1755.2206  EKtot   =       377.3423  EPtot      =     -2132.5629
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       380.4731
+ EELEC  =     -2513.0360  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6542.2701
+                                                    Density    =         0.9877
+ Ewald error estimate:   0.5783E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       42   TIME(PS) =      32.242  TEMP(K) =   291.24  PRESS =     0.0
+ Etot   =     -1755.6286  EKtot   =       374.1609  EPtot      =     -2129.7895
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       386.5792
+ EELEC  =     -2516.3686  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6529.4773
+                                                    Density    =         0.9897
+ Ewald error estimate:   0.5514E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       43   TIME(PS) =      32.243  TEMP(K) =   288.94  PRESS =     0.0
+ Etot   =     -1755.5783  EKtot   =       371.2118  EPtot      =     -2126.7901
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       386.4685
+ EELEC  =     -2513.2586  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6529.4773
+                                                    Density    =         0.9897
+ Ewald error estimate:   0.4482E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       44   TIME(PS) =      32.244  TEMP(K) =   287.00  PRESS =     0.0
+ Etot   =     -1755.6365  EKtot   =       368.7097  EPtot      =     -2124.3462
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       389.3781
+ EELEC  =     -2513.7243  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6522.9074
+                                                    Density    =         0.9907
+ Ewald error estimate:   0.4251E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       45   TIME(PS) =      32.245  TEMP(K) =   285.55  PRESS =     0.0
+ Etot   =     -1755.5747  EKtot   =       366.8455  EPtot      =     -2122.4203
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       389.2347
+ EELEC  =     -2511.6550  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6522.9074
+                                                    Density    =         0.9907
+ Ewald error estimate:   0.3575E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       46   TIME(PS) =      32.246  TEMP(K) =   284.70  PRESS =     0.0
+ Etot   =     -1755.5485  EKtot   =       365.7590  EPtot      =     -2121.3075
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       389.0560
+ EELEC  =     -2510.3635  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6522.9074
+                                                    Density    =         0.9907
+ Ewald error estimate:   0.4094E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       47   TIME(PS) =      32.247  TEMP(K) =   284.53  PRESS =     0.0
+ Etot   =     -1755.5048  EKtot   =       365.5397  EPtot      =     -2121.0445
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       388.8760
+ EELEC  =     -2509.9205  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6522.9074
+                                                    Density    =         0.9907
+ Ewald error estimate:   0.4506E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       48   TIME(PS) =      32.248  TEMP(K) =   285.05  PRESS =     0.0
+ Etot   =     -1755.9003  EKtot   =       366.2133  EPtot      =     -2122.1137
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       400.9091
+ EELEC  =     -2523.0228  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6498.5663
+                                                    Density    =         0.9944
+ Ewald error estimate:   0.4803E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       49   TIME(PS) =      32.249  TEMP(K) =   286.27  PRESS =     0.0
+ Etot   =     -1755.8462  EKtot   =       367.7794  EPtot      =     -2123.6256
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       400.6703
+ EELEC  =     -2524.2959  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6498.5663
+                                                    Density    =         0.9944
+ Ewald error estimate:   0.3804E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       50   TIME(PS) =      32.250  TEMP(K) =   288.10  PRESS =     0.0
+ Etot   =     -1755.8924  EKtot   =       370.1253  EPtot      =     -2126.0177
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       398.4287
+ EELEC  =     -2524.4464  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6502.7078
+                                                    Density    =         0.9937
+ Ewald error estimate:   0.6526E-03
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      50 S T E P S
+
+
+ NSTEP =       50   TIME(PS) =      32.250  TEMP(K) =   292.91  PRESS =     0.0
+ Etot   =     -1755.5107  EKtot   =       376.3041  EPtot      =     -2131.8148
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       376.4268
+ EELEC  =     -2508.2415  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =      6540.8940
+                                                    Density    =         0.9879
+ Ewald error estimate:   0.6659E-03
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       50   TIME(PS) =      32.250  TEMP(K) =     7.32  PRESS =     0.0
+ Etot   =         0.3090  EKtot   =         9.4070  EPtot      =         9.2997
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         8.8183
+ EELEC  =        10.2753  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =        17.9468
+                                                    Density    =         0.0027
+ Ewald error estimate:   0.2492E-03
+ ------------------------------------------------------------------------------
+
+| MC Barostat:         25 volume changes attempted.
+| MC Barostat:         21 changes successful ( 84.00%)
+ ------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|  NonSetup CPU Time in Major Routines:
+|
+|     Routine           Sec        %
+|     ------------------------------
+|     Nonbond           0.44   97.78
+|     Bond              0.00    0.00
+|     Angle             0.00    0.00
+|     Dihedral          0.00    0.00
+|     Shake             0.00    0.00
+|     RunMD             0.01    2.22
+|     Other             0.00    0.00
+|     ------------------------------
+|     Total             0.45
+
+|  PME Nonbond Pairlist CPU Time:
+|
+|     Routine              Sec        %
+|     ---------------------------------
+|     Set Up Cit           0.00    0.00
+|     Build List           0.06   13.33
+|     ---------------------------------
+|     Total                0.06   13.33
+
+|  PME Direct Force CPU Time:
+|
+|     Routine              Sec        %
+|     ---------------------------------
+|     NonBonded Calc       0.31   68.89
+|     Exclude Masked       0.01    2.22
+|     Other                0.00    0.00
+|     ---------------------------------
+|     Total                0.32   71.11
+
+|  PME Reciprocal Force CPU Time:
+|
+|     Routine              Sec        %
+|     ---------------------------------
+|     1D bspline           0.00    0.00
+|     Grid Charges         0.01    2.22
+|     Scalar Sum           0.01    2.22
+|     Gradient Sum         0.01    2.22
+|     FFT                  0.03    6.67
+|     ---------------------------------
+|     Total                0.06   13.33
+
+|  Final Performance Info:
+|     -----------------------------------------------------
+|     Average timings for last      49 steps:
+|     Elapsed(s) =       0.43 Per Step(ms) =       8.71
+|         ns/day =       9.93   seconds/ns =    8705.04
+|
+|     Average timings for all steps:
+|     Elapsed(s) =       0.46 Per Step(ms) =       9.11
+|         ns/day =       9.49   seconds/ns =    9105.32
+|     -----------------------------------------------------
+
+|  Setup CPU time:            0.03 seconds
+|  NonSetup CPU time:         0.45 seconds
+|  Total CPU time:            0.48 seconds     0.00 hours
+
+|  Setup wall time:           1    seconds
+|  NonSetup wall time:        0    seconds
+|  Total wall time:           1    seconds     0.00 hours

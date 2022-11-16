@@ -1,0 +1,14 @@
+The MM/PBSA input files provided in this folder enable binding free energy calculations
+with recommened parameter settings for:
+
+1.) Generalized Born model of Hawkins, Cramer and Truhlar (HCT) with parameters 
+    by Tsui & Case 2000 -> IGB=1 : mm_pbsa_IGB1.in 
+2.) Generalized Born model I of Onufriev, Bashford and Case (OBCI) -> IGB=2 : mm_pbsa_IGB2.in
+3.) Generalized Born model II of Onufriev, Bashford and Case (OBCII) -> IGB=5 : mm_pbsa_IGB5.in
+4.) Poisson-Boltzmann calculation with PBSA program and Tan&Luo radii using the method of
+    Tan et al. for the evaluation of the nonpolar solvation free energy (Tan et al., J. Phys.
+    Chem. B, 2007, 111, 12263-12274): mm_pbsa_INP2.in
+5.) Poisson-Boltzmann calculation with PBSA program and Parse radii (Sitkoff et al.,
+    J. Phys. Chem. 1994, 98, 1978-1988) using the molsurf program for the calculation
+    of SASA and determination of the nonpolar solvation free energy according to
+    SURFTEN * SASA + SURFOFF: mm_pbsa_Parse.in

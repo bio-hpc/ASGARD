@@ -1,0 +1,20 @@
+#! /bin/bash
+
+ for x in `cat list`
+ do
+    for y in `cat case`
+    do
+       if [ $x != 'pbsa.nticcg' ] && [ $y == 'bc6' ] 
+       then
+          continue
+       fi
+
+       echo $x.$y
+       cd $x/$y
+       z=`ls | grep 'Run'`
+       ./$z
+       cd ..
+       cd ..
+    done
+ done
+   

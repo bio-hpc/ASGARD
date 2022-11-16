@@ -1,0 +1,26 @@
+#!/bin/csh -f
+echo " "
+echo "  Amber 5 RESP demo: bis-napthyl - a 2-stage fit on 2 conformations"
+echo " "
+echo "RESP stage 1:"
+#
+#  only input needed:  re_bis1.in re_bis2.in re_bis.dat
+#
+../../../bin/resp -O \
+		-i bis_1.in \
+		-o bis_1.out \
+		-p bis_1.pch \
+		-t bis_1.chg \
+		-s bis_1_calc.esp \
+		-e bis_esp.dat
+
+echo "RESP stage 2:"
+../../../bin/resp -O \
+		-i bis_2.in \
+		-o bis_2.out \
+		-e bis_esp.dat \
+		-p bis_2.pch \
+		-q bis_1.chg \
+		-s bis_2_calc.esp \
+		-t bis_2.chg
+

@@ -1,0 +1,39 @@
+#!/bin/csh -f
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/pbsa"
+                                                                                
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+    echo "This test not set up for parallel"
+    echo " cannot run in parallel with pbsa"
+    exit 0
+endif
+
+# Note, arcres is set to 0.25 angstrom to accelerate testing
+# and it's not a default setting.
+cat > mdin <<EOF
+ test of PB implicit solvent on 1tsr b-chain
+ &cntrl 
+   ntx=1, imin=1, ipb=1, inp=1
+ /   
+ &pb
+   npbverb=0, istrng=0, epsout=80.0, epsin=1.0, space=0.5,
+   accept=0.001, radiopt=0, dprob=1.4, arcres=0.25,
+   eneopt=2, bcopt=6,
+ /   
+EOF
+
+set output = mdout.tsrb.min
+
+$DO_PARALLEL $TESTsander -O -i mdin -p prmtop -c tsrb.rst  -o $output < /dev/null || goto error
+                                                                                
+../dacdif -r 1e-3 $output.save $output
+/bin/rm -f mdin restrt mdinfo mdcrd
+exit(0)
+                                                                                
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+

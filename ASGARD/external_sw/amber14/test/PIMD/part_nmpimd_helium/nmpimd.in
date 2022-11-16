@@ -1,0 +1,13 @@
+
+leonard jones fluid simulation: PBC
+
+&cntrl
+   ipimd = 2
+   ntx = 5, irest = 0
+   temp0 = 10.0, tempi= 10.0, temp0les = -1.0 !! use single bath for les and non-les regions
+   cut = 7.668
+   dt = 0.0002, nstlim = 50
+   ntt = 4, nchain = 4
+   ntpr = 5, ntwr = 5, ntwx = 5
+/
+

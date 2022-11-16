@@ -1,0 +1,159 @@
+#! /bin/sh
+# analyze_rst file.RST file.pdb
+#	read an AMBER-format RST file and a PDB file and analyze
+#	distances of protons involved in each rst.
+#	useful for evaluating ambiguous or non-stereoassigned rst
+# M. Foster TSRI 03-96
+nawk 'BEGIN{
+
+if ( ARGC < 2  ) { 
+	print ""
+	print "nawk script to compare an AMBER RST file w/ some PDB files."
+	print "Reports atom pair distances, mean and rms distances by file,"
+	print "R^6 averaged distances by restraint, and bound violations."
+	print "Useful for evaluating ambiguous or non-stereoassigned RST."
+	print ""
+	print "	Usage: analyze_rst file.RST file.pdb"
+	exit
+}
+
+aformat = "%3d %-5s %-5s"
+
+
+print ""
+print "Comparing RST file with PDB coordinates...."
+print ""
+rstfile = ARGV[1]
+print "AMBER restraint file:", rstfile
+nfiles = (ARGC - 2)
+print "Reading", nfiles, "pdbfiles..."
+
+# read in the coordinates
+for ( fnum = 1; fnum <= nfiles; fnum++) {
+  file = ARGV[ fnum + 1 ]	
+  print "\t pdbfile", fnum, file
+  while ( getline < file > 0 ) {
+    if ($1 ~ /ATOM|HETATM/) {
+	atm[$2]=sprintf(aformat,$5,$4,$3)
+	xyz[file,$2]=$6 FS $7 FS $8
+	continue
+	}
+  }
+}
+  while ( getline < rstfile > 0 ) {
+	if ( $1 != "&rst" ) { continue }
+	if ( $1 == "&rst" ) {
+		rst++
+		if ( /r2=/ ) {		# get lower bound
+			split($0,l,"r2=")
+			gsub(",", " ", l[2])
+			split(l[2],L)
+			lol = L[1]
+		}
+		if ( /r3=/ ) {		# get upper bound
+			split($0,u,"r3=")
+			gsub(",", " ", u[2])
+			split(u[2],U)
+			upl = U[1]
+		}
+
+		split($0,tmp,"iat=")
+		gsub("\,", " ", tmp[2])
+		split(tmp[2],a)
+		if ( a[1] == -1 ) {	# atom1 is a group
+			while ( !/igr1/ )  { getline < rstfile }
+			split($0,tmp,"igr1=")
+			gr1 = group( tmp[2] )
+			m = split(gr1,atom1)
+		} 
+		else { m = 1; atom1[1] = a[1] }
+
+		if ( a[2] == -1 ) {	# atom2 is a group
+			while ( !/igr2/ ) { getline < rstfile }
+			split($0,tmp,"igr2=")
+			gr2 = group( tmp[2] )
+			n = split(gr2,atom2)
+		}
+		else { n = 1; atom2[1] = a[2] }
+	}
+	print "Restraint", rst, ":", m "x" n, "lower:", lol, "upper:", upl
+	for ( i = 1; i <= m; i++ ) {		# loop for group1
+		for ( j = 1; j <= n; j++ ) {	# loop for group2
+		D = ""
+		  for (fnum = 1; fnum <= nfiles; fnum++ ) {	# pdb files
+			file = ARGV[ fnum + 1 ]
+			dist = xyzdist( xyz[file,atom1[i]],xyz[file,atom2[j]] )
+			D = D FS sprintf("%6.2f", dist )
+			d[file] = d[file] FS dist
+		  }
+		  print sprintf("%5d %5d%s",atom1[i], atom2[j], " # "),
+			atm[ atom1[i] ], atm[ atom2[j] ], D, 
+			"(" mean(D) "/" rmsd(D) ")"
+		}
+	} 
+	if ( (m * n) > 1 ) {
+	     r6d = ""
+	     for (fnum = 1; fnum <= nfiles; fnum++){
+		     file = ARGV[ fnum + 1 ]
+		     r6d = r6d FS sprintf("%6.2f", r6avg( d[file] ) )
+		     d[file] = ""
+	     }
+	     printf("%46s %s\n", "R^6 average distance:", r6d )
+	     split(r6d,Z)
+	     for ( z in Z ) {
+		     if ( Z[z] > upl ) {
+			     print "\t ** RST", rst, "Violates bound:",
+			     upl, "by", sprintf("+%5.2f", (Z[z] - upl) )
+			     break
+		     }
+		     else if ( Z[z] < lol ) {
+			     print "\t ** RST", rst, "Violates bound:",
+			     lol, "by", sprintf("-%5.2f", (lol - Z[z]))
+			     break
+		     }
+	     }
+	}
+	continue
+  }
+}
+# functions:
+function group(a) {
+	gsub("\,", " ", a)
+	split(a,b)
+	c = ""
+	i = 1
+	while ( b[i] != 0 && b[i] !~ /end/ ) { 
+		c = c FS b[i] 
+		i++
+	}
+	return c
+}
+function vlen(a){split(a,A);return sqrt((A[1]^2)+(A[2]^2)+(A[3]^2))}
+function vsub(a,b){split(a,A);split(b,B);return B[1]-A[1] FS B[2]-A[2] FS B[3]-A[3]}
+function xyzdist(a,b){return vlen(vsub(a,b))}
+function r6avg(a){num=split(a,A); return ( (r6sum(a)/num )^(-1/6) ) }
+function r6sum(a){
+	sum=0
+	num=split(a,A)
+	for ( k = 1; k <= num; k++ ) sum += (A[k])^(-6)
+	return sum
+}
+function mean(a){
+	num=split(a,A)
+	if ( num < 2 ) return
+	sum=0
+	for ( k = 1; k <= num; k++ ) sum += A[k]
+	return sprintf("%5.2f", (sum / num) )
+}
+function rmsd(a){
+	num = split(a,A)
+	if ( num < 2 ) return
+	avg = mean(a)
+	sum=0
+	for ( k = 1; k <= num; k++ ) {
+		sqdev = (avg - A[k])^2
+		sum += sqdev
+	}
+	return sprintf("%.2f",sqrt( sum / num ) )
+}
+' $*

@@ -1,0 +1,289 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 05/24/2013 at 11:59:49
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: 1AKI_mdin.0                                                           
+| MDOUT: 1AKI.solv10.md1.mdout.0                                               
+|INPCRD: 1AKI.solv10.equil.rst7.0                                              
+|  PARM: 1AKI.solv10.parm7                                                     
+|RESTRT: restrt.000                                                            
+|  REFC: refc                                                                  
+| MDVEL: mdvel.000                                                             
+|  MDEN: mden.000                                                              
+| MDCRD: mdcrd.000                                                             
+|MDINFO: mdinfo.000                                                            
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+|    REMLOG: rem.log
+|   REMTYPE: rem.type
+|  REMSTRIP: 
+|   SAVEENE: saveene
+|CLUSTERINF: cluster.info
+| RESERVOIR: reserv/frame
+|   REMDDIM: 
+
+
+ Here is the input file:
+
+Explicit solvent constant pH MD                                                
+ &cntrl                                                                        
+   imin=0, irest=1, ntx=5,                                                     
+   ntpr=10, ntwx=0, nstlim=10,                                                 
+   numexchg=5,                                                                 
+   dt=0.002, ntt=3, tempi=300,                                                 
+   temp0=300, gamma_ln=5.0, ig=10273,                                          
+   ntc=2, ntf=2, cut=8, iwrap=1,                                               
+   ioutfm=1, icnstph=2, ntcnstph=5,                                            
+   solvph=1.0, ntrelax=10, saltcon=0.1,                                        
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+ getting new box info from bottom of inpcrd
+|  INFO: Old style inpcrd file read
+
+| peek_ewald_inpcrd: Box info found
+|Largest sphere to fit in unit cell has radius =    26.098
+| New format PARM file being parsed.
+| Version =    1.000 Date = 12/15/12 Time = 15:13:36
+ NATOM  =   19961 NTYPES =      18 NBONH =   18939 MBONA  =    1025
+ NTHETH =    2214 MTHETA =    1389 NPHIH =    4455 MPHIA  =    3449
+ NHPARM =       0 NPARM  =       0 NNB   =   34856 NRES   =    6131
+ NBONA  =    1025 NTHETA =    1389 NPHIA =    3449 NUMBND =      47
+ NUMANG =     108 NPTRA  =      43 NATYP =      30 NPHB   =       1
+ IFBOX  =       2 NMXRS  =      24 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are H(N)-modified Bondi radii (mbondi2)                                             
+
+|     Memory Use     Allocated
+|     Real             1302986
+|     Hollerith          66016
+|     Integer           879633
+|     Max Pairs        6653666
+|     nblistReal        239532
+|     nblist Int        820019
+|       Total            44938 kbytes
+
+| Note: 1-4 EEL scale factors are being read from the topology file.
+
+| Note: 1-4 VDW scale factors are being read from the topology file.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+     BOX TYPE: TRUNCATED OCTAHEDRON
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Replica exchange
+     numexchg=       5, rem=       4
+
+Nature and format of input:
+     ntx     =       5, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =      10, ntrx    =       1, ntwr    =     500
+     iwrap   =       1, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       1, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       1, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   8.00000, intdiel =   1.00000
+     saltcon =   0.10000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00200, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =   10273
+     temp0   = 300.00000, tempi   = 300.00000, gamma_ln=   5.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00001
+
+Constant pH options:
+     icnstph =       2
+     ntcnstph =       5
+     solvph =   1.00000
+     ntrelax =      10 mccycles =       1
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       1
+     Box X =   63.927   Box Y =   63.927   Box Z =   63.927
+     Alpha =  109.471   Beta  =  109.471   Gamma =  109.471
+     NFFT1 =   64       NFFT2 =   64       NFFT3 =   64
+     Cutoff=    8.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.34864
+     Interpolation order =    4
+
+| MPI Timing options:
+|      profile_mpi =        0
+|reading charge increments from file: 1AKI.solv10.equil.cpin.0                                                                                                                                                                                                                                        
+| Attempting   18 MC protonation changes every    5 steps.
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+ begin time read from input coords =  4400.000 ps
+
+ Number of triangulated 3-point waters found:     5981
+|  Atom division among processors:
+|         0   19961
+
+     Sum of charges from parm topology file =  -0.00000004
+     Forcing neutrality...
+|  Running AMBER/MPI version on    1 nodes
+
+|  MULTISANDER:    4 groups.    1 processors out of    4 total.
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):   40944.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =   40944.     NUM_NOSHAKE =      0     CORRECTED RNDFP =   40944.
+|  TOTAL # of degrees of freedom (RNDF) =   40944.
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.2738E-14   at   2.422500
+| CHECK d/dx switch(x): max rel err =   0.8332E-11   at   2.782960
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =    4115116
+| TOTAL SIZE OF NONBOND LIST =    4115116
+
+ NSTEP =       10   TIME(PS) =    4400.020  TEMP(K) =   303.77  PRESS =     0.0
+ Etot   =    -51240.6136  EKtot   =     12357.9169  EPtot      =    -63598.5305
+ BOND   =       396.8190  ANGLE   =       995.4379  DIHED      =      1348.4826
+ 1-4 NB =       459.9956  1-4 EEL =      3992.8100  VDWAALS    =      7520.9430
+ EELEC  =    -78313.0185  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.4755E-04
+ SOLVPH =         4.0000  REPNUM  =              1  EXCHANGE#  =              1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       20   TIME(PS) =    4400.040  TEMP(K) =   302.58  PRESS =     0.0
+ Etot   =    -51302.5871  EKtot   =     12309.4522  EPtot      =    -63612.0393
+ BOND   =       378.4900  ANGLE   =       992.1172  DIHED      =      1379.8535
+ 1-4 NB =       446.6806  1-4 EEL =      4016.4321  VDWAALS    =      7410.2676
+ EELEC  =    -78235.8803  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.1316E-03
+ SOLVPH =         4.0000  REPNUM  =              1  EXCHANGE#  =              2
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       30   TIME(PS) =    4400.060  TEMP(K) =   271.66  PRESS =     0.0
+ Etot   =    -52395.7019  EKtot   =     11051.5937  EPtot      =    -63447.2956
+ BOND   =       387.0255  ANGLE   =      1021.1813  DIHED      =      1359.6417
+ 1-4 NB =       437.4806  1-4 EEL =      3967.0578  VDWAALS    =      7178.2617
+ EELEC  =    -77797.9441  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.5343E-03
+ SOLVPH =         4.0000  REPNUM  =              1  EXCHANGE#  =              3
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       40   TIME(PS) =    4400.080  TEMP(K) =   300.49  PRESS =     0.0
+ Etot   =    -51273.7434  EKtot   =     12224.3994  EPtot      =    -63498.1427
+ BOND   =       388.9454  ANGLE   =       986.1076  DIHED      =      1352.5462
+ 1-4 NB =       449.6680  1-4 EEL =      4040.9095  VDWAALS    =      7056.0452
+ EELEC  =    -77772.3646  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.5049E-05
+ SOLVPH =         4.0000  REPNUM  =              1  EXCHANGE#  =              4
+ ------------------------------------------------------------------------------
+
+wrapping first mol.:       21.30915       30.13569       52.19654
+
+ NSTEP =       50   TIME(PS) =    4400.100  TEMP(K) =   301.15  PRESS =     0.0
+ Etot   =    -51332.4031  EKtot   =     12251.1191  EPtot      =    -63583.5223
+ BOND   =       393.7191  ANGLE   =       979.5756  DIHED      =      1355.3274
+ 1-4 NB =       440.0566  1-4 EEL =      4037.7491  VDWAALS    =      6964.8707
+ EELEC  =    -77754.8207  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.2203E-04
+ SOLVPH =         4.0000  REPNUM  =              1  EXCHANGE#  =              5
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.06 ( 0.02% of Total)
+|                Build the list             5.64 (98.48% of List )
+|                Other                      0.09 ( 1.52% of List )
+|             List time                  5.72 ( 2.14% of Nonbo)
+|                   Short_ene time            30.54 (99.17% of Direc)
+|                   Other                      0.25 ( 0.83% of Direc)
+|                Direct Ewald time         30.79 (74.41% of Ewald)
+|                Adjust Ewald time          0.32 ( 0.77% of Ewald)
+|                   Fill Bspline coeffs        0.38 ( 3.75% of Recip)
+|                   Fill charge grid           1.17 (11.54% of Recip)
+|                   Scalar sum                 2.57 (25.40% of Recip)
+|                   Grad sum                   2.44 (24.08% of Recip)
+|                   FFT time                   3.57 (35.22% of Recip)
+|                   Other                      0.00 ( 0.01% of Recip)
+|                Recip Ewald time          10.13 (24.48% of Ewald)
+|                Force Adjust               0.01 ( 0.02% of Ewald)
+|                Virial junk                0.01 ( 0.03% of Ewald)
+|                Other                      0.12 ( 0.29% of Ewald)
+|             Ewald time                41.38 (15.51% of Nonbo)
+|                Calc gb radii             32.98 (15.01% of Gen B)
+|                Calc gb diag              69.49 (31.63% of Gen B)
+|                Calc gb off-diag         117.22 (53.36% of Gen B)
+|             Gen Born time            219.69 (82.34% of Nonbo)
+|          Nonbond force            266.79 (99.35% of Force)
+|          Bond/Angle/Dihedral        1.71 ( 0.64% of Force)
+|          Other                      0.03 ( 0.01% of Force)
+|       Force time               268.53 (93.88% of Runmd)
+|       Shake time                 0.19 ( 0.07% of Runmd)
+|       Verlet update time         2.51 ( 0.88% of Runmd)
+|       Other                     14.79 ( 5.17% of Runmd)
+|    Runmd Time               286.02 (99.76% of Total)
+|    Other                      0.64 ( 0.22% of Total)
+| Total time               286.72 (100.0% of ALL  )
+
+| Highest rstack allocated:    1105045
+| Highest istack allocated:      19961
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =     286.03 Per Step(ms) =    5720.53
+|         ns/day =       0.03   seconds/ns = 2860262.85
+| -----------------------------------------------------
+
+|           Job began  at 11:59:49.194  on 05/24/2013
+|           Setup done at 11:59:49.906  on 05/24/2013
+|           Run   done at 12:04:35.929  on 05/24/2013
+|     wallclock() was called    8108 times

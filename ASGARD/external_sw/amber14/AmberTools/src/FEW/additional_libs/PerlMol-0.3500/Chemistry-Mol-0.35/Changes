@@ -1,0 +1,108 @@
+Revision history for Perl extension Chemistry::Mol.
+
+0.35  May 20 2005
+        - Added formal_radical atom property.
+        - Compatibility with Storable-2.14, which already takes care of
+          weak references.
+        - calc_implicit_hydrogens, add_implicit_hydrogens
+
+0.34  May 16 2005
+        - Fixed $atom->bonds duplication on $mol->separate (bug 1173237)
+        - New method: safe_clone
+
+0.33  Mar 29 2005
+        - Fixed spurious warnings in sprout_hydrogens (bug 1157393)
+        - Added a test for incompatible Chemistry::File::SMILES versions.
+
+0.32  Feb 24 2005
+        - Fixed spurious warnings in separate().
+        - Fixed division by zero for ill-defined angles.
+        - Fixed bond deletion/addition bug #1076503.
+
+0.31  Nov 10 2004
+        - Fixed an error in t/zlib.t (forgot to create t/tmp directory)
+        - Fixed some typos in the documentation
+
+0.30  Nov 9 2004
+        - New Chemistry::File interface
+        - Added gzip support for reading and writing
+        - New Atom methods: sprout_hydrogens, collapse_hydrogens, mass_number
+        - New Mol methods: sprout_hydrogens, collapse_hydrogens
+        - Added support for Chemistry::Isotope
+        - Extended the Chemistry::Obj::attr method
+        - New Obj methods: new()
+        - Fixed backward compatibility bug in File/Dumper.pm
+        - Fixed inconsistency when an object id was changed
+        - Improved the testing suite
+
+0.26  Aug 6 2004
+        - Added %S option to $mol->printf
+        - Atom.pm: added total_hydrogens, implicit_hydrogens, explicit_valence,
+          and deprecated hydrogens.
+
+0.25  Jun 30 2004
+        - Fixed Chemistry::File :auto so that it looks in every @INC directory.
+        - Added internal coordinates for atoms.
+        - Updated the tutorial a little bit.
+
+0.24  Jun 16 2004
+        - Mol:: _weaken, sort_atoms, atom_class, bond_class
+        - Atom:: sprintf, printf, hydrogens, valence
+        - Added the Chemistry::File::Dumper module.
+
+0.23  May 19 2004
+        - New methods: Mol::printf, sprintf, charge; Atom::aromatic,
+          formal_charge; Bond::aromatic
+        - Fixed POD bug.
+
+0.22  May 17 2004
+        - Fixed bug in bonds($from)
+        - Added add_atom_np, add_bond_np, bonds_neighbors
+        - Fixed another memory leak
+        - Added Atom::formal_charge
+
+0.21  May 13 2004
+        - Fixed bug where $/ was undef'ed in a nonlocal way in File.pm.
+        - Added formula parser contributed by Brent Gregersen.
+        - Added %j and %% formats to Formula.pm.
+
+0.20  May 06 2004
+        - Use Scalar::Util::weaken to avoid strong cyclic references
+          and ensure garbage collection.
+        - New methods for Chemistry::Mol: delete_atom, delete_bond,
+          clone, combine, separate, distance
+        - New methods for Chemistry::Atom: angle, dihedral, angle_deg, 
+          dihedral_deg, delete
+        - New methods for Chemistry::Bond: delete
+        - Chemistry::Mol can export read_mol
+        - Chemistry::Atom can export distance, angle, dihedral
+
+0.11  Feb 22 2004
+        - New methods for Chemistry::Mol: mass, formula, formula_hash
+        - New methods for Chemistry::Atom: mass
+        - New module: Chemistry::File::Formula
+
+0.10  Nov 03 2003
+        - New methods for Chemistry::Atom: distance
+        - New methods for Chemistry::Obj: del_attr
+        - New subroutines for Chemistry::Mol: read_mol, register_format
+        - New class method for Mol, Atom, and Bond: reset_id
+        - Incompatible changes:
+            - Changed File I/O API. It should be more stable now, but it's
+              certainly not frozen yet.
+            - Chemistry::Mol->atoms() and bonds() now use 1-based indexing
+              instead of zero-based.
+            - Now Chemistry::Obj overloads cmp instead of ==. Note that this
+              overloading behavior was undocumented, so it shouldn't cause a
+              problem.
+
+0.06  Sep 26 2003
+        - New methods for Chemistry::Mol
+            - atoms()
+            - bonds()
+            - by_id()
+            - atoms_by_name()
+
+0.05  Sep 23 2003
+	- First release
+

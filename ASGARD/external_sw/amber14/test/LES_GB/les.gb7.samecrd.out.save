@@ -1,0 +1,282 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/15/2014 at 08:59:55
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: md.gb7.in                                                             
+| MDOUT: les.gb7.samecrd.out                                                   
+|INPCRD: les.samecoords.r                                                      
+|  PARM: les.alt.prm                                                           
+|RESTRT: les.r                                                                 
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: les.x                                                                 
+|MDINFO: lesinfo                                                               
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+ 
+ Here is the input file:
+ 
+md input                                                                       
+ &cntrl                                                                        
+        imin = 0, nstlim = 10, dt = 0.001,                                     
+        ntx = 1, tempi = 0.0, temp0=300.0 ,                                    
+        ntt = 0, tol = 0.000001, saltcon = 0.0,                                
+        ntc = 2, ntf = 1, ntb = 0,                                             
+        ntwx =  1, ntwe = 0, ntwr = 1, ntpr = 1,                               
+        cut = 99.0, rgbmax=100.,                                               
+        ntr = 0, tautp = 0.1, offset = 0.09,                                   
+        nscm = 500, igb = 7,                                                   
+                                                                               
+ /                                                                             
+                                                                               
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: LES                                                                    
+ NATOM  =      47 NTYPES =       9 NBONH =      26 MBONA  =      20
+ NTHETH =      56 MTHETA =      28 NPHIH =      98 MPHIA  =      82
+ NHPARM =       0 NPARM  =       1 NNB   =     290 NRES   =       5
+ NBONA  =      20 NTHETA =      28 NPHIA =      82 NUMBND =      10
+ NUMANG =      21 NPTRA  =      28 NATYP =       7 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      18 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       3
+
+ Replacing prmtop screening parameters with GBn (igb=7) values
+
+|     Memory Use     Allocated
+|     Real                3243
+|     Hollerith            148
+|     Integer            22612
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total              114 kbytes
+| Warning: ATOMIC_NUMBER section not found
+|          Guessing atomic numbers from masses for GB parameters
+|          Remake topology file with AmberTools 12 or add ATOMIC_NUMBERS
+|          with ParmEd to remove this warning
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+ LES parameters were found
+       0 LES atom pairs require adjustment
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =       1
+     iwrap   =       0, ntwx    =       1, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       7, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =  99.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.09511
+     gbbeta  =   1.90793, gbgamma =   2.50798, surften =   0.00500
+     rdt     =   0.00000, rgbmax  = 100.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    =       500, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00000
+ igb=1,5,7 are working with LES, no SA term included
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+ begin time read from input coords =********** ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+# degrees of freedom in non-LES region:     115.
+# degrees of freedom in     LES region:       0.
+ Single temperature bath for LES and non-LES
+
+ NSTEP =        0   TIME(PS) = 1000010.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =       -27.4464  EKtot   =         0.0000  EPtot      =       -27.4464
+ BOND   =         5.8375  ANGLE   =        19.0846  DIHED      =        32.7197
+ 1-4 NB =         7.1039  1-4 EEL =       141.3377  VDWAALS    =        -3.0346
+ EELEC  =      -202.2822  EGB     =       -28.2130  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        1   TIME(PS) = 1000010.001  TEMP(K) =     0.01  PRESS =     0.0
+ Etot   =       -27.4456  EKtot   =         0.0008  EPtot      =       -27.4464
+ BOND   =         5.8375  ANGLE   =        19.0846  DIHED      =        32.7197
+ 1-4 NB =         7.1039  1-4 EEL =       141.3377  VDWAALS    =        -3.0346
+ EELEC  =      -202.2822  EGB     =       -28.2130  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) = 1000010.002  TEMP(K) =     7.91  PRESS =     0.0
+ Etot   =       -27.4582  EKtot   =         0.8568  EPtot      =       -28.3150
+ BOND   =         5.6601  ANGLE   =        18.4800  DIHED      =        32.6215
+ 1-4 NB =         7.0969  1-4 EEL =       141.3919  VDWAALS    =        -3.0460
+ EELEC  =      -202.3135  EGB     =       -28.2060  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) = 1000010.003  TEMP(K) =    29.96  PRESS =     0.0
+ Etot   =       -27.4905  EKtot   =         3.2444  EPtot      =       -30.7349
+ BOND   =         5.1722  ANGLE   =        16.8009  DIHED      =        32.3347
+ 1-4 NB =         7.0777  1-4 EEL =       141.5501  VDWAALS    =        -3.0793
+ EELEC  =      -202.4058  EGB     =       -28.1855  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) = 1000010.004  TEMP(K) =    61.52  PRESS =     0.0
+ Etot   =       -27.5349  EKtot   =         6.6630  EPtot      =       -34.1979
+ BOND   =         4.4928  ANGLE   =        14.4167  DIHED      =        31.8819
+ 1-4 NB =         7.0510  1-4 EEL =       141.7992  VDWAALS    =        -3.1325
+ EELEC  =      -202.5535  EGB     =       -28.1536  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) = 1000010.005  TEMP(K) =    96.28  PRESS =     0.0
+ Etot   =       -27.5800  EKtot   =        10.4269  EPtot      =       -38.0069
+ BOND   =         3.7797  ANGLE   =        11.8362  DIHED      =        31.2988
+ 1-4 NB =         7.0227  1-4 EEL =       142.1196  VDWAALS    =        -3.2027
+ EELEC  =      -202.7479  EGB     =       -28.1133  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) = 1000010.006  TEMP(K) =   127.77  PRESS =     0.0
+ Etot   =       -27.6152  EKtot   =        13.8377  EPtot      =       -41.4529
+ BOND   =         3.1824  ANGLE   =         9.5799  DIHED      =        30.6307
+ 1-4 NB =         6.9983  1-4 EEL =       142.4877  VDWAALS    =        -3.2859
+ EELEC  =      -202.9779  EGB     =       -28.0682  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) = 1000010.007  TEMP(K) =   150.97  PRESS =     0.0
+ Etot   =       -27.6330  EKtot   =        16.3507  EPtot      =       -43.9837
+ BOND   =         2.8014  ANGLE   =         8.0560  DIHED      =        29.9292
+ 1-4 NB =         6.9815  1-4 EEL =       142.8786  VDWAALS    =        -3.3780
+ EELEC  =      -203.2300  EGB     =       -28.0224  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) = 1000010.008  TEMP(K) =   163.30  PRESS =     0.0
+ Etot   =       -27.6316  EKtot   =        17.6862  EPtot      =       -45.3178
+ BOND   =         2.6646  ANGLE   =         7.4725  DIHED      =        29.2484
+ 1-4 NB =         6.9728  1-4 EEL =       143.2686  VDWAALS    =        -3.4746
+ EELEC  =      -203.4902  EGB     =       -27.9800  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) = 1000010.009  TEMP(K) =   164.91  PRESS =     0.0
+ Etot   =       -27.6143  EKtot   =        17.8605  EPtot      =       -45.4749
+ BOND   =         2.7290  ANGLE   =         7.8089  DIHED      =        28.6408
+ 1-4 NB =         6.9699  1-4 EEL =       143.6372  VDWAALS    =        -3.5714
+ EELEC  =      -203.7444  EGB     =       -27.9448  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) = 1000010.010  TEMP(K) =   158.22  PRESS =     0.0
+ Etot   =       -27.5881  EKtot   =        17.1356  EPtot      =       -44.7236
+ BOND   =         2.9036  ANGLE   =         8.8475  DIHED      =        28.1535
+ 1-4 NB =         6.9681  1-4 EEL =       143.9684  VDWAALS    =        -3.6646
+ EELEC  =      -203.9802  EGB     =       -27.9198  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      10 S T E P S
+
+
+ NSTEP =       10   TIME(PS) = 1000010.010  TEMP(K) =    96.09  PRESS =     0.0
+ Etot   =       -27.5591  EKtot   =        10.4063  EPtot      =       -37.9654
+ BOND   =         3.9223  ANGLE   =        12.2383  DIHED      =        30.7459
+ 1-4 NB =         7.0243  1-4 EEL =       142.4439  VDWAALS    =        -3.2870
+ EELEC  =      -202.9726  EGB     =       -28.0807  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       10   TIME(PS) = 1000010.010  TEMP(K) =    63.01  PRESS =     0.0
+ Etot   =         0.0682  EKtot   =         6.8244  EPtot      =         6.8903
+ BOND   =         1.2018  ANGLE   =         4.3583  DIHED      =         1.6003
+ 1-4 NB =         0.0514  1-4 EEL =         0.9093  VDWAALS    =         0.2151
+ EELEC  =         0.5834  EGB     =         0.1042  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 2.01% of Total)
+|    Fast Water setup           0.00 ( 0.05% of Total)
+|                Calc gb radii              0.00 (22.41% of Gen B)
+|                Calc gb diag               0.00 (32.46% of Gen B)
+|                Calc gb off-diag           0.00 (45.02% of Gen B)
+|                Other                      0.00 ( 0.11% of Gen B)
+|             Gen Born time              0.01 (100.0% of Nonbo)
+|             IPS excludes               0.00 ( 0.03% of Nonbo)
+|          Nonbond force              0.01 (92.06% of Force)
+|          Bond/Angle/Dihedral        0.00 ( 7.45% of Force)
+|          Other                      0.00 ( 0.49% of Force)
+|       Force time                 0.01 (58.96% of Runmd)
+|       Shake time                 0.00 ( 0.23% of Runmd)
+|       Verlet update time         0.00 (38.72% of Runmd)
+|       Other                      0.00 ( 2.09% of Runmd)
+|    Runmd Time                 0.01 (81.84% of Total)
+|    Other                      0.00 (16.10% of Total)
+| Total time                 0.01 (99.69% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       0.01 Per Step(ms) =       1.13
+|         ns/day =      76.13   seconds/ns =    1134.90
+| -----------------------------------------------------
+
+|           Job began  at 08:59:55.405  on 01/15/2014
+|           Setup done at 08:59:55.407  on 01/15/2014
+|           Run   done at 08:59:55.419  on 01/15/2014
+|     wallclock() was called     281 times

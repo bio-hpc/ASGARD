@@ -1,0 +1,145 @@
+#!/usr/bin/perl -w
+
+#  cycle through fortran files, determine which headers are included;
+#      the "used" array eliminates duplicate enties
+
+#  for LES and PUPIL copies, add these dependencies as well to the list
+
+#  Be sure do to a "make clean" before running this script!
+
+printf <<EOF;
+#
+#   Please do not edit the "depend" file directly, since it is created by the
+#   "makedepend" script.  If changes are needed, edit "makedepend" itself.
+#
+EOF
+
+#  Some files are special cases that are handled separately
+#$special{"rism_nxtsec.F"} = 1; # dependencies defined in Makefile
+%special=();
+
+#One (some) file(s) require a version for NAB and another for Sander.
+#Files in this hash will have a regular dependecy generate and one for
+#a .RISM.o version
+$sander{"amber_rism_interface"}=1;
+$nab{"amber_rism_interface"}=1;
+
+#there exist modules, for example, defined by the fortran standard.
+#Ignore these for dependencies
+$ignore{intrinsic}=1;
+
+#  in order to get a mapping between module names and file names, we have
+#  have to set up the following hash. 
+#$modulefile{"mkl_dfti"} = "mkl_fft";
+
+foreach $file ( <*.F90> ){
+	next if $file =~ /^_/;
+	($fileroot) = $file =~ /(.+)\.F90$/;
+	$optimized{$fileroot} = 0;
+	open( F, "$file" ) || die "unable to open $file\n";
+	while( <F> ){
+		if( /^ *module /i ){
+			($head,$modulename) = /( *[Mm][Oo][Dd][Uu][Ll][Ee]) +(\w*)/;
+			$modulefile{$modulename} = $fileroot;
+#			printf STDERR "modulefile:  $modulename  $fileroot\n";
+		}
+		if( /compile=optimized/ ){
+			$optimized{$fileroot} = 1;
+		}
+	}
+	close( F );
+}
+
+#  Now, cycle over all source files to create the compilation rules and 
+#  dependencies.  Check for "compile=optimized" comments and do the right 
+#  thing:
+
+foreach $file ( <*.F90> ){
+
+	next if $file =~ /^_/;
+
+        next if defined($special{$file});
+        #
+
+	$deps = "";
+
+	($fileroot) = $file =~ /(.+)\.F90$/;
+
+	#  construct the header and module dependency rules:
+
+	open( F, "$file" ) || die "unable to open $file\n";
+	while( <F> ){
+
+		if( /^ *use / ){
+			($head,$usee) = /( *use) +(\w*)/;
+#			printf STDERR "     usee: $usee; modulefile is $modulefile{$usee}\n";
+			if( !defined $modulefile{$usee} && !defined $ignore{$usee}){
+				printf STDERR "No file name associated with module $usee\n";
+				exit(1);
+			}
+			if( !defined $ignore{$usee} && !defined $used{ $fileroot,$modulefile{$usee} } ){
+
+				#  remove any circular references:
+				next if $fileroot eq $modulefile{$usee};
+
+				$deps .= "\\\n                    " . $modulefile{$usee} .  ".o" ;
+				$used{ $fileroot,$modulefile{$usee} } = 1;
+			}
+		}
+		if (/^# *include/) {
+			($head,$included) = /(# *include) +"(.*)"/;
+			next if $included eq "mpif.h";
+			if( !defined $used{ $fileroot,$included } ){
+				$deps .= "\\\n                    " . $included ;
+				$used{ $fileroot,$included } = 1;
+			}
+		}
+	}
+        printDep($fileroot, "", "","");
+        printDep($fileroot, ".NAB", "","[ -n \"\$(RISMSFF)\" ]") 
+          if defined $nab{$fileroot};
+        printDep($fileroot, ".SANDER", "-DSANDER -DRISM_CRDINTERP","[ -n \"\$(RISMSANDER)\" ]") 
+          if defined $sander{$fileroot};
+      }
+
+#template for dependencies and build target. Automatically applies
+#optimization flags, if requested.  Also allows an optional suffix and
+#preprocessor flags.  This can be used to create different object
+#files from the same source.
+#$_[0] : Root name of the source file (no suffix)
+#$_[1] : Extra suffix for the object file name. An empty string is
+#        fine. Gives $fileroot${suffix}.o
+#$_[2] : Additional preprocessor flags
+#$_[3] : Conditional for empty object file.  This is the conditional
+#        for a shell if statement.  If true, the source is compiled,
+#        otherwise an empty object file is created instead. If this
+#        string is empty, no conditional is built.
+sub printDep {
+  my $fileroot = shift;
+  my $suffix = shift;
+  my $flags = shift;
+  my $condition = shift;
+  printf "$fileroot${suffix}.o: $deps\n\n" unless $deps eq "";
+
+  #  construct the compilation rules:
+  
+  printf "\n$fileroot${suffix}.o:   $fileroot.F90\n";
+  if($condition){
+    printf "\tif $condition; then \\\n\t";
+  }
+  printf "\t\$(FC) -c \$(FPPFLAGS) \$(AMBERFPPFLAGS) \\\n"
+    ."\t\t$flags \\\n"
+      ."\t\t%s \$(FFLAGS) \$(AMBERFFLAGS) \\\n"
+        ."\t\t-o \$@ $fileroot.F90",
+          ( $optimized{$fileroot}?"\$(FOPTFLAGS)":"\$(FNOOPTFLAGS)");
+  if($condition){
+    printf "; \\\n"
+      ."\telse \\\n"
+      ."\t\ttest -e $fileroot${suffix}.o || touch $fileroot${suffix}.o; \\\n"
+      ."\tfi\n\n";
+  }else{
+    printf "\n\n";
+  }
+}
+
+

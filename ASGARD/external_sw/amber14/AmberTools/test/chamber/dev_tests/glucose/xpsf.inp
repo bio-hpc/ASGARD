@@ -1,0 +1,36 @@
+* this is for "center" chain  
+* assumes origin chain is first in psf
+* JFM 12/2003
+*
+
+OPEN READ card UNIT 1 NAME "./top_cbh1_cellulose.rtf" !top_all22_prot_CBH1.inp"
+READ RTF CARD UNIT 1
+CLOSE UNIT 1
+
+OPEN READ CARD UNIT 2 NAME ./par_cbh1_cellulose.prm !"par_all22_prot_CSFF.inp"
+READ PARAM CARD UNIT 2
+CLOSE UNIT 2
+
+goto usex
+read psf card name gluc.psf
+write psf card name gluc.psfx xplor
+stop
+
+label usex
+read psf card name gluc.psfx xplor
+read coor pdb name glucmin.pdb
+
+!PRNLev 10
+
+!Debugging
+!ANALys TERM NONbond
+energy cutnb 999.0  ctofnb 998.0   ctonnb 997.0 switch
+
+
+!frcdump option
+open unit 20 form write name gluc_forces.dat
+frcdump unit 20
+close unit 20
+
+
+

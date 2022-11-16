@@ -1,0 +1,30 @@
+PRIMPIMD: NVT simulation of liquid water with the AMOEBA force field
+
+ &cntrl
+   ipimd=1,
+   nstlim=10
+   ntpr=1, ntwr=5
+   ntwx=0,
+   dt=0.0002, vlimit=10.0,
+   cut=8.,maxcyc=50,ntmin=2,imin=0,
+   ntt=3, gamma_ln=20.0
+   temp0=300.0,tempi=300.0,
+   ntp=0,tautp=1.0,
+   iamoeba=1,
+   ntx=5,irest=0
+ /
+ &ewald
+  nfft1=24,nfft2=24,nfft3=24,
+  skinnb=1.2,nbtell=0,order=5,ew_coeff=0.45,
+ /
+ &amoeba
+   do_amoeba_nonbond=1,do_amoeba_valence=1,
+   do_bond=1,do_ureyb=1,do_reg_angle=1,do_trig_angle=1,
+   do_opbend=1,do_torsion=1,do_str_torsion=1,do_pi_torsion=1,do_strbend=1,
+   do_torsion_torsion=1,do_induced=1,do_recip=1,do_direct=1,do_adjust=1,
+   do_vdw=1,do_vdw_taper=0,
+   do_self=1,dipole_scf_tol = 0.01,dipole_scf_iter_max=30,
+   sor_coefficient=0.7,ee_damped_cut=4.5,ee_dsum_cut=6.7,
+ /
+
+

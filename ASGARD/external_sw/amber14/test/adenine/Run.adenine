@@ -1,0 +1,43 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+    echo "This test not set up for parallel"
+    echo " cannot run in parallel with #residues < #pes"
+    echo "=============================================================="
+    exit 0
+endif
+
+cat > min.in <<EOF
+ input for sander7 for quasi-vacuum minimization
+ &cntrl
+   cut    = 40.0,     nsnb   = 9999,
+   ntx    = 1,       irest  = 0,  ipol=1,
+   ntb    = 0,
+   imin = 1,  maxcyc = 10, ncyc=15, ntmin = 1,  drms=0.05,
+   ntpr   = 1,
+ /
+ &ewald
+  diptol = 1.d-6, indmeth=1, scaldip=0, chngmask=0, frameon=0,
+ /
+EOF
+
+set output = mdout.adenine
+
+touch dummy
+$DO_PARALLEL $TESTsander -O -i min.in -o $output < dummy || goto error
+
+../dacdif $output.save $output
+/bin/rm -f min.in restrt mdinfo dummy
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

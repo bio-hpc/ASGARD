@@ -1,0 +1,112 @@
+/* Nab program to calculate the entropy {program of MMPBSA.py}
+   Last edit 3/7/11
+   Written by Dwight McGee, Bill Miller III, Jason Swails */
+
+#include "nab_netcdf.h"  //necessary to read in netcdf and ASCII formatted trajectories
+#include "xmin_opt.h"   //necessary to peform minimization using Xmin
+//--------------------------------------------------------------------------------
+
+//Define All Variables
+
+struct   xmin_opt xo;                  //minimization method
+struct   AmberNetcdf nc_ascii;         //Netcdf of ASCII formatt
+molecule mol;                          //system molecule
+int      natm, nmode_results, iter;    //number of atoms, nmode results, num of iterations
+int      framenum, traj_complete;      // frame number, indicates done parsing through trajectory
+int      i, j;                         // variables used while parsing ASCII trajectory
+float    xyz[dynamic], grad[dynamic];  // coordinate vector, gradient vector
+float    energy, min_energy;           // energy returned, miminization energy
+file     asciitraj;                    //trajectory file (ASCII format)
+//---------------------------------------------------------------------------------
+
+/* Usage: mmpbsa_entropy.nab {pdb} {prmtop} {maxiter} {drms} {'string of MM options'} {nc/trj}
+                           argv[2] argv[3]   argv[4]  argv[5]    argv[6]              argv[7]       
+  Double Check to ensure MMPBSA.py is giving the correct amount of arguments */  
+if(argc !=7){
+   printf("    Bad command-line arguments\n");
+   printf("Usage: %s {pdb} {prmtop} {maxiter} {drms} {'string of MM options'} {nc/trj}\n", argv[1]);
+   exit(1);
+}
+//--------------------------------------------------------------------------------
+// Define and Setup Necessary Parameters for MM/Min
+
+mol=getpdb(argv[2]);               // read in pdb from command line
+readparm( mol, argv[3]);           // read in prmtop from command line
+natm=mol.natoms;                   // number of atoms
+allocate xyz[3*natm];              // allocate memory for coordinate vector 
+allocate grad[3*natm];             // allocate memory for gradient vector
+setxyz_from_mol(mol, NULL, xyz);   // copies atomic coord of mol to the array xyz
+
+//MM parameters
+mm_options(argv[6]);               // set parameters for MM/Min calc
+mme_init(mol, NULL, "::Z", xyz, NULL);  // sets params for Force Field eval
+
+/*NOTE: mm_options() must be called before mme_init()
+  NOTE: mme_init() must be called before mme() function
+  NOTE: :-) means convergence 
+  NOTE: :-( indicates CG iteration encountered negatitve curvature and had to abort */   
+
+//XMIN Minimization parameters
+xmin_opt_init(xo);                // initialize xmin optimization
+xo.maxiter     = atoi(argv[4]);   // max number of iterations allowed for XMIN
+xo.grms_tol    = atof(argv[5]);   // convergence criterion
+xo.method      = 3;               // Trunated Newton Conjugate gradient algorithm
+xo.numdiff     = 1;               // method used to approximate the product of the Hessian matrix
+xo.m_lbfgs     = 3;               // size of the L-BFG memory 
+xo.ls_method   = 2;               // Do not change (line-search method)
+xo.ls_maxiter  = 20;              // max number of line search steps per single minimization step
+xo.ls_maxatmov = 0.15;            // Maximum (co-ordinate) movement per F.O.D allowed in line search
+xo.print_level = 2;               // highest print verbose
+//--------------------------------------------------------------------------------
+
+//Begin processing frames from netcdf/ASCII trajectory
+framenum = 0;
+if (netcdfLoad(nc_ascii, argv[7]) == 0){
+   netcdfLoad(nc_ascii, argv[7]);
+   printf("\n Processing NETCDF traj\n\n");
+   while(netcdfGetNextFrame(nc_ascii, xyz, NULL, NULL)){
+      energy=mme(xyz, grad, framenum);
+      energy=xmin(mme, natm, xyz, grad, energy, min_energy, xo);
+      if(min_energy < atof(argv[5])){    //check convergence
+        printf("     ----Convergence Satisfied---- \n\n");
+        nmode(xyz, 3*natm, mme2, 0, 1, 0.0, 0.0, 0); //entropy calc
+        framenum++;
+      }
+      else{
+         printf(" \n    |----Not minimized properly!----|\n ");
+         printf("   |---- Entropy not Calculated---|\n\n");
+      }
+   }
+  netcdfClose(nc_ascii);
+}
+else{
+   printf("\n Processing ASCII traj\n\n");
+   asciitraj= fopen(argv[7], "r");
+   if(asciitraj==NULL){ //Check for the existence of the mdcrd
+      printf("\n Unable to open mdcrd (%s) !\n\n", argv[7]);
+      exit(1);
+   }
+   traj_complete=0;
+   getline(asciitraj);
+   for(i = 1;;i++){ // frame loop
+      for(j = 1; j<= 3*mol.natoms; j++){
+         if(fscanf(asciitraj, "%lf", xyz[j]) < 1){
+            traj_complete = 1;
+            break;
+         }
+      }     
+      if (traj_complete) break;
+       energy=mme(xyz, grad, framenum);
+      energy=xmin(mme, natm, xyz, grad, energy, min_energy, xo);
+      if (min_energy< atof(argv[5])){ //check convergence
+        printf("     ----Convergence Satisfied---- \n\n");
+        nmode(xyz, 3*natm, mme2, 0, 1, 0.0, 0.0, 0); //calc entropy
+        framenum++;
+      }
+      else{
+        printf(" \n    |----Not minimized properly!----|\n ");
+        printf("   |---- Entropy not Calculated---|\n\n");
+      }
+   }
+}
+

@@ -1,0 +1,13 @@
+file rprm name=(spcfw.top) read
+file rcvb name=(spcfw.rst) read
+file wprm name=(spcfw_rpmd.top) wovr
+file wcrd name=(spcfw_rpmd.xyz) wovr
+
+action
+~ use original mass
+omas
+
+~ make 4 copies of all hydrogen atoms
+space numc=4 pick chem prtc H1 | chem prtc H2 done
+
+*EOD

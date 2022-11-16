@@ -1,0 +1,36 @@
+Title                                                                          
+&cntrl                                                                         
+  nstlim = 10,
+  ntb = 1, cut = 04.00, iwrap = 1,
+  tempi = 600.000000,
+  imin = 0,
+  irest = 1,
+  ntx = 5,
+  ntpr = 1,
+  ioutfm = 0,
+  ntwx = 1,
+  ntwe = 1,
+  ntwv = 0,
+  ntr = 0,
+  nscm = 10,
+  dt = 0.0001,
+  ntt = 0,
+  ig = 1,
+  vlimit = -1,
+  ntc = 1,
+  ifqnt = 1,
+/                                                                              
+&qmmm                                                                          
+  qm_theory = 'SEBOMD',
+/                                                                              
+&sebomd                                                                        
+  hamiltonian = 'PM3',
+  charge = 0,
+  method = 0,
+  screen = 0,
+  dpmax = 1.e-9,
+  diag_routine = 2,
+  debugmsg = 0,
+  debugforces = 0,
+  longrange = 1,
+/                                                                              

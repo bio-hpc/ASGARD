@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cat<<EOF  > mdin
+  benchmark a short md
+ &cntrl
+   igb=1, cut=20.0, rgbmax=20.0, 
+   tempi=50.0, temp0=100.0, tautp=0.4, ntt=1,
+   ntb=0, nstlim=100, ntpr=10, 
+   ntx=1, irest=0,
+   ntc=2, ntf=2, tol=0.0000001,
+ /
+EOF
+
+sander -O -i mdin -p $1.top -c $1.mc.x -o $1.md.o
+/bin/rm mdin restrt mdinfo

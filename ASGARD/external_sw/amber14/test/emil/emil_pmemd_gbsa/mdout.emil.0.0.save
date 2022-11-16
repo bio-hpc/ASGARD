@@ -1,0 +1,307 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| PMEMD implementation of SANDER, Release 14
+
+| Run on 02/11/2014 at 10:45:01
+
+|   Executable path: ../../../bin/pmemd
+| Working directory: /home/josh/amberCheckout/amber/test/emil/emil_pmemd_gbsa
+|          Hostname: Unknown
+  [-O]verwriting output
+
+File Assignments:
+|   MDIN: mdin                                                                  
+|  MDOUT: mdout.emil.0.0                                                        
+| INPCRD: csallDimer.md1                                                        
+|   PARM: csallDimer.top                                                        
+| RESTRT: restrt                                                                
+|   REFC: refc                                                                  
+|  MDVEL: mdvel                                                                 
+|   MDEN: mden                                                                  
+|  MDCRD: mdcrd                                                                 
+| MDINFO: mdinfo                                                                
+|  MDFRC: mdfrc                                                                 
+
+
+ Here is the input file:
+
+  Input file for emil run, detailed emil params are in emilParameters.in       
+ &cntrl                                                                        
+  iwrap  = 0,                                                                  
+  ntx = 5, irest = 1,                                                          
+  ntb = 0, igb = 1,                                                            
+  cut = 12,                                                                    
+  ntr = 0,                                                                     
+  ntc = 1,                                                                     
+  ntf = 1,                                                                     
+  tempi = 300.0, temp0 = 300.0,                                                
+  ntt = 3, gamma_ln=1.0,                                                       
+  nstlim = 100,                                                                
+  dt = 0.001,                                                                  
+  ntpr = 10, ntwx = 5000, ntwr = 5000,                                         
+  ntave = 100000,                                                              
+  ig = 1902,                                                                   
+  ntr = 0, vlimit = 0,                                                         
+  emil_do_calc = 1                                                             
+ /                                                                             
+ &emil_cntrl                                                                   
+  emil_paramfile = "emilParameters.in",                                        
+  emil_logfile   = "emil.log",                                                 
+  emil_model_infile  = "wellsIn.dat",                                          
+  emil_model_outfile = "wells.dat",                                            
+ /                                                                             
+                                                                               
+
+
+ 
+| INFO:    Found an "emil_cntrl" namelist
+|          emil_paramfile set to: emilParameters.in
+|          emil_logfile set to: emil.log
+|          emil_model_infile set to: wellsIn.dat
+|          emil_model_outfile set to: wells.dat
+
+| Conditional Compilation Defines Used:
+| DIRFRC_COMTRANS
+| DIRFRC_EFS
+| DIRFRC_NOVEC
+| PUBFFT
+| FFTLOADBAL_2PROC
+| EMIL
+
+| New format PARM file being parsed.
+| Version =    1.000 Date = 01/22/13 Time = 17:02:31
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+ NATOM  =     444 NTYPES =      10 NBONH =     224 MBONA  =     218
+ NTHETH =     494 MTHETA =     296 NPHIH =     946 MPHIA  =     796
+ NHPARM =       0 NPARM  =       0 NNB   =    2386 NRES   =      36
+ NBONA  =     218 NTHETA =     296 NPHIA =     796 NUMBND =      13
+ NUMANG =      27 NPTRA  =      31 NATYP =      11 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      19 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are modified Bondi radii (mbondi)                                                   
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       5, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =      10, ntrx    =       1, ntwr    =    5000
+     iwrap   =       0, ntwx    =    5000, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       1, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =  12.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =       100, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =   0.00000
+
+Langevin dynamics temperature regulation:
+     ig      =    1902
+     temp0   = 300.00000, tempi   = 300.00000, gamma_ln=   1.00000
+
+| Intermolecular bonds treatment:
+|     no_intermolecular_bonds =       1
+
+| Energy averages sample interval:
+|     ene_avg_sampling =       1
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =    80.000 ps
+
+ 
+ Number of triangulated 3-point waters found:        0
+| Dynamic Memory, Types Used:
+| Reals               13758
+| Integers            42755
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =      80.010  TEMP(K) =   167.44  PRESS =     0.0
+ Etot   =      -272.8684  EKtot   =       221.6081  EPtot      =      -494.4765
+ BOND   =        57.4487  ANGLE   =       139.0327  DIHED      =       288.5685
+ 1-4 NB =        85.8164  1-4 EEL =      1506.6110  VDWAALS    =      -162.4194
+ EELEC  =     -2079.9141  EGB     =      -329.6203  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       20   TIME(PS) =      80.020  TEMP(K) =   162.28  PRESS =     0.0
+ Etot   =      -272.7391  EKtot   =       214.7686  EPtot      =      -487.5077
+ BOND   =        64.4305  ANGLE   =       138.4454  DIHED      =       287.7861
+ 1-4 NB =        84.6053  1-4 EEL =      1506.6029  VDWAALS    =      -160.6215
+ EELEC  =     -1996.2095  EGB     =      -412.5470  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       30   TIME(PS) =      80.030  TEMP(K) =   168.80  PRESS =     0.0
+ Etot   =      -269.1257  EKtot   =       223.4018  EPtot      =      -492.5275
+ BOND   =        61.7256  ANGLE   =       143.8140  DIHED      =       288.3787
+ 1-4 NB =        83.2029  1-4 EEL =      1505.2985  VDWAALS    =      -164.3234
+ EELEC  =     -2086.4990  EGB     =      -324.1247  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       40   TIME(PS) =      80.040  TEMP(K) =   157.33  PRESS =     0.0
+ Etot   =      -262.7533  EKtot   =       208.2180  EPtot      =      -470.9713
+ BOND   =        68.2061  ANGLE   =       152.1382  DIHED      =       291.8623
+ 1-4 NB =        85.1288  1-4 EEL =      1504.1878  VDWAALS    =      -161.7647
+ EELEC  =     -2087.0024  EGB     =      -323.7275  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       50   TIME(PS) =      80.050  TEMP(K) =   161.43  PRESS =     0.0
+ Etot   =      -259.0010  EKtot   =       213.6423  EPtot      =      -472.6433
+ BOND   =        68.6590  ANGLE   =       150.3750  DIHED      =       288.3623
+ 1-4 NB =        87.4035  1-4 EEL =      1508.1489  VDWAALS    =      -161.8905
+ EELEC  =     -2094.7060  EGB     =      -318.9957  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       60   TIME(PS) =      80.060  TEMP(K) =   160.35  PRESS =     0.0
+ Etot   =      -254.5987  EKtot   =       212.2132  EPtot      =      -466.8118
+ BOND   =        76.5939  ANGLE   =       139.2923  DIHED      =       287.9511
+ 1-4 NB =        93.5771  1-4 EEL =      1496.6247  VDWAALS    =      -155.5860
+ EELEC  =     -2045.8021  EGB     =      -359.4629  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       70   TIME(PS) =      80.070  TEMP(K) =   173.23  PRESS =     0.0
+ Etot   =      -251.9983  EKtot   =       229.2662  EPtot      =      -481.2646
+ BOND   =        57.3523  ANGLE   =       142.0827  DIHED      =       293.8797
+ 1-4 NB =        91.7748  1-4 EEL =      1490.5691  VDWAALS    =      -157.3034
+ EELEC  =     -1979.1142  EGB     =      -420.5056  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       80   TIME(PS) =      80.080  TEMP(K) =   170.40  PRESS =     0.0
+ Etot   =      -249.5329  EKtot   =       225.5179  EPtot      =      -475.0509
+ BOND   =        59.6288  ANGLE   =       142.8703  DIHED      =       288.9669
+ 1-4 NB =        94.7840  1-4 EEL =      1490.5962  VDWAALS    =      -154.3875
+ EELEC  =     -2071.0524  EGB     =      -326.4572  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       90   TIME(PS) =      80.090  TEMP(K) =   168.56  PRESS =     0.0
+ Etot   =      -244.9565  EKtot   =       223.0897  EPtot      =      -468.0462
+ BOND   =        66.4616  ANGLE   =       141.6648  DIHED      =       290.9539
+ 1-4 NB =        92.7653  1-4 EEL =      1497.9391  VDWAALS    =      -156.1422
+ EELEC  =     -2011.0269  EGB     =      -390.6618  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      100   TIME(PS) =      80.100  TEMP(K) =   170.88  PRESS =     0.0
+ Etot   =      -246.5621  EKtot   =       226.1498  EPtot      =      -472.7118
+ BOND   =        73.7878  ANGLE   =       139.9966  DIHED      =       287.5890
+ 1-4 NB =        90.3510  1-4 EEL =      1500.4597  VDWAALS    =      -157.9274
+ EELEC  =     -2055.9197  EGB     =      -351.0489  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R     100 S T E P S
+
+
+ NSTEP =      100   TIME(PS) =      80.100  TEMP(K) =   164.07  PRESS =     0.0
+ Etot   =      -259.5866  EKtot   =       217.1429  EPtot      =      -476.7295
+ BOND   =        65.3575  ANGLE   =       145.6432  DIHED      =       289.3003
+ 1-4 NB =        88.8143  1-4 EEL =      1501.0777  VDWAALS    =      -159.3650
+ EELEC  =     -2048.6438  EGB     =      -358.9137  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =      100   TIME(PS) =      80.100  TEMP(K) =     5.32  PRESS =     0.0
+ Etot   =        10.3963  EKtot   =         7.0463  EPtot      =         9.5547
+ BOND   =         5.6959  ANGLE   =         6.9893  DIHED      =         2.3785
+ 1-4 NB =         3.9572  1-4 EEL =         6.2563  VDWAALS    =         3.3121
+ EELEC  =        35.4923  EGB     =        33.0684  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|  NonSetup CPU Time in Major Routines:
+|
+|     Routine           Sec        %
+|     ------------------------------
+|     Nonbond           1.41   85.23
+|     Bond              0.00    0.00
+|     Angle             0.01    0.48
+|     Dihedral          0.04    2.66
+|     Shake             0.00    0.00
+|     RunMD             0.19   11.62
+|     Other             0.00    0.00
+|     ------------------------------
+|     Total             1.65
+
+|  Generalized Born CPU Time:
+|
+|     Routine                 Sec        %
+|     ------------------------------------
+|     Radii Calc              0.36   21.79
+|     Diagonal Calc           0.67   40.68
+|     Off Diagonal Calc       0.37   22.52
+|     GBSA LCPO Calc          0.00    0.00
+|     ---------------------------------
+|     Total                   1.40   84.99
+
+|  Final Performance Info:
+|     -----------------------------------------------------
+|     Average timings for last      90 steps:
+|         Elapsed(s) =       1.49 Per Step(ms) =      16.52
+|             ns/day =       5.23   seconds/ns =   16518.74
+|
+|     Average timings for all steps:
+|         Elapsed(s) =       1.66 Per Step(ms) =      16.56
+|             ns/day =       5.22   seconds/ns =   16561.11
+|     -----------------------------------------------------
+
+|  Setup CPU time:            0.01 seconds
+|  NonSetup CPU time:         1.65 seconds
+|  Total CPU time:            1.66 seconds     0.00 hours
+
+|  Setup wall time:           0    seconds
+|  NonSetup wall time:        2    seconds
+|  Total wall time:           2    seconds     0.00 hours

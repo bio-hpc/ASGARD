@@ -1,0 +1,40 @@
+Chemistry::3DBuilder 0.10
+=========================
+
+This module generates a three-dimensional molecular structure from a connection
+table, such as that obtained by a 2D representation of the molecule or from a
+SMILES string.
+
+NOTE: this module is still at a very early stage of development so it has
+important limitations. 1) It doesn't handle rings or stereochemistry yet!  2)
+The bond lengths and atoms are very approximate as they don't really account
+for different elements. 3) Only the sp3, sp2, and sp hybridizations are
+supported.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+        Math::VectorReal                1.00
+        Chemistry::Mol                  0.33
+        Chemistry::InternalCoords       0.18
+        Chemistry::Ring                 0.18
+        Chemistry::Pattern              0.25
+        Chemistry::File::SMILES         0.43
+        Chemistry::File::SMARTS         0.21
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2005 Ivan Tubert-Brohman <itub@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

@@ -1,0 +1,50 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander.LES
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+echo "SANDER: LES T coupling"
+
+if( ! $?TESTsanderLES ) set TESTsanderLES = "../../bin/sander.LES"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+  set numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+  if ( $numprocs > 12 ) then
+      echo " DO_PARALLEL set to $DO_PARALLEL"
+      goto toomany
+  else if ( $?MP_PROCS)then
+      if ($MP_PROCS > 12)then
+#               --- For IBM AIX ---
+          echo "    MP_PROCS set to "$MP_PROCS
+          goto toomany
+      endif
+  endif
+endif
+
+touch dummy
+$DO_PARALLEL $TESTsanderLES \
+-O \
+-i 2temp.in \
+-o 2temp.out \
+-p les.top \
+-c les.crd \
+-x 2tempcrd  \
+-inf 2tempinfo \
+-r 2temprestrt < dummy || goto error
+
+../dacdif 2temp.out.save 2temp.out
+/bin/rm -f 2tempcrd 2tempinfo 2temprestrt dummy
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+toomany:
+    echo " too many processors for this test, exiting (Max = 12)"
+    echo "============================================================"
+    exit(0)
+

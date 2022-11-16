@@ -1,0 +1,368 @@
+#!/home/ivan/bin/perl
+
+# Mok command line interpreter. This is part of the Chemistry::Mok
+# distribution.
+
+our $VERSION = '0.25';
+use strict;
+use warnings;
+no warnings qw(once);
+use Chemistry::Mok;
+use Getopt::Std;
+
+$| = 1; # don't buffer stdio
+
+my %opt;
+getopts('c:f:t:hvbp:dazD3', \%opt);
+usage() if $opt{h};
+
+my $code;
+if ($opt{f}) {
+    open F, "< $opt{f}" or die "Couldn't read $opt{f}\n";
+    {local $/; $code = <F>;}
+    close F;
+} else {
+    $code = shift || usage();
+}
+
+my @files = @ARGV;
+if ($^O eq 'MSWin32') { # do our own globbing under Windows
+    @files = map glob, @files;
+}
+
+$Chemistry::Mok::DEBUG = 1 if $opt{D};
+my $mok = Chemistry::Mok->new($code, 
+    pattern_format => $opt{p} || 'smarts',
+);
+
+
+$mok->run(
+    { 
+        mol_class       => $opt{c}, 
+        format          => $opt{t}, 
+        find_bonds      => $opt{b},
+        delete_dummies  => $opt{d},
+        aromatize       => $opt{a},
+        build_3d        => $opt{3},
+    }, 
+    @files
+);
+
+sub usage {
+    print <<EOF;
+mok version $VERSION
+Usage: $0 [OPTION]...  'CODE' FILE...
+Read each molecular file and run CODE on each. Options:
+    -3          generate 3D coordinates using Chemistry::3DBuilder
+    -a          "aromatize" each molecule as it is read
+    -b          find bonds from 3D coordinates
+    -c CLASS    use CLASS instead of Chemistry::Mol to read molecules
+    -D          print debugging information (very verbose)
+    -d          delete dummy atoms after reading each molecule
+    -f FILE     run the code from FILE instead of the command line
+    -h          this help
+    -p TYPE     parse patterns using the specified TYPE. Default: 'smarts'
+    -t TYPE     assume that every file has the specified TYPE
+EOF
+    exit;
+}
+
+__END__
+
+=head1 NAME
+
+mok - an awk for molecules
+
+=head1 SYNOPSIS
+
+    mok [OPTION]...  'CODE' FILE...   
+
+=head1 DESCRIPTION
+
+The purpose of mok is to read all the molecules found in the files that are
+given in the command line, and for each molecule execute the CODE that is
+given. The CODE is given in Perl and it has at its disposal all of the methods
+of the PerlMol toolkit.
+
+This mini-language is intended to provide a powerful environment for writing
+"molecular one-liners" for extracting and munging chemical information.  It was
+inspired by the AWK programming language by Aho, Kernighan, and Weinberger,
+the SMARTS molecular pattern description language by Daylight, Inc., and the
+Perl programming language by Larry Wall.
+
+Mok takes its name from Ookla the Mok, an unforgettable character from the
+animated TV series "Thundarr the Barbarian", and from shortening "molecular
+awk".  For more details about the Mok mini-language, see LANGUAGE SPECIFICATION
+below.
+
+Mok is part of the PerlMol project, L<http://www.perlmol.org>.
+
+=head1 OPTIONS
+
+=over
+
+=item -3
+
+Generate 3D coordinates using Chemistry::3DBuilder.
+
+=item -a          
+
+"Aromatize" each molecule as it is read. This is needed for example for
+matching SMARTS patterns that use aromaticity or ring primitives.
+
+=item -b
+
+Find bonds. Use it when reading files with no bond information but 3D
+coordinates to detect the bonds if needed (for example, if you want to do match
+a pattern that includes bonds). If the file has explicit bonds, mok will not
+try to find the bonds, but it will reassign the bond orders from scratch.
+
+=item -c CLASS
+
+Use CLASS instead of Chemistry::Mol to read molecules
+
+=item -d
+
+Delete dummy atoms after reading each molecule. A dummy atom is defined as an
+atom with an unknown symbol (i.e., it doesn't appear on the periodic table), or
+an atomic number of zero.
+
+=item -D
+
+Print debugging information, such as the way the input program was tokenized
+and parsed into blocks and subs. This may be useful for diagnosing syntax
+errors when the default error mesage is not informative enough.
+
+=item -f FILE
+
+Run the code from FILE instead of the command line
+
+=item -h  
+
+Print usage information and exit
+
+=item -p TYPE     
+
+Parse patterns using the specified TYPE. Default: 'smarts'. Other options are
+'smiles' and 'midas'.
+
+=item -t TYPE     
+
+Assume that every file has the specified TYPE. Available types depend on
+which Chemistry::File modules are installed, but currently available types
+include mdl, sdf, smiles, formula, mopac, pdb.
+
+=back
+
+=head1 LANGUAGE SPECIFICATION
+
+A Mok script consists of a sequence of pattern-action statements and
+optional subroutine definitions, in a manner very similar to the AWK
+language.
+
+    pattern_type:/pattern/options { action statements }
+    { action statements }
+    sub name { statements }
+    BEGIN { statements }
+    END { statements }
+    # comment
+
+When the whole program consists of one unconditional action block, the braces
+may be omitted.
+
+Program execution is as follows:
+
+1) The BEGIN block is executed as soon as it's compiled, before any other
+actions are taken.
+
+2) For each molecule in the files given in the command line, each pattern is 
+applied in turn; if the pattern matches, the corresponding statement block
+is executed. The pattern is optional; statement blocks without a pattern are
+executed unconditionally. Subroutines are only executed when called explicitly.
+
+3) Finally, the END block is executed.
+
+The statements are evaluated as Perl statements in the
+Chemistry::Mok::UserCode::Default package. The following chemistry modules are
+conveniently loaded by default:
+
+    Chemistry::Mol;
+    Chemistry::Atom ':all';
+    Chemistry::Bond;
+    Chemistry::Pattern;
+    Chemistry::Pattern::Atom;
+    Chemistry::Pattern::Bond;
+    Chemistry::File;
+    Chemistry::File::*;
+    Math::VectorReal ':all';
+
+Besides these, there is one more function available for convenience:
+C<println>, which is defined by C<sub println { print "\@_", "\n" }>.
+
+=head2 Pattern Specification
+
+The pattern must be a SMARTS string readable by the Chemistry::File::SMARTS
+module, unless a different type is specified by means of the -p option or a
+pattern_type is given explicitly before the pattern itself. The pattern is
+given within slashes, in a way reminiscent of AWK and Perl regular expressions.
+As in Perl, certain one-letter options may be included after the closing slash.
+An option is turned on by giving the corresponing lowercase letter and turned
+off by giving the corresponding uppercase letter.
+
+=over
+
+=item g/G
+
+Match globally (default: off). When not present, the Mok interpreter only
+matches a molecule once; when present, it tries matching again in other parts
+of the molecule. For example, /C/ matches butane only once (at an unspecified
+atom), while /C/g matches four times (once at each atom).
+
+=item o/O
+
+Overlap (default: on). When set and matching globally, matches may overlap. For
+example, /CC/go pattern could match twice on propane, but /CC/gO would match
+only once.
+
+=item p/P
+
+Permute (default: off). Sometimes there is more than one way of matching the
+same set of pattern atoms on the same set of molecule atoms. If true, return
+these "redundant" matches.  For example, /CC/gp could match ethane with
+two different permutations (forwards and backwards). 
+
+=back
+
+=head2 Special Variables
+
+When blocks with action statements are executed, some variables are defined
+automatically. The variables are local, so you can do whatever you want with
+them with no side effects. However, the objects themselves may be altered by
+using their methods.
+
+NOTE: Mok 0.10 defined $file, $mol, $match, and $patt in lowercase. While they
+still work, the lowercase variables are deprecated and may be removed in the
+future.
+
+=over
+
+=item $FILE
+
+The current filename.
+
+=item $MOL
+
+A reference to the current molecule as a Chemistry::Mol object.
+
+=item $MATCH
+
+A reference to the current match as a Chemistry::Pattern object.
+
+=item $PATT
+
+The current pattern as a string.
+
+=item $FH
+
+The current input filehandle. This provides low-level access in case you want
+to rewind or seek into the file, tell the current position, etc. Playing with
+$FH may break things if you are not careful. Use at your own risk!
+
+=item @A
+
+The atoms that were matched. It is defined as @A = $MATCH->atom_map if a
+pattern was used, or @A = $MOL->atoms within an unconditional block.  Remember
+that this is a Perl array, so it is zero-based, unlike the one-based numbering
+used by most file types and some PerlMol methods.
+
+=item @B
+
+The bonds that were matched. It is defined as @A = $MATCH->bond_map if a
+pattern was used, or @A = $MOL->bonds within an unconditional block.  Remember
+Remember that this is a Perl array, so it is zero-based, unlike the one-based
+numbering used by most file types and some PerlMol methods.
+
+=back
+
+=head2 Special Blocks
+
+Within action blocks, the following block names can be used with Perl 
+funcions such as C<next> and C<last>:
+
+=over
+
+=item MATCH
+
+=item BLOCK
+
+=item MOL
+
+=item FILE
+
+=back
+
+=head1 EXAMPLES
+
+Print the names of all the molecules found in all the .sdf files in the 
+current directory:
+
+    mok 'println $MOL->name' *.sdf
+
+Find esters among *.mol; print the filename, molecule name, and formula:
+
+    mok '/C(=O)OC/{ printf "$FILE: %s (%s)\n", 
+        $MOL->name, $MOL->formula }' *.mol
+
+Find out the total number of atoms:
+
+    mok '{ $n += $MOL->atoms } END { print "Total: $n atoms\n" }' *.mol
+
+Find out the average C-S bond length:
+
+    mok '/CS/g{ $n++; $len += $B[0]->length }
+        END { printf "Average C-S bond length: %.3f\n", $len/$n; }' *.mol
+
+Convert PDB files to MDL molfiles:
+
+    mok '{ $FILE =~ s/pdb/mol/; $MOL->write($FILE, format => "mdlmol") }' *.pdb
+
+Find molecules with a given formula by overriding the formula pattern type
+globally (this example requires L<Chemistry::FormulatPattern>):
+
+    mok -p formula_pattern '/C6H12O6/{ println $MOL->name }' *.sdf
+
+Find molecules with a given formula by overriding the formula pattern type
+just for one specific pattern. This can be used when more than one pattern
+type is needed in one script.
+
+    mok 'formula_pattern:/C6H12O6/{ println $MOL->name }' *.sdf
+
+
+=head1 SEE ALSO
+
+awk(1), perl(1)
+L<Chemistry::Mok>,
+L<Chemistry::Mol>, L<Chemistry::Pattern>,
+L<http://dmoz.org/Arts/Animation/Cartoons/Titles/T/Thundarr_the_Barbarian/>.
+
+Tubert-Brohman, I. Perl and Chemistry. The Perl Journal 2004-06 
+(L<http://www.tpj.com/documents/s=7618/tpj0406/>).
+
+The PerlMol project site at L<http://www.perlmol.org>.
+
+=head1 VERSION
+
+0.25
+
+=head1 AUTHOR
+
+Ivan Tubert-Brohman E<lt>itub@cpan.orgE<gt>
+
+=head1 COPYRIGHT
+
+Copyright (c) 2005 Ivan Tubert-Brohman. All rights reserved. This program is
+free software; you can redistribute it and/or modify it under the same terms as
+Perl itself.
+
+=cut
+

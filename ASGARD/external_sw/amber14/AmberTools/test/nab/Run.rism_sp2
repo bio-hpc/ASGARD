@@ -1,0 +1,48 @@
+#!/bin/sh
+
+#Trajectory is from $AMBERHOME/test/rism3d/ala/Run.ala.  Note that the
+#last frame of the trajectory does not occur in that test
+
+toomany() {
+    echo "${0}: This test runs with one process only"
+    exit 0
+}
+
+if [ -n "${DO_PARALLEL}" ] ; then
+    numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+    if [ "$numprocs" -ne "1" ]; then
+            echo " DO_PARALLEL set to $DO_PARALLEL"
+            toomany 
+    elif [ -n "${MP_PROCS}" ]; then
+        if [  "$MP_PROCS" -ne "1" \) ]; then
+#               --- For IBM AIX ---
+            echo "    MP_PROCS set to "$MP_PROCS
+            toomany 
+        fi
+    fi
+fi
+. ../program_error.sh
+
+echo "Running test to do basic MD (librism)"
+echo "(trajectory processing version 2 using the 3D-RISM command line interface)"
+echo ""
+
+if [ -n "$DO_PARALLEL" ]; then
+    cmd=$AMBERHOME/bin/rism3d.snglpnt.MPI
+else
+    cmd=$AMBERHOME/bin/rism3d.snglpnt
+fi
+
+$DO_PARALLEL $cmd --pdb ala.pdb --prmtop ala.parm7 --traj ala.crd \
+                  --xvv ../rism1d/spc-kh/spc.xvv.save\
+                  --buffer 10 --guv guv.2\
+                  --verbose 1 \
+                  --noprogress > rism3d.snglpnt.2.out || error
+
+./checkrism3d -err 1e-6 rism3d.snglpnt.2.out.check rism3d.snglpnt.2.out
+../dacdif -a 1e-6 guv.2.O.1.dx.check guv.2.O.1.dx
+../dacdif -a 1e-6 guv.2.H1.2.dx.check guv.2.H1.2.dx
+../dacdif -a 1e-6 guv.2.O.3.dx.check guv.2.O.3.dx
+
+rm -f guv.2.H1.1.dx guv.2.O.2.dx guv.2.H1.3.dx
+exit 0

@@ -1,0 +1,68 @@
+# ---------------------------------- #
+# general specifications for protein #
+# ---------------------------------- #
+# by default set the oxidation number of the following atoms
+all H*   1
+all O*  -2
+all S*  -2
+all N*  -3
+# only HA oxidation number is set to 0 to be able to cut CA-N or CA-C bonds
+all HA*  0
+# oxidation numbers of terminal residues H3 and OXT are set to 0 and -1, respectively, to get consistent charge
+all H3   0
+all OXT -1
+# carbon atoms
+all C   +4
+all CA   0
+all CB  -2
+all CG* -2   
+all CD* -1
+all CE* -1
+all CZ* -1 
+all CH* -1
+# CB changes
+ALA CB  -3
+ILE CB  -1
+VAL CB  -1
+SER CB  -1
+THR CB   0
+CYS CB  -1
+CYX CB  -1
+# CG changes
+ASP CG  +3
+LEU CG  -1
+ILE CG2 -3
+ASN CG  +3
+VAL CG* -3
+THR CG2 -3
+HID CG  +1
+HIE CG  +1
+HIP CG  +1
+MET CG  -1
+PHE CG   0
+TYR CG   0
+TRP CG   0
+# CD changes
+GLU CD  +3
+LEU CD* -3
+ILE CD1 -3
+GLN CD  +3
+HID CD2  0
+HIE CD2  0
+HIP CD2  0
+LYS CD  -2
+TRP CD*  0
+# CE changes
+MET CE  -2
+TRP CE2 +1
+HID CE1 +2
+HIE CE1 +2
+HIP CE1 +2
+# CZ changes
+ARG CZ  +4
+TYR CZ  +1
+# ------------------------- #
+# additional specifications #
+# ------------------------- #
+# Cl-
+Cl- Cl- -1

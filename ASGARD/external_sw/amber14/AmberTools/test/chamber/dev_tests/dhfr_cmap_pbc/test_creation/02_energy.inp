@@ -1,0 +1,64 @@
+* DHFR CMAP PBC Energy Evaluation
+* By Ross Walker & Mark Williamson (SDSC)
+*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Read in Topology and parameter file for ALL22
+
+    OPEN READ CARD UNIT 1 NAME "../../../../../dat/chamber/top_all22_prot.inp"
+    READ RTF CARD UNIT 1
+    CLOSE UNIT 1
+
+    OPEN READ CARD UNIT 2 NAME "../../../../../dat/chamber/par_all22_prot.inp"
+    READ PARAM CARD UNIT 2
+    CLOSE UNIT 2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Read in DHFR Gas Phase PSF and pdb
+    open unit 3 form read name "dhfr_cmap_pbc.psf"
+    read psf card unit 3
+    close unit 3
+
+! For some reason CHARMM cannot read it's own pdb file :-(
+!    read coor pdb name "01_minimize.pdb"
+    read coor card name "01_minimize.crd"
+
+    coor stat
+    COOR TRANS  XDIR ?XAVE YDIR ?YAVE ZDIR ?ZAVE  FACT -1.0
+    coor stat
+
+    CALC 9 = ?XMAX - ?XMIN
+    CALC 10 = ?YMAX - ?YMIN
+    CALC 11 = ?ZMAX - ?ZMIN
+
+    Crystal define orthorhombic @9 @10 @11 90 90 90
+    crystal build cutoff 15 noper 0
+
+    image byseg xcen 0.0 ycen 0.0 zcen 0.0 select segid DHFR end
+    image byres xcen 0.0 ycen 0.0 zcen 0.0 select segid WAT end
+
+! Run the update to generate the initial image atoms
+! Use bycb list builder
+
+    UPDATE      bycb           vswi           eps      1.0                -
+              INBFRQ    -1   -
+              cutnb     11.0 ctofnb    9.0   ctonnb   9.0 -
+              Ewald          kappa   0.340  pmEwald        order      4 -  !PME
+              fftx      96   ffty      80   fftz      64                   !PME
+
+!  turn on faster options and set-up SHAKE
+   faster on
+
+!   shake fast bonh tol 1.0e-7 para
+
+!**********************************************************
+!**********************************************************
+!
+!       Energy - Gas Phase
+!
+!**********************************************************
+!**********************************************************
+
+  ener
+
+  stop
+ 

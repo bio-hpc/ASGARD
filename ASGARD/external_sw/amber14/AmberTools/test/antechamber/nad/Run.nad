@@ -1,0 +1,86 @@
+#!/bin/csh -f
+
+echo  [31mStep 1[0m
+echo  [34mmake the coordinate center at "(0,0,0)", the tranlation vector is saved in
+echo  file vector.save. The purpose of this step is to avoide the problem of big
+echo  coordinates causing no space between two values in gaussian output, which
+echo  makes some programs "(such as espgen)" fail.[0m
+
+echo 
+echo [32m../../../bin/translate -i nad.mol2 -f mol2 -o nad_c.mol2 -c center -a1 0 ">" vector.save [0m 
+echo 
+
+../../../bin/translate -i nad.mol2 -f mol2 -o nad_c.mol2 -c center -a1 0 \
+   > vector.save || goto error
+
+echo  [31mStep 2[0m
+echo  [34mrun antechamber to generate gaussian gcrt file[0m
+
+echo
+echo [32m../../../bin/antechamber -i nad_c.mol2 -fi mol2 -o nad.gau -fo gcrt ">" antechamber.out[0m
+echo 
+
+../../../bin/antechamber -i nad_c.mol2 -fi mol2 -o nad.gau -fo gcrt \
+   >& antechamber.out || goto error 
+
+echo  [31mStep 3[0m
+echo  [34mrun gaussian, then generate a new mol2 file "(nad_c.mol2)" from the gaussian
+echo  output file, using the charge flag of '-resp' if ESP were printed out in the
+echo  gaussian output file.[0m
+ 
+echo
+echo [32m../../../bin/antechamber -i nad.gout -fi gout -fo mol2 -o nad_c.mol2 -c resp ">>" antechamber.out[0m
+echo 
+../../../bin/antechamber -i nad.gout -fi gout -fo mol2 -o nad_c.mol2 -c resp \
+   >& antechamber.out || goto error 
+echo  [31mStep 4[0m
+echo  [34msince the coordinates have been translated, one may translate the molecule
+echo  back using the 'translate' program with the saved vectors or do a Least-square fitting [0m
+echo
+echo [32mtranslate[0m
+echo 
+echo [32m../../../bin/translate -i nad_c.mol2 -f mol2 -o nad.mol2 -c translate -vx -45.1416 -vy -52.7378 -vz -78.7059 ">" translate.out[0m 
+echo 
+../../../bin/translate -i nad_c.mol2 -f mol2 -o nad.mol2 -c translate \
+   -vx -45.1416 -vy -52.7378 -vz -78.7059 >& translate.out || goto error
+echo [32mlsfit[0m
+echo
+echo [32m../../../bin/translate -i nad_c.mol2 -f mol2 -o nad.mol2 -c match -r nad.mol2 [0m
+echo 
+../../../bin/translate -i nad_c.mol2 -f mol2 -o nad.mol2 -c match \
+   -r nad.mol2 || goto error
+echo 
+echo  [31mStep 5[0m
+echo [34mIf one wants to use am1-bcc charge, skip the above steps and just run the
+echo  following command[0m
+echo [32m
+echo ../../../bin/antechamber -i nad.mol2 -fi mol2 -o nad_c.mol2 -fo mol2 -c bcc -s 2 ">>" antechamber.out 
+echo [0m 
+
+../../../bin/antechamber -i nad.mol2 -fi mol2 -o nad_c.mol2 -fo mol2  \
+   -c bcc -s 2 >& antechamber.out || goto error
+
+echo  [31mStep 6[0m
+echo  [34mrun parmchk to find missing force field parameters[0m
+echo
+echo [32m../../../bin/parmchk -i nad_c.mol2 -f mol2 -o frcmod[0m 
+echo
+../../../bin/parmchk -i nad_c.mol2 -f mol2 -o frcmod || goto error
+echo  [31mStep 7[0m
+echo  [34mrun tleap to generate topology file[0m
+echo
+echo [32m../../../bin/tleap -s -f leap.in ">" leap.out[0m
+echo
+../../../bin/tleap -s -f leap.in > leap.out
+
+../../dacdif -t 1 prmtop.save prmtop 
+../../dacdif -t 1 prmcrd.save prmcrd 
+../../dacdif -t 1 frcmod.save frcmod 
+../../dacdif nad.mol2.save nad.mol2
+
+/bin/rm -f ANTE* ATOMTYPE.INF BCCTYPE.INF for* FOR* NEWPDB.PDB PREP.INF mopac.in
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

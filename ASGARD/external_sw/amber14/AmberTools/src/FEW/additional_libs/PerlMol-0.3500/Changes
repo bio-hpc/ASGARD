@@ -1,0 +1,186 @@
+Revision history for PerlMol
+
+0.3500
+    NEW!!! Added an examples/ directory
+
+    New distributions:
+        Chemistry-File-VRML             0.10
+        Chemistry-3DBuilder             0.10
+
+    Changed versions:
+
+        Chemistry-Mol                   0.35
+            - Added formal_radical atom property.
+            - Compatibility with Storable-2.14, which already takes care of
+              weak references.
+            - calc_implicit_hydrogens, add_implicit_hydrogens
+            - Fixed $atom->bonds duplication on $mol->separate (bug 1173237)
+            - New method: safe_clone
+            - Fixed spurious warnings in sprout_hydrogens (bug 1157393)
+            - Added a test for incompatible Chemistry::File::SMILES versions.
+
+        Chemistry-Mok                   0.25
+            - Read one molecule at a time using the Chemistry-Mol-0.30 
+              interface.
+            - New special variable $FH
+            - Added support for Chemistry::3DBuilder (-3 command-line option)
+            - Add #line to the generated code so that errors give more 
+              meaningful line numbers.
+            - Fixed parsing bug where the first block used an explicit pattern
+              language
+            - Restructured Chemistry::Mok to be more object-oriented: 
+            - WARNING: the mok object is now a hash reference instead of an 
+              array reference. This may affect derived classes.
+
+        Chemistry-File-SMILES           0.44
+            - Fixed memory leak that prevented the last atom from being garbage
+              collected.
+
+        Chemistry-File-SMARTS           0.22
+            - Added the original SMARTS string as the $patt->name property.
+            - Added support for atom mapping numbers
+
+        Chemistry-File-PDB              0.21
+            - Changed parse_file to read_mol
+            - Read multi-model files (each model read as one molecule)
+            - Read chain id and insertion code
+
+        Chemistry-Pattern               0.26
+            - Fixed mapping bug for overlap => 0
+
+        Chemistry-MidasPattern          0.11
+            - Chain support.
+            - Be more lenient with whitespace.
+            - Refactored parsing and execution.
+
+        Chemistry-File-MDLMol           0.20
+            - Added support for charges and radicals.
+            - Add implicit hydrogens on read.
+            - Support for some query properties: atom lists, bond topology, and
+              bond types.
+
+        Chemistry-Isotope               0.11
+            - Added natural abundance table
+
+    Unchanged versions:
+        Chemistry-InternalCoords        0.18
+        Chemistry-MacroMol              0.06
+        Chemistry-Ring                  0.18
+        Chemistry-Canonicalize          0.10
+        Chemistry-Bond-Find             0.21
+        Chemistry-File-SLN              0.10
+        Chemistry-FormulaPattern        0.10
+        Chemistry-File-Mopac            0.15
+        Chemistry-File-XYZ              0.11
+        Chemistry-Reaction              0.02
+        Math-VectorReal                 1.02
+        Statistics-Regression           0.15
+        Parse-Yapp                      1.05
+
+0.3200  Mar 04 2005
+    New distributions:
+        Chemistry-Reaction              0.02
+        Chemistry-Isotope               0.10
+    Changed versions:
+        Chemistry-Mol                   0.32
+        Chemistry-Mok                   0.24
+        Chemistry-InternalCoords        0.18
+        Chemistry-File-MDLMol           0.19
+        Chemistry-File-SMILES           0.43
+        Chemistry-File-SMARTS           0.21
+    Unchanged versions:
+        Chemistry-MacroMol              0.06
+        Chemistry-Ring                  0.18
+        Chemistry-Canonicalize          0.10
+        Chemistry-Pattern               0.25
+        Chemistry-Bond-Find             0.21
+        Chemistry-File-SLN              0.10
+        Chemistry-File-PDB              0.20
+        Chemistry-FormulaPattern        0.10
+        Chemistry-MidasPattern          0.10
+        Chemistry-File-Mopac            0.15
+        Chemistry-File-XYZ              0.11
+        Math-VectorReal                 1.02
+        Statistics-Regression           0.15
+        Parse-Yapp                      1.05
+
+0.2600  Aug 12 2004
+    New distributions:
+        Chemistry-File-SLN              0.10
+        Chemistry-FormulaPattern        0.10
+        Parse-Yapp                      1.05
+    Changed versions:
+        Chemistry-Mol                   0.26
+        Chemistry-InternalCoords        0.17
+        Chemistry-Ring                  0.18
+        Chemistry-Pattern               0.25
+        Chemistry-File-MDLMol           0.17
+        Chemistry-File-SMILES           0.42
+        Chemistry-File-SMARTS           0.20
+        Chemistry-File-XYZ              0.11
+        Chemistry-Mok                   0.23
+    Unchanged versions:
+        Chemistry-MacroMol              0.06
+        Chemistry-Canonicalize          0.10
+        Chemistry-Bond-Find             0.21
+        Chemistry-File-PDB              0.20
+        Chemistry-MidasPattern          0.10
+        Chemistry-File-Mopac            0.15
+        Math-VectorReal                 1.02
+        Statistics-Regression           0.15
+
+
+0.2500  Jul 03 2004
+    New distributions:
+        Chemistry-File-XYZ              0.10
+        Chemistry-MidasPattern          0.10
+    Changed versions:
+        Chemistry-File-MDLMol           0.16
+        Chemistry-File-Mopac            0.15
+        Chemistry-File-PDB              0.20
+        Chemistry-File-SMARTS           0.11
+        Chemistry-File-SMILES           0.41
+        Chemistry-InternalCoords        0.16
+        Chemistry-MacroMol              0.06
+        Chemistry-Mok                   0.22
+        Chemistry-Mol                   0.25
+        Chemistry-Ring                  0.15
+    Unchanged versions:
+        Chemistry-Bond-Find             0.21
+        Chemistry-Canonicalize          0.10
+        Chemistry-Pattern               0.21
+        Math-VectorReal                 1.02
+        Statistics-Regression           0.15
+
+
+
+0.2400  Jun 18 2004
+    Removed core modules from the bundle. New versions:
+        Statistics-Regression           0.15
+        Chemistry-Mol                   0.24
+        Chemistry-Ring                  0.11
+        Chemistry-Canonicalize          0.10
+        Chemistry-Pattern               0.21
+        Chemistry-Bond-Find             0.21
+        Chemistry-File-SMILES           0.40
+        Chemistry-File-PDB              0.15
+        Chemistry-File-SMARTS           0.10
+        Chemistry-Mok                   0.21
+
+0.2300  Jun 11 2004
+    First version, including the following modules:
+        Test-Simple                 0.47
+        Scalar-List-Utils           1.14
+        Storable                    2.12
+        Text-Balanced               1.95
+        Math-VectorReal             1.02
+        Chemistry-Mol               0.23
+        Chemistry-MacroMol          0.05
+        Chemistry-InternalCoords    0.11
+        Chemistry-File-MDLMol       0.15
+        Chemistry-File-SMILES       0.33
+        Chemistry-File-PDB          0.10
+        Chemistry-File-Mopac        0.10
+        Chemistry-Pattern           0.20
+        Chemistry-Bond-Find         0.20
+        Chemistry-Mok               0.20

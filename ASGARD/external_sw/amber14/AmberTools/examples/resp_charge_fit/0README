@@ -1,0 +1,67 @@
+RESP Demos: 
+
+Four cases are provided which covers the range of posiblities.
+
+  water		One molecule with a single stage fitting
+
+ ethylene	One molecule with a two stage fit on a single conformation
+
+ bis-napthyl 	One molecule with a two stage fit on two conformations
+
+  adenine	Two molecules fitted together to get charges for a 
+		"super molecule".
+
+ peptoid	Two stage fit of a peptide-type residue to be consistent
+		with Cornell et al. '95 peptides
+
+
+Some remarks on these demos by Wendy Cornell:
+
+1)  ethylene -- This only requires a one-stage fit since there
+are no methyl or methylene groups.  Both the carbons and
+the hydrogens should be constrained to be equivalent in stage 1.
+
+2)  adenine -- This is a 2-conformation fit.  In stage 1, I would 
+not make methylene H21 equiv between the 2 confs and methylene
+H22 equiv between the 2 confs.  They get refit in stage 2
+and are made to be equiv within each conformation at that time.
+When 2 different conformations are used in the fit (I don't think 
+that's the case here) then H21(mol 1) may not correspond
+rigorously to H21(mol 2) anyway.  My general philosophy was the 
+fewer constraints in stage 1, the better.  Although I usually 
+made the C's in methyl and methylene groups be equiv in
+stage 1 just to "nail down" part of the charge distribution.
+
+In stage 2, H22 was constrained to be equal to H22 instead of H21.
+I would really like to see the atomic numbering appear in the
+input files.  I always end up writing it in anyway by hand,
+otherwise I make mistakes like the above.
+
+3)  bis-napthyl -- What is that extra lagrange constraint doing 
+at the end of the first input file?
+
+Again, I wouldn't make each H within the methyl and methylene
+groups be equiv to its coresponding atom in the other
+conformation in the first stage.
+
+4)  The input files don't always have the proper title
+(i.e. "water," "adenine", etc)
+
+The weakest aspect of the RESP model, in my opinion,
+is that the second stage fit was initially employed
+to refit inequivalent atoms (methyl H's), but then
+was also used to pull down the charges on the
+nonpolar atoms even further through use of the stronger 
+restraint.  The obvious problem is how to handle
+polar atoms which are not equivalent but need to be.
+This turned out not be a problem with amino H's, for example,
+but there may be other systems where it is a problem.  At 
+the very least, it means the philosophy and purpose of the 
+second stage is not well defined.  Chris wanted to include methine
+groups in the second stage refit, but it was found that the 
+stronger restraint reduced the charges too much and adversely 
+affected the fit.  If we had it to do over again, I'd say
+just use the same restraint in both stages (and I think Chris
+came to the same conclusion.)
+
+--

@@ -1,0 +1,88 @@
+_______________________________________________________________________
+
+      README.UPDATES:
+
+           This file describes the latest released 
+          modifications to the ptraj/rdparm programs
+
+     e-mail me if you have problems: tec3@utah.edu
+_______________________________________________________________________
+
+
+2 April 2007:
+
+-- Major update; some of the default printing behavior may have changed.
+
+New things:
+
+-- tagging a scalar command to provide summary information at end
+
+Example:
+
+  dihedral g1 out dihedrals/g1.dat :1@O5' :1@C5' :1@C4' :1@C3' type gamma
+  dihedral d1 out dihedrals/d1.dat :1@C5' :1@C4' :1@C3' :1@O3' type delta
+  dihedral e1 out dihedrals/e1.dat :1@C4' :1@C3' :1@O3' :2@P   type epsilon
+  dihedral z1 out dihedrals/z1.dat :1@C3' :1@O3' :2@P   :2@O5' type zeta
+  dihedral c1 out dihedrals/c1.dat :1@O4' :1@C1' :1@N9  :1@C4  type chi
+
+  analyze statistics all
+
+This tags these nucleic acid angles and when summary information is
+printed at the end of the run (thanks to the "analyze statistics all"
+command) additional specific information is printed.  Soon this will
+be generalized to allow user specification.
+
+For "gamma" this is what is printed...
+__________________________________________________________________
+
+STATISTICS     g0  average:     -16.2823  stddev:     136.0428
+   INITIAL VALUE:   52.58, FINAL VALUE:    0.00
+
+               g+       a+       t        a-       g-       c      
+           -------------------------------------------------------
+ %occupied |   36.7 |    0.2 |   58.6 |    1.2 |    3.3 |    0.0 |
+ average   |   55.0 |  117.0 |  184.5 | -133.7 |  -69.6 |  -20.8 |
+ stddev    |   18.5 |   25.3 |   10.4 |   20.5 |   12.1 |    8.3 |
+           -------------------------------------------------------
+ GAMMA     canonical           minor             minor
+
+   O5'-C5'-C4'-C3', SNB range is 20-80 (g+)
+   *** GAMMA trans > 10% detected!!!
+
+TRANSITIONS TABLE: (from/vertical to/horizontal)
+
+              g+       a+       t        a-       g-       c      
+           -------------------------------------------------------
+   g+      |        |    216 |      9 |      4 |     13 |      6 |
+   a+      |    211 |        |    176 |        |        |        |
+   t       |     17 |    170 |        |   1595 |     33 |        |
+   a-      |        |      1 |   1597 |        |    415 |      1 |
+   g-      |     16 |        |     33 |    415 |        |     38 |
+   c       |      4 |        |        |        |     41 |        |
+           -------------------------------------------------------
+
+__________________________________________________________________
+
+
+Current tags are: alpha, beta, gamma, delta, epi, zeta, chi, pucker
+
+-- distances can also be tagged, current tags are "hbond" or 
+   "noe bound # bound #", i.e.
+
+  distance d1 :1 :2 noe bound 2.4 bound 3.5
+
+  ...will treat < 2.4 as a "strong" and < 3.5 as "medium" noe value.
+
+
+-- atomicfluct3D allows B factors to be calculated and dumped over
+   windows throughout the trajectory to create a 3D dataset of 
+   "atom" "time" "bfactor" on each line.
+
+Example:
+
+  atomicfluct3D out bfactor3D.dat :1-99 byres bfactor window 2000 by 1000
+
+  ...will calculate over windows of size 2000 with an offset of 1000,
+  or 1-2000, 1001-3000, 2001-4000, ...
+
+

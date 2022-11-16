@@ -1,0 +1,75 @@
+Stringify output testing (MatrixReal default)
+O->stringify => [  0.000000000000E+00  0.000000000000E+00  0.000000000000E+00 ]
+
+Changing default vector to string format
+$Math::VectorReal::FORMAT = "[ %g %g %g ]";
+
+Axis functions, assign to constants
+ $o = O => [ 0 0 0 ]
+ $x = X => [ 1 0 0 ]
+ $y = Y => [ 0 1 0 ]
+ $z = Z => [ 0 0 1 ]
+
+String conversion operation testing
+Note: this include some automatic stringify concat ('.') operations
+ "$o"  => [ 0 0 0 ]
+""$x   => [ 1 0 0 ]
+  $y"" => [ 0 1 0 ]
+  $z   => [ 0 0 1 ]
+vector(1,2,3) => [ 1 2 3 ]
+
+Addition
+$a = $x + Y => [ 1 1 0 ]
+$a += $y    => [ 1 2 0 ]
+
+Clone and Addition Tests
+$b = $y  => [ 0 1 0 ]
+$b += Z  => [ 0 1 1 ]
+   $y    => [ 0 1 0 ]
+
+Subtraction
+$b -= $z    => [ 0 1 0 ]
+$b = $b - Z => [ 0 1 -1 ]
+
+Scalar Multiply
+$a = $z * 2 => [ 0 0 2 ]
+$a = 2 * Z  => [ 0 0 2 ]
+$a *= 2.5   => [ 0 0 5 ]
+
+Scalar Divide
+$a = $b / 2 => [ 0 0.5 -0.5 ]
+$a /= 3e14  => [ 0 1.66667e-15 -1.66667e-15 ]
+
+Unary - and more subtraction
+$b = -$b       => [ -0 -1 1 ]
+$b -= Z        => [ -0 -1 0 ]
+$b -= $z - -$y => [ -0 -2 -1 ]
+$b = $o - $b   => [ 0 2 1 ]
+
+Cross Product
+$a = $b x X   => [ 0 1 -2 ]
+$a = $b x $y  => [ -1 0 0 ]
+$a = $b x $z  => [ 2 0 0 ]
+
+Dot Product / String Concatenation
+$a = Z . $b   => 1
+$a = $b . -$y => -2
+$s = $b . "!" => [ 0 2 1 ]!
+$s = "!" . $b => ![ 0 2 1 ]
+$a .= $b      => -2[ 0 2 1 ]
+
+Special Functions (length, norm, plane)
+$b->length    => 2.23606797749979
+$b->norm      => [ 0 0.894427 0.447214 ]
+@a = plane(X,Y,Z) => 
+  [ 0.57735 0.57735 0.57735 ] 0.577350269189626
+check output from plane() function
+normal   => [ 0.57735 0.57735 0.57735 ]
+distance => 0.577350269189626
+
+Are defined constants still OK
+$o => [ 0 0 0 ]
+$x => [ 1 0 0 ]
+$y => [ 0 1 0 ]
+$z => [ 0 0 1 ]
+

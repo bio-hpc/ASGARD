@@ -1,0 +1,19 @@
+
+water box pimd simulation: PBC
+
+&cntrl
+   ipimd = 1,
+
+   temp0 = 300, tempi = 300, temp0les = -1.0 ! use single bath for les and non-les parts
+
+   dt = 0.001, nstlim=5, 
+
+   ntpr = 1, ntwx = 50, cut = 7.9,
+   
+   ntt = 3, gamma_ln = 20.0
+
+   ntx = 5, irest = 1
+/
+&ewald
+   skinnb=1.0
+/

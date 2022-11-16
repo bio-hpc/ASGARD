@@ -1,0 +1,68 @@
+ AMBER8 Module: addles
+ set up Locally Enhanced Sampling topology
+
+
+add_les> file rprm name=(water.top) read
+  The following unit number was assigned    26
+| New format PARM file being parsed.
+| Version =    1.000 Date = 09/01/05 Time = 12:29:35
+ Checking topology sizes against compiled limits
+ Checking topology sizes against compiled limits
+add_les> file rcrd name=(water.crd) read
+  The following unit number was assigned    27
+ urcrd:          27
+Coordinates only from unit  27
+SPF                                                                             
+ Reading coordinates from input file
+
+
+add_les> file wprm name=(h2o_les.top) wovr
+  The following unit number was assigned    28
+add_les> file wcrd name=(h2o_les.crd) wovr
+  The following unit number was assigned    29
+
+
+add_les> action
+
+
+add_les> ~ use original mass
+add_les> omas
+ All masses will be left at initial values
+
+
+add_les> ~ make 8 copies of atom 1--3
+add_les> space numc=8 pick #prt 1 3 done
+ picking from            3  particles
+ Picked            3  particles
+ Making            8  copies
+there were      3 particles; currently     24 particles
+there were      3 nbonh bonds, now there are     24
+there were      0 nbona bonds, now there are      0
+there were      0 nbper bonds, now there are      0
+there were      1 ntheth angles, now there are      8
+there were      0 ntheta angles, now there are      0
+there were      0 ngper angles, now there are      0
+there were      0 nphih torsions, now there are      0
+there were      0 nphia torsions, now there are      0
+there were      0 ndper torsions, now there are      0
+processing exclusion list 
+finished creating LES subspace 
+ Checking topology sizes against compiled limits
+
+
+add_les> *EOD
+ Finished reading subspace definitions. 
+ Looking for unique atom and covalent types
+           1           1   1.63300000000000       0.000000000000000E+000
+           2   1.63300000000000       0.000000000000000E+000
+           2           3   1.01200000000000        66.1975000000000     
+           4   1.01200000000000        529.580000000000     
+ bond with hydrogen:           4
+ There were            2  bond types, now there are            4
+ There were            1  angle types, now there are            2
+ There were            0  dihedral types, now there are            0
+ There were            2  atom typesNow there are            2
+MAX # ATOMS IN A SINGLE RESIDUE =      24
+  ATOM  origpt
+ Writing coordinates to output file
+ Successful completion of ADDLES

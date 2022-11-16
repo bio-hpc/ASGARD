@@ -1,0 +1,18 @@
+molecule m;
+float 	x[2000], f[2000], v[2000];
+float 	dgrad, fret;
+int 	ier; 
+
+m = getpdb("gbrna.pdb");
+readparm(m, "gbrna.prmtop");
+mm_options( "ntpr=100, gb=1, kappa=0.10395, cut=99.0, diel=C, tempi=300., rattle=0");
+mme_init( m, NULL, "::Z", x, NULL);
+
+setxyz_from_mol( m, NULL, x );
+ier = md(3*m.natoms, 1000, x, f, v, mme );
+if(mytaskid==0){
+  printf( "md returns %d\n", ier);
+  putxv( "gbrna_long.x", "rattle md", m.natoms, 0.0, x, v );
+}
+
+mme_timer();

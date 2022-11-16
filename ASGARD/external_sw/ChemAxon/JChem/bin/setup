@@ -1,0 +1,25 @@
+#!/bin/bash
+# Set Java path
+
+# java path can be hardcoded, optionally
+JVMABSPATH="@JVMPATH@"
+
+# detect which java is preferred by installer
+dir=`dirname $0`
+# bundled JRE
+if [ -f "$dir/../.install4j/pref_jre.cfg" ]; then
+	JVMABSPATH=`cat "$dir/../.install4j/pref_jre.cfg"`
+	if [ -d $JVMABSPATH ]; then
+		JVMABSPATH=$JVMABSPATH/bin/java
+	fi
+elif [ -f "$dir/../.install4j/inst_jre.cfg" ]; then
+	JVMABSPATH=`cat "$dir/../.install4j/inst_jre.cfg"`
+	if [ -d $JVMABSPATH ]; then
+		JVMABSPATH=$JVMABSPATH/bin/java
+	fi
+fi
+# if java path is invalid, use the default
+JVMPATH=$JVMABSPATH
+if [ ! -f "$JVMPATH" ]; then
+    JVMPATH=java
+fi

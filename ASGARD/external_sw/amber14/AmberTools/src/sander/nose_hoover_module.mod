@@ -1,0 +1,493 @@
+GFORTRAN module created from nose_hoover.F90 on Thu Feb 11 10:40:24 2016
+MD5:8f602952fead3f342f0708394914c3d7 -- If you edit this, you'll get what you deserve.
+
+(() () () () () () ()
+() () () () () () () () () () () () () () () () () () () ())
+
+()
+
+()
+
+()
+
+()
+
+(2 'abfqmmm_parameters' 'abfqmmm_module' 'abfqmmm_parameters' 1 ((
+DERIVED UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN POINTER_COMP) (
+UNKNOWN 0 0 0 UNKNOWN ()) 0 0 () () 0 ((3 'abfqmmm' (INTEGER 4 0 0
+INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (4 'hot_spot' (INTEGER 4 0 0
+INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (5 'natom' (INTEGER 4 0 0
+INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (6 'nres' (INTEGER 4 0 0 INTEGER
+()) () 0 0 0 UNKNOWN-ACCESS ()) (7 'id' (INTEGER 4 0 0 INTEGER ()) (1
+DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0))
+(8 'id_orig' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (9 'isqm' (INTEGER 4
+0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0
+0 0 UNKNOWN ()) 0)) (10 'n_user_core' (INTEGER 4 0 0 INTEGER ()) () 0 0
+0 UNKNOWN-ACCESS ()) (11 'user_core' (INTEGER 4 0 0 INTEGER ()) (1
+DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0))
+(12 'n_user_qm' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (
+13 'user_qm' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (14 'n_user_buffer'
+(INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (15 'user_buffer'
+(INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (
+NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (16 'n_core' (INTEGER 4 0 0 INTEGER
+()) () 0 0 0 UNKNOWN-ACCESS ()) (17 'core' (INTEGER 4 0 0 INTEGER ()) (
+1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ())
+0)) (18 'n_qm' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (
+19 'qm' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (20 'n_buffer' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (21 'buffer' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (22 'n_subset_core' (INTEGER 4 0 0
+INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (23 'subset_core' (INTEGER 4 0 0
+INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0
+UNKNOWN ()) 0)) (24 'n_subset_qm' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (25 'subset_qm' (INTEGER 4 0 0 INTEGER ()) (1
+DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0))
+(26 'n_subset_buffer' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS
+()) (27 'subset_buffer' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1
+1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (28 'n_center' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (29 'center' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (30 'selection_type' (INTEGER 4 0 0
+INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (31 'center_type' (INTEGER 4 0 0
+INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (32 'initial_selection_type' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (33 'system' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (34 'qmstep' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (35 'maxqmstep' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (36 'class_charge'
+(INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (37 'abfcharge' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (38 'corecharge' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (39 'qmcharge' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (40 'buffercharge'
+(INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (41
+'cut_bond_list_file' (CHARACTER 1 0 0 CHARACTER ((CONSTANT (INTEGER 4 0
+0 INTEGER ()) 0 '256'))) () 0 0 0 UNKNOWN-ACCESS ()) (42
+'oxidation_number_list_file' (CHARACTER 1 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '256'))) () 0 0 0 UNKNOWN-ACCESS ()) (43
+'max_bonds_per_atom' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS
+()) (44 'n_max_recursive' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (45 'n_recursive' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (46 'mom_cons_type' (INTEGER 4 0 0 INTEGER ()) () 0 0
+0 UNKNOWN-ACCESS ()) (47 'mom_cons_region' (INTEGER 4 0 0 INTEGER ()) ()
+0 0 0 UNKNOWN-ACCESS ()) (48 'fix_atom_list' (INTEGER 4 0 0 INTEGER ())
+() 0 0 0 UNKNOWN-ACCESS ()) (49 'solvent_atom_number' (INTEGER 4 0 0
+INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (50 'read_idrst_file' (
+CHARACTER 1 0 0 CHARACTER ((CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '256')))
+() 0 0 0 UNKNOWN-ACCESS ()) (51 'write_idrst_file' (CHARACTER 1 0 0
+CHARACTER ((CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '256'))) () 0 0 0
+UNKNOWN-ACCESS ()) (52 'ntwidrst' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (53 'pdb_file' (CHARACTER 1 0 0 CHARACTER ((CONSTANT
+(INTEGER 4 0 0 INTEGER ()) 0 '256'))) () 0 0 0 UNKNOWN-ACCESS ()) (54
+'ntwpdb' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (55 'x'
+(REAL 8 0 0 REAL ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (
+UNKNOWN 0 0 0 UNKNOWN ()) 0)) (56 'v' (REAL 8 0 0 REAL ()) (1 DEFERRED ()
+()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (57 'f' (
+REAL 8 0 0 REAL ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (
+UNKNOWN 0 0 0 UNKNOWN ()) 0)) (58 'f1' (REAL 8 0 0 REAL ()) (1 DEFERRED
+() ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (59 'f2'
+(REAL 8 0 0 REAL ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (
+UNKNOWN 0 0 0 UNKNOWN ()) 0)) (60 'r_core_in' (REAL 8 0 0 REAL ()) () 0
+0 0 UNKNOWN-ACCESS ()) (61 'r_core_out' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (62 'r_qm_in' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (63 'r_qm_out' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (64 'r_buffer_in' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (65 'r_buffer_out' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (66 'r_hot_spot_in' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (67 'r_hot_spot_out' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (68 'r_hot_spot' (REAL 8 0 0 REAL ()) (1 DEFERRED ()
+()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (69
+'res_pointers' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (70 'res_atom_number'
+(INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (
+NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (71 'atom_name' (CHARACTER 1 0 0
+CHARACTER ((CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '4'))) (1 DEFERRED ()
+()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (72
+'res_name_of_atom' (CHARACTER 1 0 0 CHARACTER ((CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '4'))) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (
+UNKNOWN 0 0 0 UNKNOWN ()) 0)) (73 'res_id_of_atom' (INTEGER 4 0 0
+INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0
+UNKNOWN ()) 0)) (74 'numbond' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED ()
+()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (75
+'listbond' (INTEGER 4 0 0 INTEGER ()) (2 DEFERRED () () () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (76 'cutnumbond' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (77 'cutlistbond' (INTEGER 4 0 0 INTEGER
+()) (2 DEFERRED () () () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0
+UNKNOWN ()) 0)) (78 'oxidation_number' (INTEGER 4 0 0 INTEGER ()) (1
+DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0))
+(79 'min_heavy_mass' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (
+80 'mass' (REAL 8 0 0 REAL ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (
+NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (81 'gamma_ln_qm' (REAL 8 0 0 REAL ())
+() 0 0 0 UNKNOWN-ACCESS ()) (82 'r_diff_in' (REAL 8 0 0 REAL ()) () 0 0
+0 UNKNOWN-ACCESS ()) (83 'r_diff_out' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (84 'diff_k' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (85 'diff_potential' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (86 'water_o_n' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (87 'x0' (REAL 8 0 0 REAL ()) (1 DEFERRED () ()) 1 1
+0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (88 'dx' (REAL 8 0
+0 REAL ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0
+UNKNOWN ()) 0)) (89 'water_o_id' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED
+() ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (90
+'water_o_is_qm' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (91 'water_o_time' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (92 'ndiffmm' (INTEGER 4 0 0 INTEGER ())
+(1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ())
+0)) (93 'ndiffqm' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (94 'diffmm' (REAL 8
+0 0 REAL ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0
+0 UNKNOWN ()) 0)) (95 'diffqm' (REAL 8 0 0 REAL ()) (1 DEFERRED () ()) 1
+1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (96 'numbnd' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (97 'rk' (REAL 8 0
+0 REAL ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0
+UNKNOWN ()) 0)) (98 'req' (REAL 8 0 0 REAL ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (99 'nbonh' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (100 'iibh' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (101 'ijbh' (INTEGER 4 0 0 INTEGER ()) (
+1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ())
+0)) (102 'icbh' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (103 'nbona' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (104 'iiba' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (105 'ijba' (INTEGER 4 0 0 INTEGER ()) (
+1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ())
+0)) (106 'icba' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (107 'ntheth' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (108 'iith' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (109 'ijth' (INTEGER 4 0 0 INTEGER ()) (
+1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ())
+0)) (110 'ikth' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (111 'icth' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (112 'ntheta' (INTEGER 4 0 0 INTEGER ())
+() 0 0 0 UNKNOWN-ACCESS ()) (113 'iita' (INTEGER 4 0 0 INTEGER ()) (1
+DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0))
+(114 'ijta' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (115 'ikta' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (116 'icta' (INTEGER 4 0 0 INTEGER ()) (
+1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ())
+0)) (117 'nphih' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ())
+(118 'iiph' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (119 'ijph' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (120 'ikph' (INTEGER 4 0 0 INTEGER ()) (
+1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ())
+0)) (121 'ilph' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (122 'icph' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (123 'nphia' (INTEGER 4 0 0 INTEGER ()) ()
+0 0 0 UNKNOWN-ACCESS ()) (124 'iipa' (INTEGER 4 0 0 INTEGER ()) (1
+DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0))
+(125 'ijpa' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (126 'ikpa' (
+INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL
+(UNKNOWN 0 0 0 UNKNOWN ()) 0)) (127 'ilpa' (INTEGER 4 0 0 INTEGER ()) (
+1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ())
+0)) (128 'icpa' (INTEGER 4 0 0 INTEGER ()) (1 DEFERRED () ()) 1 1 0
+UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0)) (129 'charge' (REAL
+8 0 0 REAL ()) (1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0
+0 0 UNKNOWN ()) 0)) (130 'charmm_nub' (INTEGER 4 0 0 INTEGER ()) () 0 0
+0 UNKNOWN-ACCESS ()) (131 'charmm_ang_ub' (DERIVED 132 0 0 DERIVED ()) (
+1 DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ())
+0)) (133 'charmm_nimphi' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (134 'charmm_imp' (DERIVED 135 0 0 DERIVED ()) (1
+DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN ()) 0))
+(136 'cmap_term_count' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (137 'cmap_index' (INTEGER 4 0 0 INTEGER ()) (2
+DEFERRED () () () ()) 1 1 0 UNKNOWN-ACCESS (NULL (UNKNOWN 0 0 0 UNKNOWN
+()) 0))) PUBLIC () 0 0)
+132 'chm_ang_ub_struct' 'charmm_mod' 'chm_ang_ub_struct' 1 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN) (UNKNOWN 0 0 0 UNKNOWN ())
+0 0 () () 0 ((138 'i' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS
+()) (139 'k' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (
+140 'r0' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (141 'kr' (
+REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ())) PUBLIC () 0 0)
+135 'chm_imp_struct' 'charmm_mod' 'chm_imp_struct' 1 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN) (UNKNOWN 0 0 0 UNKNOWN ())
+0 0 () () 0 ((142 'i' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS
+()) (143 'j' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (
+144 'k' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (145 'l'
+(INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (146 'pk' (REAL 8
+0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (147 'phase' (REAL 8 0 0 REAL ())
+() 0 0 0 UNKNOWN-ACCESS ())) PUBLIC () 0 0)
+148 'abfqmmm_param' 'abfqmmm_module' 'abfqmmm_param' 1 ((VARIABLE
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (DERIVED 2 0 0
+DERIVED ()) 0 0 () () 0 () () 0 0)
+149 'adaptive_thermostat_hamiltonian' 'nose_hoover_module'
+'adaptive_thermostat_hamiltonian' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL UNKNOWN FUNCTION ALWAYS_EXPLICIT) (REAL 8 0 0 REAL ())
+150 0 (151 152 153) () 154 () () 0 0)
+155 'adaptive_thermostat_integrate' 'nose_hoover_module'
+'adaptive_thermostat_integrate' 1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC
+DECL UNKNOWN SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0 UNKNOWN ()) 156
+0 (157 158 159 160 161 162) () 0 () () 0 0)
+163 'c2_lnv' 'nose_hoover_module' 'c2_lnv' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (REAL 8 0 0 REAL ()) 0 0 () () 0 ()
+() 0 0)
+164 'dp' 'nose_hoover_module' 'dp' 1 ((PARAMETER UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN IMPLICIT-SAVE) (INTEGER 4 0 0 INTEGER ()) 0 0 () (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '8') () 0 () () 0 0)
+165 'econserved' 'nose_hoover_module' 'econserved' 1 ((VARIABLE
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN IMPLICIT-SAVE) (REAL 8 0 0 REAL ())
+0 0 () () 0 () () 0 0)
+166 'f_lnv_p' 'nose_hoover_module' 'f_lnv_p' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (REAL 8 0 0 REAL ()) 0 0 () () 0 ()
+() 0 0)
+167 'f_lnv_v' 'nose_hoover_module' 'f_lnv_v' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (REAL 8 0 0 REAL ()) 0 0 () () 0 ()
+() 0 0)
+168 'file_nhc' 'nose_hoover_module' 'file_nhc' 1 ((VARIABLE
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN IMPLICIT-SAVE) (INTEGER 4 0 0
+INTEGER ()) 0 0 () () 0 () () 0 0)
+169 'idum_ran2' 'nose_hoover_module' 'idum_ran2' 1 ((VARIABLE
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (INTEGER 4 0 0
+INTEGER ()) 0 0 () () 0 () () 0 0)
+170 'm' 'nose_hoover_module' 'm' 1 ((PARAMETER UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN IMPLICIT-SAVE) (INTEGER 4 0 0 INTEGER ()) 0 0 () (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '9') () 0 () () 0 0)
+171 'mass_lnv' 'nose_hoover_module' 'mass_lnv' 1 ((VARIABLE
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (REAL 8 0 0 REAL ())
+0 0 () () 0 () () 0 0)
+172 'module_init' 'nose_hoover_module' 'module_init' 1 ((VARIABLE
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (LOGICAL 4 0 0
+LOGICAL ()) 0 0 () () 0 () () 0 0)
+173 'module_name' 'nose_hoover_module' 'module_name' 1 ((PARAMETER
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN IMPLICIT-SAVE) (CHARACTER 1 0 0
+CHARACTER ((CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '19'))) 0 0 () (
+CONSTANT (CHARACTER 1 0 0 CHARACTER (())) 0 19 'nose_hoover_module:') ()
+0 () () 0 0)
+174 'nchain' 'nose_hoover_module' 'nchain' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 ()
+() 0 0)
+175 'nose_hoover_module' 'nose_hoover_module' 'nose_hoover_module' 1 ((
+MODULE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN) (UNKNOWN 0 0 0
+UNKNOWN ()) 0 0 () () 0 () () 0 0)
+176 'nose_hoover_module_init' 'nose_hoover_module'
+'nose_hoover_module_init' 1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL
+UNKNOWN SUBROUTINE) (UNKNOWN 0 0 0 UNKNOWN ()) 0 0 () () 0 () () 0 0)
+177 'nthermo' 'nose_hoover_module' 'nthermo' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 ()
+() 0 0)
+178 'print_level' 'nose_hoover_module' 'print_level' 1 ((VARIABLE
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (INTEGER 4 0 0
+INTEGER ()) 0 0 () () 0 () () 0 0)
+179 'random_number_seed' 'nose_hoover_module' 'random_number_seed' 1 ((
+VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (INTEGER 4 0
+0 INTEGER ()) 0 0 () () 0 () () 0 0)
+180 'systemcoordinate_type' 'nose_hoover_module' 'systemcoordinate_type'
+1 ((DERIVED UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN POINTER_COMP) (
+UNKNOWN 0 0 0 UNKNOWN ()) 0 0 () () 0 ((181 'mass' (REAL 8 0 0 REAL ())
+() 0 0 0 UNKNOWN-ACCESS ()) (182 'vel' (REAL 8 0 0 REAL ()) () 0 1 0
+UNKNOWN-ACCESS ()) (183 'frc' (REAL 8 0 0 REAL ()) () 0 1 0
+UNKNOWN-ACCESS ())) PUBLIC () 0 0)
+184 'tau' 'nose_hoover_module' 'tau' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+185 'tau_qm' 'nose_hoover_module' 'tau_qm' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+186 'thermo' 'nose_hoover_module' 'thermo' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN ALLOCATABLE DIMENSION) (DERIVED 187 0 0
+DERIVED ()) 0 0 () (2 DEFERRED () () () ()) 0 () () 0 0)
+188 'thermo_lnv' 'nose_hoover_module' 'thermo_lnv' 1 ((VARIABLE
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (DERIVED 187 0 0
+DERIVED ()) 0 0 () () 0 () () 0 0)
+189 'thermostat_hamiltonian' 'nose_hoover_module' 'thermostat_hamiltonian'
+1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN FUNCTION
+ALWAYS_EXPLICIT) (REAL 8 0 0 REAL ()) 190 0 (191 192 193) () 194 () () 0
+0)
+195 'thermostat_init' 'nose_hoover_module' 'thermostat_init' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE
+ALWAYS_EXPLICIT) (UNKNOWN 0 0 0 UNKNOWN ()) 196 0 (197 198 199 200 201
+202 203 204 205 206 207 208 209) () 0 () () 0 0)
+210 'thermostat_integrate_1' 'nose_hoover_module' 'thermostat_integrate_1'
+1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE
+ALWAYS_EXPLICIT) (UNKNOWN 0 0 0 UNKNOWN ()) 211 0 (212 213 214 215 216)
+() 0 () () 0 0)
+217 'thermostat_integrate_2' 'nose_hoover_module' 'thermostat_integrate_2'
+1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE
+ALWAYS_EXPLICIT) (UNKNOWN 0 0 0 UNKNOWN ()) 218 0 (219 220 221 222 223)
+() 0 () () 0 0)
+224 'thermostat_link' 'nose_hoover_module' 'thermostat_link' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE
+ALWAYS_EXPLICIT) (UNKNOWN 0 0 0 UNKNOWN ()) 225 0 (226 227 228 229) () 0
+() () 0 0)
+230 'thermostat_switch' 'nose_hoover_module' 'thermostat_switch' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 231 0 (232 233) () 0 () () 0 0)
+187 'thermostat_type' 'nose_hoover_module' 'thermostat_type' 1 ((
+DERIVED UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN POINTER_COMP) (
+UNKNOWN 0 0 0 UNKNOWN ()) 0 0 () () 0 ((234 'eta' (REAL 8 0 0 REAL ()) (
+1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '9')) 1 0 0 UNKNOWN-ACCESS ()) (235 'eta_old'
+(REAL 8 0 0 REAL ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '9')) 1 0 0 UNKNOWN-ACCESS ())
+(236 'v' (REAL 8 0 0 REAL ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '9')) 1 0 0
+UNKNOWN-ACCESS ()) (237 'v_old' (REAL 8 0 0 REAL ()) (1 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '9')) 1 0 0 UNKNOWN-ACCESS ()) (238 'a' (REAL 8 0 0 REAL ())
+(1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '9')) 1 0 0 UNKNOWN-ACCESS ()) (239 'q' (
+REAL 8 0 0 REAL ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1')
+(CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '9')) 1 0 0 UNKNOWN-ACCESS ()) (
+240 'q_qm' (REAL 8 0 0 REAL ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '9')) 1 0 0
+UNKNOWN-ACCESS ()) (241 'q_inv' (REAL 8 0 0 REAL ()) (1 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '9')) 1 0 0 UNKNOWN-ACCESS ()) (242 'q_inv_qm' (REAL 8 0 0
+REAL ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '9')) 1 0 0 UNKNOWN-ACCESS ()) (
+243 'gamma_ln' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (244
+'gamma_ln_qm' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (245 'e_ln'
+(REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (246 'kt' (REAL 8 0 0
+REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (247 'ndof_kt' (REAL 8 0 0 REAL ())
+() 0 0 0 UNKNOWN-ACCESS ()) (248 'ekin2' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (249 'system_coords' (DERIVED 180 0 0 DERIVED ()) (1
+DEFERRED () ()) 1 1 0 UNKNOWN-ACCESS ()) (250 'num_system_coords' (
+INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (251
+'system_coord_id' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '0')) (252 'activated' (LOGICAL 4
+0 0 LOGICAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (253 'initialized' (LOGICAL
+4 0 0 LOGICAL ()) () 0 0 0 UNKNOWN-ACCESS (CONSTANT (LOGICAL 4 0 0
+LOGICAL ()) 0 0)) (254 'langevin' (LOGICAL 4 0 0 LOGICAL ()) () 0 0 0
+UNKNOWN-ACCESS (CONSTANT (LOGICAL 4 0 0 LOGICAL ()) 0 0)) (255 'adaptive'
+(LOGICAL 4 0 0 LOGICAL ()) () 0 0 0 UNKNOWN-ACCESS (CONSTANT (LOGICAL 4
+0 0 LOGICAL ()) 0 0)) (256 'iatom' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ())) PUBLIC () 0 0)
+257 'use_nose_hoover' 'nose_hoover_module' 'use_nose_hoover' 1 ((
+VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN IMPLICIT-SAVE) (LOGICAL 4 0
+0 LOGICAL ()) 0 0 () () 0 () () 0 0)
+258 'v_lnv' 'nose_hoover_module' 'v_lnv' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (REAL 8 0 0 REAL ()) 0 0 () () 0 ()
+() 0 0)
+259 'x_lnv' 'nose_hoover_module' 'x_lnv' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (REAL 8 0 0 REAL ()) 0 0 () () 0 ()
+() 0 0)
+260 'x_lnv_old' 'nose_hoover_module' 'x_lnv_old' 1 ((VARIABLE
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE) (REAL 8 0 0 REAL ())
+0 0 () () 0 () () 0 0)
+197 'nchain' '' 'nchain' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+198 'thermo' '' 'thermo' 196 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN DUMMY) (DERIVED 187 0 0 DERIVED ()) 0 0 () () 0 () () 0
+0)
+199 'num_system_coords' '' 'num_system_coords' 196 ((VARIABLE IN
+UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () ()
+0 () () 0 0)
+200 'num_constraints' '' 'num_constraints' 196 ((VARIABLE IN
+UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () ()
+0 () () 0 0)
+201 'kt' '' 'kt' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+202 'tau' '' 'tau' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY)
+(REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+203 'langevin' '' 'langevin' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (LOGICAL 4 0 0 LOGICAL ()) 0 0 () () 0 () () 0 0)
+204 'adaptive' '' 'adaptive' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (LOGICAL 4 0 0 LOGICAL ()) 0 0 () () 0 () () 0 0)
+205 'pos_init' '' 'pos_init' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN OPTIONAL DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+206 'vel_init' '' 'vel_init' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN OPTIONAL DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+207 'activate' '' 'activate' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN OPTIONAL DUMMY) (LOGICAL 4 0 0 LOGICAL ()) 0 0 () () 0 () () 0 0)
+208 'tau_qm' '' 'tau_qm' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+OPTIONAL DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+209 'iatom' '' 'iatom' 196 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+OPTIONAL DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+226 'thermo' '' 'thermo' 225 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN DUMMY) (DERIVED 187 0 0 DERIVED ()) 0 0 () () 0 () () 0
+0)
+227 'system_mass' '' 'system_mass' 225 ((VARIABLE IN UNKNOWN-PROC
+UNKNOWN UNKNOWN DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+228 'system_velocity' '' 'system_velocity' 225 ((VARIABLE IN
+UNKNOWN-PROC UNKNOWN UNKNOWN TARGET DUMMY) (REAL 8 0 0 REAL ()) 0 0 () ()
+0 () () 0 0)
+229 'system_force' '' 'system_force' 225 ((VARIABLE IN UNKNOWN-PROC
+UNKNOWN UNKNOWN TARGET DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+232 'thermo' '' 'thermo' 231 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN DUMMY) (DERIVED 187 0 0 DERIVED ()) 0 0 () () 0 () () 0
+0)
+233 'activate' '' 'activate' 231 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (LOGICAL 4 0 0 LOGICAL ()) 0 0 () () 0 () () 0 0)
+212 'nchain' '' 'nchain' 211 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+213 'thermostats' '' 'thermostats' 211 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN DIMENSION TARGET DUMMY) (DERIVED 187 0 0
+DERIVED ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1')
+(VARIABLE (INTEGER 4 0 0 INTEGER ()) 0 214 ())) 0 () () 0 0)
+214 'num_thermostats' '' 'num_thermostats' 211 ((VARIABLE IN
+UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () ()
+0 () () 0 0)
+215 'timestep' '' 'timestep' 211 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+216 'ntp' '' 'ntp' 211 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+219 'nchain' '' 'nchain' 218 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+220 'thermostats' '' 'thermostats' 218 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN DIMENSION TARGET DUMMY) (DERIVED 187 0 0
+DERIVED ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1')
+(VARIABLE (INTEGER 4 0 0 INTEGER ()) 0 221 ())) 0 () () 0 0)
+221 'num_thermostats' '' 'num_thermostats' 218 ((VARIABLE IN
+UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () ()
+0 () () 0 0)
+222 'timestep' '' 'timestep' 218 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+223 'ntp' '' 'ntp' 218 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY)
+(INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+157 'nchain' '' 'nchain' 156 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+158 'thermostats' '' 'thermostats' 156 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN DIMENSION TARGET DUMMY) (DERIVED 187 0 0
+DERIVED ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1')
+(VARIABLE (INTEGER 4 0 0 INTEGER ()) 0 159 ())) 0 () () 0 0)
+159 'num_thermostats' '' 'num_thermostats' 156 ((VARIABLE IN
+UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () ()
+0 () () 0 0)
+160 'timestep' '' 'timestep' 156 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+161 'ntp' '' 'ntp' 156 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY)
+(INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+162 'step' '' 'step' 156 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+191 'nchain' '' 'nchain' 190 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+192 'thermostats' '' 'thermostats' 190 ((VARIABLE IN UNKNOWN-PROC
+UNKNOWN UNKNOWN DIMENSION TARGET DUMMY) (DERIVED 187 0 0 DERIVED ()) 0 0
+() (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (VARIABLE (
+INTEGER 4 0 0 INTEGER ()) 0 193 ())) 0 () () 0 0)
+193 'num_thermostats' '' 'num_thermostats' 190 ((VARIABLE IN
+UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () ()
+0 () () 0 0)
+194 'e' '' 'e' 190 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN RESULT) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+151 'nchain' '' 'nchain' 150 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+152 'thermostats' '' 'thermostats' 150 ((VARIABLE IN UNKNOWN-PROC
+UNKNOWN UNKNOWN DIMENSION TARGET DUMMY) (DERIVED 187 0 0 DERIVED ()) 0 0
+() (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (VARIABLE (
+INTEGER 4 0 0 INTEGER ()) 0 153 ())) 0 () () 0 0)
+153 'num_thermostats' '' 'num_thermostats' 150 ((VARIABLE IN
+UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () ()
+0 () () 0 0)
+154 'e' '' 'e' 150 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN RESULT) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+)
+
+('abfqmmm_param' 0 148 'adaptive_thermostat_hamiltonian' 0 149
+'adaptive_thermostat_integrate' 0 155 'c2_lnv' 0 163 'dp' 0 164
+'econserved' 0 165 'f_lnv_p' 0 166 'f_lnv_v' 0 167 'file_nhc' 0 168
+'idum_ran2' 0 169 'm' 0 170 'mass_lnv' 0 171 'module_init' 0 172
+'module_name' 0 173 'nchain' 0 174 'nose_hoover_module' 0 175
+'nose_hoover_module_init' 0 176 'nthermo' 0 177 'print_level' 0 178
+'random_number_seed' 0 179 'systemcoordinate_type' 0 180 'tau' 0 184
+'tau_qm' 0 185 'thermo' 0 186 'thermo_lnv' 0 188 'thermostat_hamiltonian'
+0 189 'thermostat_init' 0 195 'thermostat_integrate_1' 0 210
+'thermostat_integrate_2' 0 217 'thermostat_link' 0 224 'thermostat_switch'
+0 230 'thermostat_type' 0 187 'use_nose_hoover' 0 257 'v_lnv' 0 258
+'x_lnv' 0 259 'x_lnv_old' 0 260)

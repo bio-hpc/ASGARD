@@ -1,0 +1,13 @@
+#! /bin/bash
+
+ for x in `cat list`
+ do
+    for y in `cat case`
+    do
+       cd $x/$y
+       mv force.dat force.save
+       cd ..
+       cd ..
+    done
+ done
+   

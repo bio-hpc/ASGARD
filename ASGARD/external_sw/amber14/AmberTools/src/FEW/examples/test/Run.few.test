@@ -1,0 +1,429 @@
+#!/bin/csh -f
+
+#################################################
+### WHAT DO YOU WANT TO TEST/DO (yes=1/no=0)? ###
+#################################################
+set clean                        = 1 ### Remove all files created during previous tests
+set do_01_STEP1_RESP_CHARGE_CALC = 1 ### Prepare files for calculation of RESP charges
+                                     ### for the ligand. 
+set do_02_STEP2_RESP_3TRJ_MD     = 1 ### Setup of 3-trajectory MD with RESP charges for
+                                     ### the ligand.
+set do_03_MMPBSA_RESP_1TRJ       = 1 ### Prepare files for 1-trajectory based MM-PBSA
+                                     ### calculation of effective energy of binding.
+                                     ### ATTENTION: Depends on test 02.
+set do_04_LIE_RESP               = 1 ### Setup of files for LIE analysis.
+                                     ### ATTENTION: Depends on test 02.
+set do_05_TI_STEP1               = 1 ### Preparation of coordinate and topology files for TI.
+                                     ### ATTENTION: Depends on test 02.
+set do_06_TI_STEP2A              = 1 ### Generation of input files for equilibration phase
+                                     ### of TI simulations.
+                                     ### ATTENTION: Depends on tests 02 and 05.
+set do_07_TI_STEP3               = 1 ### Calculation of difference in free energy of binding.
+                                     ### ATTENTION: Depends on tests 02 and 05.
+set do_08_AM1_1TRJ_MD_MEMBRANE   = 1 ### Setup of 1-trajectory MD with explicit membrane and
+                                     ### AM1 charges for the ligand.
+set do_09_MMPBSA_IMPLICIT_MEM    = 1 ### Prepare files for 1-trajectory based MM-PBSA
+                                     ### calculation with implicit membrane 
+
+###############################################################################################
+
+if( ! $?AMBERHOME ) then
+  echo "Please specify AMBERHOME for Amber14"
+  exit 0
+endif
+                    
+if( ! $?FEW ) then
+  setenv FEW ${AMBERHOME}/AmberTools/src/FEW/FEW.pl
+endif
+
+setenv FEWPATH ${AMBERHOME}/AmberTools/src/FEW
+setenv FEWTEST ${AMBERHOME}/AmberTools/src/FEW/examples/test
+setenv DACDIFF ${AMBERHOME}/AmberTools/test/dacdif
+
+set STRUCTURE_LIST = "L51a" 
+set LAMBDA = "2 4 6 8"
+
+echo "#########################################################################"
+echo "                             PERFORMING FEW TESTS                        "
+echo "                                                                         "
+echo "In case all of the tests below fail likely the system specific path to the locally installed Perl libraries was not found. Please consult the file ${FEWTEST}/few.log for more details about the cause for the program error and on how to solve it."
+
+######################################################
+### Remove all files created during previous tests ###
+######################################################
+if ($clean == "1") then
+  cd ${FEWTEST}
+  echo "CLEANING"
+  ./Run.few.clean
+endif
+
+# Make directories that may not already exist
+mkdir -p ${FEWTEST}/c_files ${FEWTEST}/structs
+
+###########################################
+###    Set FEW path in command files    ### 
+###########################################
+set INPUT_LOCATION_LIST = "step1_setup_resp_3trj_MDs step2_setup_resp_3trj_MDs mmpbsa_resp_1trj lie_resp TI_setup_step1.in TI_setup_step2A.in TI_setup_step2B.in TI_setup_step3.in setup_am1_1trj_membraneMDs mmpbsa_am1_1trj_ImplicitMembrane"
+
+foreach location ($INPUT_LOCATION_LIST)
+  sed -e "s=FEW_PATH_IN_AMBER=$FEWPATH=" < ${FEWTEST}/saved/c_files/${location} > ${FEWTEST}/c_files/${location}
+end
+
+
+##############################################
+###    Step1 of RESP charge calculation    ###
+##############################################
+if ($do_01_STEP1_RESP_CHARGE_CALC == "1") then
+
+  /bin/rm -rf ${FEWTEST}/gauss_setup
+
+  cd ${FEWTEST}
+  cp ${FEWTEST}/input_info/L51a.mol2 ${FEWTEST}/structs
+  echo "PERFORMING TEST 01: Step1 of RESP charge calculation"
+  perl ${FEW} "MMPBSA" c_files/step1_setup_resp_3trj_MDs >&! few.log < /dev/null || goto error
+
+  echo "CHECKING IN TEST 01: Step1 of RESP charge calculation"
+  ${DACDIFF} -r 2.e-5 ${FEWTEST}/saved/gauss_setup/L51a/L51a.gcrt \
+                      ${FEWTEST}/gauss/L51a/L51a.gcrt
+  mv ${FEWTEST}/gauss ${FEWTEST}/gauss_setup
+
+endif
+######################################################
+###  Step2 of RESP charge calculation and MD setup ###
+######################################################
+if ($do_02_STEP2_RESP_3TRJ_MD == "1") then
+
+  /bin/rm -rf ${FEWTEST}/leap
+  /bin/rm -rf ${FEWTEST}/gauss
+  /bin/rm -rf ${FEWTEST}/MD_resp
+
+  cd ${FEWTEST}
+  cp ${FEWTEST}/input_info/L51a.mol2 ${FEWTEST}/structs
+  cp -r ${FEWTEST}/saved/gauss ${FEWTEST}/gauss
+
+  echo "PERFORMING TEST 02: Step2 of RESP charge calculation and setup of MD simulations"
+  perl ${FEW} "MMPBSA" c_files/step2_setup_resp_3trj_MDs >&! few.log < /dev/null || goto error
+
+  echo "CHECKING IN TEST 02: Step2 of RESP charge calculation and setup of MD simulations"
+
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/gauss_setup/L51a/L51a.gout.xyz \
+                      ${FEWTEST}/gauss/L51a/L51a.gout.xyz
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/leap/L51a/L51a_resp.lib \
+                      ${FEWTEST}/leap/L51a/L51a_resp.lib
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/leap/L51a/L51a.frcmod \
+                      ${FEWTEST}/leap/L51a/L51a.frcmod
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/leap/L51a/L51a_com.pdb \
+                      ${FEWTEST}/leap/L51a/L51a_com.pdb
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/leap/L51a/L51a_rec.pdb \
+                      ${FEWTEST}/leap/L51a/L51a_rec.pdb
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/leap/L51a/L51a_lig.pdb \
+                      ${FEWTEST}/leap/L51a/L51a_lig.pdb
+
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_resp_setup/L51a/cryst/L51a_solv_com.crd \
+                      ${FEWTEST}/MD_resp/L51a/cryst/L51a_solv_com.crd
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_resp_setup/L51a/cryst/L51a_solv_rec.crd \
+                      ${FEWTEST}/MD_resp/L51a/cryst/L51a_solv_rec.crd
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_resp_setup/L51a/cryst/L51a_solv_lig.crd \
+                      ${FEWTEST}/MD_resp/L51a/cryst/L51a_solv_lig.crd
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_resp_setup/L51a/lig/equi/md_nvt_red_06.in \
+                      ${FEWTEST}/MD_resp/L51a/lig/equi/md_nvt_red_06.in
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_resp_setup/rec/equi/md_nvt_red_06.in \
+                      ${FEWTEST}/MD_resp/rec/equi/md_nvt_red_06.in
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_resp_setup/L51a/lig/prod/md_prod_001.in \
+                      ${FEWTEST}/MD_resp/L51a/lig/prod/md_prod_001.in
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_resp_setup/rec/prod/md_prod_001.in \
+                      ${FEWTEST}/MD_resp/rec/prod/md_prod_001.in
+endif
+
+###########################################################################
+###   Setup of MMPBSA calculations according to 1-trajectory approach   ###
+###########################################################################
+if ($do_03_MMPBSA_RESP_1TRJ == "1") then
+  
+  if ($do_02_STEP2_RESP_3TRJ_MD == "0") then
+    echo "Test 03 _MMPBSA_RESP_1TRJ depends on test 02_STEP2_RESP_3TRJ_MD and cannot be performed if the later was not requested"
+  else
+    /bin/rm -rf ${FEWTEST}/calc_r_1t
+
+    # Linking MDs
+    foreach STRUCT ($STRUCTURE_LIST)
+      cd ${FEWTEST}/MD_resp/${STRUCT}/com/prod
+      ln -fs ${FEWTEST}/saved/MD_resp/${STRUCT}/com/prod/md_prod_001.mdcrd.gz \
+                                                         md_prod_001.mdcrd.gz
+    end
+
+    cd ${FEWTEST}
+    cp ${FEWTEST}/input_info/L51a.mol2 ${FEWTEST}/structs
+
+    echo "PERFORMING TEST 03: Setup of MMPBSA calculations according to 1-trajectory approach"
+    perl ${FEW} "MMPBSA" ${FEWTEST}/c_files/mmpbsa_resp_1trj >&! few.log < /dev/null || goto error
+
+    echo "CHECKING IN TEST 03: Setup of MMPBSA calculations according to 1-trajectory approach"
+    ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/calc_r_1t/L51a/snapshots/L51a_lig.crd.5 \
+                        ${FEWTEST}/calc_r_1t/L51a/snapshots/L51a_lig.crd.5
+
+    ${DACDIFF} -k -a 2.e-5 ${FEWTEST}/saved/calc_r_1t/L51a/topo/L51a_gb0_pb3_lig.top \
+                           ${FEWTEST}/calc_r_1t/L51a/topo/L51a_gb0_pb3_lig.top
+
+    ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/calc_r_1t/L51a/s2_4_1/pb3_gb0/mmpbsa.in \
+                           ${FEWTEST}/calc_r_1t/L51a/s2_4_1/pb3_gb0/mmpbsa.in
+
+    # Removing links to MDs
+    foreach STRUCT ($STRUCTURE_LIST)
+      cd ${FEWTEST}/MD_resp/${STRUCT}/com/prod
+      /bin/rm -f md_prod_001.mdcrd.gz
+    end
+  endif
+endif
+
+###################################
+###   Setup of LIE analysis     ###
+###################################
+if ($do_04_LIE_RESP == "1") then
+
+
+  if ($do_02_STEP2_RESP_3TRJ_MD == "0") then
+    echo "Test 04_LIE_RESP depends on test 02_STEP2_RESP_3TRJ_MD and cannot be performed if the later was not requested"
+  else
+    /bin/rm -f ${FEWTEST}/lie_resp
+
+    # Linking MDs
+    foreach STRUCT ($STRUCTURE_LIST)
+      cd ${FEWTEST}/MD_resp/${STRUCT}/com/prod
+      ln -fs ${FEWTEST}/saved/MD_resp/${STRUCT}/com/prod/md_prod_001.mdcrd.gz \
+                                                         md_prod_001.mdcrd.gz
+      cd ${FEWTEST}/MD_resp/${STRUCT}/lig/prod
+      ln -fs ${FEWTEST}/saved/MD_resp/${STRUCT}/lig/prod/md_prod_001.mdcrd.gz \
+                                                         md_prod_001.mdcrd.gz
+    end
+
+    cd ${FEWTEST}
+    cp ${FEWTEST}/input_info/L51a.mol2 ${FEWTEST}/structs
+
+    echo "PERFORMING TEST 04: Setup of LIE analysis"
+    perl ${FEW} "LIE" c_files/lie_resp >&! few.log < /dev/null || goto error
+
+    echo "CHECKING IN TEST 04: Setup of LIE analysis"
+
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/lie_resp/L51a/lig/topo/lig.top \
+                             ${FEWTEST}/lie_resp/L51a/lig/topo/lig.top
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/lie_resp/L51a/lig/topo/tot.top \
+                             ${FEWTEST}/lie_resp/L51a/lig/topo/tot.top
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/lie_resp/L51a/lig/topo/wat.top \
+                             ${FEWTEST}/lie_resp/L51a/lig/topo/wat.top
+
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/lie_resp/L51a/lig/s_lig/md_prod_001_nobox.mdcrd \
+                             ${FEWTEST}/lie_resp/L51a/lig/s_lig/md_prod_001_nobox.mdcrd
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/lie_resp/L51a/lig/s_tot/md_prod_001_nobox.mdcrd \
+                             ${FEWTEST}/lie_resp/L51a/lig/s_tot/md_prod_001_nobox.mdcrd
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/lie_resp/L51a/lig/s_wat/md_prod_001_nobox.mdcrd \
+                             ${FEWTEST}/lie_resp/L51a/lig/s_wat/md_prod_001_nobox.mdcrd
+
+      # Removing links to MDs
+      foreach STRUCT ($STRUCTURE_LIST)
+        cd ${FEWTEST}/MD_resp/${STRUCT}/com/prod
+        /bin/rm -f md_prod_001.mdcrd.gz
+        cd ${FEWTEST}/MD_resp/${STRUCT}/lig/prod
+        /bin/rm -f md_prod_001.mdcrd.gz
+      end
+  endif
+endif
+
+
+##########################################
+###   Setup step1 of TI calculations   ###
+##########################################
+if ($do_05_TI_STEP1 == "1") then
+
+  if ($do_02_STEP2_RESP_3TRJ_MD == "0") then
+    echo "Test 05_TI_STEP1 depends on test 02_STEP2_RESP_3TRJ_MD and cannot be performed if the later was not requested"
+  else
+    /bin/rm -f ${FEWTEST}/TI_resp
+    cd ${FEWTEST}
+    cp ${FEWTEST}/input_info/L51b.mol2 ${FEWTEST}/structs
+    cp -r ${FEWTEST}/saved/leap/L51b ${FEWTEST}/leap
+
+    echo "PERFORMING TEST 05: TI step1, Preparation of coordinate and topology files"
+    perl ${FEW} "TI" c_files/TI_setup_step1.in >&! few.log < /dev/null || goto error
+
+    echo "CHECKING IN TEST 05: TI step1, Preparation of coordinate and toplogy files"
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/TI_resp_setup/L51a_L51b/match_list.txt \
+                             ${FEWTEST}/TI_resp/L51a_L51b/match_list.txt
+
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/TI_resp_setup/L51a_L51b/setup/L51a_lig_TIin.top \
+                             ${FEWTEST}/TI_resp/L51a_L51b/setup/L51a_lig_TIin.top
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/TI_resp_setup/L51a_L51b/setup/L51b_lig_TIin.top \
+                             ${FEWTEST}/TI_resp/L51a_L51b/setup/L51b_lig_TIin.top
+  endif
+endif
+
+###########################################
+###   Setup step2A of TI calculations   ###
+###########################################
+if ($do_06_TI_STEP2A == "1") then
+  if ($do_02_STEP2_RESP_3TRJ_MD == "0") then
+    echo "Test 06_TI_STEP2A depends on test 02_STEP2_RESP_3TRJ_MD and cannot be performed if the later was not requested"
+  else if($do_05_TI_STEP1 == "0") then
+    echo "Test 06_TI_STEP2A depends on test 05_TI_STEP1 and cannot be performed if the later was not requested" 
+  else
+    cd ${FEWTEST}
+
+    echo "PERFORMING TEST 06: TI step2A, Preparation of files for TI equilibration"
+    perl ${FEW} "TI" c_files/TI_setup_step2A.in >&! few.log < /dev/null || goto error
+
+    echo "CHECKING IN TEST 06: TI step2A, Preparation of files for TI equilibration"
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/TI_resp_setup/L51a_L51b/equi/lig/group_equi01_l2 \
+                                ${FEWTEST}/TI_resp/L51a_L51b/equi/lig/group_equi01_l2
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/TI_resp_setup/L51a_L51b/equi/lig/LFa_equi01_v0_l2.in \
+                                ${FEWTEST}/TI_resp/L51a_L51b/equi/lig/LFa_equi01_v0_l2.in
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/TI_resp_setup/L51a_L51b/equi/lig/group_prod01_l2 \
+                                ${FEWTEST}/TI_resp/L51a_L51b/equi/lig/group_prod01_l2
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/TI_resp_setup/L51a_L51b/equi/lig/LFa_prod01_v0_l2.in \
+                                ${FEWTEST}/TI_resp/L51a_L51b/equi/lig/LFa_prod01_v0_l2.in
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/TI_resp_setup/L51a_L51b/equi/lig/LFa_lig_TIin.top \
+                             ${FEWTEST}/TI_resp/L51a_L51b/equi/lig/LFa_lig_TIin.top
+  endif
+endif
+
+
+##########################################
+###   Setup step3 of TI calculations   ###
+##########################################
+
+if ($do_07_TI_STEP3 == "1") then
+  if ($do_02_STEP2_RESP_3TRJ_MD == "0") then
+    echo "Test 07_TI_STEP3 depends on test 02_STEP2_RESP_3TRJ_MD and cannot be performed if the later was not requested"
+  else if($do_05_TI_STEP1 == "0") then
+    echo "Test 07_TI_STEP3 depends on test 05_TI_STEP1 and cannot be performed if the later was not requested"
+  else
+    # Linking TI production output data
+    set TAG_LIST = "com lig"
+    cd ${FEWTEST}/TI_resp/L51a_L51b
+    mkdir prod
+
+    foreach TAG ($TAG_LIST)
+      cd ${FEWTEST}/TI_resp/L51a_L51b/prod
+      mkdir ${TAG}
+      cd ${TAG}
+      foreach L ($LAMBDA)
+        ln -fs ${FEWTEST}/saved/TI_resp/L51a_L51b/prod/${TAG}/LFa_prod01_v0_l${L}.out \
+                                                               LFa_prod01_v0_l${L}.out
+        ln -fs ${FEWTEST}/saved/TI_resp/L51a_L51b/prod/${TAG}/LFb_prod01_v1_l${L}.out \
+                                                               LFb_prod01_v1_l${L}.out
+        ln -fs ${FEWTEST}/saved/TI_resp/L51a_L51b/prod/${TAG}/stderr_${L} \
+                                                             stderr_${L}
+      end
+    end
+    cd ${FEWTEST}
+
+    echo "PERFORMING TEST 07: TI step3, Preparation of files for TI production"
+    perl ${FEW} "TI" c_files/TI_setup_step3.in >&! few.log < /dev/null || goto error
+
+    echo "CHECKING IN TEST 07: TI step3, Preparation of files for TI production"
+      ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/TI_resp_setup/L51a_L51b/TI_results/TI_dG.out \
+                                ${FEWTEST}/TI_resp/L51a_L51b/TI_results/TI_dG.out
+
+    # Removing TI production output data
+    set TAG_LIST = "com lig"
+    set STEP_LIST = "prod01 prod02"
+
+    foreach TAG ($TAG_LIST)
+      cd ${FEWTEST}/TI_resp/L51a_L51b/prod/${TAG}
+      foreach L ($LAMBDA)
+        /bin/rm -f ${FEWTEST}TI_resp/L51a_L51b/prod/${TAG}/LFa_prod01_v0_l${L}.out
+        /bin/rm -f ${FEWTEST}TI_resp/L51a_L51b/prod/${TAG}/LFb_prod01_v1_l${L}.out
+        /bin/rm -f ${FEWTEST}/TI_resp/L51a_L51b/prod/${TAG}/stderr_${L}
+      end
+    end
+  endif
+endif
+
+#########################################################################
+###  Setup of MD with explicit membrane and AM1 charges on the ligand ###
+#########################################################################
+if ($do_08_AM1_1TRJ_MD_MEMBRANE == "1") then
+
+  /bin/rm -rf ${FEWTEST}/structs
+  /bin/rm -rf ${FEWTEST}/leap
+  /bin/rm -rf ${FEWTEST}/MD_resp
+
+  cd ${FEWTEST}
+  mkdir structs
+  cp ${FEWTEST}/input_info/AMT.mol2 ${FEWTEST}/structs
+
+  echo "PERFORMING TEST 08: Setup of MD simulations with explicit membrane and AM1 charges"
+  perl ${FEW} "MMPBSA" c_files/setup_am1_1trj_membraneMDs >&! few.log < /dev/null || goto error
+
+  echo "CHECKING IN TEST 08: Setup of MD simulations with explicit membrane and AM1 charges"
+
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/leap_setup_membrane/AMT/AMT_am1.lib \
+                      ${FEWTEST}/leap/AMT/AMT_am1.lib
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/leap_setup_membrane/AMT/AMT_com.pdb \
+                      ${FEWTEST}/leap/AMT/AMT_com.pdb
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/leap_setup_membrane/AMT/AMT_rec.pdb \
+                      ${FEWTEST}/leap/AMT/AMT_rec.pdb
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/leap_setup_membrane/AMT/AMT_lig.pdb \
+                      ${FEWTEST}/leap/AMT/AMT_lig.pdb
+
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_am1_setup_membrane/AMT/cryst/AMT_solv_com.crd \
+                      ${FEWTEST}/MD_am1/AMT/cryst/AMT_solv_com.crd
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_am1_setup_membrane/AMT/com/equi/md3npt.in \
+                      ${FEWTEST}/MD_am1/AMT/com/equi/md3npt.in
+  ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/MD_am1_setup_membrane/AMT/com/prod/md_prod_001.in \
+                      ${FEWTEST}/MD_am1/AMT/com/prod/md_prod_001.in
+endif
+
+##################################################################################
+###   Setup of 1-trajectory based MM-PBSA calculation with implicit membrane   ###
+##################################################################################
+if ($do_09_MMPBSA_IMPLICIT_MEM == "1") then
+
+  if ($do_08_AM1_1TRJ_MD_MEMBRANE == "0") then
+    echo "Test 09_MMPBSA_IMPLICIT_MEMBRANE depends on test 08_AM1_1TRJ_MD_MEMBRANE and cannot be performed if the later was not requested"
+  else
+    /bin/rm -rf ${FEWTEST}/calc_r_1t
+
+    # Linking MDs
+    cd ${FEWTEST}/MD_am1/AMT/com/prod
+    ln -fs ${FEWTEST}/saved/MD_am1_membrane/AMT/com/prod/md_prod_001.mdcrd.gz \
+                                                         md_prod_001.mdcrd.gz
+    cd ${FEWTEST}
+
+    echo "PERFORMING TEST 09: Setup of MMPBSA calculations with implicit membrane"
+    perl ${FEW} "MMPBSA" ${FEWTEST}/c_files/mmpbsa_am1_1trj_ImplicitMembrane >&! few.log < /dev/null || goto error
+
+    echo "CHECKING IN TEST 09: Setup of MMPBSA calculations with implicit membrane"
+    ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/calc_a_1t_ImplMem/AMT/snapshots/AMT_com.crd.3 \
+                           ${FEWTEST}/calc_a_1t/AMT/snapshots/AMT_com.crd.3
+
+    ${DACDIFF} -k -a 2.e-5 ${FEWTEST}/saved/calc_a_1t_ImplMem/AMT/topo/AMT_gb0_pb3_com.top \
+                           ${FEWTEST}/calc_a_1t/AMT/topo/AMT_gb0_pb3_com.top
+
+    ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/calc_a_1t_ImplMem/AMT/s1_3_1/pb3_gb0/mmpbsa.in \
+                           ${FEWTEST}/calc_a_1t/AMT/s1_3_1/pb3_gb0/mmpbsa.in
+    
+    ${DACDIFF} -k -r 2.e-5 ${FEWTEST}/saved/calc_a_1t_ImplMem/AMT/pqr_snaps/AMT_rec.pqr.3 \
+                           ${FEWTEST}/calc_a_1t/AMT/pqr_snaps/AMT_rec.pqr.3
+
+    if (-e ${FEWTEST}/calc_a_1t/AMT/s1_3_1/pb3_gb0/mmpbsa_FEWmem.in) then
+    else
+      echo "ERROR: Input file for mmpbsa_FEWmem.pl missing."
+      exit(1)
+    endif
+
+
+    # Removing links to MDs
+    cd ${FEWTEST}/MD_am1/AMT/com/prod
+    /bin/rm -f md_prod_001.mdcrd.gz
+  endif
+endif
+
+
+cd ${FEWTEST}
+
+find . -name "ddtmp.*" -print0 | xargs -0 /bin/rm >& /dev/null
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

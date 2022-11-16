@@ -1,0 +1,25 @@
+trpzip2 native MD 
+ &cntrl
+    imin = 0, nstlim = 20, dt = 0.001,
+    ntx = 1, ntb=1, 
+    ntt = 0, tol = 0.000001, 
+    ntc = 2, ntf = 1,
+    ntwx = 10, ntwe = 0, ntwr = 5000, ntpr = 2, 
+    cut = 8.0, 
+    itgtmd=1, tgtrmsd=.0, tgtmdfrc=10.00,
+    tgtfitmask=":3-10@CA,N,C,O,H,HA",
+    tgtrmsmask=":3-10@CA,N,C,O,H,HA",
+    nmropt=1,
+ /`
+ &wt
+        TYPE='TGTRMSD', istep1 =1, istep2 = 100,
+        value1 = 0.0, value2 = 2.0,
+ /`
+ &wt
+        TYPE='TGTRMSD', istep1 =101, istep2 = 200,
+        value1 = 2.0, value2 = 1.0,
+ /`
+ &wt
+   type="END",
+ /`
+

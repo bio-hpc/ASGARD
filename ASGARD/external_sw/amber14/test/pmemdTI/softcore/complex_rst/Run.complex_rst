@@ -1,0 +1,125 @@
+#!/bin/csh -f
+#TEST-PROGRAM pmemd
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+ 
+if( ! $?TESTsander ) set TESTsander = "../../../../bin/pmemd"
+ 
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+cat > mdin.0 <<EOF
+test 0
+ &cntrl
+  imin = 0, ntx = 5, irest = 1,
+  ntpr = 5, ntwr = 2500, ntwx = 2500,
+  ntf = 1, ntc = 2, cut = 9.0, ntr = 0,
+  icfe = 1, clambda = 0.35,
+  crgmask = ':BNZ',
+  timask1 = ':BNZ',scmask1=':BNZ',
+  timask2 = '',scmask2='',
+  ifsc = 1,
+  ntb = 2, nstlim = 20, dt = 0.002,
+  temp0 = 300, ntt = 3, gamma_ln = 5,
+  ntp = 1, pres0 = 1.0, taup = 2.0,
+  nmropt=1,
+ /
+ &wt
+  TYPE="END",
+ /
+DISANG=disang
+EOF
+
+cat > groupfile <<EOF
+-O -i mdin.0 -o out.0 -p prmtop.0 -c rst.0 -r restrt.0
+EOF
+
+cat > disang <<EOF
+# The distance restraint
+ &rst
+  iat(1) = 1394,
+  iat(2) = 2608,
+  r1 = 0,
+  r2 = 3.72,
+  r3 = 3.72,
+  r4 = 99,
+  rk2 = 19.994, rk3 = 19.994,
+ /
+# The first angle restraint
+ &rst
+  iat(1) = 1396,
+  iat(2) = 1394,
+  iat(3) = 2608,
+  r1 = 0,
+  r2 = 91.85,
+  r3 = 91.85,
+  r4 = 180,
+  rk2 = 19.994, rk3 = 19.994,
+ /
+# The second angle restraint
+ &rst
+  iat(1) = 1394,
+  iat(2) = 2608,
+  iat(3) = 2609,
+  r1 = 0,
+  r2 = 146.03,
+  r3 = 146.03,
+  r4 = 180,
+  rk2 = 19.994, rk3 = 19.994,
+ /
+# The first dihedral restraint
+ &rst
+  iat(1) = 1413,
+  iat(2) = 1396,
+  iat(3) = 1394,
+  iat(4) = 2608,
+  r1 = 0,
+  r2 = 204.65,
+  r3 = 204.65,
+  r4 = 360,
+  rk2 = 19.994, rk3 = 19.994,
+ /
+# The second dihedral restraint
+ &rst
+  iat(1) = 1396,
+  iat(2) = 1394,
+  iat(3) = 2608,
+  iat(4) = 2609,
+  r1 = 0,
+  r2 = 83.07,
+  r3 = 83.07,
+  r4 = 360,
+  rk2 = 19.994, rk3 = 19.994,
+ /
+# The third dihedral restraint
+ &rst
+  iat(1) = 1394,
+  iat(2) = 2608,
+  iat(3) = 2609,
+  iat(4) = 2604,
+  r1 = 0,
+  r2 = 202.17,
+  r3 = 202.17,
+  r4 = 360,
+  rk2 = 19.994, rk3 = 19.994,
+ /
+EOF
+
+$DO_PARALLEL $TESTsander `cat groupfile` < /dev/null || goto error
+
+if ( `basename $TESTsander` == "pmemd.mic_offload.MPI" ) then
+../../../dacdif -r 1.e-8 out.0.save out.0
+../../../dacdif -r 1.e-3 -t 2 restrt.0.save restrt.0
+else
+../../../dacdif out.0.save out.0
+../../../dacdif -r 1.e-5 restrt.0.save restrt.0
+endif
+
+/bin/rm -f mdin.0 mdin.1 mdinfo groupfile disang mdcrd logfile
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

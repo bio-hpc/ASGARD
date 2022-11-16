@@ -1,0 +1,408 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 10/08/2013 at 12:01:13
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: ala.resize.out                                                        
+|INPCRD: ala.rst7                                                              
+|  PARM: ala.parm7                                                             
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+|   Xvv: ../../../AmberTools/test/rism1d/spc-kh/spc.xvv.save
+
+ Here is the input file:
+
+Alanine dipeptide run                                                          
+ &cntrl                                                                        
+    ntx=1, ntpr=5, ntwx=0,ntwr=0                                               
+    nstlim=50,dt=0.001,                                                        
+    ntt=3, ig=314159, tempi=0,gamma_ln=10,temp0=300, tempi=300,                
+    ntp=0,                                                                     
+    ntc=2,ntf=2,                                                               
+    ntb=0,                                                                     
+    nrespa=1,                                                                  
+    irism=1                                                                    
+    cut=999,                                                                   
+/                                                                              
+&rism                                                                          
+    rismnrespa=5                                                               
+    fcenbasis=5,fcestride=2,fcecrd=2                                           
+    fcetrans=4
+    fcenbase=5	
+    tolerance=1d-8                                                             
+    buffer=10                                                                  
+    mdiis_method=2                                                             
+    verbose=1                                                                  
+ /                                                                             
+|3D-RISM Forcing igb=6
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 12/10/08 Time = 14:10:41
+ NATOM  =      22 NTYPES =       7 NBONH =      12 MBONA  =       9
+ NTHETH =      25 MTHETA =      11 NPHIH =      42 MPHIA  =      22
+ NHPARM =       0 NPARM  =       0 NNB   =      99 NRES   =       3
+ NBONA  =       9 NTHETA =      11 NPHIA =      22 NUMBND =       8
+ NUMANG =      16 NPTRA  =      21 NATYP =       7 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      10 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are modified Bondi radii (mbondi)                                                   
+
+|     Memory Use     Allocated
+|     Real                1596
+|     Hollerith             71
+|     Integer            21047
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total               94 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       5, ntrx    =       1, ntwr    =       0
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       0, igb     =       6, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     = 999.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        50, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =  314159
+     temp0   = 300.00000, tempi   = 300.00000, gamma_ln=  10.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00001
+3D-RISM:
+     closure   =  KH      
+     solvcut   =  10.00000, buffer  =  10.00000
+     grd_spc   =   0.50000    0.50000    0.50000
+     ng3       =        -1         -1         -1
+     solvbox   =  -1.00000   -1.00000   -1.00000
+     tolerance =  1.00E-08
+     mdiis_del =   0.70000, mdiis_nv=         5
+     mdiis_meth=         2, mdiis_re=  1.00E+01
+     maxstep   =     10000, npropaga=         5
+     centering =         1, zerofrc =         1
+     apply_rism=         1 asympcorr=         T
+     rismnrespa=         5, fcestrid=         2, fcecut  =9999.00000
+     fcenbasis =         5, fcenbase=         5, fcecrd  =         2
+     polardecom=         0 entropicd=         0
+     write_ther=         1 volfmt   =  dx      
+     saveprogre=         0, ntwrism =        -1, verbose =         1
+     progress  =         1
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):      54.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =      54.     NUM_NOSHAKE =      0     CORRECTED RNDFP =      54.
+|  TOTAL # of degrees of freedom (RNDF) =      54.
+||Setting solvation box to
+|grid size:         54 X         56 X         48
+|box size [A]:      27.000 X     28.000 X     24.000
+|Effective buffer [A]:    10.874,      10.176,      10.489
+|Switching to KH closure
+|RXRISM converged in   168
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =   448.53  PRESS =     0.0
+ Etot   =        24.5730  EKtot   =        24.0652  EPtot      =         0.5078
+ BOND   =         0.0199  ANGLE   =         0.3669  DIHED      =         7.4922
+ 1-4 NB =         5.0158  1-4 EEL =        50.2288  VDWAALS    =         2.8089
+ EELEC  =       -82.4013  ERISM   =        16.9767  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot      5.07771435E-001  2.80891407E+000 -8.24013314E+001  1.98919878E-002  3.66880237E-001  7.49216327E+000  0.00000000E+000  5.01575750E+000  5.02288231E+001  0.00000000E+000  1.69766727E+001
+rism_exchem      1.69766727E+001  7.99162444E+001 -6.29395717E+001
+rism_exchGF      6.80655081E+000  7.55032721E+001 -6.86967213E+001
+rism_potUV      -2.18043546E+001  7.61354945E+000 -2.94179041E+001
+rism_volume      1.95155618E+002
+rism_exNumb                      -6.43380444E+000 -1.28676104E+001
+rism_exChrg     -6.49775284E-007  5.45329264E+000 -5.45329329E+000
+rism_KB                             -1.93207299E+002  -1.93207322E+002
+rism_DCFI                           -6.91153749E+003   1.96682280E+003
+|RXRISM converged in   135
+
+ NSTEP =        5   TIME(PS) =       0.005  TEMP(K) =   214.04  PRESS =     0.0
+ Etot   =        20.2775  EKtot   =        11.4843  EPtot      =         8.7933
+ BOND   =         3.4891  ANGLE   =         6.3996  DIHED      =         7.9361
+ 1-4 NB =         4.6581  1-4 EEL =        48.0821  VDWAALS    =         2.8123
+ EELEC  =       -81.1006  ERISM   =        16.5166  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot      8.79327910E+000  2.81227711E+000 -8.11005962E+001  3.48907011E+000  6.39959595E+000  7.93614110E+000  0.00000000E+000  4.65813040E+000  4.80820779E+001  0.00000000E+000  1.65165828E+001
+rism_exchem      1.65165828E+001  8.05539668E+001 -6.40373840E+001
+rism_exchGF      6.35723446E+000  7.61464342E+001 -6.97891997E+001
+rism_potUV      -2.21322641E+001  7.94577143E+000 -3.00780355E+001
+rism_volume      1.94361520E+002
+rism_exNumb                      -6.40736084E+000 -1.28147236E+001
+rism_exChrg     -8.32492651E-007  5.43087905E+000 -5.43087989E+000
+rism_KB                             -1.92413197E+002  -1.92413227E+002
+rism_DCFI                           -6.94311337E+003   1.98873043E+003
+|RXRISM converged in   134
+
+ NSTEP =       10   TIME(PS) =       0.010  TEMP(K) =   232.04  PRESS =     0.0
+ Etot   =        20.2337  EKtot   =        12.4498  EPtot      =         7.7839
+ BOND   =         1.5353  ANGLE   =         8.9631  DIHED      =         8.5924
+ 1-4 NB =         4.1046  1-4 EEL =        46.2798  VDWAALS    =         1.3530
+ EELEC  =       -79.6149  ERISM   =        16.5705  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot      7.78390163E+000  1.35303741E+000 -7.96148970E+001  1.53525489E+000  8.96314395E+000  8.59238984E+000  0.00000000E+000  4.10463006E+000  4.62798230E+001  0.00000000E+000  1.65705195E+001
+rism_exchem      1.65705195E+001  8.27520736E+001 -6.61815541E+001
+rism_exchGF      6.40604866E+000  7.83434744E+001 -7.19374258E+001
+rism_potUV      -2.21241795E+001  8.82509804E+000 -3.09492776E+001
+rism_volume      1.94629713E+002
+rism_exNumb                      -6.41629180E+000 -1.28325853E+001
+rism_exChrg     -7.10266424E-007  5.43844894E+000 -5.43844965E+000
+rism_KB                             -1.92681394E+002  -1.92681420E+002
+rism_DCFI                           -7.07670725E+003   2.05346055E+003
+|RXRISM converged in   184
+
+ NSTEP =       15   TIME(PS) =       0.015  TEMP(K) =   197.73  PRESS =     0.0
+ Etot   =        17.8195  EKtot   =        10.6088  EPtot      =         7.2106
+ BOND   =         2.0049  ANGLE   =         8.1573  DIHED      =         8.2934
+ 1-4 NB =         3.9716  1-4 EEL =        45.9103  VDWAALS    =         1.0136
+ EELEC  =       -79.0689  ERISM   =        16.9285  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot      7.21062911E+000  1.01355721E+000 -7.90689167E+001  2.00485899E+000  8.15726231E+000  8.29339620E+000  0.00000000E+000  3.97164801E+000  4.59102806E+001  0.00000000E+000  1.69285425E+001
+rism_exchem      1.69285425E+001  8.08924628E+001 -6.39639203E+001
+rism_exchGF      6.76775959E+000  7.64815623E+001 -6.97138027E+001
+rism_potUV      -2.18304118E+001  8.13844588E+000 -2.99688577E+001
+rism_volume      1.95062469E+002
+rism_exNumb                      -6.43070307E+000 -1.28614063E+001
+rism_exChrg     -6.36642781E-008  5.45066393E+000 -5.45066399E+000
+rism_KB                             -1.93114165E+002  -1.93114168E+002
+rism_DCFI                           -6.95739079E+003   1.99046729E+003
+|RXRISM converged in   157
+
+ NSTEP =       20   TIME(PS) =       0.020  TEMP(K) =   297.73  PRESS =     0.0
+ Etot   =        19.7916  EKtot   =        15.9747  EPtot      =         3.8168
+ BOND   =         1.0783  ANGLE   =         6.3833  DIHED      =         7.6896
+ 1-4 NB =         3.5502  1-4 EEL =        46.6681  VDWAALS    =         0.8538
+ EELEC  =       -79.3358  ERISM   =        16.9294  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot      3.81684070E+000  8.53788895E-001 -7.93358396E+001  1.07834929E+000  6.38331042E+000  7.68955756E+000  0.00000000E+000  3.55022795E+000  4.66680848E+001  0.00000000E+000  1.69293613E+001
+rism_exchem      1.69293613E+001  7.83072202E+001 -6.13778589E+001
+rism_exchGF      6.72409899E+000  7.38745517E+001 -6.71504527E+001
+rism_potUV      -2.20688267E+001  7.15879782E+000 -2.92276245E+001
+rism_volume      1.96374223E+002
+rism_exNumb                      -6.47438461E+000 -1.29487691E+001
+rism_exChrg      5.17563433E-008  5.48768840E+000 -5.48768835E+000
+rism_KB                             -1.94425923E+002  -1.94425921E+002
+rism_DCFI                           -6.79265425E+003   1.89799003E+003
+
+ NSTEP =       25   TIME(PS) =       0.025  TEMP(K) =   308.58  PRESS =     0.0
+ Etot   =         3.7608  EKtot   =        16.5569  EPtot      =       -12.7960
+ BOND   =         3.1156  ANGLE   =         5.3430  DIHED      =         7.9324
+ 1-4 NB =         3.0917  1-4 EEL =        47.1574  VDWAALS    =         0.0219
+ EELEC  =       -79.4581  ERISM   =         0.0000  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+|RXRISM converged in   153
+ Precision of the extrapolation:   4.864 %
+
+ NSTEP =       30   TIME(PS) =       0.030  TEMP(K) =   223.52  PRESS =     0.0
+ Etot   =        21.5682  EKtot   =        11.9930  EPtot      =         9.5752
+ BOND   =         2.2443  ANGLE   =        11.7333  DIHED      =         8.8797
+ 1-4 NB =         2.8832  1-4 EEL =        46.8985  VDWAALS    =        -0.8086
+ EELEC  =       -78.8783  ERISM   =        16.6231  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot      9.57521407E+000 -8.08629140E-001 -7.88782568E+001  2.24427994E+000  1.17333075E+001  8.87971304E+000  0.00000000E+000  2.88318890E+000  4.68985201E+001  0.00000000E+000  1.66230906E+001
+rism_exchem      1.66230906E+001  8.18896772E+001 -6.52665866E+001
+rism_exchGF      6.26994625E+000  7.74094940E+001 -7.11395478E+001
+rism_potUV      -2.30470228E+001  8.23098932E+000 -3.12780121E+001
+rism_volume      1.99872775E+002
+rism_exNumb                      -6.59088604E+000 -1.31817732E+001
+rism_exChrg     -4.95879090E-007  5.58643501E+000 -5.58643551E+000
+rism_KB                             -1.97924464E+002  -1.97924481E+002
+rism_DCFI                           -7.04250619E+003   1.99595451E+003
+
+ NSTEP =       35   TIME(PS) =       0.035  TEMP(K) =   226.15  PRESS =     0.0
+ Etot   =         3.5938  EKtot   =        12.1340  EPtot      =        -8.5403
+ BOND   =         4.9165  ANGLE   =         8.5742  DIHED      =         9.3488
+ 1-4 NB =         2.4124  1-4 EEL =        47.4190  VDWAALS    =        -1.2160
+ EELEC  =       -79.9953  ERISM   =         0.0000  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+|RXRISM converged in   193
+ Precision of the extrapolation:   6.094 %
+ 
+ NSTEP =       40   TIME(PS) =       0.040  TEMP(K) =   213.97  PRESS =     0.0
+ Etot   =        21.6278  EKtot   =        11.4806  EPtot      =        10.1472
+ BOND   =         3.5980  ANGLE   =        12.6829  DIHED      =         9.0854
+ 1-4 NB =         2.0578  1-4 EEL =        46.6281  VDWAALS    =        -1.2276
+ EELEC  =       -79.8898  ERISM   =        17.2124  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot        1.01471945E+001  -1.22762081E+000  -7.98897830E+001   3.59804710E+000   1.26829261E+001   9.08535701E+000   0.00000000E+000   2.05775424E+000   4.66281038E+001   0.00000000E+000   1.72124100E+001
+rism_exchem        1.72124100E+001   7.87989785E+001  -6.15865684E+001
+rism_exchGF        6.83705685E+000   7.43006929E+001  -6.74636360E+001
+rism_potUV        -2.26435633E+001   7.08309064E+000  -2.97266540E+001
+rism_volume        2.00950680E+002
+rism_exNumb                         -6.62677996E+000  -1.32535620E+001
+rism_exChrg       -8.63555994E-007   5.61685870E+000  -5.61685956E+000
+rism_KB                             -1.99002359E+002  -1.99002389E+002
+rism_DCFI                           -6.84362919E+003   1.88820917E+003
+
+ NSTEP =       45   TIME(PS) =       0.045  TEMP(K) =   244.48  PRESS =     0.0
+ Etot   =         2.9281  EKtot   =        13.1172  EPtot      =       -10.1891
+ BOND   =         3.0785  ANGLE   =        10.6835  DIHED      =         8.2393
+ 1-4 NB =         2.1535  1-4 EEL =        44.1686  VDWAALS    =        -1.0072
+ EELEC  =       -77.5054  ERISM   =         0.0000  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+|RXRISM converged in   186
+ Precision of the extrapolation:   6.375 %
+ 
+ NSTEP =       50   TIME(PS) =       0.050  TEMP(K) =   254.74  PRESS =     0.0
+ Etot   =        20.0071  EKtot   =        13.6679  EPtot      =         6.3392
+ BOND   =         1.4139  ANGLE   =        11.1626  DIHED      =         8.7923
+ 1-4 NB =         2.4369  1-4 EEL =        42.4334  VDWAALS    =        -0.7516
+ EELEC  =       -75.4412  ERISM   =        16.2930  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+solute_epot      6.33920842E+000 -7.51639610E-001 -7.54412094E+001  1.41389606E+000  1.11625624E+001  8.79229968E+000  0.00000000E+000  2.43689963E+000  4.24333688E+001  0.00000000E+000  1.62930309E+001
+rism_exchem      1.62930309E+001  8.40728165E+001 -6.77797856E+001
+rism_exchGF      5.95270572E+000  7.95898199E+001 -7.36371141E+001
+rism_potUV      -2.32052148E+001  9.48508308E+000 -3.26902979E+001
+rism_volume      1.98840622E+002
+rism_exNumb                      -6.55651577E+000 -1.31130313E+001
+rism_exChrg      1.00814229E-007  5.55730277E+000 -5.55730267E+000
+rism_KB                             -1.96892323E+002  -1.96892320E+002
+rism_DCFI                           -7.13652157E+003   2.05091646E+003
+
+      A V E R A G E S   O V E R      50 S T E P S
+
+
+ NSTEP =       50   TIME(PS) =       0.050  TEMP(K) =   250.89  PRESS =     0.0
+ Etot   =         5.9629  EKtot   =        13.4613  EPtot      =        -7.4984
+ BOND   =         2.5466  ANGLE   =         8.5511  DIHED      =         8.4075
+ 1-4 NB =         3.2304  1-4 EEL =        46.4610  VDWAALS    =         0.2456
+ EELEC  =       -79.2820  ERISM   =         2.3415  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       50   TIME(PS) =       0.050  TEMP(K) =    50.76  PRESS =     0.0
+ Etot   =         5.8465  EKtot   =         2.7233  EPtot      =         6.6713
+ BOND   =         1.2097  ANGLE   =         2.9065  DIHED      =         0.5468
+ 1-4 NB =         0.9221  1-4 EEL =         1.5767  VDWAALS    =         1.3794
+ EELEC  =         1.3944  ERISM   =         5.8043  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|                LJ Grid time               0.27 ( 0.45% of 3D-RI)
+|                Ewald Grid time            0.33 ( 0.54% of 3D-RI)
+|                Asymptotics time           3.14 ( 5.16% of 3D-RI)
+|                      FFT time                  20.68 (37.25% of R1RIS)
+|                         LAPACK time                0.03 ( 0.20% of MDIIS)
+|                         DATA time                  4.43 (31.87% of MDIIS)
+|                         Other                      9.45 (67.94% of MDIIS)
+|                      MDIIS time                13.90 (25.04% of R1RIS)
+|                      Other                     20.93 (37.71% of R1RIS)
+|                   R1RISM time               55.52 (100.0% of RXRIS)
+|                   Other                      0.03 ( 0.06% of RXRIS)
+|                RXRISM time               55.55 (91.36% of 3D-RI)
+|                EXCHEM time                0.02 ( 0.03% of 3D-RI)
+|                FF time                    1.04 ( 1.72% of 3D-RI)
+|                CRD Interpolation ti       0.08 ( 0.13% of 3D-RI)
+|                Resize Solvent Box t       0.31 ( 0.51% of 3D-RI)
+|                Solution Propagation       0.06 ( 0.10% of 3D-RI)
+|             3D-RISM time              60.81 (100.0% of Nonbo)
+|          Nonbond force             60.81 (100.0% of Force)
+|       Force time                60.81 (100.0% of Runmd)
+|       Verlet update time         0.05 ( 0.07% of Runmd)
+|       Other                      0.01 ( 0.01% of Runmd)
+|    Runmd Time                60.86 (99.68% of Total)
+|    Other                      0.20 ( 0.32% of Total)
+| Total time                61.06 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =      60.86 Per Step(ms) =    1217.25
+|         ns/day =       0.07   seconds/ns = 1217247.80
+| -----------------------------------------------------
+
+|           Job began  at 12:01:13.396  on 10/08/2013
+|           Setup done at 12:01:13.594  on 10/08/2013
+|           Run   done at 12:02:14.456  on 10/08/2013
+|     wallclock() was called   16945 times

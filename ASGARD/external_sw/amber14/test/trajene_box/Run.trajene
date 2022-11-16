@@ -1,0 +1,52 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+  set numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+  if ( $numprocs > 1 ) then
+      echo " DO_PARALLEL set to $DO_PARALLEL"
+      goto toomany
+  else if ( $?MP_PROCS)then
+      if ($MP_PROCS > 12)then
+#               --- For IBM AIX ---
+          echo "    MP_PROCS set to "$MP_PROCS
+          goto toomany
+      endif
+  endif
+endif
+
+touch dummy
+
+$DO_PARALLEL $TESTsander \
+-O \
+-i trajene.in \
+-o trajene.out \
+-p prmtop \
+-c inpcrd \
+-x mdcrd.out  \
+-y mdcrd \
+-ref inpcrd \
+-inf trajeneinfo \
+-r trajenerestrt < dummy || goto error
+
+../dacdif trajene.out.save trajene.out
+../dacdif mdcrd.out.save mdcrd.out
+/bin/rm -f trajeneinfo trajenerestrt dummy
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+toomany:
+    echo " This test cannot be run with more than 1 processor, exiting."
+    echo "============================================================"
+    exit(0)
+

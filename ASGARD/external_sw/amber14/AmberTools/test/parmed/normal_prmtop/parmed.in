@@ -1,0 +1,43 @@
+# Final prmtop file -- the *last* parmout command is always
+# executed at the very end
+parmout final.prmtop
+
+# Change to the igb = 8 radius set, mbondi3
+changeRadii mbondi3
+outparm prmtop.mbondi3
+
+# Dump out an frcmod file with a full list of parameters
+writeFrcmod trx.frcmod
+
+# Load in a restart file so we can dump an OFF file
+loadRestrt trx.inpcrd
+writeOFF trx.off
+
+# Add types to specific atoms and modify those 2 atoms'
+# LJ interaction (mimic CHARMM's NBFIX)
+addLJType :1@N
+addLJType @956
+changeLJPair :1@N @956 1.0 2.0
+outparm prmtop.NBFIX
+
+# Mess around with some charges
+change CHARGE :LYS@N 0.0
+outparm prmtop.new_chg
+
+# Remove non-bonded scaling from topology file. Note this should
+# NOT be used for normal amber force fields (default is 1.2/2.0)
+scee 1.0
+scnb 1.0
+outparm prmtop.scalenb
+
+# Mess around with some masses
+change MASS :LYS@N 0.0
+outparm prmtop.new_mass
+
+# Change a LJ radius/depth
+changeLJSingleType @900 1.9080000000152688 0.1096
+outparm prmtop.new_lj
+
+# Add ATOMIC_NUMBER to the topology file
+addAtomicNumber
+outparm prmtop.add_AtNum

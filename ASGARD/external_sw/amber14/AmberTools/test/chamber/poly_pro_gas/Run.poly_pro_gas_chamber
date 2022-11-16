@@ -1,0 +1,63 @@
+#!/bin/csh -f
+
+#Tests chamber to ensure it gives the correct output and creates the expected files
+
+#1) Test Chamber
+/bin/rm -f *.prmtop *.inpcrd *.out *.restrt >&/dev/null
+
+# Test for the presence of the 'chamber' program
+
+if ( -x $AMBERHOME/bin/chamber ) then
+   #CHARMM CRD FILE
+   $AMBERHOME/bin/chamber \
+             -top $AMBERHOME/dat/chamber/top_all22_prot.inp \
+             -param $AMBERHOME/dat/chamber/par_all22_prot.inp \
+             -psf poly_pro_gas_all22.psf -nocmap\
+             -crd poly_pro_min_charmm.crd \
+             -p poly_pro_gas_all22.crd.prmtop \
+             -inpcrd poly_pro_gas_all22.crd.inpcrd >& chamber.crd.out || goto error
+
+   ../../dacdif chamber.crd.out.save chamber.crd.out
+   ../../dacdif -r 10E-15 poly_pro_gas_all22.crd.prmtop.save poly_pro_gas_all22.crd.prmtop
+   ../../dacdif poly_pro_gas_all22.crd.inpcrd.save poly_pro_gas_all22.crd.inpcrd
+
+   #PDB FILE
+   $AMBERHOME/bin/chamber \
+             -top $AMBERHOME/dat/chamber/top_all22_prot.inp \
+             -param $AMBERHOME/dat/chamber/par_all22_prot.inp \
+             -psf poly_pro_gas_all22.psf -nocmap\
+             -crd poly_pro_min_charmm.pdb \
+             -p poly_pro_gas_all22.pdb.prmtop \
+             -inpcrd poly_pro_gas_all22.pdb.inpcrd >& chamber.pdb.out || goto error
+
+   ../../dacdif chamber.pdb.out.save chamber.pdb.out
+   ../../dacdif -r 10E-15 poly_pro_gas_all22.pdb.prmtop.save poly_pro_gas_all22.pdb.prmtop
+   ../../dacdif poly_pro_gas_all22.pdb.inpcrd.save poly_pro_gas_all22.pdb.inpcrd
+
+   #RST FILE
+   #$AMBERHOME/bin/chamber \
+   #          -top $AMBERHOME/dat/chamber/top_all22_prot.inp \
+   #          -param $AMBERHOME/dat/chamber/par_all22_prot.inp \
+   #          -psf poly_pro_gas_all22.psf -nocmap\
+   #          -crd poly_pro_equil_charmm.rst \
+   #          -p poly_pro_gas_all22.rst.prmtop \
+   #          -inpcrd poly_pro_gas_all22.rst.restrt >& chamber.rst.out || goto error
+   #
+   #../../dacdif chamber.pdb.out.save chamber.rst.out
+   #../../dacdif poly_pro_gas_all22.rst.prmtop.save poly_pro_gas_all22.rst.prmtop
+   #../../dacdif poly_pro_gas_all22.rst.restrt.save poly_pro_gas_all22.rst.restrt
+
+   exit(0)
+
+else
+   echo "Could not find the 'chamber' program. "
+   echo "It may happen if you do not compile the serial"
+   echo "version of amber."
+   echo "=============================================================="
+   exit(0)
+endif   
+error:
+echo "  ${0}:  Program error"
+exit (1)
+
+

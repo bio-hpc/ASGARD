@@ -1,0 +1,46 @@
+source /home/homeyer/Software/amber14_120214/dat/leap/cmd/oldff/leaprc.ff99SB
+source leaprc.gaff
+loadoff /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51a.lib
+loadoff /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b.lib
+loadoff /home/homeyer/work/FEW/examples/test/input_info/CA.lib
+CYS = CYX
+
+loadAmberParams /home/homeyer/work/FEW/examples/test/leap/L51a/L51a.frcmod
+
+L51a_com = loadpdb /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51a_com.pdb
+bond L51a_com.27.SG L51a_com.43.SG
+bond L51a_com.238.SG L51a_com.249.SG
+bond L51a_com.181.SG L51a_com.209.SG
+bond L51a_com.156.SG L51a_com.170.SG
+bond L51a_com.7.SG L51a_com.12.SG
+bond L51a_com.245.SG L51a_com.258.SG
+bond L51a_com.108.SG L51a_com.281.SG
+bond L51a_com.260.SG L51a_com.273.SG
+setBox L51a_com vdw
+saveamberparm L51a_com /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51a_com_TIin.top /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51a_com_TIin.crd
+savepdb L51a_com /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51a_com_TIin.pdb
+L51a_lig = loadpdb /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51a_lig.pdb
+setBox L51a_lig vdw
+saveamberparm L51a_lig /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51a_lig_TIin.top /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51a_lig_TIin.crd
+savepdb L51a_lig /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51a_lig_TIin.pdb
+
+loadAmberParams /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b.frcmod
+
+L51b_com = loadpdb /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b_com.pdb
+bond L51b_com.27.SG L51b_com.43.SG
+bond L51b_com.238.SG L51b_com.249.SG
+bond L51b_com.181.SG L51b_com.209.SG
+bond L51b_com.156.SG L51b_com.170.SG
+bond L51b_com.7.SG L51b_com.12.SG
+bond L51b_com.245.SG L51b_com.258.SG
+bond L51b_com.108.SG L51b_com.281.SG
+bond L51b_com.260.SG L51b_com.273.SG
+setBox L51b_com vdw
+saveamberparm L51b_com /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b_com_TIin.top /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b_com_TIin.crd
+savepdb L51b_com /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b_com_TIin.pdb
+
+L51b_lig = loadpdb /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b_lig.pdb
+setBox L51b_lig vdw
+saveamberparm L51b_lig /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b_lig_TIin.top /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b_lig_TIin.crd
+savepdb L51b_lig /home/homeyer/work/FEW/examples/test/TI_resp/L51a_L51b/setup/L51b_lig_TIin.pdb
+quit

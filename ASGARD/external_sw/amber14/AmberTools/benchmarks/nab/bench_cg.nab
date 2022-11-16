@@ -1,0 +1,27 @@
+// Try some conjugate gradient minimization
+
+molecule m;
+float x[dynamic], f[dynamic], v[dynamic];
+float fret, dgrad;
+
+// Create a molecule from a pdb file and a force-field parameter file.
+
+m = getpdb( argv[2] + ".mc.pdb");
+allocate x[ 3*m.natoms ];
+allocate f[ 3*m.natoms ];
+allocate v[ 3*m.natoms ];
+readparm( m, argv[2] + ".top" );
+getxv(  argv[2] + ".mc.x", m.natoms, fret, x, v );
+
+// Initialize molecular mechanics..
+
+mm_options("cut=15.0, rgbmax=15.0, ntpr=50, nsnb=25, gb=1, diel=C" );
+mme_init(m, NULL, "::ZZZZ", x, NULL);
+
+// Do some minimization
+
+dgrad = 0.00001;
+conjgrad(x, 3*m.natoms, fret, mme, dgrad, 1.0, 1000 );
+putxv(  argv[2] + ".mc2.x", "bench minimization", m.natoms, 0.0, x, v );
+mme_timer();
+

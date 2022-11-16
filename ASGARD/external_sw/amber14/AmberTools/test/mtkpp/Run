@@ -1,0 +1,17 @@
+#!/bin/sh
+
+
+tests="fileFormatsTest hybridizeTest mmTest ringTest linearAlgebraTest"
+
+for t in ${tests}
+ do
+  /bin/rm -rf $t.tmp
+  /bin/mkdir $t.tmp
+  ../../src/mtkpp/tests/$t -l $t.log -o $t.out -b $t.tmp/
+  #$AMBERHOME/AmberTools/src/mtkpp/tests/$t -l $t.log -o $t.out -b $t.tmp/
+  ../dacdif $t.ref $t.out
+  /bin/rm -rf temp_*
+  /bin/rm -rf $t.tmp/
+  /bin/rm -rf *.log
+  /bin/rm -rf *.out
+ done

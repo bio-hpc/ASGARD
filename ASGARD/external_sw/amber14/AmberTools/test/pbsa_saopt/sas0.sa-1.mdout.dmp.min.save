@@ -1,0 +1,150 @@
+
+          -------------------------------------------------------
+          PBSA VERSION 2009                       UC Irvine
+          -------------------------------------------------------
+
+| Run on 03/01/2012 at 15:44:29
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: min.in                                                                
+| MDOUT: sas0.sa-1.mdout.dmp.min                                               
+|INPCRD: inpcrd                                                                
+|  PARM: prmtop                                                                
+|
+
+ Here is the input file:
+
+ test of pbsa                                                                  
+ &cntrl                                                                        
+   ntx=1, imin=1, ipb=1, inp=0                                                 
+ /                                                                             
+ &pb                                                                           
+   npbverb=0, istrng=0, epsout=80.0, epsin=1.0, space=.5,                      
+   accept=0.001, dprob=1.6, sprob=1.6, radiopt=0, fillratio=3, nbuffer=0,      
+   nfocus=1, smoothopt=1, cutnb=15, cutsa=12,                                  
+   saopt=-1, sasopt=0                                                          
+   arcres=0.0625                                                               
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 03/08/04 Time = 18:34:09
+ NATOM  =      13 NTYPES =       5 NBONH =       6 MBONA  =       6
+ NTHETH =      12 MTHETA =       8 NPHIH =       6 MPHIA  =       8
+ NHPARM =       0 NPARM  =       0 NNB   =      45 NRES   =       1
+ NBONA  =       6 NTHETA =       8 NPHIA =       8 NUMBND =       4
+ NUMANG =       6 NPTRA  =       3 NATYP =       5 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      13 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real                 519
+|     Hollerith             81
+|     Integer            18375
+|     Max Pairs              1
+|     Max Rstack             1
+|     Max Istack             1
+|       Total               76 kbytes
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =      50, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       1, ipb     =       1, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   8.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =       1, ncyc    =      10, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+ dmp                                                                            
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+ Total molecular surface    133.5607
+
+ NSTEP =        1   TIME(PS) =       0.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =         0.0000  EKtot   =         0.0000  EPtot      =         0.0000
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EPB     =         0.0000  RESTRAINT  =         0.0000
+ ECAVITY=         0.0000  EDISPER =         0.0000
+ ------------------------------------------------------------------------------
+
+
+
+  Maximum number of minimization cycles reached.
+
+
+                    FINAL RESULTS
+
+
+ NSTEP =        1   TIME(PS) =       0.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =         0.0000  EKtot   =         0.0000  EPtot      =         0.0000
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EPB     =         0.0000  RESTRAINT  =         0.0000
+ ECAVITY=         0.0000  EDISPER =         0.0000
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+| Total time                     0.04
+| Read prm/crd time              0.00
+| Force time                     0.04
+| Nonbond force                  0.04
+| PB Nonbond                     0.04
+| PB FD grid                     0.00
+| PB Sasa                        0.00
+| PB FD force                    0.03
+| PB Set linear sys              0.03
+| PB SA arc                      0.00
+| PB circle                      0.00
+| PB exclude                     0.00
+| PB exmol                       0.03
+| PB exmol setup                 0.00
+| PB exmol part b                0.00
+| PB exmol part c                0.00
+| PB exmol part e                0.00
+| PB exmol part f                0.02
+| PB epsmap                      0.00
+|           Job began  at 15:44:29.963  on 03/01/2012
+|           Setup done at 15:44:29.965  on 03/01/2012
+|           Run   done at 15:44:30.000  on 03/01/2012
+|     wallclock() was called      66 times

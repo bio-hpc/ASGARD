@@ -1,0 +1,706 @@
+<?xml version="1.0" ?>
+<parms name="parm99">
+  <types>
+    <entry mass="1.008" name="H" vdwRadius="0.6000" potentialWellDepth="0.0157" element="H" hybridization="s" description="H bonded to nitrogen atoms"/>
+    <entry mass="1.008" name="HS" vdwRadius="0.6000" potentialWellDepth="0.0157" element="H" hybridization="s" description="H bonded to sulphur"/>
+    <entry mass="1.008" name="HC" vdwRadius="1.4870" potentialWellDepth="0.0157" element="H" hybridization="s" description="H aliph. bond. to C without electrwd.group"/>
+    <entry mass="1.008" name="H1" vdwRadius="1.3870" potentialWellDepth="0.0157" element="H" hybridization="s" description="H aliph. bond. to C with 1 electrwd. group"/>
+    <entry mass="1.008" name="H2" vdwRadius="1.2870" potentialWellDepth="0.0157" element="H" hybridization="s" description="H aliph. bond. to C with 2 electrwd. group"/>
+    <entry mass="1.008" name="H3" vdwRadius="1.1870" potentialWellDepth="0.0157" element="H" hybridization="s" description="H aliph. bond. to C with 3 electrwd. group"/>
+    <entry mass="1.008" name="HP" vdwRadius="1.1" potentialWellDepth="0.0157" element="H" hybridization="s" description="H bonded to C next to positively charged gr"/>
+    <entry mass="1.008" name="HA" vdwRadius="1.4590" potentialWellDepth="0.0150" element="H" hybridization="s" description="H arom. bond. to C without elctrwd. groups"/>
+    <entry mass="1.008" name="H4" vdwRadius="1.4090" potentialWellDepth="0.0150" element="H" hybridization="s" description="H arom. bond. to C with 1 electrwd. group"/>
+    <entry mass="1.008" name="H5" vdwRadius="1.3590" potentialWellDepth="0.0150" element="H" hybridization="s" description="H arom.at C with 2 elctrwd. gr,+HCOO group"/>
+    <entry mass="1.008" name="HW" vdwRadius="0.0" potentialWellDepth="0.0" element="H" hybridization="s" description="H in TIP3P water"/>
+    <entry mass="1.008" name="HZ" vdwRadius="1.4590" potentialWellDepth="0.0150" element="H" hybridization="s" description="H bond sp C (Howard et al.JCC,16,243,1995)"/>
+    <entry mass="1.008" name="HO" vdwRadius="0.0" potentialWellDepth="0.0" element="H" hybridization="s" description="hydroxyl group"/>
+    <entry mass="3.00"  name="LP" vdwRadius="0.0" potentialWellDepth="0.0" element="X" hybridization="s" description="lone pair"/>
+    <entry mass="6.94"  name="Li" vdwRadius="1.1370" potentialWellDepth="0.0183" element="Li" hybridization="s" description="lithium, ions pol:J.PhysC,11,1541,(1978)"/>
+    <entry mass="12.01" name="C" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 C carbonyl group"/>
+    <entry mass="12.01" name="CT" vdwRadius="1.9080" potentialWellDepth="0.1094" element="C" hybridization="sp3" description="sp3 aliphatic C"/>
+    <entry mass="12.01" name="C*" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 arom. 5 memb.ring w/1 subst. (TRP)"/>
+    <entry mass="12.01" name="CA" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 C pure aromatic (benzene)"/>
+    <entry mass="12.01" name="CB" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 aromatic C, 5 and 6 membered ring junction"/>
+    <entry mass="12.01" name="CC" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 aromatic C, 5 memb. ring HIS"/>
+    <entry mass="12.01" name="CD" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 C atom in the middle of: C=CD-CD=C"/>
+    <entry mass="12.01" name="CK" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 C 5 memb.ring in purines"/>
+    <entry mass="12.01" name="CM" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 C  pyrimidines in pos. 5 and 6"/>
+    <entry mass="12.01" name="CN" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 C aromatic 5 and 6 memb.ring junct.(TRP)"/>
+    <entry mass="12.01" name="CQ" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 C in 5 mem.ring of purines between 2 N"/>
+    <entry mass="12.01" name="CR" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 arom as CQ but in HIS"/>
+    <entry mass="12.01" name="CV" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 arom. 5 memb.ring w/1 N and 1 H (HIS)"/>
+    <entry mass="12.01" name="CW" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp2" description="sp2 arom. 5 memb.ring w/1 N-H and 1 H (HIS)"/>
+    <entry mass="12.01" name="CY" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp" description="nitrile C (Howard et al.JCC,16,243,1995)"/>
+    <entry mass="12.01" name="CZ" vdwRadius="1.9080" potentialWellDepth="0.0860" element="C" hybridization="sp" description="sp C (Howard et al.JCC,16,243,1995)"/>
+    <entry mass="14.01" name="N" vdwRadius="1.8240" potentialWellDepth="0.1700" element="N" hybridization="sp2" description="sp2 nitrogen in amide groups"/>
+    <entry mass="14.01" name="NA" vdwRadius="1.8240" potentialWellDepth="0.1700" element="N" hybridization="sp2" description="sp2 N in 5 memb.ring w/H atom (HIS)"/>
+    <entry mass="14.01" name="NB" vdwRadius="1.8240" potentialWellDepth="0.1700" element="N" hybridization="sp2" description="sp2 N in 5 memb.ring w/LP (HIS,ADE,GUA)"/>
+    <entry mass="14.01" name="NC" vdwRadius="1.8240" potentialWellDepth="0.1700" element="N" hybridization="sp2" description="sp2 N in 6 memb.ring w/LP (ADE,GUA)"/>
+    <entry mass="14.01" name="N2" vdwRadius="1.8240" potentialWellDepth="0.1700" element="N" hybridization="sp2" description="sp2 N in amino groups"/>
+    <entry mass="14.01" name="N3" vdwRadius="1.8240" potentialWellDepth="0.1700" element="N" hybridization="sp3" description="sp3 N for charged amino groups (Lys, etc)"/>
+    <entry mass="14.01" name="NT" vdwRadius="1.8240" potentialWellDepth="0.1700" element="N" hybridization="sp3" description="sp3 N for amino groups amino groups"/>
+    <entry mass="14.01" name="N*" vdwRadius="1.8240" potentialWellDepth="0.1700" element="N" hybridization="sp2" description="sp2 N"/>
+    <entry mass="14.01" name="NY" vdwRadius="1.8240" potentialWellDepth="0.1700" element="N" hybridization="sp" description="nitrile N (Howard et al.JCC,16,243,1995)"/>
+    <entry mass="16.00" name="O" vdwRadius="1.6612" potentialWellDepth="0.2100" element="O" hybridization="sp3" description="carbonyl group oxygen"/>
+    <entry mass="16.00" name="O2" vdwRadius="1.6612" potentialWellDepth="0.2100" element="O" hybridization="sp3" description="carboxyl and phosphate group oxygen"/>
+    <entry mass="16.00" name="OW" vdwRadius="1.7683" potentialWellDepth="0.1520" element="O" hybridization="sp3" description="oxygen in TIP3P water"/>
+    <entry mass="16.00" name="OH" vdwRadius="1.7210" potentialWellDepth="0.2104" element="O" hybridization="sp3" description="oxygen in hydroxyl group"/>
+    <entry mass="16.00" name="OS" vdwRadius="1.6837" potentialWellDepth="0.1700" element="O" hybridization="sp3" description="ether and ester oxygen"/>
+    <entry mass="19.00" name="F" vdwRadius="1.75" potentialWellDepth="0.061" element="F" hybridization="s" description="fluorine"/>
+    <entry mass="22.99" name="IP" vdwRadius="1.8680" potentialWellDepth="0.00277" element="Na" hybridization="s" description="assumed to be Na+ (ion plus)"/>
+    <entry mass="22.99" name="Na" vdwRadius="1.8680" potentialWellDepth="0.00277" element="Na" hybridization="s" description="Na+, ions pol:J.PhysC,11,1541,(1978)"/>
+    <entry mass="24.30" name="MG" vdwRadius="0.7926" potentialWellDepth="0.8947" element="Mg" hybridization="s" description="magnesium"/>
+    <entry mass="30.97" name="P" vdwRadius="2.1000" potentialWellDepth="0.2000" element="P" hybridization="sp3d" description="phosphate,pol:JACS,112,8543,90,K.J.Miller"/>
+    <entry mass="32.06" name="S" vdwRadius="2.0000" potentialWellDepth="0.2500" element="S" hybridization="sp3" description="S in disulfide linkage,pol:JPC,102,2399,98"/>
+    <entry mass="32.06" name="SH" vdwRadius="2.0000" potentialWellDepth="0.2500" element="S" hybridization="sp3" description="S in cystine"/>
+    <entry mass="35.45" name="Cl" vdwRadius="1.948" potentialWellDepth="0.265" element="Cl" hybridization="s" description="chlorine (Applequist)"/>
+    <entry mass="35.45" name="IM" vdwRadius="2.47" potentialWellDepth="0.1" element="Cl" hybridization="s" description="assumed to be Cl- (ion minus)"/>
+    <entry mass="39.10" name="K" vdwRadius="2.6580" potentialWellDepth="0.000328" element="K" hybridization="s" description="potassium"/>
+    <entry mass="40.08" name="C0" vdwRadius="1.7131" potentialWellDepth="0.459789" element="Ca" hybridization="s" description="calcium"/>
+    <!-- For transition metal entries, refer to metals/metalParm.xml -->
+    <!--<entry mass="55.00" name="FE" vdwRadius="0.0" potentialWellDepth="0.0" element="Fe" hybridization="s" description="iron"/>-->
+    <!--<entry mass="63.55" name="CU" vdwRadius="0.0" potentialWellDepth="0.0" element="Cu" hybridization="s" description="copper"/>-->
+    <!--<entry mass="66.4" name="ZN" vdwRadius="1.10" potentialWellDepth="0.0125" element="Zn" hybridization="s" description="Zn2+"/>-->
+    <entry mass="79.90" name="Br" vdwRadius="2.22" potentialWellDepth="0.320" element="Br" hybridization="s" description="bromine (Applequist)"/>
+    <entry mass="85.47" name="Rb" vdwRadius="2.9560" potentialWellDepth="0.00017" element="Rb" hybridization="s" description="rubidium"/>
+    <entry mass="126.9" name="I" vdwRadius="2.35" potentialWellDepth="0.40" element="I" hybridization="s" description="iodine (Applequist)"/>
+    <entry mass="131.0" name="IB" vdwRadius="5.0" potentialWellDepth="0.1" element="Na" hybridization="s" description="big ion w/ waters for vacuum (Na+, 6H2O)"/>
+    <entry mass="132.9" name="Cs" vdwRadius="3.3950" potentialWellDepth="0.000080" element="Cs" hybridization="s" description="cesium"/>
+  </types>
+  <equivalentAtoms>
+    <entry org="N">
+      <equil equil="NA"/>
+      <equil equil="N2"/>
+      <equil equil="N*"/>
+      <equil equil="NC"/>
+      <equil equil="NB"/>
+      <equil equil="NT"/>
+      <equil equil="NY"/>
+    </entry>
+    <entry org="C*">
+      <equil equil="CA"/>
+      <equil equil="CB"/>
+      <equil equil="CC"/>
+      <equil equil="CD"/>
+      <equil equil="CK"/>
+      <equil equil="CM"/>
+      <equil equil="CN"/>
+      <equil equil="CQ"/>
+      <equil equil="CR"/>
+      <equil equil="CV"/>
+      <equil equil="CW"/>
+      <equil equil="CY"/>
+      <equil equil="CZ"/>
+    </entry>
+  </equivalentAtoms>
+  <bondLengths>
+    <entry keq="553.0" req="0.9572" t1="OW" t2="HW"/>
+    <entry keq="553.0" req="1.5136" t1="HW" t2="HW"/>
+    <entry keq="310.0" req="1.525" t1="C" t2="C"/>
+    <entry keq="469.0" req="1.409" t1="C" t2="CA"/>
+    <entry keq="447.0" req="1.419" t1="C" t2="CB"/>
+    <entry keq="410.0" req="1.444" t1="C" t2="CM"/>
+    <entry keq="317.0" req="1.522" t1="C" t2="CT"/>
+    <entry keq="490.0" req="1.335" t1="C" t2="N"/>
+    <entry keq="424.0" req="1.383" t1="C" t2="N*"/>
+    <entry keq="418.0" req="1.388" t1="C" t2="NA"/>
+    <entry keq="457.0" req="1.358" t1="C" t2="NC"/>
+    <entry keq="570.0" req="1.229" t1="C" t2="O"/>
+    <entry keq="656.0" req="1.250" t1="C" t2="O2"/>
+    <entry keq="450.0" req="1.364" t1="C" t2="OH"/>
+    <entry keq="450.0" req="1.323" t1="C" t2="OS"/>
+    <entry keq="367.0" req="1.080" t1="C" t2="H4"/>
+    <entry keq="367.0" req="1.080" t1="C" t2="H5"/>
+    <entry keq="469.0" req="1.400" t1="CA" t2="CA"/>
+    <entry keq="469.0" req="1.404" t1="CA" t2="CB"/>
+    <entry keq="427.0" req="1.433" t1="CA" t2="CM"/>
+    <entry keq="469.0" req="1.400" t1="CA" t2="CN"/>
+    <entry keq="317.0" req="1.510" t1="CA" t2="CT"/>
+    <entry keq="367.0" req="1.080" t1="CA" t2="HA"/>
+    <entry keq="367.0" req="1.080" t1="CA" t2="H4"/>
+    <entry keq="481.0" req="1.340" t1="CA" t2="N2"/>
+    <entry keq="427.0" req="1.381" t1="CA" t2="NA"/>
+    <entry keq="483.0" req="1.339" t1="CA" t2="NC"/>
+    <entry keq="450.0" req="1.364" t1="CA" t2="OH"/>
+    <entry keq="520.0" req="1.370" t1="CB" t2="CB"/>
+    <entry keq="436.0" req="1.374" t1="CB" t2="N*"/>
+    <entry keq="414.0" req="1.391" t1="CB" t2="NB"/>
+    <entry keq="461.0" req="1.354" t1="CB" t2="NC"/>
+    <entry keq="367.0" req="1.080" t1="CD" t2="HA"/>
+    <entry keq="469.0" req="1.400" t1="CD" t2="CD"/>
+    <entry keq="549.0" req="1.350" t1="CD" t2="CM"/>
+    <entry keq="317.0" req="1.510" t1="CD" t2="CT"/>
+    <entry keq="367.0" req="1.080" t1="CK" t2="H5"/>
+    <entry keq="440.0" req="1.371" t1="CK" t2="N*"/>
+    <entry keq="529.0" req="1.304" t1="CK" t2="NB"/>
+    <entry keq="549.0" req="1.350" t1="CM" t2="CM"/>
+    <entry keq="317.0" req="1.510" t1="CM" t2="CT"/>
+    <entry keq="367.0" req="1.080" t1="CM" t2="HA"/>
+    <entry keq="367.0" req="1.080" t1="CM" t2="H4"/>
+    <entry keq="367.0" req="1.080" t1="CM" t2="H5"/>
+    <entry keq="448.0" req="1.365" t1="CM" t2="N*"/>
+    <entry keq="480.0" req="1.240" t1="CM" t2="OS"/>
+    <entry keq="367.0" req="1.080" t1="CQ" t2="H5"/>
+    <entry keq="502.0" req="1.324" t1="CQ" t2="NC"/>
+    <entry keq="310.0" req="1.526" t1="CT" t2="CT"/>
+    <entry keq="340.0" req="1.090" t1="CT" t2="HC"/>
+    <entry keq="340.0" req="1.090" t1="CT" t2="H1"/>
+    <entry keq="340.0" req="1.090" t1="CT" t2="H2"/>
+    <entry keq="340.0" req="1.090" t1="CT" t2="H3"/>
+    <entry keq="340.0" req="1.090" t1="CT" t2="HP"/>
+    <entry keq="337.0" req="1.475" t1="CT" t2="N*"/>
+    <entry keq="337.0" req="1.463" t1="CT" t2="N2"/>
+    <entry keq="320.0" req="1.410" t1="CT" t2="OH"/>
+    <entry keq="320.0" req="1.410" t1="CT" t2="OS"/>
+    <entry keq="367.0" req="1.080" t1="C*" t2="HC"/>
+    <entry keq="388.0" req="1.459" t1="C*" t2="CB"/>
+    <entry keq="317.0" req="1.495" t1="C*" t2="CT"/>
+    <entry keq="546.0" req="1.352" t1="C*" t2="CW"/>
+    <entry keq="447.0" req="1.419" t1="CB" t2="CN"/>
+    <entry keq="317.0" req="1.504" t1="CC" t2="CT"/>
+    <entry keq="512.0" req="1.375" t1="CC" t2="CV"/>
+    <entry keq="518.0" req="1.371" t1="CC" t2="CW"/>
+    <entry keq="422.0" req="1.385" t1="CC" t2="NA"/>
+    <entry keq="410.0" req="1.394" t1="CC" t2="NB"/>
+    <entry keq="428.0" req="1.380" t1="CN" t2="NA"/>
+    <entry keq="367.0" req="1.080" t1="CR" t2="H5"/>
+    <entry keq="477.0" req="1.343" t1="CR" t2="NA"/>
+    <entry keq="488.0" req="1.335" t1="CR" t2="NB"/>
+    <entry keq="337.0" req="1.449" t1="CT" t2="N"/>
+    <entry keq="367.0" req="1.471" t1="CT" t2="N3"/>
+    <entry keq="367.0" req="1.471" t1="CT" t2="NT"/>
+    <entry keq="227.0" req="1.810" t1="CT" t2="S"/>
+    <entry keq="237.0" req="1.810" t1="CT" t2="SH"/>
+    <entry keq="400.0" req="1.458" t1="CT" t2="CY"/>
+    <entry keq="400.0" req="1.459" t1="CT" t2="CZ"/>
+    <entry keq="367.0" req="1.080" t1="CV" t2="H4"/>
+    <entry keq="410.0" req="1.394" t1="CV" t2="NB"/>
+    <entry keq="367.0" req="1.080" t1="CW" t2="H4"/>
+    <entry keq="427.0" req="1.381" t1="CW" t2="NA"/>
+    <entry keq="600.0" req="1.150" t1="CY" t2="NY"/>
+    <entry keq="600.0" req="1.206" t1="CZ" t2="CZ"/>
+    <entry keq="400.0" req="1.056" t1="CZ" t2="HZ"/>
+    <entry keq="525.0" req="1.480" t1="O2" t2="P"/>
+    <entry keq="230.0" req="1.610" t1="OH" t2="P"/>
+    <entry keq="230.0" req="1.610" t1="OS" t2="P"/>
+    <entry keq="434.0" req="1.010" t1="H" t2="N2"/>
+    <entry keq="434.0" req="1.010" t1="H" t2="N*"/>
+    <entry keq="434.0" req="1.010" t1="H" t2="NA"/>
+    <entry keq="434.0" req="1.010" t1="H" t2="N"/>
+    <entry keq="434.0" req="1.010" t1="H" t2="N3"/>
+    <entry keq="434.0" req="1.010" t1="H" t2="NT"/>
+    <entry keq="553.0" req="0.960" t1="HO" t2="OH"/>
+    <entry keq="553.0" req="0.960" t1="HO" t2="OS"/>
+    <entry keq="274.0" req="1.336" t1="HS" t2="SH"/>
+    <entry keq="166.0" req="2.038" t1="S" t2="S"/>
+    <entry keq="367.0" req="1.380" t1="F" t2="CT"/>
+    <entry keq="232.0" req="1.766" t1="Cl" t2="CT"/>
+    <entry keq="159.0" req="1.944" t1="Br" t2="CT"/>
+    <entry keq="148.0" req="2.166" t1="I" t2="CT"/>
+    <entry keq="386.0" req="1.359" t1="F" t2="CA"/>
+    <entry keq="193.0" req="1.727" t1="Cl" t2="CA"/>
+    <entry keq="171.0" req="2.075" t1="I" t2="CA"/>
+    <entry keq="172.0" req="1.890" t1="Br" t2="CA"/>
+    <entry keq="600.0" req="0.200" t1="LP" t2="O"/>
+    <entry keq="600.0" req="0.200" t1="LP" t2="OH"/>
+    <entry keq="600.0" req="0.200" t1="LP" t2="OS"/>
+    <entry keq="600.0" req="0.200" t1="LP" t2="N3"/>
+    <entry keq="600.0" req="0.200" t1="LP" t2="NT"/>
+    <entry keq="600.0" req="0.200" t1="LP" t2="NB"/>
+    <entry keq="600.0" req="0.200" t1="LP" t2="NC"/>
+    <entry keq="600.0" req="0.700" t1="LP" t2="S"/>
+    <entry keq="600.0" req="0.700" t1="LP" t2="SH"/>
+  </bondLengths>
+  <bondAngles>
+    <entry keq="100.0" req="104.52" t1="HW" t2="OW" t3="HW"/>
+    <entry keq="0.0" req="127.74" t1="HW" t2="HW" t3="OW"/>
+    <entry keq="80.0" req="120.00" t1="C" t2="C" t3="O"/>
+    <entry keq="80.0" req="120.00" t1="C" t2="C" t3="OH"/>
+    <entry keq="63.0" req="120.00" t1="CA" t2="C" t3="CA"/>
+    <entry keq="70.0" req="120.00" t1="CA" t2="C" t3="OH"/>
+    <entry keq="70.0" req="111.30" t1="CB" t2="C" t3="NA"/>
+    <entry keq="80.0" req="128.80" t1="CB" t2="C" t3="O"/>
+    <entry keq="70.0" req="114.10" t1="CM" t2="C" t3="NA"/>
+    <entry keq="80.0" req="125.30" t1="CM" t2="C" t3="O"/>
+    <entry keq="80.0" req="120.40" t1="CT" t2="C" t3="O"/>
+    <entry keq="70.0" req="117.00" t1="CT" t2="C" t3="O2"/>
+    <entry keq="70.0" req="116.60" t1="CT" t2="C" t3="N"/>
+    <entry keq="63.0" req="117.00" t1="CT" t2="C" t3="CT"/>
+    <entry keq="80.0" req="115.00" t1="CT" t2="C" t3="OS"/>
+    <entry keq="80.0" req="110.00" t1="CT" t2="C" t3="OH"/>
+    <entry keq="70.0" req="115.40" t1="N*" t2="C" t3="NA"/>
+    <entry keq="70.0" req="118.60" t1="N*" t2="C" t3="NC"/>
+    <entry keq="80.0" req="120.90" t1="N*" t2="C" t3="O"/>
+    <entry keq="80.0" req="120.60" t1="NA" t2="C" t3="O"/>
+    <entry keq="80.0" req="122.50" t1="NC" t2="C" t3="O"/>
+    <entry keq="80.0" req="122.90" t1="N" t2="C" t3="O"/>
+    <entry keq="80.0" req="126.00" t1="O" t2="C" t3="O"/>
+    <entry keq="80.0" req="120.00" t1="O" t2="C" t3="OH"/>
+    <entry keq="80.0" req="125.00" t1="O" t2="C" t3="OS"/>
+    <entry keq="80.0" req="126.00" t1="O2" t2="C" t3="O2"/>
+    <entry keq="50.0" req="120.00" t1="H4" t2="C" t3="C"/>
+    <entry keq="50.0" req="115.00" t1="H4" t2="C" t3="CM"/>
+    <entry keq="50.0" req="115.00" t1="H4" t2="C" t3="CT"/>
+    <entry keq="50.0" req="120.00" t1="H4" t2="C" t3="O"/>
+    <entry keq="50.0" req="120.00" t1="H4" t2="C" t3="OH"/>
+    <entry keq="50.0" req="120.00" t1="H5" t2="C" t3="N"/>
+    <entry keq="50.0" req="119.00" t1="H5" t2="C" t3="O"/>
+    <entry keq="50.0" req="107.00" t1="H5" t2="C" t3="OH"/>
+    <entry keq="50.0" req="107.00" t1="H5" t2="C" t3="OS"/>
+    <entry keq="63.0" req="120.00" t1="C" t2="CA" t3="CA"/>
+    <entry keq="50.0" req="120.00" t1="C" t2="CA" t3="HA"/>
+    <entry keq="63.0" req="120.00" t1="CA" t2="CA" t3="CA"/>
+    <entry keq="63.0" req="120.00" t1="CA" t2="CA" t3="CB"/>
+    <entry keq="70.0" req="120.00" t1="CA" t2="CA" t3="CT"/>
+    <entry keq="50.0" req="120.00" t1="CA" t2="CA" t3="HA"/>
+    <entry keq="50.0" req="120.00" t1="CA" t2="CA" t3="H4"/>
+    <entry keq="70.0" req="120.00" t1="CA" t2="CA" t3="OH"/>
+    <entry keq="63.0" req="120.00" t1="CA" t2="CA" t3="CN"/>
+    <entry keq="50.0" req="120.00" t1="CB" t2="CA" t3="HA"/>
+    <entry keq="50.0" req="120.00" t1="CB" t2="CA" t3="H4"/>
+    <entry keq="70.0" req="123.50" t1="CB" t2="CA" t3="N2"/>
+    <entry keq="70.0" req="117.30" t1="CB" t2="CA" t3="NC"/>
+    <entry keq="70.0" req="120.10" t1="CM" t2="CA" t3="N2"/>
+    <entry keq="70.0" req="121.50" t1="CM" t2="CA" t3="NC"/>
+    <entry keq="50.0" req="120.00" t1="CN" t2="CA" t3="HA"/>
+    <entry keq="70.0" req="123.30" t1="NA" t2="CA" t3="NC"/>
+    <entry keq="70.0" req="116.00" t1="N2" t2="CA" t3="NA"/>
+    <entry keq="70.0" req="119.30" t1="N2" t2="CA" t3="NC"/>
+    <entry keq="70.0" req="120.00" t1="N2" t2="CA" t3="N2"/>
+    <entry keq="70.0" req="121.00" t1="F" t2="CA" t3="CA"/>
+    <entry keq="70.0" req="118.80" t1="Cl" t2="CA" t3="CA"/>
+    <entry keq="70.0" req="118.80" t1="Br" t2="CA" t3="CA"/>
+    <entry keq="70.0" req="118.80" t1="I" t2="CA" t3="CA"/>
+    <entry keq="63.0" req="119.20" t1="C" t2="CB" t3="CB"/>
+    <entry keq="70.0" req="130.00" t1="C" t2="CB" t3="NB"/>
+    <entry keq="63.0" req="117.30" t1="CA" t2="CB" t3="CB"/>
+    <entry keq="70.0" req="132.40" t1="CA" t2="CB" t3="NB"/>
+    <entry keq="70.0" req="106.20" t1="CB" t2="CB" t3="N*"/>
+    <entry keq="70.0" req="110.40" t1="CB" t2="CB" t3="NB"/>
+    <entry keq="70.0" req="127.70" t1="CB" t2="CB" t3="NC"/>
+    <entry keq="63.0" req="134.90" t1="C*" t2="CB" t3="CA"/>
+    <entry keq="63.0" req="108.80" t1="C*" t2="CB" t3="CN"/>
+    <entry keq="63.0" req="116.20" t1="CA" t2="CB" t3="CN"/>
+    <entry keq="70.0" req="126.20" t1="N*" t2="CB" t3="NC"/>
+    <entry keq="63.0" req="120.00" t1="CD" t2="CD" t3="CM"/>
+    <entry keq="70.0" req="120.00" t1="CD" t2="CD" t3="CT"/>
+    <entry keq="70.0" req="120.00" t1="CM" t2="CD" t3="CT"/>
+    <entry keq="35.0" req="119.00" t1="HA" t2="CD" t3="HA"/>
+    <entry keq="50.0" req="120.00" t1="HA" t2="CD" t3="CD"/>
+    <entry keq="50.0" req="120.00" t1="HA" t2="CD" t3="CM"/>
+    <entry keq="50.0" req="123.05" t1="H5" t2="CK" t3="N*"/>
+    <entry keq="50.0" req="123.05" t1="H5" t2="CK" t3="NB"/>
+    <entry keq="70.0" req="113.90" t1="N*" t2="CK" t3="NB"/>
+    <entry keq="63.0" req="120.70" t1="C" t2="CM" t3="CM"/>
+    <entry keq="70.0" req="119.70" t1="C" t2="CM" t3="CT"/>
+    <entry keq="50.0" req="119.70" t1="C" t2="CM" t3="HA"/>
+    <entry keq="50.0" req="119.70" t1="C" t2="CM" t3="H4"/>
+    <entry keq="63.0" req="117.00" t1="CA" t2="CM" t3="CM"/>
+    <entry keq="50.0" req="123.30" t1="CA" t2="CM" t3="HA"/>
+    <entry keq="50.0" req="123.30" t1="CA" t2="CM" t3="H4"/>
+    <entry keq="70.0" req="119.70" t1="CM" t2="CM" t3="CT"/>
+    <entry keq="50.0" req="119.70" t1="CM" t2="CM" t3="HA"/>
+    <entry keq="50.0" req="119.70" t1="CM" t2="CM" t3="H4"/>
+    <entry keq="70.0" req="121.20" t1="CM" t2="CM" t3="N*"/>
+    <entry keq="80.0" req="125.00" t1="CM" t2="CM" t3="OS"/>
+    <entry keq="50.0" req="119.10" t1="H4" t2="CM" t3="N*"/>
+    <entry keq="50.0" req="113.00" t1="H4" t2="CM" t3="OS"/>
+    <entry keq="35.0" req="120.00" t1="HA" t2="CM" t3="HA"/>
+    <entry keq="50.0" req="120.00" t1="HA" t2="CM" t3="CD"/>
+    <entry keq="50.0" req="120.00" t1="HA" t2="CM" t3="CT"/>
+    <entry keq="70.0" req="129.10" t1="NC" t2="CQ" t3="NC"/>
+    <entry keq="50.0" req="115.45" t1="H5" t2="CQ" t3="NC"/>
+    <entry keq="35.0" req="109.50" t1="H1" t2="CT" t3="H1"/>
+    <entry keq="50.0" req="109.50" t1="H1" t2="CT" t3="N*"/>
+    <entry keq="50.0" req="109.50" t1="H1" t2="CT" t3="OH"/>
+    <entry keq="50.0" req="109.50" t1="H1" t2="CT" t3="OS"/>
+    <entry keq="50.0" req="109.50" t1="H1" t2="CT" t3="CM"/>
+    <entry keq="50.0" req="110.00" t1="H1" t2="CT" t3="CY"/>
+    <entry keq="50.0" req="110.00" t1="H1" t2="CT" t3="CZ"/>
+    <entry keq="50.0" req="109.50" t1="H1" t2="CT" t3="N"/>
+    <entry keq="50.0" req="109.50" t1="H1" t2="CT" t3="S"/>
+    <entry keq="50.0" req="109.50" t1="H1" t2="CT" t3="SH"/>
+    <entry keq="50.0" req="109.50" t1="H1" t2="CT" t3="N2"/>
+    <entry keq="50.0" req="109.50" t1="H1" t2="CT" t3="NT"/>
+    <entry keq="35.0" req="109.50" t1="H2" t2="CT" t3="H2"/>
+    <entry keq="50.0" req="109.50" t1="H2" t2="CT" t3="N*"/>
+    <entry keq="50.0" req="109.50" t1="H2" t2="CT" t3="OS"/>
+    <entry keq="35.0" req="109.50" t1="HP" t2="CT" t3="HP"/>
+    <entry keq="50.0" req="109.50" t1="HP" t2="CT" t3="N3"/>
+    <entry keq="35.0" req="109.50" t1="HC" t2="CT" t3="HC"/>
+    <entry keq="50.0" req="109.50" t1="HC" t2="CT" t3="CM"/>
+    <entry keq="50.0" req="109.50" t1="HC" t2="CT" t3="CD"/>
+    <entry keq="50.0" req="110.00" t1="HC" t2="CT" t3="CZ"/>
+    <entry keq="50.0" req="109.50" t1="C" t2="CT" t3="H1"/>
+    <entry keq="50.0" req="109.50" t1="C" t2="CT" t3="HP"/>
+    <entry keq="50.0" req="109.50" t1="C" t2="CT" t3="HC"/>
+    <entry keq="63.0" req="110.10" t1="C" t2="CT" t3="N"/>
+    <entry keq="80.0" req="111.20" t1="C" t2="CT" t3="N3"/>
+    <entry keq="63.0" req="111.10" t1="C" t2="CT" t3="CT"/>
+    <entry keq="60.0" req="109.50" t1="C" t2="CT" t3="OS"/>
+    <entry keq="50.0" req="109.50" t1="CA" t2="CT" t3="HC"/>
+    <entry keq="63.0" req="113.10" t1="CC" t2="CT" t3="CT"/>
+    <entry keq="50.0" req="109.50" t1="CC" t2="CT" t3="HC"/>
+    <entry keq="63.0" req="111.00" t1="CM" t2="CT" t3="CT"/>
+    <entry keq="50.0" req="109.50" t1="CM" t2="CT" t3="OS"/>
+    <entry keq="40.0" req="109.50" t1="CT" t2="CT" t3="CT"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="CT" t3="HC"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="CT" t3="H1"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="CT" t3="H2"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="CT" t3="HP"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="CT" t3="N*"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="CT" t3="OH"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="CT" t3="OS"/>
+    <entry keq="50.0" req="114.70" t1="CT" t2="CT" t3="S"/>
+    <entry keq="50.0" req="108.60" t1="CT" t2="CT" t3="SH"/>
+    <entry keq="63.0" req="114.00" t1="CT" t2="CT" t3="CA"/>
+    <entry keq="80.0" req="111.20" t1="CT" t2="CT" t3="N2"/>
+    <entry keq="80.0" req="109.70" t1="CT" t2="CT" t3="N"/>
+    <entry keq="80.0" req="111.20" t1="CT" t2="CT" t3="N3"/>
+    <entry keq="80.0" req="111.20" t1="CT" t2="CT" t3="NT"/>
+    <entry keq="63.0" req="110.00" t1="CT" t2="CT" t3="CY"/>
+    <entry keq="63.0" req="110.00" t1="CT" t2="CT" t3="CZ"/>
+    <entry keq="63.0" req="115.60" t1="C*" t2="CT" t3="CT"/>
+    <entry keq="50.0" req="109.50" t1="C*" t2="CT" t3="HC"/>
+    <entry keq="60.0" req="101.00" t1="OS" t2="CT" t3="OS"/>
+    <entry keq="50.0" req="110.00" t1="OS" t2="CT" t3="CY"/>
+    <entry keq="50.0" req="110.00" t1="OS" t2="CT" t3="CZ"/>
+    <entry keq="50.0" req="109.50" t1="OS" t2="CT" t3="N*"/>
+    <entry keq="77.0" req="109.10" t1="F" t2="CT" t3="F"/>
+    <entry keq="50.0" req="109.50" t1="F" t2="CT" t3="H1"/>
+    <entry keq="50.0" req="109.00" t1="F" t2="CT" t3="CT"/>
+    <entry keq="50.0" req="109.50" t1="F" t2="CT" t3="H2"/>
+    <entry keq="50.0" req="108.50" t1="Cl" t2="CT" t3="CT"/>
+    <entry keq="50.0" req="108.50" t1="Cl" t2="CT" t3="H1"/>
+    <entry keq="50.0" req="108.00" t1="Br" t2="CT" t3="CT"/>
+    <entry keq="50.0" req="106.50" t1="Br" t2="CT" t3="H1"/>
+    <entry keq="50.0" req="106.00" t1="I" t2="CT" t3="CT"/>
+    <entry keq="70.0" req="120.00" t1="CT" t2="CC" t3="NA"/>
+    <entry keq="70.0" req="120.00" t1="CT" t2="CC" t3="CV"/>
+    <entry keq="70.0" req="120.00" t1="CT" t2="CC" t3="NB"/>
+    <entry keq="70.0" req="120.00" t1="CV" t2="CC" t3="NA"/>
+    <entry keq="70.0" req="120.00" t1="CW" t2="CC" t3="NA"/>
+    <entry keq="70.0" req="120.00" t1="CW" t2="CC" t3="NB"/>
+    <entry keq="70.0" req="120.00" t1="CT" t2="CC" t3="CW"/>
+    <entry keq="50.0" req="120.00" t1="H5" t2="CR" t3="NA"/>
+    <entry keq="50.0" req="120.00" t1="H5" t2="CR" t3="NB"/>
+    <entry keq="70.0" req="120.00" t1="NA" t2="CR" t3="NA"/>
+    <entry keq="70.0" req="120.00" t1="NA" t2="CR" t3="NB"/>
+    <entry keq="50.0" req="120.00" t1="CC" t2="CV" t3="H4"/>
+    <entry keq="70.0" req="120.00" t1="CC" t2="CV" t3="NB"/>
+    <entry keq="50.0" req="120.00" t1="H4" t2="CV" t3="NB"/>
+    <entry keq="50.0" req="120.00" t1="CC" t2="CW" t3="H4"/>
+    <entry keq="70.0" req="120.00" t1="CC" t2="CW" t3="NA"/>
+    <entry keq="50.0" req="120.00" t1="C*" t2="CW" t3="H4"/>
+    <entry keq="70.0" req="108.70" t1="C*" t2="CW" t3="NA"/>
+    <entry keq="50.0" req="120.00" t1="H4" t2="CW" t3="NA"/>
+    <entry keq="70.0" req="128.60" t1="CB" t2="C*" t3="CT"/>
+    <entry keq="63.0" req="106.40" t1="CB" t2="C*" t3="CW"/>
+    <entry keq="70.0" req="125.00" t1="CT" t2="C*" t3="CW"/>
+    <entry keq="63.0" req="122.70" t1="CA" t2="CN" t3="CB"/>
+    <entry keq="70.0" req="132.80" t1="CA" t2="CN" t3="NA"/>
+    <entry keq="70.0" req="104.40" t1="CB" t2="CN" t3="NA"/>
+    <entry keq="80.0" req="180.00" t1="CT" t2="CY" t3="NY"/>
+    <entry keq="80.0" req="180.00" t1="CT" t2="CZ" t3="CZ"/>
+    <entry keq="50.0" req="180.00" t1="CZ" t2="CZ" t3="HZ"/>
+    <entry keq="50.0" req="121.90" t1="C" t2="N" t3="CT"/>
+    <entry keq="50.0" req="120.00" t1="C" t2="N" t3="H"/>
+    <entry keq="50.0" req="118.04" t1="CT" t2="N" t3="H"/>
+    <entry keq="50.0" req="118.00" t1="CT" t2="N" t3="CT"/>
+    <entry keq="35.0" req="120.00" t1="H" t2="N" t3="H"/>
+    <entry keq="70.0" req="121.60" t1="C" t2="N*" t3="CM"/>
+    <entry keq="70.0" req="117.60" t1="C" t2="N*" t3="CT"/>
+    <entry keq="50.0" req="119.20" t1="C" t2="N*" t3="H"/>
+    <entry keq="70.0" req="105.40" t1="CB" t2="N*" t3="CK"/>
+    <entry keq="70.0" req="125.80" t1="CB" t2="N*" t3="CT"/>
+    <entry keq="50.0" req="125.80" t1="CB" t2="N*" t3="H"/>
+    <entry keq="70.0" req="128.80" t1="CK" t2="N*" t3="CT"/>
+    <entry keq="50.0" req="128.80" t1="CK" t2="N*" t3="H"/>
+    <entry keq="70.0" req="121.20" t1="CM" t2="N*" t3="CT"/>
+    <entry keq="50.0" req="121.20" t1="CM" t2="N*" t3="H"/>
+    <entry keq="50.0" req="120.00" t1="CA" t2="N2" t3="H"/>
+    <entry keq="50.0" req="123.20" t1="CA" t2="N2" t3="CT"/>
+    <entry keq="50.0" req="118.40" t1="CT" t2="N2" t3="H"/>
+    <entry keq="35.0" req="120.00" t1="H" t2="N2" t3="H"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="N3" t3="H"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="N3" t3="CT"/>
+    <entry keq="35.0" req="109.50" t1="H" t2="N3" t3="H"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="NT" t3="H"/>
+    <entry keq="50.0" req="109.50" t1="CT" t2="NT" t3="CT"/>
+    <entry keq="35.0" req="109.50" t1="H" t2="NT" t3="H"/>
+    <entry keq="70.0" req="126.40" t1="C" t2="NA" t3="C"/>
+    <entry keq="70.0" req="125.20" t1="C" t2="NA" t3="CA"/>
+    <entry keq="50.0" req="116.80" t1="C" t2="NA" t3="H"/>
+    <entry keq="50.0" req="118.00" t1="CA" t2="NA" t3="H"/>
+    <entry keq="70.0" req="120.00" t1="CC" t2="NA" t3="CR"/>
+    <entry keq="50.0" req="120.00" t1="CC" t2="NA" t3="H"/>
+    <entry keq="70.0" req="120.00" t1="CR" t2="NA" t3="CW"/>
+    <entry keq="50.0" req="120.00" t1="CR" t2="NA" t3="H"/>
+    <entry keq="50.0" req="120.00" t1="CW" t2="NA" t3="H"/>
+    <entry keq="70.0" req="111.60" t1="CN" t2="NA" t3="CW"/>
+    <entry keq="50.0" req="123.10" t1="CN" t2="NA" t3="H"/>
+    <entry keq="70.0" req="103.80" t1="CB" t2="NB" t3="CK"/>
+    <entry keq="70.0" req="117.00" t1="CC" t2="NB" t3="CR"/>
+    <entry keq="70.0" req="117.00" t1="CR" t2="NB" t3="CV"/>
+    <entry keq="70.0" req="120.50" t1="C" t2="NC" t3="CA"/>
+    <entry keq="70.0" req="112.20" t1="CA" t2="NC" t3="CB"/>
+    <entry keq="70.0" req="118.60" t1="CA" t2="NC" t3="CQ"/>
+    <entry keq="70.0" req="111.00" t1="CB" t2="NC" t3="CQ"/>
+    <entry keq="50.0" req="113.00" t1="C" t2="OH" t3="HO"/>
+    <entry keq="50.0" req="113.00" t1="CA" t2="OH" t3="HO"/>
+    <entry keq="55.0" req="108.50" t1="CT" t2="OH" t3="HO"/>
+    <entry keq="45.0" req="108.50" t1="HO" t2="OH" t3="P"/>
+    <entry keq="60.0" req="117.00" t1="C" t2="OS" t3="CT"/>
+    <entry keq="60.0" req="117.00" t1="CM" t2="OS" t3="CT"/>
+    <entry keq="60.0" req="109.50" t1="CT" t2="OS" t3="CT"/>
+    <entry keq="00.0" req="120.50" t1="CT" t2="OS" t3="P"/>
+    <entry keq="00.0" req="120.50" t1="P" t2="OS" t3="P"/>
+    <entry keq="45.0" req="108.23" t1="O2" t2="P" t3="OH"/>
+    <entry keq="40.0" req="119.90" t1="O2" t2="P" t3="O2"/>
+    <entry keq="00.0" req="108.23" t1="O2" t2="P" t3="OS"/>
+    <entry keq="45.0" req="102.60" t1="OH" t2="P" t3="OS"/>
+    <entry keq="45.0" req="102.60" t1="OS" t2="P" t3="OS"/>
+    <entry keq="62.0" req="98.90" t1="CT" t2="S" t3="CT"/>
+    <entry keq="68.0" req="103.70" t1="CT" t2="S" t3="S"/>
+    <entry keq="43.0" req="96.00" t1="CT" t2="SH" t3="HS"/>
+    <entry keq="35.0" req="92.07" t1="HS" t2="SH" t3="HS"/>
+    <entry keq="50.0" req="126.0" t1="CB" t2="NB" t3="LP"/>
+    <entry keq="50.0" req="126.0" t1="CC" t2="NB" t3="LP"/>
+    <entry keq="50.0" req="126.0" t1="CK" t2="NB" t3="LP"/>
+    <entry keq="50.0" req="126.0" t1="CR" t2="NB" t3="LP"/>
+    <entry keq="50.0" req="126.0" t1="CV" t2="NB" t3="LP"/>
+    <entry keq="50.0" req="120.0" t1="C" t2="NC" t3="LP"/>
+    <entry keq="50.0" req="120.0" t1="CA" t2="NC" t3="LP"/>
+    <entry keq="50.0" req="120.0" t1="CB" t2="NC" t3="LP"/>
+    <entry keq="50.0" req="120.0" t1="CQ" t2="NC" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="CT" t2="N3" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="H" t2="N3" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="CT" t2="NT" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="H" t2="NT" t3="LP"/>
+    <entry keq="50.0" req="120.0" t1="C" t2="O" t3="LP"/>
+    <entry keq="50.0" req="120.0" t1="LP" t2="O" t3="LP"/>
+    <entry keq="50.0" req="120.0" t1="C" t2="OH" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="CT" t2="OH" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="HO" t2="OH" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="LP" t2="OH" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="C" t2="OS" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="CM" t2="OS" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="CT" t2="OS" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="LP" t2="OS" t3="LP"/>
+    <entry keq="50.0" req="90.0" t1="CT" t2="S" t3="LP"/>
+    <entry keq="50.0" req="90.0" t1="CT" t2="SH" t3="LP"/>
+    <entry keq="50.0" req="109.5" t1="P" t2="OS" t3="LP"/>
+    <entry keq="50.0" req="180.0" t1="LP" t2="S" t3="LP"/>
+    <entry keq="50.0" req="180.0" t1="LP" t2="SH" t3="LP"/>
+    <entry keq="50.0" req="90.0" t1="HS" t2="SH" t3="LP"/>
+  </bondAngles>
+  <bondTorsions>
+    <entry Nt="2.0" Vn="14.50" gamma="180.0" npth="4" t1="X" t2="C" t3="C" t4="X"/>
+    <entry Nt="2.0" Vn="14.50" gamma="180.0" npth="4" t1="X" t2="C" t3="CA" t4="X"/>
+    <entry Nt="2.0" Vn="12.00" gamma="180.0" npth="4" t1="X" t2="C" t3="CB" t4="X"/>
+    <entry Nt="2.0" Vn="8.70" gamma="180.0" npth="4" t1="X" t2="C" t3="CM" t4="X"/>
+    <entry Nt="2.0" Vn="0.00" gamma="0.0" npth="6" t1="X" t2="C" t3="CT" t4="X"/>
+    <entry Nt="2.0" Vn="10.00" gamma="180.0" npth="4" t1="X" t2="C" t3="N" t4="X"/>
+    <entry Nt="2.0" Vn="5.80" gamma="180.0" npth="4" t1="X" t2="C" t3="N*" t4="X"/>
+    <entry Nt="2.0" Vn="5.40" gamma="180.0" npth="4" t1="X" t2="C" t3="NA" t4="X"/>
+    <entry Nt="2.0" Vn="8.00" gamma="180.0" npth="2" t1="X" t2="C" t3="NC" t4="X"/>
+    <entry Nt="2.0" Vn="11.20" gamma="180.0" npth="4" t1="X" t2="C" t3="O" t4="X"/>
+    <entry Nt="2.0" Vn="4.60" gamma="180.0" npth="2" t1="X" t2="C" t3="OH" t4="X"/>
+    <entry Nt="2.0" Vn="5.40" gamma="180.0" npth="2" t1="X" t2="C" t3="OS" t4="X"/>
+    <entry Nt="2.0" Vn="14.50" gamma="180.0" npth="4" t1="X" t2="CA" t3="CA" t4="X"/>
+    <entry Nt="2.0" Vn="14.00" gamma="180.0" npth="4" t1="X" t2="CA" t3="CB" t4="X"/>
+    <entry Nt="2.0" Vn="10.20" gamma="180.0" npth="4" t1="X" t2="CA" t3="CM" t4="X"/>
+    <entry Nt="2.0" Vn="14.50" gamma="180.0" npth="4" t1="X" t2="CA" t3="CN" t4="X"/>
+    <entry Nt="2.0" Vn="0.00" gamma="0.0" npth="6" t1="X" t2="CA" t3="CT" t4="X"/>
+    <entry Nt="2.0" Vn="9.60" gamma="180.0" npth="4" t1="X" t2="CA" t3="N2" t4="X"/>
+    <entry Nt="2.0" Vn="6.00" gamma="180.0" npth="4" t1="X" t2="CA" t3="NA" t4="X"/>
+    <entry Nt="2.0" Vn="9.60" gamma="180.0" npth="2" t1="X" t2="CA" t3="NC" t4="X"/>
+    <entry Nt="2.0" Vn="1.80" gamma="180.0" npth="2" t1="X" t2="CA" t3="OH" t4="X"/>
+    <entry Nt="2.0" Vn="21.80" gamma="180.0" npth="4" t1="X" t2="CB" t3="CB" t4="X"/>
+    <entry Nt="2.0" Vn="12.00" gamma="180.0" npth="4" t1="X" t2="CB" t3="CN" t4="X"/>
+    <entry Nt="2.0" Vn="6.60" gamma="180.0" npth="4" t1="X" t2="CB" t3="N*" t4="X"/>
+    <entry Nt="2.0" Vn="5.10" gamma="180.0" npth="2" t1="X" t2="CB" t3="NB" t4="X"/>
+    <entry Nt="2.0" Vn="8.30" gamma="180.0" npth="2" t1="X" t2="CB" t3="NC" t4="X"/>
+    <entry Nt="2.0" Vn="0.00" gamma="0.0" npth="6" t1="X" t2="CC" t3="CT" t4="X"/>
+    <entry Nt="2.0" Vn="20.60" gamma="180.0" npth="4" t1="X" t2="CC" t3="CV" t4="X"/>
+    <entry Nt="2.0" Vn="21.50" gamma="180.0" npth="4" t1="X" t2="CC" t3="CW" t4="X"/>
+    <entry Nt="2.0" Vn="5.60" gamma="180.0" npth="4" t1="X" t2="CC" t3="NA" t4="X"/>
+    <entry Nt="2.0" Vn="4.80" gamma="180.0" npth="2" t1="X" t2="CC" t3="NB" t4="X"/>
+    <entry Nt="2.0" Vn="4.00" gamma="180.0" npth="4" t1="X" t2="CD" t3="CD" t4="X"/>
+    <entry Nt="2.0" Vn="0.00" gamma="0.0" npth="6" t1="X" t2="CD" t3="CT" t4="X"/>
+    <entry Nt="2.0" Vn="26.60" gamma="180.0" npth="4" t1="X" t2="CD" t3="CM" t4="X"/>
+    <entry Nt="2.0" Vn="6.80" gamma="180.0" npth="4" t1="X" t2="CK" t3="N*" t4="X"/>
+    <entry Nt="2.0" Vn="20.00" gamma="180.0" npth="2" t1="X" t2="CK" t3="NB" t4="X"/>
+    <entry Nt="2.0" Vn="26.60" gamma="180.0" npth="4" t1="X" t2="CM" t3="CM" t4="X"/>
+    <entry Nt="3.0" Vn="0.00" gamma="0.0" npth="6" t1="X" t2="CM" t3="CT" t4="X"/>
+    <entry Nt="2.0" Vn="7.40" gamma="180.0" npth="4" t1="X" t2="CM" t3="N*" t4="X"/>
+    <entry Nt="2.0" Vn="2.10" gamma="180.0" npth="2" t1="X" t2="CM" t3="OS" t4="X"/>
+    <entry Nt="2.0" Vn="6.10" gamma="180.0" npth="4" t1="X" t2="CN" t3="NA" t4="X"/>
+    <entry Nt="2.0" Vn="13.60" gamma="180.0" npth="2" t1="X" t2="CQ" t3="NC" t4="X"/>
+    <entry Nt="3.0" Vn="1.40" gamma="0.0" npth="9" t1="X" t2="CT" t3="CT" t4="X"/>
+    <entry Nt="1.0" Vn="0.00" gamma="0.0" npth="3" t1="X" t2="CT" t3="CY" t4="X"/>
+    <entry Nt="1.0" Vn="0.00" gamma="0.0" npth="3" t1="X" t2="CT" t3="CZ" t4="X"/>
+    <entry Nt="2.0" Vn="0.00" gamma="0.0" npth="6" t1="X" t2="CT" t3="N" t4="X"/>
+    <entry Nt="2.0" Vn="0.00" gamma="0.0" npth="6" t1="X" t2="CT" t3="N*" t4="X"/>
+    <entry Nt="3.0" Vn="0.00" gamma="0.0" npth="6" t1="X" t2="CT" t3="N2" t4="X"/>
+    <entry Nt="3.0" Vn="1.80" gamma="0.0" npth="6" t1="X" t2="CT" t3="NT" t4="X"/>
+    <entry Nt="3.0" Vn="1.40" gamma="0.0" npth="9" t1="X" t2="CT" t3="N3" t4="X"/>
+    <entry Nt="3.0" Vn="0.50" gamma="0.0" npth="3" t1="X" t2="CT" t3="OH" t4="X"/>
+    <entry Nt="3.0" Vn="1.15" gamma="0.0" npth="3" t1="X" t2="CT" t3="OS" t4="X"/>
+    <entry Nt="3.0" Vn="1.00" gamma="0.0" npth="3" t1="X" t2="CT" t3="S" t4="X"/>
+    <entry Nt="3.0" Vn="0.75" gamma="0.0" npth="3" t1="X" t2="CT" t3="SH" t4="X"/>
+    <entry Nt="2.0" Vn="6.70" gamma="180.0" npth="4" t1="X" t2="C*" t3="CB" t4="X"/>
+    <entry Nt="2.0" Vn="0.00" gamma="0.0" npth="6" t1="X" t2="C*" t3="CT" t4="X"/>
+    <entry Nt="2.0" Vn="26.10" gamma="180.0" npth="4" t1="X" t2="C*" t3="CW" t4="X"/>
+    <entry Nt="2.0" Vn="9.30" gamma="180.0" npth="4" t1="X" t2="CR" t3="NA" t4="X"/>
+    <entry Nt="2.0" Vn="10.00" gamma="180.0" npth="2" t1="X" t2="CR" t3="NB" t4="X"/>
+    <entry Nt="2.0" Vn="4.80" gamma="180.0" npth="2" t1="X" t2="CV" t3="NB" t4="X"/>
+    <entry Nt="2.0" Vn="6.00" gamma="180.0" npth="4" t1="X" t2="CW" t3="NA" t4="X"/>
+    <entry Nt="3.0" Vn="0.75" gamma="0.0" npth="3" t1="X" t2="OH" t3="P" t4="X"/>
+    <entry Nt="3.0" Vn="0.75" gamma="0.0" npth="3" t1="X" t2="OS" t3="P" t4="X"/>
+    <entry Nt="-1.0" Vn="1.700" gamma="180.000" npth="1" t1="N" t2="CT" t3="C" t4="N"/>
+    <entry Nt="2.0" Vn="2.000" gamma="180.000" npth="1" t1="N" t2="CT" t3="C" t4="N"/>
+    <entry Nt="-2.0" Vn="0.850" gamma="180.000" npth="1" t1="C" t2="N" t3="CT" t4="C"/>
+    <entry Nt="1.0" Vn="0.800" gamma="0.000" npth="1" t1="C" t2="N" t3="CT" t4="C"/>
+    <entry Nt="-4.0" Vn="0.50" gamma="180.0" npth="1" t1="CT" t2="CT" t3="N" t4="C"/>
+    <entry Nt="-3.0" Vn="0.15" gamma="180.0" npth="1" t1="CT" t2="CT" t3="N" t4="C"/>
+    <entry Nt="-2.0" Vn="0.00" gamma="0.0" npth="1" t1="CT" t2="CT" t3="N" t4="C"/>
+    <entry Nt="1.0" Vn="0.53" gamma="0.0" npth="1" t1="CT" t2="CT" t3="N" t4="C"/>
+    <entry Nt="-4.0" Vn="0.100" gamma="0.0" npth="1" t1="CT" t2="CT" t3="C" t4="N"/>
+    <entry Nt="2.0" Vn="0.07" gamma="0.0" npth="1" t1="CT" t2="CT" t3="C" t4="N"/>
+    <entry Nt="-2.0" Vn="2.50" gamma="180.0" npth="1" t1="H" t2="N" t3="C" t4="O"/>
+    <entry Nt="1.0" Vn="2.00" gamma="0.0" npth="1" t1="H" t2="N" t3="C" t4="O"/>
+    <entry Nt="-2.0" Vn="3.50" gamma="0.0" npth="1" t1="CT" t2="S" t3="S" t4="CT"/>
+    <entry Nt="3.0" Vn="0.60" gamma="0.0" npth="1" t1="CT" t2="S" t3="S" t4="CT"/>
+    <entry Nt="-3.0" Vn="0.25" gamma="0.0" npth="1" t1="OH" t2="P" t3="OS" t4="CT"/>
+    <entry Nt="2.0" Vn="1.20" gamma="0.0" npth="1" t1="OH" t2="P" t3="OS" t4="CT"/>
+    <entry Nt="-3.0" Vn="0.25" gamma="0.0" npth="1" t1="OS" t2="P" t3="OS" t4="CT"/>
+    <entry Nt="2.0" Vn="1.20" gamma="0.0" npth="1" t1="OS" t2="P" t3="OS" t4="CT"/>
+    <entry Nt="-1.0" Vn="0.80" gamma="0.0" npth="1" t1="H1" t2="CT" t3="C" t4="O"/>
+    <entry Nt="3.0" Vn="0.08" gamma="180.0" npth="1" t1="H1" t2="CT" t3="C" t4="O"/>
+    <entry Nt="-1.0" Vn="0.80" gamma="0.0" npth="1" t1="HC" t2="CT" t3="C" t4="O"/>
+    <entry Nt="3.0" Vn="0.08" gamma="180.0" npth="1" t1="HC" t2="CT" t3="C" t4="O"/>
+    <entry Nt="2.0" Vn="0.00" gamma="0.0" npth="1" t1="HC" t2="CT" t3="C" t4="O"/>
+    <entry Nt="3.0" Vn="0.15" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="HC"/>
+    <entry Nt="3.0" Vn="0.16" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="CT"/>
+    <entry Nt="-3.0" Vn="0.38" gamma="180.0" npth="1" t1="HC" t2="CT" t3="CM" t4="CM"/>
+    <entry Nt="1.0" Vn="1.15" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CM" t4="CM"/>
+    <entry Nt="-3.0" Vn="0.16" gamma="0.0" npth="1" t1="HO" t2="OH" t3="CT" t4="CT"/>
+    <entry Nt="1.0" Vn="0.25" gamma="0.0" npth="1" t1="HO" t2="OH" t3="CT" t4="CT"/>
+    <entry Nt="-2.0" Vn="2.30" gamma="180.0" npth="1" t1="HO" t2="OH" t3="C" t4="O"/>
+    <entry Nt="1.0" Vn="1.90" gamma="0.0" npth="1" t1="HO" t2="OH" t3="C" t4="O"/>
+    <entry Nt="-2.0" Vn="2.175" gamma="180.0" npth="1" t1="CM" t2="CM" t3="C" t4="O"/>
+    <entry Nt="3.0" Vn="0.30" gamma="0.0" npth="1" t1="CM" t2="CM" t3="C" t4="O"/>
+    <entry Nt="-2.0" Vn="6.65" gamma="180.0" npth="1" t1="CT" t2="CM" t3="CM" t4="CT"/>
+    <entry Nt="1.0" Vn="1.90" gamma="180.0" npth="1" t1="CT" t2="CM" t3="CM" t4="CT"/>
+    <entry Nt="-3.0" Vn="0.18" gamma="0.0" npth="1" t1="CT" t2="CT" t3="CT" t4="CT"/>
+    <entry Nt="-2.0" Vn="0.25" gamma="180.0" npth="1" t1="CT" t2="CT" t3="CT" t4="CT"/>
+    <entry Nt="1.0" Vn="0.20" gamma="180.0" npth="1" t1="CT" t2="CT" t3="CT" t4="CT"/>
+    <entry Nt="-3.0" Vn="0.30" gamma="0.0" npth="1" t1="CT" t2="CT" t3="NT" t4="CT"/>
+    <entry Nt="2.0" Vn="0.48" gamma="180.0" npth="1" t1="CT" t2="CT" t3="NT" t4="CT"/>
+    <entry Nt="-3.0" Vn="0.383" gamma="0.0" npth="1" t1="CT" t2="CT" t3="OS" t4="CT"/>
+    <entry Nt="2.0" Vn="0.1" gamma="180.0" npth="1" t1="CT" t2="CT" t3="OS" t4="CT"/>
+    <entry Nt="-3.0" Vn="0.383" gamma="0.0" npth="1" t1="CT" t2="CT" t3="OS" t4="C"/>
+    <entry Nt="1.0" Vn="0.80" gamma="180.0" npth="1" t1="CT" t2="CT" t3="OS" t4="C"/>
+    <entry Nt="-3.0" Vn="0.10" gamma="0.0" npth="1" t1="CT" t2="OS" t3="CT" t4="OS"/>
+    <entry Nt="-2.0" Vn="0.85" gamma="180.0" npth="1" t1="CT" t2="OS" t3="CT" t4="OS"/>
+    <entry Nt="1.0" Vn="1.35" gamma="180.0" npth="1" t1="CT" t2="OS" t3="CT" t4="OS"/>
+    <entry Nt="-3.0" Vn="0.383" gamma="0.0" npth="1" t1="CT" t2="OS" t3="CT" t4="N*"/>
+    <entry Nt="2.0" Vn="0.65" gamma="0.0" npth="1" t1="CT" t2="OS" t3="CT" t4="N*"/>
+    <entry Nt="1.0" Vn="0.00" gamma="0.0" npth="1" t1="CT" t2="CZ" t3="CZ" t4="HZ"/>
+    <entry Nt="-2.0" Vn="2.70" gamma="180.0" npth="1" t1="O" t2="C" t3="OS" t4="CT"/>
+    <entry Nt="1.0" Vn="1.40" gamma="180.0" npth="1" t1="O" t2="C" t3="OS" t4="CT"/>
+    <entry Nt="-2.0" Vn="0.00" gamma="000.0" npth="1" t1="OS" t2="CT" t3="N*" t4="CK"/>
+    <entry Nt="1.0" Vn="2.50" gamma="0.0" npth="1" t1="OS" t2="CT" t3="N*" t4="CK"/>
+    <entry Nt="-2.0" Vn="0.00" gamma="000.0" npth="1" t1="OS" t2="CT" t3="N*" t4="CM"/>
+    <entry Nt="1.0" Vn="2.50" gamma="0.0" npth="1" t1="OS" t2="CT" t3="N*" t4="CM"/>
+    <entry Nt="-3.0" Vn="0.144" gamma="0.0" npth="1" t1="OS" t2="CT" t3="CT" t4="OS"/>
+    <entry Nt="2.0" Vn="1.175" gamma="0.0" npth="1" t1="OS" t2="CT" t3="CT" t4="OS"/>
+    <entry Nt="-3.0" Vn="0.144" gamma="0.0" npth="1" t1="OS" t2="CT" t3="CT" t4="OH"/>
+    <entry Nt="2.0" Vn="1.175" gamma="0.0" npth="1" t1="OS" t2="CT" t3="CT" t4="OH"/>
+    <entry Nt="-3.0" Vn="0.144" gamma="0.0" npth="1" t1="OH" t2="CT" t3="CT" t4="OH"/>
+    <entry Nt="2.0" Vn="1.175" gamma="0.0" npth="1" t1="OH" t2="CT" t3="CT" t4="OH"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="F" t2="CT" t3="CT" t4="F"/>
+    <entry Nt="1.0" Vn="1.20" gamma="180.0" npth="1" t1="F" t2="CT" t3="CT" t4="F"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="Cl" t2="CT" t3="CT" t4="Cl"/>
+    <entry Nt="1.0" Vn="0.45" gamma="180.0" npth="1" t1="Cl" t2="CT" t3="CT" t4="Cl"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="Br" t2="CT" t3="CT" t4="Br"/>
+    <entry Nt="1.0" Vn="0.00" gamma="180.0" npth="1" t1="Br" t2="CT" t3="CT" t4="Br"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="OS"/>
+    <entry Nt="1.0" Vn="0.25" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="OS"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="OH"/>
+    <entry Nt="1.0" Vn="0.25" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="OH"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="F"/>
+    <entry Nt="1.0" Vn="0.19" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="F"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="Cl"/>
+    <entry Nt="1.0" Vn="0.25" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="Cl"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="Br"/>
+    <entry Nt="1.0" Vn="0.55" gamma="0.0" npth="1" t1="H1" t2="CT" t3="CT" t4="Br"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="OS"/>
+    <entry Nt="1.0" Vn="0.25" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="OS"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="OH"/>
+    <entry Nt="1.0" Vn="0.25" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="OH"/>
+    <entry Nt="-30.0" Vn="0.000" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="F"/>
+    <entry Nt="1.0" Vn="0.19" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="F"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="Cl"/>
+    <entry Nt="1.0" Vn="0.25" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="Cl"/>
+    <entry Nt="-3.0" Vn="0.000" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="Br"/>
+    <entry Nt="1.0" Vn="0.55" gamma="0.0" npth="1" t1="HC" t2="CT" t3="CT" t4="Br"/>
+    <entry Nt="3.000" Vn="0.000" gamma="0.000" npth="1" t1="H1" t2="CT" t3="NT" t4="LP"/>
+    <entry Nt="3.000" Vn="0.000" gamma="0.000" npth="1" t1="CT" t2="CT" t3="NT" t4="LP"/>
+    <entry Nt="2.000" Vn="0.000" gamma="180.000" npth="1" t1="CT" t2="C" t3="N" t4="LP"/>
+    <entry Nt="2.000" Vn="0.000" gamma="180.000" npth="1" t1="O" t2="C" t3="N" t4="LP"/>
+    <entry Nt="3.000" Vn="0.000" gamma="0.000" npth="1" t1="H1" t2="CT" t3="OH" t4="LP"/>
+    <entry Nt="3.000" Vn="0.000" gamma="0.000" npth="1" t1="CT" t2="CT" t3="OH" t4="LP"/>
+    <entry Nt="3.000" Vn="0.000" gamma="0.000" npth="1" t1="H1" t2="CT" t3="OS" t4="LP"/>
+    <entry Nt="3.000" Vn="0.000" gamma="0.000" npth="1" t1="H2" t2="CT" t3="OS" t4="LP"/>
+    <entry Nt="3.000" Vn="0.000" gamma="0.000" npth="1" t1="CT" t2="CT" t3="OS" t4="LP"/>
+    <entry Nt="2.000" Vn="0.000" gamma="180.000" npth="1" t1="CM" t2="CM" t3="OS" t4="LP"/>
+    <entry Nt="2.000" Vn="0.000" gamma="180.000" npth="1" t1="HA" t2="CM" t3="OS" t4="LP"/>
+    <entry Nt="2.000" Vn="0.000" gamma="180.000" npth="1" t1="H4" t2="CM" t3="OS" t4="LP"/>
+  </bondTorsions>
+  <bondImpropers>
+    <entry Nt="2.0" Vn="10.5" gamma="180.0" t1="X" t2="X" t3="C" t4="O"/>
+    <entry Nt="2.0" Vn="10.5" gamma="180.0" t1="X" t2="O2" t3="C" t4="O2"/>
+    <entry Nt="2.0" Vn="1.0" gamma="180.0" t1="X" t2="X" t3="N" t4="H"/>
+    <entry Nt="2.0" Vn="1.0" gamma="180.0" t1="X" t2="X" t3="N2" t4="H"/>
+    <entry Nt="2.0" Vn="1.0" gamma="180.0" t1="X" t2="X" t3="NA" t4="H"/>
+    <entry Nt="2.0" Vn="10.5" gamma="180.0" t1="X" t2="N2" t3="CA" t4="N2"/>
+    <entry Nt="2.0" Vn="1.0" gamma="180.0" t1="X" t2="CT" t3="N" t4="CT"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CA" t4="HA"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CW" t4="H4"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CR" t4="H5"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CV" t4="H4"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CQ" t4="H5"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CK" t4="H5"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CM" t4="H4"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CM" t4="HA"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CA" t4="H4"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="X" t2="X" t3="CA" t4="H5"/>
+    <entry Nt="2.0" Vn="1.0" gamma="180.0" t1="CB" t2="CK" t3="N*" t4="CT"/>
+    <entry Nt="2.0" Vn="1.0" gamma="180.0" t1="C" t2="CM" t3="N*" t4="CT"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="C" t2="CM" t3="CM" t4="CT"/>
+    <entry Nt="2.0" Vn="10.5" gamma="180.0" t1="CT" t2="O" t3="C" t4="OH"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CT" t2="CV" t3="CC" t4="NA"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CT" t2="CW" t3="CC" t4="NB"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CT" t2="CW" t3="CC" t4="NA"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CB" t2="CT" t3="C*" t4="CW"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CA" t2="CA" t3="CA" t4="CT"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="C" t2="CM" t3="CM" t4="CT"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CM" t2="N2" t3="CA" t4="NC"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CB" t2="N2" t3="CA" t4="NC"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="N2" t2="NA" t3="CA" t4="NC"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CA" t2="CA" t3="C" t4="OH"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CA" t2="CA" t3="CA" t4="OH"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="H5" t2="O" t3="C" t4="OH"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="H5" t2="O" t3="C" t4="OS"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CM" t2="CT" t3="CM" t4="HA"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="Br" t2="CA" t3="CA" t4="CA"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="CM" t2="H4" t3="C" t4="O"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="C" t2="CT" t3="N" t4="H"/>
+    <entry Nt="2.0" Vn="1.1" gamma="180.0" t1="C" t2="CT" t3="N" t4="O"/>
+  </bondImpropers>
+  <hbonds>
+    <entry p10="0.0" p12="0.0" t1="HW" t2="OW"/>
+  </hbonds>
+</parms>

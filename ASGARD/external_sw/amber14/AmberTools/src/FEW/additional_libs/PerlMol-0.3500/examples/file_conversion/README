@@ -1,0 +1,41 @@
+File conversion example
+Added by Ivan Tubert-Brohman (itub@cpan.org)
+
+This sample program is called 'pbabel' because it is inspired by the Babel
+program and it is written in Perl using PerlMol.
+
+USAGE
+
+./pbabel.pl [options] <input file> <output file>
+
+Options:
+    -i <input format>
+    -o <output format>
+    -3      build 3d coordinates 
+    -b      find bonds
+    -a      aromatize
+    -K      don't kekulize (only for reading SMILES)
+    -u      unique (only for writing SMILES)
+    -n      include name (only for writing SMILES)
+
+Available file formats:
+    dumper
+    formula
+    formula_pattern
+    mdl
+    midas
+    mop
+    pdb
+    sdf
+    sln
+    smarts
+    smiles
+    xyz
+
+
+FILES
+
+pbabel.pl  - the program
+amines.sdf - sample sdf file
+amines.smi - sample sdf file, generated with ./pbabel.pl -nu amines.sdf x.smi
+

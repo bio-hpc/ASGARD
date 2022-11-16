@@ -1,0 +1,406 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| PMEMD implementation of SANDER, Release 12
+
+| Run on 05/07/2013 at 10:08:53
+
+  [-O]verwriting output
+
+File Assignments:
+|   MDIN: remd.mdin1                                                            
+|  MDOUT: ala4_ash.rep1.mdout                                                   
+| INPCRD: ala4_ash.md.rst7                                                      
+|   PARM: ala4_ash.parm7                                                        
+| RESTRT: ala4_ash.rep1.rst7                                                    
+|   REFC: refc                                                                  
+|  MDVEL: mdvel.000                                                             
+|   MDEN: mden.000                                                              
+|  MDCRD: mdcrd.000                                                             
+| MDINFO: mdinfo.000                                                            
+|LOGFILE: logfile.000                                                           
+
+
+ Here is the input file:
+
+Replica exchange input file (300K)                                             
+&cntrl                                                                         
+   imin=0, nstlim=10, numexchg=100,                                            
+   igb=5, ntb=0, dt=0.002, ntt=3,                                              
+   gamma_ln=5.0, temp0=300, tempi=300,                                         
+   cut=999.00, irest=1, ntx=5, ioutfm = 1,                                     
+/                                                                              
+
+
+ 
+| Conditional Compilation Defines Used:
+| DIRFRC_COMTRANS
+| DIRFRC_EFS
+| DIRFRC_NOVEC
+| MPI
+| PUBFFT
+| FFTLOADBAL_2PROC
+| BINTRAJ
+
+| New format PARM file being parsed.
+| Version =    1.000 Date = 08/25/11 Time = 15:27:55
+
+| Note: 1-4 EEL scale factors are being read from the topology file.
+
+| Note: 1-4 VDW scale factors are being read from the topology file.
+| Duplicated    0 dihedrals
+
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+ NATOM  =      65 NTYPES =       9 NBONH =      32 MBONA  =      32
+ NTHETH =      69 MTHETA =      43 NPHIH =     136 MPHIA  =     113
+ NHPARM =       0 NPARM  =       0 NNB   =     327 NRES   =       7
+ NBONA  =      32 NTHETA =      43 NPHIA =     113 NUMBND =      13
+ NUMANG =      25 NPTRA  =      21 NATYP =      10 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      13 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are H(N)-modified Bondi radii (mbondi2)                                             
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Replica exchange
+     numexchg=     100, rem=      -1
+
+Nature and format of input:
+     ntx     =       5, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       2, ntpr    =      50, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       1, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       5, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     = 999.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.80000, gbgamma =   4.85000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00200, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =   71277
+     temp0   = 300.00000, tempi   = 300.00000, gamma_ln=   5.00000
+
+| Intermolecular bonds treatment:
+|     no_intermolecular_bonds =       1
+
+| Energy averages sample interval:
+|     ene_avg_sampling =      50
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+ begin time read from input coords =  1000.000 ps
+
+ 
+| Warning: Replica indices will NOT be used to restart Multi-D run.
+ Number of triangulated 3-point waters found:        0
+| Dynamic Memory, Types Used:
+| Reals                3064
+| Integers           106656
+
+| Running AMBER/MPI version on    2 nodes
+
+ 
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+ NSTEP =       50   TIME(PS) =    1000.100  TEMP(K) =   242.91  PRESS =     0.0
+ Etot   =         6.9348  EKtot   =        47.0637  EPtot      =       -40.1289
+ BOND   =        12.6179  ANGLE   =        27.4805  DIHED      =        49.2315
+ 1-4 NB =        13.6450  1-4 EEL =       296.7248  VDWAALS    =        -8.1181
+ EELEC  =      -377.9774  EGB     =       -53.7332  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =              5
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      100   TIME(PS) =    1000.200  TEMP(K) =   269.98  PRESS =     0.0
+ Etot   =        17.8239  EKtot   =        52.3097  EPtot      =       -34.4857
+ BOND   =        23.2233  ANGLE   =        26.2640  DIHED      =        48.1911
+ 1-4 NB =        11.3959  1-4 EEL =       297.6871  VDWAALS    =        -9.3126
+ EELEC  =      -374.9868  EGB     =       -56.9478  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             10
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      150   TIME(PS) =    1000.300  TEMP(K) =   244.77  PRESS =     0.0
+ Etot   =        24.1834  EKtot   =        47.4242  EPtot      =       -23.2408
+ BOND   =        30.7999  ANGLE   =        31.0491  DIHED      =        50.0096
+ 1-4 NB =        11.7422  1-4 EEL =       289.9742  VDWAALS    =        -9.3783
+ EELEC  =      -371.9929  EGB     =       -55.4446  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             15
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      200   TIME(PS) =    1000.400  TEMP(K) =   336.88  PRESS =     0.0
+ Etot   =        38.5403  EKtot   =        65.2715  EPtot      =       -26.7312
+ BOND   =        25.1547  ANGLE   =        31.2923  DIHED      =        49.9574
+ 1-4 NB =        13.0206  1-4 EEL =       297.7791  VDWAALS    =        -9.8915
+ EELEC  =      -384.2453  EGB     =       -49.7986  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             20
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      250   TIME(PS) =    1000.500  TEMP(K) =   301.92  PRESS =     0.0
+ Etot   =        36.9340  EKtot   =        58.4980  EPtot      =       -21.5640
+ BOND   =        29.1714  ANGLE   =        33.0712  DIHED      =        53.2320
+ 1-4 NB =        11.6720  1-4 EEL =       298.8454  VDWAALS    =        -9.8011
+ EELEC  =      -385.5849  EGB     =       -52.1699  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             25
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      300   TIME(PS) =    1000.600  TEMP(K) =   396.61  PRESS =     0.0
+ Etot   =        57.6137  EKtot   =        76.8429  EPtot      =       -19.2291
+ BOND   =        39.1105  ANGLE   =        26.4139  DIHED      =        52.4458
+ 1-4 NB =        10.7264  1-4 EEL =       299.6880  VDWAALS    =        -9.8209
+ EELEC  =      -384.8212  EGB     =       -52.9717  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             30
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      350   TIME(PS) =    1000.700  TEMP(K) =   361.63  PRESS =     0.0
+ Etot   =        50.7901  EKtot   =        70.0659  EPtot      =       -19.2758
+ BOND   =        32.9300  ANGLE   =        31.6433  DIHED      =        49.0324
+ 1-4 NB =        11.2387  1-4 EEL =       298.1153  VDWAALS    =       -10.7232
+ EELEC  =      -379.7103  EGB     =       -51.8021  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             35
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      400   TIME(PS) =    1000.800  TEMP(K) =   314.08  PRESS =     0.0
+ Etot   =        45.7475  EKtot   =        60.8533  EPtot      =       -15.1058
+ BOND   =        32.6270  ANGLE   =        32.9231  DIHED      =        51.5407
+ 1-4 NB =        12.6500  1-4 EEL =       297.6308  VDWAALS    =       -11.8583
+ EELEC  =      -379.8722  EGB     =       -50.7468  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             40
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      450   TIME(PS) =    1000.900  TEMP(K) =   323.30  PRESS =     0.0
+ Etot   =        44.9862  EKtot   =        62.6403  EPtot      =       -17.6541
+ BOND   =        35.7480  ANGLE   =        28.6677  DIHED      =        49.7324
+ 1-4 NB =        13.1499  1-4 EEL =       293.4330  VDWAALS    =       -10.6726
+ EELEC  =      -374.2731  EGB     =       -53.4394  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             45
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      500   TIME(PS) =    1001.000  TEMP(K) =   282.62  PRESS =     0.0
+ Etot   =        27.8639  EKtot   =        54.7588  EPtot      =       -26.8949
+ BOND   =        20.8761  ANGLE   =        34.6048  DIHED      =        46.7196
+ 1-4 NB =        12.9172  1-4 EEL =       295.7577  VDWAALS    =        -8.1988
+ EELEC  =      -376.4505  EGB     =       -53.1211  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             50
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      550   TIME(PS) =    1001.100  TEMP(K) =   352.59  PRESS =     0.0
+ Etot   =        42.0132  EKtot   =        68.3154  EPtot      =       -26.3023
+ BOND   =        27.2996  ANGLE   =        27.9836  DIHED      =        48.6538
+ 1-4 NB =        13.6658  1-4 EEL =       290.9327  VDWAALS    =       -10.2038
+ EELEC  =      -371.2394  EGB     =       -53.3945  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             55
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      600   TIME(PS) =    1001.200  TEMP(K) =   247.81  PRESS =     0.0
+ Etot   =        26.2471  EKtot   =        48.0137  EPtot      =       -21.7667
+ BOND   =        27.6371  ANGLE   =        38.2047  DIHED      =        44.8982
+ 1-4 NB =        10.9090  1-4 EEL =       294.6004  VDWAALS    =       -10.8301
+ EELEC  =      -371.8533  EGB     =       -55.3326  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             60
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      650   TIME(PS) =    1001.300  TEMP(K) =   290.00  PRESS =     0.0
+ Etot   =        28.5819  EKtot   =        56.1883  EPtot      =       -27.6064
+ BOND   =        27.6876  ANGLE   =        31.2017  DIHED      =        49.8635
+ 1-4 NB =        10.4801  1-4 EEL =       287.6058  VDWAALS    =       -11.0804
+ EELEC  =      -368.8862  EGB     =       -54.4786  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             65
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      700   TIME(PS) =    1001.400  TEMP(K) =   289.22  PRESS =     0.0
+ Etot   =        29.8830  EKtot   =        56.0373  EPtot      =       -26.1543
+ BOND   =        29.9686  ANGLE   =        27.4068  DIHED      =        46.7784
+ 1-4 NB =        11.9007  1-4 EEL =       298.9887  VDWAALS    =       -10.5885
+ EELEC  =      -375.2160  EGB     =       -55.3930  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             70
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      750   TIME(PS) =    1001.500  TEMP(K) =   268.89  PRESS =     0.0
+ Etot   =        17.4799  EKtot   =        52.0979  EPtot      =       -34.6179
+ BOND   =        24.9509  ANGLE   =        23.0007  DIHED      =        46.4239
+ 1-4 NB =        13.7253  1-4 EEL =       295.5401  VDWAALS    =        -8.8358
+ EELEC  =      -377.4935  EGB     =       -51.9295  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             75
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      800   TIME(PS) =    1001.600  TEMP(K) =   240.08  PRESS =     0.0
+ Etot   =        14.6368  EKtot   =        46.5156  EPtot      =       -31.8788
+ BOND   =        28.5256  ANGLE   =        27.6091  DIHED      =        47.9917
+ 1-4 NB =        12.1255  1-4 EEL =       296.4627  VDWAALS    =       -10.8187
+ EELEC  =      -382.5757  EGB     =       -51.1989  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             80
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      850   TIME(PS) =    1001.700  TEMP(K) =   265.36  PRESS =     0.0
+ Etot   =        22.9645  EKtot   =        51.4146  EPtot      =       -28.4500
+ BOND   =        24.3237  ANGLE   =        25.7798  DIHED      =        54.7327
+ 1-4 NB =        12.5601  1-4 EEL =       300.2618  VDWAALS    =       -11.4166
+ EELEC  =      -380.4508  EGB     =       -54.2409  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             85
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      900   TIME(PS) =    1001.800  TEMP(K) =   260.17  PRESS =     0.0
+ Etot   =        22.2090  EKtot   =        50.4088  EPtot      =       -28.1998
+ BOND   =        16.8885  ANGLE   =        35.2179  DIHED      =        51.7252
+ 1-4 NB =        11.1743  1-4 EEL =       293.2873  VDWAALS    =       -11.3528
+ EELEC  =      -369.9285  EGB     =       -55.2117  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             90
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      950   TIME(PS) =    1001.900  TEMP(K) =   317.38  PRESS =     0.0
+ Etot   =        29.5751  EKtot   =        61.4922  EPtot      =       -31.9171
+ BOND   =        21.9430  ANGLE   =        26.7598  DIHED      =        49.8747
+ 1-4 NB =        11.9650  1-4 EEL =       296.1430  VDWAALS    =       -11.1283
+ EELEC  =      -373.1793  EGB     =       -54.2950  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =             95
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+| RE_POSITION Moving by   0.695696 -0.313697 -1.374540
+
+ NSTEP =     1000   TIME(PS) =    1002.000  TEMP(K) =   293.53  PRESS =     0.0
+ Etot   =        21.2660  EKtot   =        56.8715  EPtot      =       -35.6055
+ BOND   =        16.7519  ANGLE   =        29.3980  DIHED      =        44.2761
+ 1-4 NB =        13.2591  1-4 EEL =       297.7030  VDWAALS    =        -8.4818
+ EELEC  =      -378.4716  EGB     =       -50.0403  RESTRAINT  =         0.0000
+ REMD_DIMENSION =              2  EXCHANGE#  =            100
+ MULTI-D REMD. GROUP INDEXES:       1    1
+ MULTI-D REMD. REPLICA INDEXES:     1    1
+ ------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|  NonSetup CPU Time in Major Routines, Average for All Tasks:
+|
+|     Routine           Sec        %
+|     ------------------------------
+|     DataDistrib       0.01    2.86
+|     Nonbond           0.31   69.23
+|     Bond              0.00    0.33
+|     Angle             0.01    2.20
+|     Dihedral          0.04    9.67
+|     Shake             0.00    0.00
+|     RunMD             0.06   13.85
+|     Other             0.01    1.87
+|     ------------------------------
+|     Total             0.46
+
+|  Generalized Born CPU Time, Average for All Tasks:
+|
+|     Routine                 Sec        %
+|     ------------------------------------
+|     Radii Calc              0.08   18.13
+|     Diagonal Calc           0.12   26.26
+|     Off Diagonal Calc       0.10   21.10
+|     GBSA LCPO Calc          0.00    0.22
+|     Radii Distrib           0.01    2.75
+|     ---------------------------------
+|     Total                   0.31   68.24
+
+|  Final Performance Info:
+|     -----------------------------------------------------
+|     Average timings for last     -40 steps:
+|         Elapsed(s) =       0.43 Per Step(ms) =     -10.84
+|             ns/day =     -15.94   seconds/ns =   -5421.91
+|
+|     Average timings for all steps:
+|         Elapsed(s) =       0.47 Per Step(ms) =      46.81
+|             ns/day =       3.69   seconds/ns =   23404.46
+|     -----------------------------------------------------
+
+|  Master Setup CPU time:            0.01 seconds
+|  Master NonSetup CPU time:         0.46 seconds
+|  Master Total CPU time:            0.47 seconds     0.00 hours
+
+|  Master Setup wall time:           0    seconds
+|  Master NonSetup wall time:        1    seconds
+|  Master Total wall time:           1    seconds     0.00 hours

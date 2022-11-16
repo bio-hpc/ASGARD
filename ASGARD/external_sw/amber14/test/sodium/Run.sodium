@@ -1,0 +1,24 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander.MPI"
+
+if( ! $?DO_PARALLEL ) then
+  echo " TI can only be run parallel: set env var DO_PARALLEL"
+  echo " Not running test, exiting....."
+  exit(0)
+endif
+
+set output = md1.o
+$DO_PARALLEL $TESTsander -ng 2 -groupfile groups < /dev/null || goto error
+
+../dacdif $output.save $output
+/bin/rm -f mdinfo mdinfob md1b.o md1.x md1b.x profile_mpi
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

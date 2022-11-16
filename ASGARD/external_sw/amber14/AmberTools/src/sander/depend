@@ -1,0 +1,5829 @@
+#
+#   Please do not edit the "depend" file directly, since it is created by the
+#   "makedepend" script.  If changes are needed, edit "makedepend" itself.
+#
+abfqmmm_module.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    charmm.o\
+                    qmmm_module.o\
+                    box.h\
+                    ../include/md.h\
+                    molecule.o\
+                    constants.o
+
+
+abfqmmm_module.o:   abfqmmm_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ abfqmmm_module.F90
+
+align.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    nmr.h\
+                    extra.h\
+                    ../include/md.h
+
+
+align.o:   align.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ align.F90
+
+ambmask.o: \
+                    ../include/dprec.fh\
+                    findmask.o\
+                    constants.o\
+                    parms.o
+
+
+ambmask.o:   ambmask.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ambmask.F90
+
+amd.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    parallel.h\
+                    constants.o
+
+
+amd.o:   amd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amd.F90
+
+amoeba_adjust.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    amoeba_mpole_index.h\
+                    do_flag.h\
+                    extra.h\
+                    parallel.h\
+                    amoeba_multipoles.o\
+                    amoeba_induced.o\
+                    amoeba_mdin.o\
+                    def_time.h\
+                    ew_erfc_spline.h\
+                    ew_pme_recip.h\
+                    constants.o\
+                    amoeba_vdw.o
+
+
+amoeba_adjust.o:   amoeba_adjust.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_adjust.F90
+
+amoeba_direct.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    amoeba_mpole_index.h\
+                    parallel.h\
+                    do_flag.h\
+                    nonbond_list.o\
+                    amoeba_multipoles.o\
+                    amoeba_induced.o\
+                    amoeba_mdin.o\
+                    extra.h\
+                    def_time.h\
+                    ew_erfc_spline.h\
+                    ew_pme_recip.h\
+                    amoeba_vdw.o\
+                    constants.o
+
+
+amoeba_direct.o:   amoeba_direct.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_direct.F90
+
+amoeba_induced.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    do_flag.h\
+                    extra.h\
+                    parallel.h\
+                    ew_cntrl.h\
+                    ew_mpole.h\
+                    amoeba_mdin.o
+
+
+amoeba_induced.o:   amoeba_induced.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_induced.F90
+
+amoeba_interface.o: \
+                    ../include/dprec.fh\
+                    amoeba_multipoles.o\
+                    amoeba_adjust.o\
+                    amoeba_vdw.o\
+                    amoeba_induced.o\
+                    amoeba_recip.o\
+                    amoeba_runmd.o\
+                    amoeba_valence.o\
+                    amoeba_mdin.o\
+                    extra.h\
+                    nonbond_list.o\
+                    amoeba_direct.o\
+                    amoeba_self.o\
+                    parallel.h\
+                    ew_parallel.h
+
+
+amoeba_interface.o:   amoeba_interface.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_interface.F90
+
+amoeba_mdin.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    file_io_dat.o
+
+
+amoeba_mdin.o:   amoeba_mdin.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_mdin.F90
+
+amoeba_multipoles.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    extra.h\
+                    parallel.h\
+                    do_flag.h\
+                    stack.o\
+                    constants.o
+
+
+amoeba_multipoles.o:   amoeba_multipoles.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_multipoles.F90
+
+amoeba_recip.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    amoeba_mpole_index.h\
+                    parallel.h\
+                    do_flag.h\
+                    ew_pme_recip.h\
+                    amoeba_multipoles.o\
+                    amoeba_induced.o\
+                    nonbond_list.o\
+                    stack.o\
+                    def_time.h\
+                    constants.o
+
+
+amoeba_recip.o:   amoeba_recip.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_recip.F90
+
+amoeba_runmd.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    amoeba_mdin.o\
+                    nonbond_list.o\
+                    file_io_dat.o\
+                    state.o\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    bintraj.o\
+                    box.h\
+                    constants.o
+
+
+amoeba_runmd.o:   amoeba_runmd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_runmd.F90
+
+amoeba_self.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    amoeba_mpole_index.h\
+                    parallel.h\
+                    do_flag.h\
+                    amoeba_multipoles.o\
+                    constants.o\
+                    ew_pme_recip.h
+
+
+amoeba_self.o:   amoeba_self.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_self.F90
+
+amoeba_valence.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    extra.h\
+                    do_flag.h\
+                    parallel.h\
+                    constants.o
+
+
+amoeba_valence.o:   amoeba_valence.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_valence.F90
+
+amoeba_vdw.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    do_flag.h\
+                    box.h\
+                    extra.h\
+                    parallel.h\
+                    amoeba_mdin.o\
+                    constants.o\
+                    nonbond_list.o
+
+
+amoeba_vdw.o:   amoeba_vdw.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amoeba_vdw.F90
+
+amopen.o: \
+                    copyright.h
+
+
+amopen.o:   amopen.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ amopen.F90
+
+ang_bend.o: \
+                    ../include/dprec.fh
+
+
+ang_bend.o:   ang_bend.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ang_bend.F90
+
+apbs.o: \
+                    ../include/dprec.fh\
+                    apbs_vars.o\
+                    file_io_dat.o
+
+
+apbs.o:   apbs.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ apbs.F90
+
+apbs.APBS.o: \
+                    ../include/dprec.fh\
+                    apbs_vars.APBS.o\
+                    file_io_dat.APBS.o
+
+apbs.APBS.o:   apbs.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPBS -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ apbs.F90
+
+apbs_vars.o: \
+                    ../include/dprec.fh\
+                    file_io_dat.o
+
+
+apbs_vars.o:   apbs_vars.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ apbs_vars.F90
+
+apbs_vars.APBS.o: \
+                    ../include/dprec.fh\
+                    file_io_dat.APBS.o
+
+apbs_vars.APBS.o:   apbs_vars.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPBS -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ apbs_vars.F90
+
+assert.o: \
+                    copyright.h\
+                    ../include/assert.fh
+
+
+assert.o:   assert.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ assert.F90
+
+barostats.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    random.o\
+                    parallel.h\
+                    extra.h\
+                    constants.o\
+                    memory_module.o\
+                    nonbond_list.o\
+                    state.o\
+                    ../include/md.h\
+                    nmr.h\
+                    softcore.o\
+                    box.h
+
+
+barostats.o:   barostats.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ barostats.F90
+
+binrestart.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    AmberNetcdf.o\
+                    netcdf.o\
+                    nonbond_list.o\
+                    sglds.o\
+                    constants.o
+
+
+binrestart.o:   binrestart.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ binrestart.F90
+
+binrestart.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    AmberNetcdf.o\
+                    netcdf.o\
+                    nonbond_list.LES.o\
+                    sglds.o\
+                    constants.o
+
+binrestart.LES.o:   binrestart.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ binrestart.F90
+
+bintraj.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    AmberNetcdf.o\
+                    file_io_dat.o\
+                    remd.o\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    box.h\
+                    constantph.o\
+                    netcdf.o\
+                    nonbond_list.o\
+                    sglds.o
+
+
+bintraj.o:   bintraj.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ bintraj.F90
+
+bintraj.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    AmberNetcdf.o\
+                    file_io_dat.o\
+                    remd.LES.o\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    box.h\
+                    constantph.o\
+                    netcdf.o\
+                    nonbond_list.LES.o\
+                    sglds.o
+
+bintraj.LES.o:   bintraj.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ bintraj.F90
+
+bmat_debug.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    parallel.h
+
+
+bmat_debug.o:   bmat_debug.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ bmat_debug.F90
+
+bmat_grad.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+bmat_grad.o:   bmat_grad.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ bmat_grad.F90
+
+bmat_inv.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+bmat_inv.o:   bmat_inv.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ bmat_inv.F90
+
+bmat_inv_debug.o: \
+                    ../include/dprec.fh
+
+
+bmat_inv_debug.o:   bmat_inv_debug.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ bmat_inv_debug.F90
+
+bnd_strtch.o: \
+                    ../include/dprec.fh\
+                    evb_mathf.o
+
+
+bnd_strtch.o:   bnd_strtch.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ bnd_strtch.F90
+
+bond_anal2num.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+bond_anal2num.o:   bond_anal2num.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ bond_anal2num.F90
+
+cart2internal.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    evb_mathf.o
+
+
+cart2internal.o:   cart2internal.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ cart2internal.F90
+
+charmm.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    ew_cntrl.h\
+                    parms.o\
+                    qmmm_module.o\
+                    parallel.h\
+                    constants.o\
+                    state.o
+
+
+charmm.o:   charmm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ charmm.F90
+
+charmm.API.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    ew_cntrl.h\
+                    parms.o\
+                    qmmm_module.o\
+                    parallel.h\
+                    constants.o\
+                    state.o
+
+charmm.API.o:   charmm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ charmm.F90
+
+check_input.o: \
+                    file_io_dat.o\
+                    parallel.h
+
+
+check_input.o:   check_input.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ check_input.F90
+
+cmd_matrix.o: \
+                    ../include/dprec.fh\
+                    constants.o\
+                    cmd_vars.o\
+                    ../include/md.h\
+                    extra.h\
+                    pimd_vars.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    les.o
+
+
+cmd_matrix.o:   cmd_matrix.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ cmd_matrix.F90
+
+cmd_matrix.LES.o: \
+                    ../include/dprec.fh\
+                    constants.o\
+                    cmd_vars.o\
+                    ../include/md.h\
+                    extra.h\
+                    pimd_vars.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    les.o
+
+cmd_matrix.LES.o:   cmd_matrix.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ cmd_matrix.F90
+
+cmd_matrix_a1st.o: \
+                    ../include/dprec.fh\
+                    les.o\
+                    pimd_vars.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    cmd_vars.o\
+                    constants.o\
+                    ../include/md.h
+
+
+cmd_matrix_a1st.o:   cmd_matrix_a1st.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ cmd_matrix_a1st.F90
+
+cmd_vars.o: \
+                    ../include/dprec.fh
+
+
+cmd_vars.o:   cmd_vars.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ cmd_vars.F90
+
+constantph.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    random.o\
+                    dynph.h\
+                    constants.o\
+                    file_io_dat.o\
+                    memory_module.o\
+                    extra.h\
+                    ../include/md.h\
+                    parallel.h\
+                    amd.o\
+                    ips.o\
+                    state.o\
+                    box.h\
+                    nmr.h
+
+
+constantph.o:   constantph.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ constantph.F90
+
+cpparm.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    amoeba_mdin.o\
+                    charmm.o\
+                    constants.o\
+                    file_io_dat.o\
+                    prmtop_type.o\
+                    parms.o\
+                    ../lib/nxtsec.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    box.h\
+                    nmr.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    dssp.o\
+                    molecule.o\
+                    nonbond_list.o\
+                    pimd_vars.o\
+                    les.o\
+                    ew_mpole.h
+
+
+cpparm.o:   cpparm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ cpparm.F90
+
+cpparm.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    amoeba_mdin.o\
+                    charmm.o\
+                    constants.o\
+                    file_io_dat.o\
+                    prmtop_type.o\
+                    parms.o\
+                    ../lib/nxtsec.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    box.h\
+                    nmr.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    dssp.o\
+                    molecule.o\
+                    nonbond_list.LES.o\
+                    pimd_vars.o\
+                    les.o\
+                    ew_mpole.h
+
+cpparm.LES.o:   cpparm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ cpparm.F90
+
+crg_reloc.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    parallel.h\
+                    constants.o\
+                    box.h\
+                    nonbond_list.o
+
+
+crg_reloc.o:   crg_reloc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ crg_reloc.F90
+
+crossv.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh
+
+
+crossv.o:   crossv.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ crossv.F90
+
+csa.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    nmr.h\
+                    extra.h\
+                    ../include/md.h
+
+
+csa.o:   csa.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ csa.F90
+
+cshf.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    nmr.h\
+                    ../include/md.h\
+                    def_time.h
+
+
+cshf.o:   cshf.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ cshf.F90
+
+dbonds_anal2num.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+dbonds_anal2num.o:   dbonds_anal2num.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dbonds_anal2num.F90
+
+debug.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    parms.o\
+                    debug.h\
+                    nonbond_list.o\
+                    charmm.o\
+                    flocntrl.h\
+                    ../include/md.h\
+                    random.o\
+                    state.o\
+                    ../include/memory.h\
+                    extra.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    ew_pme_recip.h\
+                    ew_mpole.h\
+                    stack.o\
+                    parallel.h\
+                    ew_recip.o
+
+
+debug.o:   debug.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ debug.F90
+
+debug.API.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    parms.o\
+                    debug.h\
+                    nonbond_list.API.o\
+                    charmm.API.o\
+                    flocntrl.h\
+                    ../include/md.h\
+                    random.o\
+                    state.o\
+                    ../include/memory.h\
+                    extra.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    ew_pme_recip.h\
+                    ew_mpole.h\
+                    stack.o\
+                    parallel.h\
+                    ew_recip.o
+
+debug.API.o:   debug.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ debug.F90
+
+decnvh.o: \
+                    copyright.h\
+                    ../include/dprec.fh
+
+
+decnvh.o:   decnvh.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ decnvh.F90
+
+decomp.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    softcore.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    ../include/md.h
+
+
+decomp.o:   decomp.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ decomp.F90
+
+degcnt.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    softcore.o
+
+
+degcnt.o:   degcnt.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ degcnt.F90
+
+degcnt.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    softcore.o
+
+degcnt.LES.o:   degcnt.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ degcnt.F90
+
+dg_debug.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+dg_debug.o:   dg_debug.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dg_debug.F90
+
+dg_grad2cart.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh
+
+
+dg_grad2cart.o:   dg_grad2cart.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dg_grad2cart.F90
+
+dg_grad_anal2num.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+dg_grad_anal2num.o:   dg_grad_anal2num.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dg_grad_anal2num.F90
+
+dihed_tors.o: \
+                    ../include/dprec.fh
+
+
+dihed_tors.o:   dihed_tors.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dihed_tors.F90
+
+dssp.o: \
+                    ../include/dprec.fh
+
+
+dssp.o:   dssp.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dssp.F90
+
+
+dsvdc.o:   dsvdc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dsvdc.F90
+
+dynlib.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    bintraj.o\
+                    constants.o\
+                    box.h\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    extra.h\
+                    pimd_vars.o\
+                    evb_vars.o\
+                    remd.o\
+                    evb_pimd_init.o\
+                    les.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    qmmm_module.o\
+                    xref.o\
+                    xray_interface.o\
+                    state.o\
+                    charmm.o\
+                    crg_reloc.o\
+                    sglds.o\
+                    ips.o\
+                    emap.o\
+                    sebomd_module.o\
+                    amd.o\
+                    abfqmmm_module.o\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    tgtmd.h\
+                    amoeba_mdin.o\
+                    random.o\
+                    ../include/memory.h\
+                    parallel.h
+
+
+dynlib.o:   dynlib.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dynlib.F90
+
+dynlib.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    bintraj.LES.o\
+                    constants.o\
+                    box.h\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    extra.h\
+                    pimd_vars.o\
+                    evb_vars.o\
+                    remd.LES.o\
+                    evb_pimd_init.LES.o\
+                    les.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    qmmm_module.o\
+                    xref.o\
+                    xray_interface.o\
+                    state.o\
+                    charmm.o\
+                    crg_reloc.o\
+                    sglds.o\
+                    ips.o\
+                    emap.o\
+                    sebomd_module.o\
+                    amd.o\
+                    abfqmmm_module.o\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    tgtmd.h\
+                    amoeba_mdin.o\
+                    random.o\
+                    ../include/memory.h\
+                    parallel.h
+
+dynlib.LES.o:   dynlib.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dynlib.F90
+
+dynlib.PUPIL.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    bintraj.o\
+                    constants.o\
+                    box.h\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    extra.h\
+                    pimd_vars.o\
+                    evb_vars.o\
+                    remd.o\
+                    evb_pimd_init.o\
+                    les.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    qmmm_module.o\
+                    xref.o\
+                    xray_interface.o\
+                    state.o\
+                    charmm.o\
+                    crg_reloc.o\
+                    sglds.o\
+                    ips.o\
+                    emap.o\
+                    sebomd_module.o\
+                    amd.o\
+                    abfqmmm_module.o\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    tgtmd.h\
+                    amoeba_mdin.o\
+                    random.o\
+                    ../include/memory.h\
+                    parallel.h
+
+dynlib.PUPIL.o:   dynlib.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DPUPIL_SUPPORT -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dynlib.F90
+
+dynlib.APBS.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    bintraj.o\
+                    constants.o\
+                    box.h\
+                    file_io_dat.APBS.o\
+                    ../include/md.h\
+                    extra.h\
+                    pimd_vars.o\
+                    evb_vars.o\
+                    remd.o\
+                    evb_pimd_init.o\
+                    les.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    qmmm_module.o\
+                    xref.o\
+                    xray_interface.o\
+                    state.o\
+                    charmm.o\
+                    crg_reloc.o\
+                    sglds.o\
+                    ips.o\
+                    emap.o\
+                    sebomd_module.o\
+                    amd.o\
+                    abfqmmm_module.o\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    tgtmd.h\
+                    amoeba_mdin.o\
+                    random.o\
+                    ../include/memory.h\
+                    parallel.h
+
+dynlib.APBS.o:   dynlib.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPBS -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dynlib.F90
+
+dynlib.API.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    bintraj.o\
+                    constants.o\
+                    box.h\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    extra.h\
+                    pimd_vars.o\
+                    evb_vars.o\
+                    remd.o\
+                    evb_pimd_init.o\
+                    les.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    qmmm_module.o\
+                    xref.o\
+                    xray_interface.o\
+                    state.o\
+                    charmm.API.o\
+                    crg_reloc.o\
+                    sglds.o\
+                    ips.o\
+                    emap.o\
+                    sebomd_module.o\
+                    amd.o\
+                    abfqmmm_module.o\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    tgtmd.h\
+                    amoeba_mdin.o\
+                    random.o\
+                    ../include/memory.h\
+                    parallel.h
+
+dynlib.API.o:   dynlib.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dynlib.F90
+
+dynlib.LESAPI.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    bintraj.o\
+                    constants.o\
+                    box.h\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    extra.h\
+                    pimd_vars.o\
+                    evb_vars.o\
+                    remd.o\
+                    evb_pimd_init.o\
+                    les.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    qmmm_module.o\
+                    xref.o\
+                    xray_interface.o\
+                    state.o\
+                    charmm.o\
+                    crg_reloc.o\
+                    sglds.o\
+                    ips.o\
+                    emap.o\
+                    sebomd_module.o\
+                    amd.o\
+                    abfqmmm_module.o\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    tgtmd.h\
+                    amoeba_mdin.o\
+                    random.o\
+                    ../include/memory.h\
+                    parallel.h
+
+dynlib.LESAPI.o:   dynlib.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ dynlib.F90
+
+egap_umb_2stdebug.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+egap_umb_2stdebug.o:   egap_umb_2stdebug.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ egap_umb_2stdebug.F90
+
+egb.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    icosasurf.o\
+                    decomp.o\
+                    qmmm_module.o\
+                    parms.o\
+                    constants.o\
+                    crg_reloc.o\
+                    les.o\
+                    pimd_vars.o\
+                    remd.o\
+                    parallel.h\
+                    ../include/md.h\
+                    def_time.h\
+                    gbneck.h\
+                    gbsa.h
+
+
+egb.o:   egb.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ egb.F90
+
+egb.LES.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    icosasurf.o\
+                    decomp.o\
+                    qmmm_module.o\
+                    parms.o\
+                    constants.o\
+                    crg_reloc.o\
+                    les.o\
+                    pimd_vars.o\
+                    remd.LES.o\
+                    parallel.h\
+                    ../include/md.h\
+                    def_time.h\
+                    gbneck.h\
+                    gbsa.h
+
+egb.LES.o:   egb.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ egb.F90
+
+emap.o: \
+                    ../include/assert.fh\
+                    copyright.h\
+                    ../include/dprec.fh\
+                    constants.o\
+                    findmask.o\
+                    parallel.h\
+                    ../include/memory.h\
+                    ../include/md.h\
+                    ew_bspline.o\
+                    memory_module.o
+
+
+emap.o:   emap.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ emap.F90
+
+emil.o: \
+                    ../include/md.h\
+                    ew_cntrl.h\
+                    ../include/memory.h\
+                    parallel.h\
+                    mdin_emil_dat.o\
+                    memory_module.o\
+                    parms.o\
+                    nonbond_list.o\
+                    state.o
+
+
+emil.o:   emil.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ emil.F90
+
+ene.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    les.o\
+                    decomp.o\
+                    parms.o\
+                    poisson_boltzmann.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    remd.o\
+                    softcore.o\
+                    parallel.h\
+                    nmr.h\
+                    ../include/md.h\
+                    box.h\
+                    flocntrl.h\
+                    constants.o\
+                    charmm.o\
+                    crg_reloc.o\
+                    amd.o\
+                    ../include/memory.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    ew_erfc_spline.h\
+                    extra_pts.h\
+                    extra.h
+
+
+ene.o:   ene.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ene.F90
+
+ene.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    les.o\
+                    decomp.o\
+                    parms.o\
+                    poisson_boltzmann.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    remd.LES.o\
+                    softcore.o\
+                    parallel.h\
+                    nmr.h\
+                    ../include/md.h\
+                    box.h\
+                    flocntrl.h\
+                    constants.o\
+                    charmm.o\
+                    crg_reloc.o\
+                    amd.o\
+                    ../include/memory.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    ew_erfc_spline.h\
+                    extra_pts.h\
+                    extra.h
+
+ene.LES.o:   ene.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ene.F90
+
+erfcfun.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    constants.o
+
+
+erfcfun.o:   erfcfun.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ erfcfun.F90
+
+evb_2stdebug.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+evb_2stdebug.o:   evb_2stdebug.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_2stdebug.F90
+
+evb_alloc.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    evb_pimd_init.o\
+                    parallel.h\
+                    ../include/memory.h\
+                    ../include/md.h
+
+
+evb_alloc.o:   evb_alloc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_alloc.F90
+
+evb_alloc.LES.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    evb_pimd_init.LES.o\
+                    parallel.h\
+                    ../include/memory.h\
+                    ../include/md.h
+
+evb_alloc.LES.o:   evb_alloc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_alloc.F90
+
+evb_bcast.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    parallel.h
+
+
+evb_bcast.o:   evb_bcast.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_bcast.F90
+
+evb_dealloc.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    parallel.h
+
+
+evb_dealloc.o:   evb_dealloc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_dealloc.F90
+
+evb_force.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    constants.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    parallel.h\
+                    ../include/md.h
+
+
+evb_force.o:   evb_force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_force.F90
+
+evb_force.LES.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    constants.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    parallel.h\
+                    ../include/md.h
+
+evb_force.LES.o:   evb_force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_force.F90
+
+evb_gfchk.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    parallel.h
+
+
+evb_gfchk.o:   evb_gfchk.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_gfchk.F90
+
+evb_init.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    parallel.h
+
+
+evb_init.o:   evb_init.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_init.F90
+
+evb_input.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    ../include/memory.h
+
+
+evb_input.o:   evb_input.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_input.F90
+
+evb_input.LES.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    ../include/memory.h
+
+evb_input.LES.o:   evb_input.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_input.F90
+
+evb_io.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    parallel.h
+
+
+evb_io.o:   evb_io.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_io.F90
+
+evb_io_debug.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    parallel.h
+
+
+evb_io_debug.o:   evb_io_debug.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_io_debug.F90
+
+evb_io_debug2.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    parallel.h
+
+
+evb_io_debug2.o:   evb_io_debug2.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_io_debug2.F90
+
+evb_keywrd.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    parallel.h
+
+
+evb_keywrd.o:   evb_keywrd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_keywrd.F90
+
+evb_mathf.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh
+
+
+evb_mathf.o:   evb_mathf.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_mathf.F90
+
+evb_matrix.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    evb_pimd_init.o
+
+
+evb_matrix.o:   evb_matrix.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_matrix.F90
+
+evb_matrix.LES.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    evb_pimd_init.LES.o
+
+evb_matrix.LES.o:   evb_matrix.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_matrix.F90
+
+evb_ntrfc.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    constants.o\
+                    les.o\
+                    state.o\
+                    pimd_vars.o\
+                    evb_pimd_init.o\
+                    parallel.h\
+                    extra.h\
+                    ../include/memory.h
+
+
+evb_ntrfc.o:   evb_ntrfc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_ntrfc.F90
+
+evb_ntrfc.LES.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    constants.o\
+                    les.o\
+                    state.o\
+                    pimd_vars.o\
+                    evb_pimd_init.LES.o\
+                    parallel.h\
+                    extra.h\
+                    ../include/memory.h
+
+evb_ntrfc.LES.o:   evb_ntrfc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_ntrfc.F90
+
+evb_outoptions.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    ../include/memory.h
+
+
+evb_outoptions.o:   evb_outoptions.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_outoptions.F90
+
+evb_pimd_init.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    les.o\
+                    pimd_vars.o\
+                    evb_vars.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    extra.h
+
+
+evb_pimd_init.o:   evb_pimd_init.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_pimd_init.F90
+
+evb_pimd_init.LES.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    les.o\
+                    pimd_vars.o\
+                    evb_vars.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    extra.h
+
+evb_pimd_init.LES.o:   evb_pimd_init.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_pimd_init.F90
+
+evb_umb.o: \
+                    ../include/dprec.fh\
+                    constants.o\
+                    evb_vars.o\
+                    evb_pimd_init.o\
+                    ../include/md.h
+
+
+evb_umb.o:   evb_umb.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_umb.F90
+
+evb_umb.LES.o: \
+                    ../include/dprec.fh\
+                    constants.o\
+                    evb_vars.o\
+                    evb_pimd_init.LES.o\
+                    ../include/md.h
+
+evb_umb.LES.o:   evb_umb.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_umb.F90
+
+evb_umb_primitive.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    evb_pimd_init.o\
+                    parallel.h\
+                    ../include/md.h
+
+
+evb_umb_primitive.o:   evb_umb_primitive.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_umb_primitive.F90
+
+evb_umb_primitive.LES.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    evb_pimd_init.LES.o\
+                    parallel.h\
+                    ../include/md.h
+
+evb_umb_primitive.LES.o:   evb_umb_primitive.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_umb_primitive.F90
+
+evb_vars.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh
+
+
+evb_vars.o:   evb_vars.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ evb_vars.F90
+
+ew_box.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    nonbond_list.o\
+                    ew_cntrl.h\
+                    box.h\
+                    constants.o\
+                    extra.h\
+                    ew_parallel.h\
+                    parallel.h\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    ../include/md.h
+
+
+ew_box.o:   ew_box.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_box.F90
+
+ew_box.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    nonbond_list.LES.o\
+                    ew_cntrl.h\
+                    box.h\
+                    constants.o\
+                    extra.h\
+                    ew_parallel.h\
+                    parallel.h\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    binrestart.LES.o\
+                    ../include/md.h
+
+ew_box.LES.o:   ew_box.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_box.F90
+
+ew_box.API.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    nonbond_list.API.o\
+                    ew_cntrl.h\
+                    box.h\
+                    constants.o\
+                    extra.h\
+                    ew_parallel.h\
+                    parallel.h\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    ../include/md.h
+
+ew_box.API.o:   ew_box.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_box.F90
+
+ew_box.LESAPI.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    nonbond_list.LESAPI.o\
+                    ew_cntrl.h\
+                    box.h\
+                    constants.o\
+                    extra.h\
+                    ew_parallel.h\
+                    parallel.h\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    ../include/md.h
+
+ew_box.LESAPI.o:   ew_box.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_box.F90
+
+ew_bspline.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    parallel.h\
+                    ew_parallel.h\
+                    constants.o
+
+
+ew_bspline.o:   ew_bspline.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_bspline.F90
+
+ew_dipole_recip.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ew_bspline.o\
+                    stack.o\
+                    flocntrl.h\
+                    ew_pme_recip.h\
+                    def_time.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    constants.o\
+                    extra.h
+
+
+ew_dipole_recip.o:   ew_dipole_recip.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_dipole_recip.F90
+
+ew_fft.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    trace.o\
+                    parallel.h\
+                    ew_parallel.h\
+                    constants.o\
+                    def_time.h\
+                    pubfft.F90
+
+
+ew_fft.o:   ew_fft.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_fft.F90
+
+ew_force.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    trace.o\
+                    ew_recip.o\
+                    ew_dipole_recip.o\
+                    stack.o\
+                    decomp.o\
+                    nonbond_list.o\
+                    constants.o\
+                    qmmm_module.o\
+                    file_io_dat.o\
+                    les.o\
+                    pimd_vars.o\
+                    charmm.o\
+                    parms.o\
+                    ips.o\
+                    extra.h\
+                    ew_cntrl.h\
+                    def_time.h\
+                    ew_time.h\
+                    ew_pme_recip.h\
+                    ew_mpole.h\
+                    ew_erfc_spline.h\
+                    ../include/memory.h\
+                    ../include/md.h\
+                    extra_pts.h\
+                    box.h\
+                    ew_frc.h\
+                    ew_parallel.h\
+                    parallel.h\
+                    spatial_recip.o\
+                    spatial_fft.o\
+                    crg_reloc.o\
+                    flocntrl.h\
+                    linear_response.o\
+                    abfqmmm_module.o
+
+
+ew_force.o:   ew_force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_force.F90
+
+ew_force.LES.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    trace.o\
+                    ew_recip.LES.o\
+                    ew_dipole_recip.o\
+                    stack.o\
+                    decomp.o\
+                    nonbond_list.LES.o\
+                    constants.o\
+                    qmmm_module.o\
+                    file_io_dat.o\
+                    les.o\
+                    pimd_vars.o\
+                    charmm.o\
+                    parms.o\
+                    ips.o\
+                    extra.h\
+                    ew_cntrl.h\
+                    def_time.h\
+                    ew_time.h\
+                    ew_pme_recip.h\
+                    ew_mpole.h\
+                    ew_erfc_spline.h\
+                    ../include/memory.h\
+                    ../include/md.h\
+                    extra_pts.h\
+                    box.h\
+                    ew_frc.h\
+                    ew_parallel.h\
+                    parallel.h\
+                    spatial_recip.o\
+                    spatial_fft.o\
+                    crg_reloc.o\
+                    flocntrl.h\
+                    linear_response.o\
+                    abfqmmm_module.o
+
+ew_force.LES.o:   ew_force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_force.F90
+
+ew_handle_dips.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    ew_frc.h\
+                    def_time.h\
+                    parallel.h\
+                    constants.o\
+                    debug.h\
+                    file_io_dat.o
+
+
+ew_handle_dips.o:   ew_handle_dips.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_handle_dips.F90
+
+ew_recip.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    nonbond_list.o\
+                    stack.o\
+                    ew_bspline.o\
+                    flocntrl.h\
+                    ew_pme_recip.h\
+                    ew_frc.h\
+                    def_time.h\
+                    box.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    constants.o\
+                    qmmm_module.o\
+                    decomp.o\
+                    crg_reloc.o\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    extra.h
+
+
+ew_recip.o:   ew_recip.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_recip.F90
+
+ew_recip.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    nonbond_list.LES.o\
+                    stack.o\
+                    ew_bspline.o\
+                    flocntrl.h\
+                    ew_pme_recip.h\
+                    ew_frc.h\
+                    def_time.h\
+                    box.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    constants.o\
+                    qmmm_module.o\
+                    decomp.o\
+                    crg_reloc.o\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    extra.h
+
+ew_recip.LES.o:   ew_recip.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_recip.F90
+
+ew_recip_reg.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    nonbond_list.o\
+                    stack.o\
+                    flocntrl.h\
+                    constants.o\
+                    def_time.h
+
+
+ew_recip_reg.o:   ew_recip_reg.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_recip_reg.F90
+
+ew_setup.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    abfqmmm_module.o\
+                    box.h\
+                    ew_cntrl.h\
+                    extra.h\
+                    nonbond_list.o\
+                    ew_pme_recip.h\
+                    ../include/memory.h\
+                    ew_erfc_spline.h\
+                    ew_mpole.h\
+                    ../include/md.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    stack.o\
+                    qmmm_module.o\
+                    def_time.h\
+                    les.o\
+                    pimd_vars.o\
+                    amoeba_runmd.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    file_io_dat.o\
+                    ew_bspline.o\
+                    spatial_fft.o\
+                    sander_lib.o\
+                    ew_legal.h\
+                    decomp.o
+
+
+ew_setup.o:   ew_setup.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_setup.F90
+
+ew_setup.LES.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    abfqmmm_module.o\
+                    box.h\
+                    ew_cntrl.h\
+                    extra.h\
+                    nonbond_list.LES.o\
+                    ew_pme_recip.h\
+                    ../include/memory.h\
+                    ew_erfc_spline.h\
+                    ew_mpole.h\
+                    ../include/md.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    stack.o\
+                    qmmm_module.o\
+                    def_time.h\
+                    les.o\
+                    pimd_vars.o\
+                    amoeba_runmd.o\
+                    AmberNetcdf.o\
+                    binrestart.LES.o\
+                    file_io_dat.o\
+                    ew_bspline.o\
+                    spatial_fft.o\
+                    sander_lib.o\
+                    ew_legal.h\
+                    decomp.o
+
+ew_setup.LES.o:   ew_setup.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_setup.F90
+
+ew_setup.API.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    abfqmmm_module.o\
+                    box.h\
+                    ew_cntrl.h\
+                    extra.h\
+                    nonbond_list.API.o\
+                    ew_pme_recip.h\
+                    ../include/memory.h\
+                    ew_erfc_spline.h\
+                    ew_mpole.h\
+                    ../include/md.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    stack.o\
+                    qmmm_module.o\
+                    def_time.h\
+                    les.o\
+                    pimd_vars.o\
+                    amoeba_runmd.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    file_io_dat.o\
+                    ew_bspline.o\
+                    spatial_fft.o\
+                    sander_lib.o\
+                    ew_legal.h\
+                    decomp.o
+
+ew_setup.API.o:   ew_setup.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_setup.F90
+
+ew_setup.LESAPI.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    abfqmmm_module.o\
+                    box.h\
+                    ew_cntrl.h\
+                    extra.h\
+                    nonbond_list.LESAPI.o\
+                    ew_pme_recip.h\
+                    ../include/memory.h\
+                    ew_erfc_spline.h\
+                    ew_mpole.h\
+                    ../include/md.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    stack.o\
+                    qmmm_module.o\
+                    def_time.h\
+                    les.o\
+                    pimd_vars.o\
+                    amoeba_runmd.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    file_io_dat.o\
+                    ew_bspline.o\
+                    spatial_fft.o\
+                    sander_lib.o\
+                    ew_legal.h\
+                    decomp.o
+
+ew_setup.LESAPI.o:   ew_setup.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ew_setup.F90
+
+exchange_gauss.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+exchange_gauss.o:   exchange_gauss.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ exchange_gauss.F90
+
+exchange_warshel.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+exchange_warshel.o:   exchange_warshel.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ exchange_warshel.F90
+
+extra_pts.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ../include/memory.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    constants.o\
+                    decomp.o\
+                    crg_reloc.o\
+                    file_io_dat.o\
+                    softcore.o\
+                    flocntrl.h\
+                    ../include/md.h\
+                    qmmm_module.o
+
+
+extra_pts.o:   extra_pts.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ extra_pts.F90
+
+extra_pts.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ../include/memory.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    constants.o\
+                    decomp.o\
+                    crg_reloc.o\
+                    file_io_dat.o\
+                    softcore.o\
+                    flocntrl.h\
+                    ../include/md.h\
+                    qmmm_module.o
+
+extra_pts.LES.o:   extra_pts.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ extra_pts.F90
+
+extra_pts.API.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ../include/memory.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    constants.o\
+                    decomp.o\
+                    crg_reloc.o\
+                    file_io_dat.o\
+                    softcore.o\
+                    flocntrl.h\
+                    ../include/md.h\
+                    qmmm_module.o
+
+extra_pts.API.o:   extra_pts.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ extra_pts.F90
+
+extra_pts.LESAPI.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ../include/memory.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    constants.o\
+                    decomp.o\
+                    crg_reloc.o\
+                    file_io_dat.o\
+                    softcore.o\
+                    flocntrl.h\
+                    ../include/md.h\
+                    qmmm_module.o
+
+extra_pts.LESAPI.o:   extra_pts.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ extra_pts.F90
+
+fastwt.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    abfqmmm_module.o\
+                    parallel.h\
+                    ../include/md.h\
+                    constants.o
+
+
+fastwt.o:   fastwt.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ fastwt.F90
+
+fastwt.API.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    abfqmmm_module.o\
+                    parallel.h\
+                    ../include/md.h\
+                    constants.o
+
+fastwt.API.o:   fastwt.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ fastwt.F90
+
+
+file_io_dat.o:   file_io_dat.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ file_io_dat.F90
+
+
+file_io_dat.APBS.o:   file_io_dat.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPBS -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ file_io_dat.F90
+
+findmask.o: \
+                    ../include/dprec.fh
+
+
+findmask.o:   findmask.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ findmask.F90
+
+
+fixport.o:   fixport.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ fixport.F90
+
+force.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    ncsu-sander-hooks.o\
+                    remd.o\
+                    ncsu-sander-proxy.o\
+                    file_io_dat.o\
+                    egb.o\
+                    pimd_vars.o\
+                    les.o\
+                    qmmm_module.o\
+                    softcore.o\
+                    evb_vars.o\
+                    poisson_boltzmann.o\
+                    dispersion_cavity.o\
+                    pbtimer_module.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    apbs.o\
+                    trace.o\
+                    stack.o\
+                    constants.o\
+                    relax_mat.o\
+                    ew_recip.o\
+                    parms.o\
+                    nonbond_list.o\
+                    dssp.o\
+                    amoeba_interface.o\
+                    amoeba_mdin.o\
+                    amd.o\
+                    scaledMD.o\
+                    ips.o\
+                    emap.o\
+                    pupildata.o\
+                    linear_response.o\
+                    xref.o\
+                    xray_interface.o\
+                    charmm.o\
+                    decomp.o\
+                    state.o\
+                    crg_reloc.o\
+                    sebomd_module.o\
+                    abfqmmm_module.o\
+                    def_time.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    extra_pts.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    ../include/md.h\
+                    ../pbsa/pb_md.h\
+                    box.h\
+                    nmr.h\
+                    ../include/memory.h\
+                    extra.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    flocntrl.h
+
+
+force.o:   force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ force.F90
+
+force.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    ncsu-sander-hooks.o\
+                    remd.LES.o\
+                    ncsu-sander-proxy.o\
+                    file_io_dat.o\
+                    egb.LES.o\
+                    pimd_vars.o\
+                    les.o\
+                    qmmm_module.o\
+                    softcore.o\
+                    evb_vars.o\
+                    poisson_boltzmann.o\
+                    dispersion_cavity.o\
+                    pbtimer_module.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    apbs.o\
+                    trace.o\
+                    stack.o\
+                    constants.o\
+                    relax_mat.o\
+                    ew_recip.LES.o\
+                    parms.o\
+                    nonbond_list.LES.o\
+                    dssp.o\
+                    amoeba_interface.o\
+                    amoeba_mdin.o\
+                    amd.o\
+                    scaledMD.o\
+                    ips.o\
+                    emap.o\
+                    pupildata.o\
+                    linear_response.o\
+                    xref.o\
+                    xray_interface.o\
+                    charmm.o\
+                    decomp.o\
+                    state.o\
+                    crg_reloc.o\
+                    sebomd_module.o\
+                    abfqmmm_module.o\
+                    def_time.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    extra_pts.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    ../include/md.h\
+                    ../pbsa/pb_md.h\
+                    box.h\
+                    nmr.h\
+                    ../include/memory.h\
+                    extra.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    flocntrl.h
+
+force.LES.o:   force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ force.F90
+
+force.PUPIL.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    ncsu-sander-hooks.o\
+                    remd.o\
+                    ncsu-sander-proxy.o\
+                    file_io_dat.o\
+                    egb.o\
+                    pimd_vars.o\
+                    les.o\
+                    qmmm_module.o\
+                    softcore.o\
+                    evb_vars.o\
+                    poisson_boltzmann.o\
+                    dispersion_cavity.o\
+                    pbtimer_module.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    apbs.o\
+                    trace.o\
+                    stack.o\
+                    constants.o\
+                    relax_mat.o\
+                    ew_recip.o\
+                    parms.o\
+                    nonbond_list.o\
+                    dssp.o\
+                    amoeba_interface.o\
+                    amoeba_mdin.o\
+                    amd.o\
+                    scaledMD.o\
+                    ips.o\
+                    emap.o\
+                    pupildata.o\
+                    linear_response.o\
+                    xref.o\
+                    xray_interface.o\
+                    charmm.o\
+                    decomp.o\
+                    state.o\
+                    crg_reloc.o\
+                    sebomd_module.o\
+                    abfqmmm_module.o\
+                    def_time.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    extra_pts.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    ../include/md.h\
+                    ../pbsa/pb_md.h\
+                    box.h\
+                    nmr.h\
+                    ../include/memory.h\
+                    extra.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    flocntrl.h
+
+force.PUPIL.o:   force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DPUPIL_SUPPORT -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ force.F90
+
+force.APBS.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    ncsu-sander-hooks.o\
+                    remd.o\
+                    ncsu-sander-proxy.o\
+                    file_io_dat.APBS.o\
+                    egb.o\
+                    pimd_vars.o\
+                    les.o\
+                    qmmm_module.o\
+                    softcore.o\
+                    evb_vars.o\
+                    poisson_boltzmann.o\
+                    dispersion_cavity.o\
+                    pbtimer_module.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    apbs.APBS.o\
+                    trace.o\
+                    stack.o\
+                    constants.o\
+                    relax_mat.o\
+                    ew_recip.o\
+                    parms.o\
+                    nonbond_list.o\
+                    dssp.o\
+                    amoeba_interface.o\
+                    amoeba_mdin.o\
+                    amd.o\
+                    scaledMD.o\
+                    ips.o\
+                    emap.o\
+                    pupildata.o\
+                    linear_response.o\
+                    xref.o\
+                    xray_interface.o\
+                    charmm.o\
+                    decomp.o\
+                    state.o\
+                    crg_reloc.o\
+                    sebomd_module.o\
+                    abfqmmm_module.o\
+                    def_time.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    extra_pts.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    ../include/md.h\
+                    ../pbsa/pb_md.h\
+                    box.h\
+                    nmr.h\
+                    ../include/memory.h\
+                    extra.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    flocntrl.h
+
+force.APBS.o:   force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPBS -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ force.F90
+
+getcor.o: \
+                    ../include/dprec.fh\
+                    copyright.h\
+                    amoeba_mdin.o\
+                    constants.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    file_io_dat.o\
+                    sander_lib.o\
+                    remd.o\
+                    ew_cntrl.h
+
+
+getcor.o:   getcor.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ getcor.F90
+
+getcor.LES.o: \
+                    ../include/dprec.fh\
+                    copyright.h\
+                    amoeba_mdin.o\
+                    constants.o\
+                    AmberNetcdf.o\
+                    binrestart.LES.o\
+                    file_io_dat.o\
+                    sander_lib.o\
+                    remd.LES.o\
+                    ew_cntrl.h
+
+getcor.LES.o:   getcor.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ getcor.F90
+
+icosasurf.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    decomp.o\
+                    constants.o
+
+
+icosasurf.o:   icosasurf.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ icosasurf.F90
+
+interactmask.o: \
+                    ../include/dprec.fh\
+                    parms.o
+
+
+interactmask.o:   interactmask.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ interactmask.F90
+
+interface.o: \
+                    ../include/assert.fh\
+                    constants.o\
+                    file_io_dat.o\
+                    prmtop_type.o\
+                    qmmm_module.o\
+                    state.o\
+                    interface_setup.F90\
+                    mdread1.F90\
+                    mdread2.F90\
+                    memory_module.o\
+                    qmmm_adaptive_module.o\
+                    amoeba_runmd.o\
+                    charmm.o\
+                    decomp.o\
+                    egb.o\
+                    molecule.o\
+                    nonbond_list.o\
+                    parms.o\
+                    stack.o\
+                    xray_interface.o\
+                    ../include/md.h\
+                    ew_cntrl.h\
+                    ../include/memory.h\
+                    AmberNetcdf.o\
+                    binrestart.o
+
+
+interface.o:   interface.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ interface.F90
+
+interface.LESAPI.o: \
+                    ../include/assert.fh\
+                    constants.o\
+                    file_io_dat.o\
+                    prmtop_type.o\
+                    qmmm_module.o\
+                    state.o\
+                    interface_setup.F90\
+                    mdread1.F90\
+                    mdread2.F90\
+                    memory_module.o\
+                    qmmm_adaptive_module.o\
+                    amoeba_runmd.o\
+                    charmm.o\
+                    decomp.o\
+                    egb.o\
+                    molecule.o\
+                    nonbond_list.LESAPI.o\
+                    parms.o\
+                    stack.o\
+                    xray_interface.o\
+                    ../include/md.h\
+                    ew_cntrl.h\
+                    ../include/memory.h\
+                    AmberNetcdf.o\
+                    binrestart.o
+
+interface.LESAPI.o:   interface.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ interface.F90
+
+interface_setup.F90: \
+                    ncsu-sander-hooks.o\
+                    lmod.o\
+                    constants.o\
+                    qmmm_module.o\
+                    qm2_read_nm_and_alloc.o\
+                    qmmm_vsolv_module.o\
+                    qm2_extern_module.o\
+                    sebomd_module.o\
+                    sebomd_arrays.o\
+                    egb.o\
+                    decomp.o\
+                    fastwt.o\
+                    les.o\
+                    relax_mat.o\
+                    nmr.o\
+                    ew_recip.o\
+                    parms.o\
+                    molecule.o\
+                    nonbond_list.o\
+                    stack.o\
+                    amoeba_runmd.o\
+                    amoeba_mdin.o\
+                    amoeba_interface.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    pupildata.o\
+                    apbs.o\
+                    xray_interface.o\
+                    linear_response.o\
+                    charmm.o\
+                    memory_module.o\
+                    sglds.o\
+                    ips.o\
+                    crg_reloc.o\
+                    emap.o\
+                    file_io_dat.o\
+                    constantph.o\
+                    barostats.o\
+                    random.o\
+                    amd.o\
+                    scaledMD.o\
+                    abfqmmm_module.o\
+                    prmtop_type.o\
+                    ../include/memory.h\
+                    nmr.h\
+                    box.h\
+                    ../include/md.h\
+                    extra.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    parallel.h\
+                    ew_pme_recip.h\
+                    ew_frc.h\
+                    ew_erfc_spline.h\
+                    ew_parallel.h\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    def_time.h
+
+ips.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    constants.o\
+                    extra.h\
+                    nonbond_list.o\
+                    parallel.h\
+                    stack.o\
+                    ew_bspline.o\
+                    flocntrl.h\
+                    def_time.h\
+                    box.h\
+                    ew_parallel.h\
+                    spatial_fft.o\
+                    decomp.o\
+                    file_io_dat.o\
+                    ../include/md.h
+
+
+ips.o:   ips.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ips.F90
+
+iwrap2.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    molecule.o\
+                    box.h
+
+
+iwrap2.o:   iwrap2.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ iwrap2.F90
+
+kappa_keck.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+kappa_keck.o:   kappa_keck.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ kappa_keck.F90
+
+les.o: \
+                    ../include/dprec.fh
+
+
+les.o:   les.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ les.F90
+
+linear_response.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    findmask.o\
+                    nonbond_list.o\
+                    constants.o\
+                    icosasurf.o
+
+
+linear_response.o:   linear_response.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ linear_response.F90
+
+lmod.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    ../include/memory.h\
+                    state.o\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    xmin.h\
+                    parallel.h\
+                    constants.o\
+                    bintraj.o\
+                    extra.h\
+                    nmr.h
+
+
+lmod.o:   lmod.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ lmod.F90
+
+lmod.LES.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    ../include/memory.h\
+                    state.o\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    xmin.h\
+                    parallel.h\
+                    constants.o\
+                    bintraj.LES.o\
+                    extra.h\
+                    nmr.h
+
+lmod.LES.o:   lmod.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ lmod.F90
+
+locmem.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    nonbond_list.o\
+                    amoeba_mdin.o\
+                    linear_response.o\
+                    sebomd_module.o\
+                    box.h\
+                    nmr.h\
+                    ../include/memory.h\
+                    ../include/md.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    ew_cntrl.h\
+                    extra_pts.h\
+                    dynph.h\
+                    parallel.h
+
+
+locmem.o:   locmem.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ locmem.F90
+
+locmem.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    nonbond_list.LES.o\
+                    amoeba_mdin.o\
+                    linear_response.o\
+                    sebomd_module.o\
+                    box.h\
+                    nmr.h\
+                    ../include/memory.h\
+                    ../include/md.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    ew_cntrl.h\
+                    extra_pts.h\
+                    dynph.h\
+                    parallel.h
+
+locmem.LES.o:   locmem.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ locmem.F90
+
+lsc_init.o: \
+                    ../include/dprec.fh\
+                    lscivr_vars.o\
+                    constants.o\
+                    ../include/md.h\
+                    extra.h
+
+
+lsc_init.o:   lsc_init.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ lsc_init.F90
+
+lsc_xp.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    lscivr_vars.o\
+                    constants.o\
+                    random.o\
+                    extra.h\
+                    parallel.h
+
+
+lsc_xp.o:   lsc_xp.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ lsc_xp.F90
+
+lscivr_vars.o: \
+                    ../include/dprec.fh
+
+
+lscivr_vars.o:   lscivr_vars.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ lscivr_vars.F90
+
+matinv.o: \
+                    copyright.h\
+                    ../include/dprec.fh
+
+
+matinv.o:   matinv.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ matinv.F90
+
+mbar.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    parallel.h
+
+
+mbar.o:   mbar.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mbar.F90
+
+mdfil.o: \
+                    copyright.h\
+                    constantph.o\
+                    file_io_dat.o\
+                    remd.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    xref.o\
+                    ew_parallel.h\
+                    parallel.h\
+                    ../include/dprec.fh
+
+
+mdfil.o:   mdfil.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdfil.F90
+
+mdfil.LES.o: \
+                    copyright.h\
+                    constantph.o\
+                    file_io_dat.o\
+                    remd.LES.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    xref.o\
+                    ew_parallel.h\
+                    parallel.h\
+                    ../include/dprec.fh
+
+mdfil.LES.o:   mdfil.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdfil.F90
+
+mdfil.PUPIL.o: \
+                    copyright.h\
+                    constantph.o\
+                    file_io_dat.o\
+                    remd.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    xref.o\
+                    ew_parallel.h\
+                    parallel.h\
+                    ../include/dprec.fh
+
+mdfil.PUPIL.o:   mdfil.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DPUPIL_SUPPORT -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdfil.F90
+
+mdin_emil_dat.o: \
+                    file_io_dat.o
+
+
+mdin_emil_dat.o:   mdin_emil_dat.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdin_emil_dat.F90
+
+mdread.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ncsu-config.h\
+                    ../include/assert.fh\
+                    mdread1.F90\
+                    mdread2.F90\
+                    mdreadutils.h
+
+
+mdread.o:   mdread.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdread.F90
+
+mdread.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ncsu-config.h\
+                    ../include/assert.fh\
+                    mdread1.F90\
+                    mdread2.F90\
+                    mdreadutils.h
+
+mdread.LES.o:   mdread.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdread.F90
+
+mdread.PUPIL.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ncsu-config.h\
+                    ../include/assert.fh\
+                    mdread1.F90\
+                    mdread2.F90\
+                    mdreadutils.h
+
+mdread.PUPIL.o:   mdread.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DPUPIL_SUPPORT -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdread.F90
+
+mdread.APBS.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ncsu-config.h\
+                    ../include/assert.fh\
+                    mdread1.F90\
+                    mdread2.F90\
+                    mdreadutils.h
+
+mdread.APBS.o:   mdread.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPBS -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdread.F90
+
+mdread1.F90: \
+                    file_io_dat.o\
+                    lmod.o\
+                    qmmm_module.o\
+                    constants.o\
+                    constantph.o\
+                    amoeba_mdin.o\
+                    nose_hoover.o\
+                    lscivr_vars.o\
+                    les.o\
+                    pimd_vars.o\
+                    cmd_vars.o\
+                    stack.o\
+                    nmr.o\
+                    crg_reloc.o\
+                    sglds.o\
+                    amd.o\
+                    scaledMD.o\
+                    ips.o\
+                    emap.o\
+                    dssp.o\
+                    emil.o\
+                    mdin_emil_dat.o\
+                    ncsu-sander-hooks.o\
+                    xray_interface.o\
+                    softcore.o\
+                    mbar.o\
+                    remd.o\
+                    linear_response.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    apbs.o\
+                    sebomd_module.o\
+                    box.h\
+                    def_time.h\
+                    ew_cntrl.h\
+                    ew_pme_recip.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    nmr.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    ew_erfc_spline.h
+
+mdread2.F90: \
+                    molecule.o\
+                    lmod.o\
+                    decomp.o\
+                    findmask.o\
+                    egb.o\
+                    constants.o\
+                    parms.o\
+                    ips.o\
+                    amd.o\
+                    nonbond_list.o\
+                    amoeba_mdin.o\
+                    amoeba_runmd.o\
+                    nose_hoover.o\
+                    pimd_vars.o\
+                    cmd_vars.o\
+                    constantph.o\
+                    file_io_dat.o\
+                    sander_lib.o\
+                    les.o\
+                    emap.o\
+                    emil.o\
+                    sebomd_module.o\
+                    qmmm_module.o\
+                    qmmm_vsolv_module.o\
+                    linear_response.o\
+                    crg_reloc.o\
+                    apbs.o\
+                    mdin_emil_dat.o\
+                    xray_interface.o\
+                    evb_pimd_init.o\
+                    softcore.o\
+                    mbar.o\
+                    remd.o\
+                    sglds.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    ../include/md.h\
+                    box.h\
+                    nmr.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    ew_pme_recip.h\
+                    ew_erfc_spline.h\
+                    ew_mpole.h\
+                    ew_legal.h\
+                    def_time.h\
+                    tgtmd.h\
+                    multitmd.h
+
+mdwrit.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ncsu-config.h\
+                    file_io_dat.o\
+                    ncsu-sander-hooks.o\
+                    binrestart.o\
+                    remd.o\
+                    sglds.o\
+                    nonbond_list.o
+
+
+mdwrit.o:   mdwrit.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdwrit.F90
+
+mdwrit.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ncsu-config.h\
+                    file_io_dat.o\
+                    ncsu-sander-hooks.o\
+                    binrestart.LES.o\
+                    remd.LES.o\
+                    sglds.o\
+                    nonbond_list.LES.o
+
+mdwrit.LES.o:   mdwrit.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mdwrit.F90
+
+memory_module.o: \
+                    ../include/dprec.fh\
+                    ../include/memory.h\
+                    ../include/md.h\
+                    nmr.h\
+                    dynph.h
+
+
+memory_module.o:   memory_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ memory_module.F90
+
+mexit.o: \
+                    copyright.h\
+                    pupildata.o\
+                    parallel.h
+
+
+mexit.o:   mexit.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mexit.F90
+
+mexit.PUPIL.o: \
+                    copyright.h\
+                    pupildata.o\
+                    parallel.h
+
+mexit.PUPIL.o:   mexit.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DPUPIL_SUPPORT -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mexit.F90
+
+minrit.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    binrestart.o\
+                    box.h\
+                    nonbond_list.o
+
+
+minrit.o:   minrit.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ minrit.F90
+
+minrit.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    binrestart.LES.o\
+                    box.h\
+                    nonbond_list.LES.o
+
+minrit.LES.o:   minrit.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ minrit.F90
+
+mod_vdw.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    les.o\
+                    parms.o\
+                    evb_vars.o\
+                    parallel.h\
+                    ../include/memory.h\
+                    nonbond_list.o
+
+
+mod_vdw.o:   mod_vdw.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mod_vdw.F90
+
+mod_vdw.LES.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    les.o\
+                    parms.o\
+                    evb_vars.o\
+                    parallel.h\
+                    ../include/memory.h\
+                    nonbond_list.LES.o
+
+mod_vdw.LES.o:   mod_vdw.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mod_vdw.F90
+
+molecule.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh
+
+
+molecule.o:   molecule.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ molecule.F90
+
+morse_anal2num.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+morse_anal2num.o:   morse_anal2num.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ morse_anal2num.F90
+
+morsify.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    les.o\
+                    parallel.h\
+                    ../include/memory.h\
+                    parms.o
+
+
+morsify.o:   morsify.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ morsify.F90
+
+morsify.LES.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    les.o\
+                    parallel.h\
+                    ../include/memory.h\
+                    parms.o
+
+morsify.LES.o:   morsify.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ morsify.F90
+
+mt19937.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    netcdf.o\
+                    ncsu-constants.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-utils.o\
+                    ncsu-mpi.h
+
+
+mt19937.o:   mt19937.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mt19937.F90
+
+mtmdcall.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    multitmd.o\
+                    file_io_dat.o\
+                    parallel.h\
+                    multitmd.h
+
+
+mtmdcall.o:   mtmdcall.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ mtmdcall.F90
+
+multisander.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    remd.o\
+                    mdfil.o\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    ncsu-sander-hooks.o\
+                    evb_pimd_init.o\
+                    parallel.h\
+                    ew_parallel.h\
+                    ../include/md.h
+
+
+multisander.o:   multisander.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ multisander.F90
+
+multisander.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    remd.LES.o\
+                    mdfil.LES.o\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    ncsu-sander-hooks.o\
+                    evb_pimd_init.LES.o\
+                    parallel.h\
+                    ew_parallel.h\
+                    ../include/md.h
+
+multisander.LES.o:   multisander.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ multisander.F90
+
+multitmd.o: \
+                    ../include/assert.fh\
+                    copyright.h\
+                    ../include/dprec.fh\
+                    findmask.o\
+                    file_io_dat.o
+
+
+multitmd.o:   multitmd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ multitmd.F90
+
+ncsu-abmd-hooks.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-umbrella.o\
+                    ncsu-colvar-type.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-mpi.h\
+                    ncsu-utils.o\
+                    ncsu-colvar.o\
+                    ncsu-cftree.o\
+                    ncsu-parser.o
+
+
+ncsu-abmd-hooks.o:   ncsu-abmd-hooks.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-abmd-hooks.F90
+
+ncsu-bbmd-ctxt.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-umbrella.o\
+                    ncsu-colvar-type.o\
+                    ncsu-utils.o\
+                    ncsu-cftree.o\
+                    ncsu-colvar.o\
+                    ncsu-sander-proxy.o\
+                    file_io_dat.o\
+                    ncsu-mpi.h
+
+
+ncsu-bbmd-ctxt.o:   ncsu-bbmd-ctxt.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-bbmd-ctxt.F90
+
+ncsu-bbmd-hooks.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    mt19937.o\
+                    ncsu-bbmd-ctxt.o\
+                    ncsu-constants.o\
+                    ncsu-utils.o\
+                    ncsu-cftree.o\
+                    ncsu-parser.o\
+                    ncsu-sander-proxy.o\
+                    file_io_dat.o\
+                    ncsu-mpi.h
+
+
+ncsu-bbmd-hooks.o:   ncsu-bbmd-hooks.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-bbmd-hooks.F90
+
+ncsu-cftree.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-value.o\
+                    ncsu-constants.o\
+                    ncsu-utils.o\
+                    ncsu-sander-proxy.o
+
+
+ncsu-cftree.o:   ncsu-cftree.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cftree.F90
+
+ncsu-colvar-math.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-utils.o
+
+
+ncsu-colvar-math.o:   ncsu-colvar-math.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-colvar-math.F90
+
+ncsu-colvar-type.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h
+
+
+ncsu-colvar-type.o:   ncsu-colvar-type.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-colvar-type.F90
+
+ncsu-colvar-utils.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-utils.o\
+                    ncsu-constants.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-mpi.h\
+                    ncsu-colvar-type.o
+
+
+ncsu-colvar-utils.o:   ncsu-colvar-utils.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-colvar-utils.F90
+
+ncsu-colvar.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-colvar-type.o\
+                    ncsu-cv-ANGLE.o\
+                    ncsu-cv-TORSION.o\
+                    ncsu-cv-DISTANCE.o\
+                    ncsu-cv-MULTI_RMSD.o\
+                    ncsu-cv-R_OF_GYRATION.o\
+                    ncsu-cv-HANDEDNESS.o\
+                    ncsu-cv-N_OF_BONDS.o\
+                    ncsu-cv-N_OF_STRUCTURES.o\
+                    ncsu-cv-LCOD.o\
+                    ncsu-cv-COS_OF_DIHEDRAL.o\
+                    ncsu-cv-COM_ANGLE.o\
+                    ncsu-cv-COM_TORSION.o\
+                    ncsu-cv-COM_DISTANCE.o\
+                    ncsu-cv-PCA.o\
+                    ncsu-constants.o\
+                    constants.o\
+                    ncsu-utils.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-value.o\
+                    ncsu-cftree.o\
+                    ncsu-read-pca.o\
+                    ncsu-mpi.h
+
+
+ncsu-colvar.o:   ncsu-colvar.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-colvar.F90
+
+ncsu-constants.o: \
+                    ncsu-config.h
+
+
+ncsu-constants.o:   ncsu-constants.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-constants.F90
+
+ncsu-cv-ANGLE.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-utils.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-colvar-math.o\
+                    ncsu-mpi.h\
+                    ncsu-colvar-utils.o
+
+
+ncsu-cv-ANGLE.o:   ncsu-cv-ANGLE.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-ANGLE.F90
+
+ncsu-cv-COM_ANGLE.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-colvar-math.o\
+                    ncsu-colvar-utils.o\
+                    ncsu-mpi.h\
+                    ncsu-sander-proxy.o\
+                    ncsu-utils.o
+
+
+ncsu-cv-COM_ANGLE.o:   ncsu-cv-COM_ANGLE.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-COM_ANGLE.F90
+
+ncsu-cv-COM_DISTANCE.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-colvar-math.o\
+                    ncsu-colvar-utils.o\
+                    ncsu-mpi.h\
+                    ncsu-sander-proxy.o\
+                    ncsu-utils.o
+
+
+ncsu-cv-COM_DISTANCE.o:   ncsu-cv-COM_DISTANCE.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-COM_DISTANCE.F90
+
+ncsu-cv-COM_TORSION.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-colvar-math.o\
+                    ncsu-colvar-utils.o\
+                    ncsu-mpi.h\
+                    ncsu-sander-proxy.o\
+                    ncsu-utils.o
+
+
+ncsu-cv-COM_TORSION.o:   ncsu-cv-COM_TORSION.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-COM_TORSION.F90
+
+ncsu-cv-COS_OF_DIHEDRAL.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-utils.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-mpi.h\
+                    ncsu-colvar-math.o
+
+
+ncsu-cv-COS_OF_DIHEDRAL.o:   ncsu-cv-COS_OF_DIHEDRAL.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-COS_OF_DIHEDRAL.F90
+
+ncsu-cv-DISTANCE.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-sander-proxy.o\
+                    nonbond_list.o\
+                    ncsu-colvar-math.o\
+                    ncsu-utils.o\
+                    ncsu-mpi.h\
+                    ncsu-colvar-utils.o
+
+
+ncsu-cv-DISTANCE.o:   ncsu-cv-DISTANCE.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-DISTANCE.F90
+
+ncsu-cv-HANDEDNESS.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-utils.o\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-mpi.h\
+                    ncsu-colvar-utils.o\
+                    ncsu-sander-proxy.o
+
+
+ncsu-cv-HANDEDNESS.o:   ncsu-cv-HANDEDNESS.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-HANDEDNESS.F90
+
+ncsu-cv-LCOD.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-utils.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-colvar-math.o\
+                    ncsu-mpi.h\
+                    ncsu-colvar-utils.o
+
+
+ncsu-cv-LCOD.o:   ncsu-cv-LCOD.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-LCOD.F90
+
+ncsu-cv-MULTI_RMSD.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-cv-priv.type\
+                    ncsu-cv-priv.decl\
+                    ncsu-cv-priv.impl\
+                    ncsu-rmsd.o\
+                    ncsu-utils.o\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-mpi.h\
+                    ncsu-sander-proxy.o\
+                    ncsu-colvar-utils.o
+
+
+ncsu-cv-MULTI_RMSD.o:   ncsu-cv-MULTI_RMSD.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-MULTI_RMSD.F90
+
+ncsu-cv-N_OF_BONDS.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-mpi.h\
+                    ncsu-utils.o\
+                    ncsu-sander-proxy.o
+
+
+ncsu-cv-N_OF_BONDS.o:   ncsu-cv-N_OF_BONDS.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-N_OF_BONDS.F90
+
+ncsu-cv-N_OF_STRUCTURES.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-cv-priv.type\
+                    ncsu-cv-priv.decl\
+                    ncsu-cv-priv.impl\
+                    ncsu-rmsd.o\
+                    ncsu-utils.o\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-mpi.h\
+                    ncsu-sander-proxy.o\
+                    ncsu-colvar-utils.o
+
+
+ncsu-cv-N_OF_STRUCTURES.o:   ncsu-cv-N_OF_STRUCTURES.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-N_OF_STRUCTURES.F90
+
+ncsu-cv-PCA.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-cv-priv.type\
+                    ncsu-cv-priv.decl\
+                    ncsu-cv-priv.impl\
+                    ncsu-utils.o\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-rmsd.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-mpi.h\
+                    ncsu-colvar-utils.o
+
+
+ncsu-cv-PCA.o:   ncsu-cv-PCA.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-PCA.F90
+
+ncsu-cv-R_OF_GYRATION.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-cv-priv.type\
+                    ncsu-cv-priv.decl\
+                    ncsu-cv-priv.impl\
+                    ncsu-utils.o\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-mpi.h\
+                    ncsu-colvar-utils.o\
+                    ncsu-sander-proxy.o
+
+
+ncsu-cv-R_OF_GYRATION.o:   ncsu-cv-R_OF_GYRATION.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-R_OF_GYRATION.F90
+
+ncsu-cv-TORSION.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-utils.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-colvar-math.o\
+                    ncsu-mpi.h\
+                    ncsu-colvar-utils.o
+
+
+ncsu-cv-TORSION.o:   ncsu-cv-TORSION.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-cv-TORSION.F90
+
+ncsu-lexer.o: \
+                    ncsu-utils.h\
+                    ncsu-utils.o
+
+
+ncsu-lexer.o:   ncsu-lexer.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-lexer.F90
+
+ncsu-parser.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-cftree.o\
+                    ncsu-utils.o\
+                    ncsu-lexer.o\
+                    ncsu-value.o\
+                    ncsu-constants.o\
+                    ncsu-sander-proxy.o
+
+
+ncsu-parser.o:   ncsu-parser.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-parser.F90
+
+ncsu-pmd-hooks.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-colvar.o\
+                    ncsu-utils.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-mpi.h\
+                    ncsu-cftree.o\
+                    ncsu-parser.o
+
+
+ncsu-pmd-hooks.o:   ncsu-pmd-hooks.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-pmd-hooks.F90
+
+ncsu-read-pca.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-colvar-type.o\
+                    ncsu-constants.o\
+                    ncsu-utils.o
+
+
+ncsu-read-pca.o:   ncsu-read-pca.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-read-pca.F90
+
+ncsu-rmsd.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-utils.o\
+                    ncsu-constants.o
+
+
+ncsu-rmsd.o:   ncsu-rmsd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-rmsd.F90
+
+ncsu-sander-hooks.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-pmd-hooks.o\
+                    ncsu-abmd-hooks.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-mpi.h\
+                    ncsu-smd-hooks.o\
+                    ncsu-bbmd-hooks.o\
+                    ncsu-utils.o\
+                    sglds.o
+
+
+ncsu-sander-hooks.o:   ncsu-sander-hooks.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-sander-hooks.F90
+
+ncsu-sander-proxy.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    file_io_dat.o\
+                    ../include/md.h\
+                    ncsu-mpi.h\
+                    ../include/memory.h\
+                    sglds.o\
+                    box.h\
+                    ncsu-constants.o
+
+
+ncsu-sander-proxy.o:   ncsu-sander-proxy.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-sander-proxy.F90
+
+ncsu-smd-hooks.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-colvar-type.o\
+                    ncsu-utils.o\
+                    ncsu-value.o\
+                    ncsu-cftree.o\
+                    ncsu-parser.o\
+                    ncsu-colvar.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-mpi.h
+
+
+ncsu-smd-hooks.o:   ncsu-smd-hooks.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-smd-hooks.F90
+
+ncsu-umbrella.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    netcdf.o\
+                    ncsu-constants.o\
+                    ncsu-utils.o\
+                    ncsu-mpi.h\
+                    ncsu-sander-proxy.o
+
+
+ncsu-umbrella.o:   ncsu-umbrella.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-umbrella.F90
+
+ncsu-utils.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-sander-proxy.o\
+                    ncsu-mpi.h
+
+
+ncsu-utils.o:   ncsu-utils.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-utils.F90
+
+ncsu-value.o: \
+                    ncsu-utils.h\
+                    ncsu-config.h\
+                    ncsu-constants.o\
+                    ncsu-utils.o
+
+
+ncsu-value.o:   ncsu-value.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ ncsu-value.F90
+
+new_time.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    def_time.h\
+                    new_time.h\
+                    stack.o\
+                    extra.h\
+                    parallel.h\
+                    qmmm_module.o\
+                    sebomd_module.o\
+                    constantph.o\
+                    ../include/md.h
+
+
+new_time.o:   new_time.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ new_time.F90
+
+new_time.API.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    def_time.h\
+                    new_time.h\
+                    stack.o\
+                    extra.h\
+                    parallel.h\
+                    qmmm_module.o\
+                    sebomd_module.o\
+                    constantph.o\
+                    ../include/md.h
+
+new_time.API.o:   new_time.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ new_time.F90
+
+nmlsrc.o: \
+                    copyright.h
+
+
+nmlsrc.o:   nmlsrc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nmlsrc.F90
+
+nmr.o: \
+                    ../include/assert.fh\
+                    copyright.h\
+                    ../include/dprec.fh\
+                    constants.o\
+                    softcore.o\
+                    nmr.h\
+                    ../include/memory.h\
+                    parms.o\
+                    remd.o\
+                    file_io_dat.o\
+                    extra.h\
+                    ../include/md.h\
+                    les.o\
+                    box.h
+
+
+nmr.o:   nmr.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nmr.F90
+
+nmr.LES.o: \
+                    ../include/assert.fh\
+                    copyright.h\
+                    ../include/dprec.fh\
+                    constants.o\
+                    softcore.o\
+                    nmr.h\
+                    ../include/memory.h\
+                    parms.o\
+                    remd.LES.o\
+                    file_io_dat.o\
+                    extra.h\
+                    ../include/md.h\
+                    les.o\
+                    box.h
+
+nmr.LES.o:   nmr.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nmr.F90
+
+nmrcal.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    nmr.o\
+                    file_io_dat.o\
+                    nmr.h\
+                    parallel.h
+
+
+nmrcal.o:   nmrcal.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nmrcal.F90
+
+nonbond_list.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    amoeba_mdin.o\
+                    trace.o\
+                    extra.h\
+                    ew_cntrl.h\
+                    ew_mpole.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    def_time.h\
+                    constants.o\
+                    les.o\
+                    pimd_vars.o\
+                    softcore.o\
+                    qmmm_module.o\
+                    box.h\
+                    ../include/memory.h
+
+
+nonbond_list.o:   nonbond_list.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nonbond_list.F90
+
+nonbond_list.LES.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    amoeba_mdin.o\
+                    trace.o\
+                    extra.h\
+                    ew_cntrl.h\
+                    ew_mpole.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    def_time.h\
+                    constants.o\
+                    les.o\
+                    pimd_vars.o\
+                    softcore.o\
+                    qmmm_module.o\
+                    box.h\
+                    ../include/memory.h
+
+nonbond_list.LES.o:   nonbond_list.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nonbond_list.F90
+
+nonbond_list.API.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    amoeba_mdin.o\
+                    trace.o\
+                    extra.h\
+                    ew_cntrl.h\
+                    ew_mpole.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    def_time.h\
+                    constants.o\
+                    les.o\
+                    pimd_vars.o\
+                    softcore.o\
+                    qmmm_module.o\
+                    box.h\
+                    ../include/memory.h
+
+nonbond_list.API.o:   nonbond_list.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nonbond_list.F90
+
+nonbond_list.LESAPI.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    amoeba_mdin.o\
+                    trace.o\
+                    extra.h\
+                    ew_cntrl.h\
+                    ew_mpole.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    def_time.h\
+                    constants.o\
+                    les.o\
+                    pimd_vars.o\
+                    softcore.o\
+                    qmmm_module.o\
+                    box.h\
+                    ../include/memory.h
+
+nonbond_list.LESAPI.o:   nonbond_list.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nonbond_list.F90
+
+nose_hoover.o: \
+                    ../include/dprec.fh\
+                    abfqmmm_module.o\
+                    random.o\
+                    parallel.h\
+                    ../include/md.h\
+                    ../include/memory.h
+
+
+nose_hoover.o:   nose_hoover.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nose_hoover.F90
+
+nose_hoover_init.o: \
+                    pimd_vars.o\
+                    constants.o\
+                    nose_hoover.o\
+                    cmd_vars.o\
+                    abfqmmm_module.o\
+                    ../include/memory.h\
+                    ../include/md.h\
+                    parallel.h
+
+
+nose_hoover_init.o:   nose_hoover_init.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nose_hoover_init.F90
+
+nose_hoover_init_LES.o: \
+                    les.o\
+                    pimd_vars.o\
+                    constants.o\
+                    nose_hoover.o\
+                    cmd_vars.o\
+                    ../include/memory.h\
+                    ../include/md.h\
+                    parallel.h
+
+
+nose_hoover_init_LES.o:   nose_hoover_init_LES.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ nose_hoover_init_LES.F90
+
+out_evb.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    evb_pimd_init.o\
+                    parallel.h\
+                    ../include/md.h
+
+
+out_evb.o:   out_evb.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ out_evb.F90
+
+out_evb.LES.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    evb_pimd_init.LES.o\
+                    parallel.h\
+                    ../include/md.h
+
+out_evb.LES.o:   out_evb.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ out_evb.F90
+
+parallel.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    trace.o\
+                    parms.o\
+                    charmm.o\
+                    les.o\
+                    nonbond_list.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    cmd_vars.o\
+                    nose_hoover.o\
+                    lscivr_vars.o\
+                    spatial_fft.o\
+                    softcore.o\
+                    mbar.o\
+                    linear_response.o\
+                    sglds.o\
+                    ips.o\
+                    amd.o\
+                    scaledMD.o\
+                    emap.o\
+                    constantph.o\
+                    crg_reloc.o\
+                    emil.o\
+                    parallel.h\
+                    ew_parallel.h\
+                    extra.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    nmr.h\
+                    box.h\
+                    extra_pts.h\
+                    ew_pme_recip.h\
+                    ew_mpole.h\
+                    ew_erfc_spline.h\
+                    ew_cntrl.h\
+                    flocntrl.h\
+                    debug.h\
+                    new_time.h\
+                    tgtmd.h\
+                    qmmm_module.o\
+                    state.o
+
+
+parallel.o:   parallel.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ parallel.F90
+
+parallel.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    trace.o\
+                    parms.o\
+                    charmm.o\
+                    les.o\
+                    nonbond_list.LES.o\
+                    file_io_dat.o\
+                    pimd_vars.o\
+                    cmd_vars.o\
+                    nose_hoover.o\
+                    lscivr_vars.o\
+                    spatial_fft.o\
+                    softcore.o\
+                    mbar.o\
+                    linear_response.o\
+                    sglds.o\
+                    ips.o\
+                    amd.o\
+                    scaledMD.o\
+                    emap.o\
+                    constantph.o\
+                    crg_reloc.o\
+                    emil.o\
+                    parallel.h\
+                    ew_parallel.h\
+                    extra.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    nmr.h\
+                    box.h\
+                    extra_pts.h\
+                    ew_pme_recip.h\
+                    ew_mpole.h\
+                    ew_erfc_spline.h\
+                    ew_cntrl.h\
+                    flocntrl.h\
+                    debug.h\
+                    new_time.h\
+                    tgtmd.h\
+                    qmmm_module.o\
+                    state.o
+
+parallel.LES.o:   parallel.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ parallel.F90
+
+parms.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    memory_module.o\
+                    extra.h\
+                    parallel.h
+
+
+parms.o:   parms.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ parms.F90
+
+pcshift.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    nmr.h\
+                    ../include/md.h\
+                    pcshift.h\
+                    def_time.h\
+                    constants.o
+
+
+pcshift.o:   pcshift.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ pcshift.F90
+
+pearsn.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    constants.o
+
+
+pearsn.o:   pearsn.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ pearsn.F90
+
+pimd_force.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    constants.o\
+                    pimd_vars.o\
+                    les.o\
+                    evb_pimd_init.o\
+                    evb_vars.o\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    parallel.h\
+                    file_io_dat.o\
+                    def_time.h
+
+
+pimd_force.o:   pimd_force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ pimd_force.F90
+
+pimd_force.LES.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    constants.o\
+                    pimd_vars.o\
+                    les.o\
+                    evb_pimd_init.LES.o\
+                    evb_vars.o\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    parallel.h\
+                    file_io_dat.o\
+                    def_time.h
+
+pimd_force.LES.o:   pimd_force.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ pimd_force.F90
+
+pimd_init.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    pimd_vars.o\
+                    cmd_vars.o\
+                    les.o\
+                    evb_pimd_init.o\
+                    evb_vars.o\
+                    random.o\
+                    ../include/md.h\
+                    extra.h\
+                    file_io_dat.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    nose_hoover.o
+
+
+pimd_init.o:   pimd_init.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ pimd_init.F90
+
+pimd_init.LES.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    pimd_vars.o\
+                    cmd_vars.o\
+                    les.o\
+                    evb_pimd_init.LES.o\
+                    evb_vars.o\
+                    random.o\
+                    ../include/md.h\
+                    extra.h\
+                    file_io_dat.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    nose_hoover.o
+
+pimd_init.LES.o:   pimd_init.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ pimd_init.F90
+
+pimd_vars.o: \
+                    ../include/dprec.fh\
+                    state.o
+
+
+pimd_vars.o:   pimd_vars.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ pimd_vars.F90
+
+printe.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    state.o\
+                    decomp.o\
+                    file_io_dat.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    box.h\
+                    extra.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    nmr.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    crg_reloc.o\
+                    constants.o\
+                    qmmm_module.o\
+                    xref.o\
+                    charmm.o\
+                    emap.o\
+                    sebomd_module.o\
+                    ew_mpole.h\
+                    ew_cntrl.h
+
+
+printe.o:   printe.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ printe.F90
+
+printe.PUPIL.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    state.o\
+                    decomp.o\
+                    file_io_dat.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    box.h\
+                    extra.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    nmr.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    crg_reloc.o\
+                    constants.o\
+                    qmmm_module.o\
+                    xref.o\
+                    charmm.o\
+                    emap.o\
+                    sebomd_module.o\
+                    ew_mpole.h\
+                    ew_cntrl.h
+
+printe.PUPIL.o:   printe.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DPUPIL_SUPPORT -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ printe.F90
+
+printe.APBS.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    state.o\
+                    decomp.o\
+                    file_io_dat.APBS.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    box.h\
+                    extra.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    nmr.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    crg_reloc.o\
+                    constants.o\
+                    qmmm_module.o\
+                    xref.o\
+                    charmm.o\
+                    emap.o\
+                    sebomd_module.o\
+                    ew_mpole.h\
+                    ew_cntrl.h
+
+printe.APBS.o:   printe.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPBS -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ printe.F90
+
+
+prmtop_type.o:   prmtop_type.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ prmtop_type.F90
+
+prn_dipoles.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    constants.o\
+                    qmmm_module.o
+
+
+prn_dipoles.o:   prn_dipoles.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ prn_dipoles.F90
+
+prn_qmmm_dipole.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    constants.o
+
+
+prn_qmmm_dipole.o:   prn_qmmm_dipole.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ prn_qmmm_dipole.F90
+
+pubfft.o: \
+                    copyright.h\
+                    ../include/dprec.fh
+
+
+pubfft.o:   pubfft.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ pubfft.F90
+
+pupildata.o: \
+                    ../include/dprec.fh\
+                    memory_module.o\
+                    parms.o\
+                    ../include/memory.h\
+                    extra_pts.h\
+                    ../include/md.h\
+                    nonbond_list.o\
+                    state.o
+
+
+pupildata.o:   pupildata.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ pupildata.F90
+
+putvalues.o: \
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    pupildata.o\
+                    constants.o\
+                    qmmm_module.o\
+                    ../include/memory.h\
+                    debug.h\
+                    memory_module.o
+
+
+putvalues.o:   putvalues.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ putvalues.F90
+
+qm2_extern_adf_module.o: \
+                    ../include/dprec.fh\
+                    qm2_extern_util_module.o\
+                    constants.o\
+                    file_io_dat.o\
+                    elementOrbitalIndex.o\
+                    utilitiesmodule.o
+
+
+qm2_extern_adf_module.o:   qm2_extern_adf_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_adf_module.F90
+
+qm2_extern_gau_module.o: \
+                    ../include/dprec.fh\
+                    qm2_extern_util_module.o\
+                    constants.o\
+                    file_io_dat.o\
+                    elementOrbitalIndex.o
+
+
+qm2_extern_gau_module.o:   qm2_extern_gau_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_gau_module.F90
+
+qm2_extern_genmpi_module.o: \
+                    ../include/dprec.fh\
+                    qm2_extern_util_module.o\
+                    constants.o\
+                    utilitiesmodule.o\
+                    elementOrbitalIndex.o
+
+
+qm2_extern_genmpi_module.o:   qm2_extern_genmpi_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_genmpi_module.F90
+
+qm2_extern_gms_module.o: \
+                    ../include/dprec.fh\
+                    qm2_extern_util_module.o\
+                    constants.o\
+                    utilitiesmodule.o\
+                    elementOrbitalIndex.o
+
+
+qm2_extern_gms_module.o:   qm2_extern_gms_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_gms_module.F90
+
+qm2_extern_lio_module.o: \
+                    ../include/dprec.fh\
+                    constants.o\
+                    file_io_dat.o\
+                    qmmm_module.o
+
+
+qm2_extern_lio_module.o:   qm2_extern_lio_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_lio_module.F90
+
+qm2_extern_module.o: \
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    qm2_extern_adf_module.o\
+                    qm2_extern_gms_module.o\
+                    qm2_extern_tc_module.o\
+                    qm2_extern_gau_module.o\
+                    qm2_extern_orc_module.o\
+                    qm2_extern_nw_module.o\
+                    qm2_extern_genmpi_module.o\
+                    qm2_extern_qc_module.o\
+                    qm2_extern_lio_module.o\
+                    pimd_vars.o\
+                    file_io_dat.o\
+                    remd.o\
+                    parallel.h\
+                    ../include/md.h\
+                    constants.o
+
+
+qm2_extern_module.o:   qm2_extern_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_module.F90
+
+qm2_extern_module.LES.o: \
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    qm2_extern_adf_module.o\
+                    qm2_extern_gms_module.o\
+                    qm2_extern_tc_module.o\
+                    qm2_extern_gau_module.o\
+                    qm2_extern_orc_module.o\
+                    qm2_extern_nw_module.o\
+                    qm2_extern_genmpi_module.o\
+                    qm2_extern_qc_module.o\
+                    qm2_extern_lio_module.o\
+                    pimd_vars.o\
+                    file_io_dat.o\
+                    remd.LES.o\
+                    parallel.h\
+                    ../include/md.h\
+                    constants.o
+
+qm2_extern_module.LES.o:   qm2_extern_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_module.F90
+
+qm2_extern_nw_module.o: \
+                    ../include/dprec.fh\
+                    qm2_extern_util_module.o\
+                    constants.o\
+                    file_io_dat.o\
+                    utilitiesmodule.o\
+                    elementOrbitalIndex.o
+
+
+qm2_extern_nw_module.o:   qm2_extern_nw_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_nw_module.F90
+
+qm2_extern_orc_module.o: \
+                    ../include/dprec.fh\
+                    qm2_extern_util_module.o\
+                    constants.o\
+                    utilitiesmodule.o\
+                    elementOrbitalIndex.o
+
+
+qm2_extern_orc_module.o:   qm2_extern_orc_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_orc_module.F90
+
+qm2_extern_qc_module.o: \
+                    ../include/dprec.fh\
+                    qm2_extern_util_module.o\
+                    constants.o\
+                    file_io_dat.o\
+                    utilitiesmodule.o\
+                    elementOrbitalIndex.o
+
+
+qm2_extern_qc_module.o:   qm2_extern_qc_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_qc_module.F90
+
+qm2_extern_tc_module.o: \
+                    ../include/dprec.fh\
+                    qm2_extern_util_module.o\
+                    constants.o\
+                    utilitiesmodule.o\
+                    elementOrbitalIndex.o
+
+
+qm2_extern_tc_module.o:   qm2_extern_tc_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_tc_module.F90
+
+qm2_extern_util_module.o: \
+                    ../include/dprec.fh\
+                    constants.o
+
+
+qm2_extern_util_module.o:   qm2_extern_util_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm2_extern_util_module.F90
+
+qm_div.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    ../include/memory.h
+
+
+qm_div.o:   qm_div.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm_div.F90
+
+qm_ewald.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    qmmm_module.o\
+                    abfqmmm_module.o\
+                    nonbond_list.o\
+                    constants.o\
+                    qm2_array_locations.h\
+                    ew_pme_recip.h
+
+
+qm_ewald.o:   qm_ewald.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm_ewald.F90
+
+qm_mm.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    def_time.h\
+                    qmmm_module.o\
+                    constants.o\
+                    parms.o\
+                    nonbond_list.o\
+                    qm2_extern_module.o\
+                    abfqmmm_module.o\
+                    ../include/assert.fh\
+                    qmmm_nml_module.o\
+                    qmmm_struct_module.o
+
+
+qm_mm.o:   qm_mm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm_mm.F90
+
+qm_mm.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    def_time.h\
+                    qmmm_module.o\
+                    constants.o\
+                    parms.o\
+                    nonbond_list.LES.o\
+                    qm2_extern_module.LES.o\
+                    abfqmmm_module.o\
+                    ../include/assert.fh\
+                    qmmm_nml_module.o\
+                    qmmm_struct_module.o
+
+qm_mm.LES.o:   qm_mm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm_mm.F90
+
+qm_mm.API.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    def_time.h\
+                    qmmm_module.o\
+                    constants.o\
+                    parms.o\
+                    nonbond_list.API.o\
+                    qm2_extern_module.o\
+                    abfqmmm_module.o\
+                    ../include/assert.fh\
+                    qmmm_nml_module.o\
+                    qmmm_struct_module.o
+
+qm_mm.API.o:   qm_mm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm_mm.F90
+
+qm_mm.LESAPI.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    def_time.h\
+                    qmmm_module.o\
+                    constants.o\
+                    parms.o\
+                    nonbond_list.LESAPI.o\
+                    qm2_extern_module.o\
+                    abfqmmm_module.o\
+                    ../include/assert.fh\
+                    qmmm_nml_module.o\
+                    qmmm_struct_module.o
+
+qm_mm.LESAPI.o:   qm_mm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qm_mm.F90
+
+qmmm_adaptive_module.o: \
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    parallel.h\
+                    state.o\
+                    ../include/memory.h\
+                    file_io_dat.o\
+                    constants.o\
+                    molecule.o\
+                    box.h
+
+
+qmmm_adaptive_module.o:   qmmm_adaptive_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qmmm_adaptive_module.F90
+
+qmmm_vsolv.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    qmmm_module.o\
+                    molecule.o\
+                    parallel.h\
+                    qmmm_vsolv_module.o\
+                    parms.o
+
+
+qmmm_vsolv.o:   qmmm_vsolv.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ qmmm_vsolv.F90
+
+rcbond_anal2num.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+rcbond_anal2num.o:   rcbond_anal2num.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ rcbond_anal2num.F90
+
+rcdbonds_anal2num.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+rcdbonds_anal2num.o:   rcdbonds_anal2num.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ rcdbonds_anal2num.F90
+
+rdparm.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    parms.o\
+                    charmm.o\
+                    file_io_dat.o\
+                    constants.o\
+                    amoeba_mdin.o\
+                    ../lib/nxtsec.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    box.h\
+                    nmr.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    molecule.o\
+                    nonbond_list.o\
+                    pimd_vars.o\
+                    les.o\
+                    dssp.o\
+                    ew_mpole.h
+
+
+rdparm.o:   rdparm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ rdparm.F90
+
+rdparm.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    parms.o\
+                    charmm.o\
+                    file_io_dat.o\
+                    constants.o\
+                    amoeba_mdin.o\
+                    ../lib/nxtsec.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    box.h\
+                    nmr.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    molecule.o\
+                    nonbond_list.LES.o\
+                    pimd_vars.o\
+                    les.o\
+                    dssp.o\
+                    ew_mpole.h
+
+rdparm.LES.o:   rdparm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ rdparm.F90
+
+rdparm.API.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    parms.o\
+                    charmm.API.o\
+                    file_io_dat.o\
+                    constants.o\
+                    amoeba_mdin.o\
+                    ../lib/nxtsec.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    box.h\
+                    nmr.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    molecule.o\
+                    nonbond_list.API.o\
+                    pimd_vars.o\
+                    les.o\
+                    dssp.o\
+                    ew_mpole.h
+
+rdparm.API.o:   rdparm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ rdparm.F90
+
+rdparm.LESAPI.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    parms.o\
+                    charmm.o\
+                    file_io_dat.o\
+                    constants.o\
+                    amoeba_mdin.o\
+                    ../lib/nxtsec.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    box.h\
+                    nmr.h\
+                    extra_pts.h\
+                    ew_cntrl.h\
+                    molecule.o\
+                    nonbond_list.LESAPI.o\
+                    pimd_vars.o\
+                    les.o\
+                    dssp.o\
+                    ew_mpole.h
+
+rdparm.LESAPI.o:   rdparm.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ rdparm.F90
+
+react_flux.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+react_flux.o:   react_flux.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ react_flux.F90
+
+react_flux_init.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+react_flux_init.o:   react_flux_init.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ react_flux_init.F90
+
+react_path.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    parallel.h\
+                    ../include/md.h
+
+
+react_path.o:   react_path.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ react_path.F90
+
+relax_mat.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    constants.o\
+                    nmr.h\
+                    ../include/md.h\
+                    ../include/memory.h\
+                    def_time.h\
+                    box.h\
+                    extra.h\
+                    file_io_dat.o\
+                    parallel.h
+
+
+relax_mat.o:   relax_mat.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ relax_mat.F90
+
+remd.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    random.o\
+                    extra.h\
+                    sglds.o\
+                    parallel.h\
+                    AmberNetcdf.o\
+                    sander_lib.o\
+                    constants.o\
+                    ncsu-sander-hooks.o\
+                    les.o\
+                    netcdf.o\
+                    state.o\
+                    ../include/memory.h\
+                    box.h\
+                    constantph.o
+
+
+remd.o:   remd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ remd.F90
+
+remd.LES.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    random.o\
+                    extra.h\
+                    sglds.o\
+                    parallel.h\
+                    AmberNetcdf.o\
+                    sander_lib.o\
+                    constants.o\
+                    ncsu-sander-hooks.o\
+                    les.o\
+                    netcdf.o\
+                    state.o\
+                    ../include/memory.h\
+                    box.h\
+                    constantph.o
+
+remd.LES.o:   remd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ remd.F90
+
+rfree.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    rgroup.h
+
+
+rfree.o:   rfree.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ rfree.F90
+
+rgroup.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    rgroup.h
+
+
+rgroup.o:   rgroup.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ rgroup.F90
+
+rmsgrd.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    poisson_boltzmann.o\
+                    ../include/md.h\
+                    box.h\
+                    ../include/memory.h
+
+
+rmsgrd.o:   rmsgrd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ rmsgrd.F90
+
+runmd.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    state.o\
+                    ncsu-sander-hooks.o\
+                    molecule.o\
+                    cmd_vars.o\
+                    pimd_vars.o\
+                    lscivr_vars.o\
+                    nose_hoover.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    qmmm_module.o\
+                    file_io_dat.o\
+                    constants.o\
+                    trace.o\
+                    stack.o\
+                    decomp.o\
+                    fastwt.o\
+                    bintraj.o\
+                    nonbond_list.o\
+                    sglds.o\
+                    les.o\
+                    evb_vars.o\
+                    remd.o\
+                    evb_pimd_init.o\
+                    softcore.o\
+                    mbar.o\
+                    amoeba_mdin.o\
+                    amoeba_runmd.o\
+                    constantph.o\
+                    emap.o\
+                    barostats.o\
+                    emil.o\
+                    memory_module.o\
+                    random.o\
+                    qmmm_adaptive_module.o\
+                    crg_reloc.o\
+                    abfqmmm_module.o\
+                    amd.o\
+                    scaledMD.o\
+                    sebomd_module.o\
+                    parallel.h\
+                    ../include/md.h\
+                    box.h\
+                    nmr.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    ../include/memory.h\
+                    extra.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    ew_mpole.h\
+                    def_time.h\
+                    extra_pts.h\
+                    ../pbsa/pb_md.h\
+                    oininit.F90\
+                    isokinetic.F90
+
+
+runmd.o:   runmd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ runmd.F90
+
+runmd.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    state.o\
+                    ncsu-sander-hooks.o\
+                    molecule.o\
+                    cmd_vars.o\
+                    pimd_vars.o\
+                    lscivr_vars.o\
+                    nose_hoover.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    qmmm_module.o\
+                    file_io_dat.o\
+                    constants.o\
+                    trace.o\
+                    stack.o\
+                    decomp.o\
+                    fastwt.o\
+                    bintraj.LES.o\
+                    nonbond_list.LES.o\
+                    sglds.o\
+                    les.o\
+                    evb_vars.o\
+                    remd.LES.o\
+                    evb_pimd_init.LES.o\
+                    softcore.o\
+                    mbar.o\
+                    amoeba_mdin.o\
+                    amoeba_runmd.o\
+                    constantph.o\
+                    emap.o\
+                    barostats.o\
+                    emil.o\
+                    memory_module.o\
+                    random.o\
+                    qmmm_adaptive_module.o\
+                    crg_reloc.o\
+                    abfqmmm_module.o\
+                    amd.o\
+                    scaledMD.o\
+                    sebomd_module.o\
+                    parallel.h\
+                    ../include/md.h\
+                    box.h\
+                    nmr.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    ../include/memory.h\
+                    extra.h\
+                    ew_frc.h\
+                    ew_cntrl.h\
+                    ew_mpole.h\
+                    def_time.h\
+                    extra_pts.h\
+                    ../pbsa/pb_md.h\
+                    oininit.F90\
+                    isokinetic.F90
+
+runmd.LES.o:   runmd.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ runmd.F90
+
+runmin.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    fastwt.o\
+                    constants.o\
+                    qmmm_module.o\
+                    poisson_boltzmann.o\
+                    bintraj.o\
+                    file_io_dat.o\
+                    evb_vars.o\
+                    softcore.o\
+                    state.o\
+                    sebomd_module.o\
+                    parallel.h\
+                    ../include/md.h\
+                    box.h\
+                    ../include/memory.h\
+                    nmr.h\
+                    extra.h\
+                    ew_cntrl.h\
+                    ../pbsa/pb_md.h
+
+
+runmin.o:   runmin.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ runmin.F90
+
+sander.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    state.o\
+                    ncsu-sander-hooks.o\
+                    lmod.o\
+                    constants.o\
+                    qm2_read_nm_and_alloc.o\
+                    qmmm_module.o\
+                    qmmm_vsolv_module.o\
+                    qm2_extern_module.o\
+                    sebomd_module.o\
+                    sebomd_arrays.o\
+                    egb.o\
+                    les.o\
+                    decomp.o\
+                    fastwt.o\
+                    relax_mat.o\
+                    nmr.o\
+                    ew_recip.o\
+                    parms.o\
+                    molecule.o\
+                    nonbond_list.o\
+                    stack.o\
+                    amoeba_runmd.o\
+                    amoeba_mdin.o\
+                    amoeba_interface.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    pupildata.o\
+                    apbs.o\
+                    xray_interface.o\
+                    softcore.o\
+                    mbar.o\
+                    linear_response.o\
+                    evb_vars.o\
+                    evb_pimd_init.o\
+                    remd.o\
+                    bintraj.o\
+                    pimd_vars.o\
+                    trajene.o\
+                    charmm.o\
+                    memory_module.o\
+                    sglds.o\
+                    ips.o\
+                    crg_reloc.o\
+                    emap.o\
+                    file_io_dat.o\
+                    constantph.o\
+                    barostats.o\
+                    random.o\
+                    amd.o\
+                    scaledMD.o\
+                    abfqmmm_module.o\
+                    nmr.h\
+                    box.h\
+                    ../include/md.h\
+                    extra.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    parallel.h\
+                    ew_pme_recip.h\
+                    ew_frc.h\
+                    ew_erfc_spline.h\
+                    ew_parallel.h\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    def_time.h
+
+
+sander.o:   sander.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ sander.F90
+
+sander.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    state.o\
+                    ncsu-sander-hooks.o\
+                    lmod.LES.o\
+                    constants.o\
+                    qm2_read_nm_and_alloc.o\
+                    qmmm_module.o\
+                    qmmm_vsolv_module.o\
+                    qm2_extern_module.LES.o\
+                    sebomd_module.o\
+                    sebomd_arrays.o\
+                    egb.LES.o\
+                    les.o\
+                    decomp.o\
+                    fastwt.o\
+                    relax_mat.o\
+                    nmr.LES.o\
+                    ew_recip.LES.o\
+                    parms.o\
+                    molecule.o\
+                    nonbond_list.LES.o\
+                    stack.o\
+                    amoeba_runmd.o\
+                    amoeba_mdin.o\
+                    amoeba_interface.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    pupildata.o\
+                    apbs.o\
+                    xray_interface.o\
+                    softcore.o\
+                    mbar.o\
+                    linear_response.o\
+                    evb_vars.o\
+                    evb_pimd_init.LES.o\
+                    remd.LES.o\
+                    bintraj.LES.o\
+                    pimd_vars.o\
+                    trajene.o\
+                    charmm.o\
+                    memory_module.o\
+                    sglds.o\
+                    ips.o\
+                    crg_reloc.o\
+                    emap.o\
+                    file_io_dat.o\
+                    constantph.o\
+                    barostats.o\
+                    random.o\
+                    amd.o\
+                    scaledMD.o\
+                    abfqmmm_module.o\
+                    nmr.h\
+                    box.h\
+                    ../include/md.h\
+                    extra.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    parallel.h\
+                    ew_pme_recip.h\
+                    ew_frc.h\
+                    ew_erfc_spline.h\
+                    ew_parallel.h\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    def_time.h
+
+sander.LES.o:   sander.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ sander.F90
+
+sander.PUPIL.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    state.o\
+                    ncsu-sander-hooks.o\
+                    lmod.o\
+                    constants.o\
+                    qm2_read_nm_and_alloc.o\
+                    qmmm_module.o\
+                    qmmm_vsolv_module.o\
+                    qm2_extern_module.o\
+                    sebomd_module.o\
+                    sebomd_arrays.o\
+                    egb.o\
+                    les.o\
+                    decomp.o\
+                    fastwt.o\
+                    relax_mat.o\
+                    nmr.o\
+                    ew_recip.o\
+                    parms.o\
+                    molecule.o\
+                    nonbond_list.o\
+                    stack.o\
+                    amoeba_runmd.o\
+                    amoeba_mdin.o\
+                    amoeba_interface.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    pupildata.o\
+                    apbs.o\
+                    xray_interface.o\
+                    softcore.o\
+                    mbar.o\
+                    linear_response.o\
+                    evb_vars.o\
+                    evb_pimd_init.o\
+                    remd.o\
+                    bintraj.o\
+                    pimd_vars.o\
+                    trajene.o\
+                    charmm.o\
+                    memory_module.o\
+                    sglds.o\
+                    ips.o\
+                    crg_reloc.o\
+                    emap.o\
+                    file_io_dat.o\
+                    constantph.o\
+                    barostats.o\
+                    random.o\
+                    amd.o\
+                    scaledMD.o\
+                    abfqmmm_module.o\
+                    nmr.h\
+                    box.h\
+                    ../include/md.h\
+                    extra.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    parallel.h\
+                    ew_pme_recip.h\
+                    ew_frc.h\
+                    ew_erfc_spline.h\
+                    ew_parallel.h\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    def_time.h
+
+sander.PUPIL.o:   sander.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DPUPIL_SUPPORT -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ sander.F90
+
+sander.APBS.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    ncsu-config.h\
+                    state.o\
+                    ncsu-sander-hooks.o\
+                    lmod.o\
+                    constants.o\
+                    qm2_read_nm_and_alloc.o\
+                    qmmm_module.o\
+                    qmmm_vsolv_module.o\
+                    qm2_extern_module.o\
+                    sebomd_module.o\
+                    sebomd_arrays.o\
+                    egb.o\
+                    les.o\
+                    decomp.o\
+                    fastwt.o\
+                    relax_mat.o\
+                    nmr.o\
+                    ew_recip.o\
+                    parms.o\
+                    molecule.o\
+                    nonbond_list.o\
+                    stack.o\
+                    amoeba_runmd.o\
+                    amoeba_mdin.o\
+                    amoeba_interface.o\
+                    ../rism/amber_rism_interface.SANDER.o\
+                    pupildata.o\
+                    apbs.APBS.o\
+                    xray_interface.o\
+                    softcore.o\
+                    mbar.o\
+                    linear_response.o\
+                    evb_vars.o\
+                    evb_pimd_init.o\
+                    remd.o\
+                    bintraj.o\
+                    pimd_vars.o\
+                    trajene.o\
+                    charmm.o\
+                    memory_module.o\
+                    sglds.o\
+                    ips.o\
+                    crg_reloc.o\
+                    emap.o\
+                    file_io_dat.APBS.o\
+                    constantph.o\
+                    barostats.o\
+                    random.o\
+                    amd.o\
+                    scaledMD.o\
+                    abfqmmm_module.o\
+                    nmr.h\
+                    box.h\
+                    ../include/md.h\
+                    extra.h\
+                    tgtmd.h\
+                    multitmd.h\
+                    parallel.h\
+                    ew_pme_recip.h\
+                    ew_frc.h\
+                    ew_erfc_spline.h\
+                    ew_parallel.h\
+                    ew_mpole.h\
+                    ew_cntrl.h\
+                    def_time.h
+
+sander.APBS.o:   sander.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPBS -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ sander.F90
+
+sander_lib.o: \
+                    copyright.h
+
+
+sander_lib.o:   sander_lib.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ sander_lib.F90
+
+scaledMD.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    file_io_dat.o\
+                    parallel.h
+
+
+scaledMD.o:   scaledMD.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ scaledMD.F90
+
+schlegel_angle.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    evb_vars.o
+
+
+schlegel_angle.o:   schlegel_angle.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_angle.F90
+
+schlegel_dg.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    schlegel_uff.o\
+                    schlegel_dihed.o\
+                    schlegel_angle.o\
+                    file_io_dat.o\
+                    parallel.h\
+                    extra.h\
+                    evb_mathf.o
+
+
+schlegel_dg.o:   schlegel_dg.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_dg.F90
+
+schlegel_dihed.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    constants.o\
+                    evb_vars.o
+
+
+schlegel_dihed.o:   schlegel_dihed.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_dihed.F90
+
+schlegel_diis.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+schlegel_diis.o:   schlegel_diis.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_diis.F90
+
+schlegel_full.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+schlegel_full.o:   schlegel_full.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_full.F90
+
+schlegel_gbasis.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    evb_mathf.o
+
+
+schlegel_gbasis.o:   schlegel_gbasis.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_gbasis.F90
+
+schlegel_gmres.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    evb_mathf.o\
+                    parallel.h\
+                    extra.h
+
+
+schlegel_gmres.o:   schlegel_gmres.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_gmres.F90
+
+schlegel_hcn_cart.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    parallel.h\
+                    extra.h
+
+
+schlegel_hcn_cart.o:   schlegel_hcn_cart.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_hcn_cart.F90
+
+schlegel_hcn_cart_irc.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    parallel.h\
+                    extra.h
+
+
+schlegel_hcn_cart_irc.o:   schlegel_hcn_cart_irc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_hcn_cart_irc.F90
+
+schlegel_hcn_int_irc.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    parallel.h\
+                    extra.h
+
+
+schlegel_hcn_int_irc.o:   schlegel_hcn_int_irc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_hcn_int_irc.F90
+
+schlegel_pgbasis.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    evb_mathf.o
+
+
+schlegel_pgbasis.o:   schlegel_pgbasis.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_pgbasis.F90
+
+schlegel_poh_irc.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    evb_mathf.o\
+                    file_io_dat.o\
+                    parallel.h\
+                    extra.h
+
+
+schlegel_poh_irc.o:   schlegel_poh_irc.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_poh_irc.F90
+
+schlegel_poh_uff.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    file_io_dat.o\
+                    parallel.h\
+                    extra.h
+
+
+schlegel_poh_uff.o:   schlegel_poh_uff.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_poh_uff.F90
+
+schlegel_uff.o: \
+                    ../include/dprec.fh\
+                    constants.o\
+                    evb_vars.o\
+                    schlegel_uff_parm.h
+
+
+schlegel_uff.o:   schlegel_uff.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ schlegel_uff.F90
+
+
+sebomd_arrays.o:   sebomd_arrays.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ sebomd_arrays.F90
+
+sebomd_module.o: \
+                    ../include/dprec.fh\
+                    parallel.h\
+                    box.h\
+                    ../include/md.h\
+                    state.o\
+                    ../include/memory.h\
+                    file_io_dat.o
+
+
+sebomd_module.o:   sebomd_module.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ sebomd_module.F90
+
+select_coord.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    evb_mathf.o
+
+
+select_coord.o:   select_coord.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ select_coord.F90
+
+set.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    parms.o\
+                    constants.o\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    ../include/md.h\
+                    abfqmmm_module.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    extra.h\
+                    nmr.h\
+                    box.h\
+                    softcore.o
+
+
+set.o:   set.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ set.F90
+
+set.LES.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    parms.o\
+                    constants.o\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    binrestart.LES.o\
+                    ../include/md.h\
+                    abfqmmm_module.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    extra.h\
+                    nmr.h\
+                    box.h\
+                    softcore.o
+
+set.LES.o:   set.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ set.F90
+
+set.API.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    parms.o\
+                    constants.o\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    ../include/md.h\
+                    abfqmmm_module.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    extra.h\
+                    nmr.h\
+                    box.h\
+                    softcore.o
+
+set.API.o:   set.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ set.F90
+
+set.LESAPI.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    qmmm_module.o\
+                    parms.o\
+                    constants.o\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    binrestart.o\
+                    ../include/md.h\
+                    abfqmmm_module.o\
+                    ../include/memory.h\
+                    parallel.h\
+                    extra.h\
+                    nmr.h\
+                    box.h\
+                    softcore.o
+
+set.LESAPI.o:   set.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DAPI -DLES -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ set.F90
+
+sglds.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    ../include/md.h\
+                    parallel.h\
+                    state.o\
+                    random.o
+
+
+sglds.o:   sglds.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ sglds.F90
+
+shake.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    parallel.h\
+                    ../include/md.h
+
+
+shake.o:   shake.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ shake.F90
+
+short_ene.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    nonbond_list.o\
+                    constants.o\
+                    stack.o\
+                    softcore.o\
+                    ew_parallel.h\
+                    parallel.h\
+                    flocntrl.h\
+                    def_time.h\
+                    file_io_dat.o\
+                    les.o\
+                    pimd_vars.o\
+                    decomp.o\
+                    ips.o\
+                    mbar.o\
+                    crg_reloc.o\
+                    ew_cntrl.h\
+                    ../include/md.h\
+                    ew_directp.h\
+                    ene_decomp.h\
+                    ips_lj.h\
+                    ew_directe.h\
+                    ew_directe2.h\
+                    ew_directe3.h\
+                    ew_directe4.h
+
+
+short_ene.o:   short_ene.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ short_ene.F90
+
+short_ene.LES.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    nonbond_list.LES.o\
+                    constants.o\
+                    stack.o\
+                    softcore.o\
+                    ew_parallel.h\
+                    parallel.h\
+                    flocntrl.h\
+                    def_time.h\
+                    file_io_dat.o\
+                    les.o\
+                    pimd_vars.o\
+                    decomp.o\
+                    ips.o\
+                    mbar.o\
+                    crg_reloc.o\
+                    ew_cntrl.h\
+                    ../include/md.h\
+                    ew_directp.h\
+                    ene_decomp.h\
+                    ips_lj.h\
+                    ew_directe.h\
+                    ew_directe2.h\
+                    ew_directe3.h\
+                    ew_directe4.h
+
+short_ene.LES.o:   short_ene.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -DLES -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ short_ene.F90
+
+softcore.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    findmask.o\
+                    parallel.h\
+                    parms.o\
+                    random.o\
+                    state.o\
+                    constants.o\
+                    box.h\
+                    ew_cntrl.h\
+                    extra.h
+
+
+softcore.o:   softcore.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ softcore.F90
+
+spatial_fft.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    trace.o\
+                    def_time.h\
+                    parallel.h\
+                    constants.o\
+                    ew_parallel.h
+
+
+spatial_fft.o:   spatial_fft.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ spatial_fft.F90
+
+spatial_recip.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    nonbond_list.o\
+                    stack.o\
+                    spatial_fft.o\
+                    ew_recip.o\
+                    flocntrl.h\
+                    ew_pme_recip.h\
+                    ew_frc.h\
+                    def_time.h\
+                    box.h\
+                    parallel.h\
+                    ew_parallel.h\
+                    constants.o\
+                    ew_bspline.o\
+                    qmmm_module.o\
+                    extra.h\
+                    ../include/md.h
+
+
+spatial_recip.o:   spatial_recip.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ spatial_recip.F90
+
+stack.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh
+
+
+stack.o:   stack.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ stack.F90
+
+state.o: \
+                    copyright.h\
+                    ../include/dprec.fh
+
+
+state.o:   state.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ state.F90
+
+thermo_int.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    state.o\
+                    softcore.o
+
+
+thermo_int.o:   thermo_int.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ thermo_int.F90
+
+torinternal.o: \
+                    ../include/dprec.fh
+
+
+torinternal.o:   torinternal.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ torinternal.F90
+
+trace.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    parallel.h
+
+
+trace.o:   trace.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ trace.F90
+
+trajene.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    ../include/assert.fh\
+                    nonbond_list.o\
+                    constants.o\
+                    state.o\
+                    file_io_dat.o\
+                    AmberNetcdf.o\
+                    memory_module.o\
+                    netcdf.o\
+                    bintraj.o\
+                    tgtmd.h\
+                    extra.h\
+                    box.h\
+                    ew_pme_recip.h
+
+
+trajene.o:   trajene.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ trajene.F90
+
+unitv.o: \
+                    ../include/assert.fh\
+                    ../include/dprec.fh
+
+
+unitv.o:   unitv.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ unitv.F90
+
+vdw_anal2num.o: \
+                    ../include/dprec.fh\
+                    parms.o\
+                    evb_vars.o\
+                    ../include/memory.h
+
+
+vdw_anal2num.o:   vdw_anal2num.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ vdw_anal2num.F90
+
+wdc_bmat.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o\
+                    evb_mathf.o
+
+
+wdc_bmat.o:   wdc_bmat.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ wdc_bmat.F90
+
+xgauss_anal2num.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+xgauss_anal2num.o:   xgauss_anal2num.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xgauss_anal2num.F90
+
+xray_FFT.o: \
+                    ../include/assert.fh\
+                    xray_globals.o\
+                    constants.o\
+                    xray_reciprocal_space.o\
+                    xray_real_space.o\
+                    xray_fftpack.o\
+                    xray_utils.o
+
+
+xray_FFT.o:   xray_FFT.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xray_FFT.F90
+
+xray_fftpack.o: \
+                    ../include/assert.fh\
+                    xray_globals.o
+
+
+xray_fftpack.o:   xray_fftpack.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xray_fftpack.F90
+
+xray_fourier.o: \
+                    ../include/assert.fh\
+                    xray_globals.o\
+                    constants.o\
+                    xray_reciprocal_space.o\
+                    xray_real_space.o
+
+
+xray_fourier.o:   xray_fourier.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xray_fourier.F90
+
+xray_globals.o: \
+                    ../include/dprec.fh\
+                    file_io_dat.o
+
+
+xray_globals.o:   xray_globals.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xray_globals.F90
+
+xray_interface.o: \
+                    ../include/assert.fh\
+                    file_io_dat.o\
+                    xray_globals.o\
+                    memory_module.o\
+                    xray_reciprocal_space.o\
+                    xray_utils.o\
+                    nonbond_list.o\
+                    xray_fourier.o\
+                    findmask.o\
+                    extra.h
+
+
+xray_interface.o:   xray_interface.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xray_interface.F90
+
+xray_real_space.o: \
+                    ../include/assert.fh\
+                    xray_globals.o\
+                    constants.o
+
+
+xray_real_space.o:   xray_real_space.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xray_real_space.F90
+
+xray_reciprocal_space.o: \
+                    ../include/assert.fh\
+                    xray_globals.o\
+                    xray_utils.o\
+                    sort_inline.inc
+
+
+xray_reciprocal_space.o:   xray_reciprocal_space.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xray_reciprocal_space.F90
+
+xray_utils.o: \
+                    ../include/assert.fh\
+                    xray_globals.o\
+                    constants.o
+
+
+xray_utils.o:   xray_utils.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xray_utils.F90
+
+xref.o: \
+                    copyright.h\
+                    ../include/assert.fh\
+                    ../include/dprec.fh\
+                    state.o
+
+
+xref.o:   xref.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xref.F90
+
+xwarshel_anal2num.o: \
+                    ../include/dprec.fh\
+                    evb_vars.o
+
+
+xwarshel_anal2num.o:   xwarshel_anal2num.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FNOOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ xwarshel_anal2num.F90
+
+yammpnb.o: \
+                    copyright.h\
+                    ../include/dprec.fh\
+                    parallel.h\
+                    ../include/md.h
+
+
+yammpnb.o:   yammpnb.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FOPTFLAGS) $(FFLAGS) $(AMBERFFLAGS) $(RISMSANDER) -o $@ yammpnb.F90
+
+netcdf.o:  $(NETCDF)
+	test -e $@ || touch netcdf.o
+
+AmberNetcdf.o: ../lib/AmberNetcdf.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FREEFORMAT_FLAG) $(FOPTFLAGS) $(FFLAGS) -o AmberNetcdf.o ../lib/AmberNetcdf.F90
+
+random.o: ../lib/random.F90 ../lib/random.h
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FREEFORMAT_FLAG) $(FOPTFLAGS) $(FFLAGS) -o random.o ../lib/random.F90
+
+constants.o: ../lib/constants.F90
+	$(FC) $(FWARNFLAGS) $(FPPFLAGS) -c $(FREEFORMAT_FLAG) $(FOPTFLAGS) $(FFLAGS) -o constants.o ../lib/constants.F90
+
+../rism/amber_rism_interface.SANDER.o: ../rism/amber_rism_interface.F90
+	cd ../rism && \
+	if [ -n "$(RISMSANDER)" ]; then \
+		$(MAKE) amber_rism_interface.SANDER.o; \
+	else \
+		test -e amber_rism_interface.SANDER.o || touch amber_rism_interface.SANDER.o; \
+	fi
+
+poisson_boltzmann.o:  libpbsa file_io_dat.o 
+	test -e $@ || touch $@
+
+dispersion_cavity.o:  libpbsa
+	test -e $@ || touch $@
+
+pbtimer_module.o:  libpbsa
+	test -e $@ || touch $@
+
+qmmm_module.o: libsqm 
+	test -e $@ || touch $@
+
+qmmm_nml_module.o:  libsqm 
+	test -e $@ || touch $@
+
+qmmm_qmtheorymodule.o:  libsqm 
+	test -e $@ || touch $@
+
+qmmm_struct_module.o:  libsqm 
+	test -e $@ || touch $@
+
+qmmm_vsolv_module.o:  libsqm 
+	test -e $@ || touch $@
+
+qm2_read_nm_and_alloc.o:  libsqm 
+	test -e $@ || touch $@
+
+elementOrbitalIndex.o:  libsqm 
+	test -e $@ || touch $@
+
+utilitiesmodule.o:  libsqm 
+	test -e $@ || touch $@
+

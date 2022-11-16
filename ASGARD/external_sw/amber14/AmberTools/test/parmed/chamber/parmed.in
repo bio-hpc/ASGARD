@@ -1,0 +1,22 @@
+
+# First do ala-ala-ala
+
+chamber -psf ../../chamber/ala_ala_ala/ala_ala_ala.psf \
+        -param $AMBERHOME/dat/chamber/par_all22_prot.inp \
+        -top $AMBERHOME/dat/chamber/top_all22_prot.inp \
+        -crd ../../chamber/ala_ala_ala/ala_ala_ala.pdb
+
+changeRadii mbondi2
+
+outparm ala_ala_ala.parm7 ala_ala_ala.rst7
+
+# Next do dhfr-cmap
+
+chamber -top $AMBERHOME/dat/chamber/top_all22_prot.inp \
+        -param $AMBERHOME/dat/chamber/par_all22_prot.inp \
+        -psf ../../chamber/dhfr_cmap_pbc/dhfr_cmap_pbc.psf \
+        -crd dhfr_cmap_pbc.pdb
+
+changeRadii mbondi3
+
+outparm dhfr_cmap_pbc.parm7 dhfr_cmap_pbc.rst7

@@ -1,0 +1,12 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+/thr/gamow/amber6/exe/sander  -O \
+		  -i md.in \
+		  -o md6.out \
+		  -p prmtop \
+       	  -c md.solv.crd
+

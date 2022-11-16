@@ -1,0 +1,110 @@
+//
+//   Routine to read in a pdb-file, set up an NAB molecule using a
+//      residue library
+//
+//   Usage:   getpdb_rlb( infile, reslib, strandname, seq, moltype )
+//
+//    where <infile> is an input pdbfile
+//          reslib[x] identifies the residue library for
+//  		linkprot        (x=1)
+//			linkna, for dna (x=2)
+//			linkna, for rna (x=3)
+//          hetatms         (x=4)
+//
+//            strandname,seq,moltype return an array of strings
+//            return value is an NAB molecule
+//
+//      stdout will have diagnostic information
+//
+
+
+molecule		getpdb_rlb( string pdbfile, string reslib[1],
+					string strandname[1], string seq[1], string moltype[1] )
+
+{
+
+molecule m,mi;
+int 	n_matched, i, numstrand, seq_error;
+string	notmatched;
+string  prot_reslib, dna_reslib, rna_reslib, hetatm_reslib;
+
+//  set new defaults to be the nab10 library:
+prot_reslib = "nab10.lib";
+dna_reslib = "nab10.lib";
+rna_reslib = "nab10.lib";
+hetatm_reslib = "hetatm.amber94.rlb";
+if( reslib[1] != "" ) prot_reslib = reslib[1];
+if( reslib[2] != "" ) dna_reslib = reslib[2];
+if( reslib[3] != "" ) rna_reslib = reslib[3];
+if( reslib[4] != "" ) hetatm_reslib = reslib[4];
+
+//   set up molecule with correct sequence, but arbitary orientation:
+
+printf( "\nGetting sequence from %s\n\n", pdbfile );
+getseq_from_pdb( pdbfile, numstrand, seq, strandname, moltype );
+
+seq_error = 0;
+for( i=1; i<=numstrand; i++ ){
+	if( seq[ i ] =~ "?" ){
+		seq_error++;
+		printf( "Problem interpreting a pdb sequence:\n" );
+		printf( "strand %s is %8s with sequence: %s\n", strandname[ i ],
+			moltype[ i ], seq[i] );
+	}
+}
+if( seq_error ){
+	printf( "Exiting due to above problems\n" );
+	exit(1);
+}
+
+m = newmolecule();
+for( i=1; i<=numstrand; i=i+1 ){
+
+	printf( "strand %s is %8s with sequence: %s\n", strandname[ i ],
+		moltype[ i ], seq[i] );
+	addstrand( m, strandname[ i ] );
+
+	if( moltype[i] == "protein" ){
+		mi = linkprot( strandname[ i ], seq[i], prot_reslib );
+
+	} else if( moltype[ i ] == "hetatm" ){
+		mi = newmolecule();
+		addstrand( mi, strandname[ i ] );
+		addresidue( mi, strandname[ i ], getresidue( seq[ i ], hetatm_reslib) );
+
+//  for now, don't distinguish between "dna" and "dnac" (!), but need
+//    to fix/rationalize handling of this in the future
+
+	} else if( moltype[ i ] == "dna" ){
+		mi = link_na( strandname[ i ], seq[ i ], dna_reslib, "DNA", "35" );
+
+	} else if( moltype[ i ] == "dnac" ){
+		mi = link_na( strandname[ i ], seq[ i ], dna_reslib, "DNA", "35" );
+
+	} else if( moltype[ i ] == "rna" ){
+		mi = link_na( strandname[ i ], seq[ i ], rna_reslib, "RNA", "35" );
+
+	} else if( moltype[ i ] == "rnac" ){
+		mi = link_na( strandname[ i ], seq[ i ], rna_reslib, "RNA", "35" );
+
+	} else { 
+		fprintf( stderr, "unknown type: %s\n", moltype[ i ] ); exit(1);
+
+	}
+
+	mergestr( m, strandname[ i ], "last", mi, strandname[ i ], "first" );
+	
+}
+
+//   now read in the coords from the pdb file:
+
+printf( "\nGetting coordinates from %s\n\n", pdbfile );
+n_matched = getxyz_from_pdb( pdbfile, m, notmatched, 1 );
+printf( "Got %d coordinates using getxyz_from_pdb\n", n_matched);
+if( notmatched != "" ) {
+	printf( "Atoms not found:%s\n\n", notmatched );
+//	exit( 1 );
+}
+
+return( m );
+};

@@ -1,0 +1,35 @@
+Title
+&cntrl
+  imin = 0,
+  irest = 0,
+  ntx = 1,
+  temp0 = 100.0,
+  tempi = 100.0,
+  ntb = 0,
+  ntpr = 1,
+  iwrap = 0,
+  ioutfm = 0,
+  ntwx = 1,
+  ntwe = 1,
+  ntwv = 0,
+  ntr = 0,
+  nstlim = 10,
+  nscm = 1000,
+  dt = 0.0010,
+  cut = 100.00,
+  ntt = 0,
+  ig = 71277,
+  vlimit = 20,
+  ntc = 1,
+  ifqnt = 1,
+/
+&qmmm
+  qm_theory= 'SEBOMD',
+/
+&sebomd
+  hamiltonian = 'RM1',
+  charge = -1,
+  fullscf = 1,
+  screen = 0,
+  ipolyn = 1,
+/

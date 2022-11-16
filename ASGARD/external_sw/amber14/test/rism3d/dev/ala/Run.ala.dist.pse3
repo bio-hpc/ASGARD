@@ -1,0 +1,103 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+echo "SANDER: 3D-RISM: PSE-3 distributions"
+
+if( ! $?TESTsander ) set TESTsander = "../../../../bin/sander"
+
+if ! { ../checkrismunsupported.sh $TESTsander } exit 0
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+        set numprocs=`echo $DO_PARALLEL | awk -f ../../../numprocs.awk `
+        if ( $numprocs > 2 ) then
+            echo " DO_PARALLEL set to $DO_PARALLEL"
+            goto toomany
+        else if ( $?MP_PROCS)then
+            if ($MP_PROCS > 3)then
+#               --- For IBM AIX ---
+                echo "    MP_PROCS set to "$MP_PROCS
+                goto toomany
+            endif
+        endif
+endif
+
+cat > mdin <<EOF
+Alanine dipeptide run
+ &cntrl
+    ntx=1, ntpr=1, ntwx=0,ntwr=0
+    nstlim=5,dt=0.001,
+    ntt=0, ig=314159, tempi=0,
+    ntp=0,
+    ntc=1,ntf=1,
+    ntb=0,
+    nrespa=1,
+    irism=1
+    cut=999,
+ /
+&rism
+    closure='kh','pse2','pse3'
+    tolerance=1e-15
+    grdspc=2,2,2
+    verbose=1
+    zerofrc=0
+    ntwrism=5
+    write_thermo=0
+    entropicDecomp=1
+    npropagate=0
+/
+EOF
+
+$DO_PARALLEL $TESTsander -O -i mdin -o ala.dist.pse3.out \
+   -p ../../ala/ala.parm7 -c ../../ala/ala.rst7 \
+    -xvv ../../../../AmberTools/test/rism1d/spc-kh/spc.xvv.save \
+   -guv guv.pse3 -huv huv.pse3 -cuv cuv.pse3 \
+   -exchem exchem.pse3 -solvene solvene.pse3 -entropy entropy.pse3 \
+   -exchemGF exchemGF.pse3 -solveneGF solveneGF.pse3 -entropyGF entropyGF.pse3 \
+   || goto error
+
+../../../dacdif -a 1.e-6 ala.dist.pse3.out.save ala.dist.pse3.out
+../../../dacdif -a 1.e-9 guv.pse3.O.5.dx.save guv.pse3.O.5.dx
+../../../dacdif -a 1.e-9 guv.pse3.H1.5.dx.save guv.pse3.H1.5.dx
+../../../dacdif -a 1.e-9 guv.pse3_dT.O.5.dx.save guv.pse3_dT.O.5.dx
+../../../dacdif -a 1.e-9 guv.pse3_dT.H1.5.dx.save guv.pse3_dT.H1.5.dx
+../../../dacdif -a 1.e-9 huv.pse3.O.5.dx.save huv.pse3.O.5.dx
+../../../dacdif -a 1.e-9 huv.pse3.H1.5.dx.save huv.pse3.H1.5.dx
+../../../dacdif -a 1.e-9 cuv.pse3.O.5.dx.save cuv.pse3.O.5.dx
+../../../dacdif -a 1.e-9 cuv.pse3.H1.5.dx.save cuv.pse3.H1.5.dx
+../../../dacdif -a 1.e-9 cuv.pse3_dT.O.5.dx.save cuv.pse3_dT.O.5.dx
+../../../dacdif -a 1.e-9 cuv.pse3_dT.H1.5.dx.save cuv.pse3_dT.H1.5.dx
+../../../dacdif -a 1.e-9 exchem.pse3.5.dx.save exchem.pse3.5.dx
+../../../dacdif -a 1.e-9 exchem.pse3.O.5.dx.save exchem.pse3.O.5.dx
+../../../dacdif -a 1.e-9 exchem.pse3.H1.5.dx.save exchem.pse3.H1.5.dx
+../../../dacdif -a 1.e-9 solvene.pse3.5.dx.save solvene.pse3.5.dx
+../../../dacdif -a 1.e-9 solvene.pse3.O.5.dx.save solvene.pse3.O.5.dx
+../../../dacdif -a 1.e-9 solvene.pse3.H1.5.dx.save solvene.pse3.H1.5.dx
+../../../dacdif -a 1.e-9 entropy.pse3.5.dx.save entropy.pse3.5.dx
+../../../dacdif -a 1.e-9 entropy.pse3.O.5.dx.save entropy.pse3.O.5.dx
+../../../dacdif -a 1.e-9 entropy.pse3.H1.5.dx.save entropy.pse3.H1.5.dx
+../../../dacdif -a 1.e-9 exchemGF.pse3.5.dx.save exchemGF.pse3.5.dx
+../../../dacdif -a 1.e-9 exchemGF.pse3.O.5.dx.save exchemGF.pse3.O.5.dx
+../../../dacdif -a 1.e-9 exchemGF.pse3.H1.5.dx.save exchemGF.pse3.H1.5.dx
+../../../dacdif -a 1.e-9 solveneGF.pse3.5.dx.save solveneGF.pse3.5.dx
+../../../dacdif -a 1.e-9 solveneGF.pse3.O.5.dx.save solveneGF.pse3.O.5.dx
+../../../dacdif -a 1.e-9 solveneGF.pse3.H1.5.dx.save solveneGF.pse3.H1.5.dx
+../../../dacdif -a 1.e-9 entropyGF.pse3.5.dx.save entropyGF.pse3.5.dx
+../../../dacdif -a 1.e-9 entropyGF.pse3.O.5.dx.save entropyGF.pse3.O.5.dx
+../../../dacdif -a 1.e-9 entropyGF.pse3.H1.5.dx.save entropyGF.pse3.H1.5.dx
+/bin/rm -f mdin mdinfo restrt
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+toomany:
+    echo " too many processors for this test, exiting"
+    echo "============================================================"
+    exit(0)
+

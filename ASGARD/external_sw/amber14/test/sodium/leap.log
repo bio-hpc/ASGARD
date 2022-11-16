@@ -1,0 +1,3092 @@
+log started: Sun Apr 17 22:36:34 2005
+
+Log file: ./leap.log
+> #
+> # ----- leaprc for loading the Cornell et al. 1994 force field.
+> #       assumes that any unspecified nucleic acids are DNA 
+> #
+> #	load atom type hybridizations
+> #
+> addAtomTypes {
+> 	{ "H"   "H" "sp3" }
+> 	{ "HO"  "H" "sp3" }
+> 	{ "HS"  "H" "sp3" }
+> 	{ "H1"  "H" "sp3" }
+> 	{ "H2"  "H" "sp3" }
+> 	{ "H3"  "H" "sp3" }
+> 	{ "H4"  "H" "sp3" }
+> 	{ "H5"  "H" "sp3" }
+> 	{ "HW"  "H" "sp3" }
+> 	{ "HC"  "H" "sp3" }
+> 	{ "HA"  "H" "sp3" }
+> 	{ "HP"  "H" "sp3" }
+> 	{ "OH"  "O" "sp3" }
+> 	{ "OS"  "O" "sp3" }
+> 	{ "O"   "O" "sp2" }
+> 	{ "O2"  "O" "sp2" }
+> 	{ "OW"  "O" "sp3" }
+> 	{ "CT"  "C" "sp3" }
+> 	{ "CH"  "C" "sp3" }
+> 	{ "C2"  "C" "sp3" }
+> 	{ "C3"  "C" "sp3" }
+> 	{ "C"   "C" "sp2" }
+> 	{ "C*"  "C" "sp2" }
+> 	{ "CA"  "C" "sp2" }
+> 	{ "CB"  "C" "sp2" }
+> 	{ "CC"  "C" "sp2" }
+> 	{ "CN"  "C" "sp2" }
+> 	{ "CM"  "C" "sp2" }
+> 	{ "CK"  "C" "sp2" }
+> 	{ "CQ"  "C" "sp2" }
+> 	{ "CD"  "C" "sp2" }
+> 	{ "CE"  "C" "sp2" }
+> 	{ "CF"  "C" "sp2" }
+> 	{ "CG"  "C" "sp2" }
+> 	{ "CP"  "C" "sp2" }
+> 	{ "CI"  "C" "sp2" }
+> 	{ "CJ"  "C" "sp2" }
+> 	{ "CW"  "C" "sp2" }
+> 	{ "CV"  "C" "sp2" }
+> 	{ "CR"  "C" "sp2" }
+> 	{ "CA"  "C" "sp2" }
+> 	{ "CY"  "C" "sp2" }
+> 	{ "C0"  "C" "sp2" }
+> 	{ "MG"  "Mg" "sp3" }
+> 	{ "N"   "N" "sp2" }
+> 	{ "NA"  "N" "sp2" }
+> 	{ "N2"  "N" "sp2" }
+> 	{ "N*"  "N" "sp2" }
+> 	{ "NP"  "N" "sp2" }
+> 	{ "NQ"  "N" "sp2" }
+> 	{ "NB"  "N" "sp2" }
+> 	{ "NC"  "N" "sp2" }
+> 	{ "NT"  "N" "sp3" }
+> 	{ "N3"  "N" "sp3" }
+> 	{ "S"   "S" "sp3" }
+> 	{ "SH"  "S" "sp3" }
+> 	{ "P"   "P" "sp3" }
+> 	{ "LP"  ""  "sp3" }
+> 	{ "F"   "F" "sp3" }
+> 	{ "CL"  "Cl" "sp3" }
+> 	{ "BR"  "Br" "sp3" }
+> 	{ "I"   "I"  "sp3" }
+> 	{ "FE"  "Fe" "sp3" }
+>     { "EP"  ""  "sp3" }
+> # glycam
+> 	{ "OG"  "O" "sp3" }
+> 	{ "OL"  "O" "sp3" }
+> 	{ "AC"  "C" "sp3" }
+> 	{ "EC"  "C" "sp3" }
+> }
+> #
+> #	Load the main parameter set.
+> #
+> parm94 = loadamberparams parm94.dat
+Loading parameters: /home/case/amber9/dat/leap/parm/parm94.dat
+Reading title:
+PARM94 for DNA, RNA and proteins with TIP3P Water. USE SCEE=1.2 in energy progs
+(UNKNOWN ATOM TYPE: IM)
+(UNKNOWN ATOM TYPE: Li)
+(UNKNOWN ATOM TYPE: IP)
+(UNKNOWN ATOM TYPE: K)
+(UNKNOWN ATOM TYPE: Rb)
+(UNKNOWN ATOM TYPE: Cs)
+(UNKNOWN ATOM TYPE: IB)
+(UNKNOWN ATOM TYPE: EP)
+> #
+> #	Load DNA/RNA libraries
+> #
+> loadOff all_nucleic94.lib
+Loading library: /home/case/amber9/dat/leap/lib/all_nucleic94.lib
+Loading: DA
+Loading: DA3
+Loading: DA5
+Loading: DAN
+Loading: DC
+Loading: DC3
+Loading: DC5
+Loading: DCN
+Loading: DG
+Loading: DG3
+Loading: DG5
+Loading: DGN
+Loading: DT
+Loading: DT3
+Loading: DT5
+Loading: DTN
+Loading: RA
+Loading: RA3
+Loading: RA5
+Loading: RAN
+Loading: RC
+Loading: RC3
+Loading: RC5
+Loading: RCN
+Loading: RG
+Loading: RG3
+Loading: RG5
+Loading: RGN
+Loading: RU
+Loading: RU3
+Loading: RU5
+Loading: RUN
+> #
+> #	Load main chain and terminating 
+> #	amino acid libraries.
+> #
+> loadOff all_amino94.lib
+Loading library: /home/case/amber9/dat/leap/lib/all_amino94.lib
+Loading: ALA
+Loading: ARG
+Loading: ASH
+Loading: ASN
+Loading: ASP
+Loading: CYM
+Loading: CYS
+Loading: CYX
+Loading: GLH
+Loading: GLN
+Loading: GLU
+Loading: GLY
+Loading: HID
+Loading: HIE
+Loading: HIP
+Loading: ILE
+Loading: LEU
+Loading: LYN
+Loading: LYS
+Loading: MET
+Loading: PHE
+Loading: PRO
+Loading: SER
+Loading: THR
+Loading: TRP
+Loading: TYR
+Loading: VAL
+> loadOff all_aminoct94.lib
+Loading library: /home/case/amber9/dat/leap/lib/all_aminoct94.lib
+Loading: CALA
+Loading: CARG
+Loading: CASN
+Loading: CASP
+Loading: CCYS
+Loading: CCYX
+Loading: CGLN
+Loading: CGLU
+Loading: CGLY
+Loading: CHID
+Loading: CHIE
+Loading: CHIP
+Loading: CILE
+Loading: CLEU
+Loading: CLYS
+Loading: CMET
+Loading: CPHE
+Loading: CPRO
+Loading: CSER
+Loading: CTHR
+Loading: CTRP
+Loading: CTYR
+Loading: CVAL
+Loading: NHE
+Loading: NME
+> loadOff all_aminont94.lib
+Loading library: /home/case/amber9/dat/leap/lib/all_aminont94.lib
+Loading: ACE
+Loading: NALA
+Loading: NARG
+Loading: NASN
+Loading: NASP
+Loading: NCYS
+Loading: NCYX
+Loading: NGLN
+Loading: NGLU
+Loading: NGLY
+Loading: NHID
+Loading: NHIE
+Loading: NHIP
+Loading: NILE
+Loading: NLEU
+Loading: NLYS
+Loading: NMET
+Loading: NPHE
+Loading: NPRO
+Loading: NSER
+Loading: NTHR
+Loading: NTRP
+Loading: NTYR
+Loading: NVAL
+> 
+> loadOff ions94.lib
+Loading library: /home/case/amber9/dat/leap/lib/ions94.lib
+Loading: CIO
+Loading: Cl-
+Loading: Cs+
+Loading: IB
+Loading: K+
+Loading: Li+
+Loading: MG2
+Loading: Na+
+Loading: Rb+
+> loadOff solvents.lib
+Loading library: /home/case/amber9/dat/leap/lib/solvents.lib
+Loading: CHCL3BOX
+Loading: DC4
+Loading: MEOHBOX
+Loading: NMABOX
+Loading: PL3
+Loading: POL3BOX
+Loading: SPC
+Loading: SPCBOX
+Loading: T4E
+Loading: TIP3PBOX
+Loading: TIP4PBOX
+Loading: TIP4PEWBOX
+Loading: TP3
+Loading: TP4
+Loading: TP5
+> HOH = TP3
+> WAT = TP3
+> 
+> #
+> #	Define the PDB name map for the amino acids and DNA.
+> #
+> addPdbResMap {
+>   { 0 "ALA" "NALA" } { 1 "ALA" "CALA" }
+>   { 0 "ARG" "NARG" } { 1 "ARG" "CARG" }
+>   { 0 "ASN" "NASN" } { 1 "ASN" "CASN" }
+>   { 0 "ASP" "NASP" } { 1 "ASP" "CASP" }
+>   { 0 "CYS" "NCYS" } { 1 "CYS" "CCYS" }
+>   { 0 "CYX" "NCYX" } { 1 "CYX" "CCYX" }
+>   { 0 "GLN" "NGLN" } { 1 "GLN" "CGLN" }
+>   { 0 "GLU" "NGLU" } { 1 "GLU" "CGLU" }
+>   { 0 "GLY" "NGLY" } { 1 "GLY" "CGLY" }
+>   { 0 "HID" "NHID" } { 1 "HID" "CHID" }
+>   { 0 "HIE" "NHIE" } { 1 "HIE" "CHIE" }
+>   { 0 "HIP" "NHIP" } { 1 "HIP" "CHIP" }
+>   { 0 "ILE" "NILE" } { 1 "ILE" "CILE" }
+>   { 0 "LEU" "NLEU" } { 1 "LEU" "CLEU" }
+>   { 0 "LYS" "NLYS" } { 1 "LYS" "CLYS" }
+>   { 0 "MET" "NMET" } { 1 "MET" "CMET" }
+>   { 0 "PHE" "NPHE" } { 1 "PHE" "CPHE" }
+>   { 0 "PRO" "NPRO" } { 1 "PRO" "CPRO" }
+>   { 0 "SER" "NSER" } { 1 "SER" "CSER" }
+>   { 0 "THR" "NTHR" } { 1 "THR" "CTHR" }
+>   { 0 "TRP" "NTRP" } { 1 "TRP" "CTRP" }
+>   { 0 "TYR" "NTYR" } { 1 "TYR" "CTYR" }
+>   { 0 "VAL" "NVAL" } { 1 "VAL" "CVAL" }
+>   { 0 "HIS" "NHIS" } { 1 "HIS" "CHIS" }
+>   { 0 "GUA" "DG5"  } { 1 "GUA" "DG3"  } { "GUA" "DG" }
+>   { 0 "ADE" "DA5"  } { 1 "ADE" "DA3"  } { "ADE" "DA" }
+>   { 0 "CYT" "DC5"  } { 1 "CYT" "DC3"  } { "CYT" "DC" }
+>   { 0 "THY" "DT5"  } { 1 "THY" "DT3"  } { "THY" "DT" }
+>   { 0 "G" "DG5"  } { 1 "G" "DG3"  } { "G" "DG" } { "GN" "DGN" }
+>   { 0 "A" "DA5"  } { 1 "A" "DA3"  } { "A" "DA" } { "AN" "DAN" }
+>   { 0 "C" "DC5"  } { 1 "C" "DC3"  } { "C" "DC" } { "CN" "DCN" }
+>   { 0 "T" "DT5"  } { 1 "T" "DT3"  } { "T" "DT" } { "TN" "DTN" }
+>   { 0 "C5" "DC5" }
+>   { 0 "G5" "DG5" }
+>   { 0 "A5" "DA5" }
+>   { 0 "T5" "DT5" }
+>   { 1 "C3" "DC3" }
+>   { 1 "G3" "DG3" }
+>   { 1 "A3" "DA3" }
+>   { 1 "T3" "DT3" }
+> 
+> }
+> 
+> addPdbAtomMap {
+>   { "O5*" "O5'" }
+>   { "C5*" "C5'" }
+>   { "C4*" "C4'" }
+>   { "O4*" "O4'" }
+>   { "C3*" "C3'" }
+>   { "O3*" "O3'" }
+>   { "C2*" "C2'" }
+>   { "C1*" "C1'" }
+>   { "C5M" "C7"  }
+>   { "H5M1" "H71"  }
+>   { "H5M2" "H72"  }
+>   { "H5M3" "H73"  }
+>   { "H1*" "H1'" }
+>   { "H2*1" "H2'1" }
+>   { "H2*2" "H2'2" }
+>   { "H3*" "H3'" }
+>   { "H4*" "H4'" }
+>   { "H5*1" "H5'1" }
+>   { "H5*2" "H5'2" }
+> # old ff atom names -> new
+>   { "O1'" "O4'" }
+>   { "OA"  "O1P" }
+>   { "OB"  "O2P" }
+> }
+> 
+> 
+> #
+> # assumed that most often proteins use HIE
+> #
+> NHIS = NHIE
+> HIS = HIE
+> CHIS = CHIE
+ 
+> list
+ACE       ALA       ARG       ASH       ASN       ASP       CALA      CARG      
+CASN      CASP      CCYS      CCYX      CGLN      CGLU      CGLY      CHCL3BOX  
+CHID      CHIE      CHIP      CHIS      CILE      CIO       CLEU      CLYS      
+CMET      CPHE      CPRO      CSER      CTHR      CTRP      CTYR      CVAL      
+CYM       CYS       CYX       Cl-       Cs+       DA        DA3       DA5       
+DAN       DC        DC3       DC4       DC5       DCN       DG        DG3       
+DG5       DGN       DT        DT3       DT5       DTN       GLH       GLN       
+GLU       GLY       HID       HIE       HIP       HIS       HOH       IB        
+ILE       K+        LEU       LYN       LYS       Li+       MEOHBOX   MET       
+MG2       NALA      NARG      NASN      NASP      NCYS      NCYX      NGLN      
+NGLU      NGLY      NHE       NHID      NHIE      NHIP      NHIS      NILE      
+NLEU      NLYS      NMABOX    NME       NMET      NPHE      NPRO      NSER      
+NTHR      NTRP      NTYR      NVAL      Na+       PHE       PL3       POL3BOX   
+PRO       RA        RA3       RA5       RAN       RC        RC3       RC5       
+RCN       RG        RG3       RG5       RGN       RU        RU3       RU5       
+RUN       Rb+       SER       SPC       SPCBOX    T4E       THR       TIP3PBOX  
+TIP4PBOX  TIP4PEWBOXTP3       TP4       TP5       TRP       TYR       VAL       
+WAT       parm94    
+> solvateOct Na+ TIP4PEWBOX 12.0 0.8
+Scaling up box by a factor of 1.154701 to meet diagonal cut criterion
+  Solute vdw bounding box:              3.736 3.736 3.736
+  Total bounding box for atom centers:  31.449 31.449 31.449
+      (box expansion for 'iso' is   0.0%)
+  Solvent unit box:                     18.860 18.867 18.860
+The number of boxes:  x= 2  y= 2  z= 2
+Adding box at: x=0  y=0  z=0
+Center of solvent box is: 9.430000, 9.433500, 9.430000
+Adding box at: x=0  y=0  z=1
+Center of solvent box is: 9.430000, 9.433500, -9.430000
+Adding box at: x=0  y=1  z=0
+Center of solvent box is: 9.430000, -9.433500, 9.430000
+Adding box at: x=0  y=1  z=1
+Center of solvent box is: 9.430000, -9.433500, -9.430000
+Adding box at: x=1  y=0  z=0
+Center of solvent box is: -9.430000, 9.433500, 9.430000
+Adding box at: x=1  y=0  z=1
+Center of solvent box is: -9.430000, 9.433500, -9.430000
+Adding box at: x=1  y=1  z=0
+Center of solvent box is: -9.430000, -9.433500, 9.430000
+Adding box at: x=1  y=1  z=1
+Center of solvent box is: -9.430000, -9.433500, -9.430000
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+ (using default radius 1.500000 for EPW)
+  Volume: 17083.092 A^3 (oct)
+  Total mass 9396.126 amu,  Density 0.913 g/cc
+  Added 446 residues.
+> saveamberparm Na+ prmtop prmcrd
+Checking Unit.
+WARNING: There is a bond of 0.149492 angstroms between: 
+-------  .R<WAT 2>.A<EPW 4> and .R<WAT 2>.A<O 1>
+WARNING: There is a bond of 0.149469 angstroms between: 
+-------  .R<WAT 3>.A<EPW 4> and .R<WAT 3>.A<O 1>
+WARNING: There is a bond of 0.150320 angstroms between: 
+-------  .R<WAT 4>.A<EPW 4> and .R<WAT 4>.A<O 1>
+WARNING: There is a bond of 0.149887 angstroms between: 
+-------  .R<WAT 5>.A<EPW 4> and .R<WAT 5>.A<O 1>
+WARNING: There is a bond of 0.150083 angstroms between: 
+-------  .R<WAT 6>.A<EPW 4> and .R<WAT 6>.A<O 1>
+WARNING: There is a bond of 0.150236 angstroms between: 
+-------  .R<WAT 7>.A<EPW 4> and .R<WAT 7>.A<O 1>
+WARNING: There is a bond of 0.150453 angstroms between: 
+-------  .R<WAT 8>.A<EPW 4> and .R<WAT 8>.A<O 1>
+WARNING: There is a bond of 0.149513 angstroms between: 
+-------  .R<WAT 9>.A<EPW 4> and .R<WAT 9>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 10>.A<EPW 4> and .R<WAT 10>.A<O 1>
+WARNING: There is a bond of 0.149646 angstroms between: 
+-------  .R<WAT 11>.A<EPW 4> and .R<WAT 11>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 12>.A<EPW 4> and .R<WAT 12>.A<O 1>
+WARNING: There is a bond of 0.149379 angstroms between: 
+-------  .R<WAT 13>.A<EPW 4> and .R<WAT 13>.A<O 1>
+WARNING: There is a bond of 0.149292 angstroms between: 
+-------  .R<WAT 14>.A<EPW 4> and .R<WAT 14>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 15>.A<EPW 4> and .R<WAT 15>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 16>.A<EPW 4> and .R<WAT 16>.A<O 1>
+WARNING: There is a bond of 0.149963 angstroms between: 
+-------  .R<WAT 17>.A<EPW 4> and .R<WAT 17>.A<O 1>
+WARNING: There is a bond of 0.150087 angstroms between: 
+-------  .R<WAT 18>.A<EPW 4> and .R<WAT 18>.A<O 1>
+WARNING: There is a bond of 0.149606 angstroms between: 
+-------  .R<WAT 19>.A<EPW 4> and .R<WAT 19>.A<O 1>
+WARNING: There is a bond of 0.150306 angstroms between: 
+-------  .R<WAT 20>.A<EPW 4> and .R<WAT 20>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 21>.A<EPW 4> and .R<WAT 21>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 22>.A<EPW 4> and .R<WAT 22>.A<O 1>
+WARNING: There is a bond of 0.149446 angstroms between: 
+-------  .R<WAT 23>.A<EPW 4> and .R<WAT 23>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 24>.A<EPW 4> and .R<WAT 24>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 25>.A<EPW 4> and .R<WAT 25>.A<O 1>
+WARNING: There is a bond of 0.150389 angstroms between: 
+-------  .R<WAT 26>.A<EPW 4> and .R<WAT 26>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 27>.A<EPW 4> and .R<WAT 27>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 28>.A<EPW 4> and .R<WAT 28>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 29>.A<EPW 4> and .R<WAT 29>.A<O 1>
+WARNING: There is a bond of 0.150220 angstroms between: 
+-------  .R<WAT 30>.A<EPW 4> and .R<WAT 30>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 31>.A<EPW 4> and .R<WAT 31>.A<O 1>
+WARNING: There is a bond of 0.149349 angstroms between: 
+-------  .R<WAT 32>.A<EPW 4> and .R<WAT 32>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 33>.A<EPW 4> and .R<WAT 33>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 34>.A<EPW 4> and .R<WAT 34>.A<O 1>
+WARNING: There is a bond of 0.149733 angstroms between: 
+-------  .R<WAT 35>.A<EPW 4> and .R<WAT 35>.A<O 1>
+WARNING: There is a bond of 0.149676 angstroms between: 
+-------  .R<WAT 36>.A<EPW 4> and .R<WAT 36>.A<O 1>
+WARNING: There is a bond of 0.150027 angstroms between: 
+-------  .R<WAT 37>.A<EPW 4> and .R<WAT 37>.A<O 1>
+WARNING: There is a bond of 0.150333 angstroms between: 
+-------  .R<WAT 38>.A<EPW 4> and .R<WAT 38>.A<O 1>
+WARNING: There is a bond of 0.150140 angstroms between: 
+-------  .R<WAT 39>.A<EPW 4> and .R<WAT 39>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 40>.A<EPW 4> and .R<WAT 40>.A<O 1>
+WARNING: There is a bond of 0.149726 angstroms between: 
+-------  .R<WAT 41>.A<EPW 4> and .R<WAT 41>.A<O 1>
+WARNING: There is a bond of 0.149780 angstroms between: 
+-------  .R<WAT 42>.A<EPW 4> and .R<WAT 42>.A<O 1>
+WARNING: There is a bond of 0.149496 angstroms between: 
+-------  .R<WAT 43>.A<EPW 4> and .R<WAT 43>.A<O 1>
+WARNING: There is a bond of 0.149860 angstroms between: 
+-------  .R<WAT 44>.A<EPW 4> and .R<WAT 44>.A<O 1>
+WARNING: There is a bond of 0.149389 angstroms between: 
+-------  .R<WAT 45>.A<EPW 4> and .R<WAT 45>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 46>.A<EPW 4> and .R<WAT 46>.A<O 1>
+WARNING: There is a bond of 0.149339 angstroms between: 
+-------  .R<WAT 47>.A<EPW 4> and .R<WAT 47>.A<O 1>
+WARNING: There is a bond of 0.150659 angstroms between: 
+-------  .R<WAT 48>.A<EPW 4> and .R<WAT 48>.A<O 1>
+WARNING: There is a bond of 0.149436 angstroms between: 
+-------  .R<WAT 49>.A<EPW 4> and .R<WAT 49>.A<O 1>
+WARNING: There is a bond of 0.149947 angstroms between: 
+-------  .R<WAT 50>.A<EPW 4> and .R<WAT 50>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 51>.A<EPW 4> and .R<WAT 51>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 52>.A<EPW 4> and .R<WAT 52>.A<O 1>
+WARNING: There is a bond of 0.150363 angstroms between: 
+-------  .R<WAT 53>.A<EPW 4> and .R<WAT 53>.A<O 1>
+WARNING: There is a bond of 0.149195 angstroms between: 
+-------  .R<WAT 54>.A<EPW 4> and .R<WAT 54>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 55>.A<EPW 4> and .R<WAT 55>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 56>.A<EPW 4> and .R<WAT 56>.A<O 1>
+WARNING: There is a bond of 0.149492 angstroms between: 
+-------  .R<WAT 57>.A<EPW 4> and .R<WAT 57>.A<O 1>
+WARNING: There is a bond of 0.149549 angstroms between: 
+-------  .R<WAT 58>.A<EPW 4> and .R<WAT 58>.A<O 1>
+WARNING: There is a bond of 0.149883 angstroms between: 
+-------  .R<WAT 59>.A<EPW 4> and .R<WAT 59>.A<O 1>
+WARNING: There is a bond of 0.150924 angstroms between: 
+-------  .R<WAT 60>.A<EPW 4> and .R<WAT 60>.A<O 1>
+WARNING: There is a bond of 0.149887 angstroms between: 
+-------  .R<WAT 61>.A<EPW 4> and .R<WAT 61>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 62>.A<EPW 4> and .R<WAT 62>.A<O 1>
+WARNING: There is a bond of 0.150083 angstroms between: 
+-------  .R<WAT 63>.A<EPW 4> and .R<WAT 63>.A<O 1>
+WARNING: There is a bond of 0.149285 angstroms between: 
+-------  .R<WAT 64>.A<EPW 4> and .R<WAT 64>.A<O 1>
+WARNING: There is a bond of 0.150236 angstroms between: 
+-------  .R<WAT 65>.A<EPW 4> and .R<WAT 65>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 66>.A<EPW 4> and .R<WAT 66>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 67>.A<EPW 4> and .R<WAT 67>.A<O 1>
+WARNING: There is a bond of 0.150522 angstroms between: 
+-------  .R<WAT 68>.A<EPW 4> and .R<WAT 68>.A<O 1>
+WARNING: There is a bond of 0.149355 angstroms between: 
+-------  .R<WAT 69>.A<EPW 4> and .R<WAT 69>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 70>.A<EPW 4> and .R<WAT 70>.A<O 1>
+WARNING: There is a bond of 0.149379 angstroms between: 
+-------  .R<WAT 71>.A<EPW 4> and .R<WAT 71>.A<O 1>
+WARNING: There is a bond of 0.150107 angstroms between: 
+-------  .R<WAT 72>.A<EPW 4> and .R<WAT 72>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 73>.A<EPW 4> and .R<WAT 73>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 74>.A<EPW 4> and .R<WAT 74>.A<O 1>
+WARNING: There is a bond of 0.149432 angstroms between: 
+-------  .R<WAT 75>.A<EPW 4> and .R<WAT 75>.A<O 1>
+WARNING: There is a bond of 0.149660 angstroms between: 
+-------  .R<WAT 76>.A<EPW 4> and .R<WAT 76>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 77>.A<EPW 4> and .R<WAT 77>.A<O 1>
+WARNING: There is a bond of 0.150363 angstroms between: 
+-------  .R<WAT 78>.A<EPW 4> and .R<WAT 78>.A<O 1>
+WARNING: There is a bond of 0.150306 angstroms between: 
+-------  .R<WAT 79>.A<EPW 4> and .R<WAT 79>.A<O 1>
+WARNING: There is a bond of 0.150203 angstroms between: 
+-------  .R<WAT 80>.A<EPW 4> and .R<WAT 80>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 81>.A<EPW 4> and .R<WAT 81>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 82>.A<EPW 4> and .R<WAT 82>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 83>.A<EPW 4> and .R<WAT 83>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 84>.A<EPW 4> and .R<WAT 84>.A<O 1>
+WARNING: There is a bond of 0.148862 angstroms between: 
+-------  .R<WAT 85>.A<EPW 4> and .R<WAT 85>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 86>.A<EPW 4> and .R<WAT 86>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 87>.A<EPW 4> and .R<WAT 87>.A<O 1>
+WARNING: There is a bond of 0.150765 angstroms between: 
+-------  .R<WAT 88>.A<EPW 4> and .R<WAT 88>.A<O 1>
+WARNING: There is a bond of 0.150027 angstroms between: 
+-------  .R<WAT 89>.A<EPW 4> and .R<WAT 89>.A<O 1>
+WARNING: There is a bond of 0.150579 angstroms between: 
+-------  .R<WAT 90>.A<EPW 4> and .R<WAT 90>.A<O 1>
+WARNING: There is a bond of 0.150333 angstroms between: 
+-------  .R<WAT 91>.A<EPW 4> and .R<WAT 91>.A<O 1>
+WARNING: There is a bond of 0.150376 angstroms between: 
+-------  .R<WAT 92>.A<EPW 4> and .R<WAT 92>.A<O 1>
+WARNING: There is a bond of 0.149726 angstroms between: 
+-------  .R<WAT 93>.A<EPW 4> and .R<WAT 93>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 94>.A<EPW 4> and .R<WAT 94>.A<O 1>
+WARNING: There is a bond of 0.149496 angstroms between: 
+-------  .R<WAT 95>.A<EPW 4> and .R<WAT 95>.A<O 1>
+WARNING: There is a bond of 0.149462 angstroms between: 
+-------  .R<WAT 96>.A<EPW 4> and .R<WAT 96>.A<O 1>
+WARNING: There is a bond of 0.150589 angstroms between: 
+-------  .R<WAT 97>.A<EPW 4> and .R<WAT 97>.A<O 1>
+WARNING: There is a bond of 0.150406 angstroms between: 
+-------  .R<WAT 98>.A<EPW 4> and .R<WAT 98>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 99>.A<EPW 4> and .R<WAT 99>.A<O 1>
+WARNING: There is a bond of 0.149730 angstroms between: 
+-------  .R<WAT 100>.A<EPW 4> and .R<WAT 100>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 101>.A<EPW 4> and .R<WAT 101>.A<O 1>
+WARNING: There is a bond of 0.149436 angstroms between: 
+-------  .R<WAT 102>.A<EPW 4> and .R<WAT 102>.A<O 1>
+WARNING: There is a bond of 0.149947 angstroms between: 
+-------  .R<WAT 103>.A<EPW 4> and .R<WAT 103>.A<O 1>
+WARNING: There is a bond of 0.149910 angstroms between: 
+-------  .R<WAT 104>.A<EPW 4> and .R<WAT 104>.A<O 1>
+WARNING: There is a bond of 0.150256 angstroms between: 
+-------  .R<WAT 105>.A<EPW 4> and .R<WAT 105>.A<O 1>
+WARNING: There is a bond of 0.150805 angstroms between: 
+-------  .R<WAT 106>.A<EPW 4> and .R<WAT 106>.A<O 1>
+WARNING: There is a bond of 0.150562 angstroms between: 
+-------  .R<WAT 107>.A<EPW 4> and .R<WAT 107>.A<O 1>
+WARNING: There is a bond of 0.149195 angstroms between: 
+-------  .R<WAT 108>.A<EPW 4> and .R<WAT 108>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 109>.A<EPW 4> and .R<WAT 109>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 110>.A<EPW 4> and .R<WAT 110>.A<O 1>
+WARNING: There is a bond of 0.149566 angstroms between: 
+-------  .R<WAT 111>.A<EPW 4> and .R<WAT 111>.A<O 1>
+WARNING: There is a bond of 0.149820 angstroms between: 
+-------  .R<WAT 112>.A<EPW 4> and .R<WAT 112>.A<O 1>
+WARNING: There is a bond of 0.150213 angstroms between: 
+-------  .R<WAT 113>.A<EPW 4> and .R<WAT 113>.A<O 1>
+WARNING: There is a bond of 0.149469 angstroms between: 
+-------  .R<WAT 114>.A<EPW 4> and .R<WAT 114>.A<O 1>
+WARNING: There is a bond of 0.150393 angstroms between: 
+-------  .R<WAT 115>.A<EPW 4> and .R<WAT 115>.A<O 1>
+WARNING: There is a bond of 0.149940 angstroms between: 
+-------  .R<WAT 116>.A<EPW 4> and .R<WAT 116>.A<O 1>
+WARNING: There is a bond of 0.149897 angstroms between: 
+-------  .R<WAT 117>.A<EPW 4> and .R<WAT 117>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 118>.A<EPW 4> and .R<WAT 118>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 119>.A<EPW 4> and .R<WAT 119>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 120>.A<EPW 4> and .R<WAT 120>.A<O 1>
+WARNING: There is a bond of 0.150256 angstroms between: 
+-------  .R<WAT 121>.A<EPW 4> and .R<WAT 121>.A<O 1>
+WARNING: There is a bond of 0.149513 angstroms between: 
+-------  .R<WAT 122>.A<EPW 4> and .R<WAT 122>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 123>.A<EPW 4> and .R<WAT 123>.A<O 1>
+WARNING: There is a bond of 0.149285 angstroms between: 
+-------  .R<WAT 124>.A<EPW 4> and .R<WAT 124>.A<O 1>
+WARNING: There is a bond of 0.150546 angstroms between: 
+-------  .R<WAT 125>.A<EPW 4> and .R<WAT 125>.A<O 1>
+WARNING: There is a bond of 0.149843 angstroms between: 
+-------  .R<WAT 126>.A<EPW 4> and .R<WAT 126>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 127>.A<EPW 4> and .R<WAT 127>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 128>.A<EPW 4> and .R<WAT 128>.A<O 1>
+WARNING: There is a bond of 0.149963 angstroms between: 
+-------  .R<WAT 129>.A<EPW 4> and .R<WAT 129>.A<O 1>
+WARNING: There is a bond of 0.150087 angstroms between: 
+-------  .R<WAT 130>.A<EPW 4> and .R<WAT 130>.A<O 1>
+WARNING: There is a bond of 0.149606 angstroms between: 
+-------  .R<WAT 131>.A<EPW 4> and .R<WAT 131>.A<O 1>
+WARNING: There is a bond of 0.149446 angstroms between: 
+-------  .R<WAT 132>.A<EPW 4> and .R<WAT 132>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 133>.A<EPW 4> and .R<WAT 133>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 134>.A<EPW 4> and .R<WAT 134>.A<O 1>
+WARNING: There is a bond of 0.149499 angstroms between: 
+-------  .R<WAT 135>.A<EPW 4> and .R<WAT 135>.A<O 1>
+WARNING: There is a bond of 0.150033 angstroms between: 
+-------  .R<WAT 136>.A<EPW 4> and .R<WAT 136>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 137>.A<EPW 4> and .R<WAT 137>.A<O 1>
+WARNING: There is a bond of 0.150389 angstroms between: 
+-------  .R<WAT 138>.A<EPW 4> and .R<WAT 138>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 139>.A<EPW 4> and .R<WAT 139>.A<O 1>
+WARNING: There is a bond of 0.150220 angstroms between: 
+-------  .R<WAT 140>.A<EPW 4> and .R<WAT 140>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 141>.A<EPW 4> and .R<WAT 141>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 142>.A<EPW 4> and .R<WAT 142>.A<O 1>
+WARNING: There is a bond of 0.150043 angstroms between: 
+-------  .R<WAT 143>.A<EPW 4> and .R<WAT 143>.A<O 1>
+WARNING: There is a bond of 0.149144 angstroms between: 
+-------  .R<WAT 144>.A<EPW 4> and .R<WAT 144>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 145>.A<EPW 4> and .R<WAT 145>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 146>.A<EPW 4> and .R<WAT 146>.A<O 1>
+WARNING: There is a bond of 0.150230 angstroms between: 
+-------  .R<WAT 147>.A<EPW 4> and .R<WAT 147>.A<O 1>
+WARNING: There is a bond of 0.150333 angstroms between: 
+-------  .R<WAT 148>.A<EPW 4> and .R<WAT 148>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 149>.A<EPW 4> and .R<WAT 149>.A<O 1>
+WARNING: There is a bond of 0.150177 angstroms between: 
+-------  .R<WAT 150>.A<EPW 4> and .R<WAT 150>.A<O 1>
+WARNING: There is a bond of 0.149860 angstroms between: 
+-------  .R<WAT 151>.A<EPW 4> and .R<WAT 151>.A<O 1>
+WARNING: There is a bond of 0.149389 angstroms between: 
+-------  .R<WAT 152>.A<EPW 4> and .R<WAT 152>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 153>.A<EPW 4> and .R<WAT 153>.A<O 1>
+WARNING: There is a bond of 0.149339 angstroms between: 
+-------  .R<WAT 154>.A<EPW 4> and .R<WAT 154>.A<O 1>
+WARNING: There is a bond of 0.150336 angstroms between: 
+-------  .R<WAT 155>.A<EPW 4> and .R<WAT 155>.A<O 1>
+WARNING: There is a bond of 0.150220 angstroms between: 
+-------  .R<WAT 156>.A<EPW 4> and .R<WAT 156>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 157>.A<EPW 4> and .R<WAT 157>.A<O 1>
+WARNING: There is a bond of 0.149245 angstroms between: 
+-------  .R<WAT 158>.A<EPW 4> and .R<WAT 158>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 159>.A<EPW 4> and .R<WAT 159>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 160>.A<EPW 4> and .R<WAT 160>.A<O 1>
+WARNING: There is a bond of 0.149379 angstroms between: 
+-------  .R<WAT 161>.A<EPW 4> and .R<WAT 161>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 162>.A<EPW 4> and .R<WAT 162>.A<O 1>
+WARNING: There is a bond of 0.150363 angstroms between: 
+-------  .R<WAT 163>.A<EPW 4> and .R<WAT 163>.A<O 1>
+WARNING: There is a bond of 0.150226 angstroms between: 
+-------  .R<WAT 164>.A<EPW 4> and .R<WAT 164>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 165>.A<EPW 4> and .R<WAT 165>.A<O 1>
+WARNING: There is a bond of 0.150226 angstroms between: 
+-------  .R<WAT 166>.A<EPW 4> and .R<WAT 166>.A<O 1>
+WARNING: There is a bond of 0.149820 angstroms between: 
+-------  .R<WAT 167>.A<EPW 4> and .R<WAT 167>.A<O 1>
+WARNING: There is a bond of 0.149940 angstroms between: 
+-------  .R<WAT 168>.A<EPW 4> and .R<WAT 168>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 169>.A<EPW 4> and .R<WAT 169>.A<O 1>
+WARNING: There is a bond of 0.149887 angstroms between: 
+-------  .R<WAT 170>.A<EPW 4> and .R<WAT 170>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 171>.A<EPW 4> and .R<WAT 171>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 172>.A<EPW 4> and .R<WAT 172>.A<O 1>
+WARNING: There is a bond of 0.150256 angstroms between: 
+-------  .R<WAT 173>.A<EPW 4> and .R<WAT 173>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 174>.A<EPW 4> and .R<WAT 174>.A<O 1>
+WARNING: There is a bond of 0.150522 angstroms between: 
+-------  .R<WAT 175>.A<EPW 4> and .R<WAT 175>.A<O 1>
+WARNING: There is a bond of 0.149355 angstroms between: 
+-------  .R<WAT 176>.A<EPW 4> and .R<WAT 176>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 177>.A<EPW 4> and .R<WAT 177>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 178>.A<EPW 4> and .R<WAT 178>.A<O 1>
+WARNING: There is a bond of 0.150629 angstroms between: 
+-------  .R<WAT 179>.A<EPW 4> and .R<WAT 179>.A<O 1>
+WARNING: There is a bond of 0.150546 angstroms between: 
+-------  .R<WAT 180>.A<EPW 4> and .R<WAT 180>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 181>.A<EPW 4> and .R<WAT 181>.A<O 1>
+WARNING: There is a bond of 0.149843 angstroms between: 
+-------  .R<WAT 182>.A<EPW 4> and .R<WAT 182>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 183>.A<EPW 4> and .R<WAT 183>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 184>.A<EPW 4> and .R<WAT 184>.A<O 1>
+WARNING: There is a bond of 0.149432 angstroms between: 
+-------  .R<WAT 185>.A<EPW 4> and .R<WAT 185>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 186>.A<EPW 4> and .R<WAT 186>.A<O 1>
+WARNING: There is a bond of 0.149660 angstroms between: 
+-------  .R<WAT 187>.A<EPW 4> and .R<WAT 187>.A<O 1>
+WARNING: There is a bond of 0.149650 angstroms between: 
+-------  .R<WAT 188>.A<EPW 4> and .R<WAT 188>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 189>.A<EPW 4> and .R<WAT 189>.A<O 1>
+WARNING: There is a bond of 0.149730 angstroms between: 
+-------  .R<WAT 190>.A<EPW 4> and .R<WAT 190>.A<O 1>
+WARNING: There is a bond of 0.150087 angstroms between: 
+-------  .R<WAT 191>.A<EPW 4> and .R<WAT 191>.A<O 1>
+WARNING: There is a bond of 0.150060 angstroms between: 
+-------  .R<WAT 192>.A<EPW 4> and .R<WAT 192>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 193>.A<EPW 4> and .R<WAT 193>.A<O 1>
+WARNING: There is a bond of 0.150203 angstroms between: 
+-------  .R<WAT 194>.A<EPW 4> and .R<WAT 194>.A<O 1>
+WARNING: There is a bond of 0.150043 angstroms between: 
+-------  .R<WAT 195>.A<EPW 4> and .R<WAT 195>.A<O 1>
+WARNING: There is a bond of 0.150033 angstroms between: 
+-------  .R<WAT 196>.A<EPW 4> and .R<WAT 196>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 197>.A<EPW 4> and .R<WAT 197>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 198>.A<EPW 4> and .R<WAT 198>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 199>.A<EPW 4> and .R<WAT 199>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 200>.A<EPW 4> and .R<WAT 200>.A<O 1>
+WARNING: There is a bond of 0.149144 angstroms between: 
+-------  .R<WAT 201>.A<EPW 4> and .R<WAT 201>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 202>.A<EPW 4> and .R<WAT 202>.A<O 1>
+WARNING: There is a bond of 0.150765 angstroms between: 
+-------  .R<WAT 203>.A<EPW 4> and .R<WAT 203>.A<O 1>
+WARNING: There is a bond of 0.150579 angstroms between: 
+-------  .R<WAT 204>.A<EPW 4> and .R<WAT 204>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 205>.A<EPW 4> and .R<WAT 205>.A<O 1>
+WARNING: There is a bond of 0.149726 angstroms between: 
+-------  .R<WAT 206>.A<EPW 4> and .R<WAT 206>.A<O 1>
+WARNING: There is a bond of 0.150177 angstroms between: 
+-------  .R<WAT 207>.A<EPW 4> and .R<WAT 207>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 208>.A<EPW 4> and .R<WAT 208>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 209>.A<EPW 4> and .R<WAT 209>.A<O 1>
+WARNING: There is a bond of 0.149462 angstroms between: 
+-------  .R<WAT 210>.A<EPW 4> and .R<WAT 210>.A<O 1>
+WARNING: There is a bond of 0.150336 angstroms between: 
+-------  .R<WAT 211>.A<EPW 4> and .R<WAT 211>.A<O 1>
+WARNING: There is a bond of 0.150765 angstroms between: 
+-------  .R<WAT 212>.A<EPW 4> and .R<WAT 212>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 213>.A<EPW 4> and .R<WAT 213>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 214>.A<EPW 4> and .R<WAT 214>.A<O 1>
+WARNING: There is a bond of 0.149910 angstroms between: 
+-------  .R<WAT 215>.A<EPW 4> and .R<WAT 215>.A<O 1>
+WARNING: There is a bond of 0.149847 angstroms between: 
+-------  .R<WAT 216>.A<EPW 4> and .R<WAT 216>.A<O 1>
+WARNING: There is a bond of 0.149713 angstroms between: 
+-------  .R<WAT 217>.A<EPW 4> and .R<WAT 217>.A<O 1>
+WARNING: There is a bond of 0.150256 angstroms between: 
+-------  .R<WAT 218>.A<EPW 4> and .R<WAT 218>.A<O 1>
+WARNING: There is a bond of 0.150805 angstroms between: 
+-------  .R<WAT 219>.A<EPW 4> and .R<WAT 219>.A<O 1>
+WARNING: There is a bond of 0.149579 angstroms between: 
+-------  .R<WAT 220>.A<EPW 4> and .R<WAT 220>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 221>.A<EPW 4> and .R<WAT 221>.A<O 1>
+WARNING: There is a bond of 0.150226 angstroms between: 
+-------  .R<WAT 222>.A<EPW 4> and .R<WAT 222>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 223>.A<EPW 4> and .R<WAT 223>.A<O 1>
+WARNING: There is a bond of 0.150217 angstroms between: 
+-------  .R<WAT 224>.A<EPW 4> and .R<WAT 224>.A<O 1>
+WARNING: There is a bond of 0.150393 angstroms between: 
+-------  .R<WAT 225>.A<EPW 4> and .R<WAT 225>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 226>.A<EPW 4> and .R<WAT 226>.A<O 1>
+WARNING: There is a bond of 0.149670 angstroms between: 
+-------  .R<WAT 227>.A<EPW 4> and .R<WAT 227>.A<O 1>
+WARNING: There is a bond of 0.150320 angstroms between: 
+-------  .R<WAT 228>.A<EPW 4> and .R<WAT 228>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 229>.A<EPW 4> and .R<WAT 229>.A<O 1>
+WARNING: There is a bond of 0.150310 angstroms between: 
+-------  .R<WAT 230>.A<EPW 4> and .R<WAT 230>.A<O 1>
+WARNING: There is a bond of 0.150167 angstroms between: 
+-------  .R<WAT 231>.A<EPW 4> and .R<WAT 231>.A<O 1>
+WARNING: There is a bond of 0.150429 angstroms between: 
+-------  .R<WAT 232>.A<EPW 4> and .R<WAT 232>.A<O 1>
+WARNING: There is a bond of 0.150453 angstroms between: 
+-------  .R<WAT 233>.A<EPW 4> and .R<WAT 233>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 234>.A<EPW 4> and .R<WAT 234>.A<O 1>
+WARNING: There is a bond of 0.149646 angstroms between: 
+-------  .R<WAT 235>.A<EPW 4> and .R<WAT 235>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 236>.A<EPW 4> and .R<WAT 236>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 237>.A<EPW 4> and .R<WAT 237>.A<O 1>
+WARNING: There is a bond of 0.149970 angstroms between: 
+-------  .R<WAT 238>.A<EPW 4> and .R<WAT 238>.A<O 1>
+WARNING: There is a bond of 0.150386 angstroms between: 
+-------  .R<WAT 239>.A<EPW 4> and .R<WAT 239>.A<O 1>
+WARNING: There is a bond of 0.149292 angstroms between: 
+-------  .R<WAT 240>.A<EPW 4> and .R<WAT 240>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 241>.A<EPW 4> and .R<WAT 241>.A<O 1>
+WARNING: There is a bond of 0.150473 angstroms between: 
+-------  .R<WAT 242>.A<EPW 4> and .R<WAT 242>.A<O 1>
+WARNING: There is a bond of 0.150619 angstroms between: 
+-------  .R<WAT 243>.A<EPW 4> and .R<WAT 243>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 244>.A<EPW 4> and .R<WAT 244>.A<O 1>
+WARNING: There is a bond of 0.150336 angstroms between: 
+-------  .R<WAT 245>.A<EPW 4> and .R<WAT 245>.A<O 1>
+WARNING: There is a bond of 0.149940 angstroms between: 
+-------  .R<WAT 246>.A<EPW 4> and .R<WAT 246>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 247>.A<EPW 4> and .R<WAT 247>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 248>.A<EPW 4> and .R<WAT 248>.A<O 1>
+WARNING: There is a bond of 0.149616 angstroms between: 
+-------  .R<WAT 249>.A<EPW 4> and .R<WAT 249>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 250>.A<EPW 4> and .R<WAT 250>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 251>.A<EPW 4> and .R<WAT 251>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 252>.A<EPW 4> and .R<WAT 252>.A<O 1>
+WARNING: There is a bond of 0.149630 angstroms between: 
+-------  .R<WAT 253>.A<EPW 4> and .R<WAT 253>.A<O 1>
+WARNING: There is a bond of 0.149686 angstroms between: 
+-------  .R<WAT 254>.A<EPW 4> and .R<WAT 254>.A<O 1>
+WARNING: There is a bond of 0.149710 angstroms between: 
+-------  .R<WAT 255>.A<EPW 4> and .R<WAT 255>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 256>.A<EPW 4> and .R<WAT 256>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 257>.A<EPW 4> and .R<WAT 257>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 258>.A<EPW 4> and .R<WAT 258>.A<O 1>
+WARNING: There is a bond of 0.149977 angstroms between: 
+-------  .R<WAT 259>.A<EPW 4> and .R<WAT 259>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 260>.A<EPW 4> and .R<WAT 260>.A<O 1>
+WARNING: There is a bond of 0.149733 angstroms between: 
+-------  .R<WAT 261>.A<EPW 4> and .R<WAT 261>.A<O 1>
+WARNING: There is a bond of 0.149676 angstroms between: 
+-------  .R<WAT 262>.A<EPW 4> and .R<WAT 262>.A<O 1>
+WARNING: There is a bond of 0.150140 angstroms between: 
+-------  .R<WAT 263>.A<EPW 4> and .R<WAT 263>.A<O 1>
+WARNING: There is a bond of 0.149496 angstroms between: 
+-------  .R<WAT 264>.A<EPW 4> and .R<WAT 264>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 265>.A<EPW 4> and .R<WAT 265>.A<O 1>
+WARNING: There is a bond of 0.149339 angstroms between: 
+-------  .R<WAT 266>.A<EPW 4> and .R<WAT 266>.A<O 1>
+WARNING: There is a bond of 0.150659 angstroms between: 
+-------  .R<WAT 267>.A<EPW 4> and .R<WAT 267>.A<O 1>
+WARNING: There is a bond of 0.150210 angstroms between: 
+-------  .R<WAT 268>.A<EPW 4> and .R<WAT 268>.A<O 1>
+WARNING: There is a bond of 0.150406 angstroms between: 
+-------  .R<WAT 269>.A<EPW 4> and .R<WAT 269>.A<O 1>
+WARNING: There is a bond of 0.150678 angstroms between: 
+-------  .R<WAT 270>.A<EPW 4> and .R<WAT 270>.A<O 1>
+WARNING: There is a bond of 0.149563 angstroms between: 
+-------  .R<WAT 271>.A<EPW 4> and .R<WAT 271>.A<O 1>
+WARNING: There is a bond of 0.150609 angstroms between: 
+-------  .R<WAT 272>.A<EPW 4> and .R<WAT 272>.A<O 1>
+WARNING: There is a bond of 0.150615 angstroms between: 
+-------  .R<WAT 273>.A<EPW 4> and .R<WAT 273>.A<O 1>
+WARNING: There is a bond of 0.150562 angstroms between: 
+-------  .R<WAT 274>.A<EPW 4> and .R<WAT 274>.A<O 1>
+WARNING: There is a bond of 0.150280 angstroms between: 
+-------  .R<WAT 275>.A<EPW 4> and .R<WAT 275>.A<O 1>
+WARNING: There is a bond of 0.149723 angstroms between: 
+-------  .R<WAT 276>.A<EPW 4> and .R<WAT 276>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 277>.A<EPW 4> and .R<WAT 277>.A<O 1>
+WARNING: There is a bond of 0.149405 angstroms between: 
+-------  .R<WAT 278>.A<EPW 4> and .R<WAT 278>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 279>.A<EPW 4> and .R<WAT 279>.A<O 1>
+WARNING: There is a bond of 0.149492 angstroms between: 
+-------  .R<WAT 280>.A<EPW 4> and .R<WAT 280>.A<O 1>
+WARNING: There is a bond of 0.149549 angstroms between: 
+-------  .R<WAT 281>.A<EPW 4> and .R<WAT 281>.A<O 1>
+WARNING: There is a bond of 0.149883 angstroms between: 
+-------  .R<WAT 282>.A<EPW 4> and .R<WAT 282>.A<O 1>
+WARNING: There is a bond of 0.150924 angstroms between: 
+-------  .R<WAT 283>.A<EPW 4> and .R<WAT 283>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 284>.A<EPW 4> and .R<WAT 284>.A<O 1>
+WARNING: There is a bond of 0.149670 angstroms between: 
+-------  .R<WAT 285>.A<EPW 4> and .R<WAT 285>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 286>.A<EPW 4> and .R<WAT 286>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 287>.A<EPW 4> and .R<WAT 287>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 288>.A<EPW 4> and .R<WAT 288>.A<O 1>
+WARNING: There is a bond of 0.149569 angstroms between: 
+-------  .R<WAT 289>.A<EPW 4> and .R<WAT 289>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 290>.A<EPW 4> and .R<WAT 290>.A<O 1>
+WARNING: There is a bond of 0.149890 angstroms between: 
+-------  .R<WAT 291>.A<EPW 4> and .R<WAT 291>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 292>.A<EPW 4> and .R<WAT 292>.A<O 1>
+WARNING: There is a bond of 0.150386 angstroms between: 
+-------  .R<WAT 293>.A<EPW 4> and .R<WAT 293>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 294>.A<EPW 4> and .R<WAT 294>.A<O 1>
+WARNING: There is a bond of 0.150619 angstroms between: 
+-------  .R<WAT 295>.A<EPW 4> and .R<WAT 295>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 296>.A<EPW 4> and .R<WAT 296>.A<O 1>
+WARNING: There is a bond of 0.149000 angstroms between: 
+-------  .R<WAT 297>.A<EPW 4> and .R<WAT 297>.A<O 1>
+WARNING: There is a bond of 0.149660 angstroms between: 
+-------  .R<WAT 298>.A<EPW 4> and .R<WAT 298>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 299>.A<EPW 4> and .R<WAT 299>.A<O 1>
+WARNING: There is a bond of 0.150050 angstroms between: 
+-------  .R<WAT 300>.A<EPW 4> and .R<WAT 300>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 301>.A<EPW 4> and .R<WAT 301>.A<O 1>
+WARNING: There is a bond of 0.149686 angstroms between: 
+-------  .R<WAT 302>.A<EPW 4> and .R<WAT 302>.A<O 1>
+WARNING: There is a bond of 0.149710 angstroms between: 
+-------  .R<WAT 303>.A<EPW 4> and .R<WAT 303>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 304>.A<EPW 4> and .R<WAT 304>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 305>.A<EPW 4> and .R<WAT 305>.A<O 1>
+WARNING: There is a bond of 0.149977 angstroms between: 
+-------  .R<WAT 306>.A<EPW 4> and .R<WAT 306>.A<O 1>
+WARNING: There is a bond of 0.148862 angstroms between: 
+-------  .R<WAT 307>.A<EPW 4> and .R<WAT 307>.A<O 1>
+WARNING: There is a bond of 0.150579 angstroms between: 
+-------  .R<WAT 308>.A<EPW 4> and .R<WAT 308>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 309>.A<EPW 4> and .R<WAT 309>.A<O 1>
+WARNING: There is a bond of 0.149603 angstroms between: 
+-------  .R<WAT 310>.A<EPW 4> and .R<WAT 310>.A<O 1>
+WARNING: There is a bond of 0.150376 angstroms between: 
+-------  .R<WAT 311>.A<EPW 4> and .R<WAT 311>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 312>.A<EPW 4> and .R<WAT 312>.A<O 1>
+WARNING: There is a bond of 0.149446 angstroms between: 
+-------  .R<WAT 313>.A<EPW 4> and .R<WAT 313>.A<O 1>
+WARNING: There is a bond of 0.150589 angstroms between: 
+-------  .R<WAT 314>.A<EPW 4> and .R<WAT 314>.A<O 1>
+WARNING: There is a bond of 0.150210 angstroms between: 
+-------  .R<WAT 315>.A<EPW 4> and .R<WAT 315>.A<O 1>
+WARNING: There is a bond of 0.150406 angstroms between: 
+-------  .R<WAT 316>.A<EPW 4> and .R<WAT 316>.A<O 1>
+WARNING: There is a bond of 0.150678 angstroms between: 
+-------  .R<WAT 317>.A<EPW 4> and .R<WAT 317>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 318>.A<EPW 4> and .R<WAT 318>.A<O 1>
+WARNING: There is a bond of 0.149730 angstroms between: 
+-------  .R<WAT 319>.A<EPW 4> and .R<WAT 319>.A<O 1>
+WARNING: There is a bond of 0.150645 angstroms between: 
+-------  .R<WAT 320>.A<EPW 4> and .R<WAT 320>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 321>.A<EPW 4> and .R<WAT 321>.A<O 1>
+WARNING: There is a bond of 0.149676 angstroms between: 
+-------  .R<WAT 322>.A<EPW 4> and .R<WAT 322>.A<O 1>
+WARNING: There is a bond of 0.150805 angstroms between: 
+-------  .R<WAT 323>.A<EPW 4> and .R<WAT 323>.A<O 1>
+WARNING: There is a bond of 0.150562 angstroms between: 
+-------  .R<WAT 324>.A<EPW 4> and .R<WAT 324>.A<O 1>
+WARNING: There is a bond of 0.150280 angstroms between: 
+-------  .R<WAT 325>.A<EPW 4> and .R<WAT 325>.A<O 1>
+WARNING: There is a bond of 0.149579 angstroms between: 
+-------  .R<WAT 326>.A<EPW 4> and .R<WAT 326>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 327>.A<EPW 4> and .R<WAT 327>.A<O 1>
+WARNING: There is a bond of 0.149566 angstroms between: 
+-------  .R<WAT 328>.A<EPW 4> and .R<WAT 328>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 329>.A<EPW 4> and .R<WAT 329>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 330>.A<EPW 4> and .R<WAT 330>.A<O 1>
+WARNING: There is a bond of 0.150213 angstroms between: 
+-------  .R<WAT 331>.A<EPW 4> and .R<WAT 331>.A<O 1>
+WARNING: There is a bond of 0.150393 angstroms between: 
+-------  .R<WAT 332>.A<EPW 4> and .R<WAT 332>.A<O 1>
+WARNING: There is a bond of 0.149897 angstroms between: 
+-------  .R<WAT 333>.A<EPW 4> and .R<WAT 333>.A<O 1>
+WARNING: There is a bond of 0.149335 angstroms between: 
+-------  .R<WAT 334>.A<EPW 4> and .R<WAT 334>.A<O 1>
+WARNING: There is a bond of 0.149670 angstroms between: 
+-------  .R<WAT 335>.A<EPW 4> and .R<WAT 335>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 336>.A<EPW 4> and .R<WAT 336>.A<O 1>
+WARNING: There is a bond of 0.150310 angstroms between: 
+-------  .R<WAT 337>.A<EPW 4> and .R<WAT 337>.A<O 1>
+WARNING: There is a bond of 0.150167 angstroms between: 
+-------  .R<WAT 338>.A<EPW 4> and .R<WAT 338>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 339>.A<EPW 4> and .R<WAT 339>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 340>.A<EPW 4> and .R<WAT 340>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 341>.A<EPW 4> and .R<WAT 341>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 342>.A<EPW 4> and .R<WAT 342>.A<O 1>
+WARNING: There is a bond of 0.149569 angstroms between: 
+-------  .R<WAT 343>.A<EPW 4> and .R<WAT 343>.A<O 1>
+WARNING: There is a bond of 0.149285 angstroms between: 
+-------  .R<WAT 344>.A<EPW 4> and .R<WAT 344>.A<O 1>
+WARNING: There is a bond of 0.149646 angstroms between: 
+-------  .R<WAT 345>.A<EPW 4> and .R<WAT 345>.A<O 1>
+WARNING: There is a bond of 0.150532 angstroms between: 
+-------  .R<WAT 346>.A<EPW 4> and .R<WAT 346>.A<O 1>
+WARNING: There is a bond of 0.150386 angstroms between: 
+-------  .R<WAT 347>.A<EPW 4> and .R<WAT 347>.A<O 1>
+WARNING: There is a bond of 0.150473 angstroms between: 
+-------  .R<WAT 348>.A<EPW 4> and .R<WAT 348>.A<O 1>
+WARNING: There is a bond of 0.150097 angstroms between: 
+-------  .R<WAT 349>.A<EPW 4> and .R<WAT 349>.A<O 1>
+WARNING: There is a bond of 0.149221 angstroms between: 
+-------  .R<WAT 350>.A<EPW 4> and .R<WAT 350>.A<O 1>
+WARNING: There is a bond of 0.150336 angstroms between: 
+-------  .R<WAT 351>.A<EPW 4> and .R<WAT 351>.A<O 1>
+WARNING: There is a bond of 0.149650 angstroms between: 
+-------  .R<WAT 352>.A<EPW 4> and .R<WAT 352>.A<O 1>
+WARNING: There is a bond of 0.149606 angstroms between: 
+-------  .R<WAT 353>.A<EPW 4> and .R<WAT 353>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 354>.A<EPW 4> and .R<WAT 354>.A<O 1>
+WARNING: There is a bond of 0.149499 angstroms between: 
+-------  .R<WAT 355>.A<EPW 4> and .R<WAT 355>.A<O 1>
+WARNING: There is a bond of 0.149616 angstroms between: 
+-------  .R<WAT 356>.A<EPW 4> and .R<WAT 356>.A<O 1>
+WARNING: There is a bond of 0.150522 angstroms between: 
+-------  .R<WAT 357>.A<EPW 4> and .R<WAT 357>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 358>.A<EPW 4> and .R<WAT 358>.A<O 1>
+WARNING: There is a bond of 0.149630 angstroms between: 
+-------  .R<WAT 359>.A<EPW 4> and .R<WAT 359>.A<O 1>
+WARNING: There is a bond of 0.149710 angstroms between: 
+-------  .R<WAT 360>.A<EPW 4> and .R<WAT 360>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 361>.A<EPW 4> and .R<WAT 361>.A<O 1>
+WARNING: There is a bond of 0.149700 angstroms between: 
+-------  .R<WAT 362>.A<EPW 4> and .R<WAT 362>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 363>.A<EPW 4> and .R<WAT 363>.A<O 1>
+WARNING: There is a bond of 0.150043 angstroms between: 
+-------  .R<WAT 364>.A<EPW 4> and .R<WAT 364>.A<O 1>
+WARNING: There is a bond of 0.149352 angstroms between: 
+-------  .R<WAT 365>.A<EPW 4> and .R<WAT 365>.A<O 1>
+WARNING: There is a bond of 0.149144 angstroms between: 
+-------  .R<WAT 366>.A<EPW 4> and .R<WAT 366>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 367>.A<EPW 4> and .R<WAT 367>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 368>.A<EPW 4> and .R<WAT 368>.A<O 1>
+WARNING: There is a bond of 0.150230 angstroms between: 
+-------  .R<WAT 369>.A<EPW 4> and .R<WAT 369>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 370>.A<EPW 4> and .R<WAT 370>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 371>.A<EPW 4> and .R<WAT 371>.A<O 1>
+WARNING: There is a bond of 0.149308 angstroms between: 
+-------  .R<WAT 372>.A<EPW 4> and .R<WAT 372>.A<O 1>
+WARNING: There is a bond of 0.149389 angstroms between: 
+-------  .R<WAT 373>.A<EPW 4> and .R<WAT 373>.A<O 1>
+WARNING: There is a bond of 0.149339 angstroms between: 
+-------  .R<WAT 374>.A<EPW 4> and .R<WAT 374>.A<O 1>
+WARNING: There is a bond of 0.150220 angstroms between: 
+-------  .R<WAT 375>.A<EPW 4> and .R<WAT 375>.A<O 1>
+WARNING: There is a bond of 0.150678 angstroms between: 
+-------  .R<WAT 376>.A<EPW 4> and .R<WAT 376>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 377>.A<EPW 4> and .R<WAT 377>.A<O 1>
+WARNING: There is a bond of 0.149563 angstroms between: 
+-------  .R<WAT 378>.A<EPW 4> and .R<WAT 378>.A<O 1>
+WARNING: There is a bond of 0.150609 angstroms between: 
+-------  .R<WAT 379>.A<EPW 4> and .R<WAT 379>.A<O 1>
+WARNING: There is a bond of 0.150167 angstroms between: 
+-------  .R<WAT 380>.A<EPW 4> and .R<WAT 380>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 381>.A<EPW 4> and .R<WAT 381>.A<O 1>
+WARNING: There is a bond of 0.149847 angstroms between: 
+-------  .R<WAT 382>.A<EPW 4> and .R<WAT 382>.A<O 1>
+WARNING: There is a bond of 0.149379 angstroms between: 
+-------  .R<WAT 383>.A<EPW 4> and .R<WAT 383>.A<O 1>
+WARNING: There is a bond of 0.150615 angstroms between: 
+-------  .R<WAT 384>.A<EPW 4> and .R<WAT 384>.A<O 1>
+WARNING: There is a bond of 0.150226 angstroms between: 
+-------  .R<WAT 385>.A<EPW 4> and .R<WAT 385>.A<O 1>
+WARNING: There is a bond of 0.149843 angstroms between: 
+-------  .R<WAT 386>.A<EPW 4> and .R<WAT 386>.A<O 1>
+WARNING: There is a bond of 0.150310 angstroms between: 
+-------  .R<WAT 387>.A<EPW 4> and .R<WAT 387>.A<O 1>
+WARNING: There is a bond of 0.150280 angstroms between: 
+-------  .R<WAT 388>.A<EPW 4> and .R<WAT 388>.A<O 1>
+WARNING: There is a bond of 0.149723 angstroms between: 
+-------  .R<WAT 389>.A<EPW 4> and .R<WAT 389>.A<O 1>
+WARNING: There is a bond of 0.149405 angstroms between: 
+-------  .R<WAT 390>.A<EPW 4> and .R<WAT 390>.A<O 1>
+WARNING: There is a bond of 0.150217 angstroms between: 
+-------  .R<WAT 391>.A<EPW 4> and .R<WAT 391>.A<O 1>
+WARNING: There is a bond of 0.149820 angstroms between: 
+-------  .R<WAT 392>.A<EPW 4> and .R<WAT 392>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 393>.A<EPW 4> and .R<WAT 393>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 394>.A<EPW 4> and .R<WAT 394>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 395>.A<EPW 4> and .R<WAT 395>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 396>.A<EPW 4> and .R<WAT 396>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 397>.A<EPW 4> and .R<WAT 397>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 398>.A<EPW 4> and .R<WAT 398>.A<O 1>
+WARNING: There is a bond of 0.149569 angstroms between: 
+-------  .R<WAT 399>.A<EPW 4> and .R<WAT 399>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 400>.A<EPW 4> and .R<WAT 400>.A<O 1>
+WARNING: There is a bond of 0.149890 angstroms between: 
+-------  .R<WAT 401>.A<EPW 4> and .R<WAT 401>.A<O 1>
+WARNING: There is a bond of 0.150629 angstroms between: 
+-------  .R<WAT 402>.A<EPW 4> and .R<WAT 402>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 403>.A<EPW 4> and .R<WAT 403>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 404>.A<EPW 4> and .R<WAT 404>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 405>.A<EPW 4> and .R<WAT 405>.A<O 1>
+WARNING: There is a bond of 0.150097 angstroms between: 
+-------  .R<WAT 406>.A<EPW 4> and .R<WAT 406>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 407>.A<EPW 4> and .R<WAT 407>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 408>.A<EPW 4> and .R<WAT 408>.A<O 1>
+WARNING: There is a bond of 0.149000 angstroms between: 
+-------  .R<WAT 409>.A<EPW 4> and .R<WAT 409>.A<O 1>
+WARNING: There is a bond of 0.149650 angstroms between: 
+-------  .R<WAT 410>.A<EPW 4> and .R<WAT 410>.A<O 1>
+WARNING: There is a bond of 0.150050 angstroms between: 
+-------  .R<WAT 411>.A<EPW 4> and .R<WAT 411>.A<O 1>
+WARNING: There is a bond of 0.150060 angstroms between: 
+-------  .R<WAT 412>.A<EPW 4> and .R<WAT 412>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 413>.A<EPW 4> and .R<WAT 413>.A<O 1>
+WARNING: There is a bond of 0.150043 angstroms between: 
+-------  .R<WAT 414>.A<EPW 4> and .R<WAT 414>.A<O 1>
+WARNING: There is a bond of 0.150522 angstroms between: 
+-------  .R<WAT 415>.A<EPW 4> and .R<WAT 415>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 416>.A<EPW 4> and .R<WAT 416>.A<O 1>
+WARNING: There is a bond of 0.149710 angstroms between: 
+-------  .R<WAT 417>.A<EPW 4> and .R<WAT 417>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 418>.A<EPW 4> and .R<WAT 418>.A<O 1>
+WARNING: There is a bond of 0.149977 angstroms between: 
+-------  .R<WAT 419>.A<EPW 4> and .R<WAT 419>.A<O 1>
+WARNING: There is a bond of 0.149700 angstroms between: 
+-------  .R<WAT 420>.A<EPW 4> and .R<WAT 420>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 421>.A<EPW 4> and .R<WAT 421>.A<O 1>
+WARNING: There is a bond of 0.149352 angstroms between: 
+-------  .R<WAT 422>.A<EPW 4> and .R<WAT 422>.A<O 1>
+WARNING: There is a bond of 0.150579 angstroms between: 
+-------  .R<WAT 423>.A<EPW 4> and .R<WAT 423>.A<O 1>
+WARNING: There is a bond of 0.149144 angstroms between: 
+-------  .R<WAT 424>.A<EPW 4> and .R<WAT 424>.A<O 1>
+WARNING: There is a bond of 0.150366 angstroms between: 
+-------  .R<WAT 425>.A<EPW 4> and .R<WAT 425>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 426>.A<EPW 4> and .R<WAT 426>.A<O 1>
+WARNING: There is a bond of 0.150230 angstroms between: 
+-------  .R<WAT 427>.A<EPW 4> and .R<WAT 427>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 428>.A<EPW 4> and .R<WAT 428>.A<O 1>
+WARNING: There is a bond of 0.149446 angstroms between: 
+-------  .R<WAT 429>.A<EPW 4> and .R<WAT 429>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 430>.A<EPW 4> and .R<WAT 430>.A<O 1>
+WARNING: There is a bond of 0.149308 angstroms between: 
+-------  .R<WAT 431>.A<EPW 4> and .R<WAT 431>.A<O 1>
+WARNING: There is a bond of 0.150765 angstroms between: 
+-------  .R<WAT 432>.A<EPW 4> and .R<WAT 432>.A<O 1>
+WARNING: There is a bond of 0.150645 angstroms between: 
+-------  .R<WAT 433>.A<EPW 4> and .R<WAT 433>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 434>.A<EPW 4> and .R<WAT 434>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 435>.A<EPW 4> and .R<WAT 435>.A<O 1>
+WARNING: There is a bond of 0.150609 angstroms between: 
+-------  .R<WAT 436>.A<EPW 4> and .R<WAT 436>.A<O 1>
+WARNING: There is a bond of 0.150167 angstroms between: 
+-------  .R<WAT 437>.A<EPW 4> and .R<WAT 437>.A<O 1>
+WARNING: There is a bond of 0.149847 angstroms between: 
+-------  .R<WAT 438>.A<EPW 4> and .R<WAT 438>.A<O 1>
+WARNING: There is a bond of 0.149713 angstroms between: 
+-------  .R<WAT 439>.A<EPW 4> and .R<WAT 439>.A<O 1>
+WARNING: There is a bond of 0.149676 angstroms between: 
+-------  .R<WAT 440>.A<EPW 4> and .R<WAT 440>.A<O 1>
+WARNING: There is a bond of 0.149843 angstroms between: 
+-------  .R<WAT 441>.A<EPW 4> and .R<WAT 441>.A<O 1>
+WARNING: There is a bond of 0.149482 angstroms between: 
+-------  .R<WAT 442>.A<EPW 4> and .R<WAT 442>.A<O 1>
+WARNING: There is a bond of 0.149579 angstroms between: 
+-------  .R<WAT 443>.A<EPW 4> and .R<WAT 443>.A<O 1>
+WARNING: There is a bond of 0.149723 angstroms between: 
+-------  .R<WAT 444>.A<EPW 4> and .R<WAT 444>.A<O 1>
+WARNING: There is a bond of 0.149566 angstroms between: 
+-------  .R<WAT 445>.A<EPW 4> and .R<WAT 445>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 446>.A<EPW 4> and .R<WAT 446>.A<O 1>
+WARNING: There is a bond of 0.150217 angstroms between: 
+-------  .R<WAT 447>.A<EPW 4> and .R<WAT 447>.A<O 1>
+WARNING: The unperturbed charge of the unit: 1.000000 is not zero.
+
+ -- ignoring the warnings.
+
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Could not find bond parameter for: EP - OW
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 0 improper torsions applied
+Building H-Bond parameters.
+Parameter file was not saved.
+> loadamberparams frcmod.tip4pew
+Loading parameters: /home/case/amber9/dat/leap/parm/frcmod.tip4pew
+Reading force field modification type file (frcmod)
+Reading title:
+This is the additional/replacement parameter set for TIP4P
+(UNKNOWN ATOM TYPE: EP)
+> saveamberparm  Na+ prmtop prmcrd
+Checking Unit.
+WARNING: There is a bond of 0.149492 angstroms between: 
+-------  .R<WAT 2>.A<EPW 4> and .R<WAT 2>.A<O 1>
+WARNING: There is a bond of 0.149469 angstroms between: 
+-------  .R<WAT 3>.A<EPW 4> and .R<WAT 3>.A<O 1>
+WARNING: There is a bond of 0.150320 angstroms between: 
+-------  .R<WAT 4>.A<EPW 4> and .R<WAT 4>.A<O 1>
+WARNING: There is a bond of 0.149887 angstroms between: 
+-------  .R<WAT 5>.A<EPW 4> and .R<WAT 5>.A<O 1>
+WARNING: There is a bond of 0.150083 angstroms between: 
+-------  .R<WAT 6>.A<EPW 4> and .R<WAT 6>.A<O 1>
+WARNING: There is a bond of 0.150236 angstroms between: 
+-------  .R<WAT 7>.A<EPW 4> and .R<WAT 7>.A<O 1>
+WARNING: There is a bond of 0.150453 angstroms between: 
+-------  .R<WAT 8>.A<EPW 4> and .R<WAT 8>.A<O 1>
+WARNING: There is a bond of 0.149513 angstroms between: 
+-------  .R<WAT 9>.A<EPW 4> and .R<WAT 9>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 10>.A<EPW 4> and .R<WAT 10>.A<O 1>
+WARNING: There is a bond of 0.149646 angstroms between: 
+-------  .R<WAT 11>.A<EPW 4> and .R<WAT 11>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 12>.A<EPW 4> and .R<WAT 12>.A<O 1>
+WARNING: There is a bond of 0.149379 angstroms between: 
+-------  .R<WAT 13>.A<EPW 4> and .R<WAT 13>.A<O 1>
+WARNING: There is a bond of 0.149292 angstroms between: 
+-------  .R<WAT 14>.A<EPW 4> and .R<WAT 14>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 15>.A<EPW 4> and .R<WAT 15>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 16>.A<EPW 4> and .R<WAT 16>.A<O 1>
+WARNING: There is a bond of 0.149963 angstroms between: 
+-------  .R<WAT 17>.A<EPW 4> and .R<WAT 17>.A<O 1>
+WARNING: There is a bond of 0.150087 angstroms between: 
+-------  .R<WAT 18>.A<EPW 4> and .R<WAT 18>.A<O 1>
+WARNING: There is a bond of 0.149606 angstroms between: 
+-------  .R<WAT 19>.A<EPW 4> and .R<WAT 19>.A<O 1>
+WARNING: There is a bond of 0.150306 angstroms between: 
+-------  .R<WAT 20>.A<EPW 4> and .R<WAT 20>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 21>.A<EPW 4> and .R<WAT 21>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 22>.A<EPW 4> and .R<WAT 22>.A<O 1>
+WARNING: There is a bond of 0.149446 angstroms between: 
+-------  .R<WAT 23>.A<EPW 4> and .R<WAT 23>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 24>.A<EPW 4> and .R<WAT 24>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 25>.A<EPW 4> and .R<WAT 25>.A<O 1>
+WARNING: There is a bond of 0.150389 angstroms between: 
+-------  .R<WAT 26>.A<EPW 4> and .R<WAT 26>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 27>.A<EPW 4> and .R<WAT 27>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 28>.A<EPW 4> and .R<WAT 28>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 29>.A<EPW 4> and .R<WAT 29>.A<O 1>
+WARNING: There is a bond of 0.150220 angstroms between: 
+-------  .R<WAT 30>.A<EPW 4> and .R<WAT 30>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 31>.A<EPW 4> and .R<WAT 31>.A<O 1>
+WARNING: There is a bond of 0.149349 angstroms between: 
+-------  .R<WAT 32>.A<EPW 4> and .R<WAT 32>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 33>.A<EPW 4> and .R<WAT 33>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 34>.A<EPW 4> and .R<WAT 34>.A<O 1>
+WARNING: There is a bond of 0.149733 angstroms between: 
+-------  .R<WAT 35>.A<EPW 4> and .R<WAT 35>.A<O 1>
+WARNING: There is a bond of 0.149676 angstroms between: 
+-------  .R<WAT 36>.A<EPW 4> and .R<WAT 36>.A<O 1>
+WARNING: There is a bond of 0.150027 angstroms between: 
+-------  .R<WAT 37>.A<EPW 4> and .R<WAT 37>.A<O 1>
+WARNING: There is a bond of 0.150333 angstroms between: 
+-------  .R<WAT 38>.A<EPW 4> and .R<WAT 38>.A<O 1>
+WARNING: There is a bond of 0.150140 angstroms between: 
+-------  .R<WAT 39>.A<EPW 4> and .R<WAT 39>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 40>.A<EPW 4> and .R<WAT 40>.A<O 1>
+WARNING: There is a bond of 0.149726 angstroms between: 
+-------  .R<WAT 41>.A<EPW 4> and .R<WAT 41>.A<O 1>
+WARNING: There is a bond of 0.149780 angstroms between: 
+-------  .R<WAT 42>.A<EPW 4> and .R<WAT 42>.A<O 1>
+WARNING: There is a bond of 0.149496 angstroms between: 
+-------  .R<WAT 43>.A<EPW 4> and .R<WAT 43>.A<O 1>
+WARNING: There is a bond of 0.149860 angstroms between: 
+-------  .R<WAT 44>.A<EPW 4> and .R<WAT 44>.A<O 1>
+WARNING: There is a bond of 0.149389 angstroms between: 
+-------  .R<WAT 45>.A<EPW 4> and .R<WAT 45>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 46>.A<EPW 4> and .R<WAT 46>.A<O 1>
+WARNING: There is a bond of 0.149339 angstroms between: 
+-------  .R<WAT 47>.A<EPW 4> and .R<WAT 47>.A<O 1>
+WARNING: There is a bond of 0.150659 angstroms between: 
+-------  .R<WAT 48>.A<EPW 4> and .R<WAT 48>.A<O 1>
+WARNING: There is a bond of 0.149436 angstroms between: 
+-------  .R<WAT 49>.A<EPW 4> and .R<WAT 49>.A<O 1>
+WARNING: There is a bond of 0.149947 angstroms between: 
+-------  .R<WAT 50>.A<EPW 4> and .R<WAT 50>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 51>.A<EPW 4> and .R<WAT 51>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 52>.A<EPW 4> and .R<WAT 52>.A<O 1>
+WARNING: There is a bond of 0.150363 angstroms between: 
+-------  .R<WAT 53>.A<EPW 4> and .R<WAT 53>.A<O 1>
+WARNING: There is a bond of 0.149195 angstroms between: 
+-------  .R<WAT 54>.A<EPW 4> and .R<WAT 54>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 55>.A<EPW 4> and .R<WAT 55>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 56>.A<EPW 4> and .R<WAT 56>.A<O 1>
+WARNING: There is a bond of 0.149492 angstroms between: 
+-------  .R<WAT 57>.A<EPW 4> and .R<WAT 57>.A<O 1>
+WARNING: There is a bond of 0.149549 angstroms between: 
+-------  .R<WAT 58>.A<EPW 4> and .R<WAT 58>.A<O 1>
+WARNING: There is a bond of 0.149883 angstroms between: 
+-------  .R<WAT 59>.A<EPW 4> and .R<WAT 59>.A<O 1>
+WARNING: There is a bond of 0.150924 angstroms between: 
+-------  .R<WAT 60>.A<EPW 4> and .R<WAT 60>.A<O 1>
+WARNING: There is a bond of 0.149887 angstroms between: 
+-------  .R<WAT 61>.A<EPW 4> and .R<WAT 61>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 62>.A<EPW 4> and .R<WAT 62>.A<O 1>
+WARNING: There is a bond of 0.150083 angstroms between: 
+-------  .R<WAT 63>.A<EPW 4> and .R<WAT 63>.A<O 1>
+WARNING: There is a bond of 0.149285 angstroms between: 
+-------  .R<WAT 64>.A<EPW 4> and .R<WAT 64>.A<O 1>
+WARNING: There is a bond of 0.150236 angstroms between: 
+-------  .R<WAT 65>.A<EPW 4> and .R<WAT 65>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 66>.A<EPW 4> and .R<WAT 66>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 67>.A<EPW 4> and .R<WAT 67>.A<O 1>
+WARNING: There is a bond of 0.150522 angstroms between: 
+-------  .R<WAT 68>.A<EPW 4> and .R<WAT 68>.A<O 1>
+WARNING: There is a bond of 0.149355 angstroms between: 
+-------  .R<WAT 69>.A<EPW 4> and .R<WAT 69>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 70>.A<EPW 4> and .R<WAT 70>.A<O 1>
+WARNING: There is a bond of 0.149379 angstroms between: 
+-------  .R<WAT 71>.A<EPW 4> and .R<WAT 71>.A<O 1>
+WARNING: There is a bond of 0.150107 angstroms between: 
+-------  .R<WAT 72>.A<EPW 4> and .R<WAT 72>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 73>.A<EPW 4> and .R<WAT 73>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 74>.A<EPW 4> and .R<WAT 74>.A<O 1>
+WARNING: There is a bond of 0.149432 angstroms between: 
+-------  .R<WAT 75>.A<EPW 4> and .R<WAT 75>.A<O 1>
+WARNING: There is a bond of 0.149660 angstroms between: 
+-------  .R<WAT 76>.A<EPW 4> and .R<WAT 76>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 77>.A<EPW 4> and .R<WAT 77>.A<O 1>
+WARNING: There is a bond of 0.150363 angstroms between: 
+-------  .R<WAT 78>.A<EPW 4> and .R<WAT 78>.A<O 1>
+WARNING: There is a bond of 0.150306 angstroms between: 
+-------  .R<WAT 79>.A<EPW 4> and .R<WAT 79>.A<O 1>
+WARNING: There is a bond of 0.150203 angstroms between: 
+-------  .R<WAT 80>.A<EPW 4> and .R<WAT 80>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 81>.A<EPW 4> and .R<WAT 81>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 82>.A<EPW 4> and .R<WAT 82>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 83>.A<EPW 4> and .R<WAT 83>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 84>.A<EPW 4> and .R<WAT 84>.A<O 1>
+WARNING: There is a bond of 0.148862 angstroms between: 
+-------  .R<WAT 85>.A<EPW 4> and .R<WAT 85>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 86>.A<EPW 4> and .R<WAT 86>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 87>.A<EPW 4> and .R<WAT 87>.A<O 1>
+WARNING: There is a bond of 0.150765 angstroms between: 
+-------  .R<WAT 88>.A<EPW 4> and .R<WAT 88>.A<O 1>
+WARNING: There is a bond of 0.150027 angstroms between: 
+-------  .R<WAT 89>.A<EPW 4> and .R<WAT 89>.A<O 1>
+WARNING: There is a bond of 0.150579 angstroms between: 
+-------  .R<WAT 90>.A<EPW 4> and .R<WAT 90>.A<O 1>
+WARNING: There is a bond of 0.150333 angstroms between: 
+-------  .R<WAT 91>.A<EPW 4> and .R<WAT 91>.A<O 1>
+WARNING: There is a bond of 0.150376 angstroms between: 
+-------  .R<WAT 92>.A<EPW 4> and .R<WAT 92>.A<O 1>
+WARNING: There is a bond of 0.149726 angstroms between: 
+-------  .R<WAT 93>.A<EPW 4> and .R<WAT 93>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 94>.A<EPW 4> and .R<WAT 94>.A<O 1>
+WARNING: There is a bond of 0.149496 angstroms between: 
+-------  .R<WAT 95>.A<EPW 4> and .R<WAT 95>.A<O 1>
+WARNING: There is a bond of 0.149462 angstroms between: 
+-------  .R<WAT 96>.A<EPW 4> and .R<WAT 96>.A<O 1>
+WARNING: There is a bond of 0.150589 angstroms between: 
+-------  .R<WAT 97>.A<EPW 4> and .R<WAT 97>.A<O 1>
+WARNING: There is a bond of 0.150406 angstroms between: 
+-------  .R<WAT 98>.A<EPW 4> and .R<WAT 98>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 99>.A<EPW 4> and .R<WAT 99>.A<O 1>
+WARNING: There is a bond of 0.149730 angstroms between: 
+-------  .R<WAT 100>.A<EPW 4> and .R<WAT 100>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 101>.A<EPW 4> and .R<WAT 101>.A<O 1>
+WARNING: There is a bond of 0.149436 angstroms between: 
+-------  .R<WAT 102>.A<EPW 4> and .R<WAT 102>.A<O 1>
+WARNING: There is a bond of 0.149947 angstroms between: 
+-------  .R<WAT 103>.A<EPW 4> and .R<WAT 103>.A<O 1>
+WARNING: There is a bond of 0.149910 angstroms between: 
+-------  .R<WAT 104>.A<EPW 4> and .R<WAT 104>.A<O 1>
+WARNING: There is a bond of 0.150256 angstroms between: 
+-------  .R<WAT 105>.A<EPW 4> and .R<WAT 105>.A<O 1>
+WARNING: There is a bond of 0.150805 angstroms between: 
+-------  .R<WAT 106>.A<EPW 4> and .R<WAT 106>.A<O 1>
+WARNING: There is a bond of 0.150562 angstroms between: 
+-------  .R<WAT 107>.A<EPW 4> and .R<WAT 107>.A<O 1>
+WARNING: There is a bond of 0.149195 angstroms between: 
+-------  .R<WAT 108>.A<EPW 4> and .R<WAT 108>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 109>.A<EPW 4> and .R<WAT 109>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 110>.A<EPW 4> and .R<WAT 110>.A<O 1>
+WARNING: There is a bond of 0.149566 angstroms between: 
+-------  .R<WAT 111>.A<EPW 4> and .R<WAT 111>.A<O 1>
+WARNING: There is a bond of 0.149820 angstroms between: 
+-------  .R<WAT 112>.A<EPW 4> and .R<WAT 112>.A<O 1>
+WARNING: There is a bond of 0.150213 angstroms between: 
+-------  .R<WAT 113>.A<EPW 4> and .R<WAT 113>.A<O 1>
+WARNING: There is a bond of 0.149469 angstroms between: 
+-------  .R<WAT 114>.A<EPW 4> and .R<WAT 114>.A<O 1>
+WARNING: There is a bond of 0.150393 angstroms between: 
+-------  .R<WAT 115>.A<EPW 4> and .R<WAT 115>.A<O 1>
+WARNING: There is a bond of 0.149940 angstroms between: 
+-------  .R<WAT 116>.A<EPW 4> and .R<WAT 116>.A<O 1>
+WARNING: There is a bond of 0.149897 angstroms between: 
+-------  .R<WAT 117>.A<EPW 4> and .R<WAT 117>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 118>.A<EPW 4> and .R<WAT 118>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 119>.A<EPW 4> and .R<WAT 119>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 120>.A<EPW 4> and .R<WAT 120>.A<O 1>
+WARNING: There is a bond of 0.150256 angstroms between: 
+-------  .R<WAT 121>.A<EPW 4> and .R<WAT 121>.A<O 1>
+WARNING: There is a bond of 0.149513 angstroms between: 
+-------  .R<WAT 122>.A<EPW 4> and .R<WAT 122>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 123>.A<EPW 4> and .R<WAT 123>.A<O 1>
+WARNING: There is a bond of 0.149285 angstroms between: 
+-------  .R<WAT 124>.A<EPW 4> and .R<WAT 124>.A<O 1>
+WARNING: There is a bond of 0.150546 angstroms between: 
+-------  .R<WAT 125>.A<EPW 4> and .R<WAT 125>.A<O 1>
+WARNING: There is a bond of 0.149843 angstroms between: 
+-------  .R<WAT 126>.A<EPW 4> and .R<WAT 126>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 127>.A<EPW 4> and .R<WAT 127>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 128>.A<EPW 4> and .R<WAT 128>.A<O 1>
+WARNING: There is a bond of 0.149963 angstroms between: 
+-------  .R<WAT 129>.A<EPW 4> and .R<WAT 129>.A<O 1>
+WARNING: There is a bond of 0.150087 angstroms between: 
+-------  .R<WAT 130>.A<EPW 4> and .R<WAT 130>.A<O 1>
+WARNING: There is a bond of 0.149606 angstroms between: 
+-------  .R<WAT 131>.A<EPW 4> and .R<WAT 131>.A<O 1>
+WARNING: There is a bond of 0.149446 angstroms between: 
+-------  .R<WAT 132>.A<EPW 4> and .R<WAT 132>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 133>.A<EPW 4> and .R<WAT 133>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 134>.A<EPW 4> and .R<WAT 134>.A<O 1>
+WARNING: There is a bond of 0.149499 angstroms between: 
+-------  .R<WAT 135>.A<EPW 4> and .R<WAT 135>.A<O 1>
+WARNING: There is a bond of 0.150033 angstroms between: 
+-------  .R<WAT 136>.A<EPW 4> and .R<WAT 136>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 137>.A<EPW 4> and .R<WAT 137>.A<O 1>
+WARNING: There is a bond of 0.150389 angstroms between: 
+-------  .R<WAT 138>.A<EPW 4> and .R<WAT 138>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 139>.A<EPW 4> and .R<WAT 139>.A<O 1>
+WARNING: There is a bond of 0.150220 angstroms between: 
+-------  .R<WAT 140>.A<EPW 4> and .R<WAT 140>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 141>.A<EPW 4> and .R<WAT 141>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 142>.A<EPW 4> and .R<WAT 142>.A<O 1>
+WARNING: There is a bond of 0.150043 angstroms between: 
+-------  .R<WAT 143>.A<EPW 4> and .R<WAT 143>.A<O 1>
+WARNING: There is a bond of 0.149144 angstroms between: 
+-------  .R<WAT 144>.A<EPW 4> and .R<WAT 144>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 145>.A<EPW 4> and .R<WAT 145>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 146>.A<EPW 4> and .R<WAT 146>.A<O 1>
+WARNING: There is a bond of 0.150230 angstroms between: 
+-------  .R<WAT 147>.A<EPW 4> and .R<WAT 147>.A<O 1>
+WARNING: There is a bond of 0.150333 angstroms between: 
+-------  .R<WAT 148>.A<EPW 4> and .R<WAT 148>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 149>.A<EPW 4> and .R<WAT 149>.A<O 1>
+WARNING: There is a bond of 0.150177 angstroms between: 
+-------  .R<WAT 150>.A<EPW 4> and .R<WAT 150>.A<O 1>
+WARNING: There is a bond of 0.149860 angstroms between: 
+-------  .R<WAT 151>.A<EPW 4> and .R<WAT 151>.A<O 1>
+WARNING: There is a bond of 0.149389 angstroms between: 
+-------  .R<WAT 152>.A<EPW 4> and .R<WAT 152>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 153>.A<EPW 4> and .R<WAT 153>.A<O 1>
+WARNING: There is a bond of 0.149339 angstroms between: 
+-------  .R<WAT 154>.A<EPW 4> and .R<WAT 154>.A<O 1>
+WARNING: There is a bond of 0.150336 angstroms between: 
+-------  .R<WAT 155>.A<EPW 4> and .R<WAT 155>.A<O 1>
+WARNING: There is a bond of 0.150220 angstroms between: 
+-------  .R<WAT 156>.A<EPW 4> and .R<WAT 156>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 157>.A<EPW 4> and .R<WAT 157>.A<O 1>
+WARNING: There is a bond of 0.149245 angstroms between: 
+-------  .R<WAT 158>.A<EPW 4> and .R<WAT 158>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 159>.A<EPW 4> and .R<WAT 159>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 160>.A<EPW 4> and .R<WAT 160>.A<O 1>
+WARNING: There is a bond of 0.149379 angstroms between: 
+-------  .R<WAT 161>.A<EPW 4> and .R<WAT 161>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 162>.A<EPW 4> and .R<WAT 162>.A<O 1>
+WARNING: There is a bond of 0.150363 angstroms between: 
+-------  .R<WAT 163>.A<EPW 4> and .R<WAT 163>.A<O 1>
+WARNING: There is a bond of 0.150226 angstroms between: 
+-------  .R<WAT 164>.A<EPW 4> and .R<WAT 164>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 165>.A<EPW 4> and .R<WAT 165>.A<O 1>
+WARNING: There is a bond of 0.150226 angstroms between: 
+-------  .R<WAT 166>.A<EPW 4> and .R<WAT 166>.A<O 1>
+WARNING: There is a bond of 0.149820 angstroms between: 
+-------  .R<WAT 167>.A<EPW 4> and .R<WAT 167>.A<O 1>
+WARNING: There is a bond of 0.149940 angstroms between: 
+-------  .R<WAT 168>.A<EPW 4> and .R<WAT 168>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 169>.A<EPW 4> and .R<WAT 169>.A<O 1>
+WARNING: There is a bond of 0.149887 angstroms between: 
+-------  .R<WAT 170>.A<EPW 4> and .R<WAT 170>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 171>.A<EPW 4> and .R<WAT 171>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 172>.A<EPW 4> and .R<WAT 172>.A<O 1>
+WARNING: There is a bond of 0.150256 angstroms between: 
+-------  .R<WAT 173>.A<EPW 4> and .R<WAT 173>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 174>.A<EPW 4> and .R<WAT 174>.A<O 1>
+WARNING: There is a bond of 0.150522 angstroms between: 
+-------  .R<WAT 175>.A<EPW 4> and .R<WAT 175>.A<O 1>
+WARNING: There is a bond of 0.149355 angstroms between: 
+-------  .R<WAT 176>.A<EPW 4> and .R<WAT 176>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 177>.A<EPW 4> and .R<WAT 177>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 178>.A<EPW 4> and .R<WAT 178>.A<O 1>
+WARNING: There is a bond of 0.150629 angstroms between: 
+-------  .R<WAT 179>.A<EPW 4> and .R<WAT 179>.A<O 1>
+WARNING: There is a bond of 0.150546 angstroms between: 
+-------  .R<WAT 180>.A<EPW 4> and .R<WAT 180>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 181>.A<EPW 4> and .R<WAT 181>.A<O 1>
+WARNING: There is a bond of 0.149843 angstroms between: 
+-------  .R<WAT 182>.A<EPW 4> and .R<WAT 182>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 183>.A<EPW 4> and .R<WAT 183>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 184>.A<EPW 4> and .R<WAT 184>.A<O 1>
+WARNING: There is a bond of 0.149432 angstroms between: 
+-------  .R<WAT 185>.A<EPW 4> and .R<WAT 185>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 186>.A<EPW 4> and .R<WAT 186>.A<O 1>
+WARNING: There is a bond of 0.149660 angstroms between: 
+-------  .R<WAT 187>.A<EPW 4> and .R<WAT 187>.A<O 1>
+WARNING: There is a bond of 0.149650 angstroms between: 
+-------  .R<WAT 188>.A<EPW 4> and .R<WAT 188>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 189>.A<EPW 4> and .R<WAT 189>.A<O 1>
+WARNING: There is a bond of 0.149730 angstroms between: 
+-------  .R<WAT 190>.A<EPW 4> and .R<WAT 190>.A<O 1>
+WARNING: There is a bond of 0.150087 angstroms between: 
+-------  .R<WAT 191>.A<EPW 4> and .R<WAT 191>.A<O 1>
+WARNING: There is a bond of 0.150060 angstroms between: 
+-------  .R<WAT 192>.A<EPW 4> and .R<WAT 192>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 193>.A<EPW 4> and .R<WAT 193>.A<O 1>
+WARNING: There is a bond of 0.150203 angstroms between: 
+-------  .R<WAT 194>.A<EPW 4> and .R<WAT 194>.A<O 1>
+WARNING: There is a bond of 0.150043 angstroms between: 
+-------  .R<WAT 195>.A<EPW 4> and .R<WAT 195>.A<O 1>
+WARNING: There is a bond of 0.150033 angstroms between: 
+-------  .R<WAT 196>.A<EPW 4> and .R<WAT 196>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 197>.A<EPW 4> and .R<WAT 197>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 198>.A<EPW 4> and .R<WAT 198>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 199>.A<EPW 4> and .R<WAT 199>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 200>.A<EPW 4> and .R<WAT 200>.A<O 1>
+WARNING: There is a bond of 0.149144 angstroms between: 
+-------  .R<WAT 201>.A<EPW 4> and .R<WAT 201>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 202>.A<EPW 4> and .R<WAT 202>.A<O 1>
+WARNING: There is a bond of 0.150765 angstroms between: 
+-------  .R<WAT 203>.A<EPW 4> and .R<WAT 203>.A<O 1>
+WARNING: There is a bond of 0.150579 angstroms between: 
+-------  .R<WAT 204>.A<EPW 4> and .R<WAT 204>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 205>.A<EPW 4> and .R<WAT 205>.A<O 1>
+WARNING: There is a bond of 0.149726 angstroms between: 
+-------  .R<WAT 206>.A<EPW 4> and .R<WAT 206>.A<O 1>
+WARNING: There is a bond of 0.150177 angstroms between: 
+-------  .R<WAT 207>.A<EPW 4> and .R<WAT 207>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 208>.A<EPW 4> and .R<WAT 208>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 209>.A<EPW 4> and .R<WAT 209>.A<O 1>
+WARNING: There is a bond of 0.149462 angstroms between: 
+-------  .R<WAT 210>.A<EPW 4> and .R<WAT 210>.A<O 1>
+WARNING: There is a bond of 0.150336 angstroms between: 
+-------  .R<WAT 211>.A<EPW 4> and .R<WAT 211>.A<O 1>
+WARNING: There is a bond of 0.150765 angstroms between: 
+-------  .R<WAT 212>.A<EPW 4> and .R<WAT 212>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 213>.A<EPW 4> and .R<WAT 213>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 214>.A<EPW 4> and .R<WAT 214>.A<O 1>
+WARNING: There is a bond of 0.149910 angstroms between: 
+-------  .R<WAT 215>.A<EPW 4> and .R<WAT 215>.A<O 1>
+WARNING: There is a bond of 0.149847 angstroms between: 
+-------  .R<WAT 216>.A<EPW 4> and .R<WAT 216>.A<O 1>
+WARNING: There is a bond of 0.149713 angstroms between: 
+-------  .R<WAT 217>.A<EPW 4> and .R<WAT 217>.A<O 1>
+WARNING: There is a bond of 0.150256 angstroms between: 
+-------  .R<WAT 218>.A<EPW 4> and .R<WAT 218>.A<O 1>
+WARNING: There is a bond of 0.150805 angstroms between: 
+-------  .R<WAT 219>.A<EPW 4> and .R<WAT 219>.A<O 1>
+WARNING: There is a bond of 0.149579 angstroms between: 
+-------  .R<WAT 220>.A<EPW 4> and .R<WAT 220>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 221>.A<EPW 4> and .R<WAT 221>.A<O 1>
+WARNING: There is a bond of 0.150226 angstroms between: 
+-------  .R<WAT 222>.A<EPW 4> and .R<WAT 222>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 223>.A<EPW 4> and .R<WAT 223>.A<O 1>
+WARNING: There is a bond of 0.150217 angstroms between: 
+-------  .R<WAT 224>.A<EPW 4> and .R<WAT 224>.A<O 1>
+WARNING: There is a bond of 0.150393 angstroms between: 
+-------  .R<WAT 225>.A<EPW 4> and .R<WAT 225>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 226>.A<EPW 4> and .R<WAT 226>.A<O 1>
+WARNING: There is a bond of 0.149670 angstroms between: 
+-------  .R<WAT 227>.A<EPW 4> and .R<WAT 227>.A<O 1>
+WARNING: There is a bond of 0.150320 angstroms between: 
+-------  .R<WAT 228>.A<EPW 4> and .R<WAT 228>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 229>.A<EPW 4> and .R<WAT 229>.A<O 1>
+WARNING: There is a bond of 0.150310 angstroms between: 
+-------  .R<WAT 230>.A<EPW 4> and .R<WAT 230>.A<O 1>
+WARNING: There is a bond of 0.150167 angstroms between: 
+-------  .R<WAT 231>.A<EPW 4> and .R<WAT 231>.A<O 1>
+WARNING: There is a bond of 0.150429 angstroms between: 
+-------  .R<WAT 232>.A<EPW 4> and .R<WAT 232>.A<O 1>
+WARNING: There is a bond of 0.150453 angstroms between: 
+-------  .R<WAT 233>.A<EPW 4> and .R<WAT 233>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 234>.A<EPW 4> and .R<WAT 234>.A<O 1>
+WARNING: There is a bond of 0.149646 angstroms between: 
+-------  .R<WAT 235>.A<EPW 4> and .R<WAT 235>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 236>.A<EPW 4> and .R<WAT 236>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 237>.A<EPW 4> and .R<WAT 237>.A<O 1>
+WARNING: There is a bond of 0.149970 angstroms between: 
+-------  .R<WAT 238>.A<EPW 4> and .R<WAT 238>.A<O 1>
+WARNING: There is a bond of 0.150386 angstroms between: 
+-------  .R<WAT 239>.A<EPW 4> and .R<WAT 239>.A<O 1>
+WARNING: There is a bond of 0.149292 angstroms between: 
+-------  .R<WAT 240>.A<EPW 4> and .R<WAT 240>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 241>.A<EPW 4> and .R<WAT 241>.A<O 1>
+WARNING: There is a bond of 0.150473 angstroms between: 
+-------  .R<WAT 242>.A<EPW 4> and .R<WAT 242>.A<O 1>
+WARNING: There is a bond of 0.150619 angstroms between: 
+-------  .R<WAT 243>.A<EPW 4> and .R<WAT 243>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 244>.A<EPW 4> and .R<WAT 244>.A<O 1>
+WARNING: There is a bond of 0.150336 angstroms between: 
+-------  .R<WAT 245>.A<EPW 4> and .R<WAT 245>.A<O 1>
+WARNING: There is a bond of 0.149940 angstroms between: 
+-------  .R<WAT 246>.A<EPW 4> and .R<WAT 246>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 247>.A<EPW 4> and .R<WAT 247>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 248>.A<EPW 4> and .R<WAT 248>.A<O 1>
+WARNING: There is a bond of 0.149616 angstroms between: 
+-------  .R<WAT 249>.A<EPW 4> and .R<WAT 249>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 250>.A<EPW 4> and .R<WAT 250>.A<O 1>
+WARNING: There is a bond of 0.149777 angstroms between: 
+-------  .R<WAT 251>.A<EPW 4> and .R<WAT 251>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 252>.A<EPW 4> and .R<WAT 252>.A<O 1>
+WARNING: There is a bond of 0.149630 angstroms between: 
+-------  .R<WAT 253>.A<EPW 4> and .R<WAT 253>.A<O 1>
+WARNING: There is a bond of 0.149686 angstroms between: 
+-------  .R<WAT 254>.A<EPW 4> and .R<WAT 254>.A<O 1>
+WARNING: There is a bond of 0.149710 angstroms between: 
+-------  .R<WAT 255>.A<EPW 4> and .R<WAT 255>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 256>.A<EPW 4> and .R<WAT 256>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 257>.A<EPW 4> and .R<WAT 257>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 258>.A<EPW 4> and .R<WAT 258>.A<O 1>
+WARNING: There is a bond of 0.149977 angstroms between: 
+-------  .R<WAT 259>.A<EPW 4> and .R<WAT 259>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 260>.A<EPW 4> and .R<WAT 260>.A<O 1>
+WARNING: There is a bond of 0.149733 angstroms between: 
+-------  .R<WAT 261>.A<EPW 4> and .R<WAT 261>.A<O 1>
+WARNING: There is a bond of 0.149676 angstroms between: 
+-------  .R<WAT 262>.A<EPW 4> and .R<WAT 262>.A<O 1>
+WARNING: There is a bond of 0.150140 angstroms between: 
+-------  .R<WAT 263>.A<EPW 4> and .R<WAT 263>.A<O 1>
+WARNING: There is a bond of 0.149496 angstroms between: 
+-------  .R<WAT 264>.A<EPW 4> and .R<WAT 264>.A<O 1>
+WARNING: There is a bond of 0.149817 angstroms between: 
+-------  .R<WAT 265>.A<EPW 4> and .R<WAT 265>.A<O 1>
+WARNING: There is a bond of 0.149339 angstroms between: 
+-------  .R<WAT 266>.A<EPW 4> and .R<WAT 266>.A<O 1>
+WARNING: There is a bond of 0.150659 angstroms between: 
+-------  .R<WAT 267>.A<EPW 4> and .R<WAT 267>.A<O 1>
+WARNING: There is a bond of 0.150210 angstroms between: 
+-------  .R<WAT 268>.A<EPW 4> and .R<WAT 268>.A<O 1>
+WARNING: There is a bond of 0.150406 angstroms between: 
+-------  .R<WAT 269>.A<EPW 4> and .R<WAT 269>.A<O 1>
+WARNING: There is a bond of 0.150678 angstroms between: 
+-------  .R<WAT 270>.A<EPW 4> and .R<WAT 270>.A<O 1>
+WARNING: There is a bond of 0.149563 angstroms between: 
+-------  .R<WAT 271>.A<EPW 4> and .R<WAT 271>.A<O 1>
+WARNING: There is a bond of 0.150609 angstroms between: 
+-------  .R<WAT 272>.A<EPW 4> and .R<WAT 272>.A<O 1>
+WARNING: There is a bond of 0.150615 angstroms between: 
+-------  .R<WAT 273>.A<EPW 4> and .R<WAT 273>.A<O 1>
+WARNING: There is a bond of 0.150562 angstroms between: 
+-------  .R<WAT 274>.A<EPW 4> and .R<WAT 274>.A<O 1>
+WARNING: There is a bond of 0.150280 angstroms between: 
+-------  .R<WAT 275>.A<EPW 4> and .R<WAT 275>.A<O 1>
+WARNING: There is a bond of 0.149723 angstroms between: 
+-------  .R<WAT 276>.A<EPW 4> and .R<WAT 276>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 277>.A<EPW 4> and .R<WAT 277>.A<O 1>
+WARNING: There is a bond of 0.149405 angstroms between: 
+-------  .R<WAT 278>.A<EPW 4> and .R<WAT 278>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 279>.A<EPW 4> and .R<WAT 279>.A<O 1>
+WARNING: There is a bond of 0.149492 angstroms between: 
+-------  .R<WAT 280>.A<EPW 4> and .R<WAT 280>.A<O 1>
+WARNING: There is a bond of 0.149549 angstroms between: 
+-------  .R<WAT 281>.A<EPW 4> and .R<WAT 281>.A<O 1>
+WARNING: There is a bond of 0.149883 angstroms between: 
+-------  .R<WAT 282>.A<EPW 4> and .R<WAT 282>.A<O 1>
+WARNING: There is a bond of 0.150924 angstroms between: 
+-------  .R<WAT 283>.A<EPW 4> and .R<WAT 283>.A<O 1>
+WARNING: There is a bond of 0.149993 angstroms between: 
+-------  .R<WAT 284>.A<EPW 4> and .R<WAT 284>.A<O 1>
+WARNING: There is a bond of 0.149670 angstroms between: 
+-------  .R<WAT 285>.A<EPW 4> and .R<WAT 285>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 286>.A<EPW 4> and .R<WAT 286>.A<O 1>
+WARNING: There is a bond of 0.150100 angstroms between: 
+-------  .R<WAT 287>.A<EPW 4> and .R<WAT 287>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 288>.A<EPW 4> and .R<WAT 288>.A<O 1>
+WARNING: There is a bond of 0.149569 angstroms between: 
+-------  .R<WAT 289>.A<EPW 4> and .R<WAT 289>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 290>.A<EPW 4> and .R<WAT 290>.A<O 1>
+WARNING: There is a bond of 0.149890 angstroms between: 
+-------  .R<WAT 291>.A<EPW 4> and .R<WAT 291>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 292>.A<EPW 4> and .R<WAT 292>.A<O 1>
+WARNING: There is a bond of 0.150386 angstroms between: 
+-------  .R<WAT 293>.A<EPW 4> and .R<WAT 293>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 294>.A<EPW 4> and .R<WAT 294>.A<O 1>
+WARNING: There is a bond of 0.150619 angstroms between: 
+-------  .R<WAT 295>.A<EPW 4> and .R<WAT 295>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 296>.A<EPW 4> and .R<WAT 296>.A<O 1>
+WARNING: There is a bond of 0.149000 angstroms between: 
+-------  .R<WAT 297>.A<EPW 4> and .R<WAT 297>.A<O 1>
+WARNING: There is a bond of 0.149660 angstroms between: 
+-------  .R<WAT 298>.A<EPW 4> and .R<WAT 298>.A<O 1>
+WARNING: There is a bond of 0.150486 angstroms between: 
+-------  .R<WAT 299>.A<EPW 4> and .R<WAT 299>.A<O 1>
+WARNING: There is a bond of 0.150050 angstroms between: 
+-------  .R<WAT 300>.A<EPW 4> and .R<WAT 300>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 301>.A<EPW 4> and .R<WAT 301>.A<O 1>
+WARNING: There is a bond of 0.149686 angstroms between: 
+-------  .R<WAT 302>.A<EPW 4> and .R<WAT 302>.A<O 1>
+WARNING: There is a bond of 0.149710 angstroms between: 
+-------  .R<WAT 303>.A<EPW 4> and .R<WAT 303>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 304>.A<EPW 4> and .R<WAT 304>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 305>.A<EPW 4> and .R<WAT 305>.A<O 1>
+WARNING: There is a bond of 0.149977 angstroms between: 
+-------  .R<WAT 306>.A<EPW 4> and .R<WAT 306>.A<O 1>
+WARNING: There is a bond of 0.148862 angstroms between: 
+-------  .R<WAT 307>.A<EPW 4> and .R<WAT 307>.A<O 1>
+WARNING: There is a bond of 0.150579 angstroms between: 
+-------  .R<WAT 308>.A<EPW 4> and .R<WAT 308>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 309>.A<EPW 4> and .R<WAT 309>.A<O 1>
+WARNING: There is a bond of 0.149603 angstroms between: 
+-------  .R<WAT 310>.A<EPW 4> and .R<WAT 310>.A<O 1>
+WARNING: There is a bond of 0.150376 angstroms between: 
+-------  .R<WAT 311>.A<EPW 4> and .R<WAT 311>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 312>.A<EPW 4> and .R<WAT 312>.A<O 1>
+WARNING: There is a bond of 0.149446 angstroms between: 
+-------  .R<WAT 313>.A<EPW 4> and .R<WAT 313>.A<O 1>
+WARNING: There is a bond of 0.150589 angstroms between: 
+-------  .R<WAT 314>.A<EPW 4> and .R<WAT 314>.A<O 1>
+WARNING: There is a bond of 0.150210 angstroms between: 
+-------  .R<WAT 315>.A<EPW 4> and .R<WAT 315>.A<O 1>
+WARNING: There is a bond of 0.150406 angstroms between: 
+-------  .R<WAT 316>.A<EPW 4> and .R<WAT 316>.A<O 1>
+WARNING: There is a bond of 0.150678 angstroms between: 
+-------  .R<WAT 317>.A<EPW 4> and .R<WAT 317>.A<O 1>
+WARNING: There is a bond of 0.150286 angstroms between: 
+-------  .R<WAT 318>.A<EPW 4> and .R<WAT 318>.A<O 1>
+WARNING: There is a bond of 0.149730 angstroms between: 
+-------  .R<WAT 319>.A<EPW 4> and .R<WAT 319>.A<O 1>
+WARNING: There is a bond of 0.150645 angstroms between: 
+-------  .R<WAT 320>.A<EPW 4> and .R<WAT 320>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 321>.A<EPW 4> and .R<WAT 321>.A<O 1>
+WARNING: There is a bond of 0.149676 angstroms between: 
+-------  .R<WAT 322>.A<EPW 4> and .R<WAT 322>.A<O 1>
+WARNING: There is a bond of 0.150805 angstroms between: 
+-------  .R<WAT 323>.A<EPW 4> and .R<WAT 323>.A<O 1>
+WARNING: There is a bond of 0.150562 angstroms between: 
+-------  .R<WAT 324>.A<EPW 4> and .R<WAT 324>.A<O 1>
+WARNING: There is a bond of 0.150280 angstroms between: 
+-------  .R<WAT 325>.A<EPW 4> and .R<WAT 325>.A<O 1>
+WARNING: There is a bond of 0.149579 angstroms between: 
+-------  .R<WAT 326>.A<EPW 4> and .R<WAT 326>.A<O 1>
+WARNING: There is a bond of 0.149746 angstroms between: 
+-------  .R<WAT 327>.A<EPW 4> and .R<WAT 327>.A<O 1>
+WARNING: There is a bond of 0.149566 angstroms between: 
+-------  .R<WAT 328>.A<EPW 4> and .R<WAT 328>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 329>.A<EPW 4> and .R<WAT 329>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 330>.A<EPW 4> and .R<WAT 330>.A<O 1>
+WARNING: There is a bond of 0.150213 angstroms between: 
+-------  .R<WAT 331>.A<EPW 4> and .R<WAT 331>.A<O 1>
+WARNING: There is a bond of 0.150393 angstroms between: 
+-------  .R<WAT 332>.A<EPW 4> and .R<WAT 332>.A<O 1>
+WARNING: There is a bond of 0.149897 angstroms between: 
+-------  .R<WAT 333>.A<EPW 4> and .R<WAT 333>.A<O 1>
+WARNING: There is a bond of 0.149335 angstroms between: 
+-------  .R<WAT 334>.A<EPW 4> and .R<WAT 334>.A<O 1>
+WARNING: There is a bond of 0.149670 angstroms between: 
+-------  .R<WAT 335>.A<EPW 4> and .R<WAT 335>.A<O 1>
+WARNING: There is a bond of 0.149486 angstroms between: 
+-------  .R<WAT 336>.A<EPW 4> and .R<WAT 336>.A<O 1>
+WARNING: There is a bond of 0.150310 angstroms between: 
+-------  .R<WAT 337>.A<EPW 4> and .R<WAT 337>.A<O 1>
+WARNING: There is a bond of 0.150167 angstroms between: 
+-------  .R<WAT 338>.A<EPW 4> and .R<WAT 338>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 339>.A<EPW 4> and .R<WAT 339>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 340>.A<EPW 4> and .R<WAT 340>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 341>.A<EPW 4> and .R<WAT 341>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 342>.A<EPW 4> and .R<WAT 342>.A<O 1>
+WARNING: There is a bond of 0.149569 angstroms between: 
+-------  .R<WAT 343>.A<EPW 4> and .R<WAT 343>.A<O 1>
+WARNING: There is a bond of 0.149285 angstroms between: 
+-------  .R<WAT 344>.A<EPW 4> and .R<WAT 344>.A<O 1>
+WARNING: There is a bond of 0.149646 angstroms between: 
+-------  .R<WAT 345>.A<EPW 4> and .R<WAT 345>.A<O 1>
+WARNING: There is a bond of 0.150532 angstroms between: 
+-------  .R<WAT 346>.A<EPW 4> and .R<WAT 346>.A<O 1>
+WARNING: There is a bond of 0.150386 angstroms between: 
+-------  .R<WAT 347>.A<EPW 4> and .R<WAT 347>.A<O 1>
+WARNING: There is a bond of 0.150473 angstroms between: 
+-------  .R<WAT 348>.A<EPW 4> and .R<WAT 348>.A<O 1>
+WARNING: There is a bond of 0.150097 angstroms between: 
+-------  .R<WAT 349>.A<EPW 4> and .R<WAT 349>.A<O 1>
+WARNING: There is a bond of 0.149221 angstroms between: 
+-------  .R<WAT 350>.A<EPW 4> and .R<WAT 350>.A<O 1>
+WARNING: There is a bond of 0.150336 angstroms between: 
+-------  .R<WAT 351>.A<EPW 4> and .R<WAT 351>.A<O 1>
+WARNING: There is a bond of 0.149650 angstroms between: 
+-------  .R<WAT 352>.A<EPW 4> and .R<WAT 352>.A<O 1>
+WARNING: There is a bond of 0.149606 angstroms between: 
+-------  .R<WAT 353>.A<EPW 4> and .R<WAT 353>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 354>.A<EPW 4> and .R<WAT 354>.A<O 1>
+WARNING: There is a bond of 0.149499 angstroms between: 
+-------  .R<WAT 355>.A<EPW 4> and .R<WAT 355>.A<O 1>
+WARNING: There is a bond of 0.149616 angstroms between: 
+-------  .R<WAT 356>.A<EPW 4> and .R<WAT 356>.A<O 1>
+WARNING: There is a bond of 0.150522 angstroms between: 
+-------  .R<WAT 357>.A<EPW 4> and .R<WAT 357>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 358>.A<EPW 4> and .R<WAT 358>.A<O 1>
+WARNING: There is a bond of 0.149630 angstroms between: 
+-------  .R<WAT 359>.A<EPW 4> and .R<WAT 359>.A<O 1>
+WARNING: There is a bond of 0.149710 angstroms between: 
+-------  .R<WAT 360>.A<EPW 4> and .R<WAT 360>.A<O 1>
+WARNING: There is a bond of 0.150246 angstroms between: 
+-------  .R<WAT 361>.A<EPW 4> and .R<WAT 361>.A<O 1>
+WARNING: There is a bond of 0.149700 angstroms between: 
+-------  .R<WAT 362>.A<EPW 4> and .R<WAT 362>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 363>.A<EPW 4> and .R<WAT 363>.A<O 1>
+WARNING: There is a bond of 0.150043 angstroms between: 
+-------  .R<WAT 364>.A<EPW 4> and .R<WAT 364>.A<O 1>
+WARNING: There is a bond of 0.149352 angstroms between: 
+-------  .R<WAT 365>.A<EPW 4> and .R<WAT 365>.A<O 1>
+WARNING: There is a bond of 0.149144 angstroms between: 
+-------  .R<WAT 366>.A<EPW 4> and .R<WAT 366>.A<O 1>
+WARNING: There is a bond of 0.150283 angstroms between: 
+-------  .R<WAT 367>.A<EPW 4> and .R<WAT 367>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 368>.A<EPW 4> and .R<WAT 368>.A<O 1>
+WARNING: There is a bond of 0.150230 angstroms between: 
+-------  .R<WAT 369>.A<EPW 4> and .R<WAT 369>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 370>.A<EPW 4> and .R<WAT 370>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 371>.A<EPW 4> and .R<WAT 371>.A<O 1>
+WARNING: There is a bond of 0.149308 angstroms between: 
+-------  .R<WAT 372>.A<EPW 4> and .R<WAT 372>.A<O 1>
+WARNING: There is a bond of 0.149389 angstroms between: 
+-------  .R<WAT 373>.A<EPW 4> and .R<WAT 373>.A<O 1>
+WARNING: There is a bond of 0.149339 angstroms between: 
+-------  .R<WAT 374>.A<EPW 4> and .R<WAT 374>.A<O 1>
+WARNING: There is a bond of 0.150220 angstroms between: 
+-------  .R<WAT 375>.A<EPW 4> and .R<WAT 375>.A<O 1>
+WARNING: There is a bond of 0.150678 angstroms between: 
+-------  .R<WAT 376>.A<EPW 4> and .R<WAT 376>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 377>.A<EPW 4> and .R<WAT 377>.A<O 1>
+WARNING: There is a bond of 0.149563 angstroms between: 
+-------  .R<WAT 378>.A<EPW 4> and .R<WAT 378>.A<O 1>
+WARNING: There is a bond of 0.150609 angstroms between: 
+-------  .R<WAT 379>.A<EPW 4> and .R<WAT 379>.A<O 1>
+WARNING: There is a bond of 0.150167 angstroms between: 
+-------  .R<WAT 380>.A<EPW 4> and .R<WAT 380>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 381>.A<EPW 4> and .R<WAT 381>.A<O 1>
+WARNING: There is a bond of 0.149847 angstroms between: 
+-------  .R<WAT 382>.A<EPW 4> and .R<WAT 382>.A<O 1>
+WARNING: There is a bond of 0.149379 angstroms between: 
+-------  .R<WAT 383>.A<EPW 4> and .R<WAT 383>.A<O 1>
+WARNING: There is a bond of 0.150615 angstroms between: 
+-------  .R<WAT 384>.A<EPW 4> and .R<WAT 384>.A<O 1>
+WARNING: There is a bond of 0.150226 angstroms between: 
+-------  .R<WAT 385>.A<EPW 4> and .R<WAT 385>.A<O 1>
+WARNING: There is a bond of 0.149843 angstroms between: 
+-------  .R<WAT 386>.A<EPW 4> and .R<WAT 386>.A<O 1>
+WARNING: There is a bond of 0.150310 angstroms between: 
+-------  .R<WAT 387>.A<EPW 4> and .R<WAT 387>.A<O 1>
+WARNING: There is a bond of 0.150280 angstroms between: 
+-------  .R<WAT 388>.A<EPW 4> and .R<WAT 388>.A<O 1>
+WARNING: There is a bond of 0.149723 angstroms between: 
+-------  .R<WAT 389>.A<EPW 4> and .R<WAT 389>.A<O 1>
+WARNING: There is a bond of 0.149405 angstroms between: 
+-------  .R<WAT 390>.A<EPW 4> and .R<WAT 390>.A<O 1>
+WARNING: There is a bond of 0.150217 angstroms between: 
+-------  .R<WAT 391>.A<EPW 4> and .R<WAT 391>.A<O 1>
+WARNING: There is a bond of 0.149820 angstroms between: 
+-------  .R<WAT 392>.A<EPW 4> and .R<WAT 392>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 393>.A<EPW 4> and .R<WAT 393>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 394>.A<EPW 4> and .R<WAT 394>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 395>.A<EPW 4> and .R<WAT 395>.A<O 1>
+WARNING: There is a bond of 0.149893 angstroms between: 
+-------  .R<WAT 396>.A<EPW 4> and .R<WAT 396>.A<O 1>
+WARNING: There is a bond of 0.149268 angstroms between: 
+-------  .R<WAT 397>.A<EPW 4> and .R<WAT 397>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 398>.A<EPW 4> and .R<WAT 398>.A<O 1>
+WARNING: There is a bond of 0.149569 angstroms between: 
+-------  .R<WAT 399>.A<EPW 4> and .R<WAT 399>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 400>.A<EPW 4> and .R<WAT 400>.A<O 1>
+WARNING: There is a bond of 0.149890 angstroms between: 
+-------  .R<WAT 401>.A<EPW 4> and .R<WAT 401>.A<O 1>
+WARNING: There is a bond of 0.150629 angstroms between: 
+-------  .R<WAT 402>.A<EPW 4> and .R<WAT 402>.A<O 1>
+WARNING: There is a bond of 0.149900 angstroms between: 
+-------  .R<WAT 403>.A<EPW 4> and .R<WAT 403>.A<O 1>
+WARNING: There is a bond of 0.149830 angstroms between: 
+-------  .R<WAT 404>.A<EPW 4> and .R<WAT 404>.A<O 1>
+WARNING: There is a bond of 0.150502 angstroms between: 
+-------  .R<WAT 405>.A<EPW 4> and .R<WAT 405>.A<O 1>
+WARNING: There is a bond of 0.150097 angstroms between: 
+-------  .R<WAT 406>.A<EPW 4> and .R<WAT 406>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 407>.A<EPW 4> and .R<WAT 407>.A<O 1>
+WARNING: There is a bond of 0.150127 angstroms between: 
+-------  .R<WAT 408>.A<EPW 4> and .R<WAT 408>.A<O 1>
+WARNING: There is a bond of 0.149000 angstroms between: 
+-------  .R<WAT 409>.A<EPW 4> and .R<WAT 409>.A<O 1>
+WARNING: There is a bond of 0.149650 angstroms between: 
+-------  .R<WAT 410>.A<EPW 4> and .R<WAT 410>.A<O 1>
+WARNING: There is a bond of 0.150050 angstroms between: 
+-------  .R<WAT 411>.A<EPW 4> and .R<WAT 411>.A<O 1>
+WARNING: There is a bond of 0.150060 angstroms between: 
+-------  .R<WAT 412>.A<EPW 4> and .R<WAT 412>.A<O 1>
+WARNING: There is a bond of 0.150576 angstroms between: 
+-------  .R<WAT 413>.A<EPW 4> and .R<WAT 413>.A<O 1>
+WARNING: There is a bond of 0.150043 angstroms between: 
+-------  .R<WAT 414>.A<EPW 4> and .R<WAT 414>.A<O 1>
+WARNING: There is a bond of 0.150522 angstroms between: 
+-------  .R<WAT 415>.A<EPW 4> and .R<WAT 415>.A<O 1>
+WARNING: There is a bond of 0.149837 angstroms between: 
+-------  .R<WAT 416>.A<EPW 4> and .R<WAT 416>.A<O 1>
+WARNING: There is a bond of 0.149710 angstroms between: 
+-------  .R<WAT 417>.A<EPW 4> and .R<WAT 417>.A<O 1>
+WARNING: There is a bond of 0.149586 angstroms between: 
+-------  .R<WAT 418>.A<EPW 4> and .R<WAT 418>.A<O 1>
+WARNING: There is a bond of 0.149977 angstroms between: 
+-------  .R<WAT 419>.A<EPW 4> and .R<WAT 419>.A<O 1>
+WARNING: There is a bond of 0.149700 angstroms between: 
+-------  .R<WAT 420>.A<EPW 4> and .R<WAT 420>.A<O 1>
+WARNING: There is a bond of 0.150735 angstroms between: 
+-------  .R<WAT 421>.A<EPW 4> and .R<WAT 421>.A<O 1>
+WARNING: There is a bond of 0.149352 angstroms between: 
+-------  .R<WAT 422>.A<EPW 4> and .R<WAT 422>.A<O 1>
+WARNING: There is a bond of 0.150579 angstroms between: 
+-------  .R<WAT 423>.A<EPW 4> and .R<WAT 423>.A<O 1>
+WARNING: There is a bond of 0.149144 angstroms between: 
+-------  .R<WAT 424>.A<EPW 4> and .R<WAT 424>.A<O 1>
+WARNING: There is a bond of 0.150366 angstroms between: 
+-------  .R<WAT 425>.A<EPW 4> and .R<WAT 425>.A<O 1>
+WARNING: There is a bond of 0.149937 angstroms between: 
+-------  .R<WAT 426>.A<EPW 4> and .R<WAT 426>.A<O 1>
+WARNING: There is a bond of 0.150230 angstroms between: 
+-------  .R<WAT 427>.A<EPW 4> and .R<WAT 427>.A<O 1>
+WARNING: There is a bond of 0.149696 angstroms between: 
+-------  .R<WAT 428>.A<EPW 4> and .R<WAT 428>.A<O 1>
+WARNING: There is a bond of 0.149446 angstroms between: 
+-------  .R<WAT 429>.A<EPW 4> and .R<WAT 429>.A<O 1>
+WARNING: There is a bond of 0.150296 angstroms between: 
+-------  .R<WAT 430>.A<EPW 4> and .R<WAT 430>.A<O 1>
+WARNING: There is a bond of 0.149308 angstroms between: 
+-------  .R<WAT 431>.A<EPW 4> and .R<WAT 431>.A<O 1>
+WARNING: There is a bond of 0.150765 angstroms between: 
+-------  .R<WAT 432>.A<EPW 4> and .R<WAT 432>.A<O 1>
+WARNING: There is a bond of 0.150645 angstroms between: 
+-------  .R<WAT 433>.A<EPW 4> and .R<WAT 433>.A<O 1>
+WARNING: There is a bond of 0.149997 angstroms between: 
+-------  .R<WAT 434>.A<EPW 4> and .R<WAT 434>.A<O 1>
+WARNING: There is a bond of 0.150260 angstroms between: 
+-------  .R<WAT 435>.A<EPW 4> and .R<WAT 435>.A<O 1>
+WARNING: There is a bond of 0.150609 angstroms between: 
+-------  .R<WAT 436>.A<EPW 4> and .R<WAT 436>.A<O 1>
+WARNING: There is a bond of 0.150167 angstroms between: 
+-------  .R<WAT 437>.A<EPW 4> and .R<WAT 437>.A<O 1>
+WARNING: There is a bond of 0.149847 angstroms between: 
+-------  .R<WAT 438>.A<EPW 4> and .R<WAT 438>.A<O 1>
+WARNING: There is a bond of 0.149713 angstroms between: 
+-------  .R<WAT 439>.A<EPW 4> and .R<WAT 439>.A<O 1>
+WARNING: There is a bond of 0.149676 angstroms between: 
+-------  .R<WAT 440>.A<EPW 4> and .R<WAT 440>.A<O 1>
+WARNING: There is a bond of 0.149843 angstroms between: 
+-------  .R<WAT 441>.A<EPW 4> and .R<WAT 441>.A<O 1>
+WARNING: There is a bond of 0.149482 angstroms between: 
+-------  .R<WAT 442>.A<EPW 4> and .R<WAT 442>.A<O 1>
+WARNING: There is a bond of 0.149579 angstroms between: 
+-------  .R<WAT 443>.A<EPW 4> and .R<WAT 443>.A<O 1>
+WARNING: There is a bond of 0.149723 angstroms between: 
+-------  .R<WAT 444>.A<EPW 4> and .R<WAT 444>.A<O 1>
+WARNING: There is a bond of 0.149566 angstroms between: 
+-------  .R<WAT 445>.A<EPW 4> and .R<WAT 445>.A<O 1>
+WARNING: There is a bond of 0.149967 angstroms between: 
+-------  .R<WAT 446>.A<EPW 4> and .R<WAT 446>.A<O 1>
+WARNING: There is a bond of 0.150217 angstroms between: 
+-------  .R<WAT 447>.A<EPW 4> and .R<WAT 447>.A<O 1>
+WARNING: The unperturbed charge of the unit: 1.000000 is not zero.
+
+ -- ignoring the warnings.
+
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 0 improper torsions applied
+Building H-Bond parameters.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+ (no restraints)
+> quit
+	Quit

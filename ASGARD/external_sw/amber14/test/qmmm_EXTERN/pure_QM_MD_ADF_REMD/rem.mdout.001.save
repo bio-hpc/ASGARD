@@ -1,0 +1,321 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 08/16/2014 at 16:37:56
+
+|   Executable path: sander.MPI
+| Working directory: /server-home1/agoetz/sources/AMBER/sdsc-amber/test/qmmm_EXTERN/pure_QM_MD_ADF_REMD
+|          Hostname: gecko
+
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: ./rem2.mdin                                                           
+| MDOUT: ./rem.mdout.001                                                       
+|INPCRD: ./h2o.inpcrd                                                          
+|  PARM: h2o.prmtop                                                            
+|RESTRT: ./rem.restrt.001                                                      
+|  REFC: refc                                                                  
+| MDVEL: mdvel.001                                                             
+| MDFRC: mdfrc.001                                                             
+|  MDEN: mden.001                                                              
+| MDCRD: rem.mdcrd.001                                                         
+|MDINFO: rem.mdinfo.001                                                        
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+|    REMLOG: rem.log
+|   REMTYPE: rem.type
+|  REMSTRIP: 
+|   SAVEENE: saveene
+|CLUSTERINF: cluster.info
+| RESERVOIR: reserv/frame
+|   REMDDIM: 
+
+
+ Here is the input file:
+
+ADF REMD TEST                                                                  
+                                                                               
+&cntrl                                                                         
+  irest  = 0,           !restart                                               
+  ntx    = 1,           !coordinates and velocities are read in                
+  cut    = 9999.9       !non-bonded interactions cutoff                        
+  dt     = 0.0005,      !0.5fs time step                                       
+  ntb    = 0,           !no periodicity and PME off!                           
+  ntt    = 1,                                                                  
+  nchain = 4,                                                                  
+  ntpr   = 1,           !print details to log every 10 steps (every 5fs)       
+  ntwx   = 1,           !write coordinates to mdcrd every 10 steps (every 5fs) 
+  ntwr   = 1,           !write restart file at last step                       
+  nstlim = 1,           !run 1 step between exchanges (.5 fs at dt=0.5fs)      
+  numexchg = 3,         !exchange 3 times total (1.5 fs total)                 
+  temp0  = 350.0,                                                              
+  nscm   = 0,           !No removal of COM motion,                             
+  ifqnt  = 1,                                                                  
+ /                                                                             
+ &qmmm                                                                         
+  qmmask    = '@*',                                                            
+  qmcharge  = 0,                                                               
+  qm_theory = 'EXTERN',                                                        
+  verbosity = 0,                                                               
+ /                                                                             
+ &adf                                                                          
+  xc = 'GGA BLYP',                                                             
+  basis = 'SZ',                                                                
+  integration = 4.0,                                                           
+  scf_conv = 1.0D-06,                                                          
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|  *** cutoff > system size, list only builds once
+|Largest sphere to fit in unit cell has radius =    30.000
+| New format PARM file being parsed.
+| Version =    1.000 Date = 11/15/10 Time = 11:35:08
+ NATOM  =       3 NTYPES =       2 NBONH =       3 MBONA  =       0
+ NTHETH =       0 MTHETA =       0 NPHIH =       0 MPHIA  =       0
+ NHPARM =       0 NPARM  =       0 NNB   =       4 NRES   =       1
+ NBONA  =       0 NTHETA =       0 NPHIA =       0 NUMBND =       2
+ NUMANG =       0 NPTRA  =       0 NATYP =       2 NPHB   =       1
+ IFBOX  =       0 NMXRS  =       3 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real                1984
+|     Hollerith             12
+|     Integer            20077
+|     Max Pairs              3
+|     nblistReal            36
+|     nblist Int        761619
+|       Total             3069 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+LOADING THE QUANTUM ATOMS AS GROUPS
+     Mask @*; matches     3 atoms
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Replica exchange
+     numexchg=       3, rem=       1
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =       1
+     iwrap   =       0, ntwx    =       1, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =9999.90000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =         1, nscm    =         0, nrespa  =         1
+     t       =   0.00000, dt      =   0.00050, vlimit  =  20.00000
+
+Berendsen (weak-coupling) temperature regulation:
+     temp0   = 350.00000, tempi   =   0.00000, tautp   =   1.00000
+
+QMMM options:
+             ifqnt = True       nquant =        3
+              qmgb =        0  qmcharge =        0   adjust_q =        2
+              spin =        1     qmcut = ********    qmshake =        1
+          qmmm_int =        1
+     lnk_atomic_no =        1   lnk_dis =   1.0900 lnk_method =        1
+          qm_theory =     EXTERN verbosity =        0
+            qmqmdx = Analytical
+          qm_ewald =        0 qm_pme = False 
+
+| MPI Timing options:
+|      profile_mpi =        0
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+|  Atom division among processors:
+|         0       3
+
+     Sum of charges from parm topology file =   0.00000000
+     Forcing neutrality...
+|  Running AMBER/MPI version on    1 nodes
+
+|  MULTISANDER:    2 groups.    1 processors out of    2 total.
+|  # of SOLUTE  degrees of freedom (RNDFP):       9.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  QMSHAKE_NOSHAKEMASK_OVERLAP =      0
+|  NDFMIN =       9.     NUM_NOSHAKE =      0     CORRECTED RNDFP =       9.
+|  TOTAL # of degrees of freedom (RNDF) =       9.
+ ---------------------------------------------------
+
+     eedmeth=4: Setting switch to one everywhere
+
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =          0
+| TOTAL SIZE OF NONBOND LIST =          0
+
+QMMM: Link Atom Information
+QMMM: ------------------------------------------------------------------------
+QMMM: nlink =     0
+QMMM: ------------------------------------------------------------------------
+
+  QMMM: QM Region Cartesian Coordinates (*=link atom) 
+  QMMM: QM_NO.   MM_NO.  ATOM         X         Y         Z
+  QMMM:     1        1      O        0.0000    0.0000    0.1170
+  QMMM:     2        2      H        0.0000    0.7580   -0.4700
+  QMMM:     3        3      H        0.0000   -0.7580   -0.4700
+
+--------------------------------------------------------------------------------
+  3.1 QM CALCULATION INFO
+--------------------------------------------------------------------------------
+| !!!!!!!!!!!!!!!!!!!!!!!!!   WARNING   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+| Not all MPI implementations fully support system calls that execute
+| MPI parallel programs. In this case it will not be possible to run 
+| MPI parallel versions of both sander and the external QM program.  
+| !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+| Please also cite the following work for the use of the QM/MM interface:
+
+| A. W. G"otz, M. A. Clark, R. C. Walker
+| "An extensible interface for ab initio QM/MM molecular dynamics simulations
+|  with AMBER"
+| J. Comput. Chem. 35 (2014) 95-108.
+| DOI: 10.1002/jcc.23444
+
+ Constants for unit conversion taken from
+ Mohr, Taylor, Newell, Rev. Mod. Phys. 80 (2008) 633-730
+ and using the thermochemical calorie (1 cal = 4.184 J):
+
+ A_TO_BOHRS  =  1.889726132873E+00
+ AU_TO_KCAL  =  6.2750946943E+02
+ AU_TO_DEBYE =  2.54174623E+00
+
+  >>> Running QM calculation with ADF <<<
+
+| &adf
+|   xc             = GGA BLYP            
+|   basis          = SZ                  
+|   core           = None                
+|   fit_type       =                     
+|   guess          = read                
+|   integration    = 0.4000000000000000E+01
+|   scf_conv       =   1.00E-06
+|   scf_iter       =    50
+|   ntpr           = 1
+|   num_threads    =   0
+|   linear_scaling =  -1
+|   use_dftb       = F
+|   oldgradients   = F
+|   dipole         = F
+|   exactdensity   = F
+|   use_template   = F
+|   beckegrid   =                     
+|   zlmfit   = good                
+| /
+| Program adf found!
+| Executable location: /server-home3/netbin/ADF/adf2013.01d/bin/adf
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =      -319.9615  EKtot   =         0.0000  EPtot      =      -319.9615
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EXTERNESCF=      -319.9615
+ TEMP0  =       350.0000  REPNUM  =              2  EXCHANGE#  =              0
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        1   TIME(PS) =       0.001  TEMP(K) =     0.15  PRESS =     0.0
+ Etot   =      -319.9601  EKtot   =         0.0013  EPtot      =      -319.9615
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EXTERNESCF=      -319.9615
+ TEMP0  =       300.0000  REPNUM  =              2  EXCHANGE#  =              1
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =       0.001  TEMP(K) =   118.84  PRESS =     0.0
+ Etot   =      -319.9074  EKtot   =         1.0627  EPtot      =      -320.9701
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EXTERNESCF=      -320.9701
+ TEMP0  =       350.0000  REPNUM  =              2  EXCHANGE#  =              2
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =       0.002  TEMP(K) =   334.02  PRESS =     0.0
+ Etot   =      -320.3731  EKtot   =         2.9869  EPtot      =      -323.3600
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EXTERNESCF=      -323.3600
+ TEMP0  =       300.0000  REPNUM  =              2  EXCHANGE#  =              3
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|          QMMM                      26.95 (100.0% of Force)
+|       Force time                26.95 (100.0% of Runmd)
+|       Verlet update time         0.02 ( 0.07% of Runmd)
+|       Other                      0.00 ( 0.02% of Runmd)
+|    Runmd Time                26.97 (100.0% of Total)
+|    Other                      0.01 ( 0.05% of Total)
+| Total time                26.98 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =      23.53 Per Step(ms) =    7842.41
+|         ps/day =      5.509   seconds/ps =   15684.81
+| -----------------------------------------------------
+
+|           Job began  at 16:37:56.271  on 08/16/2014
+|           Setup done at 16:37:56.286  on 08/16/2014
+|           Run   done at 16:38:23.256  on 08/16/2014
+|     wallclock() was called     364 times

@@ -1,0 +1,179 @@
+#
+# Input parameters for mm_pbsa.pl
+#
+# Holger Gohlke
+# 15.02.2012
+#
+################################################################################
+@GENERAL
+#
+# General parameters
+#   0: means NO; >0: means YES
+#
+#   mm_pbsa allows to calculate (absolute) free energies for one molecular
+#     species or a free energy difference according to:
+#
+#     Receptor + Ligand = Complex,
+#     DeltaG = G(Complex) - G(Receptor) - G(Ligand).
+#
+#   VERBOSE - If set to 1, input and output files are not removed. This is
+#             useful for debugging purposes.
+#   PARALLEL - If set to values > 1, energy calculations for snapshots are
+#              done in parallel, using PARALLEL number of threads. 
+#
+#   PREFIX - To the prefix, "{_com, _rec, _lig}.crd.Number" is added during
+#            generation of snapshots as well as during mm_pbsa calculations.
+#   PATH - Specifies the location where to store or get snapshots.
+#   START - Specifies the first snapshot to be used in energy calculations
+#           (optional, defaults to 1).
+#   STOP - Specifies the last snapshot to be used in energy calculations 
+#          (optional, defaults to 10e10).
+#   OFFSET - Specifies the offset between snapshots in energy calculations 
+#            (optional, defaults to 1).
+#
+#   COMPLEX - Set to 1 if free energy difference is calculated.
+#   RECEPTOR - Set to 1 if either (absolute) free energy or free energy
+#              difference are calculated.
+#   LIGAND - Set to 1 if free energy difference is calculated.
+#
+#   COMPT - parmtop file for the complex (not necessary for option GC).
+#   RECPT - parmtop file for the receptor (not necessary for option GC).
+#   LIGPT - parmtop file for the ligand (not necessary for option GC).
+#
+#   GC - Snapshots are generated from trajectories (see below).
+#   AS - Residues are mutated to Ala during generation of snapshots from
+#        trajectories.
+#   DC - Decompose the free energies into individual contributions.
+#        (When using DC, MM and GB must be set to 1, even if a PB decomposition
+#         is also requested.)
+#
+#   MM - Calculation of gas phase energies using sander.
+#   GB - Calculation of desolvation free energies using the GB models in sander
+#        (see below).
+#   PB - Calculation of desolvation free energies using the PB method and
+#        computation of nonpolar solvation free energies according to
+#        the INP option in pbsa (see below).
+#   MS - Calculation of nonpolar contributions to desolvation using molsurf
+#        (see below).
+#        If MS == 0 and GB == 1, nonpolar contributions are calculated either
+#        with the LCPO (GBSA == 1) or the ICOSA (GBSA == 2) method in sander 
+#        (see below).
+#        If MS == 0 and PB == 1, nonpolar contributions are calculated according
+#        the INP option in pbsa (see below).
+#   NM - Calculation of entropies with nmode.
+#
+VERBOSE               0
+PARALLEL              0
+#
+PREFIX                test
+PATH                  ../01_GenerateSnapshots/
+START                 1
+STOP                  1
+OFFSET                1
+#
+COMPLEX               0
+RECEPTOR              0
+LIGAND                1
+#
+COMPT                 ../test_com_mbondi2.prmtop
+RECPT                 ../test_rec_mbondi2.prmtop
+LIGPT                 ../test_lig_mbondi2.prmtop
+#
+GC                    0
+AS                    0
+DC                    1
+#
+MM                    0
+GB                    0
+PB                    0
+MS                    0
+#
+NM                    1
+#
+################################################################################
+@DECOMP
+#
+# Energy decomposition parameters
+# (this section is only relevant if DC = 1 above)
+#
+#   Energy decomposition is performed for gasphase energies, desolvation free
+#     energies calculated with GB or PB, and nonpolar contributions to 
+#     desolvation using the ICOSA method.
+#   For amino acids, decomposition is also performed with respect to backbone
+#     and sidechain atoms.
+#
+#   DCTYPE - Values of 1 or 2 yield a decomposition on a per-residue basis,
+#            values of 3 or 4 yield a decomposition on a pairwise per-residue
+#              basis. For the latter, so far the number of pairs must not
+#              exceed the number of residues in the molecule considered.
+#            Values 1 or 3 add 1-4 interactions to bond contributions.
+#            Values 2 or 4 add 1-4 interactions to either electrostatic or vdW
+#              contributions.
+#
+#   COMREC - Residues belonging to the receptor molecule IN THE COMPLEX.
+#   COMLIG - Residues belonging to the ligand molecule IN THE COMPLEX.
+#   RECRES - Residues in the receptor molecule.
+#   LIGRES - Residues in the ligand molecule.
+#   {COM,REC,LIG}PRI - Residues considered for output.
+#   {REC,LIG}MAP - Residues in the complex which are equivalent to the residues
+#                  in the receptor molecule or the ligand molecule.
+#
+DCTYPE                2
+#
+COMREC                100-110
+COMLIG                200-210
+COMPRI                100-110 200-210
+RECRES                100-110
+RECPRI                100-110
+RECMAP                100-110
+LIGRES                67-77
+LIGPRI                67-77
+LIGMAP                200-210
+################################################################################
+@NM
+#
+# Parameters for sander/nmode calculation
+# (this section is only relevant if NM = 1 above)
+#
+#   The following parameters are used for entropy calculation using 
+#   gasphase statistical mechanics.
+#   For further details see documentation.
+#
+#   PROC -  Determines which method is used for the calculations:
+#           By default, PROC = 1, the NAB implementation of nmode is used.
+#             This allows using either a GB model or a distance-dependent
+#             dielectric for electrostatic energies. No entropy decomposition
+#             is possible, however.
+#           If PROC = 2, the "original" nmode implementation is used.
+#             Here, only a distance-dependent dielectric is avaliable for
+#             electrostatic energies. Entropy decomposition is possible
+#             here, too. 
+#   MAXCYC - Maximum number of cycles of minimization.
+#   DRMS - Convergence criterion for the energy gradient.
+#   IGB - Switches between no GB (i.e., vacuum electrostatics) (0) or
+#         Tsui's GB (1).
+#   SALTCON - Concentration (in M) of 1-1 mobile counterions in solution.
+#   EXTDIEL - Dielectricity constant for the solvent.
+#   SURFTEN - Value used to compute the nonpolar contribution Gnp to
+#             the desolvation according to Gnp = SURFTEN * SASA.
+#   DIELC - (Distance-dependent) dielectric constant (if IGB = 0)
+#
+PROC                  2
+#
+MAXCYC                10000
+DRMS                  0.5
+#
+IGB                   0
+SALTCON               0.00
+EXTDIEL               80.0
+SURFTEN               0.0072
+#
+DIELC                 4
+#
+################################################################################
+@PROGRAMS
+#
+# Additional program executables can be defined here
+#
+#
+################################################################################

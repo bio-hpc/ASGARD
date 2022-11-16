@@ -1,0 +1,18 @@
+The guv* files are 3D  distribution functions  of solvent sites (in this case Ow
+and  Hw) around  the solute  test.pdb  computed from  3D-RISM. These files  were
+provided  to simplify the test. One can get  those files, however, by  executing
+the following commands:
+
+##### build prmtop file
+cat <<EOF > leap.in
+source leaprc.ff12SB
+x = loadpdb test.pdb
+saveamberparm x prmtop inpcrd
+quit
+EOF
+
+$AMBERHOME/AmberTools/bin/tleap -f leap.in
+
+##### run 3D-RISM 
+$AMBERHOME/AmberTools/bin/rism3d.snglpnt --pdb test.pdb --prmtop prmtop \
+                    --xvv ../rism1d/spc-kh/spc.xvv.save --guv guv --grdspc 1,1,1

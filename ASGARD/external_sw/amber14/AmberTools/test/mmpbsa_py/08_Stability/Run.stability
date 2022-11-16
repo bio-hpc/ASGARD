@@ -1,0 +1,85 @@
+#!/bin/sh
+
+. ../../program_error.sh
+. ../cannot_run.sh
+
+# This is a test file to run the stability test for MMPBSA.py
+
+if [ ! -x $AMBERHOME/bin/sander ]; then
+   echo "This test requires sander and can only be run with Amber12 installed."
+   exit 0
+fi
+
+if [ -z "$AMBERHOME" ]; then
+   echo "Error: AMBERHOME must be set!"
+   exit 1
+fi
+
+# Define executable
+if [ -z "$DO_PARALLEL" ]; then
+   EXE=$AMBERHOME/bin/MMPBSA.py
+else
+   if [ `$DO_PARALLEL ../../numprocs` -gt 2 ]; then
+      echo "Cannot have more than 2 processors for this test."
+      exit 0
+   fi
+   EXE=$AMBERHOME/bin/MMPBSA.py.MPI
+fi
+
+test -x $EXE || cannot_run $EXE
+
+# Write input file
+cat > mmpbsa.in << EOF
+MMPBSA.py input file for running GB
+&general
+   startframe=1, endframe=2, interval=1,
+   keep_files=2, netcdf=1, debug_printlevel=2,
+/
+&gb
+   igb=5, saltcon=0.1, molsurf=1, probe=1.6,
+/
+&decomp
+   idecomp=1, dec_verbose=3, print_res="1-10, 15, 20",
+/
+EOF
+
+# Execute the program
+$DO_PARALLEL $EXE -O -i mmpbsa.in \
+                     -sp ../EstRAL_Files/sol.top \
+                     -cp ../EstRAL_Files/com.top \
+                     -y ../EstRAL_Files/test.mdcrd \
+                     -o FINAL_RESULTS_MMPBSA1.dat \
+                     -do FINAL_DECOMP_MMPBSA1.csv > mmpbsa.out 2>&1 || error
+
+# Write second input file
+cat > mmpbsa.in << EOF
+MMPBSA.py input file for running GB
+&general
+   startframe=1, endframe=2, interval=1,
+   keep_files=0, netcdf=1,
+/
+&pb
+   istrng=0.1,
+/
+&decomp
+   idecomp=1, dec_verbose=3, print_res="1-10, 15, 20"
+/
+EOF
+
+$DO_PARALLEL $EXE -O -i mmpbsa.in \
+                     -sp ../EstRAL_Files/sol.top \
+                     -cp ../EstRAL_Files/com.top \
+                     -y ../EstRAL_Files/test.mdcrd \
+                     -o FINAL_RESULTS_MMPBSA2.dat \
+                     -do FINAL_DECOMP_MMPBSA2.csv > mmpbsa.out 2>&1 || error
+
+# Take away the commas in the CSVs so we can compare differences
+sed -i -e "s@,@ @g" FINAL_DECOMP_MMPBSA1.csv
+sed -i -e "s@,@ @g" FINAL_DECOMP_MMPBSA2.csv
+
+../../dacdif -a 2 FINAL_RESULTS_MMPBSA1.dat.save FINAL_RESULTS_MMPBSA1.dat
+../../dacdif -a 2 FINAL_DECOMP_MMPBSA1.csv.save FINAL_DECOMP_MMPBSA1.csv
+../../dacdif -a 2 FINAL_RESULTS_MMPBSA2.dat.save FINAL_RESULTS_MMPBSA2.dat
+../../dacdif -a 2 FINAL_DECOMP_MMPBSA2.csv.save FINAL_DECOMP_MMPBSA2.csv
+
+rm -f mmpbsa.in mmpbsa.out FINAL_DECOMP_MMPBSA1.csv-e FINAL_DECOMP_MMPBSA2.csv-e

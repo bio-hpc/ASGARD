@@ -1,0 +1,40 @@
+RCW 30th July 2007
+
+List of QMMM TODO items
+
+
+Bugs ETC
+--------
+1) Fix Ewald Error Estimate.
+
+2) Add support for non rectangular boxes. - DONE, RCW MFC, 17th Aug 2007
+
+3) Fix QM bounding box check. - DONE, RCW MFC, 6th Aug 2007
+
+4) Fix MPI with Verbose = 3.
+
+Features
+--------
+1) Add RM1 Hamiltonian. - DONE, RCW, 4th Aug 2007
+
+2) Continued optimization of DFTB.
+
+3) Extend parallelization of DFTB.
+
+4) Parallel diagonalizer.
+
+5) Dynamic Water / Dynamic QM region?
+
+6) Add summary of convergence failures to end of MD run. - keep a table
+   + if we have too many failures we just quit the run.
+
+7) Charge based QM-MM interaction (qmmm_int=2?)
+
+8) Orbital visualization?
+
+9) Excited stated (Amber 11?)
+
+10) GB Support for DFTB
+
+11) Unpacked storage diagonalizer (dsyevd/dsyevr)
+

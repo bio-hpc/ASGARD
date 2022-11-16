@@ -1,0 +1,56 @@
+source oldff/leaprc.ff94
+source leaprc.gaff
+addAtomTypes {
+        { "X1"  "N" "sp3" }
+        { "X2"  "O" "sp3" }
+        { "X3"  "O" "sp3" }
+        { "X4"  "O" "sp3" }
+        { "X5"  "O" "sp3" }
+        { "X6"  "O" "sp3" }
+        { "X7"  "O" "sp3" }
+        { "X8"  "N" "sp3" }
+        { "Z1"  "Zn" "sp3" }
+        { "Z2"  "Zn" "sp3" }
+        { "X9"  "O" "sp3" }
+}
+loadoff atomic_ions.lib
+loadamberparams frcmod.ions1lsm_hfe_tip3p
+HD1 = loadmol2 HD1.mol2
+AP1 = loadmol2 AP1.mol2
+GU1 = loadmol2 GU1.mol2
+AP2 = loadmol2 AP2.mol2
+HD2 = loadmol2 HD2.mol2
+ZN1 = loadmol2 ZN1.mol2
+ZN2 = loadmol2 ZN2.mol2
+MH1 = loadmol2 MH1.mol2
+loadamberparams 1AMP_OH.frcmod
+mol = loadpdb 1AMP_OH_mcpbpy.pdb
+bond mol.97.NE2 mol.293.ZN
+bond mol.117.OD1 mol.293.ZN
+bond mol.117.OD2 mol.292.ZN
+bond mol.152.OE1 mol.292.ZN
+bond mol.152.OE2 mol.292.ZN
+bond mol.179.OD1 mol.293.ZN
+bond mol.179.OD2 mol.293.ZN
+bond mol.256.NE2 mol.292.ZN
+bond mol.292.ZN mol.629.O
+bond mol.293.ZN mol.629.O
+bond mol.96.C mol.97.N
+bond mol.97.C mol.98.N
+bond mol.116.C mol.117.N
+bond mol.117.C mol.118.N
+bond mol.151.C mol.152.N
+bond mol.152.C mol.153.N
+bond mol.178.C mol.179.N
+bond mol.179.C mol.180.N
+bond mol.255.C mol.256.N
+bond mol.256.C mol.257.N
+savepdb mol 1AMP_OH_dry.pdb
+saveamberparm mol 1AMP_OH_dry.prmtop 1AMP_OH_dry.inpcrd
+solvatebox mol TIP3PBOX 10.0
+addions mol Na+ 0
+addions mol Cl- 0
+savepdb mol 1AMP_OH_solv.pdb
+saveamberparm mol 1AMP_OH_solv.prmtop 1AMP_OH_solv.inpcrd
+quit
+ 

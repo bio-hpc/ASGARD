@@ -1,0 +1,24 @@
+<!DOCTYPE MTKpp>
+<parms name="1A5T" >
+ <types>
+  <entry mass="32.06" hybridization="sp3" description="sulphur in cystine" groupName="1A5T" vdwRadius="2" element="S" potentialWellDepth="0.25" name="S1" />
+ </types>
+ <bondLengths>
+  <entry keq="237.00" t1="CT" t2="S1" req="1.810" groupName="1A5T" />
+  <entry keq="274.00" t1="HS" t2="S1" req="1.336" groupName="1A5T" />
+  <entry keq="0.00" optimize="t" t1="ZN" t2="S1" req="2.343" groupName="1A5T" />
+ </bondLengths>
+ <bondAngles>
+  <entry keq="50.00" t1="H1" t2="CT" t3="S1" req="109.50" groupName="1A5T" />
+  <entry keq="50.00" t1="CT" t2="CT" t3="S1" req="108.60" groupName="1A5T" />
+  <entry keq="43.00" t1="CT" t2="S1" t3="HS" req="96.00" groupName="1A5T" />
+  <entry keq="35.00" t1="HS" t2="S1" t3="HS" req="92.07" groupName="1A5T" />
+  <entry keq="0.00" optimize="t" t1="CT" t2="S1" t3="ZN" req="107.66" groupName="1A5T" />
+  <entry keq="0.00" optimize="t" t1="S1" t2="ZN" t3="S1" req="109.87" groupName="1A5T" />
+ </bondAngles>
+ <bondTorsions>
+  <entry t1="X" gamma="0" t2="CT" t3="S1" t4="X" Nt="3" Vn="0.75" npth="3" groupName="1A5T" />
+  <entry t1="S1" gamma="0" t2="ZN" t3="S1" t4="CT" Nt="3" Vn="0" npth="3" groupName="1A5T" />
+ </bondTorsions>
+ <bondImpropers/>
+</parms>

@@ -1,0 +1,221 @@
+!--------------------------------------------------------------------------------
+!
+!     B. USER-ADJUSTABLE PARAMETERS
+!     -----------------------------
+!
+!     CODE = S  INCREASING THE PARAMETER SLIGHTLY INCREASES THE
+!     .         MEMORY REQUIREMENTS
+!     CODE = M  INCREASING THE PARAMETER MODERATELY INCREASES THE
+!     .         MEMORY REQUIREMENTS
+!     CODE = L  INCREASING THE PARAMETER DRASTICALLY INCREASES THE
+!     .         MEMORY REQUIREMENTS
+!
+!--------------------------------------------------------------------------------
+!
+!
+!     MAXIMUM NUMBER OF ATOMS:
+      integer maxatm
+      PARAMETER (MAXATM =1000)
+!
+!     FRACTION OF ATOMS THAT ARE EXPECTED TO BE HEAVY:
+      double precision fheavy
+      PARAMETER (FHEAVY = 0.40)
+!
+!     MAXIMUM NUMBER OF ATOM PAIRS (INFINITE CUTOFF):
+      integer mxpair
+      PARAMETER (MXPAIR =5000)
+!
+!     MAXIMUM NUMBER OF ATOM PAIRS THAT ARE STORED FOR OFF-DIAGONAL
+!     INTERACTIONS IN FOCK, 1-ELECTRON, AND DENSITY MATRICES:
+      integer mbpair
+      PARAMETER (MBPAIR =250000)
+!
+!     MAXIMUM NUMBER OF RESIDUE-BASED ATOM PAIRS (USED FOR AUTOMATIC
+!     SUBSETTING, 5 ANGSTROM CUTOFF) (CODE=M):
+!     [ SET TO ONE IF CLUSTER-BASED SUBSETTING IS NOT USED ]
+      integer mxpres
+      PARAMETER (MXPRES = 10000)
+!
+!     MAXIMUM NUMBER OF SUBSYSTEMS:
+      integer maxsub
+      PARAMETER (MAXSUB =MAXATM)
+!
+!     STORAGE FOR SUBSYSTEM ATOM LISTS:
+      integer mslist
+      PARAMETER (MSLIST =30000)
+!
+!     STORAGE FOR ALL SUBSYSTEM EIGENVALUES (CODE=L):
+      integer msval
+      PARAMETER (MSVAL =50000)
+!
+!     SCRATCH STORAGE FOR MAXIMUM NUMBER OF ORBITALS IN A SUBSYSTEM (CODE=L)
+!     [SEE ALSO MSRORB PARAMETER]:
+      integer msorb
+      PARAMETER (MSORB =1500)
+
+!     MAXIMUM NUMBER OF ORBITALS IN A SUBSYSTEM (CODE=L):
+!     USAGE:
+      integer msrorb
+      PARAMETER (MSRORB=MSORB)
+!
+!     MAXIMUM NUMBER OF RESIDUES:
+      integer maxres
+      PARAMETER (MAXRES =1000)
+!
+!     MAXIMUM NUMBER OF ATOMS PER RESIDUE (CODE=S):
+!     [ SET TO ONE IF GROUPS ARE NOT USED, I.E. WHEN PME WILL NOT BE USED
+!     . OR WHEN NO MONTE CARLO SIMULATION WILL BE PERFORMED OR WHEN
+!     . THE "INTER" KEYWORD IS NOT USED, OR WHEN THE 'RECIPINTRA' KEYWORD
+!     . IS USED ]
+      integer maxatres
+      PARAMETER (MAXATRES=20)
+!
+!     MAXIMUM NUMBER OF PEPTIDE BONDS:
+      integer mpbond
+      PARAMETER (MPBOND = 5)
+!
+!     MAXIMUM NUMBER OF GRID-CELLS (1 DIM) FOR GRID SUBSETTING:
+!     [ SET TO ONE IF GRID-BASED SUBSETTING IS NOT USED ] (CODE=M)
+      integer mcell
+      PARAMETER (MCELL=25)
+!
+!     MAXIMUM NUMBER OF GRIDS FOR PME (HAS TO BE A POWER OF 2) (CODE=L)
+!     [ SET TO ONE IF PME IS NOT USED ]
+      integer maxkpme
+      PARAMETER (MAXKPME=32)
+!	
+!     MAXIMUM ORDER OF CARDINAL B-SPLINE INTERPOLATION FOR PME (HAS
+!     TO BE EVEN AND GREATER THAN 2 AND LESS THEN OR EQUAL TO MAXKPME)
+!     (CODE = S)
+!     [ SET TO TWO IF PME IS NOT USED ]
+      integer maxspline
+      PARAMETER (MAXSPLINE=32)
+!
+!     MAXIMUM NUMBER OF PROCESSORS (CODE=S)
+      integer maxproc
+      PARAMETER (MAXPROC=64)
+!
+!     MAXIMUM NUMBER OF DENSITY MATRIX FILES:
+      integer maxsresf
+      PARAMETER (MAXSRESF=10)
+
+!
+!     C. PARAMETERS THAT DEPEND ON USER-ADJUSTABLE PARAMETERS
+!     -------------------------------------------------------
+!
+!--------------------------------------------------------------------------------
+!
+!
+!     NOTE: CODE=1 MEANS MODIFY VALUE ONLY BY CHANGING THE APPROPRIATE
+!                  USER-ADJUSTABLE PARAMETER ABOVE.
+!           CODE=2 MEANS MODIFY VALUE EITHER AS IN CODE=1 OR BY ADDING
+!                  SOME CONSTANT INTEGER VALUE TO THE PARAMETER.
+!
+!
+!     FRACTION OF ATOMS THAT ARE EXPECTED TO BE HYDROGENS (CODE=1):
+      double precision fhyd
+      PARAMETER (FHYD = 1.0D0 - FHEAVY)
+!
+!     AVERAGE NUMBER OF ATOMIC ORBITALS PER ATOM (CODE=1):
+      double precision orbavg
+      PARAMETER (ORBAVG = 4*FHEAVY + FHYD)
+!
+!     EXPECTED MAXIMUM NUMBER OF HEAVY ATOMS (CODE=1):
+      integer maxhev
+      PARAMETER (MAXHEV = INT(MAXATM*FHEAVY))
+!
+!     EXPECTED MAXIMUM NUMBER OF HYDROGEN ATOMS (CODE=1):
+      integer maxhyd
+      PARAMETER (MAXHYD = INT(MAXATM*FHYD))
+!
+!     STORAGE FOR DIAGONAL BLOCKS OF GLOBAL H, F, AND P MATRICES (CODE=2):
+      integer mxdiag
+      PARAMETER (MXDIAG = 10*MAXHEV + MAXHYD)
+!
+!     STORAGE FOR DIATOMIC BLOCKS OF GLOBAL H, F, AND P  MATRICES (CODE=2):
+      integer mxdiat
+      PARAMETER (MXDIAT = INT(MBPAIR*ORBAVG**2))
+!
+!     STORAGE FOR GLOBAL TWO-CENTER, TWO-ELECTRON MATRIX (CODE=2):
+      integer maxrep
+      PARAMETER (MAXREP = INT(MXPAIR*(10*FHEAVY + FHYD)**2))
+!
+!     STORAGE FOR EIGENVECTORS OF LARGEST SUBSYSTEM (CODE=1):
+      integer msorb2
+      PARAMETER (MSORB2 = MSORB*MSORB)
+!
+!     STORAGE FOR EIGENVECTORS (CODE=1):
+      integer msrorb2
+      PARAMETER (MSRORB2=MSRORB*MSRORB)
+!
+!     MAXIMUM NUMBER OF OPTIMIZABLE GEOMETRIC PARAMETERS (CODE=1):
+      integer maxpar
+      PARAMETER (MAXPAR = 3*MAXATM)
+!
+!
+!     MAXIMUM NUMBER OF GRID-CELLS FOR GRID SUBSETTING (CODE=1)
+      integer mcell3
+      PARAMETER (MCELL3=MCELL*MCELL*MCELL)
+!
+!     NEEDED FOR PME-CALCULATION (CODE=1)
+      integer MAXSPLINE2P1
+      integer MAXSPLINE2M3
+      integer MAXSPLINEP1
+      integer MAXKPME2
+      integer MAXKPME3
+      integer MAXKPME32
+      PARAMETER (MAXSPLINE2P1=2*MAXSPLINE+1)
+      PARAMETER (MAXSPLINE2M3=2*MAXSPLINE-3)
+      PARAMETER (MAXSPLINEP1=MAXSPLINE+1)
+      PARAMETER (MAXKPME2=MAXKPME*MAXKPME)
+      PARAMETER (MAXKPME3=MAXKPME*MAXKPME2)
+      PARAMETER (MAXKPME32=2*MAXKPME3)
+
+!
+!
+!
+!
+!     D. NON-ADJUSTABLE PARAMETERS
+!     ----------------------------
+!
+!
+!--------------------------------------------------------------------------------
+!
+!
+!     NUMBER OF FILES THAT MAY BE OPENED BY THE PROGRAM:
+      integer nfiles
+      PARAMETER (NFILES = 2)
+
+!
+!
+!
+!     E. MATHEMATICAL CONSTANTS
+!     -------------------------
+!
+!--------------------------------------------------------------------------------
+
+      double precision PI
+      PARAMETER (PI=3.1415926535897932384626434)
+      double precision PI2
+      PARAMETER (PI2=2.0*PI)
+      double precision PISQR
+      PARAMETER (PISQR=PI*PI)
+      double precision PISQRT
+      PARAMETER (PISQRT=1.7724538509055160272981675)
+      double precision TWOPISQRT
+      PARAMETER (TWOPISQRT=2.0/PISQRT)
+      double precision RADIAN
+      PARAMETER (RADIAN=PI/180.0d0)
+      double precision DEGREE
+      PARAMETER (DEGREE=180.0d0/PI)
+      integer IZERO
+      PARAMETER (IZERO=0)
+      double precision ONE
+      PARAMETER (ONE=1.0)
+      integer IONE
+      PARAMETER (IONE=1)
+      integer IMINONE
+      PARAMETER (IMINONE=-1)
+
+!
+!--------------------------------------------------------------------------------

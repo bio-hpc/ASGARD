@@ -1,0 +1,124 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, advanced
+#TEST-STATE   undocumented
+
+# Makefile passes in value of EMIL
+if ( "$1" == "" ) then
+  echo "EMIL was not configured at build time (or flag was not passed in):"
+  echo "Skipping test."
+  echo 'run $AMBERHOME/configure for more information'
+  exit(0)
+endif
+
+if( ! $?DO_PARALLEL ) then
+	echo "DO_PARALLEL not set... quitting multisander test!" 
+        exit(0)
+else
+	echo "DO_PARALLEL is set: $DO_PARALLEL"
+	if( ! $?TESTsander ) set TESTsander = "../../../bin/sander.MPI"
+endif
+
+rm -f groupfile
+
+
+foreach lambda (0.1 0.9)
+
+##generate input file for emil run
+cat > emilParameters$lambda.in <<EOF
+
+##well description
+EpsilonTrap      5.0
+epsilonWell      5.0
+rWell            1.0 
+   
+rTrap            5.0    
+rEqTrap          1.0    
+wingForce        1.111
+
+##define molecules in each phase
+##... solid only for this run.
+solidRes   ACE,CYS,SER,ALA,LEU,ILE,THR,VAL,ASN,ASH,NME
+
+##emil has its own RNG 
+Seed             1902
+
+##set MC move frequencies -- not applicable for GBSA
+swapTriesPerChain    0.0 
+relocTriesPerChain   0.0 
+
+lambda               $lambda
+EOF
+
+
+
+
+cat > mdin$lambda <<EOF
+  Input file for emil run, detailed emil params are in emilParameters.in 
+ &cntrl
+  iwrap  = 0,
+  ntx = 5, irest = 1, 
+  ntb = 0, igb = 1,
+  cut = 12,
+  ntr = 0, 
+  ntc = 1, 
+  ntf = 1,
+  tempi = 300.0, temp0 = 300.0,
+  ntt = 3, gamma_ln=1.0,
+  nstlim = 100,
+  dt = 0.001,
+  ntpr = 10, ntwx = 5000, ntwr = 5000,
+  ntave = 100000,
+  ig = 1902,
+  ntr = 0, vlimit = 0,
+  emil_do_calc = 1
+ /
+ &emil_cntrl
+  emil_paramfile = "emilParameters$lambda.in", 
+  emil_logfile   = "emil.log.$lambda", 
+  emil_model_infile  = "wellsIn.dat",
+ /
+
+EOF
+
+
+
+cat >> groupfile << EOF
+-O -i mdin$lambda -c csallDimer.md1 -p csallDimer.top -o mdout$lambda 
+EOF
+
+end ##loop over lambda
+
+
+rm -f emil.log.0.1
+rm -f emil.log.0.9
+rm -f mdout0.1
+rm -f mdout0.9
+
+($DO_PARALLEL \
+ $TESTsander -ng 2 -groupfile groupfile ) >& emil.stderr || goto error
+
+
+##now loop over outputs
+foreach lambda (0.1 0.9)
+
+##uncomment these lines to regenerate the reference sets.
+#cp emil.log.$lambda    emil.log.$lambda.save
+#cp mdout$lambda        mdout$lambda.save
+
+  ##diff the test and reference
+  ../../dacdif -t 2  mdout$lambda.save         mdout$lambda
+  ../../dacdif -t 2  emil.log.$lambda.save     emil.log.$lambda
+
+end
+
+
+/bin/rm -f emil.stderr emilParameters*in 
+/bin/rm -f mdin* mdinfo* mdcrd* restrt.* groupfile
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+

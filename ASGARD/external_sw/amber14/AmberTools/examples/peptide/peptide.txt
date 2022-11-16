@@ -1,0 +1,99 @@
+NAME
+
+peptide - generate a peptide from a structure type and sequence
+
+SYNOPSIS
+
+peptide [-outf string] [-lib string] -stype string -seq string
+[-help] [-usage]
+
+DESCRIPTION
+
+peptide is an nab program, originally written by Paul Beroza, that
+will generate a pdb file given a structure type and a
+sequence. You must have the nab compiler (part of AmberTools):
+http://ambermd.org/
+
+Once you have the nab compiler installed, you can compile peptide:
+
+ % make
+
+The Makefile should work with most Unix make programs (tested using
+the FreeBSD Berkeley make and gmake). You should edit the Makefile
+to change the variables to suit your local environment.
+
+ % make install
+
+will install the program.
+
+The command line syntax for peptide is:
+
+ % peptide -stype structure -seq sequence [-lib libfile] [-o outfile]
+
+where "structure" defines the type of structure to be created and
+"sequence" is a string of one letter amino acid codes. The -stype and
+-seq options are required. By default peptide writes to stdout. For
+example:
+
+ % peptide -stype ALPHA -seq AAAAA
+
+will create an alpha helical alanine pentapeptide.
+
+The options also have single character versions: -l for -lib, -o for
+-outfile, -t for -stype and -s for -seq. The multicharacter options
+may be introduced with -- instead of - and -? is synonymous with
+-help. An alternative syntax is also available: -outfile=afile is
+accepted instead of the -outfile afile construct; see the man page
+for getopt_long(3).
+
+The structure definitions are stored in a library file that can be specified
+on the command line (the "-lib libfile" option) or by default are taken
+from $AMBERHOME/dat/reslib/conf.lib.
+
+A sample library "conf.lib" is included. This file looks like:
+
+    --------------------
+    ALPHA  1 	alpha helix
+    phi    -57.0 psi    -47.0 omega  180.0
+    
+    ABETA 1 	anti-parallel beta sheet
+    phi    -139.0 psi    135.0 omega  -178.0
+        .
+        .
+        .etc.
+    --------------------
+
+The file contains sets of definitions, one for each structure type. The
+definitions above are separated by a blank line, but that is not necessary.
+Each time peptide finds a line that begins with an alphanumeric character,
+it initializes a new structure type with the first string in the line as its
+identifying string. The <structure> on the command line must match one of
+the structure types in the "conf.lib" file.
+
+The next field on the structure type line is the number of residues in the
+structure. The following lines must contain the phi psi and omega values
+for each of the residues in the structure type. The angles may be in any
+order, but the string defining the angle must precede its floating point
+value.
+
+If the number of residues is one, it is a special structure for which
+the phi psi and omega values are the same for all residues in the
+structure. For these structure types, the <sequence> may be of any
+length. For other structure types, the number of residues in
+<sequence> must agree with the number of residues in the corresponding
+structure type in the "conf.lib" file. The resulting pdb file is
+written to standard out.
+
+Please let us know of any bugs or suggestions.
+
+Original version by Paul Beroza <pberoza@telik.com>
+
+Modified by M. L. Dodson <activesitedynamics@comcast.net> to add
+command line parsing using getopt_long, a generic Makefile, and
+conversion of the README to a man page.
+
+COPYRIGHT AND LICENSE
+
+Originally created by Paul Beroza. Please see the COPYING file in the
+AmberTools distribution for information on copyright and license
+issues.

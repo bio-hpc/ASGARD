@@ -1,0 +1,735 @@
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                   (CHARMM) - Developmental Version 35b1     August 15, 2008   
+       Copyright(c) 1984-2001  President and Fellows of Harvard College
+                              All Rights Reserved
+      Current operating system: Linux-2.6.9-78.0.1.ELsmp(x86_64)@caffeine.sd
+                 Created on  1/27/ 9 at 13:23:18 by user: rcw         
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+            Current HEAP size:        10240000, and STACK size:  10000000
+
+ RDTITL> * POLY PROLINE IN GAS PHASE
+ RDTITL> * BY ROSS WALKER & MARK WILLIAMSON (SDSC)
+ RDTITL> *
+  
+ CHARMM>    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ CHARMM>    ! Read in Topology and parameter file for ALL22
+ CHARMM>     
+  
+ CHARMM>        OPEN READ CARD UNIT 1 NAME "../../../../dat/chamber/top_all22_prot.inp"
+ VOPEN> Attempting to open::../../../../dat/chamber/top_all22_prot.inp::
+ OPNLGU> Unit  1 opened for READONLY access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/../../../../dat/chamber/top_all22_prot.inp
+  
+ CHARMM>        READ RTF CARD UNIT 1
+ MAINIO> Residue topology file being read from unit   1.
+ TITLE> *>>>>>>>>CHARMM22 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+  
+ CHARMM>        CLOSE UNIT 1
+ VCLOSE: Closing unit    1 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>        OPEN READ CARD UNIT 2 NAME "../../../../dat/chamber/par_all22_prot.inp"
+ VOPEN> Attempting to open::../../../../dat/chamber/par_all22_prot.inp::
+ OPNLGU> Unit  2 opened for READONLY access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/../../../../dat/chamber/par_all22_prot.inp
+  
+ CHARMM>        READ PARAM CARD UNIT 2
+
+          PARAMETER FILE BEING READ FROM UNIT  2
+ TITLE> *>>>>> CHARMM22 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+  
+ CHARMM>        CLOSE UNIT 2
+ VCLOSE: Closing unit    2 with status "KEEP"
+  
+ CHARMM>    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ CHARMM>     
+  
+ CHARMM>    ! Turn off CMAP - Needed since the default for all22 was changed
+ CHARMM>    !                 in C35B1 (A dangerous change in my opinion since
+ CHARMM>    !                 it effectively silently turns on CMAP but oh well.)
+ CHARMM>        SKIPE CMAP
+ SKIPE> The following energy terms will be computed :
+  BOND ANGL UREY DIHE IMPR VDW  ELEC HBON USER HARM CDIH CIC  CDRO NOE  SBOU
+  IMNB IMEL IMHB EWKS EWSE EXTE RXNF ST2  IMST TSM  QMEL QMVD ASP  EHAR GEO 
+  MDIP PINT PRMS PANG SSBP BK4D SHEL RESD SHAP STRB OOPL PULL POLA DMC  RGY 
+  EWEX EWQC EWUT PBEL PBNP MBDE MBEL STRS BNDB BNDT EBST MBST BBT  SST  GBEN
+  HMCM ADUM HYDR GSBP FQPO GRVD GREL SASL ELRC OLAP UMBR RREP RPHO RHBN RBDO
+  RBAC RARO PHEN VMOD CROS FCTP FCTN
+  
+ CHARMM>     
+  
+ CHARMM>    ! Generate Poly Proline using internal coordinates
+ CHARMM>        read sequ card
+ MAINIO> Sequence information being read from unit   5.
+ RDTITL> **
+ RDTITL> *
+  
+ SEQRDR>        5
+  
+ SEQRDR>        ALA PRO PRO PRO ALA
+
+          RESIDUE SEQUENCE --     5 RESIDUES
+          ALA PRO PRO PRO ALA 
+  
+ CHARMM>     
+  
+ CHARMM>        generate aal first nter last cter
+ THE PATCH 'NTER' WILL BE USED FOR THE FIRST RESIDUE
+ THE PATCH 'CTER' WILL BE USED FOR THE LAST  RESIDUE
+ GENPSF> Segment   1 has been generated. Its identifier is AAL.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =        5
+         Number of atoms         =       65   Number of groups     =       18
+         Number of bonds         =       67   Number of angles     =      129
+         Number of dihedrals     =      196   Number of impropers  =        9
+         Number of cross-terms   =        3
+         Number of HB acceptors  =        6   Number of HB donors  =        4
+         Number of NB exclusions =        0   Total charge =    0.00000
+  
+ CHARMM>        autogenerate angles dihe
+ AUTOGEN: All angles are removed and regenerated.
+ AUTOGEN: All dihedrals are removed and regenerated.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =        5
+         Number of atoms         =       65   Number of groups     =       18
+         Number of bonds         =       67   Number of angles     =      129
+         Number of dihedrals     =      196   Number of impropers  =        9
+         Number of cross-terms   =        3
+         Number of HB acceptors  =        6   Number of HB donors  =        4
+         Number of NB exclusions =        0   Total charge =    0.00000
+  
+ CHARMM>     
+  
+ CHARMM>        ic gener
+
+               Generation complete. New IC table entries:
+
+   N     I       J       K       L   R(I(J/K)) T(I(JK/KJ)) PHI   T(JKL)   R(KL)
+
+    1   1 HT1   1 CA    1 *N    1 HT2    0.0000    0.00  120.00    0.00   0.0000
+    2   1 HT1   1 CA    1 *N    1 HT3    0.0000    0.00 -120.00    0.00   0.0000
+    3   1 HT1   1 N     1 CA    1 C      0.0000    0.00  180.00    0.00   0.0000
+    4   1 C     1 N     1 *CA   1 CB     0.0000    0.00  120.00    0.00   0.0000
+    5   1 CB    1 N     1 *CA   1 HA     0.0000    0.00 -120.00    0.00   0.0000
+    6   1 N     1 CA    1 CB    1 HB1    0.0000    0.00  180.00    0.00   0.0000
+    7   1 HB1   1 CA    1 *CB   1 HB2    0.0000    0.00  120.00    0.00   0.0000
+    8   1 HB1   1 CA    1 *CB   1 HB3    0.0000    0.00 -120.00    0.00   0.0000
+    9   1 N     1 CA    1 C     2 N      0.0000    0.00  180.00    0.00   0.0000
+   10   2 N     1 CA    1 *C    1 O      0.0000    0.00  180.00    0.00   0.0000
+   11   1 CA    1 C     2 N     2 CA     0.0000    0.00  180.00    0.00   0.0000
+   12   2 CA    1 C     2 *N    2 CD     0.0000    0.00  180.00    0.00   0.0000
+   13   1 C     2 N     2 CD    2 CG     0.0000    0.00  180.00    0.00   0.0000
+   14   2 CG    2 N     2 *CD   2 HD1    0.0000    0.00  120.00    0.00   0.0000
+   15   2 CG    2 N     2 *CD   2 HD2    0.0000    0.00 -120.00    0.00   0.0000
+   16   1 C     2 N     2 CA    2 C      0.0000    0.00  180.00    0.00   0.0000
+   17   2 C     2 N     2 *CA   2 CB     0.0000    0.00  120.00    0.00   0.0000
+   18   2 C     2 N     2 *CA   2 HA     0.0000    0.00 -120.00    0.00   0.0000
+   19   2 CG    2 CA    2 *CB   2 HB1    0.0000    0.00  120.00    0.00   0.0000
+   20   2 CG    2 CA    2 *CB   2 HB2    0.0000    0.00 -120.00    0.00   0.0000
+   21   2 CB    2 CD    2 *CG   2 HG1    0.0000    0.00  120.00    0.00   0.0000
+   22   2 CB    2 CD    2 *CG   2 HG2    0.0000    0.00 -120.00    0.00   0.0000
+   23   2 N     2 CA    2 C     3 N      0.0000    0.00  180.00    0.00   0.0000
+   24   3 N     2 CA    2 *C    2 O      0.0000    0.00  180.00    0.00   0.0000
+   25   2 CA    2 C     3 N     3 CA     0.0000    0.00  180.00    0.00   0.0000
+   26   3 CA    2 C     3 *N    3 CD     0.0000    0.00  180.00    0.00   0.0000
+   27   2 C     3 N     3 CD    3 CG     0.0000    0.00  180.00    0.00   0.0000
+   28   3 CG    3 N     3 *CD   3 HD1    0.0000    0.00  120.00    0.00   0.0000
+   29   3 CG    3 N     3 *CD   3 HD2    0.0000    0.00 -120.00    0.00   0.0000
+   30   2 C     3 N     3 CA    3 C      0.0000    0.00  180.00    0.00   0.0000
+   31   3 C     3 N     3 *CA   3 CB     0.0000    0.00  120.00    0.00   0.0000
+   32   3 C     3 N     3 *CA   3 HA     0.0000    0.00 -120.00    0.00   0.0000
+   33   3 CG    3 CA    3 *CB   3 HB1    0.0000    0.00  120.00    0.00   0.0000
+   34   3 CG    3 CA    3 *CB   3 HB2    0.0000    0.00 -120.00    0.00   0.0000
+   35   3 CB    3 CD    3 *CG   3 HG1    0.0000    0.00  120.00    0.00   0.0000
+   36   3 CB    3 CD    3 *CG   3 HG2    0.0000    0.00 -120.00    0.00   0.0000
+   37   3 N     3 CA    3 C     4 N      0.0000    0.00  180.00    0.00   0.0000
+   38   4 N     3 CA    3 *C    3 O      0.0000    0.00  180.00    0.00   0.0000
+   39   3 CA    3 C     4 N     4 CA     0.0000    0.00  180.00    0.00   0.0000
+   40   4 CA    3 C     4 *N    4 CD     0.0000    0.00  180.00    0.00   0.0000
+   41   3 C     4 N     4 CD    4 CG     0.0000    0.00  180.00    0.00   0.0000
+   42   4 CG    4 N     4 *CD   4 HD1    0.0000    0.00  120.00    0.00   0.0000
+   43   4 CG    4 N     4 *CD   4 HD2    0.0000    0.00 -120.00    0.00   0.0000
+   44   3 C     4 N     4 CA    4 C      0.0000    0.00  180.00    0.00   0.0000
+   45   4 C     4 N     4 *CA   4 CB     0.0000    0.00  120.00    0.00   0.0000
+   46   4 C     4 N     4 *CA   4 HA     0.0000    0.00 -120.00    0.00   0.0000
+   47   4 CG    4 CA    4 *CB   4 HB1    0.0000    0.00  120.00    0.00   0.0000
+   48   4 CG    4 CA    4 *CB   4 HB2    0.0000    0.00 -120.00    0.00   0.0000
+   49   4 CB    4 CD    4 *CG   4 HG1    0.0000    0.00  120.00    0.00   0.0000
+   50   4 CB    4 CD    4 *CG   4 HG2    0.0000    0.00 -120.00    0.00   0.0000
+   51   4 N     4 CA    4 C     5 N      0.0000    0.00  180.00    0.00   0.0000
+   52   5 N     4 CA    4 *C    4 O      0.0000    0.00  180.00    0.00   0.0000
+   53   4 CA    4 C     5 N     5 CA     0.0000    0.00  180.00    0.00   0.0000
+   54   5 CA    4 C     5 *N    5 HN     0.0000    0.00  180.00    0.00   0.0000
+   55   4 C     5 N     5 CA    5 C      0.0000    0.00  180.00    0.00   0.0000
+   56   5 C     5 N     5 *CA   5 CB     0.0000    0.00  120.00    0.00   0.0000
+   57   5 CB    5 N     5 *CA   5 HA     0.0000    0.00 -120.00    0.00   0.0000
+   58   5 N     5 CA    5 CB    5 HB1    0.0000    0.00  180.00    0.00   0.0000
+   59   5 HB1   5 CA    5 *CB   5 HB2    0.0000    0.00  120.00    0.00   0.0000
+   60   5 HB1   5 CA    5 *CB   5 HB3    0.0000    0.00 -120.00    0.00   0.0000
+   61   5 N     5 CA    5 C     5 OT2    0.0000    0.00  180.00    0.00   0.0000
+   62   5 OT2   5 CA    5 *C    5 OT1    0.0000    0.00  180.00    0.00   0.0000
+  
+ CHARMM>        ic param
+  
+ CHARMM>        ic seed aal 1 N aal 1 CA aal 1 C
+  
+ CHARMM>        ic build
+  
+ CHARMM>        print coor
+
+          COORDINATE FILE MODULE
+ TITLE>  * POLY PROLINE IN GAS PHASE
+ TITLE>  * BY ROSS WALKER & MARK WILLIAMSON (SDSC)
+ TITLE>  *
+   65
+    1    1 ALA  N      0.00000   0.00000   0.00000 AAL  1      0.00000
+    2    1 ALA  HT1   -0.34716  -0.98035   0.00000 AAL  1      0.00000
+    3    1 ALA  HT2   -0.34716   0.49017   0.84901 AAL  1      0.00000
+    4    1 ALA  HT3   -0.34716   0.49017  -0.84901 AAL  1      0.00000
+    5    1 ALA  CA     1.48000   0.00000   0.00000 AAL  1      0.00000
+    6    1 ALA  HA     1.80476   1.03001   0.00000 AAL  1      0.00000
+    7    1 ALA  CB     2.00603  -0.72262   1.25162 AAL  1      0.00000
+    8    1 ALA  HB1    3.11703  -0.72359   1.25330 AAL  1      0.00000
+    9    1 ALA  HB2    1.64641  -0.20872   2.16863 AAL  1      0.00000
+   10    1 ALA  HB3    1.64641  -1.77372   1.26507 AAL  1      0.00000
+   11    1 ALA  C      1.98961   1.40014   0.00000 AAL  1      0.00000
+   12    1 ALA  O      1.21555   2.35603   0.00000 AAL  1      0.00000
+   13    2 PRO  N      3.28837   1.45685   0.00000 AAL  2      0.00000
+   14    2 PRO  CD     4.00485   0.19048   0.00000 AAL  2      0.00000
+   15    2 PRO  HD1    3.71409  -0.36848   0.91506 AAL  2      0.00000
+   16    2 PRO  HD2    3.71409  -0.36848  -0.91506 AAL  2      0.00000
+   17    2 PRO  CA     3.88304   2.76173   0.00000 AAL  2      0.00000
+   18    2 PRO  HA     3.59522   3.33751   0.86720 AAL  2      0.00000
+   19    2 PRO  CB     3.45843   3.55114  -1.23623 AAL  2      0.00000
+   20    2 PRO  HB1    2.35068   3.56215  -1.32033 AAL  2      0.00000
+   21    2 PRO  HB2    3.82313   4.59812  -1.16454 AAL  2      0.00000
+   22    2 PRO  CG     5.52293   0.43092   0.00000 AAL  2      0.00000
+   23    2 PRO  HG1    5.92850   0.31092   1.02734 AAL  2      0.00000
+   24    2 PRO  HG2    6.02498  -0.29824  -0.67126 AAL  2      0.00000
+   25    2 PRO  C      5.36404   2.59823   0.00000 AAL  2      0.00000
+   26    2 PRO  O      5.81883   1.45539   0.00000 AAL  2      0.00000
+   27    3 PRO  N      5.99032   3.73743   0.00000 AAL  3      0.00000
+   28    3 PRO  CD     5.17249   4.94083   0.00000 AAL  3      0.00000
+   29    3 PRO  HD1    4.54256   4.92782  -0.91506 AAL  3      0.00000
+   30    3 PRO  HD2    4.54256   4.92782   0.91506 AAL  3      0.00000
+   31    3 PRO  CA     7.42362   3.69238   0.00000 AAL  3      0.00000
+   32    3 PRO  HA     7.81227   3.17924  -0.86720 AAL  3      0.00000
+   33    3 PRO  CB     7.94318   2.96196   1.23623 AAL  3      0.00000
+   34    3 PRO  HB1    7.46224   1.96399   1.32033 AAL  3      0.00000
+   35    3 PRO  HB2    9.04337   2.82502   1.16454 AAL  3      0.00000
+   36    3 PRO  CG     6.06066   6.19523   0.00000 AAL  3      0.00000
+   37    3 PRO  HG1    6.13278   6.61199  -1.02734 AAL  3      0.00000
+   38    3 PRO  HG2    5.62943   6.96838   0.67126 AAL  3      0.00000
+   39    3 PRO  C      7.93323   5.09253   0.00000 AAL  3      0.00000
+   40    3 PRO  O      7.11020   6.00659   0.00000 AAL  3      0.00000
+   41    4 PRO  N      9.23199   5.14923   0.00000 AAL  4      0.00000
+   42    4 PRO  CD     9.94847   3.88286   0.00000 AAL  4      0.00000
+   43    4 PRO  HD1    9.65770   3.32390   0.91506 AAL  4      0.00000
+   44    4 PRO  HD2    9.65770   3.32390  -0.91506 AAL  4      0.00000
+   45    4 PRO  CA     9.82666   6.45411   0.00000 AAL  4      0.00000
+   46    4 PRO  HA     9.53884   7.02989   0.86720 AAL  4      0.00000
+   47    4 PRO  CB     9.40205   7.24352  -1.23623 AAL  4      0.00000
+   48    4 PRO  HB1    8.29429   7.25454  -1.32033 AAL  4      0.00000
+   49    4 PRO  HB2    9.76675   8.29051  -1.16454 AAL  4      0.00000
+   50    4 PRO  CG    11.46654   4.12330   0.00000 AAL  4      0.00000
+   51    4 PRO  HG1   11.87211   4.00330   1.02734 AAL  4      0.00000
+   52    4 PRO  HG2   11.96860   3.39415  -0.67126 AAL  4      0.00000
+   53    4 PRO  C     11.30766   6.29061   0.00000 AAL  4      0.00000
+   54    4 PRO  O     11.76245   5.14778   0.00000 AAL  4      0.00000
+   55    5 ALA  N     12.03626   7.42117   0.00000 AAL  5      0.00000
+   56    5 ALA  HN    11.62757   8.33056   0.00000 AAL  5      0.00000
+   57    5 ALA  CA    13.46455   7.35132   0.00000 AAL  5      0.00000
+   58    5 ALA  HA    13.84807   8.36093   0.00000 AAL  5      0.00000
+   59    5 ALA  CB    14.04265   6.61698   1.22148 AAL  5      0.00000
+   60    5 ALA  HB1   15.15198   6.59571   1.16441 AAL  5      0.00000
+   61    5 ALA  HB2   13.74147   7.13574   2.15663 AAL  5      0.00000
+   62    5 ALA  HB3   13.66502   5.57261   1.25307 AAL  5      0.00000
+   63    5 ALA  C     13.98011   8.78334   0.00000 AAL  5      0.00000
+   64    5 ALA  OT1   13.13374   9.71675   0.00000 AAL  5      0.00000
+   65    5 ALA  OT2   15.22723   8.96305   0.00000 AAL  5      0.00000
+  
+ CHARMM>     
+  
+ CHARMM>    ! No disulphide bonds to add.
+ CHARMM>     
+  
+ CHARMM>        open unit 1 form write name poly_pro_gas_all22.psf
+ VOPEN> Attempting to open::poly_pro_gas_all22.psf::
+ OPNLGU> Unit  1 opened for WRITE access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/poly_pro_gas_all22.psf
+  
+ CHARMM>        write psf card unit 1
+ RDTITL> CLOSE UNIT 1
+ RDTITL> No title read.
+  
+ CHARMM>        close unit 1
+ VCLOSE: Closing unit    1 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    !**********************************************************
+ CHARMM>    !**********************************************************
+ CHARMM>    !
+ CHARMM>    !       Minimization
+ CHARMM>    !
+ CHARMM>    !**********************************************************
+ CHARMM>    !**********************************************************
+ CHARMM>     
+  
+ CHARMM>      update bycb  switch vswitch  -
+ CHARMM>             cutnb 9999.0   ctofnb 9998.0   ctonnb 9997.0
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYCB     NOEXtnd  NOEWald 
+ CUTNB  =******* CTEXNB =999.000 CTONNB =******* CTOFNB =*******
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are        0 atom  pairs and        0 atom  exclusions.
+ There are        0 group pairs and        0 group exclusions.
+ <MAKINB> with mode   5 found    196 exclusions and    181 interactions(1-4)
+ <MAKGRP> found     47 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR        0 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        0 ATOM PAIRS AND        0 GROUP PAIRS
+  
+ =========================================
+              TRIAL run of list...........
+ =========================================
+Using Image CUBE search
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+  
+ CHARMM>     
+  
+ CHARMM>      MINI SD NSTEP 200 TOLGRD 0.0001 NPRINT 10
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYCB     NOEXtnd  NOEWald 
+ CUTNB  =******* CTEXNB =999.000 CTONNB =******* CTOFNB =*******
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are     1884 atom  pairs and      377 atom  exclusions.
+ There are        0 group pairs and       47 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        0 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+
+
+ STEEPD> An energy minimization has been requested.
+
+ NSTEP  =          200   NPRINT =           10
+ STEP   =    0.0200000   TOLFUN =    0.0000000
+ TOLGRD =    0.0001000   TOLSTP =    0.0000000
+
+MINI MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+MINI INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+MINI EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>        0 1402479.8691       0.0000  855865.3629       0.0200
+MINI INTERN>     3855.46476    840.40425   1657.27912     30.11161      0.00000
+MINI EXTERN>   1396002.4481      94.1613       0.0000       0.0000       0.0000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step         7
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+ UPDECI: Nonbond update at step        10
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+MINI>       10    4283.6380 1398196.2311      92.6383       0.0516
+MINI INTERN>     1731.06544    901.33754    875.92200     33.35510      0.39867
+MINI EXTERN>      674.87503     66.68424      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step        14
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+ UPDECI: Nonbond update at step        17
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+ UPDECI: Nonbond update at step        18
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+ UPDECI: Nonbond update at step        20
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+MINI>       20   1395.01088   2888.62715     52.68732      0.05547
+MINI INTERN>       89.46411    687.46153    130.04145     43.72370      6.45961
+MINI EXTERN>      362.72092     75.13958      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step        27
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+MINI>       30    867.29629    527.71459     42.70593      0.02484
+MINI INTERN>       77.41232    409.88261     67.94868     43.61785      6.38707
+MINI EXTERN>      187.24190     74.80585      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step        39
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+MINI>       40    620.04785    247.24844     12.36230      0.01113
+MINI INTERN>       19.92584    282.90805     45.99005     41.22607      5.05548
+MINI EXTERN>      148.10097     76.84139      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       50    514.21854    105.82931     19.67797      0.01196
+MINI INTERN>       22.61059    219.74046     32.09062     39.54344      3.61060
+MINI EXTERN>      118.14287     78.47995      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step        56
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+MINI>       60    432.24725     81.97129     22.15374      0.01286
+MINI INTERN>       23.93589    172.24659     20.81536     38.79136      2.74373
+MINI EXTERN>       94.47563     79.23868      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       70    363.99527     68.25198     21.43418      0.01382
+MINI INTERN>       22.27289    132.55176     12.35735     39.34599      2.15856
+MINI EXTERN>       75.49533     79.81338      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step        79
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+MINI>       80    301.54535     62.44992      5.43546      0.00619
+MINI INTERN>        9.94013    101.75447      7.11377     40.85125      1.74761
+MINI EXTERN>       59.93055     80.20757      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       90    264.46668     37.07867     10.81582      0.00665
+MINI INTERN>       12.63613     77.25185      3.71214     43.30703      1.37602
+MINI EXTERN>       45.72086     80.46266      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      100    242.22740     22.23927     12.82893      0.00715
+MINI INTERN>       14.10730     62.44152      2.23156     45.63816      1.10760
+MINI EXTERN>       36.28896     80.41230      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      110    223.34530     18.88211      3.59604      0.00320
+MINI INTERN>        9.27660     53.39097      1.58276     47.43683      0.90398
+MINI EXTERN>       30.51032     80.24385      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       114
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+MINI>      120    214.09908      9.24622      5.56656      0.00344
+MINI INTERN>        9.81427     47.24829      1.20848     49.09591      0.77196
+MINI EXTERN>       26.02075     79.93942      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      130    207.86044      6.23864      6.53425      0.00370
+MINI INTERN>       10.19887     43.11824      0.99854     50.45785      0.67576
+MINI EXTERN>       22.80773     79.60345      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      140    203.60708      4.25336      6.33962      0.00398
+MINI INTERN>       10.15576     40.50612      0.88571     51.45747      0.60896
+MINI EXTERN>       20.68116     79.31190      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      150    199.36085      4.24623      1.33534      0.00178
+MINI INTERN>        9.08830     38.53972      0.81548     52.25870      0.55348
+MINI EXTERN>       19.06878     79.03640      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      160    196.92791      2.43294      2.95591      0.00192
+MINI INTERN>        9.27538     36.94139      0.76253     53.05687      0.50538
+MINI EXTERN>       17.62585     78.76051      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      170    195.17177      1.75614      3.65244      0.00206
+MINI INTERN>        9.34852     35.81151      0.73089     53.68164      0.46836
+MINI EXTERN>       16.58844     78.54242      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      180    193.77629      1.39548      3.46500      0.00221
+MINI INTERN>        9.22023     35.01424      0.71183     54.15056      0.44121
+MINI EXTERN>       15.85976     78.37847      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      190    192.16594      1.61036      1.20246      0.00099
+MINI INTERN>        8.74360     34.27850      0.69701     54.60623      0.41684
+MINI EXTERN>       15.20291     78.22085      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      200    191.18172      0.98422      1.56882      0.00107
+MINI INTERN>        8.64801     33.69547      0.68583     54.98971      0.39581
+MINI EXTERN>       14.67426     78.09263      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ STEEPD> Minimization exiting with number of steps limit (       200) exceeded.
+
+STPD MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+STPD INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+STPD EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+STPD>      200    191.18172      0.98422      1.56882      0.00128
+STPD INTERN>        8.64801     33.69547      0.68583     54.98971      0.39581
+STPD EXTERN>       14.67426     78.09263      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>      MINI CONJ NSTEP 200 TOLGRD 0.0001 NPRINT 10
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYCB     NOEXtnd  NOEWald 
+ CUTNB  =******* CTEXNB =999.000 CTONNB =******* CTOFNB =*******
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are     1884 atom  pairs and      377 atom  exclusions.
+ There are        0 group pairs and       47 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+
+
+ CONJUG> An energy minimization has been requested.
+
+ NCGCYC =          100   NSTEP  =          200
+ PCUT   =    0.9999000   PRTMIN =            1
+ STEP   =    0.0200000   TOLFUN =    0.0000000
+ TOLGRD =    0.0001000   TOLITR =          100
+ TOLSTP =    0.0000000
+
+MINI MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+MINI INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+MINI EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>        0    191.18172      0.98422      1.56882      0.00000
+MINI INTERN>        8.64801     33.69547      0.68583     54.98971      0.39581
+MINI EXTERN>       14.67426     78.09263      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       10    181.95170      9.23002      1.92449      0.18119
+MINI INTERN>        5.72437     27.43152      0.61174     61.08959      0.14409
+MINI EXTERN>        9.89951     77.05090      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       20    178.99015      2.96155      1.50040      0.15015
+MINI INTERN>        3.96069     25.67423      0.60551     61.49642      0.12665
+MINI EXTERN>       10.57015     76.55650      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       30    176.42772      2.56242      1.66275      0.14232
+MINI INTERN>        3.31178     24.25503      0.59738     61.30754      0.15565
+MINI EXTERN>       11.17481     75.62554      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       40    172.59308      3.83465      1.61424      0.25706
+MINI INTERN>        3.91010     24.00617      0.69448     62.64140      0.18526
+MINI EXTERN>        5.33875     75.81692      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       50    167.42260      5.17048      1.81615      0.28836
+MINI INTERN>        4.96373     25.50518      0.90197     58.92955      0.19815
+MINI EXTERN>        0.56445     76.35957      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       60    163.29538      4.12722      1.70259      0.27445
+MINI INTERN>        3.59977     24.27918      0.66190     56.26401      0.17904
+MINI EXTERN>        1.50163     76.80986      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       70    161.10904      2.18634      1.02959      0.13178
+MINI INTERN>        1.67572     21.81494      0.59883     57.03348      0.12393
+MINI EXTERN>        2.85861     77.00354      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       80    159.01463      2.09441      1.37621      0.24054
+MINI INTERN>        2.25891     22.33865      0.74051     56.40478      0.15587
+MINI EXTERN>        3.59048     73.52543      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       90    156.53349      2.48114      1.55890      0.20449
+MINI INTERN>        4.50665     23.92764      0.88993     51.19130      0.38682
+MINI EXTERN>        3.92563     71.70552      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      100    154.79545      1.73804      1.24729      0.15279
+MINI INTERN>        3.35644     19.61540      0.58028     50.88622      0.76336
+MINI EXTERN>        5.47716     74.11659      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       100
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR     2449 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        1 ATOM PAIRS AND        0 GROUP PAIRS
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+MINI>      100    154.79545      1.73804      1.24729      0.00000
+MINI INTERN>        3.35644     19.61540      0.58028     50.88622      0.76336
+MINI EXTERN>        5.47716     74.11659      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      110    150.98585      3.80960      1.21911      0.06937
+MINI INTERN>        2.92639     20.11375      0.56582     49.57499      0.51562
+MINI EXTERN>        3.87702     73.41227      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      120    148.76789      2.21796      0.94497      0.05676
+MINI INTERN>        2.36193     21.35245      0.58922     46.11929      0.23447
+MINI EXTERN>        4.10722     74.00332      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      130    147.57155      1.19634      0.72997      0.06312
+MINI INTERN>        2.76798     23.50769      0.63533     42.83922      0.17226
+MINI EXTERN>        3.44069     74.20839      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      140    146.72861      0.84294      0.70252      0.05502
+MINI INTERN>        3.10386     24.34962      0.63990     40.75376      0.24210
+MINI EXTERN>        2.84601     74.79336      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      150    146.08434      0.64427      0.58876      0.05831
+MINI INTERN>        2.83546     23.09083      0.61279     40.34211      0.25024
+MINI EXTERN>        2.79450     76.15841      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      160    145.55877      0.52557      0.61559      0.05612
+MINI INTERN>        3.23995     23.06188      0.61877     40.18968      0.27540
+MINI EXTERN>        2.51215     75.66094      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      170    145.25344      0.30533      0.39083      0.03764
+MINI INTERN>        2.95719     22.88263      0.57771     40.34159      0.30770
+MINI EXTERN>        2.47193     75.71468      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      180    144.90429      0.34915      0.62376      0.09289
+MINI INTERN>        2.84583     23.29582      0.58765     39.81536      0.28563
+MINI EXTERN>        2.54156     75.53244      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      190    144.01239      0.89190      0.92946      0.23608
+MINI INTERN>        3.59787     24.18177      0.63442     37.76246      0.37518
+MINI EXTERN>        2.29995     75.16074      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      200    142.64982      1.36257      0.98617      0.19977
+MINI INTERN>        4.07235     25.47497      0.67196     36.09097      0.47445
+MINI EXTERN>        1.71385     74.15127      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ CONJUG> Minimization exiting with number of steps limit (  200) exceeded.
+
+CONJ MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+CONJ INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+CONJ EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+CONJ>      200    142.64982      1.36257      0.98617      0.02000
+CONJ INTERN>        4.07235     25.47497      0.67196     36.09097      0.47445
+CONJ EXTERN>        1.71385     74.15127      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>     
+  
+ CHARMM>      WRITE COOR pdb NAME 01_minimize.pdb
+ VOPEN> Attempting to open::01_minimize.pdb::
+ RDTITL>  
+ RDTITL> No title read.
+  Write CHARMM-pdb format
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>      WRITE COOR CARD NAME 01_minimize.crd
+ VOPEN> Attempting to open::01_minimize.crd::
+ RDTITL>  
+ RDTITL> No title read.
+ VCLOSE: Closing unit   90 with status "KEEP"
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>      stop
+$$$$$$  New timer profile $$$$$
+      xdistm setup                    0.00 Other:            0.00
+      xdistm Build list               0.00 Other:            0.00
+   List time                       0.00 Other:            0.00
+         Electrostatic & VDW             0.08 Other:            0.00
+      Nonbond force                   0.08 Other:            0.00
+         Bond energy                     0.00 Other:            0.00
+         Angle energy                    0.01 Other:            0.00
+         Dihedral energy                 0.02 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.03 Other:            0.00
+   Energy time                     0.12 Other:            0.00
+ Total time                      0.26 Other:            0.14
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    MAXIMUM STACK SPACE USED IS  120240
+                    STACK CURRENTLY IN USE IS         0
+                    NO WARNINGS WERE ISSUED
+                    HEAP PRINTOUT-  HEAP SIZE         10240000
+                    SPACE CURRENTLY IN USE IS            13824
+                    MAXIMUM SPACE USED IS                22552
+                    FREE LIST
+  PRINHP> ADDRESS:               1 LENGTH:        10225676 NEXT:        10239501
+  PRINHP> ADDRESS:        10239501 LENGTH:             500 NEXT:               0
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     0.26  SECONDS 
+                         CPU TIME:     0.22  SECONDS 

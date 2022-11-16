@@ -1,0 +1,44 @@
+Chemistry::Isotope version 0.11
+===============================
+
+This module contains the exact mass data from the table of the isotopes.
+It has an exportable function, isotope_mass, which returns the mass
+of an atom in mass units given its mass number (A) and atomic number (Z); and
+a function isotope_abundance which returns a table with the natural abundance
+of the isotopes given an element symbol.
+
+The table of the masses includes 2931 nuclides and is taken from
+L<http://ie.lbl.gov/txt/awm95.txt> (G. Audi and A.H. Wapstra, Nucl. Phys. A595,
+409, 1995)
+
+The table of natural abundances includes 288 nuclides and is taken from
+the Commission on Atomic Weights and Isotopic Abundances report for the
+International Union of Pure and Applied Chemistry in Isotopic Compositions of
+the Elements 1989, Pure and Applied Chemistry, 1998, 70, 217.
+L<http://www.iupac.org/publications/pac/1998/pdf/7001x0217.pdf> 
+
+
+CHANGES SINCE VERSION 0.10
+        - Added natural abundance table
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+    - Test::More   (already a core module since perl 5.7.3)
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2005 Ivan Tubert-Brohman <itub@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

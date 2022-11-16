@@ -1,0 +1,58 @@
+**
+*
+
+
+set name ala_ala_ala
+
+open unit 1 read form name ../../../../dat/chamber/top_all22_prot.inp
+read rtf card unit 1
+close unit 1
+
+open unit 1 read form name ../../../../dat/chamber/par_all22_prot.inp
+read param card unit 1
+close unit 1
+
+read sequ card
+**
+*
+3 
+ALA ALA ALA
+
+generate aal first nter last cter
+autogenerate angles dihe
+
+
+open unit 1 form write name @name.psf
+write psf card unit 1
+close unit 1
+
+!xplor
+open unit 1 form write name @name.psf.xplor
+write psf card xplor unit 1
+close unit 1
+
+
+ic gener
+ic param
+ic seed aal 1 N aal 1 CA aal 1 C
+ic build
+print coor
+!ener
+
+!shake bonh fast para
+mini sd nstep 100
+
+!ener cutnb 999 ctofnb 998 ctonnb 997
+
+write coor pdb  name @name.pdb
+read coor pdb  name @name.pdb
+ener cutnb 999 ctofnb 998 ctonnb 997 switch
+
+open unit 20 form write name @name_forces.dat
+frcdump unit 20
+close unit 20
+
+
+
+
+stop

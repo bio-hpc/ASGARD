@@ -1,0 +1,102 @@
+#!/bin/csh -f
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/pbsa"
+
+if( ! $?DO_PARALLEL ) then
+   setenv DO_PARALLEL " "
+else
+   echo "This test not set up for parallel"
+   echo " cannot run in parallel with pbsa"
+   exit 0
+endif
+
+#####################Variable and Array Setup###################
+echo "initializing variables"
+set savepbsadxfiles = 0 
+set savefortfiles = 0
+
+#solvent type names and corresponding epsout values
+set solnames = ("vac" "wat" "mem")
+set epsvals = (1.0 80.0 80.0)
+set memopts = (0 0 1)
+
+set membthickness = 2.0
+set memboffset = 0.0
+#########################Testing Sequences#########################
+echo "begining testing for aquaporin_coil"
+
+foreach soltype( 1 2 3 ) 	#allowed vals: 1-3
+
+echo "	parsing option set"
+set xp = .5
+set fr = 1.25
+#echo "solvent"
+set solvent = $solnames[$soltype]
+#echo "epsout"
+set soleps = $epsvals[$soltype]
+#echo "ipb"
+#echo $val
+set sop = 1
+set ipbop = 2
+#echo "bcop"
+set bcop = 10
+
+set memopt = $memopts[$soltype]
+set meps = 1.0
+
+echo "	building input file"
+#build mdin file for run configuration
+cat > mdin <<EOF
+ test of PB reaction field on protein g solvated in a sphere
+ &cntrl 
+   ntx=1, imin=1, ipb=$ipbop, inp=0
+ /
+ &pb
+   npbverb=0, epsout=$soleps, epsin=1.0, epsmemb=$meps, radiopt=0, space=$xp,
+   accept=1e-6, fillratio=$fr, nfocus = 1, sprob=1.3,smoothopt=1,
+   bcopt=$bcop,eneopt=1,solvopt=$sop,cutnb=4.0,maxitn=10000,
+   sasopt=2,membraneopt=$memopt,dprob=1.3,
+   mthick=20.0,mctrdz=0.00
+ /
+EOF
+
+set all = "aquaporin_coil"
+
+ foreach aa ($all)
+
+ set prefix = $aa.$solvent
+ set output = $prefix.out
+	echo "	Running Calculations for $output"
+   #echo $DO_PARALLEL $TESTsander -O -i mdin -p ./prmtop-inpcrd/$aa.prmtop -c ./prmtop-inpcrd/$aa.inpcrd  -o $output
+   $DO_PARALLEL $TESTsander -O -i mdin -p ./prmtop-inpcrd/$aa.prmtop -c ./prmtop-inpcrd/$aa.inpcrd  -o $output < /dev/null || goto error
+
+	#these two loops have a habbit of throwing errors and crashing the program
+	#if they cant find any files to move. Turn them off in the beginning
+	#unless you know you will be making files for them.
+	if ($savepbsadxfiles == 1) then
+		echo "	saving pbsa dx output files"
+		foreach pbsafile (pbsa*)
+			mv $pbsafile $prefix.$pbsafile
+		end
+	endif
+    #mv $aa* results.vac/
+	if ($savefortfiles == 1) then
+		echo "	saving fort files"
+		foreach fortfile (fort.*)
+			mv $fortfile $prefix.$fortfile
+		end
+	endif
+
+   ../dacdif -r 5.e-3 save/$output.save $output
+   /bin/rm -f restrt mdinfo mdcrd
+   goto next2	
+
+   error:
+   echo "  ${0}:  Program error"
+   exit(1)
+  
+   next2:
+end
+end
+/bin/rm -f mdin
+

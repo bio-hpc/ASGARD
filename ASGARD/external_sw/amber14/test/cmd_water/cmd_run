@@ -1,0 +1,13 @@
+#!/bin/csh -f
+
+
+./sander.CMD \
+\
+-O \
+-i cmd.in \
+-o cmd.out \
+-p h2o_les.top \
+-c h2o_les.crd \
+-r h2o_les.rst \
+-x h2o_les.mdcrd \
+-v h2o_les.mdvel

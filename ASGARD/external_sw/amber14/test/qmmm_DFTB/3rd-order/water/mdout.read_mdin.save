@@ -1,0 +1,316 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/15/2014 at 09:27:02
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: mdout.read_mdin                                                       
+|INPCRD: inpcrd                                                                
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+ 
+ Here is the input file:
+ 
+ 1 water only - minimization                                                   
+ &cntrl                                                                        
+   imin=1, maxcyc=1,ntmin=3,                                                   
+   ntb=0, cut=99.0,                                                            
+   ntpr=1,                                                                     
+   igb=0,                                                                      
+   ifqnt=1,                                                                    
+ /                                                                             
+ &dftb_3rd_order                                                               
+   Gaussian_d0=-0.06d0,                                                        
+   Gaussian_g0=17.9d0,                                                         
+   Gaussian_q0=0.86d0,                                                         
+   Hubbard_deriv(1)  = -0.23d0,                                                
+   Hubbard_deriv(6)  = -0.22d0,                                                
+   Hubbard_deriv(8)  = -0.20d0,                                                
+   Hubbard_deriv(15) = -0.07d0,                                                
+   debug_print=.false.,                                                        
+ /                                                                             
+ &qmmm                                                                         
+   qmmask='@*',                                                                
+   qm_theory='DFTB' ,                                                          
+   dftb_3rd_order='READ',                                                      
+   qmshake=0,                                                                  
+   tight_p_conv=1,                                                             
+   verbosity=0,                                                                
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|  *** cutoff > system size, list only builds once
+|Largest sphere to fit in unit cell has radius =    30.000
+| New format PARM file being parsed.
+| Version =    1.000 Date = 03/18/12 Time = 15:08:29
+ NATOM  =       3 NTYPES =       2 NBONH =       3 MBONA  =       0
+ NTHETH =       0 MTHETA =       0 NPHIH =       0 MPHIA  =       0
+ NHPARM =       0 NPARM  =       0 NNB   =       4 NRES   =       1
+ NBONA  =       0 NTHETA =       0 NPHIA =       0 NUMBND =       2
+ NUMANG =       0 NPTRA  =       0 NATYP =       2 NPHB   =       1
+ IFBOX  =       0 NMXRS  =       3 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real                1628
+|     Hollerith             12
+|     Integer            20077
+|     Max Pairs              3
+|     nblistReal            36
+|     nblist Int        761613
+|       Total             3066 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+LOADING THE QUANTUM ATOMS AS GROUPS
+     Mask @*; matches     3 atoms
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+TP3                                                                             
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =  99.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =       1, ncyc    =      10, ntmin   =       3
+     dx0     =   0.01000, drms    =   0.00010
+
+LMOD:
+     xmin_method                  = LBFGS
+     lbfgs_memory_depth           =       3
+     matrix_vector_product_method = forward finite difference
+     xmin_verbosity               =       0
+
+QMMM options:
+             ifqnt = True       nquant =        3
+              qmgb =        0  qmcharge =        0   adjust_q =        2
+              spin =        1     qmcut =  99.0000    qmshake =        0
+          qmmm_int =        1
+     lnk_atomic_no =        1   lnk_dis =   1.0900 lnk_method =        1
+          qm_theory =    DFTB verbosity =        0
+            qmqmdx = Analytical
+      tight_p_conv = True (converge density to SCFCRT)
+           scfconv = 0.100E-07  itrmax =     1000
+      printcharges = False      printdipole = False      peptide_corr = False
+    qmmmrij_incore = False
+  qmqm_erep_incore = False
+       pseudo_diag = False
+      diag_routine =        0
+          qm_ewald =        0 qm_pme = False 
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+TP3                                                                             
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+     Sum of charges from parm topology file =   0.00000000
+     Forcing neutrality...
+  LMOD XMIN Minimization.
+
+  Note: Owing to the behaviour of the XMIN algorithm,
+        coordinates in the trajectory and intermediate
+        restart files will not match up with energies
+        in the mdout and mdinfo files. The final energy
+        and final coordinates do match.
+
+ ---------------------------------------------------
+
+     eedmeth=4: Setting switch to one everywhere
+
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =          0
+| TOTAL SIZE OF NONBOND LIST =          0
+
+QMMM: Link Atom Information
+QMMM: ------------------------------------------------------------------------
+QMMM: nlink =     0
+QMMM: ------------------------------------------------------------------------
+
+  QMMM: QM Region Cartesian Coordinates (*=link atom) 
+  QMMM: QM_NO.   MM_NO.  ATOM         X         Y         Z
+  QMMM:     1        1      O        0.0048    0.0063    0.0000
+  QMMM:     2        2      H        0.9718   -0.0163    0.0000
+  QMMM:     3        3      H       -0.2594    0.9367    0.0000
+
+--------------------------------------------------------------------------------
+  3.1 QM CALCULATION INFO
+--------------------------------------------------------------------------------
+
+| QMMM: Citation for AMBER QMMM Run:
+| QMMM: R.C. Walker, M.F. Crowley and D.A. Case, J. COMP. CHEM. 29:1019, 2008
+
+| QMMM: DFTB Calculation - Additional citation for AMBER DFTB QMMM Run:
+| QMMM:   Seabra, G.M., Walker, R.C. et al., J. PHYS. CHEM. A., 111, 5655, (2007)
+
+
+QMMM: SINGLET STATE CALCULATION
+QMMM: RHF CALCULATION, NO. OF DOUBLY OCCUPIED LEVELS =  4
+ DFTB: Number of atom types =    2
+ 
+ Parameter files:
+     TYP (AT)  TYP (AT)     SK integral FILE
+|  1  1  (O )   1  (O )     /home/swails/build_amber/amber/dat/slko/O-O.skf
+|  2  1  (O )   2  (H )     /home/swails/build_amber/amber/dat/slko/O-H.skf
+|  3  2  (H )   1  (O )     /home/swails/build_amber/amber/dat/slko/H-O.skf
+|  4  2  (H )   2  (H )     /home/swails/build_amber/amber/dat/slko/H-H.skf
+ 
+QMMM: 3rd Order SCC-DFTB
+QMMM: ------------------
+QMMM: Reading 3rd Order parameters from file:
+|                                                                                                                                                                                                                                                                      
+ 
+ 
+QMMM: Gaussian Parameters:
+QMMM:          D0 =      -0.060
+QMMM:          g0 =      17.900
+QMMM:          q0 =       0.860
+ 
+QMMM: Hubbard Derivatives:
+QMMM:      1  ( 8) O     -0.200
+QMMM:      2  ( 1) H     -0.230
+QMMM:      3  ( 1) H     -0.230
+
+| QMMM: Estimated QM Dynamic Memory Usage (per thread)
+| QMMM: ---------------------------------------------------
+| QMMM:              QM Atom Type Info :          712 bytes
+| QMMM:         QM RESP Charge Storage :           24 bytes
+| QMMM:            QM Atom Number List :           12 bytes
+| QMMM:                Link Atom Pairs :            0 bytes
+| QMMM:          QM Atomic Number List :           12 bytes
+| QMMM:                QM-MM Pair List :            4 bytes
+| QMMM:                   QM Atom Mask :            6 bytes
+| QMMM:           QM Coordinate Arrays :          168 bytes
+| QMMM:         Scaled MM Charge Array :           24 bytes
+| QMMM:    SCF Mulliken Charge Storage :           24 bytes
+| QMMM:                QM Force Arrays :          144 bytes
+| QMMM:                 Density Matrix :          168 bytes
+| QMMM:          Density Matrix Copies :          216 bytes
+| QMMM: Fock2 Density Matrix Workspace :          384 bytes
+| QMMM:                    Fock Matrix :          168 bytes
+| QMMM:           Eigen Vector Storage :            0 bytes
+| QMMM: QM-QM Elec Repulsion Integrals :            0 bytes
+| QMMM:  QM 2-Elec Repulsion Integrals :          168 bytes
+| QMMM:              1-Electron Matrix :          168 bytes
+| QMMM:       _REAL_ parameter storage :          480 bytes
+| QMMM:      integer parameter storage :           84 bytes
+| QMMM:         QM-MM RIJ Eqns storage :            0 bytes
+| QMMM:          _REAL_ Scratch arrays :           96 bytes
+| QMMM:         Integer Scratch arrays :           36 bytes
+| QMMM: ---------------------------------------------------
+| QMMM:        Total Dynamic Memory Usage:      0.003 Mb
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      0      -2.5040E+02     1.0059E+00     1.9472E+00     O           1
+
+ BOND    =        0.0000  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =        0.0000  EEL     =        0.0000  HBOND      =        0.0000
+ 1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
+ DFTBESCF=     -250.4026
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1      -2.5041E+02     4.5677E-01     8.1527E-01     H2          3
+
+ BOND    =        0.0000  ANGLE   =        0.0000  DIHED      =        0.0000
+ VDWAALS =        0.0000  EEL     =        0.0000  HBOND      =        0.0000
+ 1-4 VDW =        0.0000  1-4 EEL =        0.0000  RESTRAINT  =        0.0000
+ DFTBESCF=     -250.4055
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 1.33% of Total)
+|    Fast Water setup           0.00 ( 0.04% of Total)
+|                Build the list             0.00 (85.20% of List )
+|                Other                      0.00 (14.80% of List )
+|             List time                  0.00 (77.95% of Nonbo)
+|             Ewald time                 0.00 (20.54% of Nonbo)
+|             IPS excludes               0.00 ( 0.38% of Nonbo)
+|             Other                      0.00 ( 1.13% of Nonbo)
+|          Nonbond force              0.00 ( 2.46% of Force)
+|             QMMM setup                 0.01 (86.80% of QMMM )
+|             QMMM list build            0.00 ( 0.06% of QMMM )
+|             QMMM prep coords           0.00 ( 0.15% of QMMM )
+|             QMMM RIJ Eqns Calc         0.00 ( 0.02% of QMMM )
+|                   QMMM full matrix dia       0.00 (17.57% of QMMM )
+|                   Other                      0.00 (82.43% of QMMM )
+|                QMMM scf                   0.00 (96.54% of QMMM )
+|                Other                      0.00 ( 3.46% of QMMM )
+|             QMMM energy                0.00 (10.89% of QMMM )
+|             QMMM QM-QM force           0.00 ( 0.91% of QMMM )
+|             QMMM QM-MM force           0.00 ( 0.04% of QMMM )
+|             QMMM Collate Forces        0.00 ( 0.01% of QMMM )
+|             Other                      0.00 ( 1.12% of QMMM )
+|          QMMM                       0.01 (97.31% of Force)
+|          Bond/Angle/Dihedral        0.00 ( 0.04% of Force)
+|          Other                      0.00 ( 0.19% of Force)
+|       Force time                 0.01 (100.0% of Runmd)
+|    Runmd Time                 0.01 (72.27% of Total)
+|    Other                      0.00 (26.36% of Total)
+| Total time                 0.02 (99.68% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 09:27:02.953  on 01/15/2014
+|           Setup done at 09:27:02.955  on 01/15/2014
+|           Run   done at 09:27:02.968  on 01/15/2014
+|     wallclock() was called     256 times

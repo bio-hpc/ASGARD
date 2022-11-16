@@ -1,0 +1,48 @@
+#!/bin/sh
+
+. ../../program_error.sh
+. ../cannot_run.sh
+
+# This is a test file to run the pairwise decomposition
+
+if [ -z "$AMBERHOME" ]; then
+   echo "Error: AMBERHOME must be set!"
+   exit 1
+fi
+
+# Define executable
+if [ -z "$DO_PARALLEL" ]; then
+   EXE=$AMBERHOME/bin/MMPBSA.py
+else
+   if [ `$DO_PARALLEL ../../numprocs` -gt 2 ]; then
+      echo "Cannot have more than 2 processors for this test."
+      exit 0
+   fi
+   EXE=$AMBERHOME/bin/MMPBSA.py.MPI
+fi
+
+test -x $EXE || cannot_run $EXE
+
+# Write input file
+cat > mmpbsa.in << EOF
+MMPBSA input file for running per-residue decomp
+&general
+   keep_files=0, debug_printlevel=2,
+/
+&nmode
+   nmode_igb=1, nmode_istrng=0.1,
+/
+EOF
+
+# Execute the program
+$DO_PARALLEL $EXE -O -i mmpbsa.in \
+                     -cp com.top \
+                     -rp rec.top \
+                     -lp lig.top > mmpbsa.out 2>&1 || error
+
+# Since the numerical results for such a small system can vary so much based on
+# System configuration, set a fairly large relative error.
+
+../../dacdif -a 5.0 FINAL_RESULTS_MMPBSA.dat.save FINAL_RESULTS_MMPBSA.dat
+
+/bin/rm -f mmpbsa.in mmpbsa.out

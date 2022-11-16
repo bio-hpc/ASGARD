@@ -1,0 +1,34 @@
+Chemistry/File/XYZ version 0.11
+===============================
+
+This module reads and writes XYZ files. 
+
+This module automatically registers the 'xyz' format with Chemistry::Mol,
+so that XYZ files may be identified and read by Chemistry::Mol->read().
+
+CHANGES SINCE VERSION 0.10
+        - Also read the atomic number instead of the atomic symbol.
+        - Options for writing: name, count, symbol.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+  Chemistry::Mol        0.24
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2004 Ivan Tubert-Brohman <itub@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

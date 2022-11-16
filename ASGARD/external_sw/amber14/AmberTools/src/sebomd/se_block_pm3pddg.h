@@ -1,0 +1,392 @@
+
+C
+C     PM3/PDDG SEMIEMPIRICAL PARAMETERS:
+C     ----------------------------
+C
+C     DATA FOR Hydrogen (H)
+C
+      DATA UCORE7(0,1) /  -12.8932720D0/
+      DATA EXPNT7(0,1) /    0.9727860D0/
+      DATA BETA7(0,1)  /   -6.1526540D0/
+      DATA AL7(0,1)    /    0.5437048D0/
+      DATA GSS7(1)     /   14.7942080D0/
+      DATA ACORE7(1)   /    3.3816860D0/
+      DATA AGAUS7(1,1) /    1.1222440D0/
+      DATA AGAUS7(2,1) /   -1.0697370D0/
+      DATA AGAUS7(3,1) /    0.0000000D0/
+      DATA AGAUS7(4,1) /    0.0000000D0/
+      DATA BGAUS7(1,1) /    4.7077900D0/
+      DATA BGAUS7(2,1) /    5.8579950D0/
+      DATA BGAUS7(3,1) /    0.0000000D0/
+      DATA BGAUS7(4,1) /    0.0000000D0/
+      DATA CGAUS7(1,1) /    1.5470990D0/
+      DATA CGAUS7(2,1) /    1.5678930D0/
+      DATA CGAUS7(3,1) /    0.0000000D0/
+      DATA CGAUS7(4,1) /    0.0000000D0/
+      DATA EEATM7(1)   /  -13.1205660D0/
+      DATA PA7(1,1)     /    0.0571930D0/
+      DATA PA7(2,1)     /   -0.0348230D0/
+      DATA DA7(1,1)     /    0.6633950D0/
+      DATA DA7(2,1)     /    1.0819010D0/
+      DATA HFATM7(1)   /   52.1020000D0/
+
+
+C
+C     DATA FOR Carbon (C)
+C
+      DATA UCORE7(0,6) /  -48.2412410D0/
+      DATA UCORE7(1,6) /  -36.4612560D0/
+      DATA EXPNT7(0,6) /    1.5678640D0/
+      DATA EXPNT7(1,6) /    1.8466590D0/
+      DATA BETA7(0,6)  /  -11.9528180D0/
+      DATA BETA7(1,6)  /   -9.9224110D0/
+      DATA AL7(0,6)    /    0.4116394D0/
+      DATA AL7(1,6)    /    0.5892976D0/
+      DATA AL7(2,6)    /    0.7659493D0/
+      DATA DL7(1,6)    /    0.8314131D0/
+      DATA DL7(2,6)    /    0.6632220D0/
+      DATA GSS7(6)     /   11.2007080D0/
+      DATA GPP7(6)     /   10.7962920D0/
+      DATA GSP7(6)     /   10.2650270D0/
+      DATA GP27(6)     /    9.0425660D0/
+      DATA HSP7(6)     /    2.2909800D0/
+      DATA ACORE7(6)   /    2.7257720D0/
+      DATA AGAUS7(1,6) /    0.0489060D0/
+      DATA AGAUS7(2,6) /    0.0476970D0/
+      DATA AGAUS7(3,6) /    0.0000000D0/
+      DATA AGAUS7(4,6) /    0.0000000D0/
+      DATA BGAUS7(1,6) /    5.7653400D0/
+      DATA BGAUS7(2,6) /    5.9737210D0/
+      DATA BGAUS7(3,6) /    0.0000000D0/
+      DATA BGAUS7(4,6) /    0.0000000D0/
+      DATA CGAUS7(1,6) /    1.6822320D0/
+      DATA CGAUS7(2,6) /    0.8944060D0/
+      DATA CGAUS7(3,6) /    0.0000000D0/
+      DATA CGAUS7(4,6) /    0.0000000D0/
+      DATA EEATM7(6)   / -113.4282420D0/
+      DATA PA7(1,6)     /   -0.0007430D0/
+      DATA PA7(2,6)     /    0.0009850D0/
+      DATA DA7(1,6)     /    0.8369150D0/
+      DATA DA7(2,6)     /    1.5852360D0/
+      DATA HFATM7(6)   /  170.8900000D0/
+
+
+C
+C     DATA FOR Nitrogen (N)
+C
+      DATA UCORE7(0,7) /  -49.4545460D0/
+      DATA UCORE7(1,7) /  -47.7574060D0/
+      DATA EXPNT7(0,7) /    2.0358070D0/
+      DATA EXPNT7(1,7) /    2.3243270D0/
+      DATA BETA7(0,7)  /  -14.1172300D0/
+      DATA BETA7(1,7)  /  -19.9385090D0/
+      DATA AL7(0,7)    /    0.4375151D0/
+      DATA AL7(1,7)    /    0.5044206D0/
+      DATA AL7(2,7)    /    0.7388760D0/
+      DATA DL7(1,7)    /    0.6548546D0/
+      DATA DL7(2,7)    /    0.5269245D0/
+      DATA GSS7(7)     /   11.9047870D0/
+      DATA GPP7(7)     /   11.7546720D0/
+      DATA GSP7(7)     /    7.3485650D0/
+      DATA GP27(7)     /   10.8072770D0/
+      DATA HSP7(7)     /    1.1367130D0/
+      DATA ACORE7(7)   /    2.8491240D0/
+      DATA AGAUS7(1,7) /    1.5133200D0/
+      DATA AGAUS7(2,7) /   -1.5118920D0/
+      DATA AGAUS7(3,7) /    0.0000000D0/
+      DATA AGAUS7(4,7) /    0.0000000D0/
+      DATA BGAUS7(1,7) /    5.9043940D0/
+      DATA BGAUS7(2,7) /    6.0300140D0/
+      DATA BGAUS7(3,7) /    0.0000000D0/
+      DATA BGAUS7(4,7) /    0.0000000D0/
+      DATA CGAUS7(1,7) /    1.7283760D0/
+      DATA CGAUS7(2,7) /    1.7341080D0/
+      DATA CGAUS7(3,7) /    0.0000000D0/
+      DATA CGAUS7(4,7) /    0.0000000D0/
+      DATA EEATM7(7)   / -158.4162050D0/
+      DATA PA7(1,7)     /   -0.0031600D0/
+      DATA PA7(2,7)     /    0.0125010D0/
+      DATA DA7(1,7)     /    1.0041720D0/
+      DATA DA7(2,7)     /    1.5163360D0/
+      DATA HFATM7(7)   /  113.0000000D0/
+
+
+C
+C     DATA FOR Oxygen (O)
+C
+      DATA UCORE7(0,8) /  -87.4125050D0/
+      DATA UCORE7(1,8) /  -72.1830700D0/
+      DATA EXPNT7(0,8) /    3.8145650D0/
+      DATA EXPNT7(1,8) /    2.3180110D0/
+      DATA BETA7(0,8)  /  -44.8745530D0/
+      DATA BETA7(1,8)  /  -24.6019390D0/
+      DATA AL7(0,8)    /    0.5790430D0/
+      DATA AL7(1,8)    /    0.5340362D0/
+      DATA AL7(2,8)    /    0.8009091D0/
+      DATA DL7(1,8)    /    0.4037411D0/
+      DATA DL7(2,8)    /    0.5283602D0/
+      DATA GSS7(8)     /   15.7557600D0/
+      DATA GPP7(8)     /   13.6540160D0/
+      DATA GSP7(8)     /   10.6211600D0/
+      DATA GP27(8)     /   12.4060950D0/
+      DATA HSP7(8)     /    0.5938830D0/
+      DATA ACORE7(8)   /    3.2253090D0/
+      DATA AGAUS7(1,8) /   -1.1384550D0/
+      DATA AGAUS7(2,8) /    1.1460070D0/
+      DATA AGAUS7(3,8) /    0.0000000D0/
+      DATA AGAUS7(4,8) /    0.0000000D0/
+      DATA BGAUS7(1,8) /    6.0000430D0/
+      DATA BGAUS7(2,8) /    5.9634940D0/
+      DATA BGAUS7(3,8) /    0.0000000D0/
+      DATA BGAUS7(4,8) /    0.0000000D0/
+      DATA CGAUS7(1,8) /    1.6223620D0/
+      DATA CGAUS7(2,8) /    1.6147880D0/
+      DATA CGAUS7(3,8) /    0.0000000D0/
+      DATA CGAUS7(4,8) /    0.0000000D0/
+      DATA EEATM7(8)   / -292.1887660D0/
+      DATA PA7(1,8)     /   -0.0010000D0/
+      DATA PA7(2,8)     /   -0.0015220D0/
+      DATA DA7(1,8)     /    1.3606850D0/
+      DATA DA7(2,8)     /    1.3664070D0/
+      DATA HFATM7(8)   /   59.5590000D0/
+
+
+C
+C     DATA FOR Phosphorous (P)
+C
+      DATA UCORE7(0,15) /  -37.8821130D0/
+      DATA UCORE7(1,15) /  -30.3129790D0/
+      DATA EXPNT7(0,15) /    2.3958820D0/
+      DATA EXPNT7(1,15) /    1.7422130D0/
+      DATA BETA7(0,15)  /  -12.6762970D0/
+      DATA BETA7(1,15)  /   -7.0933180D0/
+      DATA AL7(0,15)    /    0.2867187D0/
+      DATA AL7(1,15)    /    0.4758069D0/
+      DATA AL7(2,15)    /    0.4135978D0/
+      DATA DL7(1,15)    /    0.8939785D0/
+      DATA DL7(2,15)    /    0.9604566D0/
+      DATA GSS7(15)     /    7.8016150D0/
+      DATA GPP7(15)     /    6.6184780D0/
+      DATA GSP7(15)     /    5.1869490D0/
+      DATA GP27(15)     /    6.0620020D0/
+      DATA HSP7(15)     /    1.5428090D0/
+      DATA ACORE7(15)   /    2.0052940D0/
+      DATA AGAUS7(1,15) /   -0.3980550D0/
+      DATA AGAUS7(2,15) /   -0.0796530D0/
+      DATA AGAUS7(3,15) /    0.0000000D0/
+      DATA AGAUS7(4,15) /    0.0000000D0/
+      DATA BGAUS7(1,15) /    1.9972720D0/
+      DATA BGAUS7(2,15) /    1.9983600D0/
+      DATA BGAUS7(3,15) /    0.0000000D0/
+      DATA BGAUS7(4,15) /    0.0000000D0/
+      DATA CGAUS7(1,15) /    0.9500730D0/
+      DATA CGAUS7(2,15) /    2.3369590D0/
+      DATA CGAUS7(3,15) /    0.0000000D0/
+      DATA CGAUS7(4,15) /    0.0000000D0/
+      DATA EEATM7(15)   / -117.2128540D0/
+      DATA PA7(1,15)     /    0.4627410D0/
+      DATA PA7(2,15)     /   -0.0204440D0/
+      DATA DA7(1,15)     /    0.7142960D0/
+      DATA DA7(2,15)     /    2.0412090D0/
+      DATA HFATM7(15)   /   75.5700000D0/
+
+
+C
+C     DATA FOR Sulfur (S)
+C
+      DATA UCORE7(0,16) /  -43.9063660D0/
+      DATA UCORE7(1,16) /  -43.4613480D0/
+      DATA EXPNT7(0,16) /    1.0120020D0/
+      DATA EXPNT7(1,16) /    1.8769990D0/
+      DATA BETA7(0,16)  /   -2.9539120D0/
+      DATA BETA7(1,16)  /   -8.5077790D0/
+      DATA AL7(0,16)    /    0.3294622D0/
+      DATA AL7(1,16)    /    0.7025709D0/
+      DATA AL7(2,16)    /    0.6628345D0/
+      DATA DL7(1,16)    /    1.0069891D0/
+      DATA DL7(2,16)    /    0.8914869D0/
+      DATA GSS7(16)     /    8.9646670D0/
+      DATA GPP7(16)     /    9.9681640D0/
+      DATA GSP7(16)     /    6.7859360D0/
+      DATA GP27(16)     /    7.9702470D0/
+      DATA HSP7(16)     /    4.0418360D0/
+      DATA ACORE7(16)   /    2.5397510D0/
+      DATA AGAUS7(1,16) /   -0.3306920D0/
+      DATA AGAUS7(2,16) /    0.0241710D0/
+      DATA AGAUS7(3,16) /    0.0000000D0/
+      DATA AGAUS7(4,16) /    0.0000000D0/
+      DATA BGAUS7(1,16) /    6.0000000D0/
+      DATA BGAUS7(2,16) /    6.0000000D0/
+      DATA BGAUS7(3,16) /    0.0000000D0/
+      DATA BGAUS7(4,16) /    0.0000000D0/
+      DATA CGAUS7(1,16) /    0.8238370D0/
+      DATA CGAUS7(2,16) /    2.0177560D0/
+      DATA CGAUS7(3,16) /    0.0000000D0/
+      DATA CGAUS7(4,16) /    0.0000000D0/
+      DATA EEATM7(16)   / -166.3365540D0/
+      DATA PA7(1,16)     /    0.1204340D0/
+      DATA PA7(2,16)     /   -0.0026630D0/
+      DATA DA7(1,16)     /    0.6728700D0/
+      DATA DA7(2,16)     /    2.0323400D0/
+      DATA HFATM7(16)   /   66.4000000D0/
+
+
+C
+C     DATA FOR Fluorine (F)
+C
+      DATA UCORE7(0,9) / -111.4004320D0/
+      DATA UCORE7(1,9) / -106.3952640D0/
+      DATA EXPNT7(0,9) /    5.5380330D0/
+      DATA EXPNT7(1,9) /    2.5380660D0/
+      DATA BETA7(0,9)  /  -50.9373010D0/
+      DATA BETA7(1,9)  /  -31.6369760D0/
+      DATA AL7(0,9)    /    0.3857650D0/
+      DATA AL7(1,9)    /    0.7878568D0/
+      DATA AL7(2,9)    /    0.6205004D0/
+      DATA DL7(1,9)    /    0.2466015D0/
+      DATA DL7(2,9)    /    0.4825504D0/
+      DATA GSS7(9)     /   10.4966670D0/
+      DATA GPP7(9)     /   14.8172560D0/
+      DATA GSP7(9)     /   16.0736890D0/
+      DATA GP27(9)     /   14.4183930D0/
+      DATA HSP7(9)     /    0.7277630D0/
+      DATA ACORE7(9)   /    3.2005710D0/
+      DATA AGAUS7(1,9) /   -0.0080790D0/
+      DATA AGAUS7(2,9) /   -0.0026590D0/
+      DATA AGAUS7(3,9) /    0.0000000D0/
+      DATA AGAUS7(4,9) /    0.0000000D0/
+      DATA BGAUS7(1,9) /    5.9389690D0/
+      DATA BGAUS7(2,9) /    5.9251050D0/
+      DATA BGAUS7(3,9) /    0.0000000D0/
+      DATA BGAUS7(4,9) /    0.0000000D0/
+      DATA CGAUS7(1,9) /    1.8639490D0/
+      DATA CGAUS7(2,9) /    2.3888640D0/
+      DATA CGAUS7(3,9) /    0.0000000D0/
+      DATA CGAUS7(4,9) /    0.0000000D0/
+      DATA EEATM7(9)   / -442.4571330D0/
+      DATA PA7(1,9)     /   -0.0128660D0/
+      DATA PA7(2,9)     /    0.0073150D0/
+      DATA DA7(1,9)     /    1.3056810D0/
+      DATA DA7(2,9)     /    1.8425720D0/
+      DATA HFATM7(9)   /   18.8900000D0/
+
+
+C
+C     DATA FOR Chloride (Cl)
+C
+      DATA UCORE7(0,17) /  -95.0944340D0/
+      DATA UCORE7(1,17) /  -53.9216510D0/
+      DATA EXPNT7(0,17) /    2.5482680D0/
+      DATA EXPNT7(1,17) /    2.2846240D0/
+      DATA BETA7(0,17)  /  -26.9131290D0/
+      DATA BETA7(1,17)  /  -14.9911780D0/
+      DATA AL7(0,17)    /    0.5885190D0/
+      DATA AL7(1,17)    /    0.7182217D0/
+      DATA AL7(2,17)    /    0.2174758D0/
+      DATA DL7(1,17)    /    0.8275611D0/
+      DATA DL7(2,17)    /    0.7324269D0/
+      DATA GSS7(17)     /   16.0136010D0/
+      DATA GPP7(17)     /    7.5222150D0/
+      DATA GSP7(17)     /    8.0481150D0/
+      DATA GP27(17)     /    7.5041540D0/
+      DATA HSP7(17)     /    3.4811530D0/
+      DATA ACORE7(17)   /    2.4976170D0/
+      DATA AGAUS7(1,17) /   -0.1122220D0/
+      DATA AGAUS7(2,17) /   -0.0130610D0/
+      DATA AGAUS7(3,17) /    0.0000000D0/
+      DATA AGAUS7(4,17) /    0.0000000D0/
+      DATA BGAUS7(1,17) /    5.9637190D0/
+      DATA BGAUS7(2,17) /    1.9995560D0/
+      DATA BGAUS7(3,17) /    0.0000000D0/
+      DATA BGAUS7(4,17) /    0.0000000D0/
+      DATA CGAUS7(1,17) /    1.0277190D0/
+      DATA CGAUS7(2,17) /    2.2863770D0/
+      DATA CGAUS7(3,17) /    0.0000000D0/
+      DATA CGAUS7(4,17) /    0.0000000D0/
+      DATA EEATM7(17)   / -305.7152010D0/
+      DATA PA7(1,17)     /   -0.0165520D0/
+      DATA PA7(2,17)     /   -0.0166460D0/
+      DATA DA7(1,17)     /    1.7276900D0/
+      DATA DA7(2,17)     /    1.7846550D0/
+      DATA HFATM7(17)   /   28.9900000D0/
+
+
+C
+C     DATA FOR Bromide (Br)
+C
+      DATA UCORE7(0,35) / -115.8419630D0/
+      DATA UCORE7(1,35) /  -74.2051460D0/
+      DATA EXPNT7(0,35) /    4.3450790D0/
+      DATA EXPNT7(1,35) /    2.1909610D0/
+      DATA BETA7(0,35)  /  -21.5380440D0/
+      DATA BETA7(1,35)  /   -8.5247640D0/
+      DATA AL7(0,35)    /    0.5859399D0/
+      DATA AL7(1,35)    /    0.4778151D0/
+      DATA AL7(2,35)    /    0.3904291D0/
+      DATA DL7(1,35)    /    0.4738603D0/
+      DATA DL7(2,35)    /    0.9682146D0/
+      DATA GSS7(35)     /   15.9434250D0/
+      DATA GPP7(35)     /    8.2827630D0/
+      DATA GSP7(35)     /   16.0616800D0/
+      DATA GP27(35)     /    7.8168490D0/
+      DATA HSP7(35)     /    0.5788690D0/
+      DATA ACORE7(35)   /    2.4246730D0/
+      DATA AGAUS7(1,35) /    0.9613620D0/
+      DATA AGAUS7(2,35) /   -0.9488340D0/
+      DATA AGAUS7(3,35) /    0.0000000D0/
+      DATA AGAUS7(4,35) /    0.0000000D0/
+      DATA BGAUS7(1,35) /    6.0136000D0/
+      DATA BGAUS7(2,35) /    5.9763290D0/
+      DATA BGAUS7(3,35) /    0.0000000D0/
+      DATA BGAUS7(4,35) /    0.0000000D0/
+      DATA CGAUS7(1,35) /    2.3404450D0/
+      DATA CGAUS7(2,35) /    2.3487450D0/
+      DATA CGAUS7(3,35) /    0.0000000D0/
+      DATA CGAUS7(4,35) /    0.0000000D0/
+      DATA EEATM7(35)   / -351.0138870D0/
+      DATA PA7(1,35)     /   -0.0137720D0/
+      DATA PA7(2,35)     /    0.0088490D0/
+      DATA DA7(1,35)     /    1.8520300D0/
+      DATA DA7(2,35)     /    2.3389580D0/
+      DATA HFATM7(35)   /   26.7400000D0/
+
+
+C
+C     DATA FOR Iodine (I)
+C
+      DATA UCORE7(0,53) /  -97.6641740D0/
+      DATA UCORE7(1,53) /  -61.1671370D0/
+      DATA EXPNT7(0,53) /    5.0628010D0/
+      DATA EXPNT7(1,53) /    2.4177570D0/
+      DATA BETA7(0,53)  /  -16.5926210D0/
+      DATA BETA7(1,53)  /   -6.5998160D0/
+      DATA AL7(0,53)    /    0.5009902D0/
+      DATA AL7(1,53)    /    0.9393380D0/
+      DATA AL7(2,53)    /    0.5103166D0/
+      DATA DL7(1,53)    /    0.4072615D0/
+      DATA DL7(2,53)    /    1.0625743D0/
+      DATA GSS7(53)     /   13.6319430D0/
+      DATA GPP7(53)     /    7.2883300D0/
+      DATA GSP7(53)     /   14.9904060D0/
+      DATA GP27(53)     /    5.9664070D0/
+      DATA HSP7(53)     /    2.6300350D0/
+      DATA ACORE7(53)   /    1.9781700D0/
+      DATA AGAUS7(1,53) /   -0.1360030D0/
+      DATA AGAUS7(2,53) /   -0.0372870D0/
+      DATA AGAUS7(3,53) /    0.0000000D0/
+      DATA AGAUS7(4,53) /    0.0000000D0/
+      DATA BGAUS7(1,53) /    3.8529120D0/
+      DATA BGAUS7(2,53) /    5.2292640D0/
+      DATA BGAUS7(3,53) /    0.0000000D0/
+      DATA BGAUS7(4,53) /    0.0000000D0/
+      DATA CGAUS7(1,53) /    1.6974550D0/
+      DATA CGAUS7(2,53) /    2.7686690D0/
+      DATA CGAUS7(3,53) /    0.0000000D0/
+      DATA CGAUS7(4,53) /    0.0000000D0/
+      DATA EEATM7(53)   / -291.5378690D0/
+      DATA PA7(1,53)     /    0.0129010D0/
+      DATA PA7(2,53)     /   -0.0128250D0/
+      DATA DA7(1,53)     /    1.9942990D0/
+      DATA DA7(2,53)     /    2.2634170D0/
+      DATA HFATM7(53)   /   25.5170000D0/
+

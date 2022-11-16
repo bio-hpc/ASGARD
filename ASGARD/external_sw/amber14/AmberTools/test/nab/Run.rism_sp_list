@@ -1,0 +1,51 @@
+#!/bin/sh
+
+#Trajectory is from $AMBERHOME/test/rism3d/ala/Run.ala.  Note that the
+#last frame of the trajectory does not occur in that test
+
+toomany() {
+    echo "${0}: This test requires 1, 2, 4, 8, 16, 32 or 64 processes"
+    echo "for meaningful comparison."
+    exit 0
+}
+
+if [ -n "${DO_PARALLEL}" ] ; then
+    numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+    if [ ! \( "$numprocs" -eq "64"\
+        -o "$numprocs" -eq "32"  -o "$numprocs" -eq "16"\
+        -o "$numprocs" -eq "8" -o "$numprocs" -eq "4"\
+        -o "$numprocs" -eq "2" -o "$numprocs" -le "1" \) ]; then
+            echo " DO_PARALLEL set to $DO_PARALLEL"
+            toomany 
+    elif [ -n "${MP_PROCS}" ]; then
+        if [  ! \( "$MP_PROCS" -eq "64"\
+            -o "$MP_PROCS" -eq "32"  -o "$MP_PROCS" -eq "16"\
+            -o "$MP_PROCS" -eq "8" -o "$MP_PROCS" -eq "4"\
+            -o "$MP_PROCS" -eq "2" -o "$MP_PROCS" -le "1" \) ]; then
+#               --- For IBM AIX ---
+            echo "    MP_PROCS set to "$MP_PROCS
+            toomany 
+        fi
+    fi
+fi
+. ../program_error.sh
+
+echo "Running test for 3D-RISM closure list (librism)"
+echo "(trajectory processing test)"
+echo ""
+
+if [ -n "$DO_PARALLEL" ]; then
+    cmd=$AMBERHOME/bin/rism3d.snglpnt.MPI
+else
+    cmd=$AMBERHOME/bin/rism3d.snglpnt
+fi
+echo $DO_PARALLEL $cmd
+$DO_PARALLEL $cmd --pdb ala.pdb --prmtop ala.parm7 --traj ala.nc \
+                  --xvv ../rism1d/spc-kh/spc.xvv.save --tolerance 1e-1 1e-6 \
+                  --ng 32 --solvbox 32 --buffer -1 --solvcut 12 \
+                  --closure kh pse2 pse3 hnc --polarDecomp \
+                  --noprogress --verbose 1 > rism3d.snglpnt.list.out || error
+
+./checkrism3d -err 1e-6 rism3d.snglpnt.list.out.check rism3d.snglpnt.list.out
+
+exit 0

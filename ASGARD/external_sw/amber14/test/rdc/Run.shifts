@@ -1,0 +1,13 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+#
+#  script to create a sander-formatted shifts input file from an observed
+#  (proton) shifts file
+#
+#  [The "shifts" program needs to be in your path, or else you should 
+#  modify the followling line.]
+#
+shifts -readobs -sander '::H*' gcg10

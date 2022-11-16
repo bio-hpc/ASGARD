@@ -1,0 +1,7 @@
+source /home/homeyer/Software/amber14_120214/dat/leap/cmd/oldff/leaprc.ff99SB
+source leaprc.gaff
+set default PBRadii bondi
+SYS = loadpdb /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/watIN.pdb
+saveAmberParm SYS /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/wat.top /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/wat.crd
+savepdb SYS /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/wat.pdb
+quit

@@ -1,0 +1,13 @@
+molecule m;
+float 	x[2000], f[2000], v[2000];
+float 	dgrad, fret;
+int 	ier; 
+
+m = getpdb("../../test/nab/gbrna.pdb");
+readparm(m, "../../test/nab/gbrna.prmtop");
+mm_options( "ntpr=100, ntpr_md=100, gb=1, kappa=0.10395, cut=20.0, diel=C, tempi=300., rattle=1, tautp=999999.");
+mme_init( m, NULL, "::Z", x, NULL);
+
+setxyz_from_mol( m, NULL, x );
+md(3*m.natoms, 1000, x, f, v, mme );
+mme_timer();

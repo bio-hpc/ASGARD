@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# Check the existence of a test version of the mdgx program
+MDGX="${AMBERHOME}/bin/mdgx.MPI"
+if [ -n "${TESTmdgx}" ] ; then
+  MDGX=${TESTmdgx}
+  echo "MDGX set to ${MDGX}"
+fi
+
+# Prepare tleap input and execute tleap to prepare
+# input coordinates and topology
+cat > tleap.in << EOF
+source leaprc.ff99SB
+set default FlexibleWater on
+loadAmberParams frcmod.spcfw
+x = loadpdb ../1p7e/1P7E.pdb
+solvateBox x SPCFWBOX 10.0 0.75
+saveamberparm x prmtop inpcrd
+quit
+EOF
+${AMBERHOME}/bin/tleap -f tleap.in > tleap.out
+
+# Write a simple input file
+cat > mdgx.in << EOF
+&files
+  -p       prmtop
+  -c       inpcrd
+  -r       gb3
+  -o       gb3
+  -x       gb3
+  -f       gb3
+  -osf     .out
+  -rsf     .rst
+  -xsf     .trj
+  -fsf     .frc
+&end
+
+&cntrl
+  DoRATTLE = 0,   Vdw14Fac = 2.0,   Elec14Fac = 1.2,
+  ElecCut = 8.000,  vdw_cutoff = 8.000,
+  dt = 1.0e-3,   nstlim = 10,  nfistep = 10,
+  ntpr = 1,    ntwr = 10,  ntwf = 0,  ntwx = 0,
+  Temperature = 0.0,
+  SplnSpc = 0.015625,
+&end
+
+&ewald
+  vdwmeth = 0,
+  dsum_tol = 1.0e-5,
+  ordr1 = 4,
+  ordr2 = 4,
+  ordr3 = 4,
+&end
+EOF
+
+# Run the mdgx program
+mpirun -np 8 ${MDGX} -O -i mdgx.in
+
+# Analyze the relevant output
+grep "^ Etot:" gb30.out >  energy.dat
+grep "^ Bond:.*Dihedral:" gb30.out >> energy.dat
+grep "^ Elec:" gb30.out >> energy.dat
+
+${AMBERHOME}/AmberTools/test/dacdif energy.dat.save energy.dat
+/bin/rm -f mdgx.in gb30.rst gb30.out prmtop inpcrd tleap.in tleap.out leap.log

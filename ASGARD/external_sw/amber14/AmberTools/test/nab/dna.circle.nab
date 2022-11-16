@@ -1,0 +1,121 @@
+//
+//	nab Program to create duplex B-DNA circles.
+//	Usage:
+//		a.out nbp dlk %gc
+//
+//	NBP is the number of base pairs which must be a non zero multiple of 10;
+//	DLK is the change in the linking number. It can be +, 0, or -. It is
+// 	the number of superhelical turns placed in the circle assuming that 
+//	DNA makes a complete helix every 10 basepairs.
+//
+
+int		b, nbp, dlk;
+float		gc, seed, rnum;
+float		rad, rise, twist, ttw;
+molecule	m, m1;
+molecule	wc_helix();
+matrix		matrx90, matdx, mattw, matrz;
+float		rand2();
+string		sbase, abase;
+
+if( argc < 3 || argc > 4 ){
+	fprintf( stderr, "usage: %s nbp dlk [ %%gc ]\n", argv[ 1 ] );
+	exit( 1 );
+}
+
+// Get the number of base pairs
+
+nbp = atoi( argv[ 2 ] );
+if( !nbp || nbp % 10 ){
+	fprintf( stderr,
+		"Number of base pairs must be a nonzero multiple of 10\n" );
+	exit( 1 );
+}
+// Get the delta linking number
+
+dlk = atoi( argv[ 3 ] );
+
+// Get the %gc, use 60% if not given
+
+if( argc < 4 )
+	gc = 0.6;
+else
+	gc = atof( argv[ 4 ] ) / 100.0;
+
+rise = 3.38;
+twist = ( nbp / 10 + dlk ) * 360.0 / nbp;
+rad = 0.5 * rise / sin( 180.0 / nbp );
+seed = -517;
+setseed( seed );
+
+matrx90 = newtransform( 0.0, 0.0, 0.0, 90.0, 0.0, 0.0 );
+matdx = newtransform( rad, 0.0, 0.0, 0.0, 0.0, 0.0 );
+
+m = newmolecule();
+addstrand( m, "A" );
+addstrand( m, "B" );
+ttw = 0.0;
+for( b = 1; b <= nbp; b = b + 1 ){
+
+	//	Create 1 standard B-dna W/C base pair
+ 	if( ( rnum = rand2() ) <= 0.5 * gc ){
+		sbase = "c";
+		abase = "g";
+ 	}else if( rnum <= gc ){
+		sbase = "g";
+		abase = "c";
+ 	}else if( rnum <= 1.0 - 0.5 * gc ){
+		sbase = "t";
+		abase = "a";
+	}else{
+		sbase = "a";
+		abase = "t";
+	}
+
+	m1 = wc_helix( sbase, "bdna.std.rlb", "dna", abase, "bdna.std.rlb", "dna",
+		2.25, -4.96, 0.0, 0.0, "" );
+
+	//	Twist the base pair
+	//	1st base pair has 0 twist
+
+	if( b > 1 ){
+		mattw = newtransform( 0.0, 0.0, 0.0, 0.0, 0.0, ttw );
+		transformmol( mattw, m1, NULL );
+	}
+
+	//	Rotate the base from the xy plane into the xz plane
+
+	transformmol( matrx90, m1, NULL );
+
+	//	Put the base axes on the circle at y = 0.
+
+	transformmol( matdx, m1, NULL );
+
+	//	rotate to proper place on circle
+	//	1st bp has a rotation of 0
+
+	if( b > 1 ){	
+		matrz = newtransform( 0.0,0.0,0.0,0.0,0.0,360.0*(b-1)/nbp );
+		transformmol( matrz, m1, NULL );
+	}
+
+	//	Insert the new base pair into growing circle; connect
+	//	2d & subsequent base pairs
+	mergestr( m, "A", "last", m1, "sense", "first" );
+	mergestr( m, "B", "first", m1, "anti", "last" );
+	if( b > 1 ){
+		connectres( m, "A", b - 1, "O3'", b, "P" );
+		connectres( m, "B", 1, "O3'", 2, "P" );
+	}
+
+	ttw = ttw + twist;
+	if( ttw >= 360.0 )
+		ttw = ttw - 360.0;
+}
+// Close the circle
+
+connectres( m, "A", nbp, "O3'", 1, "P" );
+connectres( m, "B", nbp, "O3'", 1, "P" );
+
+putpdb( "circ.pdb", m );
+putbnd( "circ.bnd", m );

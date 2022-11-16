@@ -1,0 +1,64 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+. ../../program_error.sh
+
+if [ -z "$TESTsander" ]; then
+   TESTsander="../../../bin/sander.MPI"
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+   echo "This is a parallel test, DO_PARALLEL must be set!"
+   exit 0
+fi
+
+numprocs=`$DO_PARALLEL ../../numprocs`
+
+mult_of_4=`python -c "print $numprocs // 4 * 4 == $numprocs"`
+at_least_8=`python -c "print $mult_of_4 and $numprocs // 4 >= 2"`
+
+if [ "$mult_of_4" = "False" ]; then
+   echo "This test requires a multiple of 4 processors!"
+   echo "Only detected $numprocs -- skipping test"
+   exit 0
+fi
+
+if [ `basename $TESTsander` = "pmemd.MPI" -o `basename $TESTsander` = "pmemd.mic_offload.MPI" ]; then 
+if [ "$at_least_8" = "False" ]; then
+   echo "This test requires at least 8 processors for pmemd.MPI"
+   echo "Only detected $numprocs -- skipping test"
+   exit 0
+fi
+fi
+
+cat > groupfile <<EOF
+-O -i 1AKI_mdin.0 -o 1AKI.solv10.md1.mdout.0 -cpin 1AKI.solv10.equil.cpin.0 -p 1AKI.solv10.parm7 -c 1AKI.solv10.equil.rst7.0
+-O -i 1AKI_mdin.1 -o 1AKI.solv10.md1.mdout.1 -cpin 1AKI.solv10.equil.cpin.1 -p 1AKI.solv10.parm7 -c 1AKI.solv10.equil.rst7.0
+-O -i 1AKI_mdin.2 -o 1AKI.solv10.md1.mdout.2 -cpin 1AKI.solv10.equil.cpin.2 -p 1AKI.solv10.parm7 -c 1AKI.solv10.equil.rst7.0
+-O -i 1AKI_mdin.3 -o 1AKI.solv10.md1.mdout.3 -cpin 1AKI.solv10.equil.cpin.3 -p 1AKI.solv10.parm7 -c 1AKI.solv10.equil.rst7.0
+EOF
+
+$DO_PARALLEL $TESTsander -ng 4 -groupfile groupfile \
+         -rem 4 -remlog rem.log < /dev/null || error
+
+if [ "`basename $TESTsander`" = "pmemd.MPI" -o "`basename $TESTsander`" = "pmemd.mic_offload.MPI" ]; then
+if [ "`basename $TESTsander`" = "pmemd.mic_offload.MPI" ]; then
+  ../../dacdif -r 1.e-7 1AKI.solv10.md1.mdout.0.pmemd.save 1AKI.solv10.md1.mdout.0
+else  
+  ../../dacdif 1AKI.solv10.md1.mdout.0.pmemd.save 1AKI.solv10.md1.mdout.0
+fi
+else
+  ../../dacdif 1AKI.solv10.md1.mdout.0.save 1AKI.solv10.md1.mdout.0
+fi
+
+../../dacdif cpout.001.save cpout.001
+../../dacdif rem.log.save rem.log
+
+/bin/rm -f groupfile 1AKI.solv10.md1.mdout.[123] \
+           cprestrt.* cpout.00[023] restrt.* mdinfo.* rem.type
+
+exit 0
+

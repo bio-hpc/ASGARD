@@ -1,0 +1,30 @@
+  optimization of alignment tensor; weight bonds and angles heavily
+ &cntrl
+    pencut=0.1, nmropt=2, imin=0,
+    ipnlty=1,ntpr=1, scee=2.0, iscale=5, igb=0,
+    tempi=0.0, 
+    nstlim=10, ntt=1, cut=9.0, ntc=2, vlimit=30., ntb=0,
+    dt=0.001, ntx=1, irest=0,
+    nsnb=1,
+ /
+ &ewald
+    eedmeth=5,
+ /
+#
+# Standard simulated annealing protocol--short test run
+#
+
+ &wt type='TEMP0', istep1=0, istep2=7000, value1=400.0, value2=400.0,  /
+ &wt type='TEMP0', istep1=7001, istep2=15000, value1=0.0, value2=0.0,  /
+
+ &wt type='TAUTP', istep1=0, istep2=7000, value1=0.3, value2=0.3,   /
+ &wt type='TAUTP', istep1=7001, istep2=12000, value1=4.0, value2=4.0,   /
+ &wt type='TAUTP', istep1=12001, istep2=14500, value1=1.0, value2=0.1, /
+ &wt type='TAUTP', istep1=14501, istep2=15000, value1=0.05, value2=0.05, /
+
+ &wt type='REST', istep1=0, istep2=15000, value1=0.1, value2=1.0,   /
+
+ &wt type='END'   /
+LISTOUT=POUT
+DISANG=RST.new
+DIPOLE=dobs.1

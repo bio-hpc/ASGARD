@@ -1,0 +1,371 @@
+
+          -------------------------------------------------------
+          Amber 12 SANDER                              2012
+          -------------------------------------------------------
+
+| Run on 10/14/2012 at 10:52:49
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: LFa_prod01_v0_l2.in                                                   
+| MDOUT: LFa_prod01_v0_l2.out                                                  
+|INPCRD: equi_v0_l2.rst                                                        
+|  PARM: LFa_com_TIin.top                                                      
+|RESTRT: LFa_prod01_v0_l2.rst                                                  
+|  REFC: refc                                                                  
+| MDVEL: mdvel.000                                                             
+|  MDEN: mden.000                                                              
+| MDCRD: LFa_prod01_v0_l2.mdcrd                                                
+|MDINFO: mdinfo.000                                                            
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+
+ Here is the input file:
+
+NVT MD w/No position restraints and PME (sander)                               
+ &cntrl                                                                        
+  ntx     = 7,                                                                 
+  irest   = 1,                                                                 
+  ntpr    = 500,                                                               
+  ntwx    = 10000,                                                             
+  ntwr    = 0,                                                                 
+  iwrap   = 0,                                                                 
+                                                                               
+  ntf     = 1,                                                                 
+  ntb     = 1,                                                                 
+  cut     = 9.0,                                                               
+                                                                               
+  nstlim  = 250000,                                                            
+  nscm    = 1000,                                                              
+  t       = 0.0,                                                               
+  dt      = 0.001,                                                             
+                                                                               
+  temp0   = 300.0,                                                             
+  tempi   = 300.0,                                                             
+  ntt     = 1,                                                                 
+  tautp   = 2.0,                                                               
+                                                                               
+  ntc     = 1,                                                                 
+  tol     = 0.000001,                                                          
+                                                                               
+  icfe    = 1,                                                                 
+  clambda = 0.2,                                                               
+  ifsc    = 1,                                                                 
+  idecomp = 1,                                                                 
+                                                                               
+  scmask  =':LFa@N3,C16,H10,C15,H9,N4,C14,C17,H19,H20,N5,C19,H11,H12,H13,C18,H2
+ &end                                                                          
+RES 1 291                                                                      
+END                                                                            
+LRES 1 291                                                                     
+END                                                                            
+END                                                                            
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+ getting new box info from bottom of inpcrd
+|  INFO: Old style inpcrd file read
+
+| peek_ewald_inpcrd: Box info found
+|Largest sphere to fit in unit cell has radius =    33.649
+| New format PARM file being parsed.
+| Version =    1.000 Date = 10/02/12 Time = 15:37:15
+ NATOM  =   40325 NTYPES =      21 NBONH =   38049 MBONA  =    2330
+ NTHETH =    4964 MTHETA =    3154 NPHIH =    9865 MPHIA  =    7757
+ NHPARM =       0 NPARM  =       0 NNB   =   72373 NRES   =   12248
+ NBONA  =    2330 NTHETA =    3154 NPHIA =    7757 NUMBND =      71
+ NUMANG =     141 NPTRA  =      56 NATYP =      50 NPHB   =       1
+ IFBOX  =       1 NMXRS  =      61 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real             2222519
+|     Hollerith         133225
+|     Integer          1798974
+|     Max Pairs        4472714
+|     nblistReal        483900
+|     nblist Int       1496001
+|       Total            52006 kbytes
+
+| Note: 1-4 EEL scale factors are being read from the topology file.
+
+| Note: 1-4 VDW scale factors are being read from the topology file.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+     BOX TYPE: RECTILINEAR
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       7, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =     500, ntrx    =       1, ntwr    =       0
+     iwrap   =       0, ntwx    =   10000, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       1, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       1, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   9.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =    250000, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+Berendsen (weak-coupling) temperature regulation:
+     temp0   = 300.00000, tempi   = 300.00000, tautp   =   2.00000
+
+Free energy options:
+     icfe    =       1, ifsc    =       1, klambda =       1
+     clambda =  0.2000, scalpha =  0.5000, scbeta  = 12.0000
+     sceeorder =       2 dvdl_norest =       0
+     dynlmb =  0.0000 logdvdl =       0
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       1
+     Box X =   72.419   Box Y =   83.096   Box Z =   67.298
+     Alpha =   90.000   Beta  =   90.000   Gamma =   90.000
+     NFFT1 =   72       NFFT2 =   90       NFFT3 =   72
+     Cutoff=    9.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.30768
+     Interpolation order =    4
+
+| MPI Timing options:
+|      profile_mpi =        0
+
+    LOADING THE DECOMP ATOMS AS GROUPS
+
+    ----- READING GROUP     1; TITLE:
+ RES 1 291                                                                   
+      Number of atoms in this group  =     0
+    ----- READING GROUP     1; TITLE:
+ LRES 1 291                                                                  
+      Number of atoms in this group  =     0
+    ----- END OF GROUP READ -----
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:    11956
+|  Atom division among processors:
+|         0   10082   20162   30245   40325
+       
+     Softcore Mask :LFa@N3,C16,H10,C15,H9,N4,C14,C17,H19,H20,N5,C19,H11,H12,H13,C18,H21,H22,H23; matches    19 atoms
+     this run corresponds to V0, its softcore atoms interact fully for lambda=0
+     this process:  40325 atoms, partner process:  40325 atoms
+     Checking for mismatched coordinates.
+
+     Sum of charges from parm topology file =   0.00199986
+     Forcing neutrality...
+|  Running AMBER/MPI version on    4 nodes
+
+|  MULTISANDER:    2 groups.    4 processors out of    8 total.
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):  120975.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =  120972.     NUM_NOSHAKE =      0     CORRECTED RNDFP =  120972.
+|  TOTAL # of degrees of freedom (RNDF) =  120972.
+   DOF for the SC part of the system:   57
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.2738E-14   at   2.422500
+| CHECK d/dx switch(x): max rel err =   0.8314E-11   at   2.736960
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =    2851908
+| TOTAL SIZE OF NONBOND LIST =   11124330
+
+ NSTEP =      500   TIME(PS) =       0.500  TEMP(K) =   299.55  PRESS =     0.0
+ Etot   =    -86331.9767  EKtot   =     36004.8363  EPtot      =   -122336.8130
+ BOND   =     22553.0360  ANGLE   =      2318.1436  DIHED      =      2914.8120
+ 1-4 NB =      1011.6884  1-4 EEL =     11863.6409  VDWAALS    =     20496.0777
+ EELEC  =   -183494.2117  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =        29.8559
+ Ewald error estimate:   0.1756E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         294.09
+ SC_BOND=         3.3048  SC_ANGLE=        11.9236  SC_DIHED   =         6.1097
+ SC_14NB=         3.3881  SC_14EEL=        49.6021  SC_EKIN    =        16.6557
+ SC_VDW =        -0.9713  SC_EEL  =       -22.4326  SC_DERIV=         8.5104
+ ------------------------------------------------------------------------------
+
+check COM velocity, temp:        0.000086     0.00(Removed)
+
+ NSTEP =     1000   TIME(PS) =       1.000  TEMP(K) =   298.75  PRESS =     0.0
+ Etot   =    -86333.8273  EKtot   =     35908.9672  EPtot      =   -122242.7945
+ BOND   =     22653.7227  ANGLE   =      2279.5976  DIHED      =      2930.9170
+ 1-4 NB =      1019.7102  1-4 EEL =     11865.4213  VDWAALS    =     20507.7477
+ EELEC  =   -183499.9110  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         8.0064
+ Ewald error estimate:   0.7361E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         381.32
+ SC_BOND=         6.7031  SC_ANGLE=        11.3771  SC_DIHED   =         4.9420
+ SC_14NB=         1.8081  SC_14EEL=        48.7304  SC_EKIN    =        21.5958
+ SC_VDW =        -0.9342  SC_EEL  =       -22.4720  SC_DERIV=        -4.3721
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     1500   TIME(PS) =       1.500  TEMP(K) =   299.05  PRESS =     0.0
+ Etot   =    -86320.0850  EKtot   =     35945.0605  EPtot      =   -122265.1454
+ BOND   =     22934.4930  ANGLE   =      2186.7529  DIHED      =      2929.1950
+ 1-4 NB =      1037.3335  1-4 EEL =     11921.2943  VDWAALS    =     20804.0061
+ EELEC  =   -184078.2202  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         4.7551
+ Ewald error estimate:   0.4083E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         252.73
+ SC_BOND=         7.0437  SC_ANGLE=        10.3890  SC_DIHED   =         9.2695
+ SC_14NB=         3.3864  SC_14EEL=        47.3227  SC_EKIN    =        14.3131
+ SC_VDW =        -0.8351  SC_EEL  =       -20.2401  SC_DERIV=        -5.3967
+ ------------------------------------------------------------------------------
+
+check COM velocity, temp:        0.000132     0.00(Removed)
+
+ NSTEP =     2000   TIME(PS) =       2.000  TEMP(K) =   299.69  PRESS =     0.0
+ Etot   =    -86313.7680  EKtot   =     36021.9882  EPtot      =   -122335.7562
+ BOND   =     22608.7548  ANGLE   =      2324.4816  DIHED      =      2939.6505
+ 1-4 NB =      1007.1611  1-4 EEL =     11835.2763  VDWAALS    =     20504.7982
+ EELEC  =   -183555.8787  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =        17.9906
+ Ewald error estimate:   0.9546E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         268.22
+ SC_BOND=         5.5952  SC_ANGLE=        12.6510  SC_DIHED   =         6.8710
+ SC_14NB=         3.3683  SC_14EEL=        50.0344  SC_EKIN    =        15.1907
+ SC_VDW =        -0.2858  SC_EEL  =       -21.6902  SC_DERIV=         3.1659
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     2500   TIME(PS) =       2.500  TEMP(K) =   300.07  PRESS =     0.0
+ Etot   =    -86298.3011  EKtot   =     36068.1234  EPtot      =   -122366.4245
+ BOND   =     22442.0107  ANGLE   =      2256.1387  DIHED      =      2958.1681
+ 1-4 NB =      1005.4635  1-4 EEL =     11845.1301  VDWAALS    =     20572.8958
+ EELEC  =   -183446.2313  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         4.6573
+ Ewald error estimate:   0.1465E-03
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         344.98
+ SC_BOND=         2.7171  SC_ANGLE=        12.1101  SC_DIHED   =         5.5748
+ SC_14NB=         2.4652  SC_14EEL=        47.1507  SC_EKIN    =        19.5380
+ SC_VDW =        -1.0219  SC_EEL  =       -20.6865  SC_DERIV=        -5.3872
+ ------------------------------------------------------------------------------
+
+check COM velocity, temp:        0.000138     0.00(Removed)
+
+ NSTEP =     3000   TIME(PS) =       3.000  TEMP(K) =   298.50  PRESS =     0.0
+ Etot   =    -86323.4693  EKtot   =     35879.4230  EPtot      =   -122202.8923
+ BOND   =     22849.5732  ANGLE   =      2328.2527  DIHED      =      2904.7891
+ 1-4 NB =       985.2630  1-4 EEL =     11758.4636  VDWAALS    =     20329.6848
+ EELEC  =   -183358.9187  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =        14.4257
+ Ewald error estimate:   0.2573E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         310.61
+ SC_BOND=         5.6666  SC_ANGLE=        11.5440  SC_DIHED   =         7.8581
+ SC_14NB=         1.6171  SC_14EEL=        47.5782  SC_EKIN    =        17.5912
+ SC_VDW =        -0.0744  SC_EEL  =       -21.4195  SC_DERIV=         2.4137
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     3500   TIME(PS) =       3.500  TEMP(K) =   297.23  PRESS =     0.0
+ Etot   =    -86300.1370  EKtot   =     35726.7150  EPtot      =   -122026.8520
+ BOND   =     22833.3961  ANGLE   =      2273.4647  DIHED      =      2896.4176
+ 1-4 NB =      1010.4287  1-4 EEL =     11855.3548  VDWAALS    =     20420.5389
+ EELEC  =   -183316.4529  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =        18.3391
+ Ewald error estimate:   0.4980E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         284.66
+ SC_BOND=         4.9571  SC_ANGLE=        15.3786  SC_DIHED   =         4.1311
+ SC_14NB=         1.4115  SC_14EEL=        50.4308  SC_EKIN    =        16.1216
+ SC_VDW =        -0.0582  SC_EEL  =       -22.7873  SC_DERIV=         1.1153
+ ------------------------------------------------------------------------------
+
+check COM velocity, temp:        0.000120     0.00(Removed)
+
+ NSTEP =     4000   TIME(PS) =       4.000  TEMP(K) =   299.63  PRESS =     0.0
+ Etot   =    -86317.2084  EKtot   =     36014.6517  EPtot      =   -122331.8601
+ BOND   =     22873.3848  ANGLE   =      2267.5842  DIHED      =      2906.4543
+ 1-4 NB =      1024.5519  1-4 EEL =     11922.4019  VDWAALS    =     20666.8077
+ EELEC  =   -183993.0449  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =        14.5322
+ Ewald error estimate:   0.6252E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         284.69
+ SC_BOND=         4.4991  SC_ANGLE=        14.8936  SC_DIHED   =         5.3862
+ SC_14NB=         2.4178  SC_14EEL=        49.8911  SC_EKIN    =        16.1232
+ SC_VDW =        -0.4162  SC_EEL  =       -23.4268  SC_DERIV=         0.9262
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     4500   TIME(PS) =       4.500  TEMP(K) =   300.62  PRESS =     0.0
+ Etot   =    -86328.1052  EKtot   =     36133.6617  EPtot      =   -122461.7668
+ BOND   =     22342.7331  ANGLE   =      2215.6505  DIHED      =      2947.3006
+ 1-4 NB =      1018.9699  1-4 EEL =     11904.2342  VDWAALS    =     20596.3242
+ EELEC  =   -183486.9793  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =        26.6505
+ Ewald error estimate:   0.1023E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         329.58
+ SC_BOND=         6.1952  SC_ANGLE=        14.3023  SC_DIHED   =         5.7336
+ SC_14NB=         1.8117  SC_14EEL=        48.2448  SC_EKIN    =        18.6656
+ SC_VDW =        -0.8667  SC_EEL  =       -22.1547  SC_DERIV=         7.2086
+ ------------------------------------------------------------------------------
+
+check COM velocity, temp:        0.000055     0.00(Removed)
+
+ NSTEP =     5000   TIME(PS) =       5.000  TEMP(K) =   299.29  PRESS =     0.0
+ Etot   =    -86296.8350  EKtot   =     35973.5876  EPtot      =   -122270.4226
+ BOND   =     22384.6451  ANGLE   =      2237.6441  DIHED      =      2925.1078
+ 1-4 NB =      1021.5915  1-4 EEL =     11851.9977  VDWAALS    =     20196.4642
+ EELEC  =   -182887.8730  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =        15.6216
+ Ewald error estimate:   0.7207E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    19 atoms,         TEMP(K)    =         280.58
+ SC_BOND=         4.5055  SC_ANGLE=        14.7471  SC_DIHED   =         6.3693
+ SC_14NB=         2.3720  SC_14EEL=        46.0607  SC_EKIN    =        15.8908
+ SC_VDW =        -0.9590  SC_EEL  =       -19.7509  SC_DERIV=        -3.6214
+ ------------------------------------------------------------------------------
+

@@ -1,0 +1,37 @@
+#!/bin/csh -f
+
+#Tests chamber to ensure it gives the correct output and creates the expected files
+
+#1) Test Chamber
+/bin/rm -f *.prmtop *.inpcrd *.out *.restrt
+
+# Test for the presence of the 'chamber' program
+
+if ( -x $AMBERHOME/bin/chamber ) then
+   #CHARMM CRD FILE
+   $AMBERHOME/bin/chamber \
+             -top $AMBERHOME/dat/chamber/top_all22_prot.inp \
+             -param $AMBERHOME/dat/chamber/par_all22_prot.inp \
+             -psf dhfr_cmap_pbc.psf -cmap\
+             -crd dhfr_min_charmm.crd \
+             -box 95.38650 80.38090 80.22480 \
+             -p prmtop \
+             -inpcrd inpcrd >& chamber.out || goto error
+
+   ../../dacdif chamber.out.save chamber.out
+   ../../dacdif -r 10E-15 prmtop.save prmtop
+   ../../dacdif inpcrd.save inpcrd
+
+   exit(0)
+
+else
+   echo "Could not find the 'chamber' program. "
+   echo "It may happen if you do not compile the serial"
+   echo "version of amber."
+   echo "=============================================================="
+   exit(0)
+endif   
+error:
+echo "  ${0}:  Program error"
+exit (1)
+

@@ -1,0 +1,11 @@
+Explicit solvent constant pH MD
+ &cntrl
+   imin=0, irest=1, ntx=5,
+   ntpr=10, ntwx=0, nstlim=10,
+   numexchg=5,
+   dt=0.002, ntt=3, tempi=300,
+   temp0=300, gamma_ln=5.0, ig=10273,
+   ntc=2, ntf=2, cut=8, iwrap=1,
+   ioutfm=1, icnstph=2, ntcnstph=5,
+   solvph=1.0, ntrelax=10, saltcon=0.1,
+ /

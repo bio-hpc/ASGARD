@@ -1,0 +1,273 @@
+BODY {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #333333;
+	line-height: 150%;
+	background-color: #ffffff;
+}
+
+P  {	
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #333333;
+	line-height: 150%;
+}
+
+OL LI {
+	list-style-type: decimal;
+	font-size: small;
+	color: #333333;
+	line-height: 180%;
+	margin: 2px 0px 2px 0px;
+}
+
+LI OL LI {
+	list-style-type: decimal;
+	line-height: 150%;
+}
+
+UL LI {
+	list-style-type: disc;
+	font-size: small;
+	color: #333333;
+	line-height: 150%;
+	margin: 2px 0px 2px 0px;
+}
+
+LI UL LI {
+	list-style-type: circle;
+	line-height: 150%;
+}
+
+LI UL LI UL LI {
+	list-style-type: square;
+	line-height: 150%;
+}
+
+INPUT {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: smaller;
+	font-weight: bold;
+	color: #f2f8f8;
+	text-decoration: none;
+	border: solid 1px #077179;
+	background-color: #077179;
+}
+
+code, pre {
+        font-family: monospace;
+        font-size: 12px;
+}
+
+H1  {
+	font-size: larger;
+	font-weight: bold;
+	text-align: center;
+	color: #077179;
+	background-color: #E4F1F1;
+        border: thin solid #cae4e4;
+	margin: 5px 0px 5px 0px;
+	padding: 3px 3px 3px 3px;	
+	line-height: 150%;
+}
+
+H2  {
+	color: #077179;
+	font-size: large;
+        font-weight: bold;
+}
+
+H3, H3 LI  {
+	color: #077179;
+	font-size: medium;
+	font-weight: bold;
+}
+
+H4  {
+	color: #077179;
+	font-size: small;
+	font-weight: bold;
+}
+
+H5 {
+	color: #077179;
+	font-size: small;
+	font-style: normal;
+	font-weight: bold;
+}
+
+A.text {
+        text-decoration: none;
+        color: #333333;
+}
+
+A.text:Active {
+        border-bottom: solid 0;
+}
+
+A.anchor {
+        text-decoration: none;
+        color: #077179;
+}
+
+A.anchor:Active {
+        border-bottom: solid 0;
+        color: #077179;
+}
+
+A, A LI  {
+	color: #6b6f40;
+	text-decoration: underline;
+}
+
+A:Link {
+	border-bottom: solid thin #6b6f40;
+	color: #6b6f40;
+	text-decoration: none;
+	padding-bottom: 1px;
+}
+
+A:Visited  {
+	border-bottom: solid thin #6b6f40;
+	color: #b1b681;
+	text-decoration: none;
+	padding-bottom: 1px;
+}
+
+A:Active  {
+	border-bottom: solid thin #6b6f40;
+	color: #6b6f40;	
+	text-decoration: none;
+	padding-bottom: 1px;
+}
+
+A:Hover  {}
+
+EM {
+    font-style: italic;
+}
+
+SMALL {
+	font-size: smaller;
+	font-family: sans-serif;
+}
+
+address {
+    font-family: sans-serif;
+    font-size: smaller;
+    font-style: normal;
+}
+SUB {
+    font-size: 75%;
+}
+SUP {
+    font-size: 75%;
+}
+
+TABLE, table {
+	font-size: small;
+}
+
+TABLE.grid, table.grid {
+	font-size: small;
+        border-width: 0px 0px 1px 1px;
+	border-style: solid;
+	border-color: #077179;
+}
+TABLE.grid TD, TABLE.grid TH, table.grid td, table.grid th {
+        border-width: 1px 1px 0px 0px;
+	border-style: solid;
+        border-color: #077179;
+}
+
+TABLE.grid TH, table.grid th {
+	font-weight: bold;
+}
+
+TABLE#grid, table#grid {
+	font-size: small;
+	border-width: 1px 1px 0px 0px;
+	border-style: solid;
+	border-color: #077179;
+}
+
+TABLE#grid TD, TABLE#grid TH, table#grid td, table#grid th {
+	border-width: 0px 0px 1px 1px;
+	border-style: solid;
+	border-color: #077179;
+}
+
+TABLE#grid TH, table#grid th {
+	font-weight: bold;
+}
+
+TABLE#colored-grid TABLE#no-grid, TABLE#colored-grid TABLE#no-grid TD, TABLE#colored-grid TABLE#no-grid TH {
+	border-width: 0px 0px 0px 0px;
+}
+
+TABLE#colored {
+	font-size: small;
+	border: thin solid #077179;
+	background-color: #e4f1f1;
+}
+
+TABLE.colored-grid {
+	font-size: small;
+	border-width: 0px 0px 1px 1px;
+	border-style: solid;
+	border-color: #077179;
+	background-color: #e4f1f1;
+}
+
+TABLE.colored-grid TD, TABLE.colored-grid TH {
+	border-width: 1px 1px 0px 0px;
+	border-style: solid;
+	border-color: #077179;
+}
+
+TABLE.colored-grid TH {
+	font-weight: bold;
+}
+
+TABLE#colored-grid {
+	font-size: small;
+	border-width: 1px 1px 0px 0px;
+	border-style: solid;
+	border-color: #077179;
+	background-color: #e4f1f1;
+}
+
+TABLE#colored-grid TD, TABLE#colored-grid TH {
+	border-width: 0px 0px 1px 1px;
+	border-style: solid;
+	border-color: #077179;
+}
+
+TABLE#colored-grid TH {
+	font-weight: bold;
+}
+
+DIV.lenia {
+	text-align: center;
+	width: 80%;
+	height: 1px;
+	background-color: #077179;
+	margin: 10px 0px 5px 0px;
+	line-height: 1px;
+}
+
+.news {
+	color: #077179;
+	font-size: 14px;
+}
+div.clear {
+	clear: both;
+}
+		
+.floating {
+	float: left;
+}
+			
+.floating li {
+	width: 175px;
+}

@@ -1,0 +1,17 @@
+cpin.h: constants.h
+main.cpp: cpin.h cpout.h cloptions.h prottraj.h test.h types.h utilities.h
+test.h: cloptions.h cpout.h
+cpout.h: constants.h
+string_manip.cpp: constants.h string_manip.h
+prottraj.cpp: prottraj.h constants.h
+conprob.cpp: conprob.h string_manip.h
+prottraj.h: conprob.h cpin.h cpout.h types.h
+cpout.cpp: cpout.h string_manip.h
+utilities.cpp: utilities.h
+conprob.h: cpin.h types.h
+cloptions.cpp: cloptions.h utilities.h
+cpin.cpp: cpin.h string_manip.h
+types.h: cpout.h
+cloptions.h: conprob.h
+utilities.h: cpout.h types.h
+test.cpp: constants.h test.h

@@ -1,0 +1,40 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+cat > gbin <<EOF
+short min run, no frills, cutoff
+ &cntrl 
+   nstlim = 20,
+   ntpr   = 1,  
+   cut=15.0, igb=0,
+   ntwr=100000, ntwx=1, 
+   ntx=5, irest=1, 
+   ntc=2, ntf=2, tol=0.000001,
+   dt=0.002, ntb=0,
+   ibelly=0,
+   tempi=300,temp0=300,tautp=.5,
+   ntt=0,
+
+   imin=1, maxcyc=10,ncyc=20
+ /
+
+EOF
+
+$DO_PARALLEL $TESTsander -O -i gbin -c inpcrd -o mdout.min < /dev/null || goto error
+
+../dacdif mdout.min.save mdout.min
+/bin/rm -f gbin restrt mdinfo mdcrd
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

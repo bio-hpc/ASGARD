@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Check the existence of a test version of the mdgx program
+MDGX="${AMBERHOME}/bin/mdgx"
+if [ -n "${TESTmdgx}" ] ; then
+  MDGX=${TESTmdgx}
+  echo "MDGX set to ${MDGX}"
+fi
+
+# Write a simple input file
+cat > mdgx.in << EOF
+% This input will test the function of the SETTLE routines in mdgx by
+% simulating a box of TIP4P water molecules for 30 steps.
+&files
+  -p       wat288.top
+  -c       wat288Init.crd
+  -r       wat288t
+  -o       wat288t
+  -osf     .out
+  -rsf     .rst
+&end
+
+&cntrl
+
+  % This is the flag that will activate SETTLE
+  DoSETTLE = 1,
+
+  % Factors concerning treatment of nonbonded interactions
+  SplnSpc    =  0.015625,
+  Vdw14Fac   =  2.0,
+  Elec14Fac  =  1.2,
+  es_cutoff  = 9.000,
+  vdw_cutoff = 9.000,
+
+  % Run mode is standard MD, time step 2fs
+  RunMode = 0,
+  dt = 2.0e-3,
+
+  % Factors concerning the output rate; a total of three files for output
+  % diagnostics, restarts, forces, and trajectory will be written in .crd and
+  % .rst formats.
+  nstlim =  30,
+  ntpr = 5,
+  ntwr = 30,
+  ntwf = 0,
+  ntwx = 0,
+
+  % Thermostat control: dynamics at 300K, with initial temperature 300K,
+  % as maintained by a Berendsen thermostat
+  ntt = 1,
+  tempi = 300.0,
+  temp0 = 300.0,
+
+  % Barostat control: NPT dynamics as maintained by a Monte-Carlo barostat
+  ntp = 1,
+  barostat = 2,
+  mccomp = 2.0e-3,
+  mcbfrq = 5,
+&end
+
+&ewald
+  dsum_tol = 5.0e-6,
+  ordr1 = 4,
+  ordr2 = 4,
+  ordr3 = 4,
+  nfft1 = 24,
+  nfft2 = 24,
+  nfft3 = 24,
+&end
+EOF
+
+# Run the mdgx program
+${MDGX} -O -i mdgx.in
+
+# Analyze the relevant output
+echo "% Temperatures" > temperature.dat
+grep "^ Temperature:" wat288t.out >> temperature.dat
+
+${AMBERHOME}/AmberTools/test/dacdif temperature.dat.save temperature.dat
+/bin/rm -f mdgx.in wat288t.rst wat288t.out

@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+import os, sys, re
+
+incre = re.compile(r'# *include *"(.+\.h)"')
+
+dep = open('depends', 'w')
+
+ignored_headers = ('zlib.h',)
+
+for f in os.listdir('.'):
+   if f.endswith('.F90') or f.endswith('.cpp') or f.endswith('.h') or \
+      f.endswith('.i'):
+      if f in ignored_headers: continue
+      mydep = []
+      fd = open(f, 'r')
+      for line in fd:
+         if incre.match(line):
+            d = incre.match(line).groups()[0]
+            if not d in mydep and not d in ignored_headers:
+               mydep.append(d)
+      if mydep: dep.write('%s: %s\n' % (f, ' '.join(mydep)))
+
+dep.close()

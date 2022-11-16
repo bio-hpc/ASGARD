@@ -1,0 +1,35 @@
+source /home/homeyer/Software/amber14_120214/dat/leap/cmd/oldff/leaprc.ff99SB
+source leaprc.gaff
+loadoff /home/homeyer/work/FEW/examples/test/leap/L51a/L51a_resp.lib
+loadoff /home/homeyer/work/FEW/examples/test/input_info/CA.lib
+CYS = CYX
+LIG = loadpdb /home/homeyer/work/FEW/examples/test/leap/L51a/L51a_lig.pdb
+REC = loadpdb /home/homeyer/work/FEW/examples/test/input_info/2RA0_IN.pdb
+COM = loadpdb /home/homeyer/work/FEW/examples/test/leap/L51a/L51a_com.pdb
+bond COM.27.SG COM.43.SG
+bond COM.238.SG COM.249.SG
+bond COM.181.SG COM.209.SG
+bond COM.156.SG COM.170.SG
+bond COM.7.SG COM.12.SG
+bond COM.245.SG COM.258.SG
+bond COM.108.SG COM.281.SG
+bond COM.260.SG COM.273.SG
+bond REC.27.SG REC.43.SG
+bond REC.238.SG REC.249.SG
+bond REC.181.SG REC.209.SG
+bond REC.156.SG REC.170.SG
+bond REC.7.SG REC.12.SG
+bond REC.245.SG REC.258.SG
+bond REC.108.SG REC.281.SG
+bond REC.260.SG REC.273.SG
+loadAmberParams /home/homeyer/work/FEW/examples/test/leap/L51a/L51a.frcmod
+saveAmberParm LIG /home/homeyer/work/FEW/examples/test/MD_resp/L51a/cryst/L51a_vac_lig.top /home/homeyer/work/FEW/examples/test/MD_resp/L51a/cryst/L51a_vac_lig.crd
+savepdb LIG /home/homeyer/work/FEW/examples/test/MD_resp/L51a/cryst/L51a_vac_lig.pdb
+saveAmberParm REC /home/homeyer/work/FEW/examples/test/MD_resp/L51a/cryst/L51a_vac_rec.top /home/homeyer/work/FEW/examples/test/MD_resp/L51a/cryst/L51a_vac_rec.crd
+savepdb REC /home/homeyer/work/FEW/examples/test/MD_resp/L51a/cryst/L51a_vac_rec.pdb
+saveAmberParm COM /home/homeyer/work/FEW/examples/test/MD_resp/L51a/cryst/L51a_vac_com.top /home/homeyer/work/FEW/examples/test/MD_resp/L51a/cryst/L51a_vac_com.crd
+savepdb COM /home/homeyer/work/FEW/examples/test/MD_resp/L51a/cryst/L51a_vac_com.pdb
+charge LIG
+charge REC
+charge COM
+quit

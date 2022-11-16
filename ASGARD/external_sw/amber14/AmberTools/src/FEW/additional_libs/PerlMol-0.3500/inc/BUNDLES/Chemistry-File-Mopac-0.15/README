@@ -1,0 +1,52 @@
+Chemistry/File/Mopac version 0.15
+=================================
+
+This module reads and writes MOPAC 6 input files. It can handle both internal
+coordinates and cartesian coordinates. It also extracts molecules from summary
+files, defined as those files that match /SUMMARY OF/ in the third line.
+Perhaps a future version will extract additional information such as the energy
+and dipole from the summary file.
+
+This module registers the C<mop> format with Chemistry::Mol. For detection
+purposes, it assumes that filenames ending in .mop or .zt have the Mopac 
+format, as well as files whose first line matches /am1|pm3|mndo|mdg|pdg/i 
+(this may change in the future).
+
+When the module reads an input file into $mol, it puts the keywords (usually
+the first line of the file) in $mol->attr("mopac/keywords"), the comments
+(usually everything else on the first three lines) in
+$mol->attr("mopac/comments"), and the internal coordinates for each atom in
+$atom->internal_coords. 
+
+When writing, the kind of coordinates used depend on the coords option, as
+shown in the SYNOPSIS. Internal coordinates are used by default. If the
+molecule has no internal coordinates defined or the rebuild option is set,
+the build_zmat function from Chemistry::InternalCoords::Builder is used to
+renumber the atoms and build the Z-matrix from scratch.
+
+CHANGES SINCE VERSION 0.10
+    - Add Mopac writer. Fixed handling of default atom and bond classes.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+        "Chemistry::Mol" => "0.25",
+        "Chemistry::InternalCoords" => '0.15',
+        "List::Util" => 0,
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2004 Ivan Tubert
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

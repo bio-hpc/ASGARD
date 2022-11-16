@@ -1,0 +1,187 @@
+
+          -------------------------------------------------------
+          Amber 10 SANDER                              2008
+          -------------------------------------------------------
+
+| Run on 01/27/2009 at 13:59:29
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: poly_pro_gas_phase_igb0.pdb.out                                       
+|INPCRD: poly_pro_gas_all22.pdb.inpcrd                                         
+|  PARM: poly_pro_gas_all22.pdb.prmtop                                         
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+ 
+ Here is the input file:
+ 
+CHARMM Force Field Poly Pro Gas Phase - Check Energy.                          
+ &cntrl                                                                        
+   imin=1,irest=0,                                                             
+   maxcyc=0,ncyc=0,                                                            
+   scee=1.0,scnb=1.0,                                                          
+   ntpr=1,                                                                     
+   ntb=0,                                                                      
+   cut=9999.0,                                                                 
+   igb=0,                                                                      
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|  *** cutoff > system size, list only builds once
+|Largest sphere to fit in unit cell has radius =    33.613
+| New format PARM file being parsed.
+| Version =    1.000 Date = 06/11/03 Time = 12:02:08
+ NATOM  =      65 NTYPES =      16 NBONH =      33 MBONA  =      34
+ NTHETH =      80 MTHETA =      49 NPHIH =     136 MPHIA  =      88
+ NHPARM =       0 NPARM  =       0 NNB   =     381 NRES   =       5
+ NBONA  =      34 NTHETA =      49 NPHIA =      88 NUMBND =      22
+ NUMANG =      46 NPTRA  =      81 NATYP =      16 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      14 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+| Force field information read from topology file: 
+|  CHARMM  31         *>>>>>>>>CHARMM22 All-Hydrogen Topology File for Proteins <<
+|
+|CHARMM: CHARMM force field in use. 
+|CHARMM: Overriding default value of chngmask.
+|CHARMM: Setting chngmask = 0.
+
+|     Memory Use     Allocated
+|     Real                5538
+|     Hollerith            397
+|     Integer            33111
+|     Max Pairs           2080
+|     nblistReal           780
+|     nblist Int       1158567
+|       Total             4714 kbytes
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+* POLY PROLINE IN GAS PHASE                                                     
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =9999.00000, intdiel =   1.00000
+     scnb    =   1.00000, scee    =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =       0, ncyc    =       0, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+inpcrd generated from psfprm utility:* POLY PROLINE IN GAS PHASE                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+     Sum of charges from parm topology file =   0.00000011
+     Forcing neutrality...
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+ ---------------------------------------------------
+
+     eedmeth=4: Setting switch to one everywhere
+
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =       1703
+| TOTAL SIZE OF NONBOND LIST =       1703
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1       1.4265E+02     9.9779E-01     2.9304E+00     CD         14
+
+ BOND    =        4.0719  ANGLE   =       26.1726  DIHED      =       36.5690
+ VDWAALS =       -6.9554  EEL     =     -274.5303  HBOND      =        0.0000
+ 1-4 VDW =        8.6608  1-4 EEL =      348.6642  RESTRAINT  =        0.0000
+
+
+  Maximum number of minimization cycles reached.
+
+
+                    FINAL RESULTS
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1       1.4265E+02     9.9779E-01     2.9304E+00     CD         14
+
+ BOND    =        4.0719  ANGLE   =       26.1726  DIHED      =       36.5690
+ VDWAALS =       -6.9554  EEL     =     -274.5303  HBOND      =        0.0000
+ 1-4 VDW =        8.6608  1-4 EEL =      348.6642  RESTRAINT  =        0.0000
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 7.01% of Total)
+|    Fast Water setup           0.00 ( 0.59% of Total)
+|                Build the list             0.00 (95.05% of List )
+|                Other                      0.00 ( 4.95% of List )
+|             List time                  0.00 (84.65% of Nonbo)
+|                   Short_ene time             0.00 (95.74% of Direc)
+|                   Other                      0.00 ( 4.26% of Direc)
+|                Direct Ewald time          0.00 (81.36% of Ewald)
+|                Force Adjust               0.00 ( 0.59% of Ewald)
+|                Virial junk                0.00 ( 2.32% of Ewald)
+|                Start sycnronization       0.00 ( 5.23% of Ewald)
+|                Other                      0.00 (10.50% of Ewald)
+|             Ewald time                 0.00 (15.00% of Nonbo)
+|             IPS excludes               0.00 ( 0.08% of Nonbo)
+|             Other                      0.00 ( 0.27% of Nonbo)
+|          Nonbond force              0.00 (82.05% of Force)
+|          Bond/Angle/Dihedral        0.00 (16.31% of Force)
+|          Other                      0.00 ( 1.65% of Force)
+|       Force time                 0.00 (100.0% of Runmd)
+|    Runmd Time                 0.00 (10.26% of Total)
+|    Other                      0.01 (82.13% of Total)
+| Total time                 0.01 (99.18% of ALL  )
+
+| Highest rstack allocated:        270
+| Highest istack allocated:         54
+|           Job began  at 13:59:29.417  on 01/27/2009
+|           Setup done at 13:59:29.426  on 01/27/2009
+|           Run   done at 13:59:29.431  on 01/27/2009
+|     wallclock() was called      33 times

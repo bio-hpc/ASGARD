@@ -1,0 +1,615 @@
+
+          ---------------------------------------
+          GIBBS Version 5        AMBER/UCSF(1997)
+          --------------------------------------
+
+  [-O]verwriting output
+ File Assignments:
+ -----------------
+
+|PIN     : PIN                                                                  
+|POUT    : POUT                                                                 
+|PCOORD  : PCOORD                                                               
+|PVEL    : PVEL                                                                 
+|PEN     : PEN                                                                  
+|PPARM   : PPARM                                                                
+|PINCRD  : PINCRD                                                               
+|PREFC   : PREFC                                                                
+|PREST   : PREST                                                                
+|PINFO   : PINFO                                                                
+|MICSTAT : MICSTAT                                                              
+|CONSTMAT: CONSTMAT                                                             
+|CNSTSCRT: CNSTSCRT                                                             
+|PATNRG  : PATNRG                                                               
+ 
+ Here is the input file:
+ 
+gibbs input, namelist format                                                   
+ &cntrl                                                                        
+  timlim = 999999., irest = 1, ibelly = 0, ipol = 0,                           
+  iewald = 1,                                                                  
+  ntx = 7, ig = 71277, tempi = 300.0, heat = 0.0,                              
+  ntb = 1,                                                                     
+  nrun = 1, ntt = 0, temp0 = 300.0, tautp = 0.1, tauts = 0.1,                  
+  ntcm = 0,                                                                    
+  nstlim = 20, init = 4, dt = 0.001,                                           
+  ntc = 2, tol = 0.0000001,                                                    
+  ntf = 2, nsnb = 10, idiel = 1,                                               
+  cut = 8.5, scnb = 2.0, scee = 1.2, dielc = 1.0,                              
+  ntpr = 1, ntwx = 0,                                                          
+  ntr = 0,                                                                     
+  jfastw = 0,                                                                  
+  isvat = 1,                                                                   
+  ielper = 1, idsx0 = 3,                                                       
+  itrslu = 1, ioleps = 0, intprt = 5,                                          
+  tolr2 = 0.0000, ncorc = 0, itimth = 1,                                       
+  almda = 0, almdel = 0.05, isldyn = 3, idifrg = 1,                            
+  nstmeq = 0, nstmul = 20, isande=1,                                           
+ /                                                                          
+19.755 19.755 19.755 90.0 90.0 90.0                                            
+20 20 20 4 1 0 0 0                                                             
+0.00001                                                                        
+-------------------------------------------------------------------------------
+
+                   READING MOLECULAR TOPOLOGY FILE (PPARM)
+
+
+   EWALD SPECIFIC INPUT:
+
+cutoff,dtol =  0.85000E+01 0.10000E-04
+     Ewald Coefficient =  0.32692
+
+     USING PME EWALD
+|    Using the SGI specific (ZFFT3D) Fast Fourier Transform
+     Box X =   19.755   Box Y =   19.755   Box Z =   19.755
+     Alpha =   90.000   Beta  =   90.000   Gamma =   90.000
+     NFFT1 =   20       NFFT2 =   20       NFFT3 =   20
+     Cutoff=    8.500   Tol   =0.100E-04
+     Interpolation order =    4
+     Using a cutoff for dispersion interactions
+|    Largest sphere to fit in unit cell has radius =     9.877
+| New format PARM file being parsed.
+| Version =    1.000 Date = 12/10/01 Time = 15:43:16
+
+   EWALD MEMORY USE:
+
+|    Total stack storage needed       =      44341
+|    Adjacent nonbond minimum mask    =       1025
+|    Max number of pointers           =         25
+|    List build maxmask               =       2050
+|    Maximage                         =       9022
+
+   EWALD LOCMEM POINTER OFFSETS
+|      Real memory needed by PME        =      44401
+ Using LINEAR INTERPOLATION for erfc
+ Density of points per unit =      1001.
+ max size of erf table from needs of short_ene:         3059
+ max size of erf table from needs of recip:       9277.2
+ computed size of erftable =        18554
+|      Real memory needed by ERFTABLE   =      18554
+|      Integer memory needed by ADJ     =       2050
+|      Integer memory used by local nonb=      48859
+|      Real memory used by local nonb   =      46007
+
+|    MAX NONBOND PAIRS =    3000000
+                             --------------------
+                                DYNAMIC MEMORY
+                                  ALLOCATED     USED
+|                       INTEGER:    3750000        70451
+|                          REAL:    1500000       160926
+|                     CHARACTER:     125000         5164
+
+|   AVAILABLE INTEGER WORDS x  1 N-B PAIRS/WORD =  3679549 MAXIMUM N-B PAIRS
+                             --------------------
+
+ Title line from parm: 
+ Test straatsma model                                                            
+
+                          CONTROL FLAGS FOR THIS RUN
+                          --------------------------
+
+gibbs input, namelist format                                                    
+
+     THE TIME LIMIT FOR THE JOB     =   999999.
+     THE RESTART PARAMETER          =    1 (irest )
+     THE FLAG FOR BELLY OPTION      =    0 (ibelly)
+     THE FLAG FOR DNA CHARGE CHANGE =    0 (ichdna)
+     THE FLAG FOR POLARIZATION      =    0 (ipol  )
+     THE FLAG FOR 3bods             =    0 (i3bod )
+
+
+     # of atoms   =  769
+     NSM   =    0     NRAM  =    0     NTX   =    7
+     NTXO  =    1     ISEED =    71277
+     TempI =   300.000     HEAT  =     0.000
+
+     NTB   =    1     IFTRES=    1     BOXX  =   19.755
+     BOXY  =   19.755 BOXZ  =   19.755 BETA  =   90.000
+
+     NRUN  =     1     NTT   =    0     TEMP0 =  300.000
+     DTEMP =   10.000 TAUTP =   0.100   TAUTS =    0.100
+     ISOLVP=    0     NSEL =    0       DTUSE =    1.000
+
+     NTP   =    0     NPSCAL=    0     PRES0 =    1.000
+     COMP  =   44.600 TAUP  =    0.200
+
+
+     NTCM  =    0     NSCM  =  90000000
+     ISVAT =    1
+
+     NSTLIM=     20     INIT  =    4
+     T     =   0.00000     DT    =   0.00100
+     VLIMIT=     0.000     IVEMAX=    0
+
+     NTC   =    2
+     TOL   =   0.00000     TOLR2 =   0.00000
+     NCORC =    0     ISHKFL=    1     ITIMTH=    1
+     JFASTW=    0
+
+     NTF   =    2     NTID  =    0
+     NTNB  =    1     NSNB  =   10     IDIEL =    1
+     IELPER=    1     IMGSLT=    0     IDSX0 =    1
+     ITRSLU=    1
+     IOLEPS=    0     INTPRT=    5     ITIP  =    0
+
+     CUT   =   8.50000     SCNB  =   2.00000
+     SCEE  =   1.20000     DIELC =   1.00000
+     CUT2ND=   0.00000     CUTPRT=   0.00000
+
+     NTPR  =     1     NTWX  =       0     NTWV  =      -1
+     NTWE  =      -1     NTWXM =  999999  NTWVM =  999999
+     NTWEM =  999999  IOUTFM=    0
+     ISANDE=    1     IPERAT=    0     IATCMP=    0
+     NTATDP=    0     ICMPDR=    0     NCMPDR=        0
+     NTWPRT=    0     NTWPR0=    0
+
+     NTR   =    0     NRC   =    0     NTRX  =    1
+     TAUR  =     1.000 INTR  =    0     IBIGM =    1
+     IDUM1 =    0     NMRMAX=    0     IWTMAX =    0
+     ISFTRP=    0     RWELL =   5.00000
+
+     IFTIME=    1     CTIMT =   0.00000
+     ALMDA = 0.0000000     ALMDEL = 0.0500000
+     ISLDYN=    3     IDIFRG=    1
+     NSTMEQ=        0     NSTMUL=       20     NDMPMC=    0
+     IDWIDE=    0     IBNDLM=    0
+
+     IFTIME=    0     CTIMT =
+
+     NSTPE =    2     NSTPA =    2
+     DTE   =   0.00100     DTA   =   0.00100
+
+     IVCAP =    0     MATCAP=    0     IFCAP =    0
+     NATCAP=    0     CUTCAP=   0.00000
+
+     XCAP  =   0.00000     YCAP  =   0.00000
+     ZCAP  =   0.00000     FCAP  =   1.50000
+
+     Water definition for fast 3pt model:
+     Resname = WAT ; Oxygen_name = O   ; Hyd_name1 = H1  ; Hyd_name2 = H2  
+
+                              ------------------
+                              CALCULATION METHOD
+
+ Fixed-width interval Thermodynamic Integration
+ Delta_lambda =  0.0500000; Simulation direction 0->1
+                              ------------------
+
+
+
+                  READING ATOMIC COORDINATES AND VELOCITIES
+                  -----------------------------------------
+
+ Box dimensions read from PINCRD: x =   19.755 y =   19.755 z =   19.755
+ Title: Test straatsma model                                                    
+
+          WARNING ... RESTART FREE ENERGY IS NOT READ
+
+          WARNING ... MISSING DYNAMICALLY ADJUSTED SLOW GROWTH RESTART VALUES
+                      WILL BE A FRESH START
+ Number of triangulated 3-point waters found:      256
+
+ Solute/solvent pointers:
+     IPTSOL=    1       NATRCM=    1
+     IPTRES=    0       IPTATM=    0
+     NSPSOL=    2       NSPSTR=    1
+     NSOLUT=  769       NATOM =  769
+
+|     Total accumulated time:       0.12 (seconds) /     0.00 (hours)
+ %GIBBS-I-NEWRUN, Begining NRUN =   1
+
+
+     Sum of of charges from parm topology file =    -0.000102
+
+     Sum of of charges from parm topology file =    18.222198
+     Assuming uniform neutralizing plasma
+ APPROXIMATING erfc(x)/x and d/dx erfc(x) using LINEAR INTERPOLATION
+Avoid this by recompiling with -DEXACT_SHORT
+ using   1001.0 points per unit in tabled values(Set in erfc_spline.h)
+ TESTING RELATIVE ERROR over x ranging from ewald_coeff to cutoffnb times ewald_coeff
+corresponding to r range of 1.0 to cutoff
+ CHECK erfc(x)/x: ierr, max rel err =  2781  0.4635E-05
+ CHECK d/dx erfc(x): ierr, max rel err =  2781  0.3601E-05
+     Total number of mask terms =        768
+     Total number of mask terms =       1536
+|    Total Ewald setup time =   0.00999999
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =         1 TIME(PS) =       0.001  TEMP(K) =  292.184  PRESS =       0.00
+ Etotal  =  -2169.92780  Kinetic =    446.79109  Potential  =  -2616.71889
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    460.66866
+ Elect.  =  -3077.38756  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =         2 TIME(PS) =       0.002  TEMP(K) =  291.414  PRESS =       0.00
+ Etotal  =  -2169.93711  Kinetic =    445.61393  Potential  =  -2615.55103
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    459.82935
+ Elect.  =  -3075.38038  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =         3 TIME(PS) =       0.003  TEMP(K) =  290.250  PRESS =       0.00
+ Etotal  =  -2169.96978  Kinetic =    443.83374  Potential  =  -2613.80352
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    458.92968
+ Elect.  =  -3072.73319  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =         4 TIME(PS) =       0.004  TEMP(K) =  288.688  PRESS =       0.00
+ Etotal  =  -2170.00184  Kinetic =    441.44527  Potential  =  -2611.44711
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    457.99855
+ Elect.  =  -3069.44567  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =         5 TIME(PS) =       0.005  TEMP(K) =  286.776  PRESS =       0.00
+ Etotal  =  -2169.99872  Kinetic =    438.52201  Potential  =  -2608.52074
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    457.03953
+ Elect.  =  -3065.56026  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =         6 TIME(PS) =       0.006  TEMP(K) =  284.612  PRESS =       0.00
+ Etotal  =  -2169.98384  Kinetic =    435.21224  Potential  =  -2605.19608
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    456.09320
+ Elect.  =  -3061.28929  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =         7 TIME(PS) =       0.007  TEMP(K) =  282.331  PRESS =       0.00
+ Etotal  =  -2169.95514  Kinetic =    431.72434  Potential  =  -2601.67948
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    455.13919
+ Elect.  =  -3056.81867  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =         8 TIME(PS) =       0.008  TEMP(K) =  280.096  PRESS =       0.00
+ Etotal  =  -2169.92404  Kinetic =    428.30642  Potential  =  -2598.23047
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    454.20521
+ Elect.  =  -3052.43568  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =         9 TIME(PS) =       0.009  TEMP(K) =  278.079  PRESS =       0.00
+ Etotal  =  -2169.88473  Kinetic =    425.22216  Potential  =  -2595.10689
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    453.29418
+ Elect.  =  -3048.40107  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        10 TIME(PS) =       0.010  TEMP(K) =  276.446  PRESS =       0.00
+ Etotal  =  -2169.86961  Kinetic =    422.72523  Potential  =  -2592.59484
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    452.41266
+ Elect.  =  -3045.00750  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        11 TIME(PS) =       0.011  TEMP(K) =  275.342  PRESS =       0.00
+ Etotal  =  -2169.83898  Kinetic =    421.03728  Potential  =  -2590.87626
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    451.55964
+ Elect.  =  -3042.43590  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        12 TIME(PS) =       0.012  TEMP(K) =  274.880  PRESS =       0.00
+ Etotal  =  -2169.82063  Kinetic =    420.33122  Potential  =  -2590.15184
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    450.73904
+ Elect.  =  -3040.89088  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        13 TIME(PS) =       0.013  TEMP(K) =  275.133  PRESS =       0.00
+ Etotal  =  -2169.80016  Kinetic =    420.71782  Potential  =  -2590.51798
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    449.94911
+ Elect.  =  -3040.46709  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        14 TIME(PS) =       0.014  TEMP(K) =  276.128  PRESS =       0.00
+ Etotal  =  -2169.78826  Kinetic =    422.23960  Potential  =  -2592.02786
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    449.17143
+ Elect.  =  -3041.19929  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        15 TIME(PS) =       0.015  TEMP(K) =  277.848  PRESS =       0.00
+ Etotal  =  -2169.77148  Kinetic =    424.86942  Potential  =  -2594.64090
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    448.40351
+ Elect.  =  -3043.04441  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        16 TIME(PS) =       0.016  TEMP(K) =  280.232  PRESS =       0.00
+ Etotal  =  -2169.78453  Kinetic =    428.51476  Potential  =  -2598.29929
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    447.64787
+ Elect.  =  -3045.94715  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        17 TIME(PS) =       0.017  TEMP(K) =  283.183  PRESS =       0.00
+ Etotal  =  -2169.84294  Kinetic =    433.02763  Potential  =  -2602.87057
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    446.90421
+ Elect.  =  -3049.77478  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        18 TIME(PS) =       0.018  TEMP(K) =  286.577  PRESS =       0.00
+ Etotal  =  -2169.89030  Kinetic =    438.21708  Potential  =  -2608.10737
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    446.17110
+ Elect.  =  -3054.27847  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        19 TIME(PS) =       0.019  TEMP(K) =  290.269  PRESS =       0.00
+ Etotal  =  -2169.88248  Kinetic =    443.86293  Potential  =  -2613.74542
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    445.44582
+ Elect.  =  -3059.19124  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =          0  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    (Note: values are unchanged from last report)
+ ------------------------------------------------------------------------------
+
+ NSTEP =        20 TIME(PS) =       0.020  TEMP(K) =  294.106  PRESS =       0.00
+ Etotal  =  -2169.92442  Kinetic =    449.73027  Potential  =  -2619.65469
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    444.73201
+ Elect.  =  -3064.38670  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =         20  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    ELEC =      0.000    NONB =      0.000    14NB =      0.000
+    14EL =      0.000    BADH =      0.000
+ Quantities used in integration: 
+    <dV/d_lam> =        186.00961      <V(lam-dep.)> =          -81.164518    
+    <V(lam-indep.)> =  -2521.8225      <V(lam-dep)*dV/d_lam> =  -15105.776    
+    <V(lam-indep)*dV/d_lam> =  -469052.53    
+ ------------------------------------------------------------------------------
+
+      A V E R A G E S   O V E R         20 S T E P S
+
+
+ NSTEP =        20 TIME(PS) =       0.020  TEMP(K) =  283.229  PRESS =       0.00
+ Etotal  =  -2169.88984  Kinetic =    433.09722  Potential  =  -2602.98706
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =    452.31670
+ Elect.  =  -3055.30376  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =        20 TIME(PS) =       0.020  TEMP(K) =    6.280  PRESS =       0.00
+ Etotal  =      0.07192  Kinetic =      9.60341  Potential  =      9.65228
+ Bond    =      0.00000  Angle   =      0.00000  Dihed      =      0.00000
+ 1-4 VdW =      0.00000  1-4 Elec=      0.00000  Van d Waal =      4.89258
+ Elect.  =     11.95657  H-bond  =      0.00000  Constraint =      0.00000
+ Ekcmt   =      0.00000  VirT    =      0.00000  Volume     =      0.00000
+
+ Current Lambda =   0.000000
+ Last F.E. update: Lambda =   0.000000  Step =         20  Method = T.I.       
+ Accumulated "forward" quantities (Electrostatic) 
+    Lambda   =  0.000000    F_energy  =    0.00000
+    Enthalpy =    0.00000   T*Entropy =    0.00000
+    ELEC =      0.000    NONB =      0.000    14NB =      0.000
+    14EL =      0.000    BADH =      0.000
+ Quantities used in integration: 
+    <dV/d_lam> =        186.00961      <V(lam-dep.)> =          -81.164518    
+    <V(lam-indep.)> =  -2521.8225      <V(lam-dep)*dV/d_lam> =  -15105.776    
+    <V(lam-indep)*dV/d_lam> =  -469052.53    
+ ------------------------------------------------------------------------------
+
+   Nonbond Ewald pairlist time components:
+|     map, save_t     =                     0.01  0.44
+|     grid setup_t    =                     0.00  0.00
+|     grid ucell_t    =                     0.00  0.00
+|     grid image_t    =                     0.00  0.00
+|     build list_t    =                     0.11  4.85
+|     total list_t    =                     0.12  5.29
+
+   Nonbond Ewald force time components:
+|     zero ene,force  =                     0.00  0.00
+|     map,adjust      =                     0.07  3.08
+|     self energy     =                     0.00  0.00
+|     1-dim b-spline  =                     0.00  0.00
+|     grid charges    =                     0.21  9.25
+|     scalar sum      =                     0.24 10.57
+|     grad   sum      =                     0.18  7.93
+|     FFT             =                     0.20  8.81
+|     direct force    =                     0.93 40.97
+|     adjust masked   =                     0.00  0.00
+|     accum  force    =                     0.01  0.44
+|     finish virial   =                     0.01  0.44
+|     total  force    =                     1.85 81.50
+
+     Routine        Sec       %
+     ----------------------------
+|     Pairlist        0.12    5.29
+|     Nonbond         1.98   87.22
+|     Bond            0.00    0.00
+|     Angle           0.00    0.00
+|     Dihedral        0.01    0.44
+|     PMF             0.00    0.00
+|     Constraint      0.01    0.44
+|     Other           0.15    6.61
+|     Nonsetup        2.20   96.92
+      ----------------------------
+|     Total           2.27    0.00 Hours
+
+|    Setup wallclock_t             0 seconds
+|    Nonsetup wallclock_t          2 seconds

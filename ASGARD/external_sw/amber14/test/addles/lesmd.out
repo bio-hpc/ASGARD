@@ -1,0 +1,43 @@
+
+          -------------------------------------------------------
+          Amber 9  SANDER                 Scripps/UCSF 2004
+          -------------------------------------------------------
+
+| Run on 04/07/2005 at 10:23:12
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: lesmd.in                                                              
+| MDOUT: lesmd.out                                                             
+|INPCRD: les.equ.crd                                                           
+|  PARM: les.prm                                                               
+|RESTRT: lesmd.restrt                                                          
+|  REFC: refc                                                                  
+| MDVEL: lesmd.vel                                                             
+|  MDEN: lesmd.en                                                              
+| MDCRD: lesmd.crd                                                             
+|MDINFO: lesmd.info                                                            
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+ 
+ Here is the input file:
+ 
+leucine LES test case                                                          
+ &cntrl                                                                        
+                                                                               
+  ntx    = 5, ntwx   = 10,   nsnb   = 10,                dielc = 1.0,          
+              nstlim = 1000, ntpr   = 10, temp0  = 298., dt    = 0.001,        
+  ntt    = 1,                ntc    = 1,  tol    = 0.0005,                     
+  scee   = 1.2,                                                                
+                                                                               
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: LES                                                                    
+ getting new box info from bottom of inpcrd
+| peek_ewald_inpcrd: Box info not found in inpcrd
+|Largest sphere to fit in unit cell has radius =    -0.991

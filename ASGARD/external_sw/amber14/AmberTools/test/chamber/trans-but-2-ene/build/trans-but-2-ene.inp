@@ -1,0 +1,102 @@
+* BUT-2-ENE testcase
+*
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Read in Topology and parameter file for ALL22
+
+    OPEN READ CARD UNIT 1 NAME "../../../../dat/chamber/top_all22_prot.inp"
+    READ RTF CARD UNIT 1
+    CLOSE UNIT 1
+
+    OPEN READ CARD UNIT 2 NAME "../../../../dat/chamber/par_all22_prot.inp"
+    READ PARAM CARD UNIT 2
+    CLOSE UNIT 2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+read rtf card 
+* but-2-ene topology 
+*
+31 1
+MASS    11 HE1    1.00800 H ! for alkene; RHC=CR
+MASS     3 HA     1.00800 H ! nonpolar H
+MASS    39 CE1   12.01100 C ! for alkene; RHC=CR
+MASS    24 CT3   12.01100 C ! aliphatic sp3 C for CH3
+
+RESI BUT        0.00 ! butene, mjw
+!  H11  H21          H41
+!     \   \         /
+! H12--C1--C2==C3--C4--H42
+!     /        |    \
+!  H13        H31    H43
+
+GROUP
+ATOM C1   CT3    0.2
+ATOM H11  HA     0.0
+ATOM H12  HA     0.0
+ATOM H13  HA     0.0
+
+
+GROUP
+ATOM C2   CE1    0.0
+ATOM H21  HE1    0.0
+
+GROUP
+ATOM C3   CE1    0.0
+ATOM H31  HE1    0.0
+
+GROUP
+ATOM C4   CT3   -0.2
+ATOM H41  HA     0.0
+ATOM H42  HA     0.0
+ATOM H43  HA     0.0
+
+
+
+BOND C1  H11  C1  H12  C1  H13  C1  C2
+BOND C2  H21  C2  C3
+BOND C3  H31  C3  C4
+BOND C4  H41  C4  H42  C4  H43
+
+THETA  C1 H11 H13
+THETA  C1 H11 H12 
+THETA  C1 H12 H13
+
+
+THETA  C4 H41 H43
+THETA  C4 H41 H42 
+THETA  C4 H42 H43
+
+IC C1   C2   C3   C4   0.0000  0.0000 180.0000  0.0000  0.0000
+
+END
+
+read sequence card
+* but-2-ene
+*
+1
+BUT
+
+generate but first none last none setup warn
+
+auto angle dihe
+
+ic gene
+ic param
+ic seed 1 C1   1 C2    1 C3
+ic build
+ic purge
+ic print
+
+update cutnb 999.0 ctofnb 998.0 ctonnb 997.0
+mini nrap nstep 500 nprint 200
+write coor pdb name trans-but-2-ene.pdb
+write coor card name trans-but-2-ene.coor
+write psf card name trans-but-2-ene.psf
+
+fast off
+read coor pdb name trans-but-2-ene.coor
+prnl 15
+ener cutnb 999 ctofnb 998 ctonnb 997 switch
+
+stop
+

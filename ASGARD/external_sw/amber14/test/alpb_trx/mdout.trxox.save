@@ -1,0 +1,207 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/15/2014 at 08:59:32
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: gbin                                                                  
+| MDOUT: mdout.trxox                                                           
+|INPCRD: trxox.2.4ns.x                                                         
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+ 
+ Here is the input file:
+ 
+ test of ALPB.                                                                 
+ &cntrl                                                                        
+   imin=1, maxcyc=5,                                                           
+   alpb=1, Arad=16.444                                                         
+   cut=99.0, igb=5, saltcon=0.2, gbsa=1,                                       
+   ntpr=1, ntx=1, ntb=0,                                                       
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 01/26/02 Time = 14:17:31
+ NATOM  =    1654 NTYPES =      14 NBONH =     832 MBONA  =     838
+ NTHETH =    1911 MTHETA =    1138 NPHIH =    3388 MPHIA  =    2014
+ NHPARM =       0 NPARM  =       0 NNB   =    9195 NRES   =     108
+ NBONA  =     838 NTHETA =    1138 NPHIA =    2014 NUMBND =      42
+ NUMANG =      91 NPTRA  =      34 NATYP =      27 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      24 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real              123177
+|     Hollerith           5072
+|     Integer           172371
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total             1655 kbytes
+| Warning: ATOMIC_NUMBER section not found
+|          Guessing atomic numbers from masses for GB parameters
+|          Remake topology file with AmberTools 12 or add ATOMIC_NUMBERS
+|          with ParmEd to remove this warning
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       5, nsnb    =      25
+     ipol    =       0, gbsa    =       1, iesp    =       0
+     dielc   =   1.00000, cut     =  99.00000, intdiel =   1.00000
+     saltcon =   0.20000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.80000, gbgamma =   4.85000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        1
+     Arad =  16.44400
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =       5, ncyc    =      10, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =  2405.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1      -2.1215E+03     2.2119E+01     1.2170E+02     CA       1102
+
+ BOND    =      631.8993  ANGLE   =      898.2543  DIHED      =      566.4453
+ VDWAALS =     -768.3629  EEL     =    -7817.5860  EGB        =    -1995.3490
+ 1-4 VDW =      348.8246  1-4 EEL =     5980.5047  RESTRAINT  =        0.0000
+ ESURF   =       33.8338
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      2      -2.1401E+03     2.1797E+01     1.1993E+02     CA       1102
+
+ BOND    =      618.5610  ANGLE   =      893.6840  DIHED      =      566.0189
+ VDWAALS =     -768.4672  EEL     =    -7817.6900  EGB        =    -1995.2373
+ 1-4 VDW =      348.6958  1-4 EEL =     5980.5046  RESTRAINT  =        0.0000
+ ESURF   =       33.8333
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      3      -2.1620E+03     2.1413E+01     1.1781E+02     CA       1102
+
+ BOND    =      602.8672  ANGLE   =      888.2485  DIHED      =      565.5058
+ VDWAALS =     -768.5930  EEL     =    -7817.8144  EGB        =    -1995.1047
+ 1-4 VDW =      348.5419  1-4 EEL =     5980.5045  RESTRAINT  =        0.0000
+ ESURF   =       33.8351
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      4      -2.1878E+03     2.0955E+01     1.1526E+02     CA       1102
+
+ BOND    =      584.4816  ANGLE   =      881.7953  DIHED      =      564.8876
+ VDWAALS =     -768.7446  EEL     =    -7817.9628  EGB        =    -1994.9477
+ 1-4 VDW =      348.3579  1-4 EEL =     5980.5042  RESTRAINT  =        0.0000
+ ESURF   =       33.8368
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      5      -2.2180E+03     2.0413E+01     1.1221E+02     CA       1102
+
+ BOND    =      563.0575  ANGLE   =      874.1494  DIHED      =      564.1424
+ VDWAALS =     -768.9279  EEL     =    -7818.1400  EGB        =    -1994.7623
+ 1-4 VDW =      348.1380  1-4 EEL =     5980.5036  RESTRAINT  =        0.0000
+ ESURF   =       33.8288
+
+
+  Maximum number of minimization cycles reached.
+
+
+                    FINAL RESULTS
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      5      -2.2180E+03     2.0413E+01     1.1221E+02     CA       1102
+
+ BOND    =      563.0575  ANGLE   =      874.1494  DIHED      =      564.1424
+ VDWAALS =     -768.9279  EEL     =    -7818.1400  EGB        =    -1994.7623
+ 1-4 VDW =      348.1380  1-4 EEL =     5980.5036  RESTRAINT  =        0.0000
+ ESURF   =       33.8288
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.09% of Total)
+|                Calc gb radii              0.30 (14.50% of Gen B)
+|                Calc gb diag               0.55 (26.62% of Gen B)
+|                Calc gb off-diag           1.06 (51.27% of Gen B)
+|                Surface area energy        0.16 ( 7.61% of Gen B)
+|             Gen Born time              2.06 (100.0% of Nonbo)
+|          Nonbond force              2.06 (99.67% of Force)
+|          Bond/Angle/Dihedral        0.01 ( 0.32% of Force)
+|       Force time                 2.07 (100.0% of Runmd)
+|    Runmd Time                 2.07 (98.75% of Total)
+|    Other                      0.02 ( 1.16% of Total)
+| Total time                 2.10 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 08:59:32.305  on 01/15/2014
+|           Setup done at 08:59:32.327  on 01/15/2014
+|           Run   done at 08:59:34.401  on 01/15/2014
+|     wallclock() was called     130 times

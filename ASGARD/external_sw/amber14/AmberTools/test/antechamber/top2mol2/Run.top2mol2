@@ -1,0 +1,21 @@
+#!/bin/csh -f
+
+# ---DNA ---
+
+../../../bin/top2mol2 -p dna.prmtop  -c dna.prmcrd -o dna.mol2  || goto error
+../../../bin/top2mol2 -p dna.prmtop  -c dna.prmcrd -o dna_wat.mol2 -wt 1 || goto error
+../../../bin/top2mol2 -p aa.prmtop  -c aa.prmcrd -o aa.mol2 || goto error
+
+# --Sustiva---
+../../../bin/top2mol2 -p sustiva.prmtop  -c sustiva.prmcrd -o sustiva.mol2 || goto error
+
+../../dacdif sustiva.mol2.save sustiva.mol2 
+../../dacdif dna.mol2.save dna.mol2 
+../../dacdif dna_wat.mol2.save dna_wat.mol2 
+../../dacdif aa.mol2.save aa.mol2 
+
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
