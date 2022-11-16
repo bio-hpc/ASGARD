@@ -13,7 +13,8 @@ bind=$(pwd | cut -d/ -f1-2)/
 source ${pathSL}colors.sh                                               #colores del script
 source ${pathSL}parameters.sh                                           #parametros
 if [[ ! -f ${path_ASGARD}/config.cfg ]]; then 
-  source ${pathSL}create_conf.sh                                         #crea oi carga configuracion global
+  source ${pathSL}create_conf.sh  2>/dev/null                           #crea oi carga configuracion global
+  echo "Config file created"                                  
 fi
                             
 if [[ -z $folder_analysis ]]; then 

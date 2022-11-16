@@ -27,4 +27,7 @@ For instance, you can launch ASGARD this way:
 
 sh ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY
 
+If there are problems with launching ASGARD.sh:
+
+singularity exec --bind ${PWD} ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY
 
