@@ -16,16 +16,16 @@ wget "https://drive.google.com/uc?export=download&id=1Q9ifMDEaoxhsI9eealvsf_cTvK
 ### Available Analyses
 
 **1. TARGET**: for Protein MD simulations
- -Root Mean Square Desviation (RMSD)  [ All molecules, protein and ligand ]
- -RMSD Fluctuation  [ For steps, protein and ligand ]
- -Radius of gyration  [ Total and around axes ]
- -Distance center of mass  [ Protein and ligand ]
- -Solvent Accesible Surface (SASA)  [ Over time ]
- -Kabsch and Sander dictionary of protein secundary structure (DSSP)  [ Num of aminoacid in each ss and evolution ]
+ -Root Mean Square Desviation (RMSD)  [ All molecules, protein and ligand ] <br />
+ -RMSD Fluctuation  [ For steps, protein and ligand ] <br />
+ -Radius of gyration  [ Total and around axes ] <br />
+ -Distance center of mass  [ Protein and ligand ] <br />
+ -Solvent Accesible Surface (SASA)  [ Over time ] <br /> 
+ -Kabsch and Sander dictionary of protein secundary structure (DSSP)  [ Num of aminoacid in each ss and evolution ] <br />
 
 **2. TARGET_QUERY**: for Protein-Ligand Complex MD simulations
-  - Same as above (also calculated for the ligand), and Protein-Ligand Interactions analyses:
-     - MM-PBSA, interaction energy values, number HBonds during simulation and interactions between ligand and protein in last frame 
+  - Same as above (also calculated for the ligand), and Protein-Ligand Interactions analyses: <br />
+     - MM-PBSA, interaction energy values, number HBonds during simulation and interactions between ligand and protein in last frame  <br />
 
 ### Needed packages
 1. **Singularity**>=3.6.0
