@@ -97,7 +97,10 @@ sh ASGARD/login_node/create_pdb.sh $CENTER $RESULTS/molecules/*.tpr $RESULTS/mol
 echo 'Generating topology'   
 #############################
 
-
+if [ -z "$(ls -A queries/$NAME)" ]; then
+	singularity exec --bind $bind singularity/ASGARD.simg ASGARD/external_sw/gromacs/topology/generate_topology.py -t targets/$NAME/*.pdb -p TARGET
+	cp targets/$NAME/*.top $RESULTS/molecules/$NAME.top
+fi
 singularity exec --bind $bind singularity/ASGARD.simg ASGARD/external_sw/gromacs/topology/generate_topology.py -t targets/$NAME/*.pdb -q queries/$NAME/
 #
 sh ASGARD/login_node/edit_topology.sh $RESULTS/molecules/$NAME queries/$NAME #prefijo
