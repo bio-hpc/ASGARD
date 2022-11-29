@@ -12,7 +12,7 @@ class GraphStabilization(object):
 
         self.cfg = cfg
         if self.cfg.p_graph_stabilization:
-            data = [10, 11, 12, 14, 16, 22, 21]
+            data = ["Potential", "Kinetic-En.", "Total-Energy", "Temperature", "Pressure", "Density", "Volume"]
             out_data = ["_potencial", "_kinetic-en", "_total-energy", "_temperature", "_presure", "_density", "_volume"]
             datos = []
             label = []
