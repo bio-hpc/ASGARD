@@ -1,0 +1,712 @@
+
+          -------------------------------------------------------
+          Amber 7  SANDER                   Scripps/UCSF 2000
+          -------------------------------------------------------
+
+|      Wed Mar 28 18:05:41 2001
+
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin.nmr                                                              
+| MDOUT: mdout                                                                 
+|INPCRD: inpcrd                                                                
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|
+ 
+ Here is the input file:
+ 
+  optimization of alignment tensor; weight bonds and angles heavily            
+ &cntrl                                                                        
+    pencut=0.1, nmropt=2, imin=0,                                              
+    ipnlty=1,ntpr=1, scee=2.0, iscale=5, igb=3,                                
+    tempi=0.0,                                                                 
+    nstlim=10, ntt=1, cut=9.0, ntc=2, vlimit=30., ntb=0,                       
+    dt=0.001, ntx=1, irest=0,                                                  
+    nsnb=1,                                                                    
+ /                                                                          
+#                                                                              
+# Standard simulated annealing protocol--short test run                        
+#                                                                              
+                                                                               
+ &wt type='TEMP0', istep1=0, istep2=7000, value1=400.0, value2=400.0,  /    
+ &wt type='TEMP0', istep1=7001, istep2=15000, value1=0.0, value2=0.0,  /    
+                                                                               
+ &wt type='TAUTP', istep1=0, istep2=7000, value1=0.3, value2=0.3,   /       
+ &wt type='TAUTP', istep1=7001, istep2=12000, value1=4.0, value2=4.0,   /   
+ &wt type='TAUTP', istep1=12001, istep2=14500, value1=1.0, value2=0.1, /    
+ &wt type='TAUTP', istep1=14501, istep2=15000, value1=0.05, value2=0.05, /  
+                                                                               
+ &wt type='REST', istep1=0, istep2=15000, value1=0.1, value2=1.0,   /       
+                                                                               
+ &wt type='END'   /                                                         
+LISTOUT=POUT                                                                   
+DISANG=RST.new                                                                 
+DIPOLE=dobs.1                                                                  
+                                                                               
+-------------------------------------------------------------------------------
+
+  optimization of alignment tensor; weight bonds and angles heavily             
+
+
+
+   1.  RESOURCE   USE: 
+
+|  INFO: Old style PARM file read
+
+ NATOM  =    2416 NTYPES =      19 NBONH =    1054 MBONA  =    1464
+ NTHETH =    2436 MTHETA =    2118 NPHIH =    4214 MPHIA  =    2799
+ NHPARM =       0 NPARM  =       0 NNB   =   13475 NRES   =     125
+ NBONA  =    1464 NTHETA =    2118 NPHIA =    2799 NUMBND =      77
+ NUMANG =     190 NPTRA  =     104 NATYP =      33 NPHB   =      28
+ IFBOX  =       0 NMXRS  =      34 IFCAP =       0 NEXTRA =       0
+
+
+|     Memory Use     Allocated
+|     Real               97921
+|     Hollerith          14623
+|     Integer          3074202
+|     Max Pairs              1
+|     Max Rstack       1600000
+|     Max Istack       1000000
+| Duplicated  103 dihedrals
+| Duplicated  206 dihedrals
+
+
+   2.  CONTROL  DATA  FOR  THE  RUN
+
+  zf123cplx                                                                     
+
+     TIMLIM=  999999.   IREST =    0       IBELLY=    0
+     IMIN  =    0
+     IPOL  =    0
+
+     NTX   =    1       NTXO  =    1
+     IG    =    71277   TEMPI =     0.00   HEAT  =    0.000
+
+     NTB   =    0       BOXX  =    0.000
+     BOXY  =    0.000   BOXZ  =    0.000
+
+     NTT   =    1       TEMP0 =  300.000
+     DTEMP =    0.000   TAUTP =    1.000
+     VLIMIT=   30.000
+
+     NTP   =    0       PRES0 =    1.000   COMP  =   44.600
+     TAUP  =    0.200   NPSCAL=    0
+
+     NTCM  =    0       NSCM  = 9999999
+
+     NSTLIM=   10       NTU   =    1
+     T     =    0.000   DT    =   0.00100
+
+     NTC   =    2       TOL   =   0.00001  JFASTW =    0
+
+     NTF   =    1       NSNB  =    1
+
+     CUT   =    9.000   SCNB  =    2.000
+     SCEE  =    2.000   DIELC =    1.000
+
+     NTPR  =       1    NTWR  =     500    NTWX  =       0
+     NTWV  =       0    NTWE  =       0    IOUTFM=       0
+     NTWPRT=       0    NTWPR0=       0    NTAVE=       0
+
+     NTR   =    0       NTRX  =    1
+     TAUR  =   0.00000     NMROPT=    2       PENCUT=   0.10000
+
+     IVCAP =    0       MATCAP=    0       FCAP  =    1.500
+
+   OTHER DATA:
+
+     IFCAP =    0       NATCAP=    0       CUTCAP=    0.000
+     XCAP  =    0.000   YCAP  =    0.000   ZCAP  =    0.000
+
+     VRAND=    0
+
+     NATOM =    2416  NRES =    125
+
+     Water definition for fast triangulated model:
+     Resname = WAT ; Oxygen_name = O   ; Hyd1_name = H1  ; Hyd2_name = H2  
+
+   3.  ATOMIC COORDINATES AND VELOCITIES
+
+  zf123cplx                                                                     
+ begin time read from input coords =     0.000 ps
+
+
+
+           Begin reading energy term weight changes/NMR restraints
+ WEIGHT CHANGES:
+ TEMP0         0   7000  400.000000  400.000000      0      0
+ TEMP0      7001  15000    0.000000    0.000000      0      0
+ TAUTP         0   7000    0.300000    0.300000      0      0
+ TAUTP      7001  12000    4.000000    4.000000      0      0
+ TAUTP     12001  14500    1.000000    0.100000      0      0
+ TAUTP     14501  15000    0.050000    0.050000      0      0
+ REST          0  15000    0.100000    1.000000      0      0
+
+ RESTRAINTS:
+ Requested file redirections:
+  LISTOUT   = POUT
+  DISANG    = RST.new
+  DIPOLE    = dobs.1
+ Restraints will be read from file: RST.new
+ Here are comments from the DISANG input file:
+ #                                                                               
+ #    1 MET   HA      1 MET   QB    3.00  (# noech.upl:3.00)                     
+ 
+                       Number of restraints read =  2951
+
+                  Done reading weight changes/NMR restraints
+
+
+ Alignment info will be read from file: dobs.1
+ Here are comments from the alignment input file:
+ 
+ Number of triangulated 3-point waters found:        0
+
+ NSTEP =      0 TIME(PS) =    0.000  TEMP(K) =     0.00  PRESS =      0.00
+ Etot   =   -2192.9630  EKtot   =       0.0000  EPtot      =   -2192.9630
+ BOND   =      31.2335  ANGLE   =     411.6373  DIHED      =     442.5093
+ 1-4 NB =     366.7486  1-4 EEL =    -903.8424  VDWAALS    =   -1058.3911
+ EELEC  =   -1455.4344  EHBOND  =     -48.3066  CONSTRAINT =      20.8828
+ EAMBER (non-constraint) =   -2213.8458
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      0
+ Energy (this step): Bond =    4.932   Angle =     2.549   Torsion =     0.398
+ Energy (tot. run) : Bond =    0.000   Angle =     0.000   Torsion =     0.000
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.722     0.000   0.000     0.007   0.036     0.000   0.000
+ Angle     0.342   0.498     0.000   0.000     0.342   0.498     0.000   0.000
+ Torsion   6.217   9.635     0.000   0.000     0.043   0.425     0.000   0.000
+ Energy (this step): Align=    13.004
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =      1 TIME(PS) =    0.001  TEMP(K) =     0.00  PRESS =      0.00
+ Etot   =   -2192.9630  EKtot   =       0.0000  EPtot      =   -2192.9630
+ BOND   =      31.2335  ANGLE   =     411.6373  DIHED      =     442.5093
+ 1-4 NB =     366.7486  1-4 EEL =    -903.8424  VDWAALS    =   -1058.3911
+ EELEC  =   -1455.4344  EHBOND  =     -48.3066  CONSTRAINT =      20.8828
+ EAMBER (non-constraint) =   -2213.8458
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      1
+ Energy (this step): Bond =    4.932   Angle =     2.549   Torsion =     0.398
+ Energy (tot. run) : Bond =    4.932   Angle =     2.549   Torsion =     0.398
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.722     0.522   0.722     0.007   0.036     0.007   0.036
+ Angle     0.342   0.498     0.342   0.498     0.342   0.498     0.342   0.498
+ Torsion   6.217   9.635     6.217   9.635     0.043   0.425     0.043   0.425
+ Energy (this step): Align=    13.004
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =      2 TIME(PS) =    0.002  TEMP(K) =     7.75  PRESS =      0.00
+ Etot   =   -2143.2361  EKtot   =      47.7139  EPtot      =   -2190.9499
+ BOND   =      27.0042  ANGLE   =     411.7659  DIHED      =     442.0479
+ 1-4 NB =     366.4292  1-4 EEL =    -904.4950  VDWAALS    =   -1055.8169
+ EELEC  =   -1449.4363  EHBOND  =     -49.6458  CONSTRAINT =      21.1968
+ EAMBER (non-constraint) =   -2212.1468
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      2
+ Energy (this step): Bond =    5.062   Angle =     2.698   Torsion =     0.394
+ Energy (tot. run) : Bond =    4.997   Angle =     2.624   Torsion =     0.396
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.722     0.522   0.722     0.008   0.037     0.008   0.036
+ Angle     0.355   0.512     0.349   0.505     0.355   0.512     0.349   0.505
+ Torsion   6.218   9.635     6.218   9.635     0.043   0.423     0.043   0.424
+ Energy (this step): Align=    13.042
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =      3 TIME(PS) =    0.003  TEMP(K) =     1.02  PRESS =      0.00
+ Etot   =   -2188.4710  EKtot   =       6.2899  EPtot      =   -2194.7609
+ BOND   =      26.4221  ANGLE   =     410.1581  DIHED      =     440.5668
+ 1-4 NB =     366.2835  1-4 EEL =    -904.5068  VDWAALS    =   -1056.1548
+ EELEC  =   -1449.5217  EHBOND  =     -49.6644  CONSTRAINT =      21.6563
+ EAMBER (non-constraint) =   -2216.4172
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      3
+ Energy (this step): Bond =    5.078   Angle =     3.016   Torsion =     0.388
+ Energy (tot. run) : Bond =    5.024   Angle =     2.754   Torsion =     0.393
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.722     0.522   0.722     0.008   0.037     0.008   0.037
+ Angle     0.381   0.541     0.359   0.517     0.381   0.541     0.359   0.517
+ Torsion   6.219   9.640     6.218   9.637     0.043   0.420     0.043   0.423
+ Energy (this step): Align=    13.174
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =      4 TIME(PS) =    0.004  TEMP(K) =     2.24  PRESS =      0.00
+ Etot   =   -2184.7039  EKtot   =      13.7613  EPtot      =   -2198.4652
+ BOND   =      25.7250  ANGLE   =     407.6813  DIHED      =     438.1699
+ 1-4 NB =     366.0418  1-4 EEL =    -904.5293  VDWAALS    =   -1056.7178
+ EELEC  =   -1447.6856  EHBOND  =     -49.6985  CONSTRAINT =      22.5478
+ EAMBER (non-constraint) =   -2221.0130
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      4
+ Energy (this step): Bond =    5.103   Angle =     3.630   Torsion =     0.379
+ Energy (tot. run) : Bond =    5.044   Angle =     2.973   Torsion =     0.390
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.722     0.522   0.722     0.008   0.037     0.008   0.037
+ Angle     0.426   0.593     0.376   0.536     0.426   0.593     0.376   0.536
+ Torsion   6.221   9.649     6.219   9.640     0.044   0.415     0.043   0.421
+ Energy (this step): Align=    13.435
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =      5 TIME(PS) =    0.005  TEMP(K) =     3.79  PRESS =      0.00
+ Etot   =   -2179.1679  EKtot   =      23.3189  EPtot      =   -2202.4868
+ BOND   =      25.2372  ANGLE   =     404.6583  DIHED      =     435.0065
+ 1-4 NB =     365.7081  1-4 EEL =    -904.5646  VDWAALS    =   -1057.4856
+ EELEC  =   -1445.3116  EHBOND  =     -49.7475  CONSTRAINT =      24.0124
+ EAMBER (non-constraint) =   -2226.4992
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      5
+ Energy (this step): Bond =    5.138   Angle =     4.630   Torsion =     0.370
+ Energy (tot. run) : Bond =    5.063   Angle =     3.305   Torsion =     0.386
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.722     0.522   0.722     0.008   0.037     0.008   0.037
+ Angle     0.489   0.670     0.399   0.563     0.489   0.670     0.399   0.563
+ Torsion   6.224   9.662     6.220   9.644     0.046   0.409     0.044   0.418
+ Energy (this step): Align=    13.875
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =      6 TIME(PS) =    0.006  TEMP(K) =     5.53  PRESS =      0.00
+ Etot   =   -2174.2039  EKtot   =      34.0478  EPtot      =   -2208.2517
+ BOND   =      25.2242  ANGLE   =     401.4702  DIHED      =     431.2940
+ 1-4 NB =     365.2899  1-4 EEL =    -904.6159  VDWAALS    =   -1058.4409
+ EELEC  =   -1444.8253  EHBOND  =     -49.8107  CONSTRAINT =      26.1628
+ EAMBER (non-constraint) =   -2234.4145
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      6
+ Energy (this step): Bond =    5.184   Angle =     6.068   Torsion =     0.362
+ Energy (tot. run) : Bond =    5.083   Angle =     3.765   Torsion =     0.382
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.722     0.522   0.722     0.008   0.037     0.008   0.037
+ Angle     0.570   0.767     0.427   0.597     0.570   0.767     0.427   0.597
+ Torsion   6.228   9.677     6.221   9.650     0.047   0.405     0.044   0.416
+ Energy (this step): Align=    14.548
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =      7 TIME(PS) =    0.007  TEMP(K) =     7.34  PRESS =      0.00
+ Etot   =   -2169.3215  EKtot   =      45.1674  EPtot      =   -2214.4889
+ BOND   =      25.7613  ANGLE   =     398.4742  DIHED      =     427.2946
+ 1-4 NB =     364.7967  1-4 EEL =    -904.6872  VDWAALS    =   -1059.5491
+ EELEC  =   -1445.7278  EHBOND  =     -49.8864  CONSTRAINT =      29.0348
+ EAMBER (non-constraint) =   -2243.5237
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      7
+ Energy (this step): Bond =    5.243   Angle =     7.929   Torsion =     0.359
+ Energy (tot. run) : Bond =    5.106   Angle =     4.360   Torsion =     0.379
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.723     0.522   0.722     0.008   0.037     0.008   0.037
+ Angle     0.662   0.876     0.461   0.637     0.662   0.876     0.461   0.637
+ Torsion   6.232   9.696     6.223   9.656     0.049   0.403     0.045   0.414
+ Energy (this step): Align=    15.504
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =      8 TIME(PS) =    0.008  TEMP(K) =     9.14  PRESS =      0.00
+ Etot   =   -2166.5787  EKtot   =      56.2655  EPtot      =   -2222.8442
+ BOND   =      26.6749  ANGLE   =     395.9342  DIHED      =     423.2836
+ 1-4 NB =     364.2395  1-4 EEL =    -904.7829  VDWAALS    =   -1060.7664
+ EELEC  =   -1450.0223  EHBOND  =     -49.9722  CONSTRAINT =      32.5673
+ EAMBER (non-constraint) =   -2255.4115
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      8
+ Energy (this step): Bond =    5.314   Angle =    10.106   Torsion =     0.362
+ Energy (tot. run) : Bond =    5.132   Angle =     5.078   Torsion =     0.377
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.723     0.522   0.722     0.008   0.038     0.008   0.037
+ Angle     0.755   0.989     0.498   0.681     0.755   0.989     0.498   0.681
+ Torsion   6.237   9.716     6.225   9.664     0.051   0.405     0.046   0.413
+ Energy (this step): Align=    16.785
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =      9 TIME(PS) =    0.009  TEMP(K) =    10.94  PRESS =      0.00
+ Etot   =   -2154.1480  EKtot   =      67.3539  EPtot      =   -2221.5019
+ BOND   =      27.5933  ANGLE   =     393.9844  DIHED      =     419.5165
+ 1-4 NB =     363.6301  1-4 EEL =    -904.9083  VDWAALS    =   -1062.0669
+ EELEC  =   -1445.8106  EHBOND  =     -50.0642  CONSTRAINT =      36.6237
+ EAMBER (non-constraint) =   -2258.1256
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step      9
+ Energy (this step): Bond =    5.399   Angle =    12.424   Torsion =     0.376
+ Energy (tot. run) : Bond =    5.161   Angle =     5.895   Torsion =     0.376
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.723     0.522   0.722     0.008   0.038     0.008   0.037
+ Angle     0.843   1.096     0.536   0.727     0.843   1.096     0.536   0.727
+ Torsion   6.242   9.738     6.227   9.672     0.053   0.412     0.047   0.413
+ Energy (this step): Align=    18.425
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+ NSTEP =     10 TIME(PS) =    0.010  TEMP(K) =    12.66  PRESS =      0.00
+ Etot   =   -2144.4254  EKtot   =      77.9313  EPtot      =   -2222.3567
+ BOND   =      28.0963  ANGLE   =     392.6362  DIHED      =     416.1979
+ 1-4 NB =     362.9808  1-4 EEL =    -905.0688  VDWAALS    =   -1063.4025
+ EELEC  =   -1444.6838  EHBOND  =     -50.1578  CONSTRAINT =      41.0449
+ EAMBER (non-constraint) =   -2263.4016
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step     10
+ Energy (this step): Bond =    5.499   Angle =    14.685   Torsion =     0.399
+ Energy (tot. run) : Bond =    5.195   Angle =     6.774   Torsion =     0.379
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.723     0.522   0.722     0.008   0.038     0.008   0.037
+ Angle     0.921   1.191     0.575   0.773     0.921   1.191     0.575   0.773
+ Torsion   6.246   9.760     6.229   9.681     0.055   0.425     0.047   0.414
+ Energy (this step): Align=    20.462
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+      A V E R A G E S   O V E R      10 S T E P S
+
+
+ NSTEP =     10 TIME(PS) =    0.010  TEMP(K) =     6.04  PRESS =      0.00
+ Etot   =   -2169.7219  EKtot   =      37.1850  EPtot      =   -2206.9069
+ BOND   =      26.8972  ANGLE   =     402.8400  DIHED      =     431.5887
+ 1-4 NB =     365.2148  1-4 EEL =    -904.6001  VDWAALS    =   -1058.8792
+ EELEC  =   -1447.8459  EHBOND  =     -49.6954  CONSTRAINT =      27.5730
+ EAMBER (non-constraint) =   -2234.4799
+ ------------------------------------------------------------------------------
+
+===============================================================================
+                      NMR restraints for step     10
+ Energy (this step): Bond =    5.499   Angle =    14.685   Torsion =     0.399
+ Energy (tot. run) : Bond =    5.195   Angle =     6.774   Torsion =     0.379
+
+ DEVIATIONS:    Target=(r2+r3)/2                 Target = closer of r2/r3
+            This step         Entire run        This step        Entire run
+           ave.    rms       ave.    rms       ave.    rms      ave.     rms
+ Bond      0.522   0.723     0.522   0.722     0.008   0.038     0.008   0.037
+ Angle     0.921   1.191     0.575   0.773     0.921   1.191     0.575   0.773
+ Torsion   6.246   9.760     6.229   9.681     0.055   0.425     0.047   0.414
+ Energy (this step): Align=    20.462
+          Alignment tensor:     3.883    33.855    -4.508
+                               33.855    53.922    -0.559
+                               -4.508    -0.559   -57.805
+===============================================================================
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =     10 TIME(PS) =    0.010  TEMP(K) =     4.04  PRESS =      0.00
+ Etot   =      16.7912  EKtot   =      24.8939  EPtot      =      12.0515
+ BOND   =       1.7097  ANGLE   =       6.9895  DIHED      =       9.1344
+ 1-4 NB =       1.2054  1-4 EEL =       0.3092  VDWAALS    =       2.4182
+ EELEC  =       3.1915  EHBOND  =       0.4910  CONSTRAINT =       6.7144
+ EAMBER (non-constraint) =       5.3371
+ ------------------------------------------------------------------------------
+
+
+ NMR restraints on final step:
+
+ ------------------------------------------------------------------------------
+
+
+ Final Restraint Analysis for coords: restrt                                  
+
+
+ Restraints, deviations, and energy contributions:    pencut =    0.10
+
+ ------------------------------------------------------------------------------
+     First atom        Last atom    curr. value target deviation  penalty
+ ------------------------------------------------------------------------------
+  H    ALA   13 -- *HB3  ALA   14:    5.975    5.690    0.285    0.163 d    0: 0
+ *HD2  TYR   15 --  H3'  DG   104:    5.359    5.040    0.319    0.205 d    0: 0
+  HA   LEU   21 -- *HB3  ALA   23:    5.955    5.690    0.265    0.141 d    0: 0
+ *HB3  ALA   23 --  HA   THR   46:    5.920    5.690    0.230    0.106 d    0: 0
+  H    CYM   36 --  HA   GLU   42:    4.261    4.000    0.261    0.137 d    0: 0
+  H    LEU   48 -- *HB3  HID   49:    5.694    5.470    0.224    0.101 d    0: 0
+  HB2  LYS   62 -- *HD3  LYS   62:    3.086    2.790    0.296    0.176 d    0: 0
+  HA   LYS   82 --  HB2  ASN   86:    5.231    5.000    0.231    0.108 d    0: 0
+  H    LYS   83 -- *HD22 ASN   86:    4.645    4.410    0.235    0.111 d    0: 0
+  H    LYS   83 -- *HD22 ASN   86:    4.645    4.410    0.235    0.111 d    0: 0
+  HA   LYS   83 --  HB3  ASN   86:    4.703    4.000    0.703    0.911 d    0: 0
+  H2'1 DT    97 --  H8   DG    98:    2.720    3.000    0.280    0.158 d    0: 0
+  H2'2 DG   104 --  H8   DA   105:    2.619    3.000    0.381    0.292 d    0: 0
+  H4'  DC   109 --  H6   DC   109:    4.499    4.260    0.239    0.115 d    0: 0
+  H2'1 DC   123 --  H8   DA   124:    2.764    3.000    0.236    0.112 d    0: 0
+  H2'2 DC   123 --  H8   DA   124:    2.758    3.000    0.242    0.117 d    0: 0
+ *H6   DT   121 -- *HE3  LYS   83:    7.338    7.060    0.278    0.156 d    0: 0
+  HA   ALA   14 --  C    ALA   14:  107.547  109.500    1.953    0.117 a
+  HA   TYR   15 --  N    TYR   15:  111.352  109.500    1.852    0.105 a
+  HA   ASN   16 --  CB   ASN   16:  107.038  109.500    2.462    0.186 a
+  HA   ASN   16 --  C    ASN   16:  105.791  109.500    3.709    0.421 a
+  HA   LYS   17 --  C    LYS   17:  106.300  109.500    3.200    0.314 a
+  HA   ASN   18 --  N    ASN   18:  106.829  109.500    2.671    0.218 a
+  HA   LYS   20 --  C    LYS   20:  107.161  109.500    2.339    0.168 a
+  HA   ALA   23 --  N    ALA   23:  103.781  109.500    5.719    1.002 a
+  HA   SER   26 --  N    SER   26:  107.131  109.500    2.369    0.172 a
+  HA   LYS   32 --  CB   LYS   32:  107.459  109.500    2.041    0.128 a
+  HA   PHE   34 --  CB   PHE   34:  106.791  109.500    2.709    0.225 a
+  HA   CYM   36 --  N    CYM   36:  106.997  109.500    2.503    0.192 a
+  HA   CYM   36 --  CB   CYM   36:  107.278  109.500    2.222    0.151 a
+  HA   CYM   36 --  C    CYM   36:  107.652  109.500    1.848    0.105 a
+  HA   CYM   41 --  C    CYM   41:  113.037  109.500    3.537    0.383 a
+  HA   PHE   45 --  C    PHE   45:  106.716  109.500    2.784    0.237 a
+  HA   SER   55 --  N    SER   55:  106.438  109.500    3.062    0.287 a
+  HA   THR   57 --  CB   THR   57:  107.634  109.500    1.866    0.107 a
+  HA   GLU   61 --  C    GLU   61:  106.008  109.500    3.492    0.373 a
+  HA   ASN   63 --  C    ASN   63:  107.059  109.500    2.441    0.182 a
+  HA   PHE   64 --  CB   PHE   64:  107.580  109.500    1.920    0.113 a
+  HA   PHE   75 --  C    PHE   75:  106.281  109.500    3.219    0.317 a
+  HA   ALA   79 --  N    ALA   79:  106.591  109.500    2.909    0.259 a
+  HA   ALA   79 --  CB   ALA   79:  107.212  109.500    2.288    0.160 a
+  HA   ALA   79 --  C    ALA   79:  106.931  109.500    2.569    0.202 a
+  HA   ASN   80 --  C    ASN   80:  107.349  109.500    2.151    0.142 a
+  HA   PHE   85 --  N    PHE   85:  107.516  109.500    1.984    0.121 a
+  HA   ASN   86 --  C    ASN   86:  107.109  109.500    2.391    0.175 a
+  HA   HID   89 --  C    HID   89:  107.615  109.500    1.885    0.109 a
+  HA   ASN   90 --  CB   ASN   90:  107.382  109.500    2.118    0.137 a
+  H    ALA    9 --  C    PHE    8:  116.405  119.000    2.595    0.206 a
+  H    ALA    9 --  CA   ALA    9:  117.044  119.000    1.956    0.117 a
+  H    ALA   13 --  C    GLY   12:  120.849  119.000    1.849    0.105 a
+  H    TYR   15 --  C    ALA   14:  117.128  119.000    1.872    0.107 a
+  H    TYR   15 --  CA   TYR   15:  117.042  119.000    1.958    0.117 a
+  H    LYS   17 --  C    ASN   16:  121.133  119.000    2.133    0.139 a
+  H    LEU   21 --  C    LYS   20:  120.919  119.000    1.919    0.113 a
+  H    ALA   23 --  CA   ALA   23:  121.128  119.000    2.128    0.139 a
+  H    HID   24 --  CA   HID   24:  117.145  119.000    1.855    0.105 a
+  H    PHE   34 --  CA   PHE   34:  117.139  119.000    1.861    0.106 a
+  H    CYM   36 --  C    PRO   35:  116.954  119.000    2.046    0.128 a
+  H    LYS   43 --  C    GLU   42:  117.002  119.000    1.998    0.122 a
+  H    THR   46 --  CA   THR   46:  116.138  119.000    2.862    0.251 a
+  H    HID   54 --  C    ARG   53:  121.037  119.000    2.037    0.127 a
+  H    LYS   62 --  C    GLU   61:  116.483  119.000    2.517    0.194 a
+  H    ARG   74 --  CA   ARG   74:  117.181  119.000    1.819    0.101 a
+  H    THR   76 --  CA   THR   76:  115.604  119.000    3.396    0.353 a
+  H    ALA   79 --  C    LYS   78:  122.365  119.000    3.365    0.347 a
+  H    ASN   80 --  C    ALA   79:  121.192  119.000    2.192    0.147 a
+  H    HID   84 --  C    LYS   83:  121.122  119.000    2.122    0.138 a
+                                       Total distance penalty:      5.612
+                                       Total angle    penalty:     16.707
+                                       Total torsion  penalty:      0.432
+|                               RMS deviation from ideal bonds :      0.0056
+|                               RMS deviation from ideal angles:      2.627
+ ------------------------------------------------------------------------------
+
+
+  Residual dipolar splittings:
+
+
+ ------------------------------------------------------------------------------ 
+ First atom        Last atom    curr. value target deviation  penalty  distance 
+ ------------------------------------------------------------------------------ 
+ CA   ALA   13 -- HA   ALA   13:    6.377    6.240    0.137    0.002    1.090   
+ CA   TYR   15 -- HA   TYR   15:   -9.576  -10.390    0.814    0.066    1.090   
+ CA   LYS   17 -- HA   LYS   17:   -5.175   -8.120    2.945    0.867    1.090   
+ CA   ASN   18 -- HA   ASN   18:    1.691    1.890   -0.199    0.004    1.090   
+ CA   LYS   20 -- HA   LYS   20:  -17.040  -16.230   -0.810    0.066    1.090   
+ CA   ALA   23 -- HA   ALA   23:   18.957   22.610   -3.653    1.334    1.090   
+ CA   SER   26 -- HA   SER   26:   -3.071   -3.580    0.509    0.026    1.090   
+ CA   HID   28 -- HA   HID   28:   11.068    9.600    1.468    0.216    1.090   
+ CA   GLU   31 -- HA   GLU   31:   15.889   15.070    0.819    0.067    1.090   
+ CA   CYM   36 -- HA   CYM   36:    2.884    2.700    0.184    0.003    1.090   
+ CA   GLU   38 -- HA   GLU   38:   24.626   23.010    1.616    0.261    1.090   
+ CA   CYM   41 -- HA   CYM   41:   -1.554   -2.920    1.366    0.187    1.090   
+ CA   PHE   45 -- HA   PHE   45:   16.881   18.530   -1.649    0.272    1.090   
+ CA   THR   46 -- HA   THR   46:  -15.493  -15.700    0.207    0.004    1.090   
+ CA   SER   47 -- HA   SER   47:  -25.673  -26.090    0.417    0.017    1.090   
+ CA   LEU   48 -- HA   LEU   48:   13.748   13.600    0.148    0.002    1.090   
+ CA   LEU   51 -- HA   LEU   51:    3.705    3.710   -0.005    0.000    1.090   
+ CA   HID   54 -- HA   HID   54:   -3.381   -2.200   -1.181    0.139    1.090   
+ CA   SER   55 -- HA   SER   55:    5.419    4.240    1.179    0.139    1.090   
+ CA   LEU   56 -- HA   LEU   56:   18.632   19.390   -0.758    0.057    1.090   
+ CA   THR   57 -- HA   THR   57:  -24.107  -23.200   -0.907    0.082    1.090   
+ CA   HID   58 -- HA   HID   58:    0.746    0.630    0.116    0.001    1.090   
+ CA   GLU   61 -- HA   GLU   61:  -15.113  -15.640    0.527    0.028    1.090   
+ CA   PHE   64 -- HA   PHE   64:    5.531    5.860   -0.329    0.011    1.090   
+ CA   SER   68 -- HA   SER   68:   12.918   13.450   -0.532    0.028    1.090   
+ CA   ASP   72 -- HA   ASP   72:    2.689    2.440    0.249    0.006    1.090   
+ CA   LEU   73 -- HA   LEU   73:   18.759   19.510   -0.751    0.056    1.090   
+ CA   ARG   74 -- HA   ARG   74:    9.689    9.490    0.199    0.004    1.090   
+ CA   PHE   75 -- HA   PHE   75:    5.198    6.040   -0.842    0.071    1.090   
+ CA   THR   76 -- HA   THR   76:   25.245   25.860   -0.615    0.038    1.090   
+ CA   LYS   78 -- HA   LYS   78:  -26.390  -27.300    0.910    0.083    1.090   
+ CA   ALA   79 -- HA   ALA   79:    9.276    7.880    1.396    0.195    1.090   
+ CA   ASN   80 -- HA   ASN   80:   20.083   21.800   -1.717    0.295    1.090   
+ CA   HID   84 -- HA   HID   84:    6.902    7.360   -0.458    0.021    1.090   
+ CA   PHE   85 -- HA   PHE   85:  -21.806  -21.880    0.074    0.001    1.090   
+ CA   ASN   86 -- HA   ASN   86:   -4.078   -4.440    0.362    0.013    1.090   
+ CA   HID   89 -- HA   HID   89:  -29.637  -29.370   -0.267    0.007    1.090   
+ N    CYM    6 -- H    CYM    6:    1.766    1.190    0.576    0.033    1.040   
+ N    PHE    8 -- H    PHE    8:  -11.171  -10.950   -0.221    0.005    1.040   
+ N    ALA   13 -- H    ALA   13:    2.810    5.460   -2.650    0.702    1.040   
+ N    TYR   15 -- H    TYR   15:  -10.614  -10.660    0.046    0.000    1.040   
+ N    LYS   17 -- H    LYS   17:    0.574    2.110   -1.536    0.236    1.040   
+ N    ASN   18 -- H    ASN   18:    3.312    2.240    1.072    0.115    1.040   
+ N    TRP   19 -- H    TRP   19:    3.201    3.620   -0.419    0.018    1.040   
+ N    LYS   20 -- H    LYS   20:    0.656   -0.310    0.966    0.093    1.040   
+ N    LEU   21 -- H    LEU   21:    3.564    2.290    1.274    0.162    1.040   
+ N    GLN   22 -- H    GLN   22:    3.096    3.370   -0.274    0.008    1.040   
+ N    ALA   23 -- H    ALA   23:    2.559    4.840   -2.281    0.520    1.040   
+ N    HID   24 -- H    HID   24:    2.320    0.840    1.480    0.219    1.040   
+ N    LEU   25 -- H    LEU   25:    3.960    4.290   -0.330    0.011    1.040   
+ N    SER   26 -- H    SER   26:   -0.508    0.250   -0.758    0.057    1.040   
+ N    HID   28 -- H    HID   28:    3.369    4.450   -1.081    0.117    1.040   
+ N    THR   29 -- H    THR   29:    0.057   -0.040    0.097    0.001    1.040   
+ N    GLY   30 -- H    GLY   30:    7.570    8.340   -0.770    0.059    1.040   
+ N    GLU   31 -- H    GLU   31:    0.751   -0.640    1.391    0.193    1.040   
+ N    CYM   36 -- H    CYM   36:    9.516   13.070   -3.554    1.263    1.040   
+ N    LYS   37 -- H    LYS   37:    1.128   -0.010    1.138    0.129    1.040   
+ N    GLU   38 -- H    GLU   38:   12.167   17.500   -5.333    2.844    1.040   
+ N    CYM   41 -- H    CYM   41:   11.654   11.520    0.134    0.002    1.040   
+ N    PHE   45 -- H    PHE   45:   12.121   15.460   -3.339    1.115    1.040   
+ N    THR   46 -- H    THR   46:   -4.014   -4.540    0.526    0.028    1.040   
+ N    LEU   48 -- H    LEU   48:   -9.599  -10.080    0.481    0.023    1.040   
+ N    LEU   51 -- H    LEU   51:  -11.131  -12.130    0.999    0.100    1.040   
+ N    THR   52 -- H    THR   52:   -6.187   -6.860    0.673    0.045    1.040   
+ N    ARG   53 -- H    ARG   53:   -8.560  -10.490    1.930    0.373    1.040   
+ N    HID   54 -- H    HID   54:  -14.211  -18.190    3.979    1.584    1.040   
+ N    SER   55 -- H    SER   55:   -7.147   -8.300    1.153    0.133    1.040   
+ N    LEU   56 -- H    LEU   56:    5.304    4.870    0.434    0.019    1.040   
+ N    THR   57 -- H    THR   57:  -14.687  -17.630    2.943    0.866    1.040   
+ N    HID   58 -- H    HID   58:   -6.224   -6.880    0.656    0.043    1.040   
+ N    GLU   61 -- H    GLU   61:  -14.930  -16.000    1.070    0.114    1.040   
+ N    PHE   64 -- H    PHE   64:    1.018    2.600   -1.582    0.250    1.040   
+ N    SER   68 -- H    SER   68:    0.903   -0.690    1.593    0.254    1.040   
+ N    ASP   72 -- H    ASP   72:   -5.026   -2.660   -2.366    0.560    1.040   
+ N    LEU   73 -- H    LEU   73:   11.417   11.520   -0.103    0.001    1.040   
+ N    ARG   74 -- H    ARG   74:    2.943    3.500   -0.557    0.031    1.040   
+ N    PHE   75 -- H    PHE   75:    4.299    5.320   -1.021    0.104    1.040   
+ N    THR   76 -- H    THR   76:    6.938    8.870   -1.932    0.373    1.040   
+ N    THR   77 -- H    THR   77:   -3.602   -4.200    0.598    0.036    1.040   
+ N    LYS   78 -- H    LYS   78:   -9.345  -10.090    0.745    0.055    1.040   
+ N    ALA   79 -- H    ALA   79:   -8.897   -9.780    0.883    0.078    1.040   
+ N    ASN   80 -- H    ASN   80:    7.463    7.970   -0.507    0.026    1.040   
+ N    MET   81 -- H    MET   81:   -4.496   -4.020   -0.476    0.023    1.040   
+ N    LYS   82 -- H    LYS   82:   -9.723  -10.240    0.517    0.027    1.040   
+ N    LYS   83 -- H    LYS   83:   -1.002    0.230   -1.232    0.152    1.040   
+ N    HID   84 -- H    HID   84:    3.614    4.640   -1.026    0.105    1.040   
+ N    PHE   85 -- H    PHE   85:   -5.850   -6.080    0.230    0.005    1.040   
+ N    ASN   86 -- H    ASN   86:  -10.276  -12.290    2.014    0.406    1.040   
+ N    ARG   87 -- H    ARG   87:    6.965    8.310   -1.345    0.181    1.040   
+ N    PHE   88 -- H    PHE   88:   -2.846   -3.390    0.544    0.030    1.040   
+ N    HID   89 -- H    HID   89:  -15.323  -19.640    4.317    1.864    1.040   
+                                        Total align    constraint:   20.46      
+                                                                                
+                     #  Pearson r           rms error                           
+                  -----------------------------------                           
+Align correlation:   91   0.99305   2.82951   1.49952                           
+ Diagonalize the alignment matrix:                                              
+      -58.17147          0.08341    -0.02022     0.99631                        
+      -12.87786          0.88858    -0.45104    -0.08355                        
+       71.04933         -0.45107    -0.89227     0.01965                        
+ Diagonalize the moment of interia tensor:                                      
+  2858699.22088         -0.19009    -0.97927    -0.06995         28.34754       
+  5067184.92925          0.95825    -0.16956    -0.23023         18.62481       
+  5563370.18656         -0.21359     0.11080    -0.97062         15.62933       
+ ------------------------------------------------------------------------------
+|
+|>>>>>>>>PROFILE of TIMES>>>>>>>>>>>>>>>>>  
+|
+|    Read coords time           0.03 ( 0.54% of Total)
+|             Gen Born time              2.22 (100.0% of Nonbo)
+|          Nonbond force              2.22 (79.57% of Force)
+|          Bond energy                0.02 ( 0.72% of Force)
+|          Angle energy               0.04 ( 1.43% of Force)
+|          Dihedral energy            0.24 ( 8.60% of Force)
+|          Other                      0.27 ( 9.68% of Force)
+|       Force time                 2.79 (95.22% of Runmd)
+|       Shake time                 0.02 ( 0.68% of Runmd)
+|       Verlet update time         0.04 ( 1.37% of Runmd)
+|       Other                      0.08 ( 2.73% of Runmd)
+|    Runmd Time                 2.93 (52.60% of Total)
+|    Other                      2.61 (46.86% of Total)
+| Total time                 5.57 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:       2916
+
+|     Setup wallclock           3 seconds
+|     Nonsetup wallclock        4 seconds

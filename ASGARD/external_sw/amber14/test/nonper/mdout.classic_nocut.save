@@ -1,0 +1,352 @@
+
+          -------------------------------------------------------
+          Amber 6  SANDER_CLASSIC           Scripps/UCSF 1999
+          -------------------------------------------------------
+
+|      Thu Nov  1 16:44:18 2001
+
+  [-O]verwriting output
+
+File Assignments:
+|MDIN : gbin                                                                  
+|MDOUT: mdout                                                                 
+|INPCR: inpcrd                                                                
+|PARM : prmtop                                                                
+|RESTR: restrt                                                                
+|REFC : refc                                                                  
+|MDVEL: mdvel                                                                 
+|MDEN : mden                                                                  
+|MDCRD: mdcrd                                                                 
+|MDINF: mdinfo                                                                
+
+ 
+ Here is the input file:
+ 
+short classic md run no frills really big cutoff                               
+ &cntrl                                                                        
+   nstlim = 20,                                                                
+   ntpr   = 1,                                                                 
+   cut=99.0,                                                                   
+   ntwr=100000, ntwx=1,                                                        
+   ntx=5, irest=1,                                                             
+   ntc=2, ntf=2, tol=0.000001,                                                 
+   dt=0.002, ntb=0,                                                            
+   ibelly=0,                                                                   
+   tempi=300,temp0=300,tautp=.5,                                               
+   ntt=0,                                                                      
+   scee=1.2,                                                                   
+                                                                               
+   imin=0, maxcyc=10,ncyc=100                                                  
+ /                                                                          
+-------------------------------------------------------------------------------
+
+short classic md run no frills really big cutoff                                
+
+| Reading &cntrl namelist w/ portable lib
+
+
+
+   1.  RESOURCE   USE: 
+
+| New format PARM file being parsed.
+| Version =    1.000 Date = 11/01/01 Time = 09:56:27
+ NATOM  =     991 NTYPES =      14 NBONH =     504 MBONA  =     502
+ NTHETH =    1166 MTHETA =     677 NPHIH =    2075 MPHIA  =    1216
+ NHPARM =       0 NPARM  =       0 NNB   =    5569 NRES   =      62
+ NBONA  =     502 NTHETA =     677 NPHIA =    1216 NUMBND =      32
+ NUMANG =      67 NPTRA  =      28 NATYP =      22 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      24 IFCAP =       0
+
+
+|     Memory Use     Allocated         Used
+|     Real             3700000        35727
+|     Hollerith         600000         7992
+|     Integer          2000000       124645 (static)
+
+|     Max Nonbonded Pairs: 5500000 packed  1 to a machine word
+
+
+   2.  CONTROL  DATA  FOR  THE  RUN
+
+                                                                                
+
+     TIMLIM=  999999.   IREST =    1       IBELLY=    0
+     KFORM =    1       ICHDNA=    0       IMIN  =    0
+     IPOL  =    0       IEWALD=    0
+
+     NTX   =    5       NTXO  =    1
+     IG    =    71277   TEMPI =   300.00   HEAT  =    0.000
+
+     NTB   =    0       IFTRES=    1       BOXX  =    0.000
+     BOXY  =    0.000   BOXZ  =    0.000
+
+     NRUN  =    1       NTT   =    0       TEMP0 =  300.000
+     DTEMP =    0.000   TAUTP =    0.500   TAUTS =    0.200
+     ISOLVP=    0       VLIMIT=    0.000
+
+     NTP   =    0       PRES0 =    1.000   COMP  =   44.600
+     TAUP  =    0.200   NPSCAL=    0
+
+     NTCM  =    0       NSCM  = 9999999
+
+     NSTLIM=   20       INIT  =    4       NTU   =    1
+     T     =    0.000   DT    =   0.00200
+
+     NTC   =    2       TOL   =   0.00000  JFASTW =    0
+
+     NTF   =    2       NTID  =    0       NTNB  =    1
+     NSNB  =   25       IDIEL =    1       IMGSLT=    0
+     IPRR  =    0       IPRW  =    0       ITRSLU=    1
+
+     CUT   =   99.000   SCNB  =    2.000
+     SCEE  =    1.200   DIELC =    1.000
+     CUT2ND=   0.00000
+
+     NTPR  =       1    NTWR  =  100000    NTWX  =       1
+     NTWV  =       0    NTWE  =       0    NTWXM =  999999
+     NTWVM =  999999    NTWEM =  999999    IOUTFM=       0
+     NTWPRT=       0    NTWPR0=       0
+
+     NTR   =    0       NTRX  =    1
+     TAUR  =   0.00000     NMROPT=    0     ISFTRP=    0
+     RWELL =   1.00000     PENCUT=   0.10000
+
+     IVCAP =    0       MATCAP=    0       FCAP  =    1.500
+     IRDARC=    0       IRD1ST=    0       IRDLST=    0
+     IWRTSM=    0
+
+   OTHER DATA:
+
+     IFCAP =    0       NATCAP=    0       CUTCAP=    0.000
+     XCAP  =    0.000   YCAP  =    0.000   ZCAP  =    0.000
+
+     NATOM =     991  NRES =     62
+
+     Water definition for fast triangulated model:
+     Resname = WAT ; Oxygen_name = O   ; Hyd1_name = H1  ; Hyd2_name = H2  
+
+     GFTIM =   2.00000     RLMAVF=   0.00000     ISGDEP=    3
+     NMRAFA=    0       ILTAVF=    0
+Ligand Grid: OFF (not requested)
+
+   3.  ATOMIC COORDINATES AND VELOCITIES
+
+                                                                                
+ begin time read from input coords =     3.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+ Solute/solvent pointers:
+     IPTSOL=   62       NATRCM=  991
+     IPTRES=    0       IPTATM=    0
+     NSPSOL=    0       NSPSTR=    0
+     NSOLUT=  991       NATOM =  991
+
+|  Running shared memory version on    2 processors
+
+ NB-update: NPAIRS =  485021  HBPAIR =       0
+
+ NSTEP =     1  TIME(PS) =    3.002  TEMP(K) =   325.66  PRESS =      0.00
+ Etot   =    1148.5924  EKtot   =     798.9130  EPtot      =     349.6794
+ BOND   =     153.1551  ANGLE   =     489.0015  DIHED      =     500.0158
+ 1-4 NB =     222.4051  1-4 EEL =    3436.5024  VDWAALS    =    -294.7027
+ EELEC  =   -4156.6979  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     2  TIME(PS) =    3.004  TEMP(K) =   325.49  PRESS =      0.00
+ Etot   =    1148.8915  EKtot   =     798.4990  EPtot      =     350.3925
+ BOND   =     156.1628  ANGLE   =     490.0612  DIHED      =     499.3117
+ 1-4 NB =     221.3925  1-4 EEL =    3435.7496  VDWAALS    =    -295.0192
+ EELEC  =   -4157.2661  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     3  TIME(PS) =    3.006  TEMP(K) =   325.26  PRESS =      0.00
+ Etot   =    1149.0836  EKtot   =     797.9233  EPtot      =     351.1603
+ BOND   =     158.7209  ANGLE   =     492.5889  DIHED      =     499.3468
+ 1-4 NB =     219.8826  1-4 EEL =    3434.2587  VDWAALS    =    -295.0053
+ EELEC  =   -4158.6323  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     4  TIME(PS) =    3.008  TEMP(K) =   325.31  PRESS =      0.00
+ Etot   =    1148.7380  EKtot   =     798.0565  EPtot      =     350.6815
+ BOND   =     160.4967  ANGLE   =     495.7811  DIHED      =     499.3297
+ 1-4 NB =     218.4363  1-4 EEL =    3432.1643  VDWAALS    =    -294.5695
+ EELEC  =   -4160.9570  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     5  TIME(PS) =    3.010  TEMP(K) =   324.96  PRESS =      0.00
+ Etot   =    1148.5495  EKtot   =     797.1912  EPtot      =     351.3583
+ BOND   =     161.6261  ANGLE   =     501.6228  DIHED      =     498.8007
+ 1-4 NB =     217.4318  1-4 EEL =    3429.7113  VDWAALS    =    -293.6649
+ EELEC  =   -4164.1695  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     6  TIME(PS) =    3.012  TEMP(K) =   323.93  PRESS =      0.00
+ Etot   =    1149.0746  EKtot   =     794.6627  EPtot      =     354.4118
+ BOND   =     161.8500  ANGLE   =     510.7734  DIHED      =     497.9556
+ 1-4 NB =     217.1536  1-4 EEL =    3427.1920  VDWAALS    =    -292.6374
+ EELEC  =   -4167.8753  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     7  TIME(PS) =    3.014  TEMP(K) =   323.44  PRESS =      0.00
+ Etot   =    1149.5586  EKtot   =     793.4646  EPtot      =     356.0941
+ BOND   =     160.0714  ANGLE   =     519.2749  DIHED      =     497.4765
+ 1-4 NB =     217.6671  1-4 EEL =    3424.8733  VDWAALS    =    -291.8328
+ EELEC  =   -4171.4362  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     8  TIME(PS) =    3.016  TEMP(K) =   324.60  PRESS =      0.00
+ Etot   =    1149.3163  EKtot   =     796.3107  EPtot      =     353.0056
+ BOND   =     155.7190  ANGLE   =     523.3817  DIHED      =     498.0872
+ 1-4 NB =     218.5636  1-4 EEL =    3423.0396  VDWAALS    =    -291.5489
+ EELEC  =   -4174.2366  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =     9  TIME(PS) =    3.018  TEMP(K) =   326.80  PRESS =      0.00
+ Etot   =    1148.7142  EKtot   =     801.6990  EPtot      =     347.0152
+ BOND   =     150.8259  ANGLE   =     522.9040  DIHED      =     500.1314
+ 1-4 NB =     219.2590  1-4 EEL =    3422.0876  VDWAALS    =    -292.2663
+ EELEC  =   -4175.9263  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    10  TIME(PS) =    3.020  TEMP(K) =   328.31  PRESS =      0.00
+ Etot   =    1148.2010  EKtot   =     805.3954  EPtot      =     342.8056
+ BOND   =     149.5564  ANGLE   =     518.5616  DIHED      =     503.4218
+ 1-4 NB =     219.4131  1-4 EEL =    3422.4800  VDWAALS    =    -294.1886
+ EELEC  =   -4176.4385  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    11  TIME(PS) =    3.022  TEMP(K) =   327.57  PRESS =      0.00
+ Etot   =    1148.0228  EKtot   =     803.6013  EPtot      =     344.4215
+ BOND   =     154.3736  ANGLE   =     511.6336  DIHED      =     507.3924
+ 1-4 NB =     219.0504  1-4 EEL =    3424.5264  VDWAALS    =    -296.6828
+ EELEC  =   -4175.8722  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    12  TIME(PS) =    3.024  TEMP(K) =   324.27  PRESS =      0.00
+ Etot   =    1148.5609  EKtot   =     795.4886  EPtot      =     353.0723
+ BOND   =     162.6567  ANGLE   =     505.6335  DIHED      =     511.3229
+ 1-4 NB =     218.6245  1-4 EEL =    3428.1823  VDWAALS    =    -298.8755
+ EELEC  =   -4174.4722  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    13  TIME(PS) =    3.026  TEMP(K) =   319.93  PRESS =      0.00
+ Etot   =    1149.4420  EKtot   =     784.8408  EPtot      =     364.6011
+ BOND   =     168.2841  ANGLE   =     503.4334  DIHED      =     514.5080
+ 1-4 NB =     218.5283  1-4 EEL =    3433.0373  VDWAALS    =    -300.4782
+ EELEC  =   -4172.7118  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    14  TIME(PS) =    3.028  TEMP(K) =   316.89  PRESS =      0.00
+ Etot   =    1149.7423  EKtot   =     777.3846  EPtot      =     372.3577
+ BOND   =     167.6377  ANGLE   =     504.0483  DIHED      =     516.4283
+ 1-4 NB =     218.7154  1-4 EEL =    3438.4486  VDWAALS    =    -301.6570
+ EELEC  =   -4171.2636  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    15  TIME(PS) =    3.030  TEMP(K) =   316.13  PRESS =      0.00
+ Etot   =    1149.4285  EKtot   =     775.5255  EPtot      =     373.9030
+ BOND   =     163.3239  ANGLE   =     504.2280  DIHED      =     516.9330
+ 1-4 NB =     219.0450  1-4 EEL =    3443.6599  VDWAALS    =    -302.5904
+ EELEC  =   -4170.6964  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    16  TIME(PS) =    3.032  TEMP(K) =   317.10  PRESS =      0.00
+ Etot   =    1149.2714  EKtot   =     777.9059  EPtot      =     371.3655
+ BOND   =     160.4964  ANGLE   =     501.6691  DIHED      =     516.2909
+ 1-4 NB =     219.5283  1-4 EEL =    3447.8904  VDWAALS    =    -303.4528
+ EELEC  =   -4171.0568  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    17  TIME(PS) =    3.034  TEMP(K) =   319.15  PRESS =      0.00
+ Etot   =    1149.1205  EKtot   =     782.9342  EPtot      =     366.1863
+ BOND   =     160.4432  ANGLE   =     496.3355  DIHED      =     514.9707
+ 1-4 NB =     220.1130  1-4 EEL =    3450.5240  VDWAALS    =    -304.3986
+ EELEC  =   -4171.8014  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    18  TIME(PS) =    3.036  TEMP(K) =   321.35  PRESS =      0.00
+ Etot   =    1148.3523  EKtot   =     788.3385  EPtot      =     360.0138
+ BOND   =     160.3791  ANGLE   =     492.0310  DIHED      =     513.2838
+ 1-4 NB =     220.6513  1-4 EEL =    3451.3501  VDWAALS    =    -305.4299
+ EELEC  =   -4172.2516  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    19  TIME(PS) =    3.038  TEMP(K) =   321.71  PRESS =      0.00
+ Etot   =    1147.8155  EKtot   =     789.2271  EPtot      =     358.5884
+ BOND   =     159.2037  ANGLE   =     494.9019  DIHED      =     511.2311
+ 1-4 NB =     221.2504  1-4 EEL =    3450.6464  VDWAALS    =    -306.5012
+ EELEC  =   -4172.1438  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =    20  TIME(PS) =    3.040  TEMP(K) =   319.25  PRESS =      0.00
+ Etot   =    1148.7235  EKtot   =     783.1805  EPtot      =     365.5430
+ BOND   =     160.0025  ANGLE   =     505.0593  DIHED      =     508.7106
+ 1-4 NB =     222.1396  1-4 EEL =    3449.0457  VDWAALS    =    -307.6623
+ EELEC  =   -4171.7525  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+      RESULT OF LEAST SQUARE FIT OVER   20 STEPS
+      ENERGY DRIFT PER STEP =     -0.007064     ETOT(AT X=0) =  1.149E+03
+
+      A V E R A G E S   O V E R    20 S T E P S
+
+
+ NSTEP =    20  TIME(PS) =    3.040  TEMP(K) =   322.86  PRESS =      0.00
+ Etot   =    1148.8600  EKtot   =     792.0271  EPtot      =     356.8329
+ BOND   =     159.2493  ANGLE   =     504.1462  DIHED      =     506.2474
+ 1-4 NB =     219.4625  1-4 EEL =    3435.2685  VDWAALS    =    -298.1582
+ EELEC  =   -4169.3829  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =    20  TIME(PS) =    3.040  TEMP(K) =     3.59  PRESS =      0.00
+ Etot   =       0.5132  EKtot   =       8.8113  EPtot      =       9.0982
+ BOND   =       4.7316  ANGLE   =      10.4860  DIHED      =       7.3009
+ 1-4 NB =       1.4461  1-4 EEL =      10.0784  VDWAALS    =       5.2402
+ EELEC  =       6.1587  EHBOND  =       0.0000  CONSTRAINT =       0.0000
+ ------------------------------------------------------------------------------
+
+|         ELAPSED TIME =      2.570     TOTAL TIME =      2.570
+
+      Routine         Sec       %
+      ----------------------------
+|     Pairlist       0.05    1.95
+|     Nonbond        2.03   78.99
+|     Bond           0.00    0.00
+|     Angle          0.03    1.17
+|     Dihedral       0.22    8.56
+|     Shake          0.01    0.39
+|     Quick3         0.00    0.00
+|     Force          0.00    0.00
+|     Other          0.23    8.95
+      ----------------------------
+|     Total          2.57    0.00 Hours
+
+|     Nonsetup       2.40   93.39%
+
+|     Setup wallclock           0 seconds
+|     Nonsetup wallclock        2 seconds

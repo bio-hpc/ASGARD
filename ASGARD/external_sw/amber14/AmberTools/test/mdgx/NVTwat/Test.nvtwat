@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Check the existence of a test version of the mdgx program
+MDGX="${AMBERHOME}/bin/mdgx"
+if [ -n "${TESTmdgx}" ] ; then
+  MDGX=${TESTmdgx}
+  echo "MDGX set to ${MDGX}"
+fi
+
+# Write a simple input file
+cat > mdgx.in << EOF
+&files
+  -p       wat.top
+  -c       wat.rst
+  -r       wat
+  -o       wat
+  -x       wat
+  -f       wat
+  -osf     .out
+  -rsf     .rst
+  -xsf     .trj
+  -fsf     .frc
+&end
+
+&cntrl
+  DoRATTLE = 0,   Vdw14Fac = 2.0,   Elec14Fac = 1.2,
+  ElecCut = 8.000,  vdw_cutoff = 8.000,
+  dt = 1.0e-3,   nstlim = 50,  nfistep = 5,
+  ntpr = 1,      ntwr = 5,     ntwf = 0,       ntwx = 0,
+  ntt  = 1,
+  temp0 = 300.0,
+  SplnSpc = 0.015625,
+&end
+
+&ewald
+  vdwmeth = 0,
+  dsum_tol = 1.0e-5,
+  ordr1 = 4,
+  ordr2 = 4,
+  ordr3 = 4,
+&end
+EOF
+
+# Run the mdgx program
+${MDGX} -O -i mdgx.in
+
+# Analyze the relevant output
+echo "% Temperatures" > temperature.dat
+for I in 0 1 2 3 4 5 6 7 8 9 ; do
+  grep "^ Temperature:" wat${I}.out >> temperature.dat
+done
+
+${AMBERHOME}/AmberTools/test/dacdif temperature.dat.save temperature.dat
+/bin/rm -f mdgx.in wat[0-9].rst wat[0-9].out

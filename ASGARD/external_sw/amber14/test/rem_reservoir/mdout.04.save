@@ -1,0 +1,705 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 04/29/2013 at 10:30:14
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin.04                                                               
+| MDOUT: mdout.04                                                              
+|INPCRD: rst.heat.04                                                           
+|  PARM: full.topo                                                             
+|RESTRT: ncrst.04                                                              
+|  REFC: refc                                                                  
+| MDVEL: mdvel.003                                                             
+|  MDEN: mden.003                                                              
+| MDCRD: traj.04                                                               
+|MDINFO: mdinfo.04                                                             
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+
+ Here is the input file:
+
+Production 10 ps, NTV, Lang.,                                                  
+ &cntrl                                                                        
+    ntpr=5000, ntwr=5000, ntwx=500, ntxo=2,                                    
+    ntf=2, ntc=2, ntp=0,                                                       
+    ntt=3, gamma_ln=10, ig=785558, cut = 8.0,                                  
+    nstlim=100, numexchg=50, dt=0.002,                                         
+    imin=0, ntx=5, irest=1, ioutfm=1,                                          
+    temp0=330.22,                                                              
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+ getting box info from netcdf restart file
+| check_nc_restart_box: Box info found
+|Largest sphere to fit in unit cell has radius =    12.841
+| New format PARM file being parsed.
+| Version =    1.000 Date = 09/25/12 Time = 09:24:38
+ NATOM  =    1657 NTYPES =       9 NBONH =    1647 MBONA  =       9
+ NTHETH =      25 MTHETA =      11 NPHIH =      43 MPHIA  =      24
+ NHPARM =       0 NPARM  =       0 NNB   =    2279 NRES   =     548
+ NBONA  =       9 NTHETA =      11 NPHIA =      24 NUMBND =      13
+ NUMANG =      21 NPTRA  =      20 NATYP =      10 NPHB   =       1
+ IFBOX  =       1 NMXRS  =      10 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real              172398
+|     Hollerith           5521
+|     Integer            60940
+|     Max Pairs         552333
+|     nblistReal         19884
+|     nblist Int         71582
+|       Total             4198 kbytes
+
+| Note: 1-4 EEL scale factors are being read from the topology file.
+
+| Note: 1-4 VDW scale factors are being read from the topology file.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+     BOX TYPE: RECTILINEAR
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Replica exchange
+     numexchg=      50, rem=       1
+     rremd=       3
+
+Nature and format of input:
+     ntx     =       5, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       2, ntpr    =    5000, ntrx    =       1, ntwr    =    5000
+     iwrap   =       0, ntwx    =     500, ntwv    =       0, ntwe    =       0
+     ioutfm  =       1, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       1, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   8.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =       100, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00200, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =  785558
+     temp0   = 330.22000, tempi   =   0.00000, gamma_ln=  10.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00001
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       1
+     Box X =   25.682   Box Y =   26.087   Box Z =   26.056
+     Alpha =   90.000   Beta  =   90.000   Gamma =   90.000
+     NFFT1 =   30       NFFT2 =   27       NFFT3 =   27
+     Cutoff=    8.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.34864
+     Interpolation order =    4
+
+| MPI Timing options:
+|      profile_mpi =        0
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+default_name                                                                    
+ begin time read from input coords =  1400.000 ps
+
+ Number of triangulated 3-point waters found:      545
+|  Atom division among processors:
+|         0    1657
+
+     Sum of charges from parm topology file =  -0.00000000
+     Forcing neutrality...
+|  Running AMBER/MPI version on    1 nodes
+
+|  MULTISANDER:    4 groups.    1 processors out of    4 total.
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):    3324.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    3324.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    3324.
+|  TOTAL # of degrees of freedom (RNDF) =    3324.
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.2738E-14   at   2.422500
+| CHECK d/dx switch(x): max rel err =   0.8332E-11   at   2.782960
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =     327219
+| TOTAL SIZE OF NONBOND LIST =     327219
+RREMD: Current MD structure was assigned to cluster          4
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          1 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5010.23
+Reservoir        Temp= 340.00 Struct#=      116 EPot=   -4944.06
+ReservoirExchange= F
+mycluster=          4
+myclustersize=          5 o_clustersize=         32
+Metrop=     0.261755E-44 delta=     0.100798E+03 o_scaling=      -1.00
+Rand=       0.358862E-01 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          4
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          2 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5036.24
+Partner          Temp= 319.91 Indx=  3 Rep#=  3 EPot=   -5114.45
+Metrop=     0.215002E-01 delta=     0.383969E+01 o_scaling=      -1.00
+Rand=       0.754379E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          8
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          3 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5009.32
+Reservoir        Temp= 340.00 Struct#=       54 EPot=   -4963.66
+ReservoirExchange= F
+mycluster=          8
+myclustersize=          1 o_clustersize=         66
+Metrop=     0.956420E-32 delta=     0.695376E+02 o_scaling=      -1.00
+Rand=       0.160226E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          8
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          4 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5014.21
+Partner          Temp= 319.91 Indx=  3 Rep#=  1 EPot=   -5079.96
+Metrop=     0.396473E-01 delta=     0.322773E+01 o_scaling=      -1.00
+Rand=       0.620344E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          4
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          5 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5038.89
+Reservoir        Temp= 340.00 Struct#=       93 EPot=   -4955.57
+ReservoirExchange= F
+mycluster=          4
+myclustersize=          5 o_clustersize=         66
+Metrop=     0.568962E-56 delta=     0.126928E+03 o_scaling=      -1.00
+Rand=       0.712157E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          4
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          6 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5012.39
+Partner          Temp= 319.91 Indx=  3 Rep#=  1 EPot=   -5159.94
+Metrop=     0.714889E-03 delta=     0.724338E+01 o_scaling=      -1.00
+Rand=       0.715521E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          4
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          7 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5004.26
+Reservoir        Temp= 340.00 Struct#=       47 EPot=   -4937.71
+ReservoirExchange= F
+mycluster=          4
+myclustersize=          5 o_clustersize=         32
+Metrop=     0.146062E-44 delta=     0.101381E+03 o_scaling=      -1.00
+Rand=       0.878785E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          4
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          8 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5025.31
+Partner          Temp= 319.91 Indx=  3 Rep#=  1 EPot=   -5027.51
+Metrop=     0.897669E+00 delta=     0.107954E+00 o_scaling=      -1.00
+Rand=       0.999626E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          6
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          9 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4964.51
+Reservoir        Temp= 340.00 Struct#=       17 EPot=   -4911.68
+ReservoirExchange= F
+mycluster=          6
+myclustersize=          2 o_clustersize=         66
+Metrop=     0.341654E-36 delta=     0.804705E+02 o_scaling=      -1.00
+Rand=       0.394778E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          8
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         10 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4941.59
+Partner          Temp= 319.91 Indx=  3 Rep#=  3 EPot=   -5105.03
+Metrop=     0.327698E-03 delta=     0.802342E+01 o_scaling=      -1.00
+Rand=       0.162565E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          8
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         11 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4956.17
+Reservoir        Temp= 340.00 Struct#=       59 EPot=   -4936.43
+ReservoirExchange= F
+mycluster=          8
+myclustersize=          1 o_clustersize=         66
+Metrop=     0.132544E-14 delta=     0.300674E+02 o_scaling=      -1.00
+Rand=       0.118360E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          4
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         12 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4933.56
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5046.22
+Metrop=     0.396437E-02 delta=     0.553041E+01 o_scaling=      -1.00
+Rand=       0.348727E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          4
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         13 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4993.05
+Reservoir        Temp= 340.00 Struct#=       42 EPot=   -4922.50
+ReservoirExchange= F
+mycluster=          4
+myclustersize=          5 o_clustersize=         66
+Metrop=     0.161932E-47 delta=     0.107462E+03 o_scaling=      -1.00
+Rand=       0.963225E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          6
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         14 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4922.34
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5039.37
+Metrop=     0.319903E-02 delta=     0.574491E+01 o_scaling=      -1.00
+Rand=       0.957291E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          4
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         15 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4961.96
+Reservoir        Temp= 340.00 Struct#=       94 EPot=   -4971.96
+ReservoirExchange= T
+mycluster=          4
+myclustersize=          5 o_clustersize=         32
+Metrop=     0.649474E+06 delta=    -0.152402E+02 o_scaling=       0.99
+Rand=       0.812253E+00 MyScaling=       0.99 Success= T
+========================END REMD EXCHANGE CALCULATION========================
+=========Reservoir Read===========
+reservoirname=reserv/frame
+rremd_idx=000094
+Reservoir Filename= reserv/frame.000094
+Title= Cpptraj Generated Restart                                                       
+RREMD: coords read for frame         94
+   12.923282600000000        15.180835699999999        5.2792329999999996        13.440812100000000        15.981051400000000        5.8083048000000002        13.524397900000000        15.554052400000000        6.8076954000000001        12.858372700000000     
+RREMD: velocities read for frame         94
+  0.65832120000000005      -0.19942289999999999      -0.82899889999999998        2.3751200000000000E-002 -0.28432950000000001       -3.9857600000000000E-002  0.42564809999999997      -0.32156590000000002       -8.6026800000000000E-002 -0.19978240000000000     
+==========End Reservoir Read==========
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         16 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4959.90
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5049.15
+Metrop=     0.125050E-01 delta=     0.438163E+01 o_scaling=      -1.00
+Rand=       0.462075E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         17 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4942.18
+Reservoir        Temp= 340.00 Struct#=        8 EPot=   -4930.87
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         66
+Metrop=     0.327651E-07 delta=     0.172339E+02 o_scaling=      -1.00
+Rand=       0.180500E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         18 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5014.00
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5040.81
+Metrop=     0.268071E+00 delta=     0.131650E+01 o_scaling=      -1.00
+Rand=       0.302734E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         19 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5089.82
+Reservoir        Temp= 340.00 Struct#=       56 EPot=   -4948.26
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         66
+Metrop=     0.224314E-93 delta=     0.215635E+03 o_scaling=      -1.00
+Rand=       0.741990E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         20 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5025.61
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5045.77
+Metrop=     0.371665E+00 delta=     0.989761E+00 o_scaling=       1.02
+Rand=       0.145455E-01 MyScaling=       0.98 Success= T
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         21 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5002.16
+Partner          Temp= 309.83 Indx=  2 Rep#=  1 EPot=   -5163.95
+Not controlling exchange.
+Rand=       0.150809E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         22 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5099.43
+Partner          Temp= 330.22 Indx=  4 Rep#=  2 EPot=   -4941.17
+Not controlling exchange.
+Rand=       0.841840E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         23 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5046.94
+Partner          Temp= 309.83 Indx=  2 Rep#=  3 EPot=   -5144.69
+Not controlling exchange.
+Rand=       0.398908E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         24 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5060.86
+Partner          Temp= 330.22 Indx=  4 Rep#=  2 EPot=   -4996.98
+Not controlling exchange.
+Rand=       0.606190E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         25 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5065.73
+Partner          Temp= 309.83 Indx=  2 Rep#=  3 EPot=   -5142.90
+Not controlling exchange.
+Rand=       0.468712E-01 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         26 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5058.40
+Partner          Temp= 330.22 Indx=  4 Rep#=  2 EPot=   -4949.28
+Not controlling exchange.
+Rand=       0.685675E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         27 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5095.55
+Partner          Temp= 309.83 Indx=  2 Rep#=  3 EPot=   -5133.61
+Not controlling exchange.
+Rand=       0.641859E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         28 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5084.86
+Partner          Temp= 330.22 Indx=  4 Rep#=  2 EPot=   -4995.67
+Not controlling exchange.
+Rand=       0.497049E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         29 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5019.82
+Partner          Temp= 309.83 Indx=  2 Rep#=  3 EPot=   -5129.93
+Not controlling exchange.
+Rand=       0.559541E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         30 RREMD= 3
+Replica          Temp= 319.91 Indx=  3 Rep#=  4 EPot=   -5061.65
+Partner          Temp= 330.22 Indx=  4 Rep#=  2 EPot=   -5068.52
+Not controlling exchange.
+Rand=       0.294214E+00 MyScaling=       1.02 Success= T
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         31 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4980.57
+Reservoir        Temp= 340.00 Struct#=       36 EPot=   -4970.05
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         66
+Metrop=     0.109666E-06 delta=     0.160258E+02 o_scaling=      -1.00
+Rand=       0.620969E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         32 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4969.80
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5103.85
+Metrop=     0.138635E-02 delta=     0.658108E+01 o_scaling=      -1.00
+Rand=       0.301460E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         33 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4992.34
+Reservoir        Temp= 340.00 Struct#=       27 EPot=   -4988.13
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=          5
+Metrop=     0.214830E-01 delta=     0.642071E+01 o_scaling=      -1.00
+Rand=       0.468714E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         34 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4991.12
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5106.17
+Metrop=     0.352495E-02 delta=     0.564789E+01 o_scaling=      -1.00
+Rand=       0.491816E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         35 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4942.51
+Reservoir        Temp= 340.00 Struct#=        9 EPot=   -4923.97
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         32
+Metrop=     0.111929E-11 delta=     0.282422E+02 o_scaling=      -1.00
+Rand=       0.369889E-02 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         36 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4986.47
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5084.61
+Metrop=     0.808477E-02 delta=     0.481777E+01 o_scaling=      -1.00
+Rand=       0.204614E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         37 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4988.70
+Reservoir        Temp= 340.00 Struct#=       19 EPot=   -4956.98
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         66
+Metrop=     0.103839E-20 delta=     0.483166E+02 o_scaling=      -1.00
+Rand=       0.937261E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         38 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5038.82
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5111.32
+Metrop=     0.284687E-01 delta=     0.355895E+01 o_scaling=      -1.00
+Rand=       0.378025E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         39 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5016.50
+Reservoir        Temp= 340.00 Struct#=       96 EPot=   -4986.28
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         32
+Metrop=     0.209257E-19 delta=     0.460372E+02 o_scaling=      -1.00
+Rand=       0.782519E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         40 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5009.33
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5082.98
+Metrop=     0.268982E-01 delta=     0.361570E+01 o_scaling=      -1.00
+Rand=       0.733236E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         41 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4994.01
+Reservoir        Temp= 340.00 Struct#=       88 EPot=   -4940.31
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         66
+Metrop=     0.296362E-35 delta=     0.818067E+02 o_scaling=      -1.00
+Rand=       0.433118E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         42 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5023.04
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5054.24
+Metrop=     0.216194E+00 delta=     0.153158E+01 o_scaling=      -1.00
+Rand=       0.285608E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         43 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5027.94
+Reservoir        Temp= 340.00 Struct#=        3 EPot=   -4958.23
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         32
+Metrop=     0.156982E-45 delta=     0.106192E+03 o_scaling=      -1.00
+Rand=       0.150335E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         44 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4937.28
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5105.28
+Metrop=     0.261894E-03 delta=     0.824757E+01 o_scaling=      -1.00
+Rand=       0.403876E-01 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         45 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4963.86
+Reservoir        Temp= 340.00 Struct#=       36 EPot=   -4970.05
+ReservoirExchange= T
+mycluster=          1
+myclustersize=         66 o_clustersize=         66
+Metrop=     0.125121E+05 delta=    -0.943445E+01 o_scaling=       0.99
+Rand=       0.920109E-01 MyScaling=       0.99 Success= T
+========================END REMD EXCHANGE CALCULATION========================
+=========Reservoir Read===========
+reservoirname=reserv/frame
+rremd_idx=000036
+Reservoir Filename= reserv/frame.000036
+Title= Cpptraj Generated Restart                                                       
+RREMD: coords read for frame         36
+   19.768590900000000        16.181741700000000        7.9897466000000001        18.997230500000001        16.948101000000001        8.0658473999999991        19.358581500000000        17.970186200000001        7.9524144999999997        18.495269799999999     
+RREMD: velocities read for frame         36
+  -1.0992161000000000      -0.91680649999999997       -1.5634400000000000E-002  -6.0890300000000001E-002  0.17958669999999999        8.2389500000000004E-002   8.3300000000000006E-003   9.0570800000000007E-002 -0.58058580000000004       0.74894530000000004     
+==========End Reservoir Read==========
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         46 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -4978.31
+Partner          Temp= 319.91 Indx=  3 Rep#=  2 EPot=   -5072.11
+Metrop=     0.100043E-01 delta=     0.460474E+01 o_scaling=      -1.00
+Rand=       0.539185E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         47 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5036.94
+Reservoir        Temp= 340.00 Struct#=       21 EPot=   -4954.07
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         32
+Metrop=     0.309339E-54 delta=     0.126237E+03 o_scaling=      -1.00
+Rand=       0.709681E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         48 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5019.23
+Partner          Temp= 319.91 Indx=  3 Rep#=  1 EPot=   -5117.19
+Metrop=     0.815700E-02 delta=     0.480888E+01 o_scaling=      -1.00
+Rand=       0.478675E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         49 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5026.20
+Reservoir        Temp= 340.00 Struct#=       56 EPot=   -4948.26
+ReservoirExchange= F
+mycluster=          1
+myclustersize=         66 o_clustersize=         66
+Metrop=     0.274841E-51 delta=     0.118723E+03 o_scaling=      -1.00
+Rand=       0.660097E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+RREMD: Current MD structure was assigned to cluster          1
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         50 RREMD= 3
+Replica          Temp= 330.22 Indx=  4 Rep#=  4 EPot=   -5020.10
+Partner          Temp= 319.91 Indx=  3 Rep#=  1 EPot=   -5068.20
+Metrop=     0.943405E-01 delta=     0.236084E+01 o_scaling=      -1.00
+Rand=       0.255422E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+
+ NSTEP =     5000   TIME(PS) =    1410.000  TEMP(K) =   326.16  PRESS =     0.0
+ Etot   =     -3967.0711  EKtot   =      1077.2235  EPtot      =     -5044.2946
+ BOND   =         3.6199  ANGLE   =         6.2356  DIHED      =        11.1917
+ 1-4 NB =         2.9757  1-4 EEL =        45.6831  VDWAALS    =       655.9587
+ EELEC  =     -5769.9593  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.1650E-03
+ TEMP0  =       330.2200  REPNUM  =              4  EXCHANGE#  =             50
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|                Build the list             5.36 (99.00% of List )
+|                Other                      0.05 ( 1.00% of List )
+|             List time                  5.41 ( 8.65% of Nonbo)
+|                   Short_ene time            45.77 (99.17% of Direc)
+|                   Other                      0.38 ( 0.83% of Direc)
+|                Direct Ewald time         46.15 (80.77% of Ewald)
+|                Adjust Ewald time          0.36 ( 0.63% of Ewald)
+|                Self Ewald time            0.00 ( 0.01% of Ewald)
+|                   Fill Bspline coeffs        0.56 ( 5.34% of Recip)
+|                   Fill charge grid           1.15 (10.89% of Recip)
+|                   Scalar sum                 2.58 (24.47% of Recip)
+|                   Grad sum                   2.40 (22.80% of Recip)
+|                      FFT back comm time         0.00 ( 0.02% of FFT t)
+|                      Other                      3.84 (100.0% of FFT t)
+|                   FFT time                   3.84 (36.46% of Recip)
+|                   Other                      0.01 ( 0.05% of Recip)
+|                Recip Ewald time          10.54 (18.45% of Ewald)
+|                Force Adjust               0.03 ( 0.05% of Ewald)
+|                Virial junk                0.03 ( 0.06% of Ewald)
+|                Other                      0.02 ( 0.04% of Ewald)
+|             Ewald time                57.13 (91.35% of Nonbo)
+|          Nonbond force             62.55 (99.79% of Force)
+|          Bond/Angle/Dihedral        0.11 ( 0.18% of Force)
+|          Other                      0.02 ( 0.04% of Force)
+|       Force time                62.68 (93.70% of Runmd)
+|       Shake time                 0.43 ( 0.65% of Runmd)
+|       Verlet update time         3.29 ( 4.92% of Runmd)
+|       Other                      0.49 ( 0.73% of Runmd)
+|    Runmd Time                66.90 (100.0% of Total)
+|    Other                      0.02 ( 0.03% of Total)
+| Total time                66.92 (100.0% of ALL  )
+
+| Highest rstack allocated:      95389
+| Highest istack allocated:       1657
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =      66.90 Per Step(ms) =      13.38
+|         ns/day =      12.92   seconds/ns =    6689.87
+| -----------------------------------------------------
+
+|           Job began  at 10:30:14.535  on 04/29/2013
+|           Setup done at 10:30:14.556  on 04/29/2013
+|           Run   done at 10:31:21.455  on 04/29/2013
+|     wallclock() was called  268208 times

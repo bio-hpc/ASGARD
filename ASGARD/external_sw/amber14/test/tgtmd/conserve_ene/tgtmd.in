@@ -1,0 +1,14 @@
+trpzip2 native MD 
+ &cntrl
+    imin = 0, nstlim = 200, dt = 0.0005,
+    ntx = 5, 
+    ntt = 0, tol = 0.000001, 
+    ntc = 2, ntf = 1, ntb = 0,
+    ntwx = 1000, ntwe = 0, ntwr = 5000, ntpr = 10, 
+    cut = 999.0, 
+    igb = 1, irest=1,
+    itgtmd=1, tgtrmsd=2.0, tgtmdfrc=10.00,
+    tgtfitmask=":3-10@CA,N,C,O,H,HA",
+    tgtrmsmask=":3-10@CA,N,C,O,H,HA",
+ /
+

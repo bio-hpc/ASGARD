@@ -1,0 +1,13 @@
+#!/bin/csh -f
+
+../../../bin/antechamber -i component.00D.cif -fi ccif -bk "00D" \
+    -o 00D.mol2 -fo mol2 -c bcc >& antechamber.out || goto error
+
+../../dacdif  00D.mol2.save 00D.mol2
+
+/bin/rm -f ANTE* ATOMTYPE.INF BCCTYPE.INF sqm.in sqm.out antechamber.out
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

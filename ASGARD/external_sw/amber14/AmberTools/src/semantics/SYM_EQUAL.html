@@ -1,0 +1,387 @@
+<HTML><HEAD><TITLE>SYM_EQUAL.rules</TITLE></HEAD>
+<BODY>
+<B>operator</B><BR>
+<TABLE border bgcolor=white cellpadding=2 cellspacing=2>
+<TR>
+<TD width=100>sym</TD>
+<TD width=400>SYM_EQUAL</TD>
+</TR>
+<TR>
+<TD>prec</TD>
+<TD>3</TD>
+</TR>
+<TR>
+<TD>print</TD>
+<TD>==</TD>
+</TR>
+</TABLE>
+<BR>
+<B>class</B><BR>
+<TABLE border bgcolor=white cellpadding=2 cellspacing=2>
+<TR>
+<TD width=100>left</TD>
+<TD width=400>
+{ C_LIT, C_VAR, C_DEFINE, C_EXPR, C_NULL }</TD>
+</TR>
+<TR>
+<TD width=100>right</TD>
+<TD width=400>
+{ C_LIT, C_VAR, C_DEFINE, C_EXPR, C_NULL }</TD>
+</TR>
+<TR>
+<TD width=100>output</TD>
+<TD width=400>
+C_EXPR</TD>
+</TR>
+</TABLE>
+<BR>
+<B>kind</B><BR>
+<TABLE border bgcolor=white cellpadding=2 cellspacing=2>
+<TR>
+<TD width=100>left</TD>
+<TD width=400>
+{ K_SCALAR, K_HASHEL, K_DARRAYEL }</TD>
+</TR>
+<TR>
+<TD width=100>right</TD>
+<TD width=400>
+{ K_SCALAR, K_HASHEL, K_DARRAYEL }</TD>
+</TR>
+<TR>
+<TR>
+<TD width=100>output</TD>
+<TD width=400>
+K_SCALAR</TD>
+</TR>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<B>type, t_index = 9</B><BR>
+<TABLE border bgcolor=white cellpadding=2 cellspacing=2>
+<TR>
+<TD width=100>left/right</TD>
+<TD></TD>
+<TD>T_UNDEF</TD>
+<TD>T_INT</TD>
+<TD>T_SIZE_T</TD>
+<TD>T_FLOAT</TD>
+<TD>T_STRING</TD>
+<TD>T_POINT</TD>
+<TD>T_MATRIX</TD>
+<TD>T_FILE</TD>
+<TD>T_ATOM</TD>
+<TD>T_RESIDUE</TD>
+<TD>T_MOLECULE</TD>
+<TD>T_BOUNDS</TD>
+<TD>T_NULL</TD>
+<TD>T_USER</TD>
+<TD>T_ERROR</TD>
+</TR>
+<TR>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+</TR>
+<TR>
+<TD width=100>T_UNDEF</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_INT</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_SIZE_T</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_FLOAT</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_STRING</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_POINT</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_MATRIX</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_FILE</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_ATOM</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_RESIDUE</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_MOLECULE</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_BOUNDS</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_NULL</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD>T_INT</TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_USER</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+<TR>
+<TD width=100>T_ERROR</TD>
+<TD></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+<TD><BR></TD>
+</TR>
+</TABLE>
+<BR>
+</BODY>
+</HTML>

@@ -1,0 +1,161 @@
+
+          -------------------------------------------------------
+          PBSA VERSION 2009                       UC Irvine
+          -------------------------------------------------------
+
+| Run on 02/18/2014 at 12:15:49
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: mdout.tsrb.min                                                        
+|INPCRD: tsrb.rst                                                              
+|  PARM: prmtop                                                                
+|
+
+ Here is the input file:
+
+ test of PB implicit solvent on 1tsr b-chain                                   
+ &cntrl                                                                        
+   ntx=1, imin=1, ipb=1, inp=1                                                 
+ /                                                                             
+ &pb                                                                           
+   npbverb=0, istrng=0, epsout=80.0, epsin=1.0, space=0.5,                     
+   accept=0.001, radiopt=0, dprob=1.4, arcres=0.25,                            
+   eneopt=2, bcopt=6,                                                          
+ /                                                                             
+PB Warning in pb_read(): sprob=0.557 is optimized for inp=2 and  should not be used with inp=1. It has been reset to 1.4.
+PB Warning in pb_read(): cavity_surften=0.0378 is optimized for inp=2  and should not be used with inp=1. It has been reset to 0.005000.
+PB Warning in pb_read(): cavity_offset=-0.5692 is optimized for inp=2  and should not be used with inp=1. It has been reset to 0.000.
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 11/15/04 Time = 15:13:17
+ NATOM  =    3010 NTYPES =      14 NBONH =    1486 MBONA  =    1559
+ NTHETH =    3362 MTHETA =    2115 NPHIH =    6127 MPHIA  =    2961
+ NHPARM =       0 NPARM  =       0 NNB   =   16582 NRES   =     194
+ NBONA  =    1559 NTHETA =    2115 NPHIA =    2961 NUMBND =      41
+ NUMANG =      89 NPTRA  =      30 NATYP =      28 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      24 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real              111516
+|     Hollerith          18256
+|     Integer           143139
+|     Max Pairs              1
+|     Max Rstack             1
+|     Max Istack             1
+|       Total             1501 kbytes
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =      50, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       1, ipb     =       1, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   8.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =       1, ncyc    =      10, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+ Total surface charge      -2.9481
+ Reaction field energy  -2432.8253
+ Cavity solvation energy     50.0651
+
+ NSTEP =        1   TIME(PS) =       0.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =    -15823.3228  EKtot   =         0.0000  EPtot      =         0.0000
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =     -1621.1656
+ EELEC  =    -11819.3970  EPB     =     -2432.8253  RESTRAINT  =         0.0000
+ ECAVITY=        50.0651  EDISPER =         0.0000
+ ------------------------------------------------------------------------------
+
+
+
+  Maximum number of minimization cycles reached.
+
+
+                    FINAL RESULTS
+
+
+ NSTEP =        1   TIME(PS) =       0.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =    -15823.3228  EKtot   =         0.0000  EPtot      =         0.0000
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =     -1621.1656
+ EELEC  =    -11819.3970  EPB     =     -2432.8253  RESTRAINT  =         0.0000
+ ECAVITY=        50.0651  EDISPER =         0.0000
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+| Total time                    43.72
+| Read prm/crd time              0.05
+| Force time                    43.67
+| Nonbond force                 43.67
+| PB Nonbond                    43.67
+| PB NB list                     0.22
+| PB FD grid                     0.01
+| PB Sasa                        2.18
+| PB FD force                   40.94
+| PB Set linear sys              1.10
+| PB Solver                     36.30
+| PB Direct                      0.32
+| PB SA srf                      0.11
+| PB SA arc                      2.07
+| PB SA arc setup                0.01
+| PB circle                      1.71
+| PB exclude                     0.35
+| PB exmol                       1.09
+| PB exmol setup                 0.06
+| PB exmol part a                0.01
+| PB exmol part b                0.31
+| PB exmol part c                0.08
+| PB exmol part d                0.02
+| PB exmol part e                0.15
+| PB exmol part f                0.35
+| PB epsbnd                      0.02
+| PB epsmap                      0.09
+|           Job began  at 12:15:49.881  on 02/18/2014
+|           Setup done at 12:15:49.933  on 02/18/2014
+|           Run   done at 12:16:33.600  on 02/18/2014
+|     wallclock() was called     100 times

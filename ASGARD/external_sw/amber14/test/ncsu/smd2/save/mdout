@@ -1,0 +1,330 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 02/04/2010 at 21:09:15
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: mdout                                                                 
+|INPCRD: inpcrd                                                                
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+ 
+ Here is the input file:
+ 
+                                                                               
+&cntrl                                                                         
+  cut = 77.0, ntb = 0, ntp = 0, ntt = 3, gamma_ln = 1.0,                       
+  irest = 1, ntx = 5, ntc = 2, ntf = 2, tol = 0.000001,                        
+  ioutfm = 1, igb = 2, gbsa = 1,                                               
+  dt = 0.002, ntpr = 50, ntwx = 0, ntwr = 500, nstlim = 500,                   
+  ig = 29166, ntr = 0, nscm = 5000                                             
+/                                                                              
+                                                                               
+ncsu_smd                                                                       
+                                                                               
+  !                                                                            
+  ! try it with path = (-5.0, 5.0), ntwx > 0 and ntslim >= 50000               
+  !                                                                            
+                                                                               
+  output_file = 'work.txt'                                                     
+  output_freq = 1                                                              
+                                                                               
+  variable                                                                     
+    type = COS_OF_DIHEDRAL ! sum of cosines of dihedral angles                 
+                                                                               
+    i = ( 2,  5,  7, 17,                                                       
+         17, 19, 21, 31,                                                       
+         31, 33, 35, 45,                                                       
+         45, 47, 49, 59,                                                       
+         59, 61, 63, 73)                                                       
+                                                                               
+    path_mode = LINES ! steer along line segments                              
+    path = (-5.0, -4.0, -4.0, -5.0)                                            
+                                                                               
+    harm = (100.0)                                                             
+    harm_mode = SPLINE ! default                                               
+                                                                               
+  end variable                                                                 
+                                                                               
+end ncsu_smd                                                                   
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+| New format PARM file being parsed.
+| Version =    1.000 Date = 12/14/09 Time = 14:08:03
+ NATOM  =      82 NTYPES =       7 NBONH =      42 MBONA  =      44
+ NTHETH =     104 MTHETA =      64 NPHIH =     182 MPHIA  =     188
+ NHPARM =       0 NPARM  =       0 NNB   =     491 NRES   =       7
+ NBONA  =      44 NTHETA =      64 NPHIA =     188 NUMBND =       8
+ NUMANG =      18 NPTRA  =      25 NATYP =       7 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      14 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are H(N)-modified Bondi radii (mbondi2)                                             
+
+|     Memory Use     Allocated
+|     Real                5119
+|     Hollerith            255
+|     Integer            28101
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total              150 kbytes
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       5, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =      50, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       1, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       0, igb     =       2, nsnb    =      25
+     ipol    =       0, gbsa    =       1, iesp    =       0
+     dielc   =   1.00000, cut     =  77.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    0.80000
+     gbbeta  =   0.00000, gbgamma =   2.90912, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =       500, nscm    =      5000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00200, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =   29166
+     temp0   = 300.00000, tempi   =   0.00000, gamma_ln=   1.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00000
+
+| MPI Timing options:
+|      profile_mpi =        0
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+|  Atom division among processors:
+|         0      20      48      62      82
+|  Running AMBER/MPI version on    4 nodes
+
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+ NCSU :  *  *  *  *  *  *  *  *  S T E E R E D  M.D.  *  *  *  *  *  *  *  *  *
+ NCSU : 
+ NCSU : output_file = work.txt
+ NCSU : output_freq = 1 (0.0020 ps)
+ NCSU : 
+ NCSU : CV #1
+ NCSU : 
+ NCSU :  <> path = (-5.0000, -4.0000, -4.0000, -5.0000)
+ NCSU :  <> path_mode = LINES
+ NCSU :  <> harm = (100.0000)
+ NCSU :  <> harm_mode = SPLINE
+ NCSU : 
+ NCSU :   type = 'COS_OF_DIHEDRAL'
+ NCSU :         2 [CH3] ==> 5 [C] ==> 7 [N] ==> 17 [CA]
+ NCSU :         17 [CA] ==> 19 [C] ==> 21 [N] ==> 31 [CA]
+ NCSU :         31 [CA] ==> 33 [C] ==> 35 [N] ==> 45 [CA]
+ NCSU :         45 [CA] ==> 47 [C] ==> 49 [N] ==> 59 [CA]
+ NCSU :         59 [CA] ==> 61 [C] ==> 63 [N] ==> 73 [CA]
+ NCSU : 
+ NCSU :  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+
+|  # of SOLUTE  degrees of freedom (RNDFP):     204.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =     204.     NUM_NOSHAKE =      0     CORRECTED RNDFP =     204.
+|  TOTAL # of degrees of freedom (RNDF) =     204.
+
+ NSTEP =       50   TIME(PS) =       0.100  TEMP(K) =   275.94  PRESS =     0.0
+ Etot   =       167.4983  EKtot   =        55.9319  EPtot      =       111.5664
+ BOND   =        15.8568  ANGLE   =        52.2629  DIHED      =        86.8661
+ 1-4 NB =        16.2049  1-4 EEL =       287.9575  VDWAALS    =       -10.9421
+ EELEC  =      -291.1708  EGB     =       -49.0562  RESTRAINT  =         0.0000
+ ESURF=         3.5873
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      100   TIME(PS) =       0.200  TEMP(K) =   288.45  PRESS =     0.0
+ Etot   =       170.7038  EKtot   =        58.4669  EPtot      =       112.2370
+ BOND   =        14.4795  ANGLE   =        60.0408  DIHED      =        85.7967
+ 1-4 NB =        14.1420  1-4 EEL =       282.7831  VDWAALS    =       -11.3633
+ EELEC  =      -290.0343  EGB     =       -47.1461  RESTRAINT  =         0.0000
+ ESURF=         3.5386
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      150   TIME(PS) =       0.300  TEMP(K) =   289.60  PRESS =     0.0
+ Etot   =       177.4099  EKtot   =        58.7009  EPtot      =       118.7090
+ BOND   =        13.9542  ANGLE   =        52.9962  DIHED      =       105.0150
+ 1-4 NB =        12.6748  1-4 EEL =       282.4215  VDWAALS    =       -15.5026
+ EELEC  =      -290.6914  EGB     =       -45.6790  RESTRAINT  =         0.0000
+ ESURF=         3.5203
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      200   TIME(PS) =       0.400  TEMP(K) =   302.89  PRESS =     0.0
+ Etot   =       180.9301  EKtot   =        61.3929  EPtot      =       119.5372
+ BOND   =        16.5717  ANGLE   =        47.3139  DIHED      =       107.4803
+ 1-4 NB =        14.8982  1-4 EEL =       286.3698  VDWAALS    =       -16.9853
+ EELEC  =      -293.6555  EGB     =       -45.9481  RESTRAINT  =         0.0000
+ ESURF=         3.4923
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      250   TIME(PS) =       0.500  TEMP(K) =   260.88  PRESS =     0.0
+ Etot   =       187.1558  EKtot   =        52.8786  EPtot      =       134.2772
+ BOND   =        17.1069  ANGLE   =        62.2403  DIHED      =       104.7649
+ 1-4 NB =        15.0971  1-4 EEL =       289.5548  VDWAALS    =       -16.7702
+ EELEC  =      -297.1551  EGB     =       -44.0727  RESTRAINT  =         0.0000
+ ESURF=         3.5113
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      300   TIME(PS) =       0.600  TEMP(K) =   282.22  PRESS =     0.0
+ Etot   =       184.4709  EKtot   =        57.2035  EPtot      =       127.2675
+ BOND   =        17.2748  ANGLE   =        55.5762  DIHED      =       107.2426
+ 1-4 NB =        12.2918  1-4 EEL =       286.0311  VDWAALS    =       -15.5175
+ EELEC  =      -294.7725  EGB     =       -44.3639  RESTRAINT  =         0.0000
+ ESURF=         3.5049
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      350   TIME(PS) =       0.700  TEMP(K) =   330.80  PRESS =     0.0
+ Etot   =       182.3983  EKtot   =        67.0512  EPtot      =       115.3471
+ BOND   =        12.9716  ANGLE   =        51.7927  DIHED      =       101.1596
+ 1-4 NB =        13.2004  1-4 EEL =       285.4573  VDWAALS    =       -15.7416
+ EELEC  =      -293.3998  EGB     =       -43.6556  RESTRAINT  =         0.0000
+ ESURF=         3.5624
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      400   TIME(PS) =       0.800  TEMP(K) =   306.12  PRESS =     0.0
+ Etot   =       179.5992  EKtot   =        62.0495  EPtot      =       117.5497
+ BOND   =        17.3184  ANGLE   =        50.0925  DIHED      =       100.9027
+ 1-4 NB =        14.3564  1-4 EEL =       283.5260  VDWAALS    =       -14.9441
+ EELEC  =      -294.6974  EGB     =       -42.5575  RESTRAINT  =         0.0000
+ ESURF=         3.5529
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      450   TIME(PS) =       0.900  TEMP(K) =   278.28  PRESS =     0.0
+ Etot   =       170.9088  EKtot   =        56.4060  EPtot      =       114.5028
+ BOND   =        19.9606  ANGLE   =        61.7312  DIHED      =        83.1469
+ 1-4 NB =        12.8673  1-4 EEL =       281.1143  VDWAALS    =       -13.5707
+ EELEC  =      -291.4499  EGB     =       -42.8847  RESTRAINT  =         0.0000
+ ESURF=         3.5877
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =      500   TIME(PS) =       1.000  TEMP(K) =   274.14  PRESS =     0.0
+ Etot   =       170.0523  EKtot   =        55.5658  EPtot      =       114.4865
+ BOND   =         9.9899  ANGLE   =        60.6437  DIHED      =        86.9794
+ 1-4 NB =        17.4990  1-4 EEL =       282.7687  VDWAALS    =       -11.7593
+ EELEC  =      -292.4142  EGB     =       -42.8089  RESTRAINT  =         0.0000
+ ESURF=         3.5882
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R     500 S T E P S
+
+
+ NSTEP =      500   TIME(PS) =       1.000  TEMP(K) =   292.95  PRESS =     0.0
+ Etot   =       177.0557  EKtot   =        59.3793  EPtot      =       117.6763
+ BOND   =        15.0505  ANGLE   =        55.5629  DIHED      =        96.2789
+ 1-4 NB =        14.2424  1-4 EEL =       285.0241  VDWAALS    =       -14.1785
+ EELEC  =      -292.9692  EGB     =       -44.8790  RESTRAINT  =         0.0000
+ ESURF=         3.5441
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =      500   TIME(PS) =       1.000  TEMP(K) =    22.14  PRESS =     0.0
+ Etot   =         7.0222  EKtot   =         4.4877  EPtot      =         8.2817
+ BOND   =         3.0636  ANGLE   =         4.4897  DIHED      =         9.1964
+ 1-4 NB =         1.3219  1-4 EEL =         2.0714  VDWAALS    =         1.7853
+ EELEC  =         2.3536  EGB     =         2.1545  RESTRAINT  =         0.0000
+ ESURF=         0.0371
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|>>>>>>>>PROFILE of Average TIMES>>>>>>>>> 
+|    Read coords time           0.00 ( 0.02% of Total)
+|                Calc gb radii              0.09 (13.00% of Gen B)
+|                Communicate gb radii       0.16 (24.13% of Gen B)
+|                Calc gb diag               0.14 (20.81% of Gen B)
+|                Calc gb off-diag           0.11 (17.09% of Gen B)
+|                Surface area energy        0.16 (23.69% of Gen B)
+|                Other                      0.01 ( 1.27% of Gen B)
+|             Gen Born time              0.66 (99.74% of Nonbo)
+|             IPS excludes               0.00 ( 0.26% of Nonbo)
+|          Nonbond force              0.66 (72.83% of Force)
+|          Bond/Angle/Dihedral        0.03 ( 3.79% of Force)
+|          FRC Collect time           0.05 ( 6.02% of Force)
+|          Other                      0.16 (17.35% of Force)
+|       Force time                 0.91 (85.99% of Runmd)
+|       Shake time                 0.00 ( 0.41% of Runmd)
+|       Verlet update time         0.11 (10.13% of Runmd)
+|       CRD distribute time        0.03 ( 2.41% of Runmd)
+|       Other                      0.01 ( 1.06% of Runmd)
+|    Runmd Time                 1.06 (96.87% of Total)
+|    Other                      0.03 ( 3.11% of Total)
+| Total time                 1.09 (100.0% of ALL  )
+
+| Number of list builds   :          0
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 21:09:15.101  on 02/04/2010
+|           Setup done at 21:09:15.140  on 02/04/2010
+|           Run   done at 21:09:16.197  on 02/04/2010
+|     wallclock() was called   18520 times

@@ -1,0 +1,60 @@
+#!/bin/csh -f
+
+echo
+echo [31m"Step 1"[0m
+echo [31m"make the coordinate center at the origin (0,0,0), the tranlation vector is saved in file vector.save. The purpose of this step"[0m
+echo [31m"is to avoide the problem of big coordinates causing no space between two values in gaussian output, which makes some programs (such as espgen) fail."[0m
+
+echo [32m"../../../bin/translate -i nad.mol2 -f mol2 -o nad_c.mol2 -c center -a1 0 > vector.out || goto error"[0m
+../../../bin/translate -i nad.mol2 -f mol2 -o nad_c.mol2 -c center -a1 0 > vector.out || goto error
+
+echo
+echo [31m"Step 2"[0m
+echo [31m"run antechamber to generate gaussian gcrt file"[0m
+echo [32m"../../../bin/antechamber -i nad_c.mol2 -fi mol2 -o nad.gau -fo gcrt || goto error"[0m 
+../../../bin/antechamber -i nad_c.mol2 -fi mol2 -o nad.gau -fo gcrt || goto error 
+
+echo
+echo [31m"Step 3"[0m
+echo [31m"run gaussian, then generate a new mol2 file (nad_resp.mol2) from the gaussian output file, using the charge flag of '-resp'"[0m
+echo [32m"../../../bin/antechamber -i nad.gout -fi gout -fo mol2 -o nad_resp.mol2 -c resp || goto error (not performed)"[0m
+
+echo 
+echo [31m"Step 4"[0m
+echo [31m"Run antechamber to get RESP charges from the gaussian output file"[0m
+echo [32m"../../../bin/antechamber -i nad.gout -fi gout -o nad.ac -fo ac -c resp || goto error"[0m 
+../../../bin/antechamber -i nad.gout -fi gout -o nad.ac -fo ac -c resp || goto error 
+
+echo
+echo [31m"Step 5"[0m
+echo [31m"read in nad.mol2, read resp charges from nad.ac"[0m
+echo [32m"../../../bin/antechamber -i nad.mol2 -fi mol2 -o nad_resp.mol2 -fo mol2 -a nad.ac -fa ac -ao crg  || goto error"[0m
+../../../bin/antechamber -i nad.mol2 -fi mol2 -o nad_resp.mol2 -fo mol2 -a nad.ac -fa ac -ao crg  || goto error
+
+echo
+echo [31m"Step 6"[0m
+echo [31m"run parmchk to find missing force field parameters"[0m
+echo [32m"../../../bin/parmchk -i nad_resp.mol2 -f mol2 -o frcmod_resp || goto error"[0m
+../../../bin/parmchk -i nad_resp.mol2 -f mol2 -o frcmod_resp || goto error
+
+echo
+echo [31m"Step 7"[0m
+echo [31m"run tleap to generate topology file"[0m
+echo [32m"../../../bin/tleap -s -f leap_resp.in > leap_resp.out"[0m
+../../../bin/tleap -s -f leap_resp.in > leap_resp.out
+
+echo [32m"../../dacdif -t 1 nad_resp.mol2.save nad_resp.mol2"[0m
+../../dacdif -t 1 nad_resp.mol2.save nad_resp.mol2
+echo [32m"../../dacdif frcmod_resp.save frcmod_resp"[0m
+../../dacdif frcmod_resp.save frcmod_resp
+echo [32m"../../dacdif prmtop_resp.save prmtop_resp"[0m
+../../dacdif prmtop_resp.save prmtop_resp
+echo [32m"../../dacdif prmcrd_resp.save prmcrd_resp"[0m
+../../dacdif prmcrd_resp.save prmcrd_resp
+
+/bin/rm -f ANTE* ATOMTYPE.INF BCCTYPE.INF for* FOR* NEWPDB.PDB PREP.INF mopac.in esout QOUT qout punch
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

@@ -1,0 +1,464 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 12/01/2009 at 00:14:18
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin.3                                                                
+| MDOUT: mdout.3                                                               
+|INPCRD: inpcrd.3                                                              
+|  PARM: prmtop                                                                
+|RESTRT: restrt.3                                                              
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd.3                                                               
+|MDINFO: /dev/null                                                             
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+
+ Here is the input file:
+
+                                                                               
+ &cntrl                                                                        
+  igb = 0, ntx = 7, irest = 1,                                                 
+  ntb = 1, ntp = 0, temp0 = 320.0,                                             
+  ntt = 3, gamma_ln = 1.0,                                                     
+  ntf = 2, ntc = 2, tol = 0.00001,                                             
+  cut = 8.0, dt = 0.002,                                                       
+  ntpr = 5, ntwx = 0, nstlim = 5,                                              
+  numexchg = 10                                                                
+ /                                                                             
+                                                                               
+ncsu_abmd                                                                      
+                                                                               
+   monitor_file = 'abmd.3.txt'                                                 
+   monitor_freq = 3                                                            
+                                                                               
+   umbrella_file = 'umbrella.3.nc'                                             
+                                                                               
+   mode = FLOODING                                                             
+                                                                               
+   timescale = 4.0                                                             
+                                                                               
+   variable ! 1                                                                
+      type = R_OF_GYRATION                                                     
+      i = (1, 5, 8, 10, 12, 29, 31, 33, 41                                     
+      , 43, 53, 55, 57, 59, 70, 72, 74, 84, 86                                 
+      , 88, 91, 93, 95, 105, 107, 109, 129, 131, 133                           
+      , 136)                                                                   
+      min = 0.0 max = 12.0 resolution = 0.5                                    
+   end variable                                                                
+                                                                               
+end ncsu_abmd                                                                  
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+ getting new box info from bottom of inpcrd
+|  INFO: Old style inpcrd file read
+
+| peek_ewald_inpcrd: Box info found
+|Largest sphere to fit in unit cell has radius =    14.075
+| New format PARM file being parsed.
+| Version =    1.000 Date = 09/01/07 Time = 11:29:05
+ NATOM  =    3143 NTYPES =      15 NBONH =    3064 MBONA  =      80
+ NTHETH =     139 MTHETA =     110 NPHIH =     283 MPHIA  =     199
+ NHPARM =       0 NPARM  =       0 NNB   =    4756 NRES   =    1013
+ NBONA  =      80 NTHETA =     110 NPHIA =     199 NUMBND =      31
+ NUMANG =      60 NPTRA  =      33 NATYP =      23 NPHB   =       1
+ IFBOX  =       2 NMXRS  =      24 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real              244924
+|     Hollerith          10444
+|     Integer           112413
+|     Max Pairs        1047666
+|     nblistReal         37716
+|     nblist Int        124375
+|       Total             7266 kbytes
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+     BOX TYPE: TRUNCATED OCTAHEDRON
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+NGLY                                                                            
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Replica exchange
+     numexchg=      10, rem=       1
+
+Nature and format of input:
+     ntx     =       7, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       5, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       1, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   8.00000, intdiel =   1.00000
+     
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =         5, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00200, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =   71277
+     temp0   = 320.00000, tempi   =   0.00000, gamma_ln=   1.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00001
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       1
+     Box X =   34.476   Box Y =   34.476   Box Z =   34.476
+     Alpha =  109.471   Beta  =  109.471   Gamma =  109.471
+     NFFT1 =   36       NFFT2 =   36       NFFT3 =   36
+     Cutoff=    8.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.34864
+     Interpolation order =    4
+
+| MPI Timing options:
+|      profile_mpi =        0
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+NGLY                                                                            
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:     1001
+|  Atom division among processors:
+|         0    3143
+
+     Sum of charges from parm topology file =  -0.00000001
+     Forcing neutrality...
+|  Running AMBER/MPI version on    1 nodes
+
+|  MULTISANDER:    4 groups.    1 processors out of    4 total.
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+REMD: Getting initial energy for replica    3
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.2738E-14   at   2.422500
+| CHECK d/dx switch(x): max rel err =   0.8332E-11   at   2.782960
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =     650919
+| TOTAL SIZE OF NONBOND LIST =     650919
+REMD: Exiting runmd after getting initial energies for replica  3
+REMD: myEptot=     -10131.4052 myTargetTemp= 330.00 mytemp=   0.00
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          1 RREMD= 0
+Replica          Temp= 330.00 Indx=  4 Rep#=  3 EPot=  -10131.41
+Partner          Temp= 300.00 Indx=  1 Rep#=  2 EPot=  -10313.68
+Metrop=     0.858941E-12 delta=     0.277831E+02 o_scaling=      -1.00
+Rand=       0.764559E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 330.00->330.00
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.010  TEMP(K) =   310.03  PRESS =     0.0
+ Etot   =     -8147.3370  EKtot   =      1960.7134  EPtot      =    -10108.0503
+ BOND   =        28.5942  ANGLE   =        66.3317  DIHED      =        73.9462
+ 1-4 NB =        29.5040  1-4 EEL =       526.9495  VDWAALS    =      1332.3900
+ EELEC  =    -12165.7659  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.1868E-03
+ TEMP0  =       330.0000  REPNUM  =              3  EXCHANGE#  =              1
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10095.0514 myTargetTemp= 330.00 mytemp= 310.03
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          2 RREMD= 0
+Replica          Temp= 330.00 Indx=  4 Rep#=  3 EPot=  -10095.05
+Partner          Temp= 320.00 Indx=  3 Rep#=  4 EPot=  -10204.88
+Metrop=     0.549390E-02 delta=     0.520412E+01 o_scaling=      -1.00
+Rand=       0.897986E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 330.00->330.00
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.020  TEMP(K) =   304.61  PRESS =     0.0
+ Etot   =     -8138.7025  EKtot   =      1926.3968  EPtot      =    -10065.0992
+ BOND   =        34.5145  ANGLE   =        59.0620  DIHED      =        76.2926
+ 1-4 NB =        30.9071  1-4 EEL =       526.0751  VDWAALS    =      1336.4496
+ EELEC  =    -12128.4001  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.7804E-04
+ TEMP0  =       330.0000  REPNUM  =              3  EXCHANGE#  =              2
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10071.5893 myTargetTemp= 330.00 mytemp= 304.61
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          3 RREMD= 0
+Replica          Temp= 330.00 Indx=  4 Rep#=  3 EPot=  -10071.59
+Partner          Temp= 300.00 Indx=  1 Rep#=  2 EPot=  -10289.75
+Metrop=     0.390319E-14 delta=     0.331770E+02 o_scaling=      -1.00
+Rand=       0.347589E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 330.00->330.00
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.030  TEMP(K) =   311.68  PRESS =     0.0
+ Etot   =     -8123.4201  EKtot   =      1971.1658  EPtot      =    -10094.5859
+ BOND   =        35.4631  ANGLE   =        57.8470  DIHED      =        76.1443
+ 1-4 NB =        29.2665  1-4 EEL =       521.8588  VDWAALS    =      1326.8648
+ EELEC  =    -12142.0304  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.1314E-03
+ TEMP0  =       330.0000  REPNUM  =              3  EXCHANGE#  =              3
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10078.7842 myTargetTemp= 330.00 mytemp= 311.68
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          4 RREMD= 0
+Replica          Temp= 330.00 Indx=  4 Rep#=  3 EPot=  -10078.78
+Partner          Temp= 320.00 Indx=  3 Rep#=  1 EPot=  -10151.77
+Metrop=     0.328585E-01 delta=     0.341554E+01 o_scaling=      -1.00
+Rand=       0.931953E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 330.00->330.00
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.040  TEMP(K) =   307.52  PRESS =     0.0
+ Etot   =     -8108.7452  EKtot   =      1944.8385  EPtot      =    -10053.5837
+ BOND   =        27.3650  ANGLE   =        63.3337  DIHED      =        77.0534
+ 1-4 NB =        32.0497  1-4 EEL =       522.3056  VDWAALS    =      1308.2066
+ EELEC  =    -12083.8976  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.6501E-04
+ TEMP0  =       330.0000  REPNUM  =              3  EXCHANGE#  =              4
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10056.0250 myTargetTemp= 330.00 mytemp= 307.52
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          5 RREMD= 0
+Replica          Temp= 330.00 Indx=  4 Rep#=  3 EPot=  -10056.02
+Partner          Temp= 300.00 Indx=  1 Rep#=  2 EPot=  -10297.77
+Metrop=     0.115179E-15 delta=     0.367000E+02 o_scaling=      -1.00
+Rand=       0.739325E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 330.00->330.00
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.050  TEMP(K) =   313.30  PRESS =     0.0
+ Etot   =     -8103.2849  EKtot   =      1981.3796  EPtot      =    -10084.6646
+ BOND   =        23.3223  ANGLE   =        70.6197  DIHED      =        72.9056
+ 1-4 NB =        30.3635  1-4 EEL =       525.5428  VDWAALS    =      1296.9121
+ EELEC  =    -12104.3306  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.6485E-04
+ TEMP0  =       330.0000  REPNUM  =              3  EXCHANGE#  =              5
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10088.4212 myTargetTemp= 330.00 mytemp= 313.30
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          6 RREMD= 0
+Replica          Temp= 330.00 Indx=  4 Rep#=  3 EPot=  -10088.42
+Partner          Temp= 320.00 Indx=  3 Rep#=  4 EPot=  -10147.92
+Metrop=     0.659521E-01 delta=     0.271883E+01 o_scaling=      -1.00
+Rand=       0.736502E-01 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 330.00->330.00
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.060  TEMP(K) =   314.30  PRESS =     0.0
+ Etot   =     -8089.2300  EKtot   =      1987.7369  EPtot      =    -10076.9669
+ BOND   =        35.5809  ANGLE   =        68.8027  DIHED      =        75.0275
+ 1-4 NB =        31.3550  1-4 EEL =       516.6084  VDWAALS    =      1283.1253
+ EELEC  =    -12087.4666  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.1280E-03
+ TEMP0  =       330.0000  REPNUM  =              3  EXCHANGE#  =              6
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10078.6040 myTargetTemp= 330.00 mytemp= 314.30
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          7 RREMD= 0
+Replica          Temp= 330.00 Indx=  4 Rep#=  3 EPot=  -10078.60
+Partner          Temp= 300.00 Indx=  1 Rep#=  2 EPot=  -10242.22
+Metrop=     0.182952E-10 delta=     0.247244E+02 o_scaling=      -1.00
+Rand=       0.457322E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 330.00->330.00
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.070  TEMP(K) =   310.45  PRESS =     0.0
+ Etot   =     -8094.1171  EKtot   =      1963.3882  EPtot      =    -10057.5053
+ BOND   =        19.7400  ANGLE   =        62.8722  DIHED      =        79.0933
+ 1-4 NB =        31.1636  1-4 EEL =       535.4859  VDWAALS    =      1268.0533
+ EELEC  =    -12053.9137  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.7778E-04
+ TEMP0  =       330.0000  REPNUM  =              3  EXCHANGE#  =              7
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10041.8230 myTargetTemp= 330.00 mytemp= 310.45
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          8 RREMD= 0
+Replica          Temp= 330.00 Indx=  4 Rep#=  3 EPot=  -10041.82
+Partner          Temp= 320.00 Indx=  3 Rep#=  1 EPot=  -10065.62
+Metrop=     0.367909E+00 delta=     0.999918E+00 o_scaling=       1.02
+Rand=       0.263101E+00 MyScaling=       0.98 Success= T
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 330.00->320.00
+REMD: scaling velocities by    0.985 to match new bath T  320.000
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.080  TEMP(K) =   306.36  PRESS =     0.0
+ Etot   =     -8149.9049  EKtot   =      1937.5216  EPtot      =    -10087.4264
+ BOND   =        25.5312  ANGLE   =        60.4700  DIHED      =        76.1657
+ 1-4 NB =        32.0008  1-4 EEL =       532.0816  VDWAALS    =      1272.5048
+ EELEC  =    -12086.1806  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.9876E-06
+ TEMP0  =       320.0000  REPNUM  =              3  EXCHANGE#  =              8
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10109.1624 myTargetTemp= 320.00 mytemp= 306.36
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=          9 RREMD= 0
+Replica          Temp= 320.00 Indx=  3 Rep#=  3 EPot=  -10109.16
+Partner          Temp= 310.00 Indx=  2 Rep#=  4 EPot=  -10171.68
+Not controlling exchange.
+Rand=       0.926156E+00 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 320.00->320.00
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.090  TEMP(K) =   308.23  PRESS =     0.0
+ Etot   =     -8149.5128  EKtot   =      1949.3392  EPtot      =    -10098.8519
+ BOND   =        34.0234  ANGLE   =        69.8173  DIHED      =        69.0959
+ 1-4 NB =        29.2180  1-4 EEL =       526.3454  VDWAALS    =      1299.0573
+ EELEC  =    -12126.4092  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.7619E-04
+ TEMP0  =       320.0000  REPNUM  =              3  EXCHANGE#  =              9
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10086.2611 myTargetTemp= 320.00 mytemp= 308.23
+==========================REMD EXCHANGE CALCULATION==========================
+Exch=         10 RREMD= 0
+Replica          Temp= 320.00 Indx=  3 Rep#=  3 EPot=  -10086.26
+Partner          Temp= 330.00 Indx=  4 Rep#=  1 EPot=  -10052.94
+Not controlling exchange.
+Rand=       0.207012E-01 MyScaling=      -1.00 Success= F
+========================END REMD EXCHANGE CALCULATION========================
+REMD: checking to see if bath T has changed: 320.00->320.00
+|  # of SOLUTE  degrees of freedom (RNDFP):    6365.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    6365.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    6365.
+|  TOTAL # of degrees of freedom (RNDF) =    6365.
+
+ NSTEP =        5   TIME(PS) =       0.100  TEMP(K) =   303.34  PRESS =     0.0
+ Etot   =     -8144.3630  EKtot   =      1918.3647  EPtot      =    -10062.7277
+ BOND   =        28.2686  ANGLE   =        65.8906  DIHED      =        72.8405
+ 1-4 NB =        32.2884  1-4 EEL =       538.8995  VDWAALS    =      1346.5419
+ EELEC  =    -12147.4572  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.1696E-04
+ TEMP0  =       320.0000  REPNUM  =              3  EXCHANGE#  =             10
+ ------------------------------------------------------------------------------
+
+REMD: myEptot=     -10069.3233 myTargetTemp= 320.00 mytemp= 303.34
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.02 ( 0.36% of Total)
+|                Build the list             0.67 (94.78% of List )
+|                Other                      0.04 ( 5.22% of List )
+|             List time                  0.71 (16.10% of Nonbo)
+|                   Short_ene time             2.56 (98.48% of Direc)
+|                   Other                      0.04 ( 1.52% of Direc)
+|                Direct Ewald time          2.60 (70.45% of Ewald)
+|                Adjust Ewald time          0.03 ( 0.73% of Ewald)
+|                Self Ewald time            0.00 ( 0.02% of Ewald)
+|                   Fill Bspline coeffs        0.05 ( 4.85% of Recip)
+|                   Fill charge grid           0.11 (10.62% of Recip)
+|                   Scalar sum                 0.37 (34.97% of Recip)
+|                   Grad sum                   0.17 (16.56% of Recip)
+|                      FFT back comm time         0.00 ( 0.07% of FFT t)
+|                      Other                      0.35 (100.0% of FFT t)
+|                   FFT time                   0.35 (32.92% of Recip)
+|                   Other                      0.00 ( 0.08% of Recip)
+|                Recip Ewald time           1.05 (28.49% of Ewald)
+|                Force Adjust               0.00 ( 0.09% of Ewald)
+|                Virial junk                0.00 ( 0.12% of Ewald)
+|                Start sycnronization       0.00 ( 0.01% of Ewald)
+|                Other                      0.00 ( 0.10% of Ewald)
+|             Ewald time                 3.69 (83.87% of Nonbo)
+|             IPS excludes               0.00 ( 0.01% of Nonbo)
+|             Other                      0.00 ( 0.02% of Nonbo)
+|          Nonbond force              4.39 (84.20% of Force)
+|          Bond/Angle/Dihedral        0.02 ( 0.38% of Force)
+|          Other                      0.80 (15.42% of Force)
+|       Force time                 5.22 (95.43% of Runmd)
+|       Shake time                 0.02 ( 0.36% of Runmd)
+|       Verlet update time         0.22 ( 3.97% of Runmd)
+|       Other                      0.01 ( 0.24% of Runmd)
+|    Runmd Time                 5.47 (97.69% of Total)
+|    Other                      0.11 ( 1.95% of Total)
+| Total time                 5.60 (100.0% of ALL  )
+
+| Highest rstack allocated:     191619
+| Highest istack allocated:       3143
+|           Job began  at 00:14:18.084  on 12/01/2009
+|           Setup done at 00:14:18.213  on 12/01/2009
+|           Run   done at 00:14:23.683  on 12/01/2009
+|     wallclock() was called    3198 times

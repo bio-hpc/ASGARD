@@ -1,0 +1,8 @@
+#!/bin/sh
+solu="ala"
+solv="spc"
+nsite=2
+../Run -closure kh -solute $solu -solvent $solv -nsite $nsite -temperature 298 -delta 10
+../Run -closure pse1 -solute $solu -solvent $solv -nsite $nsite -temperature 298 -delta 10
+../Run -closure kh pse2 pse3 -solute $solu -solvent $solv -nsite $nsite -temperature 298 -delta 10
+../Run -closure kh pse2 pse3 hnc -solute $solu -solvent $solv -nsite $nsite -temperature 298 -delta 10 -err 5e-3

@@ -1,0 +1,264 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 04/29/2013 at 16:02:26
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: ala.min.out                                                           
+|INPCRD: ala.min.nc                                                            
+|  PARM: ala.parm7                                                             
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+|   Xvv: ../../../AmberTools/test/rism1d/spc-kh/spc.xvv.save
+
+ Here is the input file:
+
+Alanine dipeptide run                                                          
+ &cntrl                                                                        
+    ntx=1, ntpr=2, ntwx=0,ntwr=0                                               
+    ioutfm=1                                                                   
+    imin=1 ,drms=1.   !weak convergence criteria                               
+    maxcyc=7,ntmin=3                                                           
+    ig=314159                                                                  
+    ntb=0                                                                      
+    irism=1                                                                    
+    cut=999,                                                                   
+ /                                                                             
+ &rism                                                                         
+    !a real minimization should use a much lower tolerance                     
+    tolerance=1e-6                                                             
+    ng3=64,64,64,                                                              
+    solvbox=32d0,32d0,32d0,                                                    
+    buffer = -1,                                                               
+    solvcut=12d0                                                               
+    verbose=1                                                                  
+ /                                                                             
+|3D-RISM Forcing igb=6
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 12/10/08 Time = 14:10:41
+ NATOM  =      22 NTYPES =       7 NBONH =      12 MBONA  =       9
+ NTHETH =      25 MTHETA =      11 NPHIH =      42 MPHIA  =      22
+ NHPARM =       0 NPARM  =       0 NNB   =      99 NRES   =       3
+ NBONA  =       9 NTHETA =      11 NPHIA =      22 NUMBND =       8
+ NUMANG =      16 NPTRA  =      21 NATYP =       7 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      10 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are modified Bondi radii (mbondi)                                                   
+
+|     Memory Use     Allocated
+|     Real                2060
+|     Hollerith             71
+|     Integer            21047
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total               98 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       2, ntrx    =       1, ntwr    =       0
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       1, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       6, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     = 999.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =       7, ncyc    =      10, ntmin   =       3
+     dx0     =   0.01000, drms    =   1.00000
+
+LMOD:
+     xmin_method                  = LBFGS
+     lbfgs_memory_depth           =       3
+     matrix_vector_product_method = forward finite difference
+     xmin_verbosity               =       0
+3D-RISM:
+     closure   =  KH      
+     solvcut   =  12.00000, buffer  =  -1.00000
+     grd_spc   =   0.50000    0.50000    0.50000
+     ng3       =        64         64         64
+     solvbox   =  32.00000   32.00000   32.00000
+     tolerance =  1.00E-06
+     mdiis_del =   0.70000, mdiis_nv=         5
+     mdiis_meth=         2, mdiis_re=  1.00E+01
+     maxstep   =     10000, npropaga=         5
+     centering =         1, zerofrc =         1
+     apply_rism=         1 asympcorr=         T
+     rismnrespa=         1, fcestrid=         0, fcecut  =9999.00000
+     fcenbasis =        20, fcenbase=        20, fcecrd  =         0
+     polardecom=         0 entropicd=         0
+     write_ther=         1 volfmt   =  dx      
+     saveprogre=         0, ntwrism =        -1, verbose =         1
+     progress  =         1
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+ACE                                                                             
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+  LMOD XMIN Minimization.
+
+  Note: Owing to the behaviour of the XMIN algorithm,
+        coordinates in the trajectory and intermediate
+        restart files will not match up with energies
+        in the mdout and mdinfo files. The final energy
+        and final coordinates do match.
+
+||Setting solvation box to
+|grid size:         64 X         64 X         64
+|box size [A]:      32.000 X     32.000 X     32.000
+|Effective buffer [A]:    13.391,      12.139,      14.473
+|Switching to KH closure
+|RXRISM converged in   115
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      0      -3.8737E+00     1.5904E+00     4.8010E+00     HH31        1
+
+ BOND    =        0.4605  ANGLE   =        1.3710  DIHED      =        7.6591
+ VDWAALS =       -0.1769  EEL     =      -80.4023  ERISM      =       16.4843
+ 1-4 VDW =        3.4613  1-4 EEL =       47.2693  RESTRAINT  =        0.0000
+solute_epot       -3.87372602E+000  -1.76866562E-001  -8.04022794E+001   4.60474759E-001   1.37095087E+000   7.65909532E+000   0.00000000E+000   3.46129706E+000   4.72692605E+001   0.00000000E+000   1.64843414E+001
+rism_exchem        1.64843414E+001   7.66517072E+001  -6.01673658E+001
+rism_exchGF        6.23757924E+000   7.22072550E+001  -6.59696757E+001
+rism_potUV        -2.24676190E+001   5.98687693E+000  -2.84544959E+001
+rism_volume        1.95778722E+002
+rism_exNumb                         -6.45461999E+000  -1.29090277E+001
+rism_exChrg        8.99650429E-005   5.47093591E+000  -5.47084595E+000
+rism_KB                             -1.93832391E+002  -1.93829203E+002
+rism_DCFI                           -6.74201795E+003   1.87726109E+003
+|RXRISM converged in   107
+|RXRISM converged in   112
+|RXRISM converged in    96
+|RXRISM converged in    94
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      2      -4.1000E+00     1.3036E+00     4.4517E+00     C          15
+
+ BOND    =        0.4691  ANGLE   =        1.2422  DIHED      =        7.6339
+ VDWAALS =       -0.1421  EEL     =      -80.4144  ERISM      =       16.3823
+ 1-4 VDW =        3.4279  1-4 EEL =       47.3010  RESTRAINT  =        0.0000
+solute_epot       -4.09997820E+000  -1.42064098E-001  -8.04143605E+001   4.69117531E-001   1.24219961E+000   7.63393279E+000   0.00000000E+000   3.42787746E+000   4.73010405E+001   0.00000000E+000   1.63822785E+001
+rism_exchem        1.63822785E+001   7.72105831E+001  -6.08283046E+001
+rism_exchGF        6.14890943E+000   7.27711149E+001  -6.66222055E+001
+rism_potUV        -2.24875765E+001   6.26473747E+000  -2.87523140E+001
+rism_volume        1.95324849E+002
+rism_exNumb                         -6.43937520E+000  -1.28789235E+001
+rism_exChrg       -7.33661078E-005   5.45801443E+000  -5.45808779E+000
+rism_KB                             -1.93374590E+002  -1.93377189E+002
+rism_DCFI                           -6.77108456E+003   1.89529216E+003
+|RXRISM converged in   102
+|RXRISM converged in    96
+|RXRISM converged in    54
+|RXRISM converged in     1
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      4      -4.2013E+00     8.6892E-01     3.4250E+00     CH3         2
+
+ BOND    =        0.4127  ANGLE   =        1.1322  DIHED      =        7.6221
+ VDWAALS =       -0.1268  EEL     =      -80.4262  ERISM      =       16.4004
+ 1-4 VDW =        3.3914  1-4 EEL =       47.3929  RESTRAINT  =        0.0000
+solute_epot       -4.20128736E+000  -1.26809941E-001  -8.04262099E+001   4.12749481E-001   1.13223702E+000   7.62206763E+000   0.00000000E+000   3.39138756E+000   4.73929161E+001   0.00000000E+000   1.64003747E+001
+rism_exchem        1.64003747E+001   7.77071816E+001  -6.13068069E+001
+rism_exchGF        6.16267001E+000   7.32658559E+001  -6.71031858E+001
+rism_potUV        -2.24907257E+001   6.47637727E+000  -2.89671030E+001
+rism_volume        1.95431094E+002
+rism_exNumb                         -6.44305457E+000  -1.28858969E+001
+rism_exChrg        8.99623183E-005   5.46113306E+000  -5.46104309E+000
+rism_KB                             -1.93485081E+002  -1.93481894E+002
+rism_DCFI                           -6.79972492E+003   1.90879356E+003
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|                LJ Grid time               0.46 ( 0.70% of 3D-RI)
+|                Ewald Grid time            0.53 ( 0.80% of 3D-RI)
+|                Asymptotics time           5.92 ( 8.98% of 3D-RI)
+|                      FFT time                  14.19 (25.25% of R1RIS)
+|                         LAPACK time                0.01 ( 0.03% of MDIIS)
+|                         DATA time                  5.34 (26.82% of MDIIS)
+|                         Other                     14.56 (73.14% of MDIIS)
+|                      MDIIS time                19.91 (35.43% of R1RIS)
+|                      Other                     22.10 (39.32% of R1RIS)
+|                   R1RISM time               56.20 (100.0% of RXRIS)
+|                   Other                      0.05 ( 0.09% of RXRIS)
+|                RXRISM time               56.25 (85.40% of 3D-RI)
+|                EXCHEM time                0.04 ( 0.06% of 3D-RI)
+|                FF time                    2.16 ( 3.28% of 3D-RI)
+|                Resize Solvent Box t       0.49 ( 0.74% of 3D-RI)
+|                Solution Propagation       0.03 ( 0.05% of 3D-RI)
+|             3D-RISM time              65.87 (100.0% of Nonbo)
+|          Nonbond force             65.87 (100.0% of Force)
+|       Force time                65.87 (100.0% of Runmd)
+|    Runmd Time                65.87 (99.72% of Total)
+|    Other                      0.19 ( 0.28% of Total)
+| Total time                66.06 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 16:02:26.446  on 04/29/2013
+|           Setup done at 16:02:26.554  on 04/29/2013
+|           Run   done at 16:03:32.505  on 04/29/2013
+|     wallclock() was called    9606 times

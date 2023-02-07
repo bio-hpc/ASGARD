@@ -1,0 +1,197 @@
+#!/bin/csh -f
+echo " "
+echo "  Amber iterative charge fitting "
+echo " "
+
+#cd /pak16/cieplak/ff98/NA/bases/ade/resppol
+#cd /mjolnir_2/cieplak/ff98/NA/bases/ade/iter_lp035
+
+# needed to run this script:
+# esp.dat(QM) link.in edit.in parmpol.in md_pak.in *.pdb
+# esp_plain_*.in  esp_stage1_*.in esp_stage2_*.in 
+# final iterated esp's are in: esp_qmMind.dat
+# also: program changeQ_parmtop
+
+rm -rf esp.ind  
+rm -rf esp.q  
+rm -rf esp_qmPind.dat 
+rm -rf esp_qmMind.dat 
+rm -rf esout
+
+echo "LINK: "
+# initial prep can have no charges
+#/pak5/amber41/exe/link -O -i link.in \
+/pak21/caldwell/amber5_ev6/exe/link -O -i link.in \
+		-o link.out \
+		-l link.bin \
+                -p /mjolnir_2/cieplak/parm2000/db2000_lp035.dat  || goto error
+
+##   -p /pak5/amber41/dat/db94.dat	|| goto error
+
+#----------------------------------------------------------------------
+
+echo "EDIT: "
+#/pak5/amber41/exe/edit -O -i edit.in \
+/pak21/caldwell/amber5_ev6/exe/edit -O -i edit.in \
+               -o edit.out \
+               -l link.bin \
+               -pi ../lp035.pdb \
+               -e edit.bin 		|| goto error
+
+echo "PARM: "
+#/pak5/amber41/exe/parm -O -i parmpol.in \
+/pak21/caldwell/amber5_ev6/exe/parm -O -i parmpol.in \
+               -o parm.out \
+               -e edit.bin \
+            -f /frigg_1/cieplak/nonadditive/parm99_EP_0force_mar2001.dat \
+               -c m.for \
+               -p p.for			|| goto error
+
+
+#               -f ../../parm99_incralphas.dat \
+#               -f /pak16/cieplak/ff98/parm99/parm99.dat \
+#               -m /pak16/cieplak/ff98/parm99/frcmod_lp035.dat \
+#----------------------------------------------------------------------
+echo "get the first set of ESP charges (0th iteration-qout1): "
+
+resp -O -i esp_plain_lp035.in -o esp_plain.out -p punch1 -q qin -t qout1_0.plain \
+     -e esp.dat -w qwts -s esout 
+
+cp -rf qout1_0.plain qout1
+
+echo "and put them (qout1) in the parmtopology file: "
+
+changeQ_parmtop
+
+#1st iteration---------------------------------------------------------
+
+echo "MIN: "
+#/pak5/caldwell/5.new/exe/sander -O -i md_pak.in \
+/pak21/caldwell/amber5_ev6/exe/sander -O -i md_pak.in \
+       -o min_0.out   \
+       -p p_mod.for   \
+       -c m.for  \
+       -r min.for   \
+       -t esp.ind  \
+       -plus esp_qmPind.dat \
+       -minus esp_qmMind.dat \
+       -inf mdinfo_0        || goto error
+
+echo "get the set of RESP charges (in 0-th iteration - qout1): "
+
+resp -O -i esp_stage1_lp035.in -o esp_stage1.out -p punch1_0 -q qin -t qout1_0.resp \
+     -e esp.dat -w qwts -s esout 
+
+resp -O -i esp_stage2_lp035.in -o esp_stage2.out -p punch2_0 -q qout1_0.resp \
+     -t qout2_0.resp -e esp.dat -w qwts -s esout 
+
+cp -rf  qout2_0.resp qout1
+
+echo "and put them (qout1) in the parmtopology file: "
+
+changeQ_parmtop
+
+mv -f esp.dat esp.QM
+
+echo "MIN resp"
+#/pak5/caldwell/5.new/exe/sander -O -i md_pak.in \
+/pak21/caldwell/amber5_ev6/exe/sander -O -i md_pak.in \
+       -o min_resp_0.out   \
+       -p p_mod.for   \
+       -c m.for  \
+       -r min.for   \
+       -inf mdinfo_0.resp        || goto error
+
+mv -f esp.QM esp.dat
+
+#----------------------------------------------------------------------
+
+set i = 1
+set maxi = 10
+while ($i <= $maxi)
+
+@ j=$i - 1
+
+# for the i-th iteration
+
+echo "get the set of ESP charges (in $i-th iteration - qout1): "
+
+resp -O -i esp_plain_lp035.in -o esp_plain.out -p punch1 -q qin -t qout1_$i.plain \
+     -e esp_qmMind.dat -w qwts -s esout 
+
+cp -rf  qout1_$i.plain qout1
+
+echo "and put them (qout1) in the parmtopology file: "
+
+changeQ_parmtop
+
+echo "MIN $i"
+#/pak5/caldwell/5.new/exe/sander -O -i md_pak.in \
+/pak21/caldwell/amber5_ev6/exe/sander -O -i md_pak.in \
+       -o min_$i.out   \
+       -p p_mod.for   \
+       -c m.for  \
+       -r min.for   \
+       -t esp.ind  \
+       -plus esp_qmPind.dat \
+       -minus esp_qmMind.dat \
+       -inf mdinfo_$i        || goto error
+
+#
+
+echo "get the set of RESP charges (in $i-th iteration - qout1): "
+
+resp -O -i esp_stage1_lp035.in -o esp_stage1.out -p punch1 -q qin -t qout1_$i.resp \
+     -e esp_qmMind.dat -w qwts -s esout 
+
+resp -O -i esp_stage2_lp035.in -o esp_stage2.out -p punch2 -q qout1_$i.resp \
+     -t qout2_$i.resp -e esp_qmMind.dat -w qwts -s esout 
+
+cp -rf  qout2_$i.resp qout1
+
+echo "and put them (qout1) in the parmtopology file: "
+
+changeQ_parmtop
+
+mv -f esp.dat esp.QM
+
+echo "MIN resp"
+#/pak5/caldwell/5.new/exe/sander -O -i md_pak.in \
+/pak21/caldwell/amber5_ev6/exe/sander -O -i md_pak.in \
+       -o min_resp_$i.out   \
+       -p p_mod.for   \
+       -c m.for  \
+       -r min.for   \
+       -inf mdinfo_$i.resp        || goto error
+
+mv -f esp.QM esp.dat
+
+@ i ++
+
+end
+
+#----------------------------------------------------------------------
+
+rm -rf mdcrd mden mdvel min.for
+rm -rf esp.ind  
+rm -rf esp.q  
+rm -rf esp_qmPind.dat 
+rm -rf esout
+rm -rf mdinfo*
+rm -rf punch*
+grep permen min*.out >> dip.info
+more qout1_0.plain >> dip.info
+more qout1_10.plain >> dip.info
+more qout2_0.resp >> dip.info
+more qout2_10.resp >> dip.info
+
+
+
+echo No errors reported
+exit(0)
+
+error:
+echo Error: check .out and try again
+exit(1)
+
+

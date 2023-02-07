@@ -1,0 +1,49 @@
+
+Syntax
+
+    make test.serial   or  make test.parallel
+
+    These test the MM (molecular mechanics) parts of the codes.  To
+    test the QM/MM portions type "make test.serial.QMMM" or "make
+    test.parallel.QMMM"
+
+Why run the tests?
+
+    People installing Amber can run them to validate the compilation.
+
+    The tests are particularly useful for determining compiler
+    flags for a new machine and also useful when modifying the code
+    itself. It is also instructive to see how much the results can
+    differ depending on arithmetic implementations and precision.
+
+What does "possible FAILURE" mean?
+
+    It means there are differences in numerical output between your
+    machine+compiler and our various reference platforms.
+    You can look at the differences and decide if they are due to
+    a) some combination of: roundoff differences in hardware and
+    the effects of rearranging floating operations during compiler-
+    specific optimization, or b) some bug in the code, compiler,
+    or even the hardware. One quick way to do this is look at the
+    TEST_FAILURES.diff file.
+
+Note on parallel machines:
+
+    The environment variable DO_PARALLEL is prefixed to the actual
+    call to the executable in many of the scripts.  If this variable
+    is not defined, it defaults to blank, i.e. to a single-processor
+    run.  For parallel MPI runs, it should be set to whatever string
+    is needed to invoke a parallel run.  For example, under MPI, to test
+    running a four-processor job:
+
+      setenv DO_PARALLEL 'mpirun -np 4'
+
+Note on number of threads for parallel tests:
+
+    Some tests will not run with any more than 2 MPI threads, while
+    some require 4 threads to properly test.
+    There are rules in the Makefile to run only those tests that require
+    4 threads.  Thus, you should run
+    test.parallel with 2 threads and test.parallel.4proc with 4 threads
+    at the very least.  test.parallel can also be run with 
+    4, 8, 16, ... etc. threads, though some tests will be skipped.   

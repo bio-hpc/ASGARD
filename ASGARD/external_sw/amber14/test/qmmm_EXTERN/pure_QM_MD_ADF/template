@@ -1,0 +1,23 @@
+Basis
+ type SZ
+ core None
+ FitType ZORA/QZ4P
+ createoutput None
+End
+
+XC
+LDA
+END
+
+SCF
+iterations 50
+converge   0.10D-05
+END
+
+INTEGRATION   0.40D+01
+
+SYMMETRY NOSYM
+CHARGE  0 0
+
+SAVE TAPE21
+

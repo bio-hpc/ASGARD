@@ -1,0 +1,2 @@
+/CS/g { $n++; $len += $B[0]->length }
+END   { printf qq{Average C-S bond length: %.3f\n}, $len/$n; }

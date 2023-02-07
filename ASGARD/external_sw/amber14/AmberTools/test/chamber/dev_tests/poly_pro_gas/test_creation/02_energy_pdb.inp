@@ -1,0 +1,42 @@
+* Poly Proline in Gas Phase
+* By Ross Walker & Mark Williamson (SDSC)
+*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Read in Topology and parameter file for ALL22
+
+    OPEN READ CARD UNIT 1 NAME "../../../../dat/chamber/top_all22_prot.inp"
+    READ RTF CARD UNIT 1
+    CLOSE UNIT 1
+
+    OPEN READ CARD UNIT 2 NAME "../../../../dat/chamber/par_all22_prot.inp"
+    READ PARAM CARD UNIT 2
+    CLOSE UNIT 2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Turn off CMAP - Needed since the default for all22 was changed
+!                 in C35B1 (A dangerous change in my opinion since
+!                 it effectively silently turns on CMAP but oh well.)
+    SKIPE CMAP
+
+! Read in Poly Pro Gas Phase PSF and pdb
+    open unit 3 form read name "poly_pro_gas_all22.psf"
+    read psf card unit 3
+    close unit 3
+
+    read coor pdb name "01_minimize.pdb"
+
+!**********************************************************
+!**********************************************************
+!
+!       Energy - Gas Phase
+!
+!**********************************************************
+!**********************************************************
+
+  update bycb  switch vswitch  -
+         cutnb 9999.0   ctofnb 9998.0   ctonnb 9997.0 
+
+  ener
+
+  stop
+ 

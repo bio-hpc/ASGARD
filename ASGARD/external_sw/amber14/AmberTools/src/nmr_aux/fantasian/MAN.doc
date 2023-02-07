@@ -1,0 +1,192 @@
+                          FANTASIAN
+A program to evaluate magnetic anisotropy tensor parameters
+
+                             By
+
+             A. Romagnoli and G. Gori-Savellini
+    Depart. of Chemistry, Univ. of Florence, Florence, Italy
+              e-mail: nanni@risc1.lrm.fi.cnr.it
+
+INPUT FILES:
+
+Observed shifts file (pcshifts.in):  
+
+     1st    column   -->   residue number
+     2nd    column   -->   residue name
+     3rd    column   -->   proton name
+     4th    column   -->   observed pseudocontact shift value
+     5th    column   -->   multiplicity of the NMR signal (for example 
+                           it is 3 for of a methyl group)
+     6th    column   -->   relative tolerance
+     7th    column   -->   relative weight
+
+Amber pdb file (parm.pdb): coordinates file in PDB format. If you need to
+                           use a solution NMR family of structures you have
+                           to superimpose the structures before to use them.
+
+
+
+OUTPUT FILES:
+
+Observed out file (obs.out): This file is built and read by the program itself,
+                             and reports the data read from the input files.
+
+output file (res.out):   The main output file. In this file the result of the
+                         fitting is reported. Using fantasian it is possible to
+                         define an internal reference system to visualize the
+                         orientation of the tensor axes. Then in this file
+                         you can find PDB format lines (ATOM) which can be 
+                         included in a PDB file to visualize the internal 
+                         reference system and the tensor axes. In the main
+                         output file all the three equivalent permutations of
+                         the tensor parameters with respect to the
+                         reference system are reported. The summary of 
+                         the minimum and maximum errors and that of errors^2 
+                         are also reported. 
+                             
+EXAMPLE FILES: in the directory example there are all the files necessary 
+               to run a fantasian calculation:
+
+                  fantasian.com  --> run file
+                  pcshifts.in    --> observed shifts file
+                  parm.pdb       --> coordinate file in PDB format
+                  obs.out        --> data read from input files
+                  res.out        --> main output file 
+
+
+-----------------------------------------------------------------------------
+Notes for the Nov. 1999 version:
+
+
+The starting input data (but NOT the input file format) required 
+by Fantasian are changed with respect to previous version.
+
+The following is an example of a script file, to run Fantasian in case
+of three paramagnetic centers.
+
+========================================================================
+
+rm fam1 fam2
+fantasian <<EOF
+c7.aug04.ok
+sup.amb.ok
+fam1
+fam2
+1234
+35
+3
+448
+868
+1116
+.1
+y
+m
+449
+448
+470
+869
+868
+890
+1117
+1116
+1138
+10
+EOF
+
+========================================================================
+
+To understand the meaning of the above script, see the program
+output print listed below:
+
+========================================================================
+
+  
+ This is Fantasian VERSION 2.0 - Nov 1999
+  
+ Name of observed shifts input file:
+   c7.aug04.ok                                                 
+ Name of Amber pdb input file:
+   sup.amb.ok                                                  
+ Name for observed out file:
+   fam1                                                        
+ Name for output file:
+   fam2                
+ Number of atoms in each structure (not more than 4000 ):
+   1234
+ Number of structures (not more than 40 ):
+     35
+ Number of paramagnetic ions (not more than 5 ):
+      3
+   Insert atom number corresponding to paramagnetic ion # 1
+      448
+   Insert atom number corresponding to paramagnetic ion # 2
+      868
+   Insert atom number corresponding to paramagnetic ion # 3
+     1116
+ Value of tolerance (0-1):
+       .100
+  
+ Would you define reference system(s)? (y/n) 
+  
+   y
+  
+   Unique or multiple reference system(s)? (u/m)
+  
+    m
+  
+ Defining reference system nr. 1 / 3 :
+  Insert three atom numbers:
+   - first fixes the x direction
+       449
+   - second is the system origin
+       448
+   - third is an other point of the plane x-y
+       470
+  
+ Defining reference system nr. 2 / 3 :
+  Insert three atom numbers:
+   - first fixes the x direction
+       869
+   - second is the system origin
+       868
+   - third is an other point of the plane x-y
+       890
+  
+ Defining reference system nr. 3 / 3 :
+  Insert three atom numbers:
+   - first fixes the x direction
+      1117
+   - second is the system origin
+      1116
+   - third is an other point of the plane x-y
+      1138
+  
+ Number of computed solutions:
+     10
+  
+
+
+*******************************************
+Prof. Lucia Banci
+Centro Risonanze Magnetiche
+University of Florence
+Via Luigi Sacconi 6
+50019 Sesto Fiorentino (Florence)
+Italy
+
+				phone +39 055 4209 263
+				fax +39 055 4209 253
+
+e-mail banci@cerm.unifi.it
+http://www.cerm.unifi.it/banci.html
+
+and Department of Chemistry
+University of Florence 
+Via G. Capponi 7
+50121 Florence
+Italy 
+			
+
+
+************************************************
+

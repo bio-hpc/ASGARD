@@ -1,0 +1,6 @@
+verbosity 1
+source leaprc.gaff
+mods = loadamberparams frcmod_resp
+NAD = loadmol2 nad_resp.mol2
+saveamberparm NAD prmtop_resp prmcrd_resp
+quit

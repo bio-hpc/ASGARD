@@ -1,0 +1,18 @@
+#I10,I10,2X,A8,2X,A8,3F20.10,2X,A8,2X,A8,F20.10\
+
+mv 01_minimize.crd 01_minimize.crd.orig
+
+head -n 5 01_minimize.crd.orig > 01_minimize.crd
+
+#Good working
+#awk 'BEGIN { format = "%10d%10d  %-8s  %-8s%20.10f%20.10f%20.10f  %-8s  %-8s%20.10f\n" }
+awk 'BEGIN { format = "%10d%10d  %-8s  %-8s%20.7f%20.7f%20.7f  %-8s  %-8s%20.10f\n" }
+          { printf format, $1,$2,$3,$4,$5,$6,$7,$8,$9,$10 }' 01_minimize.crd.orig > tmp
+
+#remove top five lines
+sed '1,5d' tmp > tmp2
+
+awk 'BEGIN { format = "%10d%10d  %-8s  %-8s%20.10f%20.10f%20.10f  %-8s  %-8s%20.10f\n" }
+          { printf format, $1,$2,$3,$4,$5,$6,$7,$8,$9,$10 }' tmp2 >> 01_minimize.crd
+
+rm tmp tmp2

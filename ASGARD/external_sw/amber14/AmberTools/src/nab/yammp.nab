@@ -1,0 +1,912 @@
+//  read a Yammp descriptor and a PDB file, and create prmtop,
+//      prmcrd and restraint files for use in Amber
+//
+//    Usage:  dt_to_prmtop( string pdb-file, string descriptor-file,
+//			string prmtop-file, string prmcrd-file, string restraint-file );
+//
+
+//     Variables in UPPER CASE correpond to the Amber variable names, that
+//     will get printed out in the output prmtop file.
+
+#define MAXATOM 3000
+#define MAXSTUD 1000
+#define MAXTYPE 40
+#define MAXTYPESQ 1600
+#define kcal_per_CEU    0.0023922
+
+float	bl[ MAXATOM, MAXATOM ];  // bond-length array
+
+int		dt_to_prmtop( string pdbf, string dtf, string prmtopf, 
+					string prmcrdf, string rstf)
+{
+
+molecule m;
+atom	a;
+residue r;
+file	dt, pt, rst;
+string	line;
+string	fields[ 50 ];
+int		i, j, k, ib, icbt, ictt, icpt, inbt, numc, numlines;
+int		NATOM, NRES;
+int		MBONA, MTHETA, numangns, MPHIA;
+int		numatoms;
+int		IAC[ MAXATOM ];
+int		numlis, NTYPES;
+float	lbt, kij, CN1[ MAXTYPESQ ], CN2[ MAXTYPESQ ];
+float	AMASS[ MAXATOM ];
+int		ICO[ MAXTYPESQ ];
+string	key;
+
+//   variables for the excluded atoms:
+int		NUMEX[ MAXATOM ];
+#define MAXEXCL 100000
+int		NATEX[ MAXEXCL ];
+int		NEXT;            // total number of excluded atoms
+
+//   variables for bonds:
+int		btypes[ hashed ];
+int		NUMBND, NBONA;
+#define MAXBTYPES 1000
+float	RK[ MAXBTYPES ], REQ[ MAXBTYPES ];
+#define MAXBONDS 6000
+int		IB[ MAXBONDS ], JB[ MAXBONDS ], ICB[ MAXBONDS ];
+
+//   variables for angles:
+int		NUMANG, NTHETA;
+int		atypes[ hashed ];
+#define MAXATYPES 1000
+float	TK[ MAXATYPES ], TEQ[ MAXATYPES ];
+#define MAXANGS 6000
+int		IT[ MAXANGS ], JT[ MAXANGS ], KT[ MAXANGS ], ICT[ MAXANGS ];
+
+//   variables for torsions:
+int		NPTRA, NPHIA;
+int		ptypes[ hashed ];
+#define MAXPTYPES 1000
+float	PK[ MAXPTYPES ], PHASE[ MAXPTYPES ];
+#define MAXPHIS 6000
+int		IP[ MAXPHIS ], JP[ MAXPHIS ], KP[ MAXPHIS ], LP[ MAXPHIS ], 
+		ICP[ MAXPHIS ];
+
+//   variables for the noen terms:
+int		numnoens;
+float	r2,r3,rk2,rk3;
+float	theta;
+
+//   various molecule information, mostly obtained from the pdb file:
+
+m = getpdb( pdbf );
+assert( m.natoms <= MAXATOM );
+
+//  zero out bond lengths array:
+for( i=1; i<=m.natoms; i++ ){
+	for ( j=i; j<= m.natoms; j++ ){
+		bl[ i,j ] = bl[ j,i ] = 0.0;
+	}
+}
+
+//  Open the NMR restraint file now, since we don't know in advance
+//     when the first write will be needed:
+rst = fopen( rstf, "w" );
+if( rst == NULL ){
+	fprintf( stderr, "Unable to open restraint file %s\n", rstf );
+	exit(1);
+}
+
+//   Output an Amber-compatible set of coordinates
+putx( prmcrdf, m );
+
+//  Now read through the descriptor:
+dt = fopen( dtf, "r" );
+if( dt == NULL ){
+	fprintf( stderr, "Unable to open descriptor file %s\n", dtf );
+	exit(1);
+}
+line = getline( dt );
+if( substr( line, 1, 4 ) != "DES1" ){
+	fprintf( stderr, "File %s doesn't appear to be a descriptor!\n", dtf );
+	exit(1);
+}
+
+while ( line = getline( dt ) ) {     // read descriptor on dt:
+                                     // first get radii, nonbon info
+
+	if( length( line ) == 0 ){ continue; }
+	if( substr( line, 1, 1 ) == "#" ) { continue; }
+
+	if( substr( line, 1, 4 ) == "nbn-" ){
+		split( line, fields, " \t" ); 
+		numlis = atoi(fields[2]); NTYPES = atoi(fields[4]);
+		assert( NTYPES <= MAXTYPE );
+		//   skip the force constants:
+		numc = NTYPES*(NTYPES+1)/2; 
+
+
+		//   get the force constants
+		inbt = 0;
+		for( i=1; i<= NTYPES; i++ ){
+			for( j=i; j<= NTYPES; j++ ){
+				inbt++;
+				fscanf( dt, "%lf", kij );
+				CN1[ inbt ] = kcal_per_CEU*kij;  // force constant in CN1
+			}
+		}
+		//   get the minimum distances:
+		inbt = 0;
+		for( i=1; i<= NTYPES; i++ ){
+			for( j=i; j<= NTYPES; j++ ){
+				inbt++;
+				fscanf( dt, "%lf", lbt );
+				CN2[ inbt ] = lbt;  // lower bound distance in CN2
+			}
+		}
+
+		ib = 0;
+		for( i=1; i<=NTYPES; i++ ){
+			for( j=i; j<=NTYPES; j++ ){
+				ib++;
+				ICO[ NTYPES*(i-1) + j ] = ib;
+				ICO[ NTYPES*(j-1) + i ] = ib;
+			}
+		}
+
+		//  process excluded atom list
+		NEXT = 0;
+		for( ib=1; ib<=m.natoms; ib++ ) NUMEX[ib] = 0;
+		for( ib=1; ib<= numlis; ib++) {
+			fscanf( dt, "%d", i );
+			fscanf( dt, "%d", j );
+            NUMEX[ i ] = j;
+			for( k=1; k<=NUMEX[i]; k++ ){
+				fscanf( dt, "%d", j ); 
+				NEXT++;
+				assert( NEXT < MAXEXCL );
+				NATEX[ NEXT ] = j;
+			}
+		}
+		getline( dt ); // again, skip last EOL after fscanf
+
+	}
+
+	if( substr( line, 1, 4 ) == "type" ){
+		split( line, fields, " \t" ); numatoms = atoi( fields[2] );
+		for( ib=1; ib<= numatoms; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			IAC[ ib ] = atoi( fields[1] );
+		}
+	}
+
+	if( substr( line, 1, 4 ) == "ivms" ){
+		split( line, fields, " \t" ); numatoms = atoi( fields[2] );
+		for( ib=1; ib<= numatoms; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			AMASS[ ib ] = 1.0/atof( fields[1] );
+		}
+	}
+
+	if( substr( line, 1, 4 ) == "bond" ){
+		split( line, fields, " \t" ); MBONA = atoi( fields[2] );
+		assert( MBONA < MAXBONDS );
+		icbt = 0;
+		for( ib=1; ib<= MBONA; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			i = atoi( fields[1] ); j = atoi( fields[2] );
+			bl[i,j] = bl[j,i] = atof( fields[4] );
+			IB[ib] = 3*(i-1); JB[ib] = 3*(j-1);
+			key = fields[3] + "," + fields[4];
+			if ( key in btypes ){
+				ICB[ib] = btypes[key];
+			} else {
+				icbt++;
+				assert (icbt < MAXBTYPES );
+				btypes[key] = icbt;
+				RK[ icbt ] =  kcal_per_CEU*atof( fields[3] );
+				REQ[ icbt ] = atof( fields[4] );
+				ICB[ib] = icbt;
+			}
+		}
+		NUMBND = icbt;
+		NBONA = MBONA;
+//		printf( "found %d bonds, divided into %d types\n", MBONA, NUMBND );
+	}
+
+	if( substr( line, 1, 4 ) == "angl" ){
+		split( line, fields, " \t" ); MTHETA = atoi( fields[2] );
+		assert( MTHETA < MAXANGS );
+		ictt = 0;
+		for( ib=1; ib<= MTHETA; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			IT[ib] = 3*(atoi(fields[1])-1); 
+			JT[ib] = 3*(atoi(fields[2])-1);
+			KT[ib] = 3*(atoi(fields[3])-1);
+			key = fields[4] + "," + fields[5];
+			if ( key in atypes ){
+				ICT[ib] = atypes[key];
+			} else {
+				ictt++;
+				assert (ictt < MAXATYPES );
+				atypes[key] = ictt;
+				TK[ ictt ] =  kcal_per_CEU*atof( fields[4] );
+				TEQ[ ictt ] = atof( fields[5] );
+				ICT[ib] = ictt;
+			}
+		}
+		NUMANG = ictt;
+		NTHETA = MTHETA;
+//		printf( "found %d angles, divided into %d types\n", MTHETA, NUMANG );
+	}
+
+	
+//	convert "angn" terms into sander angle constraints
+#define RK13 7.5
+
+	if( substr( line, 1, 4 ) == "angn" ){
+		split( line, fields, " \t" ); numangns = atoi( fields[2] );
+		for( ib=1; ib<= numangns; ib++ ) {
+			line = getline( dt );
+			split( line, fields, " \t" );
+			if( atoi(fields[5]) != 2 ) continue;
+			i = atoi(fields[1]); j=atoi(fields[2]); k=atoi(fields[3]);
+			theta = atof(fields[7])*180./3.14159;
+			fprintf( rst, "# angn: %s\n", line );
+			fprintf( rst, 
+				" &rst  iat=%d,%d,%d,0, r1=0.0, r2=%.2f, r3=170.0, r4=180.,\n", 
+				i, j ,k, theta );
+			fprintf( rst, "       rk2=%.2f, rk3=0.0,  &end\n\n", RK13 );
+		}
+	}
+
+	if( substr( line, 1, 4 ) == "itor" ){
+		split( line, fields, " \t" ); MPHIA = atoi( fields[2] );
+		assert( MPHIA < MAXPHIS );
+		icpt = 0;
+		for( ib=1; ib<= MPHIA; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			IP[ib] =  3*(atoi(fields[1])-1); 
+			JP[ib] =  3*(atoi(fields[2])-1);
+			KP[ib] = -3*(atoi(fields[3])-1);  //negative value signals improper tors.
+			LP[ib] = -3*(atoi(fields[4])-1);  //negative value signals no 1-4 int.
+			key = fields[5] + "," + fields[6];
+			if ( key in ptypes ){
+				ICP[ib] = ptypes[key];
+			} else {
+				icpt++;
+				assert (icpt < MAXPTYPES );
+				ptypes[key] = icpt;
+				PK[ icpt ] =  2.*kcal_per_CEU*atof( fields[5] );
+				PHASE[ icpt ] = atof( fields[6] ) + 3.1415927;
+				ICP[ib] = icpt;
+			}
+		}
+		NPTRA = icpt;
+		NPHIA = MPHIA;
+//		printf( "found %d torsions, divided into %d types\n", MPHIA, NPTRA );
+	}
+
+	if( substr( line, 1, 4 ) == "noen" ){
+		split( line, fields, " \t" ); numnoens = atoi( fields[2] );
+		for( ib=1; ib<= numnoens; ib++ ) {
+			line = getline( dt );
+			split( line, fields, " \t" );
+			i = atoi(fields[1]); j=atoi(fields[2]);
+			r2 = atof(fields[5]); if( r2 < 1.0 ) r2 = 1.0;
+			r3=atof(fields[7]);
+			rk2 = kcal_per_CEU*atof(fields[4]);
+			rk3 = kcal_per_CEU*atof(fields[6]);
+			fprintf( rst, "# noen: %s\n", line );
+			fprintf( rst, 
+				" &rst  iat=%d,%d,0,0, r1=0.0, r2=%.2f, r3=%.2f, r4=999.,\n", 
+				i, j, r2, r3 );
+			fprintf( rst, 
+				"       rk2=%.4f, rk3=%.4f,  &end\n\n", rk2, rk3 );
+
+		}
+	}
+
+}
+fclose( rst );
+fclose( dt );
+
+//  write out the prmtop file!
+
+pt = fopen( prmtopf, "w" );
+if( pt == NULL ){
+	fprintf( stderr, "Unable to open prmtop file %s\n", prmtopf );
+	exit(1);
+}
+
+//  Title and header records:
+
+fprintf( pt, " converted from descriptor by dt_to_prmtop\n" );
+
+NATOM = m.natoms;
+NRES = m.nresidues;
+#define NBONH 0
+#define NTHETH 0
+#define NPHIH 0
+#define NHPARM 1
+#define NPARM 0
+fprintf( pt, "%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d\n", NATOM, NTYPES, NBONH,
+		MBONA, NTHETH, MTHETA, NPHIH, MPHIA, NHPARM, NPARM, NEXT, NRES );
+
+#define IFPERT 0
+#define NBPER 0
+#define NGPER 0
+#define NDPER 0
+#define NATYP 1
+#define NPHB 0
+fprintf( pt, "%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d%6d\n", NBONA, NTHETA, NPHIA,
+		NUMBND, NUMANG, NPTRA, NATYP, NPHB, IFPERT, NBPER, NGPER, NDPER );
+		
+#define MBPER 0
+#define MGPER 0
+#define MDPER 0
+#define IFBOX 0
+#define NMXRS 24
+#define IFCAP 0
+fprintf( pt, "%6d%6d%6d%6d%6d%6d\n", MBPER, MGPER, MDPER, IFBOX, NMXRS, IFCAP );
+
+//-----------------------------------------------------------------------------
+//  Atom names:
+
+i = 0;
+for( a in m ){
+	i++; 
+	fprintf( pt, "%-4s", a.atomname );
+	if ( i%20 == 0 ) fprintf( pt, "\n" );
+}
+if( i%20 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//  Charges: all zeroes for now.
+
+numlines = m.natoms/5;  if( m.natoms%5 ) numlines++;
+line = "   .00000000E+00   .00000000E+00   .00000000E+00   .00000000E+00   .00000000E+00";
+for( i=0; i<numlines; i++ ){
+	fprintf( pt, "%s\n", line );
+}
+	
+//-----------------------------------------------------------------------------
+//  Atom masses:
+
+for( i=1; i<=m.natoms; i++ ){
+	fprintf( pt, "%16.8E", AMASS[ i ] );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//  Nonbonded type codes:
+
+for( i=1; i<=m.natoms; i++ ){
+	fprintf( pt, "%6d", IAC[ i ] );
+	if ( i%12 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%12 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//  Exclued atom list:
+
+for( i=1; i<=m.natoms; i++ ){
+	fprintf( pt, "%6d", NUMEX[ i ] );
+	if ( i%12 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%12 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//  ICO index array:
+
+for( i=1; i<=NTYPES*NTYPES; i++ ){
+	fprintf( pt, "%6d", ICO[ i ] );
+	if ( i%12 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%12 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//   Residue names:
+
+i = 0;
+for( r in m ){
+	i++; 
+	fprintf( pt, "%-4s", r.resname );
+	if ( i%20 == 0 ) fprintf( pt, "\n" );
+}
+if( i%20 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//    IPRES array: first atom in each residue
+
+i = 0; j = 1;
+for( r in m ){
+	i++; 
+	fprintf( pt, "%6d", j );
+//    count atoms in this residue:
+	for( a in r ) j++;
+	if ( i%12 == 0 ) fprintf( pt, "\n" );
+}
+if( i%12 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//   Bonds:
+
+for( i=1; i<=NUMBND; i++ ){
+	fprintf( pt, "%16.8E", RK[ i ] );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+for( i=1; i<=NUMBND; i++ ){
+	fprintf( pt, "%16.8E", REQ[ i ] );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//   Angles:
+
+for( i=1; i<=NUMANG; i++ ){
+	fprintf( pt, "%16.8E", TK[ i ] );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+for( i=1; i<=NUMANG; i++ ){
+	fprintf( pt, "%16.8E", TEQ[ i ] );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//   Dihedrals:
+
+for( i=1; i<=NPTRA; i++ ){
+	fprintf( pt, "%16.8E", PK[ i ] );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+for( i=1; i<=NPTRA; i++ ){
+	fprintf( pt, "  1.00000000E+00" );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+for( i=1; i<=NPTRA; i++ ){
+	fprintf( pt, "%16.8E", PHASE[ i ] );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//   Solty:  just assume NATYP = 1
+
+fprintf( pt, "  0.00000000E+00\n" );
+
+//-----------------------------------------------------------------------------
+//   Lennard-Jones parameters:
+
+for( i=1; i<= NTYPES*(NTYPES+1)/2; i++ ){
+	fprintf( pt, "%16.8E", CN1[ i ] );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+for( i=1; i<= NTYPES*(NTYPES+1)/2; i++ ){
+	fprintf( pt, "%16.8E", CN2[ i ] );
+	if ( i%5 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%5 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//   bond indices:
+
+fprintf( pt, "\n" ); // blank line for NBONH
+for( i=1; i<=NBONA; i++ ){
+	fprintf( pt, "%6d%6d%6d", IB[ i ], JB[ i ], ICB[ i ]);
+	if ( i%4 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%4 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//   angle indices:
+
+fprintf( pt, "\n" ); // blank line for NTHETH
+for( i=1; i<=NTHETA; i++ ){
+	fprintf( pt, "%6d%6d%6d%6d", IT[ i ], JT[ i ], KT[ i ], ICT[ i ]);
+	if ( i%3 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%3 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//   dihedral indices:
+
+fprintf( pt, "\n" ); // blank line for NPHIH
+j = 0;
+for( i=1; i<=NPHIA; i++ ){
+	fprintf( pt, "%6d", IP[ i ] );
+	if ( ++j%12 == 0 ) fprintf( pt, "\n" );
+	fprintf( pt, "%6d", JP[ i ] );
+	if ( ++j%12 == 0 ) fprintf( pt, "\n" );
+	fprintf( pt, "%6d", KP[ i ] );
+	if ( ++j%12 == 0 ) fprintf( pt, "\n" );
+	fprintf( pt, "%6d", LP[ i ] );
+	if ( ++j%12 == 0 ) fprintf( pt, "\n" );
+	fprintf( pt, "%6d", ICP[ i ] );
+	if ( ++j%12 == 0 ) fprintf( pt, "\n" );
+}
+if( j%12 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//  Excluded atom list:
+
+for( i=1; i<=NEXT; i++ ){
+	fprintf( pt, "%6d", NATEX[ i ] );
+	if ( i%12 == 0 ) fprintf( pt, "\n" );
+}
+if( --i%12 ) fprintf( pt, "\n" );
+
+//-----------------------------------------------------------------------------
+//   3 blank lines for asol, bsol, hbcut with NPHB=0:
+fprintf( pt, "\n\n\n" );
+
+//-----------------------------------------------------------------------------
+//   Atom types: dummy for here:
+
+numlines = m.natoms/20;  if( m.natoms%20 ) numlines++;
+line = "DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM";
+for( i=0; i<numlines; i++ ){
+	fprintf( pt, "%s\n", line );
+}
+
+//-----------------------------------------------------------------------------
+//   tree array: dummy for here:
+
+numlines = m.natoms/20;  if( m.natoms%20 ) numlines++;
+line = "DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM DUM";
+for( i=0; i<numlines; i++ ){
+	fprintf( pt, "%s\n", line );
+}
+
+//-----------------------------------------------------------------------------
+//   join array: dummy for here:
+
+numlines = m.natoms/12;  if( m.natoms%12 ) numlines++;
+line = "     1     1     1     1     1     1     1     1     1     1     1     1";
+for( i=0; i<numlines; i++ ){
+	fprintf( pt, "%s\n", line );
+}
+
+//-----------------------------------------------------------------------------
+//   irotat array: dummy for here:
+
+numlines = m.natoms/12;  if( m.natoms%12 ) numlines++;
+line = "     1     1     1     1     1     1     1     1     1     1     1     1";
+for( i=0; i<numlines; i++ ){
+	fprintf( pt, "%s\n", line );
+}
+
+fclose( pt );
+return( 0 );
+};
+
+//  read a Yammp descriptor and create a corresponding bounds matrix
+//     ready for distance geometry (but *not* triangle smoothed)
+//     Also returns a string with an atom expression identifying the
+//       locked residues (but this routine doesn't do anything with the
+//       string other than to return it.)
+
+bounds		dt_to_bmat( molecule m, string dtfile, string locked )
+{
+
+atom	a;
+bounds	b;
+file	dt;
+string	line, aex1, aex2, aex3, aex4;
+string	fields[ 50 ];
+int		i, j, k, l, ib, numc, numclines;
+int		numbonds, numstuds, numangls, numangns, numitors, numnoens;
+int		numatoms;
+int		type[ MAXATOM ], group[ MAXATOM ];
+int		numlis, numty, nexcl;
+float	blen, theta, klo, kup;
+point	stud[ MAXSTUD ], del;
+float	lbt[ MAXTYPE, MAXTYPE ];
+float	cv, lowerb, upperb;
+int		nstudchi, numlocks;
+
+assert( m.natoms < MAXATOM );
+
+//  zero out bond lengths array:
+for( i=1; i<=m.natoms; i++ ){
+	for ( j=i; j<= m.natoms; j++ ){
+		bl[ i,j ] = bl[ j,i ] = 0.0;
+	}
+}
+
+dtfile = "fulllinktrna.dt";
+dt = fopen( dtfile, "r" );
+while ( line = getline( dt ) ) {     // read descriptor on dt:
+                                     // first time to get radii 
+
+	if( length( line ) == 0 ){ continue; }
+	if( substr( line, 1, 1 ) == "#" ) { continue; }
+
+	if( substr( line, 1, 4 ) == "nbn-" ){
+		split( line, fields, " \t" ); 
+		numlis = atoi(fields[2]); numty = atoi(fields[4]);
+		assert( numty < MAXTYPE );
+		//   skip the force constants:
+		numc = numty*(numty+1)/2; 
+		if( numc % 10 == 0 ) numclines = numc/10;
+		else numclines = numc/10 + 1;
+		for( ib=1; ib<= numclines; ib++ ){ line = getline( dt ); }
+		//   get the minimum distances:
+		for( i=1; i<= numty; i++ ){
+			for( j=i; j<= numty; j++ ){
+				fscanf( dt, "%lf", lbt[ i,j ] ); lbt[ j,i ] = lbt[ i,j ];
+				// printf( "%d %d %8.3f\n", i,j, lbt[ i,j ] );
+			}
+		}
+
+//		printf( "type  radius\n" );
+//		for( i=1; i<=numty; i++ ){ printf( "%3d %8.3f\n", i, 0.5*lbt[ i,i ] );}
+
+		getline( dt );  // skip EOL after last fscanf call
+
+	}
+
+	if( substr( line, 1, 4 ) == "type" ){
+		split( line, fields, " \t" ); numatoms = atoi( fields[2] );
+		for( ib=1; ib<= numatoms; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			type[ ib ] = atoi( fields[1] );
+			group[ ib ] = atoi( fields[2] );
+		}
+
+		// now that types are known, set radii
+
+		for( a in m ){
+			cv = 0.5*lbt[ type[a.tatomnum], type[a.tatomnum] ];
+			// if lower bound in descriptor is above 10, it should be
+			//   a protein: reduce its radius by 5 Ang.
+			if( cv > 10.0 ) cv -= 5.0;
+			a.radius = cv;
+			// printf( "radius: %d %8.3f\n", a.tatomnum, cv );
+		}
+
+	}
+
+}
+fclose( dt );
+b = newbounds( m, "" );
+
+dt = fopen( dtfile, "r" );
+while ( line = getline( dt ) ) {     // read descriptor on dt:
+                                     // second time for exclusions
+
+	if( length( line ) == 0 ){ continue; }
+	if( substr( line, 1, 1 ) == "#" ) { continue; }
+
+	if( substr( line, 1, 4 ) == "nbn-" ){
+		split( line, fields, " \t" ); 
+		numlis = atoi(fields[2]); numty = atoi(fields[4]);
+		//   skip the force constants:
+		numc = numty*(numty+1)/2; 
+		if( numc % 10 == 0 ) numclines = numc/10;
+		else numclines = numc/10 + 1;
+		for( ib=1; ib<= numclines; ib++ ){ line = getline( dt ); }
+		//   skip the distances
+		for( ib=1; ib<= numclines; ib++ ){ line = getline( dt ); }
+
+		//  remove lower bounds from excluded atoms:
+		for( ib=1; ib<= numlis; ib++) {
+			split( getline(dt), fields, " \t" );
+			i = atoi(fields[1]); nexcl = atoi(fields[2]);
+			for( k=1; k<=nexcl; k++ ){
+				fscanf( dt, "%d", j ); 
+				aex1 = sprintf( ":%d:", i );
+				aex2 = sprintf( ":%d:", j );
+				setbounds( b, m, aex1, aex2, 0.0, 10000. );
+			}
+//			if( ib%50 == 0 ) printf( "excl: %d %d\n", i,j );
+			getline( dt ); // again, skip last EOL after fscanf
+		}
+	}
+}
+fclose( dt );
+
+dt = fopen( dtfile, "r" );
+
+while ( line = getline( dt ) ) {     // read descriptor on dt:
+                                     // third time for bonds, angles, noes
+
+	if( length( line ) == 0 ){ continue; }
+	if( substr( line, 1, 1 ) == "#" ) { continue; }
+
+	if( substr( line, 1, 4 ) == "bond" ){
+		split( line, fields, " \t" ); numbonds = atoi( fields[2] );
+		for( ib=1; ib<= numbonds; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			i = atoi( fields[1] ); j = atoi( fields[2] );
+			aex1 = sprintf( ":%d:", i );
+			aex2 = sprintf( ":%d:", j );
+			blen = atof( fields[4] );
+			setbounds( b, m, aex1, aex2, blen, blen );
+			bl[i,j] = bl[j,i] = blen;
+//			if( ib%50 == 0 ) printf( "bond: %d %d %8.3f\n", i,j,blen );
+		}
+	}
+
+#if 0
+	if( substr( line, 1, 4 ) == "stud" ){
+		split( line, fields, " \t" ); numstuds = atoi( fields[2] );
+		assert( numstuds < MAXSTUD );
+		for( ib=1; ib<= numstuds; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			stud[ib].x = atof(fields[3]);
+			stud[ib].y = atof(fields[4]);
+			stud[ib].z = atof(fields[5]);
+		}
+		nstudchi = 0;
+		for( i=1543; i<=1562; i++ ){
+			for( j=i+1; j<=1563; j++ ){
+				del = stud[ i-1542 ] - stud[ j-1542 ];
+				blen = sqrt( del @ del );
+				aex1 = sprintf( ":%d:", i );
+				aex2 = sprintf( ":%d:", j );
+				// add +/- 10 ang. slop to stud distances:
+				setbounds( b, m, aex1, aex2, blen - 10.0, blen + 10.0 );
+
+				//	set up chiral volumes among the protein atoms:
+				for( k=j+1; k<=1563; k+=5 ){
+					aex3 = sprintf( ":%d:", k );
+					for( l=k+1; l<=1563; l+=5 ){
+						aex4 = sprintf( ":%d:", l );
+						cv = getchivolp( stud[i-1542], stud[j-1542],
+								stud[k-1542], stud[l-1542] );
+						setchivol( b, m, aex1, aex2, aex3, aex4, cv );
+						//printf( "studchi: %d %d %d %d %8.3f\n", i,j,k,l,cv );
+						nstudchi++;
+					}
+				}
+			}
+		}
+//		printf( "added %d chiral volumes for the studs\n", nstudchi );
+	}
+#endif
+
+	if( substr( line, 1, 4 ) == "angl" ){
+		split( line, fields, " \t" ); numangls = atoi( fields[2] );
+		for( ib=1; ib<= numangls; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			i = atoi(fields[1]); j=atoi(fields[2]); k=atoi(fields[3]);
+			if( bl[ i,j ] == 0.0 || bl [ j,k ] == 0.0 ) continue;
+			theta = atof(fields[5])*180./3.14159;
+			blen = sqrt( bl[i,j]*bl[i,j] + bl[j,k]*bl[j,k]
+					- bl[i,j]*bl[j,k]*cos( theta ) );
+			aex1 = sprintf( ":%d:", i );
+			aex2 = sprintf( ":%d:", k );
+			setbounds( b, m, aex1, aex2, blen - 1.5, blen + 1.5 );
+//			if( ib%50 == 0 ) printf( "angl: %d %d %8.3f\n", i,k,blen );
+		}
+	}
+
+	
+	if( substr( line, 1, 4 ) == "angn" ){
+		split( line, fields, " \t" ); numangns = atoi( fields[2] );
+		for( ib=1; ib<= numangns; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			if( atoi(fields[5]) != 2 ) continue;
+			i = atoi(fields[1]); j=atoi(fields[2]); k=atoi(fields[3]);
+			if( bl[ i,j ] == 0.0 || bl [ j,k ] == 0.0 ) continue;
+			theta = atof(fields[7])*180./3.14159;
+			blen = sqrt( bl[i,j]*bl[i,j] + bl[j,k]*bl[j,k]
+					- bl[i,j]*bl[j,k]*cos( theta ) );
+			aex1 = sprintf( ":%d:", i );
+			aex2 = sprintf( ":%d:", k );
+			andbounds( b, m, aex1, aex2, blen - 1.5, 9999. );
+//			if( ib%50 == 0 ) printf( "angn: %d %d %8.3f\n", i,k,blen );
+		}
+	}
+
+	if( substr( line, 1, 4 ) == "itor" ){
+		split( line, fields, " \t" ); numitors = atoi( fields[2] );
+		for( ib=1; ib<= numitors; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			i = atoi(fields[1]); j=atoi(fields[2]); k=atoi(fields[3]);
+			l = atoi(fields[4]); 
+			aex1 = sprintf( ":%d:", i );
+			aex2 = sprintf( ":%d:", j );
+			aex3 = sprintf( ":%d:", k );
+			aex4 = sprintf( ":%d:", l );
+			//   set target chiral volume to that in starting structure:
+			cv = getchivol( m, aex1, aex2, aex3, aex4 );
+			setchivol( b, m, aex1, aex2, aex3, aex4, cv );
+		}
+	}
+
+	if( substr( line, 1, 4 ) == "noen" ){
+		split( line, fields, " \t" ); numnoens = atoi( fields[2] );
+		for( ib=1; ib<= numnoens; ib++ ) {
+			split( getline(dt), fields, " \t" );
+			i = atoi(fields[1]); j=atoi(fields[2]);
+			lowerb = atof( fields[5] );
+			upperb = atof( fields[7] );
+			klo = kcal_per_CEU*atof( fields[4] ); 
+			kup = kcal_per_CEU*atof( fields[6] );
+			// find spot at which penalty is 1.2 kcal/mol:
+			if( klo > 0.0 ) lowerb -= sqrt( 1.2/klo );
+			if( kup > 0.0 ) upperb += sqrt( 1.2/kup );
+			aex1 = sprintf( ":%d:", i );
+			aex2 = sprintf( ":%d:", j );
+			andbounds( b, m, aex1, aex2, lowerb, upperb );
+//			printf( "noe: %d %d %8.3f %8.3f\n", i,j,lowerb,upperb );
+		}
+	}
+
+#if 0
+	if( substr( line, 1, 4 ) == "lock" ){
+		locked = ":";
+		split( getline(dt), fields, " \t" ); numlocks = atoi( fields[1] );
+		for( ib=1; ib<= numlocks; ib++ ) {
+			fscanf( dt, "%d", j ); 
+			locked += sprintf( "%d,", j );
+		}
+		locked += ":";
+//		printf( "%d locked residues:\n%s\n", numlocks, locked );
+	}
+#endif
+
+}
+fclose( dt );
+
+return( b );
+};
+
+//   Output an Amber-compatible set of coordinates
+
+int	putx( string filename, molecule m )
+{
+	int i;
+	atom a;
+	file fp;
+
+	fp = fopen( filename, "w" );
+	if( fp == NULL ){
+		fprintf( stderr, "Unable to open prmcrd file %s\n", filename );
+		exit(1);
+	}
+	fprintf( fp, " created by dt_to_prmtop\n%5d\n", m.natoms );
+	i = 0;
+	for( a in m ){
+		i++; fprintf( fp, "%12.7f%12.7f%12.7f", a.x, a.y, a.z );
+		if( i%2 == 0 ) fprintf( fp, "\n" );
+	}
+	if( i%2 == 1 ) fprintf( fp, "\n" );
+	fclose( fp );
+	return( 0 );
+};
+
+//    output a formatted ARC3 file for yammp
+
+int		putarc( string filename, molecule m )
+{
+
+	atom a;
+	file fp;
+
+	fp = fopen( filename, "w" );
+	if( fp == NULL ){
+		fprintf( stderr, "Unable to open archive file %s\n", filename );
+		exit(1);
+	}
+	fprintf( fp, "ARC3      0%8d    0\n\n10  0   3   0\n\n", m.natoms );
+
+	for( a in m ){
+		fprintf( fp, "%12.5f %12.5f %12.5f\n", a.x, a.y, a.z );
+	}
+
+	fclose( fp );
+	return( 0 );
+
+};

@@ -1,0 +1,23 @@
+There are two main benchmark scripts here:
+
+1.  A molecular dynamics run (bench_md.nab), which just times first-derivative
+    code.  This does 100 steps of dynamics; change to a larger value if
+    this is too short a benchmark.
+
+2.  A Newton-Raphson minimization (bench_nr.nab), which exercises the second-
+    derivative routines.  This does 5 cycles of Newton-Raphson; again, change
+    to a larger value for a longer benchmark.
+
+To compile and run, do this:
+
+       nab bench_md.nab   [ or  nab bench_nr.nab ]
+       time ./a.out <tag>   
+
+Here <tag> is one of the following:
+      gcn4p1    ( 1084 atoms )
+      gcn4dna   ( 3227 atoms )
+      1akd      ( 6370 atoms )
+      halfam0   ( 9515 atoms )
+
+Note: the "bench_amber" script will run the same thing as bench_md.nab
+      program, to facilitate comparisons between Amber and NAB.

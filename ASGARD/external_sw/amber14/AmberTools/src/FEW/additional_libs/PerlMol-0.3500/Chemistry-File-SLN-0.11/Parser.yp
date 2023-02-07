@@ -1,0 +1,156 @@
+# Parse::Yapp grammar for SLN
+
+%{ no warnings 'uninitialized'; %}
+
+# expected one shift/reduce conflict for H
+%expect  1
+
+%%
+
+ctab: ctab_bracket { +{ chain => [], attr => $_[1] } }
+    | atom chain ctab_bracket { +{ chain => [ $_[1], @{$_[2]} ],
+                                    attr => $_[3] } } ;
+
+chain: /* empty */ { [] }
+    | bondatom chain { [ @{$_[1]}, @{$_[2]}, ] }
+    | '(' bondatom chain ')' chain { 
+            [ $_[1], @{$_[2]}, @{$_[3]}, $_[4], @{$_[5]} ] }
+;
+
+bondatom: bond atom { [@_[1,2]]}
+    | bond closure  { [@_[1,2]]}
+;
+
+bond: /* empty */       { +{type => '-'} }
+    |   bond_symbol bond_bracket    { +{
+                                        type => $_[1],
+                                        attr => $_[2]
+                                        } 
+                                    }
+;
+
+closure: '@' NUM        { +{closure => $_[2]} }
+;
+
+bond_symbol: '-' | '=' | '#' | '.' | ':';
+
+atom:       symbol atom_bracket hcount  { +{
+                                        symbol  => $_[1],
+                                        id      => $_[2][0],         
+                                        hcount  => $_[3],
+                                        attr   => $_[2][1],
+                                    } 
+                                }
+;
+
+symbol:     UC lc_str  { $_[1] . $_[2] }
+;
+
+lc_str: #empty
+        |   lc_str LC   { $_[1] . $_[2] }
+;
+
+UC:         UC_NON_H | H;
+ALPHA:      UC | LC ;
+ALNUM:      ALPHA | NUM;
+WORD:       ALNUM | '_';
+
+atom_bracket:   #empty 
+        |   '[' NUM ':' attr ']'    { [@_[2,4]] }
+        |   '[' attr ']'    { [undef, $_[2]] }
+        |   '[' NUM ']'    { [$_[2], undef] }
+;
+
+bond_bracket:   #empty 
+        |   '[' attr ']'    { $_[2] }
+;
+
+ctab_bracket:   #empty 
+        |   '<' attr '>'    { $_[2] }
+;
+
+hcount:     #empty
+        |   H NUM             { $_[2] }
+        |   H                 { 1 }
+;
+
+attr: # empty
+        | attr_list;
+
+attr_list:  key_val
+        |   attr_list ';' key_val    { +{%{$_[1]}, %{$_[3]}} }
+;
+
+key_val: key '=' value { +{lc($_[1]) => $_[3]} }
+        | key          { +{lc($_[1]) => 'TRUE' } }
+        | charge       { +{charge => $_[1] } }
+;
+
+value: STRING | string;
+
+key: ALPHA key_tail  { $_[1] . $_[2] } ;
+
+key_tail: #empty
+        |   key_tail WORD { $_[1] . $_[2] }
+;
+
+charge:     '+' NUM     { $_[2] }
+        |   '-' NUM     { -$_[2] }
+        |   '+'         { 1 }
+        |   '-'         { -1 }
+;
+
+string: #empty
+        | string string_char { $_[1] . $_[2] }
+;
+
+string_char: WORD | OTHER_CHAR | '+' | '-' | '.';
+
+#special chars: s/^([<>[\];=_()\@#.:+-])//s 
+
+
+%%
+
+sub _Error {
+        exists $_[0]->YYData->{ERRMSG}
+    and do {
+        warn $_[0]->YYData->{ERRMSG};
+        delete $_[0]->YYData->{ERRMSG};
+        return;
+    };
+    warn "Syntax error.\n";
+}
+
+sub _Lexer {
+    my($parser)=shift;
+
+        $parser->YYData->{INPUT}
+    #or  $parser->YYData->{INPUT} = <STDIN>
+    or  return('',undef);
+
+    $parser->YYData->{INPUT}=~s/^[ \t]//;
+
+    for ($parser->YYData->{INPUT}) {
+        s/^([0-9]+(?:\.[0-9]+)?)//
+                and return('NUM',$1);
+        s/^(H)//
+                and return('H',$1);
+        s/^([A-Z])//
+                and return('UC_NON_H',$1);
+        s/^([a-z])//
+                and return('LC',$1);
+        s/^"(.*?)"//s
+                and return('STRING',$1);
+        s/^([<>[\];=_()\@#.:+-])//s 
+                and return($1,$1);   # "special" character
+        s/^(.)//s
+                and return('OTHER_CHAR',$1);
+    }
+}
+
+sub run {
+    my($self)=shift;
+    $self->YYData->{INPUT} = shift;
+    $self->YYParse( yylex => \&_Lexer, yyerror => \&_Error );
+}
+

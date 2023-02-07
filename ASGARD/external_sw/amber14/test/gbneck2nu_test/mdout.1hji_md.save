@@ -1,0 +1,293 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 03/02/2015 at 17:54:19
+
+|   Executable path: ../../bin/sander
+| Working directory: /mnt/raidc2/haichit/PAPERS_DATA/GBNeck2nu/Code/Amber14.official/test/gbneck2nu_test
+|          Hostname: Unknown
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: gbin                                                                  
+| MDOUT: mdout.1hji_md                                                         
+|INPCRD: min.r                                                                 
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+
+ Here is the input file:
+
+md.in                                                                          
+ &cntrl                                                                        
+  imin = 0, nstlim = 10, dt = 0.002,                                           
+  ntx = 1, irest = 0, ig = 1,                                                  
+  ntt = 1, tol = 0.000001,                                                     
+  temp0 = 300, tempi=300,                                                      
+  ntc = 2, ntf = 1, ntb = 0,                                                   
+  ntwx = 1, ntwr =1, ntpr = 1,                                                 
+  cut = 1000.0,                                                                
+  igb = 8,                                                                     
+/                                                                              
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 04/17/12 Time = 12:30:08
+ NATOM  =     946 NTYPES =      16 NBONH =     401 MBONA  =     586
+ NTHETH =     900 MTHETA =     860 NPHIH =    1791 MPHIA  =    1791
+ NHPARM =       0 NPARM  =       0 NNB   =    5201 NRES   =      41
+ NBONA  =     586 NTHETA =     860 NPHIA =    1791 NUMBND =      74
+ NUMANG =     171 NPTRA  =      82 NATYP =      35 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      34 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are H(N)-modified Bondi radii (mbondi2)                                             
+ Replacing prmtop screening parameters with GBn2 (igb=8) values
+
+|     Memory Use     Allocated
+|     Real               72487
+|     Hollerith           2881
+|     Integer            70090
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total              851 kbytes
+| Warning: ATOMIC_NUMBER section not found
+|          Guessing atomic numbers from masses for GB parameters
+|          Remake topology file with AmberTools 12 or add ATOMIC_NUMBERS
+|          with ParmEd to remove this warning
+
+| Note: 1-4 EEL scale factors are being read from the topology file.
+
+| Note: 1-4 VDW scale factors are being read from the topology file.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =       1
+     iwrap   =       0, ntwx    =       1, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       8, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =1000.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.19514, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+     gbalphaH  =   0.78844, gbbetaH   =   0.79870,  gbgammaH  =    0.43733
+     gbalphaC  =   0.73376, gbbetaC   =   0.50638,  gbgammaC  =    0.20584
+     gbalphaN  =   0.50336, gbbetaN   =   0.31683,  gbgammaN  =    0.19292
+     gbalphaOS =   0.86781, gbbetaOS  =   0.87664,  gbgammaOS =    0.38788
+     gbalphaP  =   1.00000, gbbetaP   =   0.80000,  gbgammaP  =    4.85000
+     gb_alpha_hnu  =   0.53705, gb_beta_hnu   =   0.36286,  gb_gamma_hnu  =    0.11670
+     gb_alpha_cnu  =   0.33167, gb_beta_cnu   =   0.19684,  gb_gamma_cnu  =    0.09342
+     gb_alpha_nnu  =   0.68631, gb_beta_nnu   =   0.46319,  gb_gamma_nnu  =    0.13872
+     gb_alpha_onu  =   0.60634, gb_beta_onu   =   0.46301,  gb_gamma_onu  =    0.14226
+     gb_alpha_pnu  =   0.41836, gb_beta_pnu   =   0.29005,  gb_gamma_pnu  =    0.10642
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00200, vlimit  =  20.00000
+
+Berendsen (weak-coupling) temperature regulation:
+     temp0   = 300.00000, tempi   = 300.00000, tautp   =   1.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00000
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):    2437.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    2431.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    2431.
+|  TOTAL # of degrees of freedom (RNDF) =    2431.
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =   352.48  PRESS =     0.0
+ Etot   =     -3160.3764  EKtot   =       851.3837  EPtot      =     -4011.7601
+ BOND   =        96.6852  ANGLE   =        82.4104  DIHED      =       815.9457
+ 1-4 NB =       337.5611  1-4 EEL =     -1781.3516  VDWAALS    =       384.2512
+ EELEC  =     -1659.5740  EGB     =     -2287.6880  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        1   TIME(PS) =       0.002  TEMP(K) =   325.99  PRESS =     0.0
+ Etot   =     -3224.3501  EKtot   =       787.4100  EPtot      =     -4011.7601
+ BOND   =        96.6852  ANGLE   =        82.4104  DIHED      =       815.9457
+ 1-4 NB =       337.5611  1-4 EEL =     -1781.3516  VDWAALS    =       384.2512
+ EELEC  =     -1659.5740  EGB     =     -2287.6880  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =       0.004  TEMP(K) =   325.98  PRESS =     0.0
+ Etot   =     -3337.1979  EKtot   =       787.3758  EPtot      =     -4124.5738
+ BOND   =        99.0970  ANGLE   =       144.3683  DIHED      =       816.1381
+ 1-4 NB =       336.2949  1-4 EEL =     -1778.9174  VDWAALS    =       217.2260
+ EELEC  =     -1664.5620  EGB     =     -2294.2187  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =       0.006  TEMP(K) =   317.79  PRESS =     0.0
+ Etot   =     -3330.4759  EKtot   =       767.5905  EPtot      =     -4098.0664
+ BOND   =       148.4699  ANGLE   =       299.4412  DIHED      =       820.1107
+ 1-4 NB =       349.3125  1-4 EEL =     -1796.0796  VDWAALS    =        41.5589
+ EELEC  =     -1662.0957  EGB     =     -2298.7843  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) =       0.008  TEMP(K) =   306.27  PRESS =     0.0
+ Etot   =     -3314.4167  EKtot   =       739.7630  EPtot      =     -4054.1797
+ BOND   =       178.4990  ANGLE   =       433.3468  DIHED      =       828.2749
+ 1-4 NB =       373.3387  1-4 EEL =     -1822.3646  VDWAALS    =       -84.7822
+ EELEC  =     -1659.5903  EGB     =     -2300.9021  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =       0.010  TEMP(K) =   347.98  PRESS =     0.0
+ Etot   =     -3327.1179  EKtot   =       840.5145  EPtot      =     -4167.6324
+ BOND   =       183.0113  ANGLE   =       462.5359  DIHED      =       837.2166
+ 1-4 NB =       336.8257  1-4 EEL =     -1852.1737  VDWAALS    =      -177.5373
+ EELEC  =     -1658.0055  EGB     =     -2299.5053  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =       0.012  TEMP(K) =   390.66  PRESS =     0.0
+ Etot   =     -3332.5594  EKtot   =       943.6166  EPtot      =     -4276.1760
+ BOND   =       187.2424  ANGLE   =       440.6281  DIHED      =       842.3952
+ 1-4 NB =       317.9939  1-4 EEL =     -1882.4339  VDWAALS    =      -229.0962
+ EELEC  =     -1657.8157  EGB     =     -2295.0898  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) =       0.014  TEMP(K) =   412.68  PRESS =     0.0
+ Etot   =     -3324.6475  EKtot   =       996.8104  EPtot      =     -4321.4579
+ BOND   =       204.1666  ANGLE   =       432.3459  DIHED      =       840.2900
+ 1-4 NB =       308.0400  1-4 EEL =     -1909.7664  VDWAALS    =      -248.6592
+ EELEC  =     -1658.6719  EGB     =     -2289.2030  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =       0.016  TEMP(K) =   431.42  PRESS =     0.0
+ Etot   =     -3328.8603  EKtot   =      1042.0640  EPtot      =     -4370.9243
+ BOND   =       218.4620  ANGLE   =       448.8857  DIHED      =       830.3245
+ 1-4 NB =       300.4098  1-4 EEL =     -1931.6255  VDWAALS    =      -293.6670
+ EELEC  =     -1660.2937  EGB     =     -2283.4201  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =       0.018  TEMP(K) =   438.78  PRESS =     0.0
+ Etot   =     -3326.8616  EKtot   =      1059.8358  EPtot      =     -4386.6974
+ BOND   =       215.1271  ANGLE   =       483.6333  DIHED      =       815.4524
+ 1-4 NB =       295.9594  1-4 EEL =     -1948.2656  VDWAALS    =      -307.3582
+ EELEC  =     -1661.9566  EGB     =     -2279.2893  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =       0.020  TEMP(K) =   441.90  PRESS =     0.0
+ Etot   =     -3326.7293  EKtot   =      1067.3709  EPtot      =     -4394.1002
+ BOND   =       207.7745  ANGLE   =       510.3765  DIHED      =       801.5326
+ 1-4 NB =       293.8294  1-4 EEL =     -1962.7124  VDWAALS    =      -306.3681
+ EELEC  =     -1660.2004  EGB     =     -2278.3323  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      10 S T E P S
+
+
+ NSTEP =       10   TIME(PS) =       0.020  TEMP(K) =   373.94  PRESS =     0.0
+ Etot   =     -3317.3217  EKtot   =       903.2352  EPtot      =     -4220.5568
+ BOND   =       173.8535  ANGLE   =       373.7972  DIHED      =       824.7681
+ 1-4 NB =       324.9565  1-4 EEL =     -1866.5691  VDWAALS    =      -100.4432
+ EELEC  =     -1660.2766  EGB     =     -2290.6433  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       10   TIME(PS) =       0.020  TEMP(K) =    51.88  PRESS =     0.0
+ Etot   =        31.4876  EKtot   =       125.3077  EPtot      =       138.5280
+ BOND   =        42.7030  ANGLE   =       140.9765  DIHED      =        12.4517
+ 1-4 NB =        24.7170  1-4 EEL =        66.5904  VDWAALS    =       228.7509
+ EELEC  =         1.9813  EGB     =         7.9124  RESTRAINT  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.30% of Total)
+|                Calc gb radii              0.16 (23.57% of Gen B)
+|                Calc gb diag               0.26 (37.60% of Gen B)
+|                Calc gb off-diag           0.27 (38.83% of Gen B)
+|             Gen Born time              0.70 (100.0% of Nonbo)
+|          Nonbond force              0.70 (98.69% of Force)
+|          Bond/Angle/Dihedral        0.01 ( 1.31% of Force)
+|       Force time                 0.71 (93.28% of Runmd)
+|       Shake time                 0.00 ( 0.03% of Runmd)
+|       Verlet update time         0.05 ( 6.60% of Runmd)
+|       Other                      0.00 ( 0.09% of Runmd)
+|    Runmd Time                 0.76 (97.27% of Total)
+|    Other                      0.02 ( 2.43% of Total)
+| Total time                 0.78 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       0.76 Per Step(ms) =      76.26
+|         ns/day =       2.27   seconds/ns =   38128.10
+| -----------------------------------------------------
+
+|           Job began  at 17:54:19.252  on 03/02/2015
+|           Setup done at 17:54:19.273  on 03/02/2015
+|           Run   done at 17:54:20.033  on 03/02/2015
+|     wallclock() was called     281 times

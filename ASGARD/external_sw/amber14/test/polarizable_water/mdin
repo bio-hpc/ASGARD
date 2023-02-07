@@ -1,0 +1,15 @@
+min H
+
+ &cntrl
+  dielc =1.0, 
+  cut    = 8.0,     nsnb   = 5,      ibelly = 0,
+  ntx    = 7,       irest  = 1, ipol = 1,
+  ntf    = 2,       ntc    = 2,       tol    = 0.0000005,
+  ntb    = 1,       ntp    = 0,       temp0 = 300.0, tautp = 1.0,
+ nstlim = 10,    dt = 0.001,  maxcyc = 100,      imin = 0,  ntmin = 2,
+  ntpr   = 1,     ntwx = 0, ntt = 0, ntr = 0,
+           jfastw = 0, 
+ /
+ &ewald
+   indmeth=3, diptau=10.1, skinnb=1.0,
+ /

@@ -1,0 +1,40 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, advanced
+#TEST-STATE   undocumented
+
+. ../program_error.sh
+sander=../../bin/sander.MPI
+
+if [ ! -z "$TESTsander" ]; then
+   sander=$TESTsander
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+   echo "REM requires a parallel environment!"
+   exit 0
+fi
+
+numprocs=`$DO_PARALLEL ../numprocs`
+
+if [ "`basename $sander`" = 'sander.MPI' ]; then
+   if [ $numprocs -ne 8 -a $numprocs -ne 16 -a $numprocs -ne 4 ]; then
+      echo "This test case requires a multiple of 4 MPI threads!"
+      echo "Only using $numprocs"
+      exit 0
+   fi
+else
+   if [ $numprocs -ne 8 -a $numprocs -ne 16 ]; then
+      echo "This test case requires 8 or 16 MPI threads!"
+      exit 0
+   fi
+fi
+
+$DO_PARALLEL $sander -O -ng 4 -groupfile multid_remd.groupfile -remd-file remd.dim < /dev/null || error
+
+../dacdif rem.log.1.save rem.log.1
+../dacdif rem.log.2.save rem.log.2
+../dacdif ala4_ash.rep1.mdout.save ala4_ash.rep1.mdout
+
+/bin/rm -f ala4_as?.rep[234].mdout ala4_as?.rep?.rst7 logfile.00? mdinfo.00?

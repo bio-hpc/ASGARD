@@ -1,0 +1,10 @@
+#!/bin/csh -f
+
+../../bin/ambpdb -first -p prmtop < inpcrd > first.pdb || goto error
+
+../dacdif first.pdb.save first.pdb
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

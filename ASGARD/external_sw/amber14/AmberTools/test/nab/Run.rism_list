@@ -1,0 +1,41 @@
+#!/bin/sh
+
+toomany() {
+    echo "${0}: This test requires 1, 2, 4 or 8 processes"
+    echo "for meaningful comparison."
+    exit 0
+}
+
+if [ -n "${DO_PARALLEL}" ] ; then
+    numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+    if [ ! \( "$numprocs" -eq "8" -o "$numprocs" -eq "4"\
+        -o "$numprocs" -eq "2" -o "$numprocs" -le "1" \) ]; then
+            echo " DO_PARALLEL set to $DO_PARALLEL"
+            toomany 
+    elif [ -n "${MP_PROCS}" ]; then
+        if [  ! \( "$MP_PROCS" -eq "8" -o "$MP_PROCS" -eq "4"\
+            -o "$MP_PROCS" -eq "2" -o "$MP_PROCS" -le "1" \) ]; then
+#               --- For IBM AIX ---
+            echo "    MP_PROCS set to "$MP_PROCS
+            toomany 
+        fi
+    fi
+fi
+. ../program_error.sh
+
+if [ "$DO_PARALLEL" != "" ];  then
+    NAB="mpinab"
+else
+    NAB="nab"
+fi
+
+echo "Running test for 3D-RISM closure list (librism)"
+echo "(testing mm_options parsing)"
+echo ""
+../../bin/$NAB -o sff rismlist.nab || error
+$DO_PARALLEL ./sff > rismlist.out || error
+
+../dacdif rismlist.out.check rismlist.out
+
+rm -f sff rismlist.c
+exit 0

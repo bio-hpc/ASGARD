@@ -1,0 +1,16 @@
+#!/bin/csh -f
+
+/bin/rm -f total.frcmod total.prepi
+
+../../../bin/database -i test.mol2 -d mol2.def > raw.log || goto error
+
+../../dacdif total.frcmod.save total.frcmod
+../../dacdif total.prepi.save total.prepi
+
+/bin/rm -f TMP *.log
+exit(0)
+
+error:
+echo "  Program error"
+exit(1)
+

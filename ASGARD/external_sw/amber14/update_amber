@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+""" The driver for the updater """
+
+import os
+import sys
+from updateutils import main
+from updateutils.exceptions import AmberUpdaterError, PatchingUpdater
+
+if __name__ == '__main__':
+   # Some startup stuff, see if AMBERHOME is set correctly and/or make sure that
+   # appdir
+   appdir = os.path.realpath(os.path.abspath(os.path.split(sys.argv[0])[0]))
+   amberhome = os.getenv('AMBERHOME')
+   if amberhome is None or appdir != os.path.realpath(amberhome):
+      sys.stderr.write('Warning: AMBERHOME [%s] differs from expected [%s].\n' %
+                       (amberhome, appdir))
+      sys.stderr.write('         No changes will be made until this is fixed\n')
+   else:
+      main.ALLOW_UPDATES = True
+   os.chdir(appdir)
+   app = main.MainUpdater()
+   try:
+      app.mainloop()
+   except PatchingUpdater:
+      app.finalize()
+      sys.stderr.write('\n\nupdater.py has found a patch to itself... I am '
+         'quitting now so\nfuture updates will apply with the fixed script.'
+         '\n\nRun this script again to get all updates.\n\n')
+      sys.exit(0)
+   except AmberUpdaterError:
+      err = sys.exc_info()[1]
+      sys.stderr.write('%s: %s\n' % (type(err).__name__, err))
+      app.finalize()
+      sys.exit(1)
+   app.finalize(normal=True)
+   if app.num_updates > 0:
+      sys.exit(2)
+   sys.exit(0)

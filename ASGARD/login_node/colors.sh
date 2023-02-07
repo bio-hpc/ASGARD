@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+###posibles colores para usar
+##echo -e "${GREEN} .... ${NONE}"
+NONE='\033[00m' #no color
+RED='\033[00;31m'
+REDB='\033[01;31m'
+GREEN='\033[00;32m'
+GREEB='\033[01;32m'
+YELLOW='\033[00;33m'
+YELLOB='\033[01;33m'
+PURPLE='\033[00;35m'
+PURPLEB='\033[01;35m'
+CYAN='\033[00;36m'
+WHITE='\033[01;37m'
+BOLD='\033[1m'
+UNDERLINE='\033[4m'
+BLACK='\033[0;30m'
+DARKGRAY='\033[1;30m'
+BROWN='\033[0;33m'
+BLUE='\033[0;34m'
+BLUEB='\033[01;34m'
+#BROWNB='\033[00;33m'
+#LIGHTRED='\033[1;31m'
+#LIGHTGREEN='\033[1;32m'
+#LIGHTBLUE='\033[1;34m'
+#LIGHTPURPLE='\033[1;35m'
+#LIGHTCYAN='\033[1;36m'
+#LIGHTGRAY='\033[0;37m'
+

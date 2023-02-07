@@ -1,0 +1,29 @@
+#!/bin/csh -f
+echo " "
+echo "  Amber 4.1 RESP demo: peptoid with few charge constrains and"
+echo "                hydrogen's charge equivalencing in the second stage"
+echo " "
+
+echo "RESP stage 1:"
+../../../bin/resp -O \
+		-i esp_stage1.in \
+		-o esp_stage1.out \
+		-p esp_stage1.pch \
+		-t esp_stage1.chg \
+		-e esp.dat 		||  goto error
+
+echo "RESP stage 2:"
+../../../bin/resp -O \
+		-i esp_stage2.in \
+		-o esp_stage2.out \
+		-p esp_stage2.pch \
+		-q esp_stage1.chg \
+		-t esp_stage2.chg \
+		-e esp.dat 		|| goto error
+
+echo No errors detected
+exit 0
+
+error:
+echo Error: check .out and try again
+exit(1)

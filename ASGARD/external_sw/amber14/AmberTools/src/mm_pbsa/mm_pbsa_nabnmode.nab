@@ -1,0 +1,61 @@
+//
+// NAB code for nmode calculations, following XMIN minimization
+//
+// Holger Gohlke
+//   Last change: 07.02.2010
+//
+
+#include "xmin_opt.h"
+
+// Prepare
+struct xmin_opt xo;
+molecule m;
+int ier, natm;
+float xyz[dynamic], grad[dynamic];
+float energy, grms;
+
+// Check input
+//printf("%s\n", argv[2]);
+//printf("%s\n", argv[3]);
+//printf("%s\n", argv[4]);
+//printf("%s\n", argv[5]);
+//printf("%s\n", argv[6]);
+
+// Read molecule and prmtop
+m = getpdb(argv[2]);
+readparm(m, argv[3]);
+natm = m.natoms;
+
+allocate xyz[3*natm];
+allocate grad[3*natm];
+setxyz_from_mol(m, NULL, xyz);
+
+// Init MM calculations
+mm_options(argv[4]);
+mme_init(m, NULL, "::ZZZZ", xyz, NULL);
+
+// Do XMIN minimization
+xmin_opt_init( xo );
+xo.maxiter = atoi(argv[5]);
+xo.grms_tol = atof(argv[6]);
+xo.method = 3;
+xo.numdiff = 1;
+xo.m_lbfgs = 3;
+xo.ls_method = 2;
+xo.ls_maxiter = 20;
+xo.ls_maxatmov = 0.15;
+xo.print_level = 1;
+
+energy = mme( xyz, grad, 0);
+energy = xmin( mme, natm, xyz, grad, energy, grms, xo );
+if(grms > xo.grms_tol) return -3;
+
+// Do conj gradient minimization
+//grms = atof(argv[6]);
+//ier = conjgrad( xyz, 3*natm, energy, mme, grms, 1.0, atoi(argv[5]));
+//if(ier <= 0) return ier;
+
+// Calc normal modes:
+ier = nmode( xyz, 3*natm, mme2, 0, 0, 0.0, 0.0, 0);
+return ier;
+

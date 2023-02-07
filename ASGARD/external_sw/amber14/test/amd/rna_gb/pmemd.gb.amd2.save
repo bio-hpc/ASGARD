@@ -1,0 +1,299 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| PMEMD implementation of SANDER, Release 14
+
+| Run on 01/15/2014 at 09:39:23
+
+  [-O]verwriting output
+
+File Assignments:
+|   MDIN: gbin                                                                  
+|  MDOUT: pmemd.gb.amd2                                                         
+| INPCRD: md4.x                                                                 
+|   PARM: prmtop                                                                
+| RESTRT: restrt                                                                
+|   REFC: refc                                                                  
+|  MDVEL: mdvel                                                                 
+|   MDEN: mden                                                                  
+|  MDCRD: mdcrd                                                                 
+| MDINFO: mdinfo                                                                
+|  MDFRC: mdfrc                                                                 
+
+ 
+ Here is the input file:
+ 
+  test of gen. Born, on a stretch of A-RNA AMD=2                               
+ &cntrl                                                                        
+   nstlim=10, cut=9999.0, igb=1, saltcon=0.1,                                  
+   ntpr=1, ntwx=1, ntwr=1, ntt=0,                                              
+   ntx=5, irest=1,                                                             
+   ntc=2, ntf=2, tol=0.000001,                                                 
+   dt=0.001, ntb=0,                                                            
+   iamd=2,                                                                     
+   ethreshp=-3962,alphap=128,                                                  
+   ethreshd=490,alphad=14,                                                     
+ /                                                                             
+
+
+| Using Accelerated MD (AMD) RASING VALLEYS to enhance sampling iamd =  2
+| AMD boost to total energy: EthreshP,alphaP        0.000000000000        0.000000000000
+| AMD boost to dihedrals: EthreshD,alphaD      490.000000000000       14.000000000000
+ 
+| Conditional Compilation Defines Used:
+| DIRFRC_COMTRANS
+| DIRFRC_EFS
+| DIRFRC_NOVEC
+| PUBFFT
+| FFTLOADBAL_2PROC
+| BINTRAJ
+| EMIL
+ 
+| New format PARM file being parsed.
+| Version =    1.000 Date = 07/12/01 Time = 15:10:28
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+ NATOM  =     640 NTYPES =      14 NBONH =     220 MBONA  =     468
+ NTHETH =     500 MTHETA =     726 NPHIH =     918 MPHIA  =    1226
+ NHPARM =       0 NPARM  =       0 NNB   =    3568 NRES   =      20
+ NBONA  =     468 NTHETA =     726 NPHIA =    1226 NUMBND =      35
+ NUMANG =      72 NPTRA  =      33 NATYP =      24 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      35 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+simple RNA example                                                              
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       5, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =       1
+     iwrap   =       0, ntwx    =       1, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       0, igb     =       1, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =9999.00000, intdiel =   1.00000
+     saltcon =   0.10000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00000
+
+| Intermolecular bonds treatment:
+|     no_intermolecular_bonds =       1
+
+| Energy averages sample interval:
+|     ene_avg_sampling =       1
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+PDB 5DNB, Dickerson decamer                                                     
+ begin time read from input coords =   130.000 ps
+
+ 
+ Number of triangulated 3-point waters found:        0
+| Dynamic Memory, Types Used:
+| Reals               20108
+| Integers            58261
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+ NSTEP =        1   TIME(PS) =     130.001  TEMP(K) =   308.03  PRESS =     0.0
+ Etot   =     -3529.7323  EKtot   =       518.4620  EPtot      =     -4048.1943
+ BOND   =       169.8648  ANGLE   =       317.5438  DIHED      =       418.4878
+ 1-4 NB =       163.4163  1-4 EEL =     -2297.2470  VDWAALS    =      -356.1385
+ EELEC  =      2159.3372  EGB     =     -4683.2630  RESTRAINT  =         0.0000
+ EAMD_BOOST  =        59.8042
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =     130.002  TEMP(K) =   306.54  PRESS =     0.0
+ Etot   =     -3529.6912  EKtot   =       515.9603  EPtot      =     -4045.6515
+ BOND   =       171.3803  ANGLE   =       318.0918  DIHED      =       420.4304
+ 1-4 NB =       163.7033  1-4 EEL =     -2298.7541  VDWAALS    =      -355.8787
+ EELEC  =      2161.1978  EGB     =     -4683.7372  RESTRAINT  =         0.0000
+ EAMD_BOOST  =        57.9150
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =     130.003  TEMP(K) =   305.01  PRESS =     0.0
+ Etot   =     -3529.6417  EKtot   =       513.3775  EPtot      =     -4043.0192
+ BOND   =       172.5250  ANGLE   =       319.3420  DIHED      =       424.7400
+ 1-4 NB =       163.8900  1-4 EEL =     -2300.4160  VDWAALS    =      -355.5327
+ EELEC  =      2163.3853  EGB     =     -4684.6857  RESTRAINT  =         0.0000
+ EAMD_BOOST  =        53.7329
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) =     130.004  TEMP(K) =   303.88  PRESS =     0.0
+ Etot   =     -3529.6084  EKtot   =       511.4797  EPtot      =     -4041.0882
+ BOND   =       172.8015  ANGLE   =       321.0505  DIHED      =       431.3653
+ 1-4 NB =       163.9472  1-4 EEL =     -2302.1175  VDWAALS    =      -355.1442
+ EELEC  =      2165.8042  EGB     =     -4686.1284  RESTRAINT  =         0.0000
+ EAMD_BOOST  =        47.3332
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =     130.005  TEMP(K) =   303.47  PRESS =     0.0
+ Etot   =     -3529.6144  EKtot   =       510.7785  EPtot      =     -4040.3929
+ BOND   =       171.9863  ANGLE   =       322.9026  DIHED      =       440.2238
+ 1-4 NB =       163.8637  1-4 EEL =     -2303.7646  VDWAALS    =      -354.7696
+ EELEC  =      2168.3886  EGB     =     -4688.0732  RESTRAINT  =         0.0000
+ EAMD_BOOST  =        38.8495
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =     130.006  TEMP(K) =   303.72  PRESS =     0.0
+ Etot   =     -3529.6709  EKtot   =       511.2063  EPtot      =     -4040.8773
+ BOND   =       170.2473  ANGLE   =       324.6834  DIHED      =       451.1791
+ 1-4 NB =       163.6469  1-4 EEL =     -2305.3054  VDWAALS    =      -354.4639
+ EELEC  =      2171.1185  EGB     =     -4690.5146  RESTRAINT  =         0.0000
+ EAMD_BOOST  =        28.5316
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) =     130.007  TEMP(K) =   304.16  PRESS =     0.0
+ Etot   =     -3529.7940  EKtot   =       511.9401  EPtot      =     -4041.7340
+ BOND   =       168.0853  ANGLE   =       326.3750  DIHED      =       463.9968
+ 1-4 NB =       163.3208  1-4 EEL =     -2306.7403  VDWAALS    =      -354.2627
+ EELEC  =      2174.0181  EGB     =     -4693.4299  RESTRAINT  =         0.0000
+ EAMD_BOOST  =        16.9028
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =     130.008  TEMP(K) =   303.60  PRESS =     0.0
+ Etot   =     -3530.1431  EKtot   =       511.0070  EPtot      =     -4041.1501
+ BOND   =       166.1223  ANGLE   =       328.1233  DIHED      =       478.2335
+ 1-4 NB =       162.9227  1-4 EEL =     -2308.1202  VDWAALS    =      -354.1698
+ EELEC  =      2177.1333  EGB     =     -4696.7685  RESTRAINT  =         0.0000
+ EAMD_BOOST  =         5.3733
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =     130.009  TEMP(K) =   299.07  PRESS =     0.0
+ Etot   =     -3530.0848  EKtot   =       503.3793  EPtot      =     -4033.4640
+ BOND   =       164.8378  ANGLE   =       330.0712  DIHED      =       492.7523
+ 1-4 NB =       162.4951  1-4 EEL =     -2309.5318  VDWAALS    =      -354.1549
+ EELEC  =      2180.4731  EGB     =     -4700.4070  RESTRAINT  =         0.0000
+ EAMD_BOOST  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =     130.010  TEMP(K) =   293.18  PRESS =     0.0
+ Etot   =     -3530.0191  EKtot   =       493.4728  EPtot      =     -4023.4919
+ BOND   =       164.3751  ANGLE   =       331.9640  DIHED      =       503.4174
+ 1-4 NB =       162.0759  1-4 EEL =     -2311.0648  VDWAALS    =      -354.1548
+ EELEC  =      2183.8382  EGB     =     -4703.9430  RESTRAINT  =         0.0000
+ EAMD_BOOST  =         0.0000
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      10 S T E P S
+
+
+ NSTEP =       10   TIME(PS) =     130.010  TEMP(K) =   303.07  PRESS =     0.0
+ Etot   =     -3529.8000  EKtot   =       510.1063  EPtot      =     -4039.9063
+ BOND   =       169.2226  ANGLE   =       324.0148  DIHED      =       452.4826
+ 1-4 NB =       163.3282  1-4 EEL =     -2304.3062  VDWAALS    =      -354.8670
+ EELEC  =      2170.4694  EGB     =     -4691.0950  RESTRAINT  =         0.0000
+ EAMD_BOOST  =        30.8442
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       10   TIME(PS) =     130.010  TEMP(K) =     3.96  PRESS =     0.0
+ Etot   =         0.1940  EKtot   =         6.6666  EPtot      =         6.5558
+ BOND   =         3.0183  ANGLE   =         4.8123  DIHED      =        29.2613
+ 1-4 NB =         0.6052  1-4 EEL =         4.4196  VDWAALS    =         0.7210
+ EELEC  =         7.8892  EGB     =         6.9290  RESTRAINT  =         0.0000
+ EAMD_BOOST  =        22.7653
+|E(PBS) =         0.3996
+ ------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|  NonSetup CPU Time in Major Routines:
+|
+|     Routine           Sec        %
+|     ------------------------------
+|     Nonbond           0.29   93.55
+|     Bond              0.00    0.00
+|     Angle             0.00    0.00
+|     Dihedral          0.00    0.00
+|     Shake             0.00    0.00
+|     RunMD             0.02    6.45
+|     Other             0.00    0.00
+|     ------------------------------
+|     Total             0.31
+
+|  Generalized Born CPU Time:
+|
+|     Routine                 Sec        %
+|     ------------------------------------
+|     Radii Calc              0.07   22.58
+|     Diagonal Calc           0.08   25.81
+|     Off Diagonal Calc       0.14   45.16
+|     GBSA LCPO Calc          0.00    0.00
+|     ---------------------------------
+|     Total                   0.29   93.55
+
+|  Final Performance Info:
+|     -----------------------------------------------------
+|     Average timings for last       9 steps:
+|         Elapsed(s) =       0.28 Per Step(ms) =      31.18
+|             ns/day =       2.77   seconds/ns =   31183.65
+|
+|     Average timings for all steps:
+|         Elapsed(s) =       0.31 Per Step(ms) =      31.32
+|             ns/day =       2.76   seconds/ns =   31322.58
+|     -----------------------------------------------------
+
+|  Setup CPU time:            0.01 seconds
+|  NonSetup CPU time:         0.31 seconds
+|  Total CPU time:            0.32 seconds     0.00 hours
+
+|  Setup wall time:           0    seconds
+|  NonSetup wall time:        1    seconds
+|  Total wall time:           1    seconds     0.00 hours

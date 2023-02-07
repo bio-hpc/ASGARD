@@ -1,0 +1,32 @@
+#!/bin/sh
+
+cpinutil=../../bin/cpinutil.py
+
+# Usage: cpinutil.py -p <prmtop> -igb <2|5|8> -resname <resname list>
+#                    -notresname <resname list> -resnum <residue numbers>
+#                    -notresnum <residue numbers> -minpKa <value>
+#                    -maxpKa <value> -states <list of states>
+#                    -system <system name> [--ignore-warnings]
+
+$cpinutil -p hewl.parm7 -igb 2 > cpin1 2>/dev/null
+$cpinutil -p hewl.parm7 -igb 5 > cpin2 2>/dev/null
+$cpinutil -p hewl.parm7 -igb 2 -resname AS4,GL4 > cpin3 2>/dev/null
+$cpinutil -p hewl.parm7 -igb 2 -notresname HIP,LYS,TYR,CYS > cpin3.1 2>/dev/null
+$cpinutil -p hewl.parm7 -igb 2 -resnum 35,52 > cpin4 2>/dev/null
+$cpinutil -p hewl.parm7 -igb 2 -minpKa 3.5 -maxpKa 4.0 > cpin5 2>/dev/null
+$cpinutil -p hewl.parm7 -igb 2 -resname AS4,GL4,HIP \
+          -states 0,1,0,1,0,1,0,1,0,1 > cpin6 2>/dev/null
+
+# explicit solvent cpin files
+
+$cpinutil -p hewl.solv.parm7 -igb 2 > cpin7 2>/dev/null
+
+# Compare them now
+../dacdif cpin1.save cpin1
+../dacdif cpin2.save cpin2
+../dacdif cpin3.save cpin3
+../dacdif cpin3.save cpin3.1
+../dacdif cpin4.save cpin4
+../dacdif cpin5.save cpin5
+../dacdif cpin6.save cpin6
+../dacdif cpin7.save cpin7

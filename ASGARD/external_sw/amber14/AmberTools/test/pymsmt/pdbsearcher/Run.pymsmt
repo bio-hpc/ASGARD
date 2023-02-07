@@ -1,0 +1,24 @@
+#!/bin/sh
+
+. ../../program_error.sh
+
+if [ -z "$pdbschpy" ]; then
+   pdbschpy="../../../bin/PdbSearcher.py"
+fi
+
+list=Zn.list
+output=pdbsch.out
+envf=Zn_env.csv
+sumf=Zn_sum.csv
+
+$pdbschpy -i Zn -l $list -e $envf -s $sumf > $output 2>&1 || error
+
+../../dacdif 2MXV_res_691_MetalCenter.pdb.save 2MXV_res_691_MetalCenter.pdb
+../../dacdif 5AHO_res_2547_MetalCenter.pdb.save 5AHO_res_2547_MetalCenter.pdb
+../../dacdif 5AHO_res_2548_MetalCenter.pdb.save 5AHO_res_2548_MetalCenter.pdb
+../../dacdif Zn_env.csv.save Zn_env.csv
+../../dacdif Zn_sum.csv.save Zn_sum.csv
+
+/bin/rm -f $output
+
+exit 0

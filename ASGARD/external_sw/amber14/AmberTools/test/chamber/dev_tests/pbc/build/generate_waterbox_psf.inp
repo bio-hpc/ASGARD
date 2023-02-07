@@ -1,0 +1,45 @@
+* Generate PSF for water 
+*
+
+
+! read the topology and parameter file
+
+OPEN READ FORMATTED UNIT 12 NAME ../../../../../dat/chamber/top_all22_prot.inp
+READ RTF CARD UNIT 12
+
+OPEN READ FORMATTED UNIT 12 NAME ../../../../../dat/chamber/par_all22_prot.inp
+READ PARA CARD UNIT 12
+
+! Generate water psf and coordinates
+
+SET 4 waterbox !  water identified
+
+OPEN UNIT 1 READ FORMATTED NAME watbox222.crd
+READ SEQUENCE UNIT 1 COOR 
+REWIND UNIT 1
+
+! generate new segment id and psf
+GENERATE BULK NOANGLE NODIHEDRAL 
+
+! read water box coordinates
+READ COOR CARD UNIT 1 
+CLOSE UNIT 1
+
+   
+! verify location of water box 
+
+COOR STATISTICS SELE ( SEGID bulk ) END
+
+! write out the psf and the coordinates
+
+OPEN UNIT 1 WRITE FORMATTED NAME @4.psf 
+WRITE PSF CARD UNIT 1
+*  PSF 
+*
+
+OPEN UNIT 1 WRITE FORMATTED NAME @4.cor
+WRITE COOR CARD UNIT 1
+*  COORdinates
+*
+CLOSE UNIT 1
+

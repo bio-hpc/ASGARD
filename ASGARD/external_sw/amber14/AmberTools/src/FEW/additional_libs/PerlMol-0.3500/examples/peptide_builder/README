@@ -1,0 +1,27 @@
+Peptide builder sample script
+By Ivan Tubert-Brohman, upon a suggestion by Ramón Garduño-Vázquez
+
+Builds a 3D structure for a peptide given a sequence (the structure is
+essentialy linear; with some minor tweaks it could solve the protein-folding 
+problem ;-)
+
+It uses mdl molfiles. I know that for peptides PDB would make more sense, but
+for some reason I already had a few aminoacid structures in my drive as MDL
+molfiles and was too lazy to deal with PDB. Some things would have to be 
+changed for it to generate a proper PDB file with the residue sequence numbers
+and such.
+
+# usage: ./pep.pl <SEQUENCE>
+# prints an mdl molfile to stdout
+
+# curent version only supports the residues A,G,L,V
+
+FILES
+
+peptide_builder.pl  - the program
+ala.mol             - alanine with 3D coordinates
+gly.mol             - glycine with 3D coordinates
+leu.mol             - leucine with 3D coordinates
+val.mol             - valine with 3D coordinates
+lava.mol            - expected program output for ./peptide_builder LAVA
+

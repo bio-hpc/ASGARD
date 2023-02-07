@@ -1,0 +1,350 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/15/2014 at 09:06:14
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: minout                                                                
+|INPCRD: inpcrd                                                                
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptrj                                                                
+
+ 
+ Here is the input file:
+ 
+ test of PB implicit solvent on 1tsr b-chain                                   
+ &cntrl                                                                        
+   ntx=1, imin=5, ipb=1, inp=2, ntb=0,                                         
+ /                                                                             
+ &pb                                                                           
+   npbverb=0, istrng=0, epsout=80.0, epsin=1.0, space=0.5,                     
+   accept=0.001, sprob=1.6, radiopt=1, dprob=1.6,                              
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 01/17/12 Time = 12:49:39
+ NATOM  =     500 NTYPES =       7 NBONH =     250 MBONA  =     249
+ NTHETH =     549 MTHETA =     347 NPHIH =    1044 MPHIA  =    1031
+ NHPARM =       0 NPARM  =       0 NNB   =    2636 NRES   =      50
+ NBONA  =     249 NTHETA =     347 NPHIA =    1031 NUMBND =       8
+ NUMANG =      14 NPTRA  =      19 NATYP =       7 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      10 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are modified Bondi radii (mbondi)                                                   
+
+|     Memory Use     Allocated
+|     Real               35042
+|     Hollerith           1552
+|     Integer            46880
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total              462 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+ALA                                                                             
+
+General flags:
+     imin    =       5, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =      50, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =      10, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =9999.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =       1, ncyc    =      10, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+ALA                                                                             
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+ POST-PROCESSING OF TRAJECTORY ENERGIES
+trajectory generated by ptraj                                                   
+minimizing coord set #     1
+ Total surface charge      -0.0005
+ Reaction field energy   -315.5662
+ Cavity solvation energy    394.9133
+ Dispersion solvation energy   -204.4164
+| PB NB list                     0.01
+| PB FD grid                     0.04
+| PB Sasa                        0.03
+| PB FD force                    2.31
+| PB Set linear sys              0.38
+| PB Solver                      1.78
+| PB Direct                      0.01
+| NP Sasa                        0.02
+| NP Cavity                      0.00
+| NP Dispersion                  0.17
+| PB SA srf                      0.01
+| PB SA arc                      0.02
+| PB SA arc setup                0.00
+| PB circle                      0.01
+| PB exclude                     0.01
+| PB exmol                       0.33
+| PB exmol setup                 0.07
+| PB exmol part a                0.02
+| PB exmol part b                0.03
+| PB exmol part c                0.01
+| PB exmol part d                0.01
+| PB exmol part e                0.04
+| PB exmol part f                0.08
+| PB epsbnd                      0.01
+| PB epsmap                      0.07
+
+
+  Maximum number of minimization cycles reached.
+| PB NB list                     0.00
+| PB FD grid                     0.00
+| PB Sasa                        0.03
+| PB FD force                    0.93
+| PB Set linear sys              0.30
+| PB Solver                      0.47
+| PB Multiple                    0.00
+| PB Direct                      0.01
+| NP Sasa                        0.02
+| NP Dispersion                  0.17
+| PB SA srf                      0.01
+| PB SA arc                      0.02
+| PB SA arc setup                0.00
+| PB circle                      0.01
+| PB exclude                     0.01
+| PB exmol                       0.29
+| PB exmol setup                 0.05
+| PB exmol part a                0.00
+| PB exmol part b                0.02
+| PB exmol part c                0.01
+| PB exmol part d                0.01
+| PB exmol part e                0.04
+| PB exmol part f                0.08
+| PB epsbnd                      0.01
+| PB epsmap                      0.07
+| PB calsa                       0.00
+
+
+                    FINAL RESULTS
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1       1.4775E+03     3.2562E+01     1.6092E+02     C         369
+
+ BOND    =      304.1062  ANGLE   =      644.2080  DIHED      =      529.7755
+ VDWAALS =      -67.6531  EEL     =    -3434.6725  EPB        =     -315.5698
+ 1-4 VDW =      140.7312  1-4 EEL =     3486.0396  RESTRAINT  =        0.0000
+ ECAVITY =      394.9133  EDISPER =     -204.4164
+minimization completed, ENE= 0.14774621E+04 RMS= 0.325624E+02
+minimizing coord set #     2
+| PB NB list                     0.00
+| PB FD grid                     0.03
+| PB Sasa                        0.03
+| PB FD force                    1.10
+| PB Set linear sys              0.23
+| PB Solver                      0.72
+| PB Multiple                    0.00
+| PB Direct                      0.01
+| NP Sasa                        0.01
+| NP Dispersion                  0.15
+| PB SA srf                      0.01
+| PB SA arc                      0.02
+| PB SA arc setup                0.00
+| PB circle                      0.01
+| PB exclude                     0.01
+| PB exmol                       0.23
+| PB exmol setup                 0.03
+| PB exmol part a                0.01
+| PB exmol part b                0.02
+| PB exmol part c                0.01
+| PB exmol part d                0.00
+| PB exmol part e                0.03
+| PB exmol part f                0.08
+| PB epsbnd                      0.01
+| PB epsmap                      0.03
+
+
+  Maximum number of minimization cycles reached.
+| PB NB list                     0.00
+| PB FD grid                     0.00
+| PB Sasa                        0.03
+| PB FD force                    0.56
+| PB Set linear sys              0.21
+| PB Solver                      0.20
+| PB Direct                      0.01
+| NP Sasa                        0.01
+| NP Cavity                      0.00
+| NP Dispersion                  0.15
+| PB SA srf                      0.01
+| PB SA arc                      0.02
+| PB SA arc setup                0.00
+| PB circle                      0.01
+| PB exclude                     0.01
+| PB exmol                       0.21
+| PB exmol setup                 0.02
+| PB exmol part a                0.00
+| PB exmol part b                0.02
+| PB exmol part c                0.01
+| PB exmol part d                0.00
+| PB exmol part e                0.03
+| PB exmol part f                0.08
+| PB epsbnd                      0.01
+| PB epsmap                      0.03
+
+
+                    FINAL RESULTS
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1       1.5468E+03     3.1486E+01     2.1227E+02     C          79
+
+ BOND    =      253.7612  ANGLE   =      720.6247  DIHED      =      557.5736
+ VDWAALS =      -60.6740  EEL     =    -3461.4585  EPB        =     -289.4218
+ 1-4 VDW =      147.6775  1-4 EEL =     3484.3676  RESTRAINT  =        0.0000
+ ECAVITY =      380.9840  EDISPER =     -186.5987
+minimization completed, ENE= 0.15468357E+04 RMS= 0.314862E+02
+minimizing coord set #     3
+| PB NB list                     0.00
+| PB FD grid                     0.03
+| PB Sasa                        0.03
+| PB FD force                    1.53
+| PB Set linear sys              0.28
+| PB Solver                      1.10
+| PB Direct                      0.01
+| NP Sasa                        0.02
+| NP Cavity                      0.00
+| NP Dispersion                  0.15
+| PB SA srf                      0.01
+| PB SA arc                      0.02
+| PB SA arc setup                0.00
+| PB circle                      0.01
+| PB exclude                     0.01
+| PB exmol                       0.26
+| PB exmol setup                 0.04
+| PB exmol part a                0.01
+| PB exmol part b                0.03
+| PB exmol part c                0.01
+| PB exmol part d                0.00
+| PB exmol part e                0.03
+| PB exmol part f                0.08
+| PB epsbnd                      0.01
+| PB epsmap                      0.04
+
+
+  Maximum number of minimization cycles reached.
+| PB NB list                     0.00
+| PB FD grid                     0.00
+| PB Sasa                        0.03
+| PB FD force                    0.66
+| PB Set linear sys              0.23
+| PB Solver                      0.28
+| PB Multiple                    0.00
+| PB Direct                      0.01
+| NP Sasa                        0.01
+| NP Dispersion                  0.15
+| PB SA srf                      0.01
+| PB SA arc                      0.02
+| PB SA arc setup                0.00
+| PB circle                      0.01
+| PB exclude                     0.01
+| PB exmol                       0.23
+| PB exmol setup                 0.03
+| PB exmol part a                0.00
+| PB exmol part b                0.02
+| PB exmol part c                0.01
+| PB exmol part d                0.00
+| PB exmol part e                0.03
+| PB exmol part f                0.08
+| PB epsbnd                      0.01
+| PB epsmap                      0.04
+| PB calsa                       0.00
+
+
+                    FINAL RESULTS
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1       1.5123E+03     3.0766E+01     1.7237E+02     CA        173
+
+ BOND    =      242.8373  ANGLE   =      716.3289  DIHED      =      545.7768
+ VDWAALS =      -74.2786  EEL     =    -3480.5944  EPB        =     -274.3244
+ 1-4 VDW =      148.0857  1-4 EEL =     3490.7508  RESTRAINT  =        0.0000
+ ECAVITY =      375.4179  EDISPER =     -177.6551
+minimization completed, ENE= 0.15123451E+04 RMS= 0.307657E+02
+TRAJENE: Trajectory file ended
+TRAJENE: Trajene complete.
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.01% of Total)
+|             PB Nonbond                 7.43 (87.77% of Nonbo)
+|             NP Nonbond                 1.03 (12.23% of Nonbo)
+|          Nonbond force              8.46 (100.0% of Force)
+|          Bond/Angle/Dihedral        0.00 ( 0.03% of Force)
+|       Force time                 8.46 (100.0% of Runmd)
+|    Runmd Time                 8.46 (99.85% of Total)
+|    Other                      0.01 ( 0.14% of Total)
+| Total time                 8.48 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 09:06:14.692  on 01/15/2014
+|           Setup done at 09:06:14.701  on 01/15/2014
+|           Run   done at 09:06:23.169  on 01/15/2014
+|     wallclock() was called     598 times

@@ -1,0 +1,11 @@
+#!/usr/bin/perl -w
+
+while (<>){
+
+	($res, $ca, $c ) = split( '\t', $_ );
+	printf STDOUT "# CA angles for residue %d\n", $res;
+	printf STDOUT " &rst   iat= %d, %d, %d, 0,  &end\n", $ca+1, $ca, $ca-2;
+	printf STDOUT " &rst   iat= %d, %d, %d, 0,  &end\n", $ca+1, $ca, $ca+2;
+	printf STDOUT " &rst   iat= %d, %d, %d, 0,  &end\n\n", $ca+1, $ca, $c;
+
+}

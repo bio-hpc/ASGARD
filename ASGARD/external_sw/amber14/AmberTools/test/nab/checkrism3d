@@ -1,0 +1,127 @@
+#!/bin/sh
+
+#script to check thermodynamic output from a 3D-RISM calculation
+#against the gold standard using dacdif
+
+#error to use
+error=1e-5
+#standard file to compare against
+standard=''
+#input file to test
+file=''
+#keep temporary files
+keep=''
+
+#regular expression for a float that can be used in Perl
+float='[+-]?\ *(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
+
+usage() {
+         echo "USAGE: checkrism3d [-err error] [-totalcharge] standard file"
+         echo
+         echo "       -err:       Error threshold.  Relative error except for total charge"
+         echo "                   where the absolute error is used. (Default $error)"
+         echo "       -k:         Keep all temporary files."
+         echo "       standard:   Name of file to check against."
+         echo "       file:       Name of file to check."
+         echo
+         echo "Checks thermodynamics output from 3D-RISM output files with variable precision"
+         echo "using dacdif by splitting up the contents of the file. The absolute error is"
+         echo "used to test the total charge of the solvent while relative error is used for"
+         echo "the rest of the data. Like dacdif, all temporary files, including 'file' are"
+         echo "deleted unless '-k' is used."
+         exit 1
+}
+
+#traverse up the path a directory at a time from current working
+#directory until we find dacdif.  If we get to '/' first, die with an
+#error message
+findDacdif() {
+    dir=`pwd`
+    while [ 0 ]; do
+        if [ -e "$dir/dacdif" ]; then
+            echo "$dir/dacdif"
+            break
+        elif [ "$dir" = '/' ]; then
+            echo "ERROR> cannot find 'dacdif'"
+            exit 1
+        fi
+        dir=`dirname $dir`
+    done
+}
+
+#if the dacdif test passes, then <file>.dif will not exist
+dacdifPass() {
+    if [ -e "$1.dif" ]; then
+        echo 0
+    else
+        echo 1
+    fi
+}
+
+#0) parse the command line and extract error threshold and files
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -err)          if [ $# -gt 1 ]; then
+                         shift; error="$1"
+                         error=`echo "$1" | perl -ne "/^$float$/ && print"`
+                         if [ -z $error ]; then #not a float
+                           echo "ERROR: -err requires a floating point number"
+                           usage
+                         fi
+                       else #not enough remaining arguments
+                         echo "ERROR: missing <error>"
+                         usage
+                       fi;;
+        -k)            keep='-k';; #this value can be passed directly to dacdif
+        -*)            echo "Error: unknown flag: $1"
+                       usage;;
+        *)             if [ -z $standard ]; then
+                         standard=$1
+                       elif [ -z $file ]; then
+                         file=$1
+                       else
+                         echo "ERROR: too many file names"
+                         usage
+                       fi;;
+    esac
+    shift
+done
+
+if [ -z "$standard" -o -z "$file" ]; then
+    echo "ERROR: two file names must be specified"
+    usage
+fi
+
+#search up the directory tree for the local version of dacdif
+dacdif=`findDacdif`
+
+#1) Extract the total solvent charge from each file and dump into
+#   temporary files
+perl -ne "/^rism_exChrg +$float/ && print " $standard > $standard.totChg
+perl -ne "/^rism_exChrg +$float/ && print" $file > $file.totChg
+
+#2) Compare files
+$dacdif $keep -a $error $standard.totChg $file.totChg
+passTotChg=`dacdifPass $file.totChg`
+
+#3) Strip out the total solvent charge from each and dump the
+#   remainder into temporary files.  The extra spaces roughly re-align
+#   the data.
+perl -pe "s/^(rism_exChrg +)$float/\$1                /" $standard > $standard.rel
+perl -pe "s/^(rism_exChrg +)$float/\$1                /" $file > $file.rel
+
+#4) Compare files
+$dacdif $keep -r $error $standard.rel $file.rel
+passRel=`dacdifPass $file.rel`
+
+#5) Clean up
+if [ "$passTotChg" = "1" -a -z "$keep" ]; then
+    rm -f $standard.totChg $file.totChg
+fi
+if [ "$passRel" = "1" -a -z "$keep" ]; then
+    rm -f $standard.rel $file.rel
+fi
+if [ "$passTotChg" = "1" -a "$passRel" = "1" -a -z "$keep" ]; then
+    rm -f $file
+fi
+exit 0

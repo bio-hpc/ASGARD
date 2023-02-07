@@ -1,0 +1,49 @@
+#############################################################################
+### SOLVATION ENERGY:
+###
+### Please see APBS documentation (http://apbs.sourceforge.net/doc/) for 
+### input file sytax.
+#############################################################################
+# READ IN MOLECULES
+read
+# Read molecule 1
+	mol pqr Receptor.pqr
+	mol pqr Current.pqr 
+end
+
+# FOCUSED POTENTIAL FOR SOLVATED STATE
+elec name solvated
+	mg-dummy
+	dime DIME DIME DIME
+	glen GLEN_S GLEN_S GLEN_S
+	gcent mol 1
+	mol 2
+	lpbe
+	bcfl zero
+	ion
+	charge 1
+	conc IONCONC
+	radius 2.0
+	ion
+	charge -1
+	conc IONCONC
+	radius 2.0
+	pdie PDIE
+	sdie SDIE
+	chgm spl2
+	srfm mol
+	srad 1.4
+	swin 0.3
+	sdens 10.0
+	temp 298.15
+	calcenergy total
+	calcforce no
+	write dielx dx dielx_S			# spatially dependent diel. constant
+	write diely dx diely_S			# out using the Conoly/Molecular surfac
+	write dielz dx dielz_S
+	write kappa dx kappa_S			# write out the kappa map
+	write charge dx charge_S		# write out the charge map
+end
+
+# SO LONG
+quit

@@ -1,0 +1,22 @@
+These tests check that the routines that build the
+coordinate array for the QM region (MM) and the 
+qm_mm pair list are working correctly for different
+types of periodic boxes.
+
+1) orthorhombic_no_ewald
+2) trunc_oct_no_ewald
+
+These two tests are for NMA in the same water box. The only difference
+is that for the truncated octahedron case the box size has been modified.
+Since there is no qm_ewald in use the escf on step 0 should be the same for both
+these tests.
+
+3) oct_nma_imaged
+4) oct_nma_noimage
+
+These two tests are 5 steps of QMMM MD take from a restart file after 11ns of classical
+MD. As such many waters plus the QM region itself have diffused out of the central box.
+The noimage run is a straight run from this restart. The imaged run uses an inpcrd file
+that was imaged using ptraj. The should of course give identical answers.
+
+

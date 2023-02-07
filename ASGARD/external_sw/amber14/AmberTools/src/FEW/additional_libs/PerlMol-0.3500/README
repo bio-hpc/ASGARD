@@ -1,0 +1,77 @@
+PerlMol version 0.3500
+======================
+
+PerlMol is a collection of Perl modules for chemoinformatics and computational
+chemistry with the philosophy that "simple things should be simple". It should
+be possible to write one-liners that use this toolkit to do meaningful
+"molecular munging". The perlmol toolkit provides objects and methods for
+representing molecules, atoms, and bonds in Perl; doing substructure matching;
+and reading and writing files in various formats.
+
+This is a bundle containing all of the modules of the PerlMol Project and their
+dependencies.
+
+CONTENTS AND CHANGES SINCE VERSION 0.3200
+
+    (See the Changes file for more details.)
+
+    * NEW!!! Added an examples/ directory
+
+    New distributions:
+        Chemistry-File-VRML             0.10
+        Chemistry-3DBuilder             0.10
+
+    Changed versions:
+        Chemistry-Mol                   0.35
+        Chemistry-Mok                   0.25
+        Chemistry-File-SMILES           0.44
+        Chemistry-File-SMARTS           0.22
+        Chemistry-File-PDB              0.21
+        Chemistry-Pattern               0.26
+        Chemistry-MidasPattern          0.11
+        Chemistry-File-MDLMol           0.20
+        Chemistry-Isotope               0.11
+
+    Unchanged versions:
+        Chemistry-InternalCoords        0.18
+        Chemistry-MacroMol              0.06
+        Chemistry-Ring                  0.18
+        Chemistry-Canonicalize          0.10
+        Chemistry-Bond-Find             0.21
+        Chemistry-File-SLN              0.10
+        Chemistry-FormulaPattern        0.10
+        Chemistry-File-Mopac            0.15
+        Chemistry-File-XYZ              0.11
+        Math-VectorReal                 1.02
+        Statistics-Regression           0.15
+        Parse-Yapp                      1.05
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+    perl-5.6.0 or a more recent version.
+
+If you have perl-5.8.0 (or a more recent version), this bundle has everything
+you need. If you have an earlier version of Perl, you also need these core
+modules:
+
+    Test::Simple        0.45
+    Scalar::Util        1.07
+    Storable            2.04
+    Text::Balanced      1.89
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2005 Ivan Tubert-Brohman <itub@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

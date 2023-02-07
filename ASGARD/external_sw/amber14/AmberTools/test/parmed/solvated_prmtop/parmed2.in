@@ -1,0 +1,9 @@
+loadRestrt CM_stripped.rst7.save
+
+# Now remove the solvent and ions and change pbradii to mbondi3 for igb=8
+# mm/gbsa
+strip :BNZ
+outparm receptor.prmtop receptor.rst7
+
+addexclusions @1 @94
+outparm receptor_excluded.prmtop

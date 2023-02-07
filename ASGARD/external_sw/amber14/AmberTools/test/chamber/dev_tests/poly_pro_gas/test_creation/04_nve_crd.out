@@ -1,0 +1,381 @@
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                   (CHARMM) - Developmental Version 35b1     August 15, 2008   
+       Copyright(c) 1984-2001  President and Fellows of Harvard College
+                              All Rights Reserved
+      Current operating system: Linux-2.6.9-78.0.1.ELsmp(x86_64)@caffeine.sd
+                 Created on  1/27/ 9 at 13:23:19 by user: rcw         
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+            Current HEAP size:        10240000, and STACK size:  10000000
+
+ RDTITL> * POLY PROLINE IN GAS PHASE
+ RDTITL> * BY ROSS WALKER & MARK WILLIAMSON (SDSC)
+ RDTITL> *
+  
+ CHARMM>    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ CHARMM>    ! Read in Topology and parameter file for ALL22
+ CHARMM>     
+  
+ CHARMM>        OPEN READ CARD UNIT 1 NAME "../../../../dat/chamber/top_all22_prot.inp"
+ VOPEN> Attempting to open::../../../../dat/chamber/top_all22_prot.inp::
+ OPNLGU> Unit  1 opened for READONLY access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/../../../../dat/chamber/top_all22_prot.inp
+  
+ CHARMM>        READ RTF CARD UNIT 1
+ MAINIO> Residue topology file being read from unit   1.
+ TITLE> *>>>>>>>>CHARMM22 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+  
+ CHARMM>        CLOSE UNIT 1
+ VCLOSE: Closing unit    1 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>        OPEN READ CARD UNIT 2 NAME "../../../../dat/chamber/par_all22_prot.inp"
+ VOPEN> Attempting to open::../../../../dat/chamber/par_all22_prot.inp::
+ OPNLGU> Unit  2 opened for READONLY access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/../../../../dat/chamber/par_all22_prot.inp
+  
+ CHARMM>        READ PARAM CARD UNIT 2
+
+          PARAMETER FILE BEING READ FROM UNIT  2
+ TITLE> *>>>>> CHARMM22 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+  
+ CHARMM>        CLOSE UNIT 2
+ VCLOSE: Closing unit    2 with status "KEEP"
+  
+ CHARMM>    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ CHARMM>     
+  
+ CHARMM>    ! Turn off CMAP - Needed since the default for all22 was changed
+ CHARMM>    !                 in C35B1 (A dangerous change in my opinion since
+ CHARMM>    !                 it effectively silently turns on CMAP but oh well.)
+ CHARMM>        SKIPE CMAP
+ SKIPE> The following energy terms will be computed :
+  BOND ANGL UREY DIHE IMPR VDW  ELEC HBON USER HARM CDIH CIC  CDRO NOE  SBOU
+  IMNB IMEL IMHB EWKS EWSE EXTE RXNF ST2  IMST TSM  QMEL QMVD ASP  EHAR GEO 
+  MDIP PINT PRMS PANG SSBP BK4D SHEL RESD SHAP STRB OOPL PULL POLA DMC  RGY 
+  EWEX EWQC EWUT PBEL PBNP MBDE MBEL STRS BNDB BNDT EBST MBST BBT  SST  GBEN
+  HMCM ADUM HYDR GSBP FQPO GRVD GREL SASL ELRC OLAP UMBR RREP RPHO RHBN RBDO
+  RBAC RARO PHEN VMOD CROS FCTP FCTN
+  
+ CHARMM>     
+  
+ CHARMM>    ! Read in Poly Pro Gas Phase PSF and pdb
+ CHARMM>        open unit 3 form read name "poly_pro_gas_all22.psf"
+ VOPEN> Attempting to open::poly_pro_gas_all22.psf::
+ OPNLGU> Unit  3 opened for READONLY access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/poly_pro_gas_all22.psf
+  
+ CHARMM>        read psf card unit 3
+ MAINIO> Protein structure file being read from unit   3.
+ TITLE>  * POLY PROLINE IN GAS PHASE
+ TITLE>  * BY ROSS WALKER & MARK WILLIAMSON (SDSC)
+ TITLE>  *  DATE:     1/27/ 9     13:23:18      CREATED BY USER: rcw
+ TITLE>  *
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =        5
+         Number of atoms         =       65   Number of groups     =       18
+         Number of bonds         =       67   Number of angles     =      129
+         Number of dihedrals     =      196   Number of impropers  =        9
+         Number of cross-terms   =        3
+         Number of HB acceptors  =        6   Number of HB donors  =        4
+         Number of NB exclusions =        0   Total charge =    0.00000
+  
+ CHARMM>        close unit 3
+ VCLOSE: Closing unit    3 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>        open read unit 30 card name 03_equil_crd.rst
+ VOPEN> Attempting to open::03_equil_crd.rst::
+ OPNLGU> Unit 30 opened for READONLY access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/03_equil_crd.rst
+  
+ CHARMM>     
+  
+ CHARMM>    !**********************************************************
+ CHARMM>    !**********************************************************
+ CHARMM>    !
+ CHARMM>    !   Do 10 steps of MD NVE
+ CHARMM>    !
+ CHARMM>    !**********************************************************
+ CHARMM>    !**********************************************************
+ CHARMM>     
+  
+ CHARMM>      update bycb  switch vswitch  -
+ CHARMM>             cutnb 9999.0   ctofnb 9998.0   ctonnb 9997.0
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYCB     NOEXtnd  NOEWald 
+ CUTNB  =******* CTEXNB =999.000 CTONNB =******* CTOFNB =*******
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are        0 atom  pairs and        0 atom  exclusions.
+ There are        0 group pairs and        0 group exclusions.
+ <MAKINB> with mode   5 found    196 exclusions and    181 interactions(1-4)
+ <MAKGRP> found     47 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR        0 ATOM PAIRS AND        0 GROUP PAIRS
+ == IMAGES === SPACE FOR        0 ATOM PAIRS AND        0 GROUP PAIRS
+  
+ =========================================
+              TRIAL run of list...........
+ =========================================
+Using Image CUBE search
+Using Image CUBE search
+  NBNDGCM found:
+                  1884  atom pairs
+                     0  image atom pairs
+                     0  self atom pairs
+  
+ CHARMM>     
+  
+ CHARMM>      faster on
+ MISCOM> FAST option: EXPANDED (limited fast routines)
+  
+ CHARMM>     
+  
+ CHARMM>      open write unit 31 card name 04_nve_crd.rst
+ VOPEN> Attempting to open::04_nve_crd.rst::
+ OPNLGU> Unit 31 opened for WRITE access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/04_nve_crd.rst
+  
+ CHARMM>      open write unit 32 file name 04_nve_crd.dcd
+ VOPEN> Attempting to open::04_nve_crd.dcd::
+ OPNLGU> Unit 32 opened for WRITE access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/04_nve_crd.dcd
+  
+ CHARMM>      open write unit 34 card name 04_nve_crd.ene
+ VOPEN> Attempting to open::04_nve_crd.ene::
+ OPNLGU> Unit 34 opened for WRITE access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/04_nve_crd.ene
+  
+ CHARMM>     
+  
+ CHARMM>      DYNA LEAP RESTART -
+ CHARMM>      NSTEP     10  TIME    0.001  -
+ CHARMM>      FINALT  300.0 -
+ CHARMM>      IHTFRQ  0 IEQFRQ   0  -
+ CHARMM>      NSAVC       1  NSAVV       0    ISVFRQ   10   -
+ CHARMM>      NTRFRQ      0  -
+ CHARMM>      NPRINT      1   IPRFRQ      0  -
+ CHARMM>      IUNWRI      31  IUNCRD     32  IUNVEL   -1 KUNIT 34 -
+ CHARMM>      iunread     30
+  IUNREA = 30         IUNWRI = 31          IUNOS = -1
+  IUNCRD = 32         IUNVEL = -1          KUNIT = 34
+ TITLE>  * POLY PROLINE IN GAS PHASE
+ TITLE>  * BY ROSS WALKER & MARK WILLIAMSON (SDSC)
+ TITLE>  *  DATE:     1/27/ 9     13:23:19      CREATED BY USER: rcw
+ TITLE>  *
+ READYN> dynamics restart file was read. Current step=    1000
+ NSTEP  =  1000  JHSTRT =     0
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYCB     NOEXtnd  NOEWald 
+ CUTNB  =******* CTEXNB =999.000 CTONNB =******* CTOFNB =*******
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are     1884 atom  pairs and      377 atom  exclusions.
+ There are        0 group pairs and       47 group exclusions.
+Using Image CUBE search
+ PRNHBD: CUToff Hydrogen Bond  distance =    0.5000   Angle =   90.0000
+         CuT switching ON HB dist. =     3.5000  OFf HB dist. =    4.0000
+         CuT switching ON Hb Angle =    50.0000  OFf Hb Angle =   70.0000
+         ACCEptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+   NSTEP =       10    NSAVC =        1    NSAVV =        0
+  ISCALE =        0   ISCVEL =        0   IASORS =        0
+  IASVEL =        1   ICHECW =        1   NTRFRQ =        0
+  IHTFRQ =        0   IEQFRQ =        0   NPRINT =        1
+  INBFRQ =       -1   IHBFRQ =        0   IPRFRQ =       10
+  ILBFRQ =       50   IMGFRQ =        0    ISEED =           422033020
+  ISVFRQ =       10   NCYCLE =       10    NSNOS =       10
+  FIRSTT =     0.000  TEMINC =     5.000  TSTRUC =  -999.000
+  FINALT =   300.000  TWINDH =    10.000  TWINDL =   -10.000
+
+  TIME STEP =  2.04548E-02 AKMA       1.00000E-03 PS
+
+ NUMBER OF DEGREES OF FREEDOM =    189
+DYNA DYN: Step         Time      TOTEner        TOTKe       ENERgy  TEMPerature
+DYNA PROP:             GRMS      HFCTote        HFCKe       EHFCor        VIRKe
+DYNA INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+DYNA EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+DYNA PRESS:            VIRE         VIRI       PRESSE       PRESSI       VOLUme
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        0      1.00000    243.19651     58.16100    185.03551    309.71372
+DYNA PROP>         18.60425    243.50104     59.07459      0.30453     88.42996
+DYNA INTERN>       21.77283     42.76489      4.01990     35.93904      1.66420
+DYNA EXTERN>        2.68582     76.18884      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000    -58.95331      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        1      1.00100    243.16287     58.03661    185.12625    309.05135
+DYNA PROP>         19.54566    244.04166     58.90877      0.87879     -9.65302
+DYNA INTERN>       21.84211     42.17570      3.49248     36.14420      1.65310
+DYNA EXTERN>        2.60810     77.21056      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000      6.43534      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        2      1.00200    243.59416     52.41496    191.17920    279.11541
+DYNA PROP>         22.39033    244.01691     53.70990      0.42275    -78.74080
+DYNA INTERN>       27.45429     41.84214      3.36115     36.33884      1.63506
+DYNA EXTERN>        2.58482     77.96290      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000     52.49387      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        3      1.00300    243.99542     47.12909    196.86633    250.96758
+DYNA PROP>         24.46145    243.96584     48.82106     -0.02958   -104.12148
+DYNA INTERN>       32.76276     41.64420      3.42598     36.51665      1.61300
+DYNA EXTERN>        2.60440     78.29934      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000     69.41432      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        4      1.00400    243.92088     47.65252    196.26836    253.75492
+DYNA PROP>         24.23633    243.94669     49.27517      0.02581    -83.34491
+DYNA INTERN>       32.28337     41.56897      3.35312     36.66531      1.58401
+DYNA EXTERN>        2.66964     78.14395      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000     55.56327      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        5      1.00500    243.47601     53.03386    190.44215    282.41115
+DYNA PROP>         22.21737    243.97850     54.22752      0.50249    -22.16336
+DYNA INTERN>       26.99411     41.68912      3.11474     36.77102      1.53987
+DYNA EXTERN>        2.81920     77.51408      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000     14.77557      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        6      1.00600    243.17186     57.28359    185.88827    305.04140
+DYNA PROP>         20.44997    244.02205     58.19447      0.85018     65.80484
+DYNA INTERN>       22.85419     42.07351      3.04620     36.82444      1.47029
+DYNA EXTERN>        3.10685     76.51279      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000    -43.86989      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        7      1.00700    243.32931     56.28705    187.04226    299.73471
+DYNA PROP>         20.56428    244.02747     57.37385      0.69816    157.23289
+DYNA INTERN>       23.82455     42.73224      3.43287     36.82361      1.36828
+DYNA EXTERN>        3.56299     75.29771      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000   -104.82193      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        8      1.00800    243.73066     52.17900    191.55166    277.85889
+DYNA PROP>         21.64543    243.99137     53.67777      0.26071    222.32906
+DYNA INTERN>       27.61613     43.62928      4.08507     36.77404      1.23603
+DYNA EXTERN>        4.17038     74.04072      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000   -148.21938      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        9      1.00900    243.90090     50.43022    193.47067    268.54649
+DYNA PROP>         21.76184    243.95805     52.10248      0.05715    236.16750
+DYNA INTERN>       28.80405     44.70200      4.43048     36.68849      1.08777
+DYNA EXTERN>        4.86440     72.89349      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000   -157.44500      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+     10   COORDINATE SETS STARTING FROM
+     STEP NO     1001   FOR EVERY     1  STEPS
+     WRITTEN ON UNIT   32
+
+ VCLOSE: Closing unit   32 with status "KEEP"
+DYNA>       10      1.01000    243.65965     53.40244    190.25721    284.37388
+DYNA PROP>         20.39800    243.96588     54.83099      0.30623    191.58224
+DYNA INTERN>       25.27258     45.85403      4.07694     36.58604      0.94714
+DYNA EXTERN>        5.55398     71.96650      0.00000      0.00000      0.00000
+DYNA PRESS>         0.00000   -127.72149      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ DYNAMC> Averages for the last       10  steps:
+AVER DYN: Step         Time      TOTEner        TOTKe       ENERgy  TEMPerature
+AVER PROP:             GRMS      HFCTote        HFCKe       EHFCor        VIRKe
+AVER INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+AVER EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+AVER PRESS:            VIRE         VIRI       PRESSE       PRESSI       VOLUme
+ ----------       ---------    ---------    ---------    ---------    ---------
+AVER>       10      1.01000    243.59417     52.78493    190.80924    281.08558
+AVER PROP>         21.76706    243.99144     54.11220      0.39727     57.50930
+AVER INTERN>       26.97081     42.79112      3.58190     36.61326      1.41345
+AVER EXTERN>        3.45448     75.98420      0.00000      0.00000      0.00000
+AVER PRESS>         0.00000    -38.33953      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ DYNAMC> RMS fluctuations for the last       10  steps:
+FLUC>       10      1.01000      0.28866      3.53419      3.81318     18.81995
+FLUC PROP>          1.54769      0.03162      3.26532      0.31655    127.45999
+FLUC INTERN>        3.49019      1.39845      0.43349      0.21292      0.23488
+FLUC EXTERN>        1.01271      2.19103      0.00000      0.00000      0.00000
+FLUC PRESS>         0.00000     84.97333      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+     DRIFT/STEP (LAST-TOTAL):   -4.12429656E-03  -4.12429656E-03
+     E AT STEP 0            :     244.01413        244.01413    
+     CORR. COEFFICIENT      :   -0.37463468      -0.37463468    
+ WRIDYN: RESTart file was written at step    1010
+ VCLOSE: Closing unit   31 with status "KEEP"
+
+     DETAILS ABOUT CENTRE OF MASS
+     POSITION          :    7.4848733        4.1238694       0.10155797    
+     VELOCITY          :  -5.70449725E-17   3.11042630E-17   9.04851288E-17
+     ANGULAR MOMENTUM  :  -6.22542958E-14  -1.10800835E-13  -2.25550041E-13
+     KINETIC ENERGY    :   2.80151737E-30
+  
+ CHARMM>     
+  
+ CHARMM>      close unit 30
+ VCLOSE: Closing unit   30 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>      open write unit 41 card name 04_nve_crd.crd
+ VOPEN> Attempting to open::04_nve_crd.crd::
+ OPNLGU> Unit 41 opened for WRITE access to /server-home/rcw/cvs_checkouts/amber11/test/chamber/poly_pro_gas/test_creation/04_nve_crd.crd
+  
+ CHARMM>      write coor unit 41 card
+ RDTITL> * COORDINATES AFTER 04 NVE
+ RDTITL> *
+ VCLOSE: Closing unit   41 with status "KEEP"
+  
+ CHARMM>      close unit 31
+ CLOLGU>  *****  WARNING  ***** Attempt to close unit that was not open.
+  
+ CHARMM>      close unit 32
+ CLOLGU>  *****  WARNING  ***** Attempt to close unit that was not open.
+  
+ CHARMM>      close unit 34
+ VCLOSE: Closing unit   34 with status "KEEP"
+  
+ CHARMM>      close unit 41
+ CLOLGU>  *****  WARNING  ***** Attempt to close unit that was not open.
+  
+ CHARMM>     
+  
+ CHARMM>      stop
+$$$$$$  New timer profile $$$$$
+   First List                      0.00 Other:            0.00
+      dynamc                          0.00 Other:            0.00
+   Dynamics total                  0.01 Other:            0.00
+      xdistm setup                    0.00 Other:            0.00
+      xdistm Build list               0.00 Other:            0.00
+   List time                       0.00 Other:            0.00
+         Electrostatic & VDW             0.00 Other:            0.00
+      Nonbond force                   0.00 Other:            0.00
+         Bond energy                     0.00 Other:            0.00
+         Angle energy                    0.00 Other:            0.00
+         Dihedral energy                 0.00 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.00 Other:            0.00
+   Energy time                     0.00 Other:            0.00
+ Total time                      0.16 Other:            0.15
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    MAXIMUM STACK SPACE USED IS   32026
+                    STACK CURRENTLY IN USE IS         0
+                    NO WARNINGS WERE ISSUED
+                    HEAP PRINTOUT-  HEAP SIZE         10240000
+                    SPACE CURRENTLY IN USE IS            13824
+                    MAXIMUM SPACE USED IS                21038
+                    FREE LIST
+  PRINHP> ADDRESS:               1 LENGTH:        10225676 NEXT:        10239501
+  PRINHP> ADDRESS:        10239501 LENGTH:             500 NEXT:               0
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     0.16  SECONDS 
+                         CPU TIME:     0.10  SECONDS 

@@ -1,0 +1,25 @@
+ & evb  nevb=2,  nUFF = 1, ioe=25,  ntw_evb=1,
+        dia_type    = 'ab_initio',  
+        xch_type    = 'dist_gauss',  
+        evb_dyn     = 'groundstate', 
+        dia_shift(1)% st = 1, dia_shift(1)% nrg_offset = 0.0,
+        dia_shift(2)% st = 2, dia_shift(2)% nrg_offset = 0.0,
+        dist_gauss%stype = 'no_dihedrals',
+        dist_gauss%lin_solve = 'diis',
+        dist_gauss%xfile_type = 'gaussian_fchk',
+         ts_xfile(1) = '2hydroxypyridine_TS_56_vtight.fchk',
+        min_xfile(1) = 'pyridone_56.fchk',
+        min_xfile(2) = '2hydroxypyridine_56.fchk',
+        xdg_xfile(1) = 'onehalfR_56.fchk',
+        xdg_xfile(2) = 'onehalfP_56.fchk',
+        dgpt_alpha(1) = 2.40,
+        dgpt_alpha(2) = 1.50,
+        dgpt_alpha(3) = 1.20,
+        dgpt_alpha(4) = 2.00,
+        dgpt_alpha(5) = 2.00,
+        UFF(1)%iatom = 7,  UFF(1)%jatom = 8
+        evb_debug%what(1) = 'schlegel',
+        evb_debug%fmathnb = 'EVB_poh_uff.nb'
+        ab_initio_gridfile = 'pyridone_grid_hf.fchk'
+ /
+

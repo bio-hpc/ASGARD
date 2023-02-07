@@ -1,0 +1,18 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander.LES
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsanderLES ) set TESTsanderLES = "../../bin/sander.LES"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+$DO_PARALLEL $TESTsanderLES  -O \
+		  -i md.in \
+		  -o md.out \
+		  -p prmtop \
+       	  -c md.solv.crd
+

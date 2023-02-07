@@ -1,0 +1,243 @@
+GFORTRAN module created from sebomd_module.F90 on Thu Feb 11 10:40:58 2016
+MD5:e79d09c658f2d2d5b0abfe1b41c832b3 -- If you edit this, you'll get what you deserve.
+
+(() () () ()
+() () () () () () () () () () () () () () () () () () () () () () ())
+
+()
+
+()
+
+()
+
+()
+
+(2 'read_sebomd_namelist' 'sebomd_module' 'read_sebomd_namelist' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 0 0 () () 0 () () 0 0)
+3 'sebomd_check_options' 'sebomd_module' 'sebomd_check_options' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 0 0 () () 0 () () 0 0)
+4 'sebomd_close_files' 'sebomd_module' 'sebomd_close_files' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 0 0 () () 0 () () 0 0)
+5 'sebomd_gradient_write' 'sebomd_module' 'sebomd_gradient_write' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 6 0 (7 8) () 0 () () 0 0)
+9 'sebomd_hessian_compute' 'sebomd_module' 'sebomd_hessian_compute' 1 (
+(PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN
+0 0 0 UNKNOWN ()) 10 0 (11 12 13 14 15 16 17 18 19) () 0 () () 0 0)
+20 'sebomd_hessian_write' 'sebomd_module' 'sebomd_hessian_write' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 21 0 (22 23) () 0 () () 0 0)
+24 'sebomd_namelist_default' 'sebomd_module' 'sebomd_namelist_default' 1
+((PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (
+UNKNOWN 0 0 0 UNKNOWN ()) 0 0 () () 0 () () 0 0)
+25 'sebomd_obj' 'sebomd_module' 'sebomd_obj' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN) (DERIVED 26 0 0 DERIVED ()) 0 0 () () 0 ()
+() 0 0)
+27 'sebomd_open_files' 'sebomd_module' 'sebomd_open_files' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 0 0 () () 0 () () 0 0)
+28 'sebomd_save_forces' 'sebomd_module' 'sebomd_save_forces' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 29 0 (30 31 32 33 34 35) () 0 () () 0 0)
+36 'sebomd_setup' 'sebomd_module' 'sebomd_setup' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0 0 0
+UNKNOWN ()) 0 0 () () 0 () () 0 0)
+37 'sebomd_write_info' 'sebomd_module' 'sebomd_write_info' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 0 0 () () 0 () () 0 0)
+26 'sebomd_structure' 'sebomd_module' 'sebomd_structure' 1 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN) (UNKNOWN 0 0 0 UNKNOWN ())
+0 0 () () 0 ((38 'do_sebomd' (LOGICAL 4 0 0 LOGICAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (39 'idcflag' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (40 'iflagch' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (41 'iflagch_old' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (42 'pdmx' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (43 'nhessian' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (44 'diverror' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (45 'ctype' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (46 'esebomd' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (47 'dbox' (REAL 8 0 0 REAL ()) (1 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '3')) 1 0 0 UNKNOWN-ACCESS ()) (48 'hamiltonian' (
+CHARACTER 1 0 0 CHARACTER ((CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '10')))
+() 0 0 0 UNKNOWN-ACCESS ()) (49 'modif' (CHARACTER 1 0 0 CHARACTER ((
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '10'))) () 0 0 0 UNKNOWN-ACCESS ())
+(50 'ncore' (INTEGER 4 0 0 INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (51
+'dbuff1' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (52 'dbuff2' (
+REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (53 'charge_out' (
+CHARACTER 1 0 0 CHARACTER ((CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '256')))
+() 0 0 0 UNKNOWN-ACCESS ()) (54 'lambda' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (55 'peptk' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (56 'dpmax' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (57 'method' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (58 'charge' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (59 'longrange' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (60 'fullscf' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (61 'ntwc' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (62 'chtype' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (63 'chewald' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (64 'screen' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (65 'guess' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (66 'pdump' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (67 'ipolyn' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (68 'nresidue' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (69 'ntwh' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (70 'iprec' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (71 'peptcorr' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (72 'debugmsg' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (73 'debugforces' (INTEGER 4 0 0 INTEGER ()) () 0 0 0
+UNKNOWN-ACCESS ()) (74 'diag_routine' (INTEGER 4 0 0 INTEGER ()) () 0 0
+0 UNKNOWN-ACCESS ())) PUBLIC () 0 0)
+11 'xx' '' 'xx' 10 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (1 ASSUMED_SIZE (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+12 'ix' '' 'ix' 10 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () (1
+ASSUMED_SIZE (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+13 'ih' '' 'ih' 10 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (CHARACTER 1 0 0 CHARACTER ((CONSTANT (INTEGER
+4 0 0 INTEGER ()) 0 '4'))) 0 0 () (1 ASSUMED_SIZE (CONSTANT (INTEGER 4 0
+0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+14 'ipairs' '' 'ipairs' 10 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN DIMENSION DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () (1
+ASSUMED_SIZE (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+15 'x' '' 'x' 10 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN
+DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (1 ASSUMED_SIZE (CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+16 'ener' '' 'ener' 10 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (DERIVED 75 0 0 DERIVED ()) 0 0 () () 0 () () 0 0)
+17 'qsetup' '' 'qsetup' 10 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN DUMMY) (LOGICAL 4 0 0 LOGICAL ()) 0 0 () () 0 () () 0 0)
+18 'do_list_update' '' 'do_list_update' 10 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (LOGICAL 4 0 0 LOGICAL ()) 0 0 () ()
+0 () () 0 0)
+19 'nstep' '' 'nstep' 10 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+75 'state_rec' 'state' 'state_rec' 10 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN SEQUENCE) (UNKNOWN 0 0 0 UNKNOWN ()) 0 0 ()
+() 0 ((76 'tot' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (77 'kin'
+(DERIVED 78 0 0 DERIVED ()) () 0 0 0 UNKNOWN-ACCESS ()) (79 'box' (REAL
+8 0 0 REAL ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '3')) 1 0 0 UNKNOWN-ACCESS ()) (
+80 'volume' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (81 'pres'
+(REAL 8 0 0 REAL ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '4')) 1 0 0 UNKNOWN-ACCESS ())
+(82 'vir' (REAL 8 0 0 REAL ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '4')) 1 0 0
+UNKNOWN-ACCESS ()) (83 'cmt' (REAL 8 0 0 REAL ()) (1 EXPLICIT (CONSTANT
+(INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'4')) 1 0 0 UNKNOWN-ACCESS ()) (84 'pot' (DERIVED 85 0 0 DERIVED ()) ()
+0 0 0 UNKNOWN-ACCESS ()) (86 'aveper' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (87 'aveind' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (88 'avetot' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (89 'exray' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (90 'eptot' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (91 'rfree' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (92 'density' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (93 'virvsene' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (94 'diprms' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (95 'dipiter' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (96 'dipole_temp' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (97 'surface_ten' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (98 'sgld' (DERIVED 99 0 0 DERIVED ()) () 0 0 0
+UNKNOWN-ACCESS ())) PUBLIC () 0 0)
+78 'kinetic_energy_rec' 'state' 'kinetic_energy_rec' 10 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN SEQUENCE) (UNKNOWN 0 0 0
+UNKNOWN ()) 0 0 () () 0 ((100 'tot' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (101 'solt' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (102 'solv' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (103 'pres_scale_solt' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (104 'pres_scale_solv' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (105 'sgft' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (106 'tempsg' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ())) PUBLIC () 0 0)
+85 'potential_energy_rec' 'state' 'potential_energy_rec' 10 ((DERIVED
+UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN SEQUENCE) (UNKNOWN 0 0 0
+UNKNOWN ()) 0 0 () () 0 ((107 'tot' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (108 'vdw' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (109 'elec' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (110 'gb' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (111 'bond' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (112 'angle' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (113 'dihedral' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (114 'vdw_14' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (115 'elec_14' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (116 'constraint' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (117 'polar' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (118 'hbond' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (119 'surf' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (120 'scf' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (121 'disp' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (122 'dvdl' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (123 'angle_ub' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (124 'imp' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (125 'cmap' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (126 'emap' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (127 'les' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (128 'noe' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (129 'pb' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (130 'rism' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (131 'ct' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (132 'amd_boost' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ())) PUBLIC () 0 0)
+99 'sgld_rec' 'state' 'sgld_rec' 10 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN SEQUENCE) (UNKNOWN 0 0 0 UNKNOWN ()) 0 0 ()
+() 0 ((133 'sgft' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (134
+'sgff' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (135 'tempsg' (
+REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (136 'sgscal' (REAL 8 0
+0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (137 'templf' (REAL 8 0 0 REAL ())
+() 0 0 0 UNKNOWN-ACCESS ()) (138 'temphf' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (139 'treflf' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (140 'trefhf' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (141 'frclf' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (142 'frchf' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (143 'epotlf' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (144 'epothf' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (145 'virsg' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ()) (146 'sgwt' (REAL 8 0 0 REAL ()) () 0 0 0
+UNKNOWN-ACCESS ())) PUBLIC () 0 0)
+22 'hessian' '' 'hessian' 21 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (1
+ASSUMED_SIZE (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+23 'n' '' 'n' 21 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+7 'forces' '' 'forces' 6 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (1 ASSUMED_SIZE (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+8 'n' '' 'n' 6 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+30 'iflag' '' 'iflag' 29 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+31 'n' '' 'n' 29 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+32 'f_mm' '' 'f_mm' 29 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (1 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (OP (INTEGER 4 0 0 INTEGER ())
+0 TIMES (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '3') (VARIABLE (INTEGER 4
+0 0 INTEGER ()) 0 31 ()))) 0 () () 0 0)
+33 'f_qm' '' 'f_qm' 29 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (1 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (OP (INTEGER 4 0 0 INTEGER ())
+0 TIMES (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '3') (VARIABLE (INTEGER 4
+0 0 INTEGER ()) 0 31 ()))) 0 () () 0 0)
+34 'ftmp1' '' 'ftmp1' 29 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (1 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (OP (INTEGER 4 0 0 INTEGER ())
+0 TIMES (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '3') (VARIABLE (INTEGER 4
+0 0 INTEGER ()) 0 31 ()))) 0 () () 0 0)
+35 'ftmp2' '' 'ftmp2' 29 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (1 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (OP (INTEGER 4 0 0 INTEGER ())
+0 TIMES (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '3') (VARIABLE (INTEGER 4
+0 0 INTEGER ()) 0 31 ()))) 0 () () 0 0)
+)
+
+('read_sebomd_namelist' 0 2 'sebomd_check_options' 0 3
+'sebomd_close_files' 0 4 'sebomd_gradient_write' 0 5
+'sebomd_hessian_compute' 0 9 'sebomd_hessian_write' 0 20
+'sebomd_namelist_default' 0 24 'sebomd_obj' 0 25 'sebomd_open_files' 0
+27 'sebomd_save_forces' 0 28 'sebomd_setup' 0 36 'sebomd_write_info' 0
+37)

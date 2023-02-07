@@ -1,0 +1,84 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+toomany() {
+    echo " too many processors for this test, exiting"
+    echo "============================================================"
+    exit 0
+}
+
+echo "SANDER: 3D-RISM"
+
+derivComp=$AMBERHOME/AmberTools/test/rism1d/dev/dt/derivativeCompare
+solu="Na0"
+solv="spc"
+
+if [ -z $TESTsanderRISM ];then
+    TESTsanderRISM="$AMBERHOME/bin/sander"
+fi
+
+if [ -z $DO_PARALLEL ]; then
+    export DO_PARALLEL=" "
+else
+    numprocs=`echo $DO_PARALLEL | awk -f ../../numprocs.awk `
+    if ( $numprocs > 2 ); then
+        echo " DO_PARALLEL set to $DO_PARALLEL"
+        toomany
+    elif [ -n $MP_PROCS]; then
+        if ($MP_PROCS > 3);then
+#               --- For IBM AIX ---
+            echo "    MP_PROCS set to "$MP_PROCS
+            toomany
+        fi
+    fi
+fi
+cat > mdin <<EOF
+Alanine dipeptide run
+ &cntrl
+    ntx=1, ntpr=1, ntwx=0,ntwr=0
+    nstlim=0,dt=0.001,
+    ntt=0, ig=314159, tempi=0,
+    ntp=0,
+    ntc=1,ntf=1,
+    ntb=0,
+    nrespa=1,
+    irism=1
+    cut=999,
+ /
+ &rism
+    closure='pse1'
+    tolerance=1e-8
+    buffer = 12,
+!the tighter gridspacing is needed to achieve the desired precision
+    grdspc=0.25,0.25,0.25
+!    grdspc=25,25,25
+    solvcut=999d0
+    verbose=2
+    progress=1
+    ntwrism=5
+    entropicDecomp=1
+    polarDecomp=1
+ /
+EOF
+
+$DO_PARALLEL $TESTsanderRISM -O -i mdin -o ${solu}.out\
+   -p ${solu}.parm7 -c ${solu}.rst7 -xvv ../../../xvv/${solv}.kh.xvv \
+   || error
+
+$DO_PARALLEL $TESTsanderRISM -O -i mdin -o ${solu}_ht.out\
+   -p ${solu}.parm7 -c ${solu}.rst7 -xvv ../../../xvv/${solv}_ht.kh.xvv \
+   || error
+
+$DO_PARALLEL $TESTsanderRISM -O -i mdin -o ${solu}_lt.out\
+   -p ${solu}.parm7 -c ${solu}.rst7 -xvv ../../../xvv/${solv}_lt.kh.xvv \
+   || error
+
+../derivativeCompareAll -err 1e-3 -polar -nsite 2 -temp 298 -del 10 ${solu}_ht.out ${solu}_lt.out ${solu}.out
+
+rm -f *.out mdin*
+exit 0
+
+

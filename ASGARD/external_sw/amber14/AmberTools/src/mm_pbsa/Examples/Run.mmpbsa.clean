@@ -1,0 +1,126 @@
+#!/bin/csh -f
+
+if( ! $?AMBERHOME ) then
+  echo "Please specify AMBERHOME for Amber14"
+  exit 0
+endif
+
+setenv MMPBSAEXAMPLES ${AMBERHOME}/AmberTools/src/mm_pbsa/Examples
+
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_com.crd.1
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_com.crd.2
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_com.crd.3
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_com.crd.4
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_lig.crd.1
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_lig.crd.2
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_lig.crd.3
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_lig.crd.4
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_rec.crd.1
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_rec.crd.2
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_rec.crd.3
+/bin/rm -f ${MMPBSAEXAMPLES}/01_GenerateSnapshots/test_rec.crd.4
+
+/bin/rm -f ${MMPBSAEXAMPLES}/02_MMPBSA_Stability/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/02_MMPBSA_Stability/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/02_MMPBSA_Stability/test_com.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/02_MMPBSA_Stability/test_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/02_MMPBSA_Stability/test_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/02_MMPBSA_Stability/test_statistics.out.snap
+/bin/rm -f ${MMPBSAEXAMPLES}/02_MMPBSA_Stability/restrt
+
+/bin/rm -f ${MMPBSAEXAMPLES}/03_MMPBSA_Binding/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/03_MMPBSA_Binding/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/03_MMPBSA_Binding/test_com.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/03_MMPBSA_Binding/test_lig.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/03_MMPBSA_Binding/test_rec.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/03_MMPBSA_Binding/test_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/03_MMPBSA_Binding/test_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/03_MMPBSA_Binding/test_statistics.out.snap
+/bin/rm -f ${MMPBSAEXAMPLES}/03_MMPBSA_Binding/restrt
+
+/bin/rm -f ${MMPBSAEXAMPLES}/04_MMPBSA_NmodeNAB/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/04_MMPBSA_NmodeNAB/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/04_MMPBSA_NmodeNAB/test_lig.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/04_MMPBSA_NmodeNAB/test_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/04_MMPBSA_NmodeNAB/test_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/04_MMPBSA_NmodeNAB/test_statistics.out.snap
+
+/bin/rm -f ${MMPBSAEXAMPLES}/05_MMPBSA_Decomp_Residue/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/05_MMPBSA_Decomp_Residue/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/05_MMPBSA_Decomp_Residue/test_com.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/05_MMPBSA_Decomp_Residue/test_lig.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/05_MMPBSA_Decomp_Residue/test_rec.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/05_MMPBSA_Decomp_Residue/test_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/05_MMPBSA_Decomp_Residue/test_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/05_MMPBSA_Decomp_Residue/restrt
+
+/bin/rm -f ${MMPBSAEXAMPLES}/06_MMPBSA_Decomp_Pair/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/06_MMPBSA_Decomp_Pair/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/06_MMPBSA_Decomp_Pair/test_com.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/06_MMPBSA_Decomp_Pair/test_lig.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/06_MMPBSA_Decomp_Pair/test_rec.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/06_MMPBSA_Decomp_Pair/test_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/06_MMPBSA_Decomp_Pair/test_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/06_MMPBSA_Decomp_Pair/restrt
+
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/05_HYB_SOLV_ENE/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/05_HYB_SOLV_ENE/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/05_HYB_SOLV_ENE/restrt
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/05_HYB_SOLV_ENE/SNAP_lig_rec.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/05_HYB_SOLV_ENE/SNAP_lig_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/05_HYB_SOLV_ENE/SNAP_lig_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/05_HYB_SOLV_ENE/SNAP_lig_statistics.out.snap
+
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/06_GASPHASE_ENE/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/06_GASPHASE_ENE/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/06_GASPHASE_ENE/restrt
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/06_GASPHASE_ENE/SNAP_lig_rec.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/06_GASPHASE_ENE/SNAP_lig_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/06_GASPHASE_ENE/SNAP_lig_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/07_MMPBSA_Hyb/06_GASPHASE_ENE/SNAP_lig_statistics.out.snap
+
+/bin/rm -f ${MMPBSAEXAMPLES}/08_MMPBSA_Nmode/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/08_MMPBSA_Nmode/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/08_MMPBSA_Nmode/test_lig.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/08_MMPBSA_Nmode/test_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/08_MMPBSA_Nmode/test_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/08_MMPBSA_Nmode/test_statistics.out.snap
+
+/bin/rm -f ${MMPBSAEXAMPLES}/09_MMPBSA_Nmode_Decomp/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/09_MMPBSA_Nmode_Decomp/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/09_MMPBSA_Nmode_Decomp/test_lig.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/09_MMPBSA_Nmode_Decomp/test_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/09_MMPBSA_Nmode_Decomp/test_statistics.out
+
+/bin/rm -f ${MMPBSAEXAMPLES}/10_MMPBSA_Binding_Parallel/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/10_MMPBSA_Binding_Parallel/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/10_MMPBSA_Binding_Parallel/test_com.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/10_MMPBSA_Binding_Parallel/test_lig.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/10_MMPBSA_Binding_Parallel/test_rec.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/10_MMPBSA_Binding_Parallel/test_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/10_MMPBSA_Binding_Parallel/test_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/10_MMPBSA_Binding_Parallel/test_statistics.out.snap
+/bin/rm -f ${MMPBSAEXAMPLES}/10_MMPBSA_Binding_Parallel/restrt
+
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/mdinfo
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/mm_pbsa.log
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/1az6_rec.all.out
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/1az6_statistics.in
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/1az6_statistics.out
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/1az6_statistics.out.snap
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/iapbs-charge.dx
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/iapbs-pot.dx
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/iapbs_rec.1.out
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/iapbs-smol.dx
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/io.mc
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/restrt
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/sander_rec.1.out
+/bin/rm -f ${MMPBSAEXAMPLES}/11_MMPBSA_APBS/sander_rec.in
+
+# Now get rid of all *.dif files and ddtmp.* files. If the dacdif prefix
+# is changed, change that here.
+
+find . -name "*.dif" -print0 | xargs -0 /bin/rm >& /dev/null
+find . -name "ddtmp.*" -print0 | xargs -0 /bin/rm >& /dev/null
+/bin/rm -f TEST_FAILURES.diff

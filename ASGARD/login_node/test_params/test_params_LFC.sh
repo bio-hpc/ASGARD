@@ -1,0 +1,9 @@
+target="targets/test/1le0.mol2"
+query="queries/test/GLA.mol2" 
+histograms="y" 
+option="BD" 
+software="LF"
+num_per_job="4"
+secuencial="n"
+debug=0
+profile="STANDAR_BD"

@@ -1,0 +1,736 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 12/16/2011 at 16:11:59
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: neb_explicit_03.out                                                   
+|INPCRD: inpcrds/neb03.inpcrd                                                  
+|  PARM: neb.prmtop                                                            
+|RESTRT: neb_explicit_03.rst                                                   
+|  REFC: refc                                                                  
+| MDVEL: mdvel.002                                                             
+|  MDEN: mden.002                                                              
+| MDCRD: neb_explicit_03.mdcrd                                                 
+|MDINFO: neb_explicit_03.inf                                                   
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+ 
+ Here is the input file:
+ 
+Alanine NEB initial MD with small K                                            
+ &cntrl                                                                        
+  imin = 0, ntx=5, irest = 0,                                                  
+  ntc=2, ntf=2,                                                                
+  ntpr=1, ntwx=500,                                                            
+  ntb = 1, cut = 8.0, rgbmax=999.0,                                            
+  nstlim = 25, nscm=0,                                                         
+  dt = 0.0005, ig=42,                                                          
+  ntt = 3, gamma_ln=1000.0,                                                    
+  tempi=0.0, temp0=300.0,                                                      
+  tgtfitmask=":1,2,3",                                                         
+  tgtrmsmask=":1,2,3",                                                         
+  ineb = 1,skmin = 10,skmax = 10,                                              
+  nmropt=1,                                                                    
+ /                                                                             
+ &wt type='TEMP0', istep1=0,istep2=35000,                                      
+   value1=0.0, value2=300.0                                                    
+ /                                                                             
+ &wt type='END'                                                                
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+ getting new box info from bottom of inpcrd
+|  INFO: Old style inpcrd file read
+
+| peek_ewald_inpcrd: Box info found
+|Largest sphere to fit in unit cell has radius =    10.135
+| New format PARM file being parsed.
+| Version =    1.000 Date = 07/03/08 Time = 11:00:06
+ NATOM  =    1126 NTYPES =       9 NBONH =    1116 MBONA  =       9
+ NTHETH =      25 MTHETA =      11 NPHIH =      41 MPHIA  =      24
+ NHPARM =       0 NPARM  =       0 NNB   =    1571 NRES   =     371
+ NBONA  =       9 NTHETA =      11 NPHIA =      24 NUMBND =      10
+ NUMANG =      16 NPTRA  =      19 NATYP =       9 NPHB   =       1
+ IFBOX  =       2 NMXRS  =      10 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real              143997
+|     Hollerith           3751
+|     Integer            47734
+|     Max Pairs         187666
+|     nblistReal         13512
+|     nblist Int         42610
+|       Total             2331 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+     BOX TYPE: TRUNCATED OCTAHEDRON
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       1
+
+Nature and format of input:
+     ntx     =       5, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =     500, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       1, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   8.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        25, nscm    =         0, nrespa  =         1
+     t       =   0.00000, dt      =   0.00050, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =      42
+     temp0   = 300.00000, tempi   =   0.00000, gamma_ln=1000.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00001
+
+NMR refinement options:
+     iscale  =       0, noeskp  =       1, ipnlty  =       1, mxsub   =       1
+     scalm   = 100.00000, pencut  =   0.10000, tausw   =   0.10000
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       1
+     Box X =   24.826   Box Y =   24.826   Box Z =   24.826
+     Alpha =  109.471   Beta  =  109.471   Gamma =  109.471
+     NFFT1 =   24       NFFT2 =   24       NFFT3 =   24
+     Cutoff=    8.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.34864
+     Interpolation order =    4
+
+| MPI Timing options:
+|      profile_mpi =        0
+The following selection will be used for NEB structure fitting
+     Mask ":1,2,3" matches    22 atoms
+The following selection will be used for NEB force application
+     Mask ":1,2,3" matches    22 atoms
+
+  Last atom in NEB fitmask or rmsmask is     22
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =    15.000 ps
+
+
+
+           Begin reading energy term weight changes/NMR restraints
+ WEIGHT CHANGES:
+ TEMP0         0  35000    0.000000  300.000000      0      0
+
+ RESTRAINTS:
+                          ** No restraint defined **
+
+                  Done reading weight changes/NMR restraints
+
+
+ Number of triangulated 3-point waters found:      368
+|  Atom division among processors:
+|         0     565    1126
+
+     Sum of charges from parm topology file =   0.00000000
+     Forcing neutrality...
+|  Running AMBER/MPI version on    2 nodes
+
+|  MULTISANDER:    4 groups.    2 processors out of    8 total.
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):    2262.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    2262.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    2262.
+|  TOTAL # of degrees of freedom (RNDF) =    2262.
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.2738E-14   at   2.422500
+| CHECK d/dx switch(x): max rel err =   0.8332E-11   at   2.782960
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =     111433
+| TOTAL SIZE OF NONBOND LIST =     223650
+
+ NSTEP =        0   TIME(PS) =      15.000  TEMP(K) =   309.55  PRESS =     0.0
+ Etot   =     -2704.5116  EKtot   =       695.7200  EPtot      =     -3400.2316
+ BOND   =         2.5719  ANGLE   =         4.5275  DIHED      =         8.9981
+ 1-4 NB =         3.4453  1-4 EEL =        44.5074  VDWAALS    =       461.2620
+ EELEC  =     -3925.5436  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3531.4008
+Energy for replicate   3 =    -3400.2316
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -13970.5112
+ Ewald error estimate:   0.9173E-04
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =        1   TIME(PS) =      15.001  TEMP(K) =   247.97  PRESS =     0.0
+ Etot   =     -2842.9252  EKtot   =       557.3063  EPtot      =     -3400.2316
+ BOND   =         2.5719  ANGLE   =         4.5275  DIHED      =         8.9981
+ 1-4 NB =         3.4453  1-4 EEL =        44.5074  VDWAALS    =       461.2620
+ EELEC  =     -3925.5436  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3531.4008
+Energy for replicate   3 =    -3400.2316
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -13970.5112
+ Ewald error estimate:   0.9173E-04
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =        2   TIME(PS) =      15.001  TEMP(K) =    89.08  PRESS =     0.0
+ Etot   =     -3199.8292  EKtot   =       200.2095  EPtot      =     -3400.0387
+ BOND   =         2.6161  ANGLE   =         4.4631  DIHED      =         9.0582
+ 1-4 NB =         3.4474  1-4 EEL =        44.5372  VDWAALS    =       461.1808
+ EELEC  =     -3925.3416  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3531.4253
+Energy for replicate   3 =    -3400.0387
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -13970.3429
+ Ewald error estimate:   0.1349E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =        3   TIME(PS) =      15.002  TEMP(K) =    32.49  PRESS =     0.0
+ Etot   =     -3328.1581  EKtot   =        73.0152  EPtot      =     -3401.1732
+ BOND   =         2.6061  ANGLE   =         4.3837  DIHED      =         9.0877
+ 1-4 NB =         3.4444  1-4 EEL =        44.5499  VDWAALS    =       461.0148
+ EELEC  =     -3926.2599  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3532.7252
+Energy for replicate   3 =    -3401.1732
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -13972.7773
+ Ewald error estimate:   0.1464E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =        4   TIME(PS) =      15.002  TEMP(K) =    12.46  PRESS =     0.0
+ Etot   =     -3375.3071  EKtot   =        27.9959  EPtot      =     -3403.3031
+ BOND   =         2.5607  ANGLE   =         4.2901  DIHED      =         9.0973
+ 1-4 NB =         3.4383  1-4 EEL =        44.5522  VDWAALS    =       460.7780
+ EELEC  =     -3928.0196  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3534.9660
+Energy for replicate   3 =    -3403.3031
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -13977.1480
+ Ewald error estimate:   0.1304E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =        5   TIME(PS) =      15.003  TEMP(K) =     5.49  PRESS =     0.0
+ Etot   =     -3393.7572  EKtot   =        12.3312  EPtot      =     -3406.0884
+ BOND   =         2.4975  ANGLE   =         4.1857  DIHED      =         9.0952
+ 1-4 NB =         3.4294  1-4 EEL =        44.5472  VDWAALS    =       460.4909
+ EELEC  =     -3930.3342  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3537.8472
+Energy for replicate   3 =    -3406.0884
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -13982.8146
+ Ewald error estimate:   0.1582E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =        6   TIME(PS) =      15.003  TEMP(K) =     3.13  PRESS =     0.0
+ Etot   =     -3402.2386  EKtot   =         7.0291  EPtot      =     -3409.2677
+ BOND   =         2.4237  ANGLE   =         4.0798  DIHED      =         9.0849
+ 1-4 NB =         3.4198  1-4 EEL =        44.5395  VDWAALS    =       460.1641
+ EELEC  =     -3932.9795  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3541.0989
+Energy for replicate   3 =    -3409.2677
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -13989.2455
+ Ewald error estimate:   0.1559E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =        7   TIME(PS) =      15.004  TEMP(K) =     2.36  PRESS =     0.0
+ Etot   =     -3407.3512  EKtot   =         5.3083  EPtot      =     -3412.6594
+ BOND   =         2.3460  ANGLE   =         3.9777  DIHED      =         9.0694
+ 1-4 NB =         3.4098  1-4 EEL =        44.5306  VDWAALS    =       459.8268
+ EELEC  =     -3935.8198  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3544.5518
+Energy for replicate   3 =    -3412.6594
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -13996.0901
+ Ewald error estimate:   0.1515E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =        8   TIME(PS) =      15.004  TEMP(K) =     2.14  PRESS =     0.0
+ Etot   =     -3411.3724  EKtot   =         4.8041  EPtot      =     -3416.1765
+ BOND   =         2.2692  ANGLE   =         3.8778  DIHED      =         9.0520
+ 1-4 NB =         3.4000  1-4 EEL =        44.5220  VDWAALS    =       459.4816
+ EELEC  =     -3938.7789  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3548.0833
+Energy for replicate   3 =    -3416.1765
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14003.1386
+ Ewald error estimate:   0.1366E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =        9   TIME(PS) =      15.005  TEMP(K) =     2.08  PRESS =     0.0
+ Etot   =     -3415.0578  EKtot   =         4.6806  EPtot      =     -3419.7384
+ BOND   =         2.1943  ANGLE   =         3.7868  DIHED      =         9.0324
+ 1-4 NB =         3.3906  1-4 EEL =        44.5154  VDWAALS    =       459.1164
+ EELEC  =     -3941.7742  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3551.6446
+Energy for replicate   3 =    -3419.7384
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14010.2619
+ Ewald error estimate:   0.1201E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       10   TIME(PS) =      15.005  TEMP(K) =     2.09  PRESS =     0.0
+ Etot   =     -3418.6172  EKtot   =         4.7013  EPtot      =     -3423.3185
+ BOND   =         2.1233  ANGLE   =         3.7018  DIHED      =         9.0119
+ 1-4 NB =         3.3817  1-4 EEL =        44.5056  VDWAALS    =       458.7554
+ EELEC  =     -3944.7982  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3555.1871
+Energy for replicate   3 =    -3423.3185
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14017.3846
+ Ewald error estimate:   0.1199E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       11   TIME(PS) =      15.006  TEMP(K) =     2.09  PRESS =     0.0
+ Etot   =     -3422.2130  EKtot   =         4.6941  EPtot      =     -3426.9071
+ BOND   =         2.0541  ANGLE   =         3.6171  DIHED      =         8.9901
+ 1-4 NB =         3.3724  1-4 EEL =        44.4935  VDWAALS    =       458.4043
+ EELEC  =     -3947.8386  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3558.6879
+Energy for replicate   3 =    -3426.9071
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14024.4739
+ Ewald error estimate:   0.1215E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       12   TIME(PS) =      15.006  TEMP(K) =     2.07  PRESS =     0.0
+ Etot   =     -3425.7937  EKtot   =         4.6525  EPtot      =     -3430.4463
+ BOND   =         1.9863  ANGLE   =         3.5391  DIHED      =         8.9688
+ 1-4 NB =         3.3638  1-4 EEL =        44.4838  VDWAALS    =       458.0351
+ EELEC  =     -3950.8230  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3562.1883
+Energy for replicate   3 =    -3430.4463
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14031.5134
+ Ewald error estimate:   0.1465E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       13   TIME(PS) =      15.007  TEMP(K) =     2.05  PRESS =     0.0
+ Etot   =     -3429.3539  EKtot   =         4.5983  EPtot      =     -3433.9522
+ BOND   =         1.9216  ANGLE   =         3.4634  DIHED      =         8.9496
+ 1-4 NB =         3.3554  1-4 EEL =        44.4746  VDWAALS    =       457.6726
+ EELEC  =     -3953.7894  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3565.6162
+Energy for replicate   3 =    -3433.9522
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14038.4474
+ Ewald error estimate:   0.1664E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       14   TIME(PS) =      15.007  TEMP(K) =     2.03  PRESS =     0.0
+ Etot   =     -3432.8344  EKtot   =         4.5516  EPtot      =     -3437.3860
+ BOND   =         1.8645  ANGLE   =         3.3923  DIHED      =         8.9316
+ 1-4 NB =         3.3474  1-4 EEL =        44.4648  VDWAALS    =       457.3075
+ EELEC  =     -3956.6940  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3569.0118
+Energy for replicate   3 =    -3437.3860
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14045.2766
+ Ewald error estimate:   0.1721E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       15   TIME(PS) =      15.008  TEMP(K) =     2.02  PRESS =     0.0
+ Etot   =     -3436.2444  EKtot   =         4.5429  EPtot      =     -3440.7872
+ BOND   =         1.8113  ANGLE   =         3.3259  DIHED      =         8.9118
+ 1-4 NB =         3.3396  1-4 EEL =        44.4544  VDWAALS    =       456.9475
+ EELEC  =     -3959.5778  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3572.3443
+Energy for replicate   3 =    -3440.7872
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14052.0104
+ Ewald error estimate:   0.1756E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       16   TIME(PS) =      15.008  TEMP(K) =     2.01  PRESS =     0.0
+ Etot   =     -3439.6472  EKtot   =         4.5223  EPtot      =     -3444.1694
+ BOND   =         1.7579  ANGLE   =         3.2677  DIHED      =         8.8936
+ 1-4 NB =         3.3320  1-4 EEL =        44.4439  VDWAALS    =       456.5813
+ EELEC  =     -3962.4458  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3575.6111
+Energy for replicate   3 =    -3444.1694
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14058.6594
+ Ewald error estimate:   0.1965E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       17   TIME(PS) =      15.009  TEMP(K) =     1.99  PRESS =     0.0
+ Etot   =     -3443.0132  EKtot   =         4.4807  EPtot      =     -3447.4939
+ BOND   =         1.7056  ANGLE   =         3.2177  DIHED      =         8.8775
+ 1-4 NB =         3.3250  1-4 EEL =        44.4374  VDWAALS    =       456.2113
+ EELEC  =     -3965.2684  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3578.8324
+Energy for replicate   3 =    -3447.4939
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14065.2052
+ Ewald error estimate:   0.1849E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       18   TIME(PS) =      15.009  TEMP(K) =     1.96  PRESS =     0.0
+ Etot   =     -3446.3618  EKtot   =         4.4119  EPtot      =     -3450.7737
+ BOND   =         1.6578  ANGLE   =         3.1704  DIHED      =         8.8598
+ 1-4 NB =         3.3182  1-4 EEL =        44.4292  VDWAALS    =       455.8412
+ EELEC  =     -3968.0503  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3582.0180
+Energy for replicate   3 =    -3450.7737
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14071.6706
+ Ewald error estimate:   0.1762E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       19   TIME(PS) =      15.010  TEMP(K) =     1.94  PRESS =     0.0
+ Etot   =     -3449.6175  EKtot   =         4.3649  EPtot      =     -3453.9824
+ BOND   =         1.6116  ANGLE   =         3.1281  DIHED      =         8.8413
+ 1-4 NB =         3.3114  1-4 EEL =        44.4233  VDWAALS    =       455.4913
+ EELEC  =     -3970.7895  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3585.1398
+Energy for replicate   3 =    -3453.9824
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14078.0011
+ Ewald error estimate:   0.1672E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       20   TIME(PS) =      15.010  TEMP(K) =     1.94  PRESS =     0.0
+ Etot   =     -3452.8147  EKtot   =         4.3539  EPtot      =     -3457.1686
+ BOND   =         1.5720  ANGLE   =         3.0868  DIHED      =         8.8249
+ 1-4 NB =         3.3041  1-4 EEL =        44.4170  VDWAALS    =       455.1345
+ EELEC  =     -3973.5078  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3588.1953
+Energy for replicate   3 =    -3457.1686
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14084.2427
+ Ewald error estimate:   0.1581E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       21   TIME(PS) =      15.011  TEMP(K) =     1.91  PRESS =     0.0
+ Etot   =     -3456.0108  EKtot   =         4.3038  EPtot      =     -3460.3146
+ BOND   =         1.5318  ANGLE   =         3.0536  DIHED      =         8.8099
+ 1-4 NB =         3.2978  1-4 EEL =        44.4101  VDWAALS    =       454.7766
+ EELEC  =     -3976.1944  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3591.1940
+Energy for replicate   3 =    -3460.3146
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14090.3874
+ Ewald error estimate:   0.1684E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       22   TIME(PS) =      15.011  TEMP(K) =     1.89  PRESS =     0.0
+ Etot   =     -3459.1565  EKtot   =         4.2490  EPtot      =     -3463.4056
+ BOND   =         1.4958  ANGLE   =         3.0157  DIHED      =         8.7935
+ 1-4 NB =         3.2923  1-4 EEL =        44.4037  VDWAALS    =       454.4352
+ EELEC  =     -3978.8418  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3594.1518
+Energy for replicate   3 =    -3463.4056
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14096.4363
+ Ewald error estimate:   0.1903E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       23   TIME(PS) =      15.012  TEMP(K) =     1.87  PRESS =     0.0
+ Etot   =     -3462.2489  EKtot   =         4.1995  EPtot      =     -3466.4485
+ BOND   =         1.4605  ANGLE   =         2.9826  DIHED      =         8.7793
+ 1-4 NB =         3.2868  1-4 EEL =        44.3964  VDWAALS    =       454.0773
+ EELEC  =     -3981.4315  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3597.0811
+Energy for replicate   3 =    -3466.4485
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14102.4085
+ Ewald error estimate:   0.1812E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       24   TIME(PS) =      15.012  TEMP(K) =     1.86  PRESS =     0.0
+ Etot   =     -3465.2768  EKtot   =         4.1729  EPtot      =     -3469.4497
+ BOND   =         1.4247  ANGLE   =         2.9602  DIHED      =         8.7645
+ 1-4 NB =         3.2818  1-4 EEL =        44.3880  VDWAALS    =       453.7212
+ EELEC  =     -3983.9902  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3599.9706
+Energy for replicate   3 =    -3469.4497
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14108.2992
+ Ewald error estimate:   0.1940E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       25   TIME(PS) =      15.013  TEMP(K) =     1.84  PRESS =     0.0
+ Etot   =     -3468.2836  EKtot   =         4.1292  EPtot      =     -3472.4127
+ BOND   =         1.3935  ANGLE   =         2.9358  DIHED      =         8.7501
+ 1-4 NB =         3.2756  1-4 EEL =        44.3802  VDWAALS    =       453.3889
+ EELEC  =     -3986.5367  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3602.8371
+Energy for replicate   3 =    -3472.4127
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14114.1287
+ Ewald error estimate:   0.1788E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+      A V E R A G E S   O V E R      25 S T E P S
+
+
+ NSTEP =       25   TIME(PS) =      15.013  TEMP(K) =    17.15  PRESS =     0.0
+ Etot   =     -3395.3394  EKtot   =        38.5444  EPtot      =     -3433.8837
+ BOND   =         1.9783  ANGLE   =         3.5772  DIHED      =         8.9413
+ 1-4 NB =         3.3604  1-4 EEL =        44.4723  VDWAALS    =       457.6039
+ EELEC  =     -3953.8172  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3602.8371
+Energy for replicate   3 =    -3472.4127
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14114.1287
+ Ewald error estimate:   0.1569E-03
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       25   TIME(PS) =      15.013  TEMP(K) =    50.36  PRESS =     0.0
+ Etot   =       125.0759  EKtot   =       113.1790  EPtot      =        23.4608
+ BOND   =         0.4085  ANGLE   =         0.5084  DIHED      =         0.1136
+ 1-4 NB =         0.0563  1-4 EEL =         0.0555  VDWAALS    =         2.4994
+ EELEC  =        19.8372  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+NEB replicate breakdown:
+Energy for replicate   1 =    -3497.2457
+Energy for replicate   2 =    -3602.8371
+Energy for replicate   3 =    -3472.4127
+Energy for replicate   4 =    -3541.6332
+Total Energy of replicates =   -14114.1287
+ Ewald error estimate:   0.2628E-04
+ ------------------------------------------------------------------------------
+
+
+ NMR restraints on final step:
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|>>>>>>>>PROFILE of Average TIMES>>>>>>>>> 
+|    Read coords time           0.00 ( 0.15% of Total)
+|                Build the list             0.02 (35.17% of List )
+|                Other                      0.03 (64.83% of List )
+|             List time                  0.05 (10.61% of Nonbo)
+|                   Short_ene time             0.21 (97.14% of Direc)
+|                   Other                      0.01 ( 2.86% of Direc)
+|                Direct Ewald time          0.21 (48.11% of Ewald)
+|                Adjust Ewald time          0.00 ( 1.03% of Ewald)
+|                Self Ewald time            0.00 ( 0.01% of Ewald)
+|                   Fill Bspline coeffs        0.00 ( 2.79% of Recip)
+|                   Fill charge grid           0.01 ( 4.60% of Recip)
+|                   Scalar sum                 0.01 ( 8.81% of Recip)
+|                   Grad sum                   0.01 ( 6.91% of Recip)
+|                      FFT back comm time         0.03 (38.98% of FFT t)
+|                      Other                      0.05 (61.02% of FFT t)
+|                   FFT time                   0.09 (63.11% of Recip)
+|                   Other                      0.02 (13.78% of Recip)
+|                Recip Ewald time           0.14 (31.83% of Ewald)
+|                Force Adjust               0.07 (16.25% of Ewald)
+|                Virial junk                0.01 ( 2.73% of Ewald)
+|                Other                      0.00 ( 0.03% of Ewald)
+|             Ewald time                 0.44 (89.38% of Nonbo)
+|             Other                      0.00 ( 0.01% of Nonbo)
+|          Nonbond force              0.49 (83.30% of Force)
+|          Bond/Angle/Dihedral        0.00 ( 0.11% of Force)
+|          FRC Collect time           0.00 ( 0.29% of Force)
+|          Other                      0.10 (16.30% of Force)
+|       Force time                 0.59 (91.64% of Runmd)
+|       Shake time                 0.00 ( 0.30% of Runmd)
+|       Verlet update time         0.05 ( 7.85% of Runmd)
+|       CRD distribute time        0.00 ( 0.07% of Runmd)
+|       Other                      0.00 ( 0.14% of Runmd)
+|    Runmd Time                 0.65 (93.65% of Total)
+|    Other                      0.04 ( 6.20% of Total)
+| Total time                 0.69 (100.0% of ALL  )
+
+| Number of list builds   :          1
+
+| Highest rstack allocated:      50664
+| Highest istack allocated:        938
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       0.65 Per Step(ms) =      26.16
+|         ns/day =       1.65   seconds/ns =   52323.60
+| -----------------------------------------------------
+
+|           Job began  at 16:11:59.064  on 12/16/2011
+|           Setup done at 16:11:59.105  on 12/16/2011
+|           Run   done at 16:11:59.759  on 12/16/2011
+|     wallclock() was called    1459 times

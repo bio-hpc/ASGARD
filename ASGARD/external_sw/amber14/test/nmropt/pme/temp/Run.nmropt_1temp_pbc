@@ -1,0 +1,49 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP Test linear temperature scaling (e.g., for slow heating) in explicit solvent
+#TEST-PURPOSE regression pedagogical basic
+#TEST-STATE   ok
+
+. ../../../program_error.sh
+
+if [ -z "$TESTsander" ]; then
+  TESTsander="../../../../bin/sander"
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+  export DO_PARALLEL=" "
+fi
+
+cat > mdin <<EOF
+Test of temp scale using nmropt=1 with pbc
+ &cntrl
+  nstlim=20,dt=0.001,ntt=1,
+  ntpr=1,
+  igb=0,ntb=1,
+  tempi=0.0,
+  nmropt=1,
+  ig=71277,
+ /
+ &ewald
+   nfft1=64, nfft2=64, nfft3=64,
+ /
+ &wt type='TEMP0', istep1=0, istep2=10,
+                   value1=0.0, value2=100.0
+ /
+ &wt type='TEMP0', istep1=11, istep2=20,
+                   value1=100.0, value2=150.0
+ /
+ &wt type='END' /
+EOF
+
+$DO_PARALLEL $TESTsander -O -c ../myoglobin_pbc.inpcrd -p ../myoglobin_pbc.prmtop \
+                            < /dev/null || error
+       
+if [ `basename $TESTsander` = "pmemd.mic_offload.MPI" ]; then
+../../../dacdif -r 1.0e-07 mdout.save mdout
+else
+../../../dacdif mdout.save mdout
+fi
+/bin/rm -f mdin restrt mdinfo profile_mpi logfile
+
+exit 0

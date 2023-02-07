@@ -1,0 +1,64 @@
+read 
+    mol pqr 1az6_4_apbs.pqr
+end
+
+# The relative difference between APBS and PBSA is about
+# 5% because they use different methods to culculate 
+# the solvation free energy.
+#
+# To get the results similar to those by PBSA or DELPHI
+# finer grid should be used. If grid is set to 0.25, 
+# the relative difference drops to about 2%.
+
+# 1AZ6 SOLVATION ENERGY -- SOLVATED STATE
+elec name 1az6-solv
+    mg-manual
+    dime 129 129 129
+    nlev 6
+    grid 0.5 0.5 0.5
+    gcent mol 1 
+    mol 1 
+    lpbe 
+    bcfl mdh 
+    pdie 1.0 
+    sdie 80.0 
+    chgm spl0 
+    srfm mol 
+    srad 1.5
+    swin 0.3
+    sdens 100.0
+    ion charge  1.0 conc 0.150 radius 2.0
+    ion charge -1.0 conc 0.150 radius 2.0
+    temp 300.00
+    calcenergy total 
+    calcforce no 
+end
+
+# 1AZ6 SOLVATION ENERGY -- REFERENCE STATE
+elec name 1az6-ref
+    mg-manual
+    dime 129 129 129
+    nlev 6
+    grid 0.5 0.5 0.5
+    gcent mol 1 
+    mol 1 
+    lpbe 
+    bcfl mdh 
+    pdie 1.0 
+    sdie 1.00 
+    chgm spl0 
+    srfm mol 
+    srad 1.5
+    swin 0.3
+    sdens 100.0
+    ion charge  1.0 conc 0.150 radius 2.0
+    ion charge -1.0 conc 0.150 radius 2.0
+    temp 300.00
+    calcenergy total 
+    calcforce no 
+end
+
+# 1AZ6 solvation energy
+print elecEnergy 1az6-solv - 1az6-ref end
+
+quit

@@ -1,0 +1,1089 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/15/2014 at 09:27:12
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: crambin_md_calc_mulliken.out                                          
+|INPCRD: crambin.rst                                                           
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+ 
+ Here is the input file:
+ 
+Crambin: 20 cycles md using qm calculation                                     
+ &cntrl                                                                        
+        imin =0, nstlim=20,dt=0.001,                                           
+        ntpr=1, ntb=0, igb=0,                                                  
+        ifqnt=1, ntwx=0,ntwv=0,                                                
+        cut=14.0,tempi=0.0,temp0=300.0,                                        
+        ntt=1                                                                  
+ /                                                                             
+ &qmmm                                                                         
+     iqmatoms= 41,42,43,44,45,46,47,48,49,50,                                  
+               442,443,444,445,446,447,448,                                    
+               449,450,451,                                                    
+     qm_theory='DFTB',                                                         
+     qmcharge=0,                                                               
+     printcharges=1,                                                           
+     scfconv=1.0D-9                                                            
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|Largest sphere to fit in unit cell has radius =    41.654
+| New format PARM file being parsed.
+| Version =    1.000 Date = 06/24/03 Time = 11:20:38
+ NATOM  =     642 NTYPES =      12 NBONH =     315 MBONA  =     334
+ NTHETH =     717 MTHETA =     460 NPHIH =    1277 MPHIA  =     844
+ NHPARM =       0 NPARM  =       0 NNB   =    3545 NRES   =      46
+ NBONA  =     334 NTHETA =     460 NPHIA =     844 NUMBND =      23
+ NUMANG =      50 NPTRA  =      21 NATYP =      16 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      24 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real               33977
+|     Hollerith           1974
+|     Integer           142203
+|     Max Pairs         205761
+|     nblistReal          7704
+|     nblist Int        389975
+|       Total             3215 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =  14.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        20, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+Berendsen (weak-coupling) temperature regulation:
+     temp0   = 300.00000, tempi   =   0.00000, tautp   =   1.00000
+
+QMMM options:
+             ifqnt = True       nquant =       20
+              qmgb =        0  qmcharge =        0   adjust_q =        2
+              spin =        1     qmcut =  14.0000    qmshake =        1
+          qmmm_int =        1
+     lnk_atomic_no =        1   lnk_dis =   1.0900 lnk_method =        1
+          qm_theory =    DFTB verbosity =        0
+            qmqmdx = Analytical
+      tight_p_conv = False (converge density to 0.05xSqrt[SCFCRT])
+           scfconv = 0.100E-08  itrmax =     1000
+      printcharges = True       printdipole = False      peptide_corr = False
+    qmmmrij_incore = False
+  qmqm_erep_incore = False
+       pseudo_diag = False
+      diag_routine =        0
+          qm_ewald =        0 qm_pme = False 
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+     Sum of charges from parm topology file =  -0.00000001
+     Forcing neutrality...
+QMMM: ADJUSTING CHARGES
+QMMM: ----------------------------------------------------------------------
+QMMM: adjust_q = 2
+QMMM: Uniformly adjusting the charge of MM atoms to conserve total charge.
+QMMM:                             qm_charge =    0
+QMMM: QM atom RESP charge sum (inc MM link) =    0.524
+QMMM: Adjusting each MM atom resp charge by =    0.001
+QMMM:          Sum of MM + QM region is now =    0.000
+QMMM: ----------------------------------------------------------------------
+|  # of SOLUTE  degrees of freedom (RNDFP):    1926.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  QMSHAKE_NOSHAKEMASK_OVERLAP =      0
+|  NDFMIN =    1920.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    1920.
+|  TOTAL # of degrees of freedom (RNDF) =    1920.
+ ---------------------------------------------------
+
+     eedmeth=4: Setting switch to one everywhere
+
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =     144022
+| TOTAL SIZE OF NONBOND LIST =     144022
+
+QMMM: Link Atom Information
+QMMM: ------------------------------------------------------------------------
+QMMM:  nlink =     4                   Link Coords              Resp Charges
+QMMM:    MM(typ)  -  QM(typ)      X         Y         Z         MM        QM
+QMMM:    39 C        41 N       12.180    10.218    10.281     0.597    -0.416
+QMMM:    51 N        49 C        9.774     9.025    13.352    -0.255     0.597
+QMMM:   440 C       442 N        6.305    12.031    10.856     0.597    -0.416
+QMMM:   452 N       450 C        9.430    13.261     9.012    -0.416     0.597
+QMMM: ------------------------------------------------------------------------
+
+  QMMM: QM Region Cartesian Coordinates (*=link atom) 
+  QMMM: QM_NO.   MM_NO.  ATOM         X         Y         Z
+  QMMM:     1       41      N       12.0288    9.2924   10.8370
+  QMMM:     2       42      H       12.7846    8.6533   11.0377
+  QMMM:     3       43      C       10.6907    8.9309   11.3263
+  QMMM:     4       44      H       10.0148    9.7722   11.0894
+  QMMM:     5       45      C       10.1597    7.6999   10.6178
+  QMMM:     6       46      H       10.8932    6.8895   10.7212
+  QMMM:     7       47      H        9.2292    7.3775   11.0978
+  QMMM:     8       48      S        9.8271    7.9332    8.8411
+  QMMM:     9       49      C       10.6892    8.7354   12.8355
+  QMMM:    10       50      O       11.6410    8.2779   13.4171
+  QMMM:    11      442      N        6.6562   11.5022    9.9701
+  QMMM:    12      443      H        6.0317   10.9772    9.3912
+  QMMM:    13      444      C        8.0613   11.5980    9.5542
+  QMMM:    14      445      H        8.6869   11.3458   10.4310
+  QMMM:    15      446      C        8.3773   10.6210    8.4468
+  QMMM:    16      447      H        7.7959   10.9059    7.5640
+  QMMM:    17      448      H        9.4409   10.7028    8.1963
+  QMMM:    18      449      S        8.0142    8.8667    8.8153
+  QMMM:    19      450      C        8.3699   13.0376    9.1270
+  QMMM:    20      451      O        7.5011   13.8513    8.9245
+  QMMM:    21              *H       12.1798   10.2178   10.2813
+  QMMM:    22              *H        9.7741    9.0252   13.3519
+  QMMM:    23              *H        6.3053   12.0311   10.8562
+  QMMM:    24              *H        9.4304   13.2615    9.0118
+
+--------------------------------------------------------------------------------
+  3.1 QM CALCULATION INFO
+--------------------------------------------------------------------------------
+
+| QMMM: Citation for AMBER QMMM Run:
+| QMMM: R.C. Walker, M.F. Crowley and D.A. Case, J. COMP. CHEM. 29:1019, 2008
+
+| QMMM: DFTB Calculation - Additional citation for AMBER DFTB QMMM Run:
+| QMMM:   Seabra, G.M., Walker, R.C. et al., J. PHYS. CHEM. A., 111, 5655, (2007)
+
+
+QMMM: SINGLET STATE CALCULATION
+QMMM: RHF CALCULATION, NO. OF DOUBLY OCCUPIED LEVELS = 35
+ DFTB: Number of atom types =    5
+ 
+ Parameter files:
+     TYP (AT)  TYP (AT)     SK integral FILE
+|  1  1  (N )   1  (N )     /home/swails/build_amber/amber/dat/slko/N-N.skf
+|  2  1  (N )   2  (H )     /home/swails/build_amber/amber/dat/slko/N-H.skf
+|  3  1  (N )   3  (C )     /home/swails/build_amber/amber/dat/slko/N-C.skf
+|  4  1  (N )   4  (S )     /home/swails/build_amber/amber/dat/slko/N-S.skf
+|  5  1  (N )   5  (O )     /home/swails/build_amber/amber/dat/slko/N-O.skf
+|  6  2  (H )   1  (N )     /home/swails/build_amber/amber/dat/slko/H-N.skf
+|  7  2  (H )   2  (H )     /home/swails/build_amber/amber/dat/slko/H-H.skf
+|  8  2  (H )   3  (C )     /home/swails/build_amber/amber/dat/slko/H-C.skf
+|  9  2  (H )   4  (S )     /home/swails/build_amber/amber/dat/slko/H-S.skf
+| 10  2  (H )   5  (O )     /home/swails/build_amber/amber/dat/slko/H-O.skf
+| 11  3  (C )   1  (N )     /home/swails/build_amber/amber/dat/slko/C-N.skf
+| 12  3  (C )   2  (H )     /home/swails/build_amber/amber/dat/slko/C-H.skf
+| 13  3  (C )   3  (C )     /home/swails/build_amber/amber/dat/slko/C-C.skf
+| 14  3  (C )   4  (S )     /home/swails/build_amber/amber/dat/slko/C-S.skf
+| 15  3  (C )   5  (O )     /home/swails/build_amber/amber/dat/slko/C-O.skf
+| 16  4  (S )   1  (N )     /home/swails/build_amber/amber/dat/slko/S-N.skf
+| 17  4  (S )   2  (H )     /home/swails/build_amber/amber/dat/slko/S-H.skf
+| 18  4  (S )   3  (C )     /home/swails/build_amber/amber/dat/slko/S-C.skf
+| 19  4  (S )   4  (S )     /home/swails/build_amber/amber/dat/slko/S-S.skf
+| 20  4  (S )   5  (O )     /home/swails/build_amber/amber/dat/slko/S-O.skf
+| 21  5  (O )   1  (N )     /home/swails/build_amber/amber/dat/slko/O-N.skf
+| 22  5  (O )   2  (H )     /home/swails/build_amber/amber/dat/slko/O-H.skf
+| 23  5  (O )   3  (C )     /home/swails/build_amber/amber/dat/slko/O-C.skf
+| 24  5  (O )   4  (S )     /home/swails/build_amber/amber/dat/slko/O-S.skf
+| 25  5  (O )   5  (O )     /home/swails/build_amber/amber/dat/slko/O-O.skf
+
+| QMMM: Estimated QM Dynamic Memory Usage (per thread)
+| QMMM: ---------------------------------------------------
+| QMMM:              QM Atom Type Info :          880 bytes
+| QMMM:         QM RESP Charge Storage :          160 bytes
+| QMMM:            QM Atom Number List :           96 bytes
+| QMMM:                Link Atom Pairs :           64 bytes
+| QMMM:          QM Atomic Number List :           96 bytes
+| QMMM:                QM-MM Pair List :         2492 bytes
+| QMMM:                   QM Atom Mask :         1284 bytes
+| QMMM:           QM Coordinate Arrays :        21120 bytes
+| QMMM:         Scaled MM Charge Array :         5136 bytes
+| QMMM:    SCF Mulliken Charge Storage :          192 bytes
+| QMMM:                QM Force Arrays :        15984 bytes
+| QMMM:                 Density Matrix :        14640 bytes
+| QMMM:          Density Matrix Copies :        15120 bytes
+| QMMM: Fock2 Density Matrix Workspace :         3072 bytes
+| QMMM:                    Fock Matrix :        14640 bytes
+| QMMM:           Eigen Vector Storage :            0 bytes
+| QMMM: QM-QM Elec Repulsion Integrals :            0 bytes
+| QMMM:  QM 2-Elec Repulsion Integrals :        64848 bytes
+| QMMM:              1-Electron Matrix :        14640 bytes
+| QMMM:       _REAL_ parameter storage :         3672 bytes
+| QMMM:      integer parameter storage :          768 bytes
+| QMMM:         QM-MM RIJ Eqns storage :            0 bytes
+| QMMM:          _REAL_ Scratch arrays :        20544 bytes
+| QMMM:         Integer Scratch arrays :         7704 bytes
+| QMMM: ---------------------------------------------------
+| QMMM:        Total Dynamic Memory Usage:      0.198 Mb
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =     -3445.9013  EKtot   =         0.0000  EPtot      =     -3445.9013
+ BOND   =        18.3712  ANGLE   =        75.9767  DIHED      =       182.3644
+ 1-4 NB =       179.4689  1-4 EEL =      1439.9877  VDWAALS    =      -247.5173
+ EELEC  =     -2621.2315  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2473.3214
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        1   TIME(PS) =       0.001  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =     -3445.9013  EKtot   =         0.0000  EPtot      =     -3445.9013
+ BOND   =        18.3712  ANGLE   =        75.9767  DIHED      =       182.3644
+ 1-4 NB =       179.4689  1-4 EEL =      1439.9877  VDWAALS    =      -247.5173
+ EELEC  =     -2621.2315  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2473.3214
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step       1 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.497
+     2      H                  0.237
+     3      C                  0.084
+     4      H                  0.061
+     5      C                 -0.058
+     6      H                  0.111
+     7      H                  0.034
+     8      S                 -0.154
+     9      C                  0.320
+    10      O                 -0.365
+    11      N                 -0.481
+    12      H                  0.197
+    13      C                  0.085
+    14      H                  0.074
+    15      C                 -0.064
+    16      H                  0.040
+    17      H                  0.062
+    18      S                 -0.148
+    19      C                  0.339
+    20      O                 -0.342
+    21      H                  0.268
+    22      H                 -0.019
+    23      H                  0.308
+    24      H                 -0.089
+ Total Mulliken Charge =       0.000
+
+ NSTEP =        2   TIME(PS) =       0.002  TEMP(K) =     2.51  PRESS =     0.0
+ Etot   =     -3449.6831  EKtot   =         4.7918  EPtot      =     -3454.4749
+ BOND   =        17.0254  ANGLE   =        75.4498  DIHED      =       182.2630
+ 1-4 NB =       179.2821  1-4 EEL =      1439.3924  VDWAALS    =      -248.2132
+ EELEC  =     -2625.7841  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2473.8905
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step       2 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.497
+     2      H                  0.238
+     3      C                  0.085
+     4      H                  0.060
+     5      C                 -0.058
+     6      H                  0.111
+     7      H                  0.034
+     8      S                 -0.154
+     9      C                  0.319
+    10      O                 -0.366
+    11      N                 -0.481
+    12      H                  0.197
+    13      C                  0.086
+    14      H                  0.073
+    15      C                 -0.064
+    16      H                  0.040
+    17      H                  0.062
+    18      S                 -0.148
+    19      C                  0.338
+    20      O                 -0.342
+    21      H                  0.268
+    22      H                 -0.019
+    23      H                  0.308
+    24      H                 -0.089
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =        3   TIME(PS) =       0.003  TEMP(K) =     7.86  PRESS =     0.0
+ Etot   =     -3447.6900  EKtot   =        14.9974  EPtot      =     -3462.6873
+ BOND   =        14.2893  ANGLE   =        73.9451  DIHED      =       181.9528
+ 1-4 NB =       178.7115  1-4 EEL =      1437.5225  VDWAALS    =      -250.3533
+ EELEC  =     -2623.6464  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2475.1090
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step       3 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.496
+     2      H                  0.238
+     3      C                  0.088
+     4      H                  0.059
+     5      C                 -0.058
+     6      H                  0.110
+     7      H                  0.032
+     8      S                 -0.155
+     9      C                  0.318
+    10      O                 -0.366
+    11      N                 -0.479
+    12      H                  0.196
+    13      C                  0.090
+    14      H                  0.069
+    15      C                 -0.062
+    16      H                  0.038
+    17      H                  0.061
+    18      S                 -0.149
+    19      C                  0.337
+    20      O                 -0.342
+    21      H                  0.269
+    22      H                 -0.019
+    23      H                  0.309
+    24      H                 -0.089
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =        4   TIME(PS) =       0.004  TEMP(K) =    13.67  PRESS =     0.0
+ Etot   =     -3456.2592  EKtot   =        26.0780  EPtot      =     -3482.3372
+ BOND   =        13.3932  ANGLE   =        72.0977  DIHED      =       181.5037
+ 1-4 NB =       177.8948  1-4 EEL =      1434.6795  VDWAALS    =      -253.5142
+ EELEC  =     -2632.4018  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2475.9901
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step       4 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.495
+     2      H                  0.239
+     3      C                  0.093
+     4      H                  0.057
+     5      C                 -0.058
+     6      H                  0.110
+     7      H                  0.031
+     8      S                 -0.155
+     9      C                  0.316
+    10      O                 -0.367
+    11      N                 -0.476
+    12      H                  0.195
+    13      C                  0.097
+    14      H                  0.065
+    15      C                 -0.061
+    16      H                  0.036
+    17      H                  0.061
+    18      S                 -0.150
+    19      C                  0.335
+    20      O                 -0.343
+    21      H                  0.269
+    22      H                 -0.018
+    23      H                  0.309
+    24      H                 -0.090
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =        5   TIME(PS) =       0.005  TEMP(K) =    18.86  PRESS =     0.0
+ Etot   =     -3451.7421  EKtot   =        35.9847  EPtot      =     -3487.7268
+ BOND   =        15.0446  ANGLE   =        70.5877  DIHED      =       180.9883
+ 1-4 NB =       176.9616  1-4 EEL =      1431.1168  VDWAALS    =      -257.3902
+ EELEC  =     -2628.4563  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2476.5792
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step       5 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.493
+     2      H                  0.239
+     3      C                  0.098
+     4      H                  0.055
+     5      C                 -0.059
+     6      H                  0.110
+     7      H                  0.030
+     8      S                 -0.156
+     9      C                  0.314
+    10      O                 -0.367
+    11      N                 -0.473
+    12      H                  0.194
+    13      C                  0.103
+    14      H                  0.060
+    15      C                 -0.061
+    16      H                  0.034
+    17      H                  0.060
+    18      S                 -0.151
+    19      C                  0.333
+    20      O                 -0.343
+    21      H                  0.270
+    22      H                 -0.018
+    23      H                  0.310
+    24      H                 -0.090
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =        6   TIME(PS) =       0.006  TEMP(K) =    24.03  PRESS =     0.0
+ Etot   =     -3445.9008  EKtot   =        45.8498  EPtot      =     -3491.7507
+ BOND   =        16.9832  ANGLE   =        70.0582  DIHED      =       180.4948
+ 1-4 NB =       176.0352  1-4 EEL =      1427.0932  VDWAALS    =      -261.7277
+ EELEC  =     -2623.3498  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2477.3377
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step       6 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.489
+     2      H                  0.239
+     3      C                  0.104
+     4      H                  0.053
+     5      C                 -0.062
+     6      H                  0.109
+     7      H                  0.029
+     8      S                 -0.157
+     9      C                  0.311
+    10      O                 -0.368
+    11      N                 -0.469
+    12      H                  0.195
+    13      C                  0.110
+    14      H                  0.055
+    15      C                 -0.061
+    16      H                  0.033
+    17      H                  0.060
+    18      S                 -0.152
+    19      C                  0.330
+    20      O                 -0.343
+    21      H                  0.270
+    22      H                 -0.017
+    23      H                  0.309
+    24      H                 -0.090
+ Total Mulliken Charge =       0.000
+
+ NSTEP =        7   TIME(PS) =       0.007  TEMP(K) =    29.87  PRESS =     0.0
+ Etot   =     -3463.3265  EKtot   =        56.9884  EPtot      =     -3520.3150
+ BOND   =        16.7160  ANGLE   =        70.9422  DIHED      =       180.1177
+ 1-4 NB =       175.2038  1-4 EEL =      1422.8237  VDWAALS    =      -266.3218
+ EELEC  =     -2641.5800  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2478.2166
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step       7 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.484
+     2      H                  0.238
+     3      C                  0.108
+     4      H                  0.052
+     5      C                 -0.066
+     6      H                  0.109
+     7      H                  0.030
+     8      S                 -0.158
+     9      C                  0.308
+    10      O                 -0.368
+    11      N                 -0.465
+    12      H                  0.196
+    13      C                  0.116
+    14      H                  0.052
+    15      C                 -0.064
+    16      H                  0.033
+    17      H                  0.060
+    18      S                 -0.153
+    19      C                  0.326
+    20      O                 -0.343
+    21      H                  0.269
+    22      H                 -0.016
+    23      H                  0.309
+    24      H                 -0.090
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =        8   TIME(PS) =       0.008  TEMP(K) =    35.69  PRESS =     0.0
+ Etot   =     -3465.0175  EKtot   =        68.0774  EPtot      =     -3533.0949
+ BOND   =        14.4670  ANGLE   =        73.3507  DIHED      =       179.9486
+ 1-4 NB =       174.5023  1-4 EEL =      1418.4337  VDWAALS    =      -271.0009
+ EELEC  =     -2644.1677  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2478.6285
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step       8 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.479
+     2      H                  0.238
+     3      C                  0.111
+     4      H                  0.052
+     5      C                 -0.071
+     6      H                  0.109
+     7      H                  0.032
+     8      S                 -0.158
+     9      C                  0.304
+    10      O                 -0.368
+    11      N                 -0.462
+    12      H                  0.198
+    13      C                  0.121
+    14      H                  0.049
+    15      C                 -0.067
+    16      H                  0.034
+    17      H                  0.061
+    18      S                 -0.155
+    19      C                  0.323
+    20      O                 -0.343
+    21      H                  0.268
+    22      H                 -0.016
+    23      H                  0.308
+    24      H                 -0.089
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =        9   TIME(PS) =       0.009  TEMP(K) =    39.97  PRESS =     0.0
+ Etot   =     -3455.4531  EKtot   =        76.2541  EPtot      =     -3531.7071
+ BOND   =        12.9023  ANGLE   =        77.0212  DIHED      =       180.0691
+ 1-4 NB =       173.9076  1-4 EEL =      1413.9688  VDWAALS    =      -275.6199
+ EELEC  =     -2635.7247  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2478.2316
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step       9 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.474
+     2      H                  0.237
+     3      C                  0.113
+     4      H                  0.052
+     5      C                 -0.077
+     6      H                  0.109
+     7      H                  0.035
+     8      S                 -0.159
+     9      C                  0.302
+    10      O                 -0.367
+    11      N                 -0.459
+    12      H                  0.199
+    13      C                  0.124
+    14      H                  0.049
+    15      C                 -0.072
+    16      H                  0.035
+    17      H                  0.063
+    18      S                 -0.157
+    19      C                  0.319
+    20      O                 -0.344
+    21      H                  0.268
+    22      H                 -0.016
+    23      H                  0.308
+    24      H                 -0.089
+ Total Mulliken Charge =       0.000
+
+ NSTEP =       10   TIME(PS) =       0.010  TEMP(K) =    42.18  PRESS =     0.0
+ Etot   =     -3445.5332  EKtot   =        80.4686  EPtot      =     -3526.0018
+ BOND   =        14.0853  ANGLE   =        81.3547  DIHED      =       180.5432
+ 1-4 NB =       173.3468  1-4 EEL =      1409.4298  VDWAALS    =      -280.0634
+ EELEC  =     -2627.0632  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2477.6350
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      10 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.470
+     2      H                  0.237
+     3      C                  0.115
+     4      H                  0.053
+     5      C                 -0.083
+     6      H                  0.110
+     7      H                  0.038
+     8      S                 -0.159
+     9      C                  0.299
+    10      O                 -0.367
+    11      N                 -0.456
+    12      H                  0.199
+    13      C                  0.127
+    14      H                  0.050
+    15      C                 -0.077
+    16      H                  0.038
+    17      H                  0.064
+    18      S                 -0.160
+    19      C                  0.316
+    20      O                 -0.344
+    21      H                  0.268
+    22      H                 -0.016
+    23      H                  0.308
+    24      H                 -0.089
+ Total Mulliken Charge =       0.000
+
+ NSTEP =       11   TIME(PS) =       0.011  TEMP(K) =    43.33  PRESS =     0.0
+ Etot   =     -3440.4103  EKtot   =        82.6654  EPtot      =     -3523.0757
+ BOND   =        17.2449  ANGLE   =        85.5515  DIHED      =       181.4093
+ 1-4 NB =       172.7192  1-4 EEL =      1404.8203  VDWAALS    =      -284.2430
+ EELEC  =     -2623.0761  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2477.5019
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      11 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.467
+     2      H                  0.237
+     3      C                  0.115
+     4      H                  0.054
+     5      C                 -0.088
+     6      H                  0.110
+     7      H                  0.041
+     8      S                 -0.160
+     9      C                  0.298
+    10      O                 -0.367
+    11      N                 -0.454
+    12      H                  0.198
+    13      C                  0.128
+    14      H                  0.052
+    15      C                 -0.081
+    16      H                  0.040
+    17      H                  0.065
+    18      S                 -0.162
+    19      C                  0.314
+    20      O                 -0.344
+    21      H                  0.269
+    22      H                 -0.017
+    23      H                  0.309
+    24      H                 -0.090
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =       12   TIME(PS) =       0.012  TEMP(K) =    44.96  PRESS =     0.0
+ Etot   =     -3451.0906  EKtot   =        85.7647  EPtot      =     -3536.8554
+ BOND   =        19.8228  ANGLE   =        88.8158  DIHED      =       182.6758
+ 1-4 NB =       171.9285  1-4 EEL =      1400.1874  VDWAALS    =      -288.0853
+ EELEC  =     -2634.5444  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2477.6559
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      12 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.467
+     2      H                  0.237
+     3      C                  0.115
+     4      H                  0.056
+     5      C                 -0.092
+     6      H                  0.110
+     7      H                  0.043
+     8      S                 -0.160
+     9      C                  0.297
+    10      O                 -0.366
+    11      N                 -0.453
+    12      H                  0.197
+    13      C                  0.128
+    14      H                  0.055
+    15      C                 -0.084
+    16      H                  0.042
+    17      H                  0.066
+    18      S                 -0.164
+    19      C                  0.313
+    20      O                 -0.344
+    21      H                  0.270
+    22      H                 -0.017
+    23      H                  0.310
+    24      H                 -0.091
+ Total Mulliken Charge =       0.000
+
+ NSTEP =       13   TIME(PS) =       0.013  TEMP(K) =    47.85  PRESS =     0.0
+ Etot   =     -3474.4112  EKtot   =        91.2799  EPtot      =     -3565.6911
+ BOND   =        20.4428  ANGLE   =        90.5874  DIHED      =       184.3248
+ 1-4 NB =       170.9158  1-4 EEL =      1395.6402  VDWAALS    =      -291.5224
+ EELEC  =     -2658.3031  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2477.7767
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      13 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.467
+     2      H                  0.237
+     3      C                  0.115
+     4      H                  0.057
+     5      C                 -0.094
+     6      H                  0.111
+     7      H                  0.044
+     8      S                 -0.159
+     9      C                  0.298
+    10      O                 -0.366
+    11      N                 -0.453
+    12      H                  0.194
+    13      C                  0.127
+    14      H                  0.058
+    15      C                 -0.085
+    16      H                  0.042
+    17      H                  0.067
+    18      S                 -0.166
+    19      C                  0.313
+    20      O                 -0.344
+    21      H                  0.271
+    22      H                 -0.018
+    23      H                  0.311
+    24      H                 -0.092
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =       14   TIME(PS) =       0.014  TEMP(K) =    51.58  PRESS =     0.0
+ Etot   =     -3476.6948  EKtot   =        98.3922  EPtot      =     -3575.0869
+ BOND   =        20.4038  ANGLE   =        90.7032  DIHED      =       186.3178
+ 1-4 NB =       169.6802  1-4 EEL =      1391.3322  VDWAALS    =      -294.4995
+ EELEC  =     -2660.8569  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2478.1677
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      14 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.469
+     2      H                  0.237
+     3      C                  0.114
+     4      H                  0.057
+     5      C                 -0.093
+     6      H                  0.111
+     7      H                  0.043
+     8      S                 -0.159
+     9      C                  0.299
+    10      O                 -0.365
+    11      N                 -0.453
+    12      H                  0.192
+    13      C                  0.125
+    14      H                  0.060
+    15      C                 -0.084
+    16      H                  0.042
+    17      H                  0.067
+    18      S                 -0.168
+    19      C                  0.316
+    20      O                 -0.345
+    21      H                  0.273
+    22      H                 -0.019
+    23      H                  0.313
+    24      H                 -0.093
+ Total Mulliken Charge =       0.000
+
+ NSTEP =       15   TIME(PS) =       0.015  TEMP(K) =    54.99  PRESS =     0.0
+ Etot   =     -3472.1192  EKtot   =       104.8977  EPtot      =     -3577.0169
+ BOND   =        22.1014  ANGLE   =        89.4225  DIHED      =       188.6004
+ 1-4 NB =       168.2777  1-4 EEL =      1387.4242  VDWAALS    =      -296.9917
+ EELEC  =     -2656.6802  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2479.1711
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      15 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.471
+     2      H                  0.237
+     3      C                  0.111
+     4      H                  0.058
+     5      C                 -0.091
+     6      H                  0.112
+     7      H                  0.042
+     8      S                 -0.158
+     9      C                  0.301
+    10      O                 -0.365
+    11      N                 -0.455
+    12      H                  0.191
+    13      C                  0.122
+    14      H                  0.061
+    15      C                 -0.081
+    16      H                  0.041
+    17      H                  0.066
+    18      S                 -0.169
+    19      C                  0.319
+    20      O                 -0.345
+    21      H                  0.274
+    22      H                 -0.021
+    23      H                  0.314
+    24      H                 -0.094
+ Total Mulliken Charge =       0.000
+
+ NSTEP =       16   TIME(PS) =       0.016  TEMP(K) =    57.29  PRESS =     0.0
+ Etot   =     -3485.6965  EKtot   =       109.2861  EPtot      =     -3594.9827
+ BOND   =        26.2206  ANGLE   =        87.3123  DIHED      =       191.1084
+ 1-4 NB =       166.7997  1-4 EEL =      1384.0330  VDWAALS    =      -299.0181
+ EELEC  =     -2670.9924  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2480.4463
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      16 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.474
+     2      H                  0.237
+     3      C                  0.108
+     4      H                  0.058
+     5      C                 -0.088
+     6      H                  0.113
+     7      H                  0.040
+     8      S                 -0.156
+     9      C                  0.304
+    10      O                 -0.365
+    11      N                 -0.457
+    12      H                  0.190
+    13      C                  0.118
+    14      H                  0.062
+    15      C                 -0.078
+    16      H                  0.041
+    17      H                  0.066
+    18      S                 -0.170
+    19      C                  0.323
+    20      O                 -0.345
+    21      H                  0.274
+    22      H                 -0.022
+    23      H                  0.314
+    24      H                 -0.095
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =       17   TIME(PS) =       0.017  TEMP(K) =    58.71  PRESS =     0.0
+ Etot   =     -3486.3210  EKtot   =       112.0092  EPtot      =     -3598.3302
+ BOND   =        30.8062  ANGLE   =        85.0429  DIHED      =       193.7688
+ 1-4 NB =       165.3409  1-4 EEL =      1381.1850  VDWAALS    =      -300.6343
+ EELEC  =     -2672.6287  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2481.2109
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      17 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.476
+     2      H                  0.236
+     3      C                  0.105
+     4      H                  0.058
+     5      C                 -0.085
+     6      H                  0.114
+     7      H                  0.039
+     8      S                 -0.154
+     9      C                  0.306
+    10      O                 -0.365
+    11      N                 -0.459
+    12      H                  0.190
+    13      C                  0.113
+    14      H                  0.063
+    15      C                 -0.074
+    16      H                  0.040
+    17      H                  0.066
+    18      S                 -0.171
+    19      C                  0.328
+    20      O                 -0.345
+    21      H                  0.274
+    22      H                 -0.022
+    23      H                  0.314
+    24      H                 -0.095
+ Total Mulliken Charge =       0.000
+
+ NSTEP =       18   TIME(PS) =       0.018  TEMP(K) =    60.16  PRESS =     0.0
+ Etot   =     -3495.0511  EKtot   =       114.7753  EPtot      =     -3609.8264
+ BOND   =        33.1838  ANGLE   =        83.1848  DIHED      =       196.5015
+ 1-4 NB =       163.9709  1-4 EEL =      1378.8079  VDWAALS    =      -301.9213
+ EELEC  =     -2682.4570  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2481.0970
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      18 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.478
+     2      H                  0.236
+     3      C                  0.101
+     4      H                  0.059
+     5      C                 -0.082
+     6      H                  0.115
+     7      H                  0.038
+     8      S                 -0.152
+     9      C                  0.308
+    10      O                 -0.365
+    11      N                 -0.461
+    12      H                  0.190
+    13      C                  0.108
+    14      H                  0.064
+    15      C                 -0.072
+    16      H                  0.041
+    17      H                  0.066
+    18      S                 -0.171
+    19      C                  0.332
+    20      O                 -0.345
+    21      H                  0.274
+    22      H                 -0.023
+    23      H                  0.314
+    24      H                 -0.095
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =       19   TIME(PS) =       0.019  TEMP(K) =    62.21  PRESS =     0.0
+ Etot   =     -3486.0725  EKtot   =       118.6717  EPtot      =     -3604.7442
+ BOND   =        32.6065  ANGLE   =        82.0953  DIHED      =       199.2195
+ 1-4 NB =       162.7181  1-4 EEL =      1376.7439  VDWAALS    =      -302.9644
+ EELEC  =     -2674.3969  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2480.7661
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      19 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.480
+     2      H                  0.235
+     3      C                  0.098
+     4      H                  0.059
+     5      C                 -0.081
+     6      H                  0.117
+     7      H                  0.038
+     8      S                 -0.150
+     9      C                  0.310
+    10      O                 -0.365
+    11      N                 -0.462
+    12      H                  0.189
+    13      C                  0.103
+    14      H                  0.065
+    15      C                 -0.071
+    16      H                  0.042
+    17      H                  0.067
+    18      S                 -0.172
+    19      C                  0.336
+    20      O                 -0.346
+    21      H                  0.274
+    22      H                 -0.024
+    23      H                  0.313
+    24      H                 -0.095
+ Total Mulliken Charge =      -0.000
+
+ NSTEP =       20   TIME(PS) =       0.020  TEMP(K) =    64.37  PRESS =     0.0
+ Etot   =     -3473.8493  EKtot   =       122.8009  EPtot      =     -3596.6502
+ BOND   =        30.8156  ANGLE   =        81.8978  DIHED      =       201.8349
+ 1-4 NB =       161.5665  1-4 EEL =      1374.7956  VDWAALS    =      -303.8431
+ EELEC  =     -2662.7999  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2480.9175
+ ------------------------------------------------------------------------------
+
+    Atomic Charges for Step      20 :
+  Atom    Element       Mulliken Charge
+     1      N                 -0.482
+     2      H                  0.235
+     3      C                  0.096
+     4      H                  0.060
+     5      C                 -0.080
+     6      H                  0.118
+     7      H                  0.039
+     8      S                 -0.149
+     9      C                  0.311
+    10      O                 -0.365
+    11      N                 -0.463
+    12      H                  0.187
+    13      C                  0.098
+    14      H                  0.068
+    15      C                 -0.071
+    16      H                  0.044
+    17      H                  0.068
+    18      S                 -0.173
+    19      C                  0.339
+    20      O                 -0.346
+    21      H                  0.274
+    22      H                 -0.024
+    23      H                  0.313
+    24      H                 -0.095
+ Total Mulliken Charge =       0.000
+
+      A V E R A G E S   O V E R      20 S T E P S
+
+
+ NSTEP =       20   TIME(PS) =       0.020  TEMP(K) =    38.00  PRESS =     0.0
+ Etot   =     -3463.4112  EKtot   =        72.5017  EPtot      =     -3535.9128
+ BOND   =        20.3463  ANGLE   =        80.2699  DIHED      =       185.8003
+ 1-4 NB =       171.9616  1-4 EEL =      1407.4709  VDWAALS    =      -278.7722
+ EELEC  =     -2645.0070  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=    -2477.9825
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       20   TIME(PS) =       0.020  TEMP(K) =    20.10  PRESS =     0.0
+ Etot   =        16.3109  EKtot   =        38.3399  EPtot      =        51.5546
+ BOND   =         6.5702  ANGLE   =         6.9998  DIHED      =         6.7772
+ 1-4 NB =         5.4921  1-4 EEL =        22.3628  VDWAALS    =        19.7827
+ EELEC  =        19.8611  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DFTBESCF=        2.2149
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.07% of Total)
+|                Build the list             0.00 (96.31% of List )
+|                Other                      0.00 ( 3.69% of List )
+|             List time                  0.00 ( 3.07% of Nonbo)
+|                   Short_ene time             0.12 (100.0% of Direc)
+|                   Other                      0.00 ( 0.09% of Direc)
+|                Direct Ewald time          0.12 (98.92% of Ewald)
+|                Force Adjust               0.00 ( 0.02% of Ewald)
+|                Virial junk                0.00 ( 0.01% of Ewald)
+|                Other                      0.00 ( 1.04% of Ewald)
+|             Ewald time                 0.12 (96.92% of Nonbo)
+|             Other                      0.00 ( 0.01% of Nonbo)
+|          Nonbond force              0.12 (12.94% of Force)
+|             QMMM setup                 0.06 ( 7.59% of QMMM )
+|             QMMM list build            0.00 ( 0.23% of QMMM )
+|             QMMM prep coords           0.00 ( 0.01% of QMMM )
+|                   QMMM full matrix dia       0.43 (62.43% of QMMM )
+|                   Other                      0.26 (37.57% of QMMM )
+|                QMMM scf                   0.70 (98.96% of QMMM )
+|                Other                      0.01 ( 1.04% of QMMM )
+|             QMMM energy                0.70 (85.21% of QMMM )
+|                QMMM DFTB Repul Grad       0.00 ( 0.29% of QMMM )
+|                QMMM DFTB Hzero Grad       0.05 (98.75% of QMMM )
+|                QMMM DFTB Gamma Grad       0.00 ( 0.90% of QMMM )
+|                Other                      0.00 ( 0.06% of QMMM )
+|             QMMM QM-QM force           0.05 ( 6.10% of QMMM )
+|             QMMM QM-MM force           0.01 ( 0.79% of QMMM )
+|             QMMM Collate Forces        0.00 ( 0.05% of QMMM )
+|             Other                      0.00 ( 0.02% of QMMM )
+|          QMMM                       0.82 (86.30% of Force)
+|          Bond/Angle/Dihedral        0.01 ( 0.75% of Force)
+|          Other                      0.00 ( 0.01% of Force)
+|       Force time                 0.96 (98.98% of Runmd)
+|       Verlet update time         0.01 ( 0.98% of Runmd)
+|       Other                      0.00 ( 0.04% of Runmd)
+|    Runmd Time                 0.96 (98.87% of Total)
+|    Other                      0.01 ( 1.05% of Total)
+| Total time                 0.98 (100.0% of ALL  )
+
+| Highest rstack allocated:       2445
+| Highest istack allocated:        489
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       0.97 Per Step(ms) =      48.26
+|         ns/day =       1.79   seconds/ns =   48256.75
+| -----------------------------------------------------
+
+|           Job began  at 09:27:12.625  on 01/15/2014
+|           Setup done at 09:27:12.636  on 01/15/2014
+|           Run   done at 09:27:13.601  on 01/15/2014
+|     wallclock() was called    1600 times

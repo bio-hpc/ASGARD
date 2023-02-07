@@ -1,0 +1,19 @@
+PRIMPIMD: NVT simulation of liquid water
+
+&cntrl
+
+   ipimd = 1     ! PRIMPIMD
+
+   ntx = 5, irest = 0
+
+   temp0 = 300, tempi = 300
+
+   dt = 0.0002, nstlim = 10 
+
+   cut = 7.0
+
+   ntt = 4, nchain = 4      ! Nose'-Hoover chains
+
+   ntpr = 1, ntwr = 5, ntwx = 5  
+   
+/

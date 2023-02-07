@@ -1,0 +1,108 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+echo "SANDER: 3D-RISM: KH distributions"
+
+if( ! $?TESTsander ) set TESTsander = "../../../bin/sander"
+
+if ! { ../checkrismunsupported.sh $TESTsander } exit 0
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+        set numprocs=`echo $DO_PARALLEL | awk -f ../../numprocs.awk `
+        if ( $numprocs > 2 ) then
+            echo " DO_PARALLEL set to $DO_PARALLEL"
+            goto toomany
+        else if ( $?MP_PROCS)then
+            if ($MP_PROCS > 3)then
+#               --- For IBM AIX ---
+                echo "    MP_PROCS set to "$MP_PROCS
+                goto toomany
+            endif
+        endif
+endif
+
+cat > mdin <<EOF
+Alanine dipeptide run
+ &cntrl
+    ntx=1, ntpr=1, ntwx=0,ntwr=0
+    nstlim=5,dt=0.001,
+    ntt=0, ig=314159, tempi=0,
+    ntp=0,
+    ntc=1,ntf=1,
+    ntb=0,
+    nrespa=1,
+    irism=1
+    cut=999,
+ /
+&rism
+    tolerance=1e-15
+    grdspc=2,2,2
+    verbose=1
+    zerofrc=0
+    ntwrism=5
+    write_thermo=0
+    entropicDecomp=1
+/
+EOF
+
+$DO_PARALLEL $TESTsander -O -i mdin -o ala.dist.out \
+   -p ala.parm7 -c ala.rst7 \
+    -xvv ../../../AmberTools/test/rism1d/spc-kh/spc.xvv.save \
+   -guv guv -huv huv -cuv cuv -uuv uuv -asymp asymp -quv quv -chgdist chgdist \
+   -potUV potUV \
+   -exchem exchem -solvene solvene -entropy entropy \
+   -exchemGF exchemGF -solveneGF solveneGF -entropyGF entropyGF \
+   || goto error
+
+../../dacdif -a 2.e-6 ala.dist.out.save ala.dist.out
+../../dacdif -a 2.e-6 guv.O.5.dx.save guv.O.5.dx
+../../dacdif -a 2.e-6 huv.H1.5.dx.save huv.H1.5.dx
+../../dacdif -a 1.e-9 guv_dT.O.5.dx.save guv_dT.O.5.dx
+../../dacdif -a 1.e-9 guv_dT.H1.5.dx.save guv_dT.H1.5.dx
+../../dacdif -a 2.e-6 uuv.O.5.dx.save uuv.O.5.dx
+../../dacdif -a 2.e-6 uuv.H1.5.dx.save uuv.H1.5.dx
+../../dacdif -a 1.e-9 cuv_dT.O.5.dx.save cuv_dT.O.5.dx
+../../dacdif -a 1.e-9 cuv_dT.H1.5.dx.save cuv_dT.H1.5.dx
+#non-ionic solvent so there is no asymphr
+#../../dacdif -a 1.e-9 asymphr.5.dx.save asymphr.5.dx
+../../dacdif -a 2.e-6 asympcr.5.dx.save asympcr.5.dx
+../../dacdif -a 2.e-6 quv.5.dx.save quv.5.dx
+../../dacdif -a 2.e-6 chgdist.5.dx.save chgdist.5.dx
+../../dacdif -a 1.e-9 exchem.5.dx.save exchem.5.dx
+../../dacdif -a 1.e-9 exchem.O.5.dx.save exchem.O.5.dx
+../../dacdif -a 1.e-9 exchem.H1.5.dx.save exchem.H1.5.dx
+../../dacdif -a 1.e-9 solvene.5.dx.save solvene.5.dx
+../../dacdif -a 1.e-9 solvene.O.5.dx.save solvene.O.5.dx
+../../dacdif -a 1.e-9 solvene.H1.5.dx.save solvene.H1.5.dx
+../../dacdif -a 1.e-9 entropy.5.dx.save entropy.5.dx
+../../dacdif -a 1.e-9 entropy.O.5.dx.save entropy.O.5.dx
+../../dacdif -a 1.e-9 entropy.H1.5.dx.save entropy.H1.5.dx
+../../dacdif -a 1.e-9 exchemGF.5.dx.save exchemGF.5.dx
+../../dacdif -a 1.e-9 exchemGF.O.5.dx.save exchemGF.O.5.dx
+../../dacdif -a 1.e-9 exchemGF.H1.5.dx.save exchemGF.H1.5.dx
+../../dacdif -a 1.e-9 solveneGF.5.dx.save solveneGF.5.dx
+../../dacdif -a 1.e-9 solveneGF.O.5.dx.save solveneGF.O.5.dx
+../../dacdif -a 1.e-9 solveneGF.H1.5.dx.save solveneGF.H1.5.dx
+../../dacdif -a 1.e-9 entropyGF.5.dx.save entropyGF.5.dx
+../../dacdif -a 1.e-9 entropyGF.O.5.dx.save entropyGF.O.5.dx
+../../dacdif -a 1.e-9 entropyGF.H1.5.dx.save entropyGF.H1.5.dx
+../../dacdif -a 1.e-9 potUV.5.dx.save potUV.5.dx
+../../dacdif -a 1.e-9 potUV.O.5.dx.save potUV.O.5.dx
+../../dacdif -a 1.e-9 potUV.H1.5.dx.save potUV.H1.5.dx
+/bin/rm -f mdin mdinfo restrt
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+toomany:
+    echo " too many processors for this test, exiting"
+    echo "============================================================"
+    exit(0)
+

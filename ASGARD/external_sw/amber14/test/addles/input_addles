@@ -1,0 +1,42 @@
+~ demo input for addles
+~
+~ addles input file for leucine dipeptide
+~ this makes a topology and coordinate file usable by SANDER
+~
+~ open input topology file
+~
+file rprm name=(leu.dipep.prm) read
+~
+~ open input coordinates and velocities
+~
+file rcvd name=(equ.crd) read
+~
+~ open output topology
+~
+file wprm name=(les.prm) wovr
+~
+~ open output coordinates
+~
+file wcrd name=(les.equ.crd) wovr
+~
+~ all done with files, start processing commands
+~
+action
+~
+~ first copy the leucine residue, 5 times
+~
+spac numc=5 pick chem mono LEU done 
+~
+~ now  make an extra 2 copies of the atoms
+~ 14-23 (original numbering), just to check multi-level subspacing
+~ 
+~ this means each of the copies from above will have 
+~ 2 copies made, resulting in 10 total copies
+~ of this section of the side chain
+~
+spac numc=2 pick #prt 14 23 done
+~
+~ this end line needs to be present!
+~
+*EOD
+

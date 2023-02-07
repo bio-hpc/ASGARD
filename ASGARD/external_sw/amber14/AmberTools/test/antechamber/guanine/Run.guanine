@@ -1,0 +1,21 @@
+#!/bin/csh -f
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+../../../bin/antechamber -i DGN.pdb -fi pdb -o DGN.prepin -fo prepi -c bcc -s 2 || goto error
+../../../bin/parmchk -i DGN.prepin -f prepi -o frcmod || goto error
+../../../bin/tleap -s -f leap.in > leap.out
+
+../../dacdif -s -t 3 DGN.prepin.save DGN.prepin
+../../dacdif frcmod.save frcmod
+../../dacdif leap.out.save leap.out
+../../dacdif -t 7 prmtop.save prmtop
+
+/bin/rm -f ANTE* ATOMTYPE.INF BCCTYPE.INF FOR* NEWPDB.PDB PREP.INF \
+      leap.log prmcrd divcon.in divcon.rst divcon.dmx divcon.out
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

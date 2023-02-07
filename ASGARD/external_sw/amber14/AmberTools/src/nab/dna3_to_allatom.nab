@@ -1,0 +1,55 @@
+molecule dna3_to_allatom( molecule m_dna3, string sequence, string aseq, 
+	string reslib, string natype ){
+
+	molecule        m_allatom, mres;
+	int             residuenumber, nres;
+	string          PPmidpoint, C5midpoint, antiP, thisaseq, origin, xhead, yhead;
+	string		thisreslib, thisnatype;
+	residue         res, ares;
+
+	thisreslib = reslib;
+	if ( reslib == "" ) thisreslib = "dna.amber94.rlb";
+	thisnatype = natype;
+	if ( natype == "" ) thisnatype = "dna";
+	thisaseq = aseq;
+	if ( aseq == "" )
+		thisaseq = wc_complement( sequence, thisreslib, thisnatype );
+
+	m_allatom = newmolecule();
+	addstrand( m_allatom, "sense" );
+	addstrand( m_allatom, "anti" );
+
+	nres = m_dna3.nresidues;
+
+	if( nres != length( sequence ) ){
+	        fprintf( stderr,
+	"dna3_to_allatom: the number of dna3 residues must be the same as the all atom residues\n" );
+	        exit( 1 );
+	}
+
+	for( residuenumber = 1; residuenumber <= nres; residuenumber++ ){
+	        // create new all-atom base pair
+	        res = getres( substr( sequence, residuenumber, 1 ), thisreslib );
+	        ares = getres( substr( thisaseq, residuenumber, 1 ), thisreslib );
+	        mres = wc_basepair( res, ares );
+
+	        // set frame to current residue in all atom model
+	        PPmidpoint = "1:1:C1'|2:1:C1'";
+	        C5midpoint = "1:1:C5|2:1:C5";
+	        antiP = "2:1:C1'";
+	        setframe( 2, mres, PPmidpoint, PPmidpoint,
+	                C5midpoint, PPmidpoint, antiP );
+
+	        // align new all-atom residue with current dna3 residue
+	        origin = sprintf( "1:%d:CE", residuenumber );
+	        xhead = sprintf( "1:%d:MA", residuenumber );
+	        yhead = sprintf( "1:%d:SI", residuenumber );
+	        setframe( 0, m_dna3, origin, origin, xhead, origin, yhead );
+	        alignframe( mres, m_dna3 );
+	        mergestr( m_allatom, "sense", "last", mres, "sense", "first" );
+	        mergestr( m_allatom, "anti", "last", mres, "anti", "first" );
+	        freemolecule( mres );
+	}
+	return( m_allatom );
+
+};

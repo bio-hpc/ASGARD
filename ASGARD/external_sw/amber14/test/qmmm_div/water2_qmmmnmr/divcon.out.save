@@ -1,0 +1,103 @@
+ ******************************************************************************
+ *                                                                            *
+ *                                DIVCON 2006                                 *
+ *                                                                            *
+ ******************************************************************************
+
+                                           (*) COMPILED WITH DIRECTIVES:
+                                               HAS_LAPACK               DEFINED
+                                               MPI                  NOT DEFINED
+                                               CUTREPUL_IS_ON       NOT DEFINED
+                                               MEMORY_OVERLAP       NOT DEFINED
+                                               PARAM_IS_ON          NOT DEFINED
+
+ DivCon Calculation performed on: END_COORDS                                                                      
+ ------------------------------------------------------------------------------
+ ----------------          USER SUPPLIED KEYWORDS          --------------------
+ ------------------------------------------------------------------------------
+ CARTESIAN      - CARTESIAN COORDINATE FORMAT SELECTED
+ MNDO           - MNDO HAMILTONIAN TO BE USED
+ CHARGE=0       - A NET CHARGE OF     0.00 TO BE PLACED ON SYSTEM
+ DIRECT         - DO NOT STORE 2-ELECTRON INTEGRALS IN SCF CALCULATIONS
+ STANDARD       - STANDARD CLOSED-SHELL CALCULATION (NO D&C)
+ NMR            - NMR SHIELDING CALCULATION
+
+ ------------------------------------------------------------------------------
+ ----------------        ADDITIONAL(DEFAULT) KEYWORDS        ------------------
+ ------------------------------------------------------------------------------
+ ECRIT=4.0E-06  - CONVERGENCE CRITERION FOR ENERGY
+ DCRIT=5.0E-04  - CONVERGENCE CRITERION FOR DMX (DENSITY MATRIX)
+ MAXIT=100      - MAXIMUM NUMBER OF SCF ITERATIONS ALLOWED
+ TEMPK=1000.0   - A D&C TEMPERATURE REQUESTED
+ ADDMM          - ADD MM CORRECTION TO PEPTIDE TORSIONAL BARRIER
+ RMIN=0.5       - MIMIMUM DISTANCE ALLOWED BETWEEN ATOMS
+ INTGLS=TALMAN  - TALMAN INTEGRALS TO BE USED
+ NOXML          - DO NOT GENERATE AN XML FILE
+ ------------------------------------------------------------------------------
+
+ NMR GROUP DEFINITION 
+ ----------------------
+
+ THE FOLLOWING NMR GROUP HAS BEEN READ FROM INPUT FILE : 
+     3 ATOMS REQUESTED TO CALCULATE NMR 
+     1     2     3
+ NPAIRS =        3
+
+
+ NUMBER OF ATOMS                 =     3
+ TOTAL NUMBER OF BASIS FUNCTIONS =     6
+ TOTAL NUMBER OF ELECTRONS       =     8
+
+
+ DEFAULT SETTINGS FOR CALCULATION
+ --------------------------------
+
+ - D&C TEMPERATURE OF 1000.00 K WILL BE USED
+ - NO TIME LIMIT ON CALCULATION
+ 
+
+ UPDATING PAIRLIST
+ NPAIRS =        3
+
+
+     ATOM     ELEMENTAL            CARTESIAN COORDINATES
+    NUMBER     SYMBOL            X           Y           Z
+
+       1         O            -0.00554     1.52120     0.00000
+       2         H             0.05296     0.55298     0.00000
+       3         H             0.90476     1.82937     0.00000
+**************************************************************
+****                      CALCULATIONS OF THE                       ****
+****               NUCLEAR MAGNETIC SHIELDING TENSOR                ****
+****                          IN PPM UNITS                          ****
+**************************************************************
+**  ATOM   1  **
+**  DIAMAGNETIC  **
+**      134.84872         3.13674         0.00000     **
+**        2.46202       136.99288         0.00000     **
+**        0.00000         0.00000       102.73051     **
+**  PARAMAGNETIC  **
+**     -112.04717       -69.52281         0.00000     **
+**      -68.09549      -176.79644         0.00000     **
+**       -1.24505        -1.99135       -85.15984     **
+** AVERAGE =     0.18955 , ANISOTROPY=    96.54776                    **
+**  ATOM   2  **
+**  DIAMAGNETIC  **
+**       38.45306        -3.31290         0.00000     **
+**        3.88150        59.42264         0.00000     **
+**        0.00000         0.00000        41.23510     **
+**  PARAMAGNETIC  **
+**        5.42277        -2.10694         0.00000     **
+**        4.61310        -6.05924         0.00000     **
+**        0.07219        -0.06670        -2.25134     **
+** AVERAGE =    45.40766 , ANISOTROPY=    12.29804                    **
+**  ATOM   3  **
+**  DIAMAGNETIC  **
+**       57.01671        11.23537         0.00000     **
+**        4.05371        42.17476         0.00000     **
+**        0.00000         0.00000        35.94025     **
+**  PARAMAGNETIC  **
+**       -5.16461         0.33471         0.00000     **
+**       -6.67126         5.05986         0.00000     **
+**       -0.08939         0.04771         3.65291     **
+** AVERAGE =    46.22662 , ANISOTROPY=    12.53005                    **

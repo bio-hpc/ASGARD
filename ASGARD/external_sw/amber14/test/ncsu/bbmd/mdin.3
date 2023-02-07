@@ -1,0 +1,44 @@
+
+ &cntrl
+  igb = 0, ntx = 5, irest = 1,
+  ntb = 1, ntp = 0, temp0 = 320.0,
+  ntt = 3, gamma_ln = 1.0,
+  ntf = 2, ntc = 2, tol = 0.00001,
+  cut = 8.0, dt = 0.002,
+  ntpr = 5, ntwx = 0, nstlim = 50,
+ /
+
+ncsu_bbmd
+
+   monitor_file = 'bbmd.3.txt'
+   monitor_freq = 3
+
+   umbrella_file
+     =
+   'umbrella.3.nc'
+
+   mode = FLOODING
+
+   timescale = 3.0
+
+   variable ! 2
+      type = DISTANCE
+      ! CG@TYR_2 <--> CG@TRP_9
+      i = (17, 114) r = (-1.0)
+      min = 0.0 max = 25.0 resolution = 0.5
+   end variable
+
+   variable ! backbone O-N bonds
+      type = N_OF_BONDS
+      r = (3.1)
+      i = (9, 57, 9, 72, 9, 86, 9, 93, 9, 107, 9, 131, 30, 72,
+           30, 86, 30, 93, 30, 107, 30, 131, 42, 86, 42, 93,
+           42, 107, 42, 131, 56, 93, 56, 107, 56, 131, 71, 1,
+           71, 107, 71, 131, 85, 1, 85, 10, 85, 131, 92, 1,
+           92, 10, 92, 31, 106, 1, 106, 10, 106, 31, 106, 43,
+           130, 1, 130, 10, 130, 31, 130, 43, 130, 57, 137, 1,
+           137, 10, 137, 31, 137, 43, 137, 57, 137, 72)
+      min = -1.0 max = 7.0 resolution = 0.5
+   end variable
+
+end ncsu_bbmd

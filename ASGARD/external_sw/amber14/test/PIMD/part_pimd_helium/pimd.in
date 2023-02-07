@@ -1,0 +1,13 @@
+
+leonard jones fluid simulation: PBC
+
+&cntrl
+   ipimd = 1
+   ntx = 5, irest = 1
+   temp0 = 10.0, tempi= 10.0, temp0les = -1.0 !! use single bath for les and non-les regions
+   dt = 0.0002, nstlim = 50
+   cut = 7.668
+   nchain = 4, ntt = 4      !! Nose'-Hoover chains
+   ntpr = 5, ntwr = 5, ntwx = 5
+/
+

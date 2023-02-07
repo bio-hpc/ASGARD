@@ -1,0 +1,15 @@
+#!/bin/sh
+
+ for x in `cat list`
+ do
+    for y in `cat case`
+    do
+       echo $x.$y
+       cd $x/$y
+       z=`ls | grep 'Run'`
+       ./$z
+       cd ..
+       cd ..
+    done
+ done
+   

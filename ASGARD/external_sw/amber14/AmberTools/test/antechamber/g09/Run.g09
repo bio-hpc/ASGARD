@@ -1,0 +1,34 @@
+#!/bin/csh -f
+
+# Used 1-iodine propane as an example to show how to use antechamber in conjuction with Gaussian 09
+
+echo  "Step1: run antechamber to generate gcrt file for Gaussian 09"
+../../../bin/antechamber  -fi mol2 -fo gcrt -i C3H7I.mol2 -o C3H7I.gcrt -gv 1 \
+  -gk "#HF/CEP-31G SCF=tight Test Pop=MK iop(6/33=2) iop(6/42=6) opt"  >& antechamber.out || goto error
+
+echo  "Step2: run g09 to get g09.gesp (one can modify the gesp file name using -ge flag in Step 1)"
+
+echo  "Step3: run antechamber to assign resp charges"
+../../../bin/antechamber  -fi gesp -fo ac -i g09.gesp -o C3H7I.ac -rn C3H7I -c resp -gv 1 \
+   -pf y >& antechamber.out || goto error
+
+echo  "Step 4: get prepi file from C3H7I.ac, the sequence order is NOT changed"
+../../../bin/prepgen -i C3H7I.ac -f prepi -rn MOL -s yes -o C3H7I.prepi >& prepgen.out || goto error
+
+
+../../dacdif -a 5.5e-3 C3H7I.gcrt.save C3H7I.gcrt
+../../dacdif -a 5.5e-3 C3H7I.ac.save C3H7I.ac
+../../dacdif -a 5.5e-3 C3H7I.prepi.save C3H7I.prepi
+
+/bin/rm -f  ATOMTYPE.INF NEWPDB.PDB PREP.INF punch qout QOUT esout
+
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+
+
+
+

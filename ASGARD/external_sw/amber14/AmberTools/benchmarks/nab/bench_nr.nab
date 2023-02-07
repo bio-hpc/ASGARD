@@ -1,0 +1,24 @@
+// Try some newton-raphson minimization
+
+molecule m;
+float x[dynamic], f[dynamic], v[dynamic];
+float fret;
+int 	ier, mytaskid, rank, size; 
+
+// Create a molecule from a pdb file and a force-field parameter file.
+
+m = getpdb( argv[2] + ".mc.pdb");
+allocate x[ 3*m.natoms ];
+allocate f[ 3*m.natoms ];
+allocate v[ 3*m.natoms ];
+readparm( m, argv[2] + ".top" );
+getxv(  argv[2] + ".mc.x", m.natoms, fret, x, v );
+
+// Initialize molecular mechanics..
+
+mm_options("cut=9999.0, rgbmax=9999.0, ntpr=1, nsnb=9999, gb=1, diel=C" );
+mme_init(m, NULL, "::ZZZZ", x, NULL);
+
+newton(x, 3*m.natoms, fret, mme,mme2, 0.00000001, 0.0, 5);
+mme2_timer();
+

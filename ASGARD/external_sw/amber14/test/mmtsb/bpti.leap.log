@@ -1,0 +1,925 @@
+log started: Wed Mar  3 18:55:14 2004
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the 2002 pol. force field, no lone pairs
+>> #       assumes that any unspecified nucleic acids are DNA 
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "H"   "H" "sp3" }
+>> 	{ "HO"  "H" "sp3" }
+>> 	{ "HS"  "H" "sp3" }
+>> 	{ "H1"  "H" "sp3" }
+>> 	{ "H2"  "H" "sp3" }
+>> 	{ "H3"  "H" "sp3" }
+>> 	{ "H4"  "H" "sp3" }
+>> 	{ "H5"  "H" "sp3" }
+>> 	{ "HW"  "H" "sp3" }
+>> 	{ "HC"  "H" "sp3" }
+>> 	{ "HA"  "H" "sp3" }
+>> 	{ "HP"  "H" "sp3" }
+>> 	{ "OH"  "O" "sp3" }
+>> 	{ "OS"  "O" "sp3" }
+>> 	{ "O"   "O" "sp2" }
+>> 	{ "O2"  "O" "sp2" }
+>> 	{ "OW"  "O" "sp3" }
+>> 	{ "CT"  "C" "sp3" }
+>> 	{ "CH"  "C" "sp3" }
+>> 	{ "C2"  "C" "sp3" }
+>> 	{ "C3"  "C" "sp3" }
+>> 	{ "C"   "C" "sp2" }
+>> 	{ "C*"  "C" "sp2" }
+>> 	{ "CA"  "C" "sp2" }
+>> 	{ "CB"  "C" "sp2" }
+>> 	{ "CC"  "C" "sp2" }
+>> 	{ "CN"  "C" "sp2" }
+>> 	{ "CM"  "C" "sp2" }
+>> 	{ "CK"  "C" "sp2" }
+>> 	{ "CQ"  "C" "sp2" }
+>> 	{ "CD"  "C" "sp2" }
+>> 	{ "CE"  "C" "sp2" }
+>> 	{ "CF"  "C" "sp2" }
+>> 	{ "CG"  "C" "sp2" }
+>> 	{ "CP"  "C" "sp2" }
+>> 	{ "CI"  "C" "sp2" }
+>> 	{ "CJ"  "C" "sp2" }
+>> 	{ "CW"  "C" "sp2" }
+>> 	{ "CV"  "C" "sp2" }
+>> 	{ "CR"  "C" "sp2" }
+>> 	{ "CA"  "C" "sp2" }
+>> 	{ "CY"  "C" "sp2" }
+>> 	{ "C0"  "C" "sp2" }
+>> 	{ "MG"  "Mg" "sp3" }
+>> 	{ "N"   "N" "sp2" }
+>> 	{ "NA"  "N" "sp2" }
+>> 	{ "N2"  "N" "sp2" }
+>> 	{ "N*"  "N" "sp2" }
+>> 	{ "NP"  "N" "sp2" }
+>> 	{ "NQ"  "N" "sp2" }
+>> 	{ "NB"  "N" "sp2" }
+>> 	{ "NC"  "N" "sp2" }
+>> 	{ "NT"  "N" "sp3" }
+>> 	{ "N3"  "N" "sp3" }
+>> 	{ "S"   "S" "sp3" }
+>> 	{ "SH"  "S" "sp3" }
+>> 	{ "P"   "P" "sp3" }
+>> 	{ "EP"  ""  "sp3" }
+>> 	{ "F"   "F" "sp3" }
+>> 	{ "CL"  "Cl" "sp3" }
+>> 	{ "BR"  "Br" "sp3" }
+>> 	{ "I"   "I"  "sp3" }
+>> 	{ "FE"  "Fe" "sp3" }
+>> }
+>> #
+>> #	Load the main parameter set.
+>> #
+>> parm99 = loadamberparams parm99.dat
+Loading parameters: /redfish/people/sbrozell/amber/amber8/dat/leap/parm/parm99.dat
+(UNKNOWN ATOM TYPE: HZ)
+(UNKNOWN ATOM TYPE: NY)
+(UNKNOWN ATOM TYPE: IM)
+(UNKNOWN ATOM TYPE: Li)
+(UNKNOWN ATOM TYPE: IP)
+(UNKNOWN ATOM TYPE: K)
+(UNKNOWN ATOM TYPE: Rb)
+(UNKNOWN ATOM TYPE: Cs)
+(UNKNOWN ATOM TYPE: Zn)
+(UNKNOWN ATOM TYPE: IB)
+(UNKNOWN ATOM TYPE: LP)
+>> #
+>> #	Load DNA/RNA libraries
+>> #
+>> loadOff all_nucleic02.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/all_nucleic02.lib
+Loading: DA
+Loading: DA3
+Loading: DA5
+Loading: DAN
+Loading: DC
+Loading: DC3
+Loading: DC5
+Loading: DCN
+Loading: DG
+Loading: DG3
+Loading: DG5
+Loading: DGN
+Loading: DT
+Loading: DT3
+Loading: DT5
+Loading: DTN
+Loading: RA
+Loading: RA3
+Loading: RA5
+Loading: RAN
+Loading: RC
+Loading: RC3
+Loading: RC5
+Loading: RCN
+Loading: RG
+Loading: RG3
+Loading: RG5
+Loading: RGN
+Loading: RU
+Loading: RU3
+Loading: RU5
+Loading: RUN
+>> #
+>> #	Load main chain and terminating 
+>> #	amino acid libraries.
+>> #
+>> loadOff all_amino02.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/all_amino02.lib
+Loading: ALA
+Loading: ARG
+Loading: ASH
+Loading: ASN
+Loading: ASP
+Loading: CYM
+Loading: CYS
+Loading: CYX
+Loading: GLH
+Loading: GLN
+Loading: GLU
+Loading: GLY
+Loading: HID
+Loading: HIE
+Loading: HIP
+Loading: ILE
+Loading: LEU
+Loading: LYN
+Loading: LYS
+Loading: MET
+Loading: PHE
+Loading: PRO
+Loading: SER
+Loading: THR
+Loading: TRP
+Loading: TYR
+Loading: VAL
+>> loadOff all_aminoct02.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/all_aminoct02.lib
+Loading: CALA
+Loading: CARG
+Loading: CASN
+Loading: CASP
+Loading: CCYS
+Loading: CCYX
+Loading: CGLN
+Loading: CGLU
+Loading: CGLY
+Loading: CHID
+Loading: CHIE
+Loading: CHIP
+Loading: CILE
+Loading: CLEU
+Loading: CLYS
+Loading: CMET
+Loading: CPHE
+Loading: CPRO
+Loading: CSER
+Loading: CTHR
+Loading: CTRP
+Loading: CTYR
+Loading: CVAL
+Loading: NME
+>> loadOff all_aminont02.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/all_aminont02.lib
+Loading: ACE
+Loading: NALA
+Loading: NARG
+Loading: NASN
+Loading: NASP
+Loading: NCYS
+Loading: NCYX
+Loading: NGLN
+Loading: NGLU
+Loading: NGLY
+Loading: NHID
+Loading: NHIE
+Loading: NHIP
+Loading: NILE
+Loading: NLEU
+Loading: NLYS
+Loading: NMET
+Loading: NPHE
+Loading: NPRO
+Loading: NSER
+Loading: NTHR
+Loading: NTRP
+Loading: NTYR
+Loading: NVAL
+>> 
+>> loadOff ions94.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/ions94.lib
+Loading: CIO
+Loading: Cl-
+Loading: Cs+
+Loading: IB
+Loading: K+
+Loading: Li+
+Loading: MG2
+Loading: Na+
+Loading: Rb+
+>> loadOff solvents.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/solvents.lib
+Loading: CHCL3BOX
+Loading: DC4
+Loading: MEOHBOX
+Loading: NMABOX
+Loading: PL3
+Loading: POL3BOX
+Loading: SPC
+Loading: SPCBOX
+Loading: TIP3PBOX
+Loading: TIP4PBOX
+Loading: TP3
+Loading: TP4
+Loading: TP5
+>> HOH = TP3
+>> WAT = TP3
+>> 
+>> #
+>> #	Define the PDB name map for the amino acids and DNA.
+>> #
+>> addPdbResMap {
+>>   { 0 "ALA" "NALA" } { 1 "ALA" "CALA" }
+>>   { 0 "ARG" "NARG" } { 1 "ARG" "CARG" }
+>>   { 0 "ASN" "NASN" } { 1 "ASN" "CASN" }
+>>   { 0 "ASP" "NASP" } { 1 "ASP" "CASP" }
+>>   { 0 "CYS" "NCYS" } { 1 "CYS" "CCYS" }
+>>   { 0 "CYX" "NCYX" } { 1 "CYX" "CCYX" }
+>>   { 0 "GLN" "NGLN" } { 1 "GLN" "CGLN" }
+>>   { 0 "GLU" "NGLU" } { 1 "GLU" "CGLU" }
+>>   { 0 "GLY" "NGLY" } { 1 "GLY" "CGLY" }
+>>   { 0 "HID" "NHID" } { 1 "HID" "CHID" }
+>>   { 0 "HIE" "NHIE" } { 1 "HIE" "CHIE" }
+>>   { 0 "HIP" "NHIP" } { 1 "HIP" "CHIP" }
+>>   { 0 "ILE" "NILE" } { 1 "ILE" "CILE" }
+>>   { 0 "LEU" "NLEU" } { 1 "LEU" "CLEU" }
+>>   { 0 "LYS" "NLYS" } { 1 "LYS" "CLYS" }
+>>   { 0 "MET" "NMET" } { 1 "MET" "CMET" }
+>>   { 0 "PHE" "NPHE" } { 1 "PHE" "CPHE" }
+>>   { 0 "PRO" "NPRO" } { 1 "PRO" "CPRO" }
+>>   { 0 "SER" "NSER" } { 1 "SER" "CSER" }
+>>   { 0 "THR" "NTHR" } { 1 "THR" "CTHR" }
+>>   { 0 "TRP" "NTRP" } { 1 "TRP" "CTRP" }
+>>   { 0 "TYR" "NTYR" } { 1 "TYR" "CTYR" }
+>>   { 0 "VAL" "NVAL" } { 1 "VAL" "CVAL" }
+>>   { 0 "HIS" "NHIS" } { 1 "HIS" "CHIS" }
+>>   { 0 "GUA" "DG5"  } { 1 "GUA" "DG3"  } { "GUA" "DG" }
+>>   { 0 "ADE" "DA5"  } { 1 "ADE" "DA3"  } { "ADE" "DA" }
+>>   { 0 "CYT" "DC5"  } { 1 "CYT" "DC3"  } { "CYT" "DC" }
+>>   { 0 "THY" "DT5"  } { 1 "THY" "DT3"  } { "THY" "DT" }
+>>   { 0 "G" "DG5"  } { 1 "G" "DG3"  } { "G" "DG" } { "GN" "DGN" }
+>>   { 0 "A" "DA5"  } { 1 "A" "DA3"  } { "A" "DA" } { "AN" "DAN" }
+>>   { 0 "C" "DC5"  } { 1 "C" "DC3"  } { "C" "DC" } { "CN" "DCN" }
+>>   { 0 "T" "DT5"  } { 1 "T" "DT3"  } { "T" "DT" } { "TN" "DTN" }
+>>   { 0 "C5" "DC5" }
+>>   { 0 "G5" "DG5" }
+>>   { 0 "A5" "DA5" }
+>>   { 0 "T5" "DT5" }
+>>   { 1 "C3" "DC3" }
+>>   { 1 "G3" "DG3" }
+>>   { 1 "A3" "DA3" }
+>>   { 1 "T3" "DT3" }
+>> 
+>> }
+>> 
+>> addPdbAtomMap {
+>>   { "O5*" "O5'" }
+>>   { "C5*" "C5'" }
+>>   { "C4*" "C4'" }
+>>   { "O4*" "O4'" }
+>>   { "C3*" "C3'" }
+>>   { "O3*" "O3'" }
+>>   { "C2*" "C2'" }
+>>   { "C1*" "C1'" }
+>>   { "C5M" "C7"  }
+>>   { "H1*" "H1'" }
+>>   { "H2*1" "H2'1" }
+>>   { "H2*2" "H2'2" }
+>>   { "H3*" "H3'" }
+>>   { "H4*" "H4'" }
+>>   { "H5*1" "H5'1" }
+>>   { "H5*2" "H5'2" }
+>> # old ff atom names -> new
+>>   { "O1'" "O4'" }
+>>   { "OA"  "O1P" }
+>>   { "OB"  "O2P" }
+>> }
+>> 
+>> #
+>> # assumed that most often proteins use HIE
+>> #
+>> NHIS = NHIE
+>> HIS = HIE
+>> CHIS = CHIE
+>> 
+> 
+> bpti=loadpdb 6pti.mod.pdb
+Loading PDB file: ./6pti.mod.pdb
+Matching PDB residue names to LEaP variables.
+Mapped residue ARG, term: Terminal/beginning, seq. number: 0 to: NARG.
+(Residue 1: PRO, Nonterminal, was not found in name map.)
+(Residue 2: ASP, Nonterminal, was not found in name map.)
+(Residue 3: PHE, Nonterminal, was not found in name map.)
+(Residue 4: CYX, Nonterminal, was not found in name map.)
+(Residue 5: LEU, Nonterminal, was not found in name map.)
+(Residue 6: GLU, Nonterminal, was not found in name map.)
+(Residue 7: PRO, Nonterminal, was not found in name map.)
+(Residue 8: PRO, Nonterminal, was not found in name map.)
+(Residue 9: TYR, Nonterminal, was not found in name map.)
+(Residue 10: THR, Nonterminal, was not found in name map.)
+(Residue 11: GLY, Nonterminal, was not found in name map.)
+(Residue 12: PRO, Nonterminal, was not found in name map.)
+(Residue 13: CYX, Nonterminal, was not found in name map.)
+(Residue 14: LYS, Nonterminal, was not found in name map.)
+(Residue 15: ALA, Nonterminal, was not found in name map.)
+(Residue 16: ARG, Nonterminal, was not found in name map.)
+(Residue 17: ILE, Nonterminal, was not found in name map.)
+(Residue 18: ILE, Nonterminal, was not found in name map.)
+(Residue 19: ARG, Nonterminal, was not found in name map.)
+(Residue 20: TYR, Nonterminal, was not found in name map.)
+(Residue 21: PHE, Nonterminal, was not found in name map.)
+(Residue 22: TYR, Nonterminal, was not found in name map.)
+(Residue 23: ASN, Nonterminal, was not found in name map.)
+(Residue 24: ALA, Nonterminal, was not found in name map.)
+(Residue 25: LYS, Nonterminal, was not found in name map.)
+(Residue 26: ALA, Nonterminal, was not found in name map.)
+(Residue 27: GLY, Nonterminal, was not found in name map.)
+(Residue 28: LEU, Nonterminal, was not found in name map.)
+(Residue 29: CYX, Nonterminal, was not found in name map.)
+(Residue 30: GLN, Nonterminal, was not found in name map.)
+(Residue 31: THR, Nonterminal, was not found in name map.)
+(Residue 32: PHE, Nonterminal, was not found in name map.)
+(Residue 33: VAL, Nonterminal, was not found in name map.)
+(Residue 34: TYR, Nonterminal, was not found in name map.)
+(Residue 35: GLY, Nonterminal, was not found in name map.)
+(Residue 36: GLY, Nonterminal, was not found in name map.)
+(Residue 37: CYX, Nonterminal, was not found in name map.)
+(Residue 38: ARG, Nonterminal, was not found in name map.)
+(Residue 39: ALA, Nonterminal, was not found in name map.)
+(Residue 40: LYS, Nonterminal, was not found in name map.)
+(Residue 41: ARG, Nonterminal, was not found in name map.)
+(Residue 42: ASN, Nonterminal, was not found in name map.)
+(Residue 43: ASN, Nonterminal, was not found in name map.)
+(Residue 44: PHE, Nonterminal, was not found in name map.)
+(Residue 45: LYS, Nonterminal, was not found in name map.)
+(Residue 46: SER, Nonterminal, was not found in name map.)
+(Residue 47: ALA, Nonterminal, was not found in name map.)
+(Residue 48: GLU, Nonterminal, was not found in name map.)
+(Residue 49: ASP, Nonterminal, was not found in name map.)
+(Residue 50: CYX, Nonterminal, was not found in name map.)
+(Residue 51: MET, Nonterminal, was not found in name map.)
+(Residue 52: ARG, Nonterminal, was not found in name map.)
+(Residue 53: THR, Nonterminal, was not found in name map.)
+(Residue 54: CYX, Nonterminal, was not found in name map.)
+(Residue 55: GLY, Nonterminal, was not found in name map.)
+Mapped residue GLY, term: Terminal/last, seq. number: 56 to: CGLY.
+Joining NARG - PRO
+Joining PRO - ASP
+Joining ASP - PHE
+Joining PHE - CYX
+Joining CYX - LEU
+Joining LEU - GLU
+Joining GLU - PRO
+Joining PRO - PRO
+Joining PRO - TYR
+Joining TYR - THR
+Joining THR - GLY
+Joining GLY - PRO
+Joining PRO - CYX
+Joining CYX - LYS
+Joining LYS - ALA
+Joining ALA - ARG
+Joining ARG - ILE
+Joining ILE - ILE
+Joining ILE - ARG
+Joining ARG - TYR
+Joining TYR - PHE
+Joining PHE - TYR
+Joining TYR - ASN
+Joining ASN - ALA
+Joining ALA - LYS
+Joining LYS - ALA
+Joining ALA - GLY
+Joining GLY - LEU
+Joining LEU - CYX
+Joining CYX - GLN
+Joining GLN - THR
+Joining THR - PHE
+Joining PHE - VAL
+Joining VAL - TYR
+Joining TYR - GLY
+Joining GLY - GLY
+Joining GLY - CYX
+Joining CYX - ARG
+Joining ARG - ALA
+Joining ALA - LYS
+Joining LYS - ARG
+Joining ARG - ASN
+Joining ASN - ASN
+Joining ASN - PHE
+Joining PHE - LYS
+Joining LYS - SER
+Joining SER - ALA
+Joining ALA - GLU
+Joining GLU - ASP
+Joining ASP - CYX
+Joining CYX - MET
+Joining MET - ARG
+Joining ARG - THR
+Joining THR - CYX
+Joining CYX - GLY
+Joining GLY - CGLY
+  Added missing heavy atom: .R<CGLY 57>.A<CA 3>
+  Added missing heavy atom: .R<CGLY 57>.A<C 6>
+  Added missing heavy atom: .R<CGLY 57>.A<O 7>
+  Added missing heavy atom: .R<CGLY 57>.A<OXT 8>
+  total atoms in file: 445
+  Leap added 437 missing atoms according to residue templates:
+       4 Heavy
+       433 H / lone pairs
+> quit
+	Quit
+log started: Wed Mar  3 18:56:19 2004
+
+Log file: ./leap.log
+>> #
+>> # ----- leaprc for loading the Cornell et al. 1994 force field.
+>> #       assumes that any unspecified nucleic acids are DNA 
+>> #
+>> #	load atom type hybridizations
+>> #
+>> addAtomTypes {
+>> 	{ "H"   "H" "sp3" }
+>> 	{ "HO"  "H" "sp3" }
+>> 	{ "HS"  "H" "sp3" }
+>> 	{ "H1"  "H" "sp3" }
+>> 	{ "H2"  "H" "sp3" }
+>> 	{ "H3"  "H" "sp3" }
+>> 	{ "H4"  "H" "sp3" }
+>> 	{ "H5"  "H" "sp3" }
+>> 	{ "HW"  "H" "sp3" }
+>> 	{ "HC"  "H" "sp3" }
+>> 	{ "HA"  "H" "sp3" }
+>> 	{ "HP"  "H" "sp3" }
+>> 	{ "OH"  "O" "sp3" }
+>> 	{ "OS"  "O" "sp3" }
+>> 	{ "O"   "O" "sp2" }
+>> 	{ "O2"  "O" "sp2" }
+>> 	{ "OW"  "O" "sp3" }
+>> 	{ "CT"  "C" "sp3" }
+>> 	{ "CH"  "C" "sp3" }
+>> 	{ "C2"  "C" "sp3" }
+>> 	{ "C3"  "C" "sp3" }
+>> 	{ "C"   "C" "sp2" }
+>> 	{ "C*"  "C" "sp2" }
+>> 	{ "CA"  "C" "sp2" }
+>> 	{ "CB"  "C" "sp2" }
+>> 	{ "CC"  "C" "sp2" }
+>> 	{ "CN"  "C" "sp2" }
+>> 	{ "CM"  "C" "sp2" }
+>> 	{ "CK"  "C" "sp2" }
+>> 	{ "CQ"  "C" "sp2" }
+>> 	{ "CD"  "C" "sp2" }
+>> 	{ "CE"  "C" "sp2" }
+>> 	{ "CF"  "C" "sp2" }
+>> 	{ "CG"  "C" "sp2" }
+>> 	{ "CP"  "C" "sp2" }
+>> 	{ "CI"  "C" "sp2" }
+>> 	{ "CJ"  "C" "sp2" }
+>> 	{ "CW"  "C" "sp2" }
+>> 	{ "CV"  "C" "sp2" }
+>> 	{ "CR"  "C" "sp2" }
+>> 	{ "CA"  "C" "sp2" }
+>> 	{ "CY"  "C" "sp2" }
+>> 	{ "C0"  "C" "sp2" }
+>> 	{ "MG"  "Mg" "sp3" }
+>> 	{ "N"   "N" "sp2" }
+>> 	{ "NA"  "N" "sp2" }
+>> 	{ "N2"  "N" "sp2" }
+>> 	{ "N*"  "N" "sp2" }
+>> 	{ "NP"  "N" "sp2" }
+>> 	{ "NQ"  "N" "sp2" }
+>> 	{ "NB"  "N" "sp2" }
+>> 	{ "NC"  "N" "sp2" }
+>> 	{ "NT"  "N" "sp3" }
+>> 	{ "N3"  "N" "sp3" }
+>> 	{ "S"   "S" "sp3" }
+>> 	{ "SH"  "S" "sp3" }
+>> 	{ "P"   "P" "sp3" }
+>> 	{ "LP"  ""  "sp3" }
+>> 	{ "F"   "F" "sp3" }
+>> 	{ "CL"  "Cl" "sp3" }
+>> 	{ "BR"  "Br" "sp3" }
+>> 	{ "I"   "I"  "sp3" }
+>> 	{ "FE"  "Fe" "sp3" }
+>> # glycam
+>> 	{ "OG"  "O" "sp3" }
+>> 	{ "OL"  "O" "sp3" }
+>> 	{ "AC"  "C" "sp3" }
+>> 	{ "EC"  "C" "sp3" }
+>> }
+>> #
+>> #	Load the main parameter set.
+>> #
+>> parm94 = loadamberparams parm94.dat
+Loading parameters: /redfish/people/sbrozell/amber/amber8/dat/leap/parm/parm94.dat
+(UNKNOWN ATOM TYPE: IM)
+(UNKNOWN ATOM TYPE: Li)
+(UNKNOWN ATOM TYPE: IP)
+(UNKNOWN ATOM TYPE: K)
+(UNKNOWN ATOM TYPE: Rb)
+(UNKNOWN ATOM TYPE: Cs)
+(UNKNOWN ATOM TYPE: IB)
+(UNKNOWN ATOM TYPE: EP)
+>> #
+>> #	Load DNA/RNA libraries
+>> #
+>> loadOff all_nucleic94.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/all_nucleic94.lib
+Loading: DA
+Loading: DA3
+Loading: DA5
+Loading: DAN
+Loading: DC
+Loading: DC3
+Loading: DC5
+Loading: DCN
+Loading: DG
+Loading: DG3
+Loading: DG5
+Loading: DGN
+Loading: DT
+Loading: DT3
+Loading: DT5
+Loading: DTN
+Loading: RA
+Loading: RA3
+Loading: RA5
+Loading: RAN
+Loading: RC
+Loading: RC3
+Loading: RC5
+Loading: RCN
+Loading: RG
+Loading: RG3
+Loading: RG5
+Loading: RGN
+Loading: RU
+Loading: RU3
+Loading: RU5
+Loading: RUN
+>> #
+>> #	Load main chain and terminating 
+>> #	amino acid libraries.
+>> #
+>> loadOff all_amino94.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/all_amino94.lib
+Loading: ALA
+Loading: ARG
+Loading: ASH
+Loading: ASN
+Loading: ASP
+Loading: CYM
+Loading: CYS
+Loading: CYX
+Loading: GLH
+Loading: GLN
+Loading: GLU
+Loading: GLY
+Loading: HID
+Loading: HIE
+Loading: HIP
+Loading: ILE
+Loading: LEU
+Loading: LYN
+Loading: LYS
+Loading: MET
+Loading: PHE
+Loading: PRO
+Loading: SER
+Loading: THR
+Loading: TRP
+Loading: TYR
+Loading: VAL
+>> loadOff all_aminoct94.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/all_aminoct94.lib
+Loading: CALA
+Loading: CARG
+Loading: CASN
+Loading: CASP
+Loading: CCYS
+Loading: CCYX
+Loading: CGLN
+Loading: CGLU
+Loading: CGLY
+Loading: CHID
+Loading: CHIE
+Loading: CHIP
+Loading: CILE
+Loading: CLEU
+Loading: CLYS
+Loading: CMET
+Loading: CPHE
+Loading: CPRO
+Loading: CSER
+Loading: CTHR
+Loading: CTRP
+Loading: CTYR
+Loading: CVAL
+Loading: NHE
+Loading: NME
+>> loadOff all_aminont94.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/all_aminont94.lib
+Loading: ACE
+Loading: NALA
+Loading: NARG
+Loading: NASN
+Loading: NASP
+Loading: NCYS
+Loading: NCYX
+Loading: NGLN
+Loading: NGLU
+Loading: NGLY
+Loading: NHID
+Loading: NHIE
+Loading: NHIP
+Loading: NILE
+Loading: NLEU
+Loading: NLYS
+Loading: NMET
+Loading: NPHE
+Loading: NPRO
+Loading: NSER
+Loading: NTHR
+Loading: NTRP
+Loading: NTYR
+Loading: NVAL
+>> 
+>> loadOff ions94.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/ions94.lib
+Loading: CIO
+Loading: Cl-
+Loading: Cs+
+Loading: IB
+Loading: K+
+Loading: Li+
+Loading: MG2
+Loading: Na+
+Loading: Rb+
+>> loadOff solvents.lib
+Loading library: /redfish/people/sbrozell/amber/amber8/dat/leap/lib/solvents.lib
+Loading: CHCL3BOX
+Loading: DC4
+Loading: MEOHBOX
+Loading: NMABOX
+Loading: PL3
+Loading: POL3BOX
+Loading: SPC
+Loading: SPCBOX
+Loading: TIP3PBOX
+Loading: TIP4PBOX
+Loading: TP3
+Loading: TP4
+Loading: TP5
+>> HOH = TP3
+>> WAT = TP3
+>> 
+>> #
+>> #	Define the PDB name map for the amino acids and DNA.
+>> #
+>> addPdbResMap {
+>>   { 0 "ALA" "NALA" } { 1 "ALA" "CALA" }
+>>   { 0 "ARG" "NARG" } { 1 "ARG" "CARG" }
+>>   { 0 "ASN" "NASN" } { 1 "ASN" "CASN" }
+>>   { 0 "ASP" "NASP" } { 1 "ASP" "CASP" }
+>>   { 0 "CYS" "NCYS" } { 1 "CYS" "CCYS" }
+>>   { 0 "CYX" "NCYX" } { 1 "CYX" "CCYX" }
+>>   { 0 "GLN" "NGLN" } { 1 "GLN" "CGLN" }
+>>   { 0 "GLU" "NGLU" } { 1 "GLU" "CGLU" }
+>>   { 0 "GLY" "NGLY" } { 1 "GLY" "CGLY" }
+>>   { 0 "HID" "NHID" } { 1 "HID" "CHID" }
+>>   { 0 "HIE" "NHIE" } { 1 "HIE" "CHIE" }
+>>   { 0 "HIP" "NHIP" } { 1 "HIP" "CHIP" }
+>>   { 0 "ILE" "NILE" } { 1 "ILE" "CILE" }
+>>   { 0 "LEU" "NLEU" } { 1 "LEU" "CLEU" }
+>>   { 0 "LYS" "NLYS" } { 1 "LYS" "CLYS" }
+>>   { 0 "MET" "NMET" } { 1 "MET" "CMET" }
+>>   { 0 "PHE" "NPHE" } { 1 "PHE" "CPHE" }
+>>   { 0 "PRO" "NPRO" } { 1 "PRO" "CPRO" }
+>>   { 0 "SER" "NSER" } { 1 "SER" "CSER" }
+>>   { 0 "THR" "NTHR" } { 1 "THR" "CTHR" }
+>>   { 0 "TRP" "NTRP" } { 1 "TRP" "CTRP" }
+>>   { 0 "TYR" "NTYR" } { 1 "TYR" "CTYR" }
+>>   { 0 "VAL" "NVAL" } { 1 "VAL" "CVAL" }
+>>   { 0 "HIS" "NHIS" } { 1 "HIS" "CHIS" }
+>>   { 0 "GUA" "DG5"  } { 1 "GUA" "DG3"  } { "GUA" "DG" }
+>>   { 0 "ADE" "DA5"  } { 1 "ADE" "DA3"  } { "ADE" "DA" }
+>>   { 0 "CYT" "DC5"  } { 1 "CYT" "DC3"  } { "CYT" "DC" }
+>>   { 0 "THY" "DT5"  } { 1 "THY" "DT3"  } { "THY" "DT" }
+>>   { 0 "G" "DG5"  } { 1 "G" "DG3"  } { "G" "DG" } { "GN" "DGN" }
+>>   { 0 "A" "DA5"  } { 1 "A" "DA3"  } { "A" "DA" } { "AN" "DAN" }
+>>   { 0 "C" "DC5"  } { 1 "C" "DC3"  } { "C" "DC" } { "CN" "DCN" }
+>>   { 0 "T" "DT5"  } { 1 "T" "DT3"  } { "T" "DT" } { "TN" "DTN" }
+>>   { 0 "C5" "DC5" }
+>>   { 0 "G5" "DG5" }
+>>   { 0 "A5" "DA5" }
+>>   { 0 "T5" "DT5" }
+>>   { 1 "C3" "DC3" }
+>>   { 1 "G3" "DG3" }
+>>   { 1 "A3" "DA3" }
+>>   { 1 "T3" "DT3" }
+>> 
+>> }
+>> 
+>> addPdbAtomMap {
+>>   { "O5*" "O5'" }
+>>   { "C5*" "C5'" }
+>>   { "C4*" "C4'" }
+>>   { "O4*" "O4'" }
+>>   { "C3*" "C3'" }
+>>   { "O3*" "O3'" }
+>>   { "C2*" "C2'" }
+>>   { "C1*" "C1'" }
+>>   { "C5M" "C7"  }
+>>   { "H1*" "H1'" }
+>>   { "H2*1" "H2'1" }
+>>   { "H2*2" "H2'2" }
+>>   { "H3*" "H3'" }
+>>   { "H4*" "H4'" }
+>>   { "H5*1" "H5'1" }
+>>   { "H5*2" "H5'2" }
+>> # old ff atom names -> new
+>>   { "O1'" "O4'" }
+>>   { "OA"  "O1P" }
+>>   { "OB"  "O2P" }
+>> }
+>> 
+>> 
+>> #
+>> # assumed that most often proteins use HIE
+>> #
+>> NHIS = NHIE
+>> HIS = HIE
+>> CHIS = CHIE
+> 
+> bpti = loadPdb 6pti.mod.pdb
+Loading PDB file: ./6pti.mod.pdb
+Matching PDB residue names to LEaP variables.
+Mapped residue ARG, term: Terminal/beginning, seq. number: 0 to: NARG.
+(Residue 1: PRO, Nonterminal, was not found in name map.)
+(Residue 2: ASP, Nonterminal, was not found in name map.)
+(Residue 3: PHE, Nonterminal, was not found in name map.)
+(Residue 4: CYX, Nonterminal, was not found in name map.)
+(Residue 5: LEU, Nonterminal, was not found in name map.)
+(Residue 6: GLU, Nonterminal, was not found in name map.)
+(Residue 7: PRO, Nonterminal, was not found in name map.)
+(Residue 8: PRO, Nonterminal, was not found in name map.)
+(Residue 9: TYR, Nonterminal, was not found in name map.)
+(Residue 10: THR, Nonterminal, was not found in name map.)
+(Residue 11: GLY, Nonterminal, was not found in name map.)
+(Residue 12: PRO, Nonterminal, was not found in name map.)
+(Residue 13: CYX, Nonterminal, was not found in name map.)
+(Residue 14: LYS, Nonterminal, was not found in name map.)
+(Residue 15: ALA, Nonterminal, was not found in name map.)
+(Residue 16: ARG, Nonterminal, was not found in name map.)
+(Residue 17: ILE, Nonterminal, was not found in name map.)
+(Residue 18: ILE, Nonterminal, was not found in name map.)
+(Residue 19: ARG, Nonterminal, was not found in name map.)
+(Residue 20: TYR, Nonterminal, was not found in name map.)
+(Residue 21: PHE, Nonterminal, was not found in name map.)
+(Residue 22: TYR, Nonterminal, was not found in name map.)
+(Residue 23: ASN, Nonterminal, was not found in name map.)
+(Residue 24: ALA, Nonterminal, was not found in name map.)
+(Residue 25: LYS, Nonterminal, was not found in name map.)
+(Residue 26: ALA, Nonterminal, was not found in name map.)
+(Residue 27: GLY, Nonterminal, was not found in name map.)
+(Residue 28: LEU, Nonterminal, was not found in name map.)
+(Residue 29: CYX, Nonterminal, was not found in name map.)
+(Residue 30: GLN, Nonterminal, was not found in name map.)
+(Residue 31: THR, Nonterminal, was not found in name map.)
+(Residue 32: PHE, Nonterminal, was not found in name map.)
+(Residue 33: VAL, Nonterminal, was not found in name map.)
+(Residue 34: TYR, Nonterminal, was not found in name map.)
+(Residue 35: GLY, Nonterminal, was not found in name map.)
+(Residue 36: GLY, Nonterminal, was not found in name map.)
+(Residue 37: CYX, Nonterminal, was not found in name map.)
+(Residue 38: ARG, Nonterminal, was not found in name map.)
+(Residue 39: ALA, Nonterminal, was not found in name map.)
+(Residue 40: LYS, Nonterminal, was not found in name map.)
+(Residue 41: ARG, Nonterminal, was not found in name map.)
+(Residue 42: ASN, Nonterminal, was not found in name map.)
+(Residue 43: ASN, Nonterminal, was not found in name map.)
+(Residue 44: PHE, Nonterminal, was not found in name map.)
+(Residue 45: LYS, Nonterminal, was not found in name map.)
+(Residue 46: SER, Nonterminal, was not found in name map.)
+(Residue 47: ALA, Nonterminal, was not found in name map.)
+(Residue 48: GLU, Nonterminal, was not found in name map.)
+(Residue 49: ASP, Nonterminal, was not found in name map.)
+(Residue 50: CYX, Nonterminal, was not found in name map.)
+(Residue 51: MET, Nonterminal, was not found in name map.)
+(Residue 52: ARG, Nonterminal, was not found in name map.)
+(Residue 53: THR, Nonterminal, was not found in name map.)
+(Residue 54: CYX, Nonterminal, was not found in name map.)
+(Residue 55: GLY, Nonterminal, was not found in name map.)
+Mapped residue GLY, term: Terminal/last, seq. number: 56 to: CGLY.
+Joining NARG - PRO
+Joining PRO - ASP
+Joining ASP - PHE
+Joining PHE - CYX
+Joining CYX - LEU
+Joining LEU - GLU
+Joining GLU - PRO
+Joining PRO - PRO
+Joining PRO - TYR
+Joining TYR - THR
+Joining THR - GLY
+Joining GLY - PRO
+Joining PRO - CYX
+Joining CYX - LYS
+Joining LYS - ALA
+Joining ALA - ARG
+Joining ARG - ILE
+Joining ILE - ILE
+Joining ILE - ARG
+Joining ARG - TYR
+Joining TYR - PHE
+Joining PHE - TYR
+Joining TYR - ASN
+Joining ASN - ALA
+Joining ALA - LYS
+Joining LYS - ALA
+Joining ALA - GLY
+Joining GLY - LEU
+Joining LEU - CYX
+Joining CYX - GLN
+Joining GLN - THR
+Joining THR - PHE
+Joining PHE - VAL
+Joining VAL - TYR
+Joining TYR - GLY
+Joining GLY - GLY
+Joining GLY - CYX
+Joining CYX - ARG
+Joining ARG - ALA
+Joining ALA - LYS
+Joining LYS - ARG
+Joining ARG - ASN
+Joining ASN - ASN
+Joining ASN - PHE
+Joining PHE - LYS
+Joining LYS - SER
+Joining SER - ALA
+Joining ALA - GLU
+Joining GLU - ASP
+Joining ASP - CYX
+Joining CYX - MET
+Joining MET - ARG
+Joining ARG - THR
+Joining THR - CYX
+Joining CYX - GLY
+Joining GLY - CGLY
+  Added missing heavy atom: .R<CGLY 57>.A<CA 3>
+  Added missing heavy atom: .R<CGLY 57>.A<C 6>
+  Added missing heavy atom: .R<CGLY 57>.A<O 7>
+  Added missing heavy atom: .R<CGLY 57>.A<OXT 8>
+  total atoms in file: 445
+  Leap added 437 missing atoms according to residue templates:
+       4 Heavy
+       433 H / lone pairs
+> bond bpti.5.SG bpti.55.SG
+> bond bpti.14.SG bpti.38.SG
+> bond bpti.30.SG bpti.51.SG
+> saveAmberParm bpti bpti.prmtop prmcrd
+Checking Unit.
+WARNING: The unperturbed charge of the unit: 6.000000 is not zero.
+
+ -- ignoring the warning.
+
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 197 improper torsions applied
+Building H-Bond parameters.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	CGLY	1
+	NARG	1
+  )
+ (no restraints)
+> savepdb bpti bpti.pdb
+Writing pdb file: bpti.pdb
+ Shortening residue name for PDB format: NARG -> ARG
+ Shortening residue name for PDB format: CGLY -> GLY

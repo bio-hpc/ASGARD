@@ -1,0 +1,275 @@
+<html> <head>
+<title>RDPARM HTML DOCUMENTATION</title>
+</head>
+
+<body>
+
+<h2>
+<FONT COLOR="#FF0000">rdparm HTML documentation
+</FONT>
+</h2>
+
+<tt>rdparm</tt> is a program for reading/writing (and possibly
+modifying) AMBER prmtop files.
+<p>
+The program is user driven, with various commands being typed in
+response to the <tt>rdparm</tt> prompt.  To run the program, it is
+necessary to specify an AMBER prmtop file.  If an AMBER prmtop is not
+specified on the command line (or incorrectly specified on the command
+line) the user will be prompted for a valid prmtop filename.
+<p>
+<h3>
+<FONT COLOR="#FF0000">
+rdparm commands</FONT> (in alphabetical order)
+</h3>
+
+
+<UL>
+
+<li> <b>?</b>:
+<p>
+Type help information
+<p>
+
+<li> <b>angles</b> <i>mask</i>: 
+<p>
+List all the angles (involving any of the atoms in the mask, default:
+all atoms).
+<p>
+
+<li> <b>atoms</b> <i>mask</i>: 
+<p>
+List atom information, such as name, charge, residue name, <i>etc.</i>
+(involving any of the atoms in the mask, default: all atoms).
+<p>
+
+
+<li> <b>bonds</b> <i>mask</i>: 
+<p>
+List all the bonds (involving any of the atoms in the mask, default:
+all atoms).
+<p>
+
+<li> <b>checkcoordinates</b> <i>filename</i>: 
+<p>
+Read in the coordinate file specified in the <i>filename</i>, check
+for inconsistencies and print out a summary of the information.
+<p>
+
+<li> <b>checkgrid</b> <i>filename</i>: 
+<p>
+Read in the XPLOR formatted contour file (such as that generated with
+the <tt>ptraj</tt> <b>grid</b> command) and print out a summary of the
+density.
+<p>
+
+
+<li> <b>checkmask</b> <i>mask</i>: 
+<p>
+Process the atom mask listed in <i>mask</i>; this is used for
+debugging.
+<p>
+
+<li> <b>delete</b> [bond | angle | dihedral] <i>number</i>: 
+<p>
+Delete the bond, angle or dihedral numbered <i>number</i> from the
+prmtop.  Although the prmtop is modified internally, the original
+prmtop is unchanged, hence to effect the changes write a new prmtop
+with the <b>writeparm</b> command.  To figure out the numbering, use
+the <b>bond</b>, <b>angle</b> or <b>dihedral</b> command (with no
+arguments).
+<p>
+
+
+<li> <b>deleteperturbed</b> [bond | angle | dihedral] <i>number</i>: 
+<p>
+Same as above, but delete perturbed bonds, angles or dihedrals.
+<p>
+
+<li> <b>dihedrals</b> <i>mask</i>: 
+<p>
+List all the dihedrals (involving any of the atoms in the mask, default:
+all atoms).
+<p>
+
+
+<li> <b>dumpdihedrals</b>
+<p>
+Dump out a summary of all the dihedral parameter types in the prmtop.
+<p>
+
+<li> <b>exit</b>
+<p>
+Quit the program.
+<p>
+
+<li> <b>help</b>
+<p>
+Print out help information.
+<p>
+
+<li> <b>info</b>
+<p>
+Print out a summary of the information in the prmtop file.
+<p>
+
+
+<li> <b>mardi2sander</b>
+<p>
+Convert mardigras restraints into sander style restraints.  The user
+is prompted for necessary information.
+<p>
+
+<li> <b>modifyboxinfo</b>
+<p>
+Modify the periodic box information.  You will be prompted for
+information.
+<p>
+
+<li> <b>modifymoleculeinfo</b>
+<p>
+Change the molecule information.
+<p>
+
+<li> <b>newtransform</b> <i>script</i>: 
+<p>
+Run the <tt>ptraj</tt> functionality.
+<p>
+
+<li> <b>openparm</b>
+<p>
+Read in a different prmtop file.
+<p>
+
+<li> <b>parminfo</b>
+<p>
+Like <b>info</b>, print out a summary of the information in the prmtop
+file.
+<p>
+
+<li> <b>pertbonds</b> <i>mask</i>: 
+<p>
+Like <b>bonds</b>, but applied to the perturbed bonds only.
+<p>
+
+<li> <b>pertangles</b> <i>mask</i>: 
+<p>
+Like <b>angles</b>, but applied to the perturbed bonds only.
+<p>
+
+<li> <b>pertdihedrals</b> <i>mask</i>: 
+<p>
+Like <b>dihedrals</b>, but applied to the perturbed bonds only.
+<p>
+
+<li> <b>printbonds</b> <i>mask</i>: 
+<p>
+Same as <b>bonds</b>.
+<p>
+
+<li> <b>printangles</b> <i>mask</i>: 
+<p>
+Same as <b>angles</b>.
+<p>
+
+<li> <b>printdihedrals</b> <i>mask</i>: 
+<p>
+Same as <b>dihedrals</b>.
+<p>
+
+<li> <b>printatoms</b> <i>mask</i>: 
+<p>
+Same as <b>atoms</b>.
+<p>
+
+<li> <b>printdelphicharge</b>
+<p>
+Will print out the charges in a format suitable for input to Delphi.
+<p>
+
+
+<li> <b>printexcluded</b>
+<p>
+Print out the excluded atom list.
+<p>
+
+<li> <b>printlennardjones</b>
+<p>
+Print out a summary of the Lennard-Jones parameters.
+<p>
+
+<li> <b>printtypes</b>
+<p>
+Print out the currently specified AMBER atom types.
+<p>
+
+<li> <b>ptraj</b> <i>script</i>
+<p>
+Run <tt>ptraj</tt>
+<p>
+
+<li> <b>quit</b>
+<p>
+Exit the program.
+<p>
+
+
+<li> <b>readparm</b> | <b>rdparm</b>
+<p>
+Load up another prmtop file.
+
+<p>
+
+<li> <b>restrain</b> [bond | angle | dihedral ]
+<p>
+Add in PARM type restraints; you will be prompted for atom numbers.
+This is not recommended as similar functionality is now within sander.
+
+<p>
+
+<li> <b>scalebox</b>
+<p>
+This will scale all the coordinates in a given periodic box.
+<p>
+
+<li> <b>stripwater</b>
+<p>
+This will strip water from a trajectory; it is recommended that
+<tt>ptraj</tt> be used to do this instead!
+<p>
+
+<li> <b>system</b> <i>command</i>: 
+<p>
+Use the system() call to run <i>command</i> (outside of <tt>rdparm</tt>).
+<p>
+
+<li> <b>testwater</b>
+<p>
+Create a new prmtop that has a different number of water molecules.
+<p>
+
+<li> <b>translatebox</b>
+<p>
+Shift coordinates (use <tt>ptraj</tt> instead!).
+<p>
+
+<li> <b>translaterestrt</b>
+<p>
+Shift coordinates (use <tt>ptraj</tt> instead!).
+<p>
+
+<li> <b>writeparm</b>
+<p>
+Output a new prmtop file.
+<p>
+</ul>
+
+
+
+<hr>
+<address>thomas &lt;cheatham@cgl.ucsf.edu&gt;</address>
+<!-- hhmts start -->
+Last modified: Tue Apr 27 11:45:32 EDT 1999
+<!-- hhmts end -->
+</body> </html>
+

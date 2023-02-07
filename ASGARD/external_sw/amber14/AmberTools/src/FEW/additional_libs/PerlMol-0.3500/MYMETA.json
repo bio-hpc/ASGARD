@@ -1,0 +1,38 @@
+{
+   "abstract" : "Perl modules for chemoinformatics and computational chemistry",
+   "author" : [
+      "Ivan Tubert-Brohman <itub@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Module::Install version 0.33, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "PerlMol",
+   "no_index" : {
+      "directory" : [
+         "inc"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : 0
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Scalar::Util" : "1.07",
+            "Storable" : "2.04",
+            "Test::Simple" : "0.45",
+            "Text::Balanced" : "1.89"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "version" : "0.3500"
+}

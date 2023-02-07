@@ -1,0 +1,67 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+# Makefile passes in value of NETCDF
+if ( "$1" == "" ) then
+    echo "Build does not include NetCDF support - skipping this test."
+    exit(0)
+endif
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+cat > mdin <<EOF
+netCDF output test
+ &cntrl
+   nstlim = 10, nscm=10000,ig=3261
+   cut=3.0, igb=0
+   ntx=1, irest=0, ntb=1, ntpr=1,
+   dt=0.002, nrespa=1,
+   ntt=3, tempi=300.0, temp0 = 300., gamma_ln=1.0,
+   ntc=2, ntf=2, tol=0.000001,
+   ntwr = 0, ntwx=1,ntwv=-1,ntwe=0,ioutfm=1,ntwprt=28
+ /
+EOF
+
+set output = bintraj.out
+
+# sander may exit with failure if it has not been built with bintraj.
+# Thus errors with the test are determined by the existence of an output file.
+/bin/rm -f $output
+$DO_PARALLEL $TESTsander -O -i mdin -p xprmtop -c xprmcrd -o $output \
+    -x mdtrj.nc < /dev/null
+if ( ! -e $output ) then
+    goto error
+endif
+
+set no_bintraj = 'reconfigure using the -bintraj flag'
+grep "$no_bintraj" $output > /dev/null
+if ( ! $status ) then
+    echo "sander was not built with netCDF support." 
+    ../dacdif $output.save $output
+    /bin/rm -f mdinfo mdtrj.nc mdin restrt
+    exit(0)
+endif
+
+if ( -e ../../bin/ncdump ) then
+   set ncdump = "../../bin/ncdump"
+else
+   set ncdump = "`which ncdump`"
+   if ( ! -x "$ncdump" ) then
+      echo "Could not find ncdump: quitting"
+      exit 0
+   endif
+endif
+$ncdump -h mdtrj.nc >nc_headers
+../dacdif nc_headers.save nc_headers
+
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

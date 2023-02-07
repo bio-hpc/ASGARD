@@ -1,0 +1,20 @@
+Title
+&cntrl
+  imin = 1,
+  ntmin = 1,
+  maxcyc = 10,
+  ntb = 0,
+  ntpr = 1,
+  cut = 100.00,
+  ifqnt = 1,
+/
+&qmmm
+  qm_theory= 'SEBOMD',
+/
+&sebomd
+  hamiltonian = 'PM3', modif = 'PIF2',
+  charge = 0,
+  fullscf = 1,
+  screen = 0,
+  ipolyn = 0,
+/

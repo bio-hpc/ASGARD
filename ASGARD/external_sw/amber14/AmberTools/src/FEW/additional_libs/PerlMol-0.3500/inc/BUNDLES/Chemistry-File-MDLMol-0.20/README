@@ -1,0 +1,43 @@
+Chemistry/File/MDLMol version 0.20
+Chemistry/File/SDF    version 0.20
+==================================
+
+This modules read MDL mol and SDF (structure data file) files. 
+
+The MDLmol module automatically registers the 'mdl' format with Chemistry::Mol,
+so that molfiles may be identified and read by Chemistry::Mol::read_mol().
+The SDF module registers the 'sdf' format.
+
+CHANGES SINCE VERSION 0.19
+        - Added support for charges and radicals.
+        - Add implicit hydrogens on read.
+        - Support for some query properties: atom lists, bond topology, and
+          bond types.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+    Chemistry::Mol      0.35
+
+Some features such as substructure search also require other modules:
+
+    Chemistry::Pattern
+    Chemistry::Ring
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2005 Ivan Tubert-Brohman <itub@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

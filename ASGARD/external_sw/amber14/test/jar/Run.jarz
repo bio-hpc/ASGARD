@@ -1,0 +1,63 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+set sander = "../../bin/sander"
+if( $?TESTsander ) then
+   set sander = $TESTsander
+endif
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+  set numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+  if ( $numprocs > 19 ) then
+      echo " DO_PARALLEL set to $DO_PARALLEL"
+      goto toomany
+  else if ( $?MP_PROCS)then
+      if ($MP_PROCS > 19)then
+#               --- For IBM AIX ---
+          echo "    MP_PROCS set to "$MP_PROCS
+          goto toomany
+      endif
+  endif
+endif
+
+set output = mdout.jar
+
+cat > gbin <<EOF
+ test of Jarzynski for a distance in DNA 
+ &cntrl                                                                        
+   nstlim=1000, cut=12.0, igb=1, saltcon=0.1,
+   ntpr=100, ntwr=100000, ntt=3, gamma_ln=5.0,
+   ntx=5, irest=1, ntwx=0, ig = 99931, 
+   ntc=2, ntf=2, tol=0.000001,
+   dt=0.002, ntb=0, tempi=300., temp0=300.,
+   jar=1,
+ /
+ &wt type='DUMPFREQ', istep1=1 /
+ &wt type='END'   /
+DISANG=dist.RST
+DUMPAVE=dist_vs_t
+LISTIN=POUT
+LISTOUT=POUT
+EOF
+
+$DO_PARALLEL $sander -O -i gbin -c dna.crd -p prmtop -o $output < /dev/null || goto error
+
+../dacdif $output.save $output
+../dacdif dist_vs_t.save dist_vs_t
+/bin/rm -f gbin restrt mdinfo
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+toomany:
+    echo " too many processors for this test, exiting (Max = 19)"
+    echo "============================================================"
+    exit(0)
+

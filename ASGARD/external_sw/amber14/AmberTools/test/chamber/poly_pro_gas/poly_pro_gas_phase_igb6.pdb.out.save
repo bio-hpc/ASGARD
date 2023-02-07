@@ -1,0 +1,168 @@
+
+          -------------------------------------------------------
+          Amber 10 SANDER                              2008
+          -------------------------------------------------------
+
+| Run on 01/27/2009 at 13:25:44
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: poly_pro_gas_phase_igb6.pdb.out                                       
+|INPCRD: poly_pro_gas_all22.pdb.inpcrd                                         
+|  PARM: poly_pro_gas_all22.pdb.prmtop                                         
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+|INPTRA: inptraj                                                               
+|
+ 
+ Here is the input file:
+ 
+CHARMM Force Field Poly Pro Gas Phase - Check Energy.                          
+ &cntrl                                                                        
+   imin=1,irest=0,                                                             
+   maxcyc=0,ncyc=0,                                                            
+   scee=1.0,scnb=1.0,                                                          
+   ntpr=1,                                                                     
+   ntb=0,                                                                      
+   cut=9999.0,                                                                 
+   igb=6,                                                                      
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 06/11/03 Time = 12:02:08
+ NATOM  =      65 NTYPES =      16 NBONH =      33 MBONA  =      34
+ NTHETH =      80 MTHETA =      49 NPHIH =     136 MPHIA  =      88
+ NHPARM =       0 NPARM  =       0 NNB   =     381 NRES   =       5
+ NBONA  =      34 NTHETA =      49 NPHIA =      88 NUMBND =      22
+ NUMANG =      46 NPTRA  =      81 NATYP =      16 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      14 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+ Implicit solvent radii are modified Bondi radii (mbondi)                                                   
+| Force field information read from topology file: 
+|  CHARMM  31         *>>>>>>>>CHARMM22 All-Hydrogen Topology File for Proteins <<
+|
+|CHARMM: CHARMM force field in use. 
+|CHARMM: Overriding default value of chngmask.
+|CHARMM: Setting chngmask = 0.
+
+|     Memory Use     Allocated
+|     Real                4569
+|     Hollerith            397
+|     Integer            23588
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total              129 kbytes
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+* POLY PROLINE IN GAS PHASE                                                     
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       6, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =9999.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+     scnb    =   1.00000, scee    =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =       0, ncyc    =       0, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+inpcrd generated from psfprm utility:* POLY PROLINE IN GAS PHASE                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1       1.4265E+02     9.9779E-01     2.9304E+00     CD         14
+
+ BOND    =        4.0719  ANGLE   =       26.1726  DIHED      =       36.5690
+ VDWAALS =       -6.9554  EEL     =     -274.5304  EGB        =        0.0000
+ 1-4 VDW =        8.6608  1-4 EEL =      348.6642  RESTRAINT  =        0.0000
+
+
+  Maximum number of minimization cycles reached.
+
+
+                    FINAL RESULTS
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1       1.4265E+02     9.9779E-01     2.9304E+00     CD         14
+
+ BOND    =        4.0719  ANGLE   =       26.1726  DIHED      =       36.5690
+ VDWAALS =       -6.9554  EEL     =     -274.5304  EGB        =        0.0000
+ 1-4 VDW =        8.6608  1-4 EEL =      348.6642  RESTRAINT  =        0.0000
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.48% of Total)
+|    Fast Water setup           0.00 ( 0.01% of Total)
+|                Calc gb off-diag           0.14 (100.0% of Gen B)
+|             Gen Born time              0.14 (100.0% of Nonbo)
+|          Nonbond force              0.14 (99.87% of Force)
+|          Bond/Angle/Dihedral        0.00 ( 0.11% of Force)
+|          Other                      0.00 ( 0.02% of Force)
+|       Force time                 0.14 (100.0% of Runmd)
+|    Runmd Time                 0.14 (89.12% of Total)
+|    Other                      0.02 (10.39% of Total)
+| Total time                 0.15 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 13:25:44.151  on 01/27/2009
+|           Setup done at 13:25:44.159  on 01/27/2009
+|           Run   done at 13:25:44.303  on 01/27/2009
+|     wallclock() was called      20 times

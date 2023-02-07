@@ -1,0 +1,57 @@
+molecule allatom_to_dna3( molecule m_allatom, string sense, string anti ){
+	molecule	m_dna3, mres;
+	int		nres[ 2 ], residuenumber;
+	string		PPmidpoint, C5midpoint, antiP, thissense, thisanti;
+	residue		r, res;
+
+	m_dna3 = newmolecule();
+	addstrand( m_dna3, "1" );
+	res = getresidue( "3NA", "dna3.rlb" );
+
+	thissense = sense;
+	if ( sense == "" )
+		thissense = "sense";
+	thisanti = anti;
+	if ( anti == "" )
+		thisanti = "anti";
+
+	nres[ 1 ] = nres[ 2 ] = 0;	
+	for( r in m_allatom ){
+		if( r.strandname == thissense ){
+			nres[ 1 ]++;
+		}
+		else if( r.strandname == thisanti ){
+			nres[ 2 ]++;
+		}
+	}
+
+	if( nres[ 1 ] != nres[ 2 ] ){
+		fprintf( stderr,
+			"both dna strands must have same number of residues\n" );
+		exit( 1 );
+	}
+
+	for( residuenumber = 1; residuenumber <= nres[ 1 ]; residuenumber++ ){
+		// set frame to current residue in all atom model
+		PPmidpoint = thissense + sprintf( ":%d:C1'|", residuenumber ) + 
+			thisanti + sprintf( ":%d:C1'", nres[ 2 ] - residuenumber+1 );
+		C5midpoint = thissense + sprintf( ":%d:C5|", residuenumber ) + 
+			thisanti + sprintf( ":%d:C5", nres[ 2 ] - residuenumber+1 );
+		antiP = thisanti + sprintf( ":%d:C1'", nres[ 2 ] - residuenumber+1 );
+		setframe( 2, m_allatom, PPmidpoint, PPmidpoint, 
+			C5midpoint, PPmidpoint, antiP );
+
+		// create new dna3 residue
+		mres = newmolecule();
+		addstrand( mres, "1" );
+		addresidue( mres, "1", res );
+
+		// align new dna3 residue with current all-atom residue
+                setframe( 0, mres, "::CE", "::CE", "::MA", "::CE", "::SI" );
+		alignframe( mres, m_allatom );
+		mergestr( m_dna3, "1", "last", mres, "1", "first" );
+		freemolecule( mres );
+	} 
+	return( m_dna3 );
+	
+};

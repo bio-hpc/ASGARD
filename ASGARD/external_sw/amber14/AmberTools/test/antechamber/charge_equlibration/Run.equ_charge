@@ -1,0 +1,52 @@
+#!/bin/csh -f
+
+# Used two molecules as examples to domonstrate charge euqlibration
+# 1: 2,3-dichlorobuta-1,3-diene
+# 2: 2.4-dichloropenta-1,4-diene
+
+echo  "Step1: run antechamber to generate resp charges with '-eq 0'"
+../../../bin/antechamber  -fi gout -fo mol2 -i c4h4cl2.log -o c4h4cl2_eq0.mol2  \
+  -c resp -eq 0 >& antechamber.out || goto error
+
+echo  "Step2: run antechamber to generate resp charges with '-eq 1'"
+../../../bin/antechamber  -fi gout -fo mol2 -i c4h4cl2.log -o c4h4cl2_eq1.mol2  \
+  -c resp -eq 1 >& antechamber.out || goto error
+
+echo  "Step3: run antechamber to generate resp charges with '-eq 2'"
+../../../bin/antechamber  -fi gout -fo mol2 -i c4h4cl2.log -o c4h4cl2_eq2.mol2  \
+  -c resp -eq 2 >& antechamber.out || goto error
+
+echo  "Step4: run antechamber to generate bcc charges with '-eq 0'"
+../../../bin/antechamber  -fi mol2 -fo mol2 -i c5h7cl2.mol2 -o c5h7cl2_eq0.mol2  \
+  -c bcc -eq 0 >& antechamber.out || goto error
+
+echo  "Step5: run antechamber to generate bcc charges with '-eq 1'"
+../../../bin/antechamber  -fi mol2 -fo mol2 -i c5h7cl2.mol2 -o c5h7cl2_eq1.mol2  \
+  -c bcc -eq 1 >& antechamber.out || goto error
+
+echo  "Step6: run antechamber to generate bcc charges with '-eq 2'"
+../../../bin/antechamber  -fi mol2 -fo mol2 -i c5h7cl2.mol2 -o c5h7cl2_eq2.mol2  \
+  -c bcc -eq 2 >& antechamber.out || goto error
+
+
+../../dacdif -a 5.5e-3 c4h4cl2_eq0.mol2.save c4h4cl2_eq0.mol2
+../../dacdif -a 5.5e-3 c4h4cl2_eq1.mol2.save c4h4cl2_eq1.mol2
+../../dacdif -a 5.5e-3 c4h4cl2_eq2.mol2.save c4h4cl2_eq2.mol2
+
+../../dacdif -a 5.5e-3 c5h7cl2_eq0.mol2.save c5h7cl2_eq0.mol2
+../../dacdif -a 5.5e-3 c5h7cl2_eq1.mol2.save c5h7cl2_eq1.mol2
+../../dacdif -a 5.5e-3 c5h7cl2_eq2.mol2.save c5h7cl2_eq2.mol2
+
+/bin/rm -f  ANTE* ATOMTYPE.INF NEWPDB.PDB PREP.INF punch qout QOUT esout \
+            sqm.in sqm.out
+
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+
+
+
+

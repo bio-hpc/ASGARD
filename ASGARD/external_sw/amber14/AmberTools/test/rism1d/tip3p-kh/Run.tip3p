@@ -1,0 +1,33 @@
+#!/bin/csh -f
+
+
+cat > tip3p.inp <<EOF
+&PARAMETERS
+OUTLST='uxghctensq', THEORY='DRISM', CLOSUR='KH',
+!grid
+NR=16384, DR=0.025, routup=100, toutup=30,
+!MDIIS
+NIS=20, DELVV=0.3, TOLVV=1.e-12,
+!iter
+KSAVE=-1, KSHOW=1, maxste=10000,
+!ElStat
+SMEAR=1, ADBCOR=0.5,
+!bulk solvent properties
+TEMPER=298, DIEps=78.497,
+NSP=1
+/
+&SPECIES
+DENSITY=55.296,
+MODEL="../../../../dat/rism1d/model/TP3.mdl"
+/
+EOF
+
+../../../bin/rism1d tip3p > tip3p.out || goto error
+
+../check1d tip3p
+/bin/rm -f tip3p.inp tip3p.out tip3p.sav tip3p.?vv_dT
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

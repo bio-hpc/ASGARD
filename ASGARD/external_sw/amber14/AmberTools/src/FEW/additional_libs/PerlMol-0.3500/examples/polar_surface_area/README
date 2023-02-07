@@ -1,0 +1,16 @@
+Calculation of polar surface area based on fragment contributions (TPSA)
+
+Sent by Konrad Koehler, Karo Bio AB
+
+Originally a C program by Peter Ertl, Novartis, translated to Perl by Eric
+Allen, using DayPerl.
+
+The program reads a list of SMILES strings from stdin, and writes SMILES
+and the calculated TPSA on stdout.
+
+
+FILES
+psa.pl      - the program
+input.smi   - a few sample SMILES strings
+output.smi  - the results of running ./psa.pl -f input.smi
+

@@ -1,0 +1,22 @@
+~ Create 8 copies of H's, leave only 1 copy of C's.
+
+file rprm name=(pent-TI.top) read
+
+file rcrd name=(pent.crd) read
+
+file wprm name=(pent-TI_les.top) wovr
+
+file wcrd name=(pent_les.crd) wovr
+
+action
+
+~ use original mass
+omas
+
+~ make 8 copies of atom 6--13
+space numc=8 pick #prt 6 13 done
+
+~ do not modify velocity
+~ nomodv
+
+*EOD

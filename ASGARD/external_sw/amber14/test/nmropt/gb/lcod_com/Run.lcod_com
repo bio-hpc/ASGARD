@@ -1,0 +1,57 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP Test linear combination of distances restraint with a distance restraint
+#TEST-PURPOSE regression, advanced, pedagogical
+#TEST-STATE   ok
+
+. ../../../program_error.sh
+
+if [ -z "$TESTsander" ]; then
+   TESTsander="../../../../bin/sander"
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+   export DO_PARALLEL=" "
+fi
+
+cat > mdin <<EOF
+ Test LCOD in sander and PME      
+ &cntrl                                                                        
+ nmropt=1, 
+ ntx=5, irest=1,
+ ntpr=1,ntwr=50,
+ nstlim=20, dt=0.001,
+ ntt=1, temp0=300.0, tempi=300.0, tautp=2.0,
+ ntb=0,
+ igb=5,
+ ntc=2, ntf=2,
+ cut=20.0,
+ nrespa=1,
+ tol=0.000001,
+ /
+ &wt type='DUMPFREQ', istep1=5, /
+ &wt type="END", / 
+ DISANG=lcod.RST
+ DUMPAVE=lcod_vs_t.dat
+EOF
+
+cat > lcod.RST <<EOF
+ &rst
+ iat=986,740,986,734, r1=-20, r2=6.4 , r3=6.4 , r4=20 , rk2=20, rk3=20,rstwt=1.0,1.0,
+ /    
+ &rst
+ iat=1577,698,-1,-1 r1=-20, r2=12.1, r3=12.1, r4=20 igr1= 0, 0 ,0 ,0, igr2=0, 0, 0, 0, 0, igr3= 1576, 1577, 1578, 1579, 1580, 1581, 1582, 1583, 1584, igr4= 695, 696, 697, 698, 699, 700, 701, 702, 703, 704, 705,  rstwt=1.0,1.0,
+ /
+EOF
+
+
+$DO_PARALLEL $TESTsander -O -p ../myoglobin_gb.prmtop -c ../myoglobin_gb.inpcrd \
+                            < /dev/null || error
+
+        
+../../../dacdif mdout.save mdout
+../../../dacdif lcod_vs_t.dat.save lcod_vs_t.dat
+
+/bin/rm -f mdin restrt mdinfo profile_mpi cprestrt lcod.RST
+
+exit 0

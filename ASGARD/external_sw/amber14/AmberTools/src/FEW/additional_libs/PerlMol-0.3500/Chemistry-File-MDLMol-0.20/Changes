@@ -1,0 +1,29 @@
+Revision history for Perl extension Chemistry::File::MDLMol.
+
+0.20  Fri May 20 2005
+        - Added support for charges and radicals.
+        - Add implicit hydrogens on read.
+        - Support for some query properties: atom lists, bond topology, and
+          bond types.
+
+0.19  Mon Jan 31 2005
+        - Fixed documentation bug in SDF.pm SYNOPSIS.
+
+0.18  Thu Jan 27 2005
+        - Compatibility with Chemistry::File 0.30 (for sequential SDF reading)
+
+0.17  Wed Jul 21 2004
+        - Fixed name_is in MDLMol, which was using .sdf instead of .mol as the
+          extension.
+
+0.16  Wed Jun 30 2004
+        - Added missing name_is methods.
+        - Fixed default atom and bond class handling in MDLMol.
+
+0.15  Fri May 14 2004
+        - Added write_string method to MDLMol.pm and SDF.pm
+        - Changed SDF data storage attribute to a hash ref in 'sdf/data'
+          instead of storing each attribute individually.
+
+0.10  Fri Feb 20 2004
+	- First release

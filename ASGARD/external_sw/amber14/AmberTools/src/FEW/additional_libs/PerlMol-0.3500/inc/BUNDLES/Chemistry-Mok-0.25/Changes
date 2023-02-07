@@ -1,0 +1,57 @@
+Revision history for Perl extension Chemistry::Mok.
+
+0.25  May 16 2005
+        - Read one molecule at a time using the Chemistry-Mol-0.30 interface.
+        - New special variable $FH
+        - Added support for Chemistry::3DBuilder (-3 command-line option)
+        - Add #line to the generated code so that errors give more meaninful
+          line numbers.
+        - Fixed parsing bug where the first block used an explicit pattern
+          language
+        - Restructured Chemistry::Mok to be more object-oriented: 
+        - WARNING: the mok object is now a hash reference instead of an array
+          reference. This may affect derived classes.
+
+0.24  Mar 4 2005
+        - Added -D option
+        - Added support for multiple pattern languages on the same
+          script.
+
+0.23  Aug 7 2004
+        - New option -d (delete dummies)
+        - don't buffer stdio
+        - New option -a (aromatize)
+
+0.22  Jul 03 2004
+        - Make sure molecules are read by their default classes instead
+          of Chemistry::Mol.
+
+0.21  Jun 18 2004
+        - Made SMARTS the default pattern language; added -p option.
+        - Added the println function.
+        - Added implicit globbing to mok under MSWin32.
+        - Changed tests for better MSWin32 compatibility.
+
+0.20  Jun 10 2004
+        - Support for different pattern languages.
+        - User package now imports from Chemistry::Atom and Math::VectorReal.
+        - Fixed error when an implicit block had leading comments.
+
+0.16  May 19 2004
+        - Added -b option (add bonds)
+        - Added support for comments outside action blocks
+        - Fixed undef $/ bug.
+
+0.15  Mar 4 2004
+        - Bug fixes: pattern options were ignored, -f option didn't work.
+        - Changes: special variables $MOL, $PATT, $FILE, $MATCH are now 
+        uppercase.
+        - Features: new special variables @A and @B.
+        - Documentation: fixed some errors, revised examples.
+        - Tests: added a few simple tests, based on the examples in the POD.
+        See *.mok. The tests use the *.mol files that are provided. Note that
+        Chemistry::File::MDLMol must be installed for the tests to work.
+
+0.10  Mar 1 2004
+        - First release
+

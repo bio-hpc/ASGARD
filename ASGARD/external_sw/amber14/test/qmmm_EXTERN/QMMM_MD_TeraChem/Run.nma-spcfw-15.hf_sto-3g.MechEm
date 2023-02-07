@@ -1,0 +1,101 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+../../check_TeraChem.x
+if( $status > 0) then
+  exit(0)
+endif
+
+set sander = "../../../bin/sander"
+if( $?TESTsander ) then
+    set sander = $TESTsander
+endif
+
+set can_do_mpi=0
+if( `echo $sander | grep "MPI"` != '') then
+ echo 'Using MPI version of sander'
+ set can_do_mpi=1
+endif
+
+set mpi=0
+if( ! $?DO_PARALLEL ) then
+  set DO_PARALLEL=' '
+  echo "Running test using file-based exchange (DO_PARALLEL not set)"
+  echo "Parallelism treated within TeraChem"
+else
+  if( $can_do_mpi == 1 ) then
+    echo "Running test using MPI data exchange (DO_PARALLEL is set)"
+    echo "Parallelism treated within TeraChem"
+    set mpi=1
+    set numprocs = `$DO_PARALLEL echo | wc -l`
+    if ( $numprocs > 1 ) then
+	echo "This test requires >> mpirun -np 1 <<"
+	echo "You specified >> mpirun -np $numprocs <<"
+	exit 0
+    endif
+  else
+    echo "Can not do an MPI run using serial version of sander."
+    echo "Unset DO_PARALLEL to perform serial test"
+    exit(1)
+  endif
+endif
+
+cat > mdin <<EOF
+NMA in 15 Angstrom water shell QM/MM HF/STO-3G/SPC(Fw) NVE 2 steps at dt=0.5fs
+ &cntrl
+  imin     = 0,      ! do MD (no minimization)
+  irest    = 1,      ! restart trajectory
+  ntx      = 5,      ! read coordinates and velocities
+  dt       = 0.0005  ! 0.5fs time step
+  cut      = 999.9,  ! non-bonded cutoff
+  ntb      = 0,      ! periodic boundary conditions
+  ntpr     = 1,      ! print every step)
+  ntwx     = 1,      ! write coordinates every step
+  ntwr     = 2,      ! write restart file at last step
+  nstlim   = 2,      ! runfor 2 steps
+  nscm     = 0,      ! do not remove COM motion
+  jfastw   = 4,      ! do not use routines for fast triangulated water
+  ioutfm   = 1,      ! NetCDF MDCRD.
+  ifqnt    = 1,      ! do QMMM simulation
+ /
+ &qmmm
+  qmmask    = ':1-2',
+  qm_theory = 'EXTERN',
+  qmmm_int  = 5,
+ /
+ &tc
+  basis    = 'sto-3g',
+  method   = 'rhf',
+  mpi      = $mpi,
+ /
+EOF
+
+set output = nma-spcfw-15.hf_sto-3g.MechEm.mdout
+set restrt = nma-spcfw-15.hf_sto-3g.MechEm.restrt
+rm -f $output
+
+echo "mpi=$mpi"
+if ( $mpi == 1 ) then
+ mpirun -np 1 terachem -UseMPI > tc_job.dat &
+endif
+
+touch dummy
+$DO_PARALLEL $sander -O -p nma-spcfw-15.prmtop -c nma-spcfw-15.restrt -o $output -r $restrt < dummy || goto error
+grep -v 'mpi' $output | grep -v 'ngpus' | grep -v 'gpuids' | grep -v 'root_number' | grep -v 'executable' > $output.tmp
+mv $output.tmp $output
+
+# We do this due to rounding errors when reading from a file in the file-based 
+# data exchange vs receiving the data through MPI
+../../dacdif -a 0.0005  $output.save $output
+../../dacdif -a 0.0003  $restrt.save $restrt
+
+/bin/rm -f mdin mdinfo mdcrd dummy inpfile.xyz ptchrg.xyz startfile tc_job* old.tc*
+/bin/rm -r scr
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

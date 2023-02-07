@@ -1,0 +1,37 @@
+#!/bin/csh -f
+
+echo "RESP stage 1:"
+../../bin/resp -O \
+		-i ade_1st.in \
+		-o ade_1st.out \
+		-p ade_1st.pch \
+		-t ade_1st.chg \
+		-e esp_ade.dat \
+		-s ade_1st_calc.esp  		||  goto error
+
+../dacdif -t 2 ade_1st.out.save ade_1st.out
+../dacdif ade_1st.pch.save ade_1st.pch
+../dacdif -t 3 ade_1st_calc.esp.save ade_1st_calc.esp
+
+echo "RESP stage 2:"
+../../bin/resp -O \
+		-i ade_2nd.in \
+		-o ade_2nd.out \
+		-p ade_2nd.pch \
+		-q ade_1st.chg \
+		-t ade_2nd.chg \
+		-e esp_ade.dat 		|| goto error
+
+# diff/rm intermediate file
+../dacdif ade_1st.chg.save ade_1st.chg
+
+# and 2nd stage files
+../dacdif -t 1 ade_2nd.out.save ade_2nd.out
+../dacdif ade_2nd.pch.save ade_2nd.pch
+../dacdif ade_2nd.chg.save ade_2nd.chg
+
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

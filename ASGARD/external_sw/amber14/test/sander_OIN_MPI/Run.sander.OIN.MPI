@@ -1,0 +1,57 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander.MPI"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+  set numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+  if ( $numprocs > 19 ) then
+      echo " DO_PARALLEL set to $DO_PARALLEL"
+      goto toomany
+  else if ( $?MP_PROCS)then
+      if ($MP_PROCS > 19)then
+#               --- For IBM AIX ---
+          echo "    MP_PROCS set to "$MP_PROCS
+          goto toomany
+      endif
+  endif
+endif
+
+cat > gbin <<EOF
+ Relaxtion of trip cage using OIN (isokinetic ensemble)
+ &cntrl                                                                        
+  imin=0, irest=0, ntx=1,
+  nstlim=10, dt=0.001,
+  ntc=1, ntf=1, ioutfm=1
+  ntt=9, tautp=0.5,
+  tempi=298.0, temp0=298.0,
+  ntpr=1, ntwx=20,
+  ntb=0, igb=8,
+  nkija=3, gamma_ln=0.01,
+  cut=999.0,rgbmax=999.0,
+  idistr=0
+ /
+EOF
+
+set output = mdout.sander.OIN.MPI
+
+$DO_PARALLEL $TESTsander -O -i gbin -c trpcge.crds -p TC5b.top -o $output < /dev/null || goto error
+
+../dacdif -t 1 -r 0.0001 $output.save $output
+/bin/rm -f gbin restrt mdinfo mdcrd tfreez.rst vfreez.rst
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+toomany:
+    echo " too many processors for this test, exiting (Max = 19)"
+    echo "============================================================"
+    exit(0)
+

@@ -1,0 +1,55 @@
+#!/bin/sh
+#TEST-PROGRAM sander, pmemd
+#TEST-DESCRIP microcanonical ensemble, periodic boundaries, shake, water
+#TEST-PURPOSE regression, basic, pedagogical
+#TEST-STATE   ok
+
+. ../program_error.sh
+
+sander="../../bin/sander"
+if [ ! -z $TESTsander ]; then
+   sander=$TESTsander
+fi
+
+cat > gbin <<EOF
+ short md, nve ensemble
+ &cntrl
+   ntx=5, irest=1,
+   ntc=2, ntf=2, tol=0.0000001, 
+   nstlim=5, ntt=0, 
+   ntpr=1, ntwr=10000,
+   dt=0.001, ntwf=1, ioutfm=1,
+ /
+ &ewald
+   nfft1=50, nfft2=50, nfft3=50,
+ /
+EOF
+
+$DO_PARALLEL $sander -O -i gbin -c eq1.x -o mdout.pure_wat2 || error
+
+if [ `basename $sander` = "pmemd.mic_offload.MPI" ]; then
+../dacdif -r 1.0e-8  mdout.pure_wat2.save mdout.pure_wat2
+else
+../dacdif mdout.pure_wat2.save mdout.pure_wat2
+fi
+# Check the NetCDF forces with ncdump
+if [ ! -x $AMBERHOME/bin/ncdump ]; then
+   ncdump=`which ncdump`
+   if [ ! -x $ncdump ]; then
+      echo "Cannot compare mdfrc without ncdump!"
+      exit 0
+   fi
+else
+   ncdump=$AMBERHOME/bin/ncdump
+fi
+
+$ncdump mdfrc | sed -e 's/,/ /g' -e 's/sander//g' -e 's/pmemd//g' > mdfrc_cmp
+
+if [ `basename $sander` = "pmemd.mic_offload.MPI" ]; then
+../dacdif -r 1.0e-1 mdfrc_cmp.save mdfrc_cmp
+else
+../dacdif -r 1e-5 mdfrc_cmp.save mdfrc_cmp
+fi
+
+/bin/rm -f gbin restrt mdinfo mdfrc
+

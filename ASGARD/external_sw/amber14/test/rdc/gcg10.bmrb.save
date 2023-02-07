@@ -1,0 +1,286 @@
+#---------------------------------------------------------------------
+# entry information saveframe:                                        
+#---------------------------------------------------------------------
+save_entry_information
+  _Saveframe_category entry_information
+  _Entry_title
+;
+  Calculated proton shifts for gcg10
+;
+  _NMR_STAR_version       2.1
+  _Experimental_method    'theoretical calculation'
+  _Submission_date        2007-01-26
+  stop_
+save_
+
+#---------------------------------------------------------------------
+# contact persons saveframe:                                          
+#---------------------------------------------------------------------
+save_contact_persons
+   _Saveframe_category contact_persons
+  loop_
+  _Family_name
+  _Given_name
+  _Middle_initials
+  _Department_and_Insitution
+  _Mailing_address
+  _Phone_number
+  _Email_address
+  Case David A.
+;
+  Dept. of Molecular Biology
+  The Scripps Research Institute
+;
+;
+  10550 N. Torrey Pines Rd.
+  La Jolla, CA 92037
+;
+  '01 858 784 9768'
+  case@scripps.edu
+  stop_
+save_
+
+#---------------------------------------------------------------------
+# chemical shift reference saveframe:                                 
+#---------------------------------------------------------------------
+save_chemical_shift_reference
+  _Saveframe_category   chemical_shift_reference
+  _Details
+;
+   computed shifts are internally referenced to random-coil values,
+   but are reported relative to DSS/TMS
+;
+  loop_
+    _Atom_type _Atom_isotope_number_Chem_shift_units _Chem_shift_value
+   H 1 ppm 0.0
+ stop_
+save_
+
+#---------------------------------------------------------------------
+#  calculation type saveframe:                                        
+#---------------------------------------------------------------------
+save_proton_empirical_shifts
+   _Saveframe_category  shifts_calculation_type
+  loop_ _Software_label $shifts_v2 stop_
+  _Calculation_level empirical
+  _Chemical_shift_type  diamagnetic
+  _Sample_conditions_modeled
+;
+  aqueous solution
+;
+  _Chem_shift_reference_set_label shifts_v2
+save_
+
+#---------------------------------------------------------------------
+#  atomic coordinates saveframe:                                      
+#---------------------------------------------------------------------
+save_gcg10
+  _Saveframe_category     model_atomic_coordinates
+  _Coordinate_set_description
+;
+  Coordinates extracted from PDB entry gcg10
+;
+  _Model_source_database  PDB
+  _Model_source_database_accession_number  gcg10
+save_
+
+#---------------------------------------------------------------------
+#  software saveframe:                                                
+#---------------------------------------------------------------------
+save_shifts_v2
+  _Saveframe_category calculation_type
+save_
+
+#---------------------------------------------------------------------
+#  theoretical chemical shifts saveframe:                             
+#---------------------------------------------------------------------
+save_theoretical_chemical_shifts
+  _Saveframe_category   theoretical_chemical_shifts
+  _Calculation_type_label  $shifts_v2 
+  _Model_atomic_coordinates_label  $gcg10
+  _Mol_system_component_name  gcg10
+  loop_
+    _Atom_shift_ID
+    _Residue_seq_code
+    _Residue_label
+    _Atom_name
+    _Atom_type
+    _Chem_shift_value
+    _Chem_shift_value_error
+   _Chem_shift_ambiguity_code
+    1	    1	   G	H5'1	H	   3.55	0.2	1
+    2	    1	   G	H5'2	H	   3.73	0.2	1
+    3	    1	   G	H4' 	H	   4.05	0.2	1
+    4	    1	   G	H1' 	H	   5.84	0.2	1
+    5	    1	   G	H8  	H	   7.55	0.2	1
+    6	    1	   G	H3' 	H	   4.46	0.2	1
+    7	    1	   G	H2'1	H	   2.39	0.2	1
+    8	    1	   G	H2'2	H	   2.31	0.2	1
+    9	    2	   C	H5'1	H	   3.66	0.2	1
+   10	    2	   C	H5'2	H	   3.75	0.2	1
+   11	    2	   C	H4' 	H	   4.05	0.2	1
+   12	    2	   C	H1' 	H	   5.26	0.2	1
+   13	    2	   C	H6  	H	   7.41	0.2	1
+   14	    2	   C	H5  	H	   5.36	0.2	1
+   15	    2	   C	H3' 	H	   4.41	0.2	1
+   16	    2	   C	H2'1	H	   2.24	0.2	1
+   17	    2	   C	H2'2	H	   2.26	0.2	1
+   18	    3	   G	H5'1	H	   3.67	0.2	1
+   19	    3	   G	H5'2	H	   3.78	0.2	1
+   20	    3	   G	H4' 	H	   4.13	0.2	1
+   21	    3	   G	H1' 	H	   5.98	0.2	1
+   22	    3	   G	H8  	H	   7.35	0.2	1
+   23	    3	   G	H3' 	H	   4.46	0.2	1
+   24	    3	   G	H2'1	H	   2.40	0.2	1
+   25	    3	   G	H2'2	H	   2.26	0.2	1
+   26	    4	   T	H5'1	H	   3.71	0.2	1
+   27	    4	   T	H5'2	H	   3.77	0.2	1
+   28	    4	   T	H4' 	H	   4.06	0.2	1
+   29	    4	   T	H1' 	H	   5.29	0.2	1
+   30	    4	   T	H6  	H	   6.91	0.2	1
+   31	    4	   T	H73 	H	   1.17	0.2	1
+   32	    4	   T	H3' 	H	   4.36	0.2	1
+   33	    4	   T	H2'1	H	   2.03	0.2	1
+   34	    4	   T	H2'2	H	   2.16	0.2	1
+   35	    5	   T	H5'1	H	   3.63	0.2	1
+   36	    5	   T	H5'2	H	   3.76	0.2	1
+   37	    5	   T	H4' 	H	   4.05	0.2	1
+   38	    5	   T	H1' 	H	   5.36	0.2	1
+   39	    5	   T	H6  	H	   7.26	0.2	1
+   40	    5	   T	H73 	H	   1.50	0.2	1
+   41	    5	   T	H3' 	H	   4.45	0.2	1
+   42	    5	   T	H2'1	H	   2.30	0.2	1
+   43	    5	   T	H2'2	H	   2.30	0.2	1
+   44	    6	   A	H5'1	H	   3.69	0.2	1
+   45	    6	   A	H5'2	H	   3.83	0.2	1
+   46	    6	   A	H4' 	H	   4.15	0.2	1
+   47	    6	   A	H1' 	H	   5.78	0.2	1
+   48	    6	   A	H8  	H	   8.30	0.2	1
+   49	    6	   A	H2  	H	   5.98	0.2	1
+   50	    6	   A	H3' 	H	   4.55	0.2	1
+   51	    6	   A	H2'1	H	   2.64	0.2	1
+   52	    6	   A	H2'2	H	   2.38	0.2	1
+   53	    7	   A	H5'1	H	   3.74	0.2	1
+   54	    7	   A	H5'2	H	   3.87	0.2	1
+   55	    7	   A	H4' 	H	   4.18	0.2	1
+   56	    7	   A	H1' 	H	   6.17	0.2	1
+   57	    7	   A	H8  	H	   8.31	0.2	1
+   58	    7	   A	H2  	H	   7.91	0.2	1
+   59	    7	   A	H3' 	H	   4.56	0.2	1
+   60	    7	   A	H2'1	H	   2.67	0.2	1
+   61	    7	   A	H2'2	H	   2.39	0.2	1
+   62	    8	   C	H5'1	H	   3.78	0.2	1
+   63	    8	   C	H5'2	H	   3.80	0.2	1
+   64	    8	   C	H4' 	H	   4.07	0.2	1
+   65	    8	   C	H1' 	H	   5.00	0.2	1
+   66	    8	   C	H6  	H	   7.16	0.2	1
+   67	    8	   C	H5  	H	   5.19	0.2	1
+   68	    8	   C	H3' 	H	   4.37	0.2	1
+   69	    8	   C	H2'1	H	   2.12	0.2	1
+   70	    8	   C	H2'2	H	   1.99	0.2	1
+   71	    9	   G	H5'1	H	   3.54	0.2	1
+   72	    9	   G	H5'2	H	   3.70	0.2	1
+   73	    9	   G	H4' 	H	   4.02	0.2	1
+   74	    9	   G	H1' 	H	   5.65	0.2	1
+   75	    9	   G	H8  	H	   7.07	0.2	1
+   76	    9	   G	H3' 	H	   4.37	0.2	1
+   77	    9	   G	H2'1	H	   2.31	0.2	1
+   78	    9	   G	H2'2	H	   1.97	0.2	1
+   79	   10	   C	H5'1	H	   3.58	0.2	1
+   80	   10	   C	H5'2	H	   3.68	0.2	1
+   81	   10	   C	H4' 	H	   3.97	0.2	1
+   82	   10	   C	H1' 	H	   5.36	0.2	1
+   83	   10	   C	H6  	H	   7.51	0.2	1
+   84	   10	   C	H5  	H	   5.58	0.2	1
+   85	   10	   C	H3' 	H	   4.30	0.2	1
+   86	   10	   C	H2'1	H	   1.91	0.2	1
+   87	   10	   C	H2'2	H	   2.06	0.2	1
+   88	   11	   G	H5'1	H	   3.57	0.2	1
+   89	   11	   G	H5'2	H	   3.67	0.2	1
+   90	   11	   G	H4' 	H	   4.10	0.2	1
+   91	   11	   G	H1' 	H	   5.57	0.2	1
+   92	   11	   G	H8  	H	   7.54	0.2	1
+   93	   11	   G	H3' 	H	   4.43	0.2	1
+   94	   11	   G	H2'1	H	   2.61	0.2	1
+   95	   11	   G	H2'2	H	   2.36	0.2	1
+   96	   12	   C	H5'1	H	   3.65	0.2	1
+   97	   12	   C	H5'2	H	   3.81	0.2	1
+   98	   12	   C	H4' 	H	   4.07	0.2	1
+   99	   12	   C	H1' 	H	   5.39	0.2	1
+  100	   12	   C	H6  	H	   7.61	0.2	1
+  101	   12	   C	H5  	H	   5.45	0.2	1
+  102	   12	   C	H3' 	H	   4.44	0.2	1
+  103	   12	   C	H2'1	H	   2.26	0.2	1
+  104	   12	   C	H2'2	H	   2.34	0.2	1
+  105	   13	   G	H5'1	H	   3.70	0.2	1
+  106	   13	   G	H5'2	H	   3.80	0.2	1
+  107	   13	   G	H4' 	H	   4.14	0.2	1
+  108	   13	   G	H1' 	H	   6.01	0.2	1
+  109	   13	   G	H8  	H	   7.39	0.2	1
+  110	   13	   G	H3' 	H	   4.47	0.2	1
+  111	   13	   G	H2'1	H	   2.48	0.2	1
+  112	   13	   G	H2'2	H	   2.25	0.2	1
+  113	   14	   T	H5'1	H	   3.73	0.2	1
+  114	   14	   T	H5'2	H	   3.78	0.2	1
+  115	   14	   T	H4' 	H	   4.04	0.2	1
+  116	   14	   T	H1' 	H	   5.26	0.2	1
+  117	   14	   T	H6  	H	   7.03	0.2	1
+  118	   14	   T	H73 	H	   1.07	0.2	1
+  119	   14	   T	H3' 	H	   4.38	0.2	1
+  120	   14	   T	H2'1	H	   2.18	0.2	1
+  121	   14	   T	H2'2	H	   2.14	0.2	1
+  122	   15	   T	H5'1	H	   3.60	0.2	1
+  123	   15	   T	H5'2	H	   3.73	0.2	1
+  124	   15	   T	H4' 	H	   4.03	0.2	1
+  125	   15	   T	H1' 	H	   5.25	0.2	1
+  126	   15	   T	H6  	H	   7.21	0.2	1
+  127	   15	   T	H73 	H	   1.56	0.2	1
+  128	   15	   T	H3' 	H	   4.41	0.2	1
+  129	   15	   T	H2'1	H	   2.16	0.2	1
+  130	   15	   T	H2'2	H	   2.23	0.2	1
+  131	   16	   A	H5'1	H	   3.69	0.2	1
+  132	   16	   A	H5'2	H	   3.82	0.2	1
+  133	   16	   A	H4' 	H	   4.17	0.2	1
+  134	   16	   A	H1' 	H	   5.97	0.2	1
+  135	   16	   A	H8  	H	   8.18	0.2	1
+  136	   16	   A	H2  	H	   6.53	0.2	1
+  137	   16	   A	H3' 	H	   4.51	0.2	1
+  138	   16	   A	H2'1	H	   2.24	0.2	1
+  139	   16	   A	H2'2	H	   2.34	0.2	1
+  140	   17	   A	H5'1	H	   3.80	0.2	1
+  141	   17	   A	H5'2	H	   3.87	0.2	1
+  142	   17	   A	H4' 	H	   4.25	0.2	1
+  143	   17	   A	H1' 	H	   6.03	0.2	1
+  144	   17	   A	H8  	H	   8.03	0.2	1
+  145	   17	   A	H2  	H	   7.83	0.2	1
+  146	   17	   A	H3' 	H	   4.53	0.2	1
+  147	   17	   A	H2'1	H	   2.43	0.2	1
+  148	   17	   A	H2'2	H	   2.36	0.2	1
+  149	   18	   C	H5'1	H	   3.78	0.2	1
+  150	   18	   C	H5'2	H	   3.81	0.2	1
+  151	   18	   C	H4' 	H	   4.11	0.2	1
+  152	   18	   C	H1' 	H	   5.12	0.2	1
+  153	   18	   C	H6  	H	   7.26	0.2	1
+  154	   18	   C	H5  	H	   5.26	0.2	1
+  155	   18	   C	H3' 	H	   4.41	0.2	1
+  156	   18	   C	H2'1	H	   2.20	0.2	1
+  157	   18	   C	H2'2	H	   2.05	0.2	1
+  158	   19	   G	H5'1	H	   3.60	0.2	1
+  159	   19	   G	H5'2	H	   3.75	0.2	1
+  160	   19	   G	H4' 	H	   4.08	0.2	1
+  161	   19	   G	H1' 	H	   5.80	0.2	1
+  162	   19	   G	H8  	H	   7.19	0.2	1
+  163	   19	   G	H3' 	H	   4.42	0.2	1
+  164	   19	   G	H2'1	H	   2.33	0.2	1
+  165	   19	   G	H2'2	H	   2.09	0.2	1
+  166	   20	   C	H5'1	H	   3.61	0.2	1
+  167	   20	   C	H5'2	H	   3.70	0.2	1
+  168	   20	   C	H4' 	H	   3.99	0.2	1
+  169	   20	   C	H1' 	H	   5.37	0.2	1
+  170	   20	   C	H6  	H	   7.41	0.2	1
+  171	   20	   C	H5  	H	   5.29	0.2	1
+  172	   20	   C	H3' 	H	   4.29	0.2	1
+  173	   20	   C	H2'1	H	   1.92	0.2	1
+  174	   20	   C	H2'2	H	   2.07	0.2	1
+  stop_
+save_

@@ -1,0 +1,17 @@
+#! /bin/bash
+
+ for x in `cat list`
+ do
+    for y in `cat case`
+    do
+       if [ $x == 'pbsa.ntmg' ] && [ $y == 'bc6' ] 
+       then
+          continue
+       fi
+       cd $x/$y
+       mv mdout.110D.min mdout.110D.min.save
+       cd ..
+       cd ..
+    done
+ done
+   

@@ -1,0 +1,339 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/15/2014 at 08:50:09
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: mdout.polwat                                                          
+|INPCRD: inpcrd                                                                
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+ 
+ Here is the input file:
+ 
+min H                                                                          
+                                                                               
+ &cntrl                                                                        
+  dielc =1.0,                                                                  
+  cut    = 8.0,     nsnb   = 5,      ibelly = 0,                               
+  ntx    = 7,       irest  = 1, ipol = 1,                                      
+  ntf    = 2,       ntc    = 2,       tol    = 0.0000005,                      
+  ntb    = 1,       ntp    = 0,       temp0 = 300.0, tautp = 1.0,              
+ nstlim = 10,    dt = 0.001,  maxcyc = 100,      imin = 0,  ntmin = 2,         
+  ntpr   = 1,     ntwx = 0, ntt = 0, ntr = 0,                                  
+           jfastw = 0,                                                         
+ /                                                                             
+ &ewald                                                                        
+   indmeth=3, diptau=10.1, skinnb=1.0,                                         
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+ getting new box info from bottom of inpcrd
+|  INFO: Old style inpcrd file read
+
+| peek_ewald_inpcrd: Box info found
+|Largest sphere to fit in unit cell has radius =     9.328
+|  INFO: Old style PARM file read
+
+ NATOM  =     648 NTYPES =       2 NBONH =     648 MBONA  =       0
+ NTHETH =       0 MTHETA =       0 NPHIH =       0 MPHIA  =       0
+ NHPARM =       0 NPARM  =       0 NNB   =     864 NRES   =     216
+ NBONA  =       0 NTHETA =       0 NPHIA =       0 NUMBND =       2
+ NUMANG =       1 NPTRA  =       0 NATYP =       2 NPHB   =       1
+ IFBOX  =       1 NMXRS  =       3 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real              125756
+|     Hollerith           2162
+|     Integer            34697
+|     Max Pairs         157464
+|     nblistReal          7776
+|     nblist Int         34373
+|       Total             1936 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+     BOX TYPE: RECTILINEAR
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       7, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       2, ntb     =       1, igb     =       0, nsnb    =       5
+     ipol    =       1, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   8.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00000
+
+Polarizable options:
+     indmeth =       3, maxiter =      20, irstdip =       0, scaldip =       1
+     diptau  =  10.10000, dipmass =   0.33000
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       1
+     Box X =   18.657   Box Y =   18.657   Box Z =   18.657
+     Alpha =   90.000   Beta  =   90.000   Gamma =   90.000
+     NFFT1 =   18       NFFT2 =   18       NFFT3 =   18
+     Cutoff=    8.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.34864
+     Interpolation order =    4
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:      216
+
+     Sum of charges from parm topology file =   0.00000474
+     Forcing neutrality...
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):    1296.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =    1293.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    1293.
+|  TOTAL # of degrees of freedom (RNDF) =    1293.
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.2738E-14   at   2.422500
+| CHECK d/dx switch(x): max rel err =   0.8332E-11   at   2.782960
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =      97856
+| TOTAL SIZE OF NONBOND LIST =      97856
+
+ NSTEP =        1   TIME(PS) =       0.001  TEMP(K) =   304.85  PRESS =     0.0
+ Etot   =     -1721.3845  EKtot   =       391.6418  EPtot      =     -2113.0263
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       591.0411
+ EELEC  =     -2101.3796  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -602.6878
+ Dipole convergence: rms =  0.398E-04 temperature =   0.00
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =       0.002  TEMP(K) =   303.05  PRESS =     0.0
+ Etot   =     -1721.3751  EKtot   =       389.3370  EPtot      =     -2110.7121
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       591.6883
+ EELEC  =     -2099.6519  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -602.7485
+ Dipole convergence: rms =  0.382E-02 temperature =   0.00
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =       0.003  TEMP(K) =   301.45  PRESS =     0.0
+ Etot   =     -1721.2930  EKtot   =       387.2817  EPtot      =     -2108.5747
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       592.4621
+ EELEC  =     -2098.4007  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -602.6361
+ Dipole convergence: rms =  0.383E-02 temperature =   0.18
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) =       0.004  TEMP(K) =   300.39  PRESS =     0.0
+ Etot   =     -1721.3645  EKtot   =       385.9177  EPtot      =     -2107.2821
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       593.4243
+ EELEC  =     -2097.6149  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -603.0915
+ Dipole convergence: rms =  0.221E-02 temperature =   0.20
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =       0.005  TEMP(K) =   299.82  PRESS =     0.0
+ Etot   =     -1721.1784  EKtot   =       385.1881  EPtot      =     -2106.3665
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       594.5855
+ EELEC  =     -2097.4252  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -603.5269
+ Dipole convergence: rms =  0.315E-02 temperature =   0.26
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =       0.006  TEMP(K) =   299.87  PRESS =     0.0
+ Etot   =     -1721.2151  EKtot   =       385.2460  EPtot      =     -2106.4611
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       595.9458
+ EELEC  =     -2098.1565  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -604.2504
+ Dipole convergence: rms =  0.447E-02 temperature =   0.21
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) =       0.007  TEMP(K) =   300.62  PRESS =     0.0
+ Etot   =     -1721.1794  EKtot   =       386.2122  EPtot      =     -2107.3916
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       597.4843
+ EELEC  =     -2099.4974  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -605.3785
+ Dipole convergence: rms =  0.377E-02 temperature =   0.14
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =       0.008  TEMP(K) =   301.85  PRESS =     0.0
+ Etot   =     -1721.3207  EKtot   =       387.7943  EPtot      =     -2109.1151
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       599.2104
+ EELEC  =     -2101.3273  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -606.9981
+ Dipole convergence: rms =  0.208E-02 temperature =   0.09
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =       0.009  TEMP(K) =   303.42  PRESS =     0.0
+ Etot   =     -1721.3685  EKtot   =       389.8079  EPtot      =     -2111.1765
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       601.1190
+ EELEC  =     -2104.1044  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -608.1912
+ Dipole convergence: rms =  0.333E-02 temperature =   0.08
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =       0.010  TEMP(K) =   305.32  PRESS =     0.0
+ Etot   =     -1721.3137  EKtot   =       392.2503  EPtot      =     -2113.5640
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       603.1884
+ EELEC  =     -2107.5108  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -609.2416
+ Dipole convergence: rms =  0.345E-02 temperature =   0.14
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      10 S T E P S
+
+
+ NSTEP =       10   TIME(PS) =       0.010  TEMP(K) =   302.06  PRESS =     0.0
+ Etot   =     -1721.2993  EKtot   =       388.0677  EPtot      =     -2109.3670
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       596.0149
+ EELEC  =     -2100.5069  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ EPOLZ  =      -604.8750
+ Dipole convergence: rms =  0.302E-02 temperature =   0.13
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       10   TIME(PS) =       0.010  TEMP(K) =     1.91  PRESS =     0.0
+ Etot   =         0.0767  EKtot   =         2.4478  EPtot      =         2.4995
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         3.9335
+ EELEC  =         3.0496  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+|E(PBS) =         0.0711
+ EPOLZ  =         2.3352
+ Dipole convergence: rms =  0.121E-02 temperature =   0.08
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.58% of Total)
+|    Fast Water setup           0.00 ( 0.02% of Total)
+|                Build the list             0.00 (25.61% of List )
+|                Other                      0.01 (74.39% of List )
+|             List time                  0.02 (12.45% of Nonbo)
+|                   Short_ene time             0.10 (99.79% of Direc)
+|                   Other                      0.00 ( 0.21% of Direc)
+|                Direct Ewald time          0.11 (81.55% of Ewald)
+|                Adjust Ewald time          0.00 ( 0.59% of Ewald)
+|                Self Ewald time            0.00 ( 0.01% of Ewald)
+|                   Fill Bspline coeffs        0.00 ( 3.17% of Recip)
+|                   Fill charge grid           0.00 (20.27% of Recip)
+|                   Scalar sum                 0.01 (22.44% of Recip)
+|                   Grad sum                   0.01 (30.44% of Recip)
+|                   FFT time                   0.01 (22.18% of Recip)
+|                   Other                      0.00 ( 1.51% of Recip)
+|                Recip Ewald time           0.02 (17.61% of Ewald)
+|                Force Adjust               0.00 ( 0.02% of Ewald)
+|                Virial junk                0.00 ( 0.12% of Ewald)
+|                Start synchronizatio       0.00 ( 0.03% of Ewald)
+|                Other                      0.00 ( 0.08% of Ewald)
+|             Ewald time                 0.13 (87.55% of Nonbo)
+|          Nonbond force              0.15 (100.0% of Force)
+|          Other                      0.00 ( 0.02% of Force)
+|       Force time                 0.15 (95.15% of Runmd)
+|       Shake time                 0.00 ( 0.22% of Runmd)
+|       Verlet update time         0.01 ( 4.44% of Runmd)
+|       Dipole update time         0.00 ( 0.13% of Runmd)
+|       Other                      0.00 ( 0.06% of Runmd)
+|    Runmd Time                 0.15 (96.24% of Total)
+|    Other                      0.01 ( 3.15% of Total)
+| Total time                 0.16 (100.0% of ALL  )
+
+| Highest rstack allocated:      40834
+| Highest istack allocated:        648
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       0.15 Per Step(ms) =      15.49
+|         ns/day =       5.58   seconds/ns =   15487.00
+| -----------------------------------------------------
+
+|           Job began  at 08:50:09.943  on 01/15/2014
+|           Setup done at 08:50:09.949  on 01/15/2014
+|           Run   done at 08:50:10.103  on 01/15/2014
+|     wallclock() was called     693 times

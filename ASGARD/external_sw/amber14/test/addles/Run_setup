@@ -1,0 +1,15 @@
+#!/bin/csh -f
+#TEST-PROGRAM addles
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+echo " "
+echo "  Amber 8 demo/addles setup script:"
+echo "      run ADDLES, Leu dipeptide"
+echo " "
+
+../../bin/addles < input_addles > out_addles
+../dacdif out_addles.cs out_addles
+../../bin/addles < addles.in > addles.out
+../dacdif pimd.restrt.save pimd.restrt

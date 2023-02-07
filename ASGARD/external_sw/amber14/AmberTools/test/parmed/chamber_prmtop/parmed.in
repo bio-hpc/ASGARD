@@ -1,0 +1,20 @@
+parmout final.prmtop
+
+addLJType :1@N
+addLJType @956
+outparm prmtop.new_type
+
+changeLJPair :1@N @956 1.0 2.0
+changeLJ14Pair :1@N @956 1.1 2.0
+
+outparm prmtop.NBFIX
+
+change CHARGE :LYS@N 0.0
+
+outparm prmtop.new_chg
+
+change MASS :LYS@N 0.0
+
+outparm prmtop.ZEROMASS
+
+!amber_prmtop.parm.remake_parm()

@@ -1,0 +1,140 @@
+
+          -------------------------------------------------------
+          Amber 10 SANDER                              2008
+          -------------------------------------------------------
+
+| Run on 12/20/2007 at 09:06:34
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: hcn.out                                                               
+|INPCRD: hcn.crd                                                               
+|  PARM: hcn.top                                                               
+|RESTRT: hcn.rst                                                               
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+ 
+ Here is the input file:
+ 
+  hcn to hnc conversion                                                        
+ &cntrl                                                                        
+   ntr=0,                                                                      
+   ntx=1, irest=0, ntb=0, ntpr=1, cut=999.,                                    
+   ievb=1,                                                                     
+   imin=1, maxcyc=10, nstlim=5000, tempi=300., ntt=3, dt=0.001,                
+   gamma_ln=20.0,                                                              
+ &end                                                                          
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|  *** cutoff > system size, list only builds once
+|Largest sphere to fit in unit cell has radius =    30.000
+| New format PARM file being parsed.
+| Version =    1.000 Date = 07/25/06 Time = 16:49:08
+ NATOM  =       3 NTYPES =       3 NBONH =       1 MBONA  =       1
+ NTHETH =       1 MTHETA =       0 NPHIH =       0 MPHIA  =       0
+ NHPARM =       0 NPARM  =       0 NNB   =       4 NRES   =       1
+ NBONA  =       1 NTHETA =       0 NPHIA =       0 NUMBND =       2
+ NUMANG =       1 NPTRA  =       0 NATYP =       3 NPHB   =       0
+ IFBOX  =       0 NMXRS  =       3 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real                1366
+|     Hollerith             21
+|     Integer            20077
+|     Max Pairs              3
+|     nblistReal            36
+|     nblist Int        761563
+|       Total             3064 kbytes
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+HCN                                                                             
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     = 999.00000, intdiel =   1.00000
+     
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =      10, ncyc    =      10, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+
+| MPI Timing options:
+|      profile_mpi =        0
+
+
+Reading EVB input file from INPUT.EVB
+No. of DG at TS      =        1
+No. of DG at minima  =        2
+No. of additional DG =        0
+Total DG points      =        3
+
+EVB options:
+     nevb =      2, nbias  =      0, nmorse =      0, ntw_evb =     50
+     xch_type = dist_gauss
+     evb_dyn  = groundstate
+     dia_shift( 1) =    0.00000
+     dia_shift( 2) =    0.00000
+
+
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+HCN                                                                             
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+|  Atom division among processors:
+|         0       3
+| EVB data will be written to evbout
+DG:: external file name and associated alpha exponent
+       1                                     hcn_ts.EVB       0.50000
+       2                                        hcn.EVB       0.50000
+       3                                        hnc.EVB       0.50000
+DG::  subspace = all_coords
+DG::  nselect =          9
+DG:: scoord(:) = 
+         1         2         3         4         5
+         6         7         8         9
+DG:: No. of DG ab initio configuration points =        3
+DG:: No. of DG data points within each configuration point =       91
+>>> Inverted      108singular values in schlegel_full
+|  DONE generating EVB PES for HCN system |  (Cartesian case).
+|  Data points are written to EVB_hcn_cart.nb

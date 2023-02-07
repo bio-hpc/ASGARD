@@ -1,0 +1,38 @@
+Chemistry/MacroMol version 0.06
+===============================
+
+For the purposes of this module, a macromolecule is just a molecule that 
+consists of several "domains". For example, a protein consists of aminoacid
+residues, or a nucleic acid consists of bases. Therefore Chemistry::MacroMol 
+is derived from Chemistry::Mol, with additional methods to handle the domains.
+
+The way things are currently structured, an atom in a macromolecule "belong"
+both to the MacroMol object and to a Domain object. This way you can get all the
+atoms in $protein via $protein->atoms, or to the atoms in residue 123 via
+$protein->domain(123)->atoms.
+
+CHANGES SINCE VERSION 0.06
+        - Fixed a memory leak.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+        Chemistry::Mol      0.24 
+        Scalar::Util        0
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2004 Ivan Tubert
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

@@ -1,0 +1,75 @@
+! read the topology and parameter file
+
+OPEN READ FORMATTED UNIT 12 NAME ../../../../../dat/chamber/top_all22_prot.inp
+READ RTF CARD UNIT 12
+CLOSE UNIT 12
+
+OPEN READ FORMATTED UNIT 12 NAME ../../../../../dat/chamber/par_all22_prot.inp
+READ PARA CARD UNIT 12
+CLOSE UNIT 12
+
+! Read sequence from the psf file
+OPEN UNIT 1 READ CARD NAME waterbox.psf
+READ PSF CARD UNIT 1
+CLOSE UNIT 1
+
+! Read coordinates
+OPEN UNIT 1 READ CARD NAME waterbox.cor
+READ COOR CARD UNIT 1
+CLOSE UNIT 1
+
+
+
+!Stage 2
+
+!=======================================================
+!set up periodic images
+!=======================================================
+
+!size of box, must use variable 9 to be consistent with waterbox.img
+SET 9 30.900
+
+CRYSTAL DEFINE CUBIC @9 @9 @9 90.0 90.0 90.0
+CRYSTAL BUILD CUTOFF  9.0 nope 0
+IMAGE BYRES XCEN 0.0 YCEN 0.0 ZCEN 0.0 SELE ALL END
+
+
+!================
+!Stage 3 - heat
+
+! use shake
+SHAKE BONH PARA
+
+
+! md run
+OPEN WRITE FORMATTED   UNIT 31 NAME  test2.res
+
+!See http://www.charmmtutorial.org/index.php/Molecular_Dynamics
+
+DYNA LEAP START -
+VERLET -
+NSTEP 6000 -         !number of steps and energy evaluations
+TIMESTEP 0.001  -    !timestep in picoseconds
+ISEED 12310238 -     !
+FIRSTT 0  -          !initial temperature of the system
+FINALT 300 -         !final temperature of the system
+IHTFRQ 10 -          !frequency to increase temperature by TEMINC
+TEMINC .5 -          !value to increase temperature by
+IEQFRQ 0 -
+IASORS 1 -
+IASVEL 1 -
+ISVFRQ 500 -         !
+IPRFRQ 500 -
+NPRINT 100 -
+IUNREA -1 -
+IUNWRI 31 -
+IUNCRD -1 -
+IMGFRQ 10 -          !update frequency of the nonbonded list involving image atoms
+INBFRQ 10 -          !
+
+
+!Seems to compare the best with SANDER cut=9
+!The energy from this instance here will match that of heat.res
+ENER CUTNB 9 CTOFNB 9 CTONNB 9 SWITCH !heat.res
+
+

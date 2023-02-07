@@ -1,0 +1,24 @@
+Revision history for Perl extension Chemistry::InternalCoords
+
+0.18  Sep 24 2004
+    - Added the bfs and sort options to build_zmat.
+
+0.17  Aug 2 2004
+    - Handle linear angles.
+    - Minor POD corrections.
+
+0.16  Jul 3 2004
+    - Changed t/builder.t so that it doesn't fail falsely due to 
+      non-deterministic behavior.
+
+0.15  Jul 2 2004
+    - New methods: distance, angle, dihedral
+    - New module: Chemistry::InternalCoords::Builder
+
+0.11  Jun 2 2004
+    - Fixed a bug where the cartesian coordinate of the third atom was not
+      calculated properly when it refered to the first atom instead of the
+      second.
+
+0.10  Jun 1 2004
+    - First release

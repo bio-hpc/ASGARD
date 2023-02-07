@@ -1,0 +1,75 @@
+GFORTRAN module created from random.F90 on Thu Feb 11 10:37:04 2016
+MD5:ff3c45c52108ed1e0ef4201386efd8c4 -- If you edit this, you'll get what you deserve.
+
+(() () () () () () () () () () () () () () () () () () () () () () () ()
+() () ())
+
+()
+
+()
+
+()
+
+()
+
+(2 'amrand' 'random' 'amrand' 1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC
+DECL UNKNOWN SUBROUTINE) (UNKNOWN 0 0 0 UNKNOWN ()) 3 0 (4) () 0 () () 0
+0)
+5 'amrand_gen' 'random' 'amrand_gen' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0 0 0 UNKNOWN ()) 6 0 (7 8)
+() 0 () () 0 0)
+9 'amrset' 'random' 'amrset' 1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC
+DECL UNKNOWN SUBROUTINE) (UNKNOWN 0 0 0 UNKNOWN ()) 10 0 (11) () 0 () ()
+0 0)
+12 'amrset_gen' 'random' 'amrset_gen' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0 0 0 UNKNOWN ()) 13 0 (
+14 15) () 0 () () 0 0)
+16 'gauss' 'random' 'gauss' 1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC
+DECL UNKNOWN SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0 UNKNOWN ()) 17 0
+(18 19 20) () 0 () () 0 0)
+21 'gauss_gen' 'random' 'gauss_gen' 1 ((PROCEDURE UNKNOWN-INTENT
+MODULE-PROC DECL UNKNOWN SUBROUTINE ALWAYS_EXPLICIT) (UNKNOWN 0 0 0
+UNKNOWN ()) 22 0 (23 24 25 26) () 0 () () 0 0)
+27 'rand_gen_state' 'random' 'rand_gen_state' 1 ((DERIVED UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN UNKNOWN SEQUENCE) (UNKNOWN 0 0 0 UNKNOWN ()) 0 0 ()
+() 0 ((28 'u' (REAL 8 0 0 REAL ()) (1 EXPLICIT (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '97')) 1 0 0
+UNKNOWN-ACCESS ()) (29 'c' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS
+()) (30 'cd' (REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (31 'cm' (
+REAL 8 0 0 REAL ()) () 0 0 0 UNKNOWN-ACCESS ()) (32 'i97' (INTEGER 4 0 0
+INTEGER ()) () 0 0 0 UNKNOWN-ACCESS ()) (33 'j97' (INTEGER 4 0 0 INTEGER
+()) () 0 0 0 UNKNOWN-ACCESS ()) (34 'set' (LOGICAL 4 0 0 LOGICAL ()) ()
+0 0 0 UNKNOWN-ACCESS (CONSTANT (LOGICAL 4 0 0 LOGICAL ()) 0 0))) PUBLIC
+() 0 0)
+35 'random' 'random' 'random' 1 ((MODULE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN) (UNKNOWN 0 0 0 UNKNOWN ()) 0 0 () () 0 () () 0 0)
+11 'iseed' '' 'iseed' 10 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+14 'gen' '' 'gen' 13 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY)
+(DERIVED 27 0 0 DERIVED ()) 0 0 () () 0 () () 0 0)
+15 'iniseed' '' 'iniseed' 13 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+4 'y' '' 'y' 3 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (REAL
+8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+7 'gen' '' 'gen' 6 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY)
+(DERIVED 27 0 0 DERIVED ()) 0 0 () () 0 () () 0 0)
+8 'y' '' 'y' 6 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (REAL
+8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+18 'am' '' 'am' 17 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+19 'sd' '' 'sd' 17 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+20 'v' '' 'v' 17 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN OPTIONAL
+DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+23 'gen' '' 'gen' 22 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY)
+(DERIVED 27 0 0 DERIVED ()) 0 0 () () 0 () () 0 0)
+24 'am' '' 'am' 22 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+25 'sd' '' 'sd' 22 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+26 'v' '' 'v' 22 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN OPTIONAL
+DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+)
+
+('amrand' 0 2 'amrand_gen' 0 5 'amrset' 0 9 'amrset_gen' 0 12 'gauss' 0
+16 'gauss_gen' 0 21 'rand_gen_state' 0 27 'random' 0 35)

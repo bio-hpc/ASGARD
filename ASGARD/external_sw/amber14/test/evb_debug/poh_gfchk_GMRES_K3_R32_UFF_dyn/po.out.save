@@ -1,0 +1,208 @@
+
+          -------------------------------------------------------
+          Amber 10 SANDER                              2008
+          -------------------------------------------------------
+
+| Run on 12/27/2007 at 16:36:24
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: po.out                                                                
+|INPCRD: poh.crd                                                               
+|  PARM: po.top                                                                
+|RESTRT: po.rst                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+ 
+ Here is the input file:
+ 
+  hydroxypyridine to pyridone conversion                                       
+ &cntrl                                                                        
+  ntx=1, irest=0, ntb=0, ntpr=1, cut=999999.0,                                 
+  ievb=1,                                                                      
+  ntf=8, imin=0, tempi=300.0, temp0=300.0, ntt=3, gamma_ln=10,                 
+  nstlim=1, dt=0.0005,                                                         
+ &end                                                                          
+                                                                               
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|  *** cutoff > system size, list only builds once
+|Largest sphere to fit in unit cell has radius =    30.000
+| New format PARM file being parsed.
+| Version =    1.000 Date = 01/11/07 Time = 14:54:09
+ NATOM  =      12 NTYPES =       6 NBONH =       5 MBONA  =       7
+ NTHETH =      10 MTHETA =       8 NPHIH =      22 MPHIA  =       9
+ NHPARM =       0 NPARM  =       0 NNB   =      52 NRES   =       1
+ NBONA  =       7 NTHETA =       8 NPHIA =       9 NUMBND =      10
+ NUMANG =      15 NPTRA  =       7 NATYP =       8 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      12 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real                1890
+|     Hollerith             75
+|     Integer            20923
+|     Max Pairs             66
+|     nblistReal           144
+|     nblist Int        840010
+|       Total             3379 kbytes
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+P                                                                               
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       8, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =**********, intdiel =   1.00000
+     
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =         1, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00050, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =   71277
+     temp0   = 300.00000, tempi   = 300.00000, gamma_ln=  10.00000
+
+| MPI Timing options:
+|      profile_mpi =        0
+
+
+Reading EVB input file from INPUT.EVB_po
+No. of DG at TS      =        1
+No. of DG at minima  =        2
+No. of additional DG =        0
+Total DG points      =        3
+
+EVB options:
+     nevb =      2, nbias  =      0, nmorse =      0, ntw_evb =      1
+     xch_type = dist_gauss
+     evb_dyn  = groundstate
+     dia_shift( 1) =    0.00000
+     dia_shift( 2) =    0.00000
+
+
+No. of redundant internal bonds     =           13
+No. of redundant internal angles    =           19
+No. of redundant internal dihedrals =           24
+No. of internal coordinates         =           56
+DG::  Opening file: pyridone_56.fchk
+DG::  Opening file: 2hydroxypyridine_56.fchk
+DG::  Opening file: 2hydroxypyridine_TS_56_vtight.fchk
+DG::  Opening file: 2hydroxypyridine_TS_56_vtight.fchk
+DG::  Opening file: pyridone_56.fchk
+DG::  Opening file: 2hydroxypyridine_56.fchk
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+MOLECULE                                                                        
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+|  Atom division among processors:
+|         0      12
+| EVB data will be written to evbout
+DG:: external file name and associated alpha exponent
+       1             2hydroxypyridine_TS_56_vtight.fchk       1.91000
+       2                               pyridone_56.fchk       0.12900
+       3                       2hydroxypyridine_56.fchk       0.12900
+DG::  subspace = no_dihedrals
+DG::  nselect =         32
+DG:: scoord(:) = 
+         1         2         3         4         5
+         6         7         8         9        10
+        11        12        13        14        15
+        16        17        18        19        20
+        21        22        23        24        25
+        26        27        28        29        30
+        31        32
+DG:: No. of DG ab initio configuration points =        3
+DG:: No. of DG data points within each configuration point =      561
+DG-EVB: will add UFF VDW term to V_ii
+Atom I      Atom J      Bond Index
+           7           8          13
+DG::  dimension =       1683
+DG::  diss_tol =   1.00000000E-09
+DG::  Current alpha values = 
+   1.91000     0.12900     0.12900
+DG::  Norm of r0 =      0.09369
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+| DG::  residual(', k+1, ') = ****
+DG:: GMRES converged in       29 steps.
+DG::  final residual(  29) =   1.74914750E-10
+ Warning:: the # of geometries read is different from the number of specified gr
+ id points.
+WARNING:: about to take SQRT(-#) in DG GMRES
+Setting vsqrt and higher derivatives to 0.0
+Check routine schlegel_gmres for details
+WARNING:: about to take SQRT(-#) in DG GMRES
+Setting vsqrt and higher derivatives to 0.0
+Check routine schlegel_gmres for details
+WARNING:: about to take SQRT(-#) in DG GMRES
+Setting vsqrt and higher derivatives to 0.0
+Check routine schlegel_gmres for details
+|  DONE generating EVB PES for POH system |  (Internal IRC case with UFF VDW).
+|  Data points are written to EVB_poh_uff.nb
+|  ab initio PES written to HFgrid_poh.nb

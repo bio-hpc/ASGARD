@@ -1,0 +1,52 @@
+| Run on Sun Mar 11 00:51:33 2012
+|
+|Input file:
+|--------------------------------------------------------------
+|MMPBSA.py input file for running GB
+|&general
+|   startframe=1, endframe=2, interval=1,
+|   keep_files=0, netcdf=1,
+|/
+|&pb
+|   istrng=0.1,
+|/
+|&decomp
+|   idecomp=1, dec_verbose=3, print_res="1-10, 15, 20"
+|/
+|--------------------------------------------------------------
+|MMPBSA.py Version=12.0
+|Solvated complex topology file:  ../EstRAL_Files/sol.top
+|Complex topology file:           ../EstRAL_Files/com.top
+|Initial mdcrd(s):                ../EstRAL_Files/test.mdcrd
+|
+|Calculations performed using 2 complex frames.
+|Poisson Boltzmann calculations performed using internal PBSA solver in sander.
+|
+|All units are reported in kcal/mole.
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+POISSON BOLTZMANN:
+
+Complex:
+Energy Component            Average              Std. Dev.   Std. Err. of Mean
+-------------------------------------------------------------------------------
+BOND                       733.8635               43.9430             31.0724
+ANGLE                     2096.6062               29.6910             20.9947
+DIHED                     2657.0109                1.3718              0.9700
+VDWAALS                  -2027.5019                6.6394              4.6948
+EEL                     -17102.1902               39.5827             27.9892
+1-4 VDW                    927.6191                5.8614              4.1447
+1-4 EEL                  10558.7340               24.3362             17.2083
+EPB                      -3170.1088                8.5151              6.0211
+ENPOLAR                   1959.9609                3.0571              2.1617
+EDISPER                  -1101.7174                1.5513              1.0969
+
+G gas                    -2155.8582               28.9047             20.4387
+G solv                   -2311.8652                7.0094              4.9564
+
+TOTAL                    -4467.7235               21.8954             15.4824
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------

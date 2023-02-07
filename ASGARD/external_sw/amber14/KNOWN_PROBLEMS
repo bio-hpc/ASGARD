@@ -1,0 +1,11 @@
+Here is a list of known bugs and issues with Amber and AmberTools
+-----------------------------------------------------------------
+
+- The sander API is known to seg-fault with some versions of the Intel and PGI
+  compilers on some machines. These are revealed in the test suite.
+
+- Parts of the sander API do not work with GCC 4.1.2, and the tests will report
+  failures when run with those compilers.
+
+- FFTW3 does not work with GCC 4.1.2, so RISM and mdgx will not work, and the
+  mdgx tests will report known failures

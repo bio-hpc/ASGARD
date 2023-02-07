@@ -1,0 +1,103 @@
+GFORTRAN module created from amoeba_vdw.F90 on Thu Feb 11 10:41:00 2016
+MD5:677e999c8c03ba1f923c853aed780e74 -- If you edit this, you'll get what you deserve.
+
+(() ()
+() () () () () () () () () () () () () () () () () () () () () () () ()
+())
+
+()
+
+()
+
+()
+
+()
+
+(2 'am_vdw_adjust_ene_frc' 'amoeba_vdw' 'am_vdw_adjust_ene_frc' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 3 0 (4 5 6 7 8 9 10) () 0 () () 0 0)
+11 'am_vdw_deallocate' 'amoeba_vdw' 'am_vdw_deallocate' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0 0 0
+UNKNOWN ()) 0 0 () () 0 () () 0 0)
+12 'am_vdw_direct_ene_frc_i' 'amoeba_vdw' 'am_vdw_direct_ene_frc_i' 1 (
+(PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN
+0 0 0 UNKNOWN ()) 13 0 (14 15 16 17 18 19 20 21 22 23) () 0 () () 0 0)
+24 'am_vdw_longrange_ene' 'amoeba_vdw' 'am_vdw_longrange_ene' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 25 0 (26 27) () 0 () () 0 0)
+28 'am_vdw_read_parm' 'amoeba_vdw' 'am_vdw_read_parm' 1 ((PROCEDURE
+UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN FUNCTION) (INTEGER 4 0 0 INTEGER
+()) 29 0 (30) () 28 () () 0 0)
+31 'am_vdw_set_user_bit' 'amoeba_vdw' 'am_vdw_set_user_bit' 1 ((
+PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL UNKNOWN SUBROUTINE) (UNKNOWN 0
+0 0 UNKNOWN ()) 32 0 (33) () 0 () () 0 0)
+33 'do_this' '' 'do_this' 32 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+30 'nf' '' 'nf' 29 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+27 'vir_tensor' '' 'vir_tensor' 25 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (2 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '3') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '3')) 0 () () 0 0)
+26 'ene_vdw' '' 'ene_vdw' 25 ((VARIABLE OUT UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+4 'crd' '' 'crd' 3 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DIMENSION
+DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (2 ASSUMED_SIZE (CONSTANT (INTEGER 4
+0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '3') (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+5 'num_adjust_list' '' 'num_adjust_list' 3 ((VARIABLE IN UNKNOWN-PROC
+UNKNOWN UNKNOWN DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+6 'adjust_list' '' 'adjust_list' 3 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () (2
+ASSUMED_SIZE (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '3') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'1') ()) 0 () () 0 0)
+7 'vdw_weight' '' 'vdw_weight' 3 ((VARIABLE IN UNKNOWN-PROC UNKNOWN
+UNKNOWN DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (1 EXPLICIT (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0
+INTEGER ()) 0 '9')) 0 () () 0 0)
+8 'ene_vdw' '' 'ene_vdw' 3 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+9 'frc' '' 'frc' 3 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN
+DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (2 ASSUMED_SIZE (CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'3') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+10 'virial' '' 'virial' 3 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN
+DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (2 EXPLICIT (CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'3') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0
+0 INTEGER ()) 0 '3')) 0 () () 0 0)
+14 'i' '' 'i' 13 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+15 'ipairs' '' 'ipairs' 13 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DIMENSION DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () (1 ASSUMED_SIZE (
+CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+16 'numtot' '' 'numtot' 13 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DUMMY) (INTEGER 4 0 0 INTEGER ()) 0 0 () () 0 () () 0 0)
+17 'xk' '' 'xk' 13 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+18 'yk' '' 'yk' 13 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+19 'zk' '' 'zk' 13 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN DUMMY) (
+REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+20 'crd' '' 'crd' 13 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN
+DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (2 ASSUMED_SIZE (CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'3') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+21 'ene_vdw' '' 'ene_vdw' 13 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN
+UNKNOWN DUMMY) (REAL 8 0 0 REAL ()) 0 0 () () 0 () () 0 0)
+22 'frc' '' 'frc' 13 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN
+DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (2 ASSUMED_SIZE (CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'3') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') ()) 0 () () 0 0)
+23 'virial' '' 'virial' 13 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN
+DIMENSION DUMMY) (REAL 8 0 0 REAL ()) 0 0 () (2 EXPLICIT (CONSTANT (
+INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0
+'3') (CONSTANT (INTEGER 4 0 0 INTEGER ()) 0 '1') (CONSTANT (INTEGER 4 0
+0 INTEGER ()) 0 '3')) 0 () () 0 0)
+)
+
+('am_vdw_adjust_ene_frc' 0 2 'am_vdw_deallocate' 0 11
+'am_vdw_direct_ene_frc_i' 0 12 'am_vdw_longrange_ene' 0 24
+'am_vdw_read_parm' 0 28 'am_vdw_set_user_bit' 0 31)

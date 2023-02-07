@@ -1,0 +1,49 @@
+#!/bin/sh
+
+. ../../program_error.sh
+. ../cannot_run.sh
+
+# This is a test file to run the APBS test for MMPBSA
+
+if [ -z "$AMBERHOME" ]; then
+   echo "Error: AMBERHOME must be set!"
+   exit 1
+fi
+
+# Define executable
+if [ -z "$DO_PARALLEL" ]; then
+   EXE=$AMBERHOME/bin/MMPBSA.py
+else
+   if [ `$DO_PARALLEL ../../numprocs` -gt 2 ]; then
+      echo "Cannot have more than 2 processors for this test."
+      exit 0
+   fi
+   EXE=$AMBERHOME/bin/MMPBSA.py.MPI
+fi
+
+test -x $AMBERHOME/bin/sander.APBS || cannot_run $AMBERHOME/bin/sander.APBS
+test -x $EXE || cannot_run $EXE
+
+# Write input file
+cat > mmpbsa.in << EOF
+MMPBSA input file for running GB
+&general
+   startframe=1, endframe=2, interval=1,
+   keep_files=0, debug_printlevel=2,
+/
+&pb
+   istrng=0.1, sander_apbs=1,
+/
+EOF
+
+# Execute the program
+$DO_PARALLEL $EXE -O -i mmpbsa.in \
+                     -sp ../EstRAL_Files/sol.top \
+                     -cp ../EstRAL_Files/com.top \
+                     -rp ../EstRAL_Files/rec.top \
+                     -lp ../EstRAL_Files/lig.top \
+                     -y ../EstRAL_Files/test.mdcrd > mmpbsa.out 2>&1 || error
+
+../../dacdif -t 3 -a 0.2 FINAL_RESULTS_MMPBSA.dat.save FINAL_RESULTS_MMPBSA.dat
+
+rm -f mmpbsa.in mmpbsa.out io.mc

@@ -1,0 +1,92 @@
+ 
+|                *****************************************************
+|                *   CHAMBER: Charmm psf to AMBER prmtop convertor   *
+|                *                                                   *
+|                *                       v1.5                        *
+|                *                                                   *
+|                *                    Written by:                    *
+|                *                 Mark J. Williamson                *
+|                *                 Michael F. Crowley                *
+|                *                   Ross C. Walker                  *
+|                *                   Jason Deckman                   *
+|                *                   Robin M. Betz                   *
+|                *                                                   *
+|                *****************************************************
+ 
+EXTended file format is being used
+
+===========================================================
+          PSF input parsing summary
+===========================================================
+
+                        Number of PSF flags found:        4
+
+                            Number of atoms found:    33937
+                         Number of residues found:    10316
+
+                            Number of bonds found:    33917
+                           Number of angles found:    17051
+                        Number of dihedrals found:    10383
+                        Number of impropers found:      735
+
+                           Number of donors found:    20419
+                        Number of acceptors found:    10386
+    Number of explicit nonbonded exclusions found:        0
+
+                           Number of groups found:    11217
+
+===========================================================
+
+   --- Found all atom types in topology file
+
+WARNING: No NONBONDED parameter section in this stream file: 
+| /server-home1/rbetz/git_tree/amber/dat/chamber/top_all36_carb.rtf               
+
+   --- Found all nonbond parameters
+| READING : /server-home1/rbetz/git_tree/amber/dat/chamber/toppar_water_ions.str            
+| READING : /server-home1/rbetz/git_tree/amber/dat/chamber/top_all36_carb.rtf               
+   Seems to be topology file... skipping
+| READING : /server-home1/rbetz/git_tree/amber/dat/chamber/par_all36_carb.prm               
+| READING : /server-home1/rbetz/git_tree/amber/dat/chamber/par_all36_prot.prm               
+   --- Found all bonded parameters
+
+===========================================================
+          Parameter assignment summary             
+===========================================================
+
+CHARMM ff version:   36
+   CHARMM ff type: *>>>>>>>>CHARMM36 All-Hydrogen Topology 
+
+                    Number of atom types assigned:       51
+                    Number of bond types assigned:       88
+                   Number of angle types assigned:      195
+                   Number of UB angle terms found:     3236
+                Number of UB angle types assigned:       70
+               Number of dihedrals types assigned:      452
+                               Explicit:        296
+                               WildCard:        156
+                Number of improper types assigned:       21
+
+===========================================================
+
+
+===========================================================
+        Created prmtop summary
+===========================================================
+
+                    Number of bonds with hydrogen:    31879
+                 Number of bonds without hydrogen:     2038
+
+                   Number of angles with hydrogen:    14276
+                Number of angles without hydrogen:     2775
+
+                Number of dihedrals with hydrogen:     7239
+             Number of dihedrals without hydrogen:     5033
+===========================================================
+
+ Determining filetype of coordinate file: 2b1q-carb-wat-ions.crd
+ Identified CHARMM CRD File.
+
+
+<write_prmtop_header> NPHB      0
+| Conversion carried out in     1.35 seconds

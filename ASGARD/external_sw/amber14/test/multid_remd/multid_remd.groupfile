@@ -1,0 +1,9 @@
+# T=300K, ASH
+-O -i remd.mdin1 -p ala4_ash.parm7 -c ala4_ash.md.rst7 -o ala4_ash.rep1.mdout -r ala4_ash.rep1.rst7 -remlog rem.log
+# T=400K, ASH
+-O -i remd.mdin2 -p ala4_ash.parm7 -c ala4_ash.heat.rst7 -o ala4_ash.rep2.mdout -r ala4_ash.rep2.rst7 -remlog rem.log
+
+# T=300K, ASP
+-O -i remd.mdin1 -p ala4_asp.parm7 -c ala4_asp.md.rst7 -o ala4_asp.rep3.mdout -r ala4_asp.rep3.rst7 -remlog rem.log
+# T=400K, ASP
+-O -i remd.mdin2 -p ala4_asp.parm7 -c ala4_asp.heat.rst7 -o ala4_asp.rep4.mdout -r ala4_asp.rep4.rst7 -remlog rem.log

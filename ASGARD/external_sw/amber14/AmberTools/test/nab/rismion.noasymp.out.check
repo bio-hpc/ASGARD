@@ -1,0 +1,94 @@
+Reading parm file (Na+.parm7)
+title:
+                                                                                
+	mm_options:  e_debug=0
+	mm_options:  ntpr=1
+	mm_options:  ntpr_md=1
+	mm_options:  cut=999.0
+	mm_options:  dt=0.001
+	mm_options:  rattle=0
+	mm_options:  tempi=0
+	mm_options:  zerov=0
+	mm_options:  rism=1
+	mm_options:  ntpr_rism=1
+	mm_options:  apply_rism_force=0
+	mm_options:  buffer=12
+	mm_options:  solvcut=999
+	mm_options:  asympCorr=0
+	mm_options:  progress=1
+	mm_options:  xvvfile=spc-nacl.xvv
+|solute_epot      [kcal/mol]                Total                   LJ              Coulomb                 Bond                Angle             Dihedral               H-Bond                LJ-14           Coulomb-14           Restraints              3D-RISM
+|rism_exchem      [kcal/mol]                Total             ExChem_O            ExChem_H1           ExChem_Na+           ExChem_Cl-
+|rism_exchGF      [kcal/mol]                Total          ExChem_GF_O         ExChem_GF_H1        ExChem_GF_Na+        ExChem_GF_Cl-
+|rism_potUV       [kcal/mol]                Total       UV_potential_O      UV_potential_H1     UV_potential_Na+     UV_potential_Cl-
+|rism_volume      [A^-3]                      PMV
+|rism_exNumb      [#]                                          ExNum_O             ExNum_H1            ExNum_Na+            ExNum_Cl-
+|rism_exChrg      [e]                       Total              ExChg_O             ExChg_H1            ExChg_Na+            ExChg_Cl-
+|rism_KB          [A^3]                                Kirkwood-Buff_O     Kirkwood-Buff_H1    Kirkwood-Buff_Na+    Kirkwood-Buff_Cl-
+|rism_DCFI        [A^3]                                  DCFIntegral_O       DCFIntegral_H1      DCFIntegral_Na+      DCFIntegral_Cl-
+      iter    Total       bad      vdW     elect   nonpolar   genBorn      frms
+ff:     0    -70.08      0.00      0.00      0.00      0.00    -70.08  0.00e+00
+solute_epot       -7.00835082E+001   0.00000000E+000   0.00000000E+000   0.00000000E+000   0.00000000E+000   0.00000000E+000   0.00000000E+000   0.00000000E+000   0.00000000E+000   0.00000000E+000  -7.00835082E+001
+rism_exchem       -7.00835082E+001  -1.27233600E+004   1.26633006E+004   2.31649613E+001  -3.31889746E+001
+rism_exchGF       -7.23890974E+001  -1.27241978E+004   1.26618526E+004   2.31462017E+001  -3.31900435E+001
+rism_potUV        -7.57894516E+001  -6.34495624E+003   6.27919488E+003   9.59470814E+000  -1.96228002E+001
+rism_volume        2.48213590E+001
+rism_exNumb                         -1.16818002E+000  -2.33583497E+000  -1.88050924E-001   2.48677266E-001
+rism_exChrg       -4.36505661E-001   9.90149388E-001  -9.89926858E-001  -1.88050924E-001  -2.48677266E-001
+rism_KB                             -3.50804737E+001  -3.50725896E+001  -3.12266117E+003   4.12938593E+003
+rism_DCFI                            6.21924172E+005  -3.11142113E+005  -7.30921858E+005   7.31415616E+005
+md returns 0
+
+|Timing summary:
+|              Initialize       0.182
+|             Molec. Dyn.       3.637
+|             Normal Mode       0.000
+|             Conj. Grad.       0.000
+|                  Newton       0.000
+|-------------------------
+|                   Total       3.820
+
+|Molecular Dynamics Timing Summary:
+|          1st Derivative       3.637
+|                     I/O       0.000
+|                   Other       0.000
+|-------------------------
+|                   Total       3.637
+
+|1st derivative timing summary:
+|             constraints       0.000
+|                   bonds       0.000
+|                  angles       0.000
+|                torsions       0.000
+|                pairlist       0.000
+|                 nonbond       0.000
+|               gen. Born       0.000
+|       Poisson Boltzmann       0.000
+|                 3D-RISM       3.637
+|                   Other       0.000
+|-------------------------
+|                   Total       3.637
+
+|CPU Timer summary for 3D-RISM Total        
+|  3D-RISM initialization                           0.180   (  4.73%)
+|  3D-RISM Output                                   0.004   (  0.11%)
+|      Excess Chemical Potential                        0.028   ( 70.00%)
+|      Other                                            0.012   ( 30.00%)
+|    Thermodynamics                                   0.040   (  1.10%)
+|      Solvation box resize                             0.308   (  8.59%)
+|          FFT                                              0.744   ( 23.13%)
+|            Overlap                                          0.264   ( 27.27%)
+|            Project                                          0.704   ( 72.73%)
+|          MDIIS Advance                                    0.968   ( 30.10%)
+|          Other                                            1.504   ( 46.77%)
+|        R1RISM                                           3.216   ( 99.75%)
+|        Other                                            0.008   (  0.25%)
+|      RXRISM                                           3.224   ( 89.96%)
+|        Lennard-Jones                                    0.008   ( 15.39%)
+|        Coulomb                                          0.008   ( 15.38%)
+|        Asymptotics                                      0.036   ( 69.23%)
+|      Potential                                        0.052   (  1.45%)
+|    Solve 3D-RISM                                    3.584   ( 98.90%)
+|  3D-RISM                                          3.624   ( 95.17%)
+|3D-RISM Total                                    3.808   (100.00%)
+

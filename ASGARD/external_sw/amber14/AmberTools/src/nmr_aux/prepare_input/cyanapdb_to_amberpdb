@@ -1,0 +1,65 @@
+#!/usr/bin/perl -n -w
+#
+########################################################################
+#
+#  Sample script to convert a cyana pdb file to Amber format:
+#
+#  You should copy this file to your working directory, i.e. where the
+#     cyana pdb files are.  Then:
+#
+#  (1) Edit the "system-specific changes below for your particular problem
+#           (examples are given between the "#=================" lines below)
+#
+#  (2) Run this script as a filter: 
+#           cyanapdb_to_amberpdb < cyana-pdb-file > amber-pdb-file
+#
+########################################################################
+#
+#   first, read in a pdb file line and unpack
+#
+next unless /^ATOM|^HETATM/;
+( $atno, $atname, $alt, $resname, $chain, $resno, $x, $y, $z ) =
+    unpack("x7 a4 x a4 a a4 a1 a4 x4 a8 a8 a8",$_);
+
+#
+#  do modifications necessary here:
+#
+
+#   Generic substitutions, should work for all RNA's:
+
+$alt = " ";
+
+$atname = "HO2'" if $atname eq " HO2";
+$atname = "H5''" if $atname eq " H5\"";
+
+$resname = "  G" if $resname eq "RGUA";
+$resname = "  C" if $resname eq "RCYT";
+$resname = "  A" if $resname eq "RADE";
+$resname = "  U" if $resname eq "URA ";
+
+#=========================================================================
+#   System-specific changes: edit for your particular problem:
+#
+#       (In this example, we convert the cyana residue numbers to Amber
+#       residue numbers, skip the cyana linker residues, and remove 
+#       the 5'-terminal phosphates from each of the Amber strands.)
+
+$chain = "B" if $resno > 236;  #end of the first RNA strand
+
+next if $resno >= 238 && $resno <=244;  # skip the cyana linker residues
+
+next if $resno ==  105 && $atname eq " P  ";
+next if $resno ==  105 && $atname eq " OP1";
+next if $resno ==  105 && $atname eq " OP2";
+
+next if $resno == 282 && $atname eq " P  ";
+next if $resno == 282 && $atname eq " OP1";
+next if $resno == 282 && $atname eq " OP2";
+#=========================================================================
+
+#
+#  write back out
+#
+printf "ATOM   %4s %-4s %3s %1s%4d    %8.3f%8.3f%8.3f\n", 
+      $atno,$atname,$resname,$chain, $resno,$x,$y,$z;
+

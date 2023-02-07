@@ -1,0 +1,104 @@
+* DHFR CMAP PBC TIP3P Minimization
+* By Ross Walker & Mark Williamson (SDSC)
+*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Read in Topology and parameter file for ALL22
+
+    OPEN READ CARD UNIT 1 NAME "../../../../../dat/chamber/top_all22_prot.inp"
+    READ RTF CARD UNIT 1
+    CLOSE UNIT 1
+
+    OPEN READ CARD UNIT 2 NAME "../../../../../dat/chamber/par_all22_prot.inp"
+    READ PARAM CARD UNIT 2
+    CLOSE UNIT 2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Read in DHFR Gas Phase PDB
+    open unit 3 read card name "dhfr_gas_charmm.pdb"
+    read sequ pdb unit 3
+    close unit 3
+    generate DHFR first nter last cter setup
+
+! No disulphide bonds to add.
+ 
+! Read DHFR Coordinates
+    read coor pdb name "dhfr_gas_charmm.pdb"
+
+! Translate the DHFR so it will be in the middle of the box.
+    coor trans zdir -32.0 select all end
+    coor trans xdir -32.0 select all end
+    coor trans ydir -32.0 select all end
+
+    define DHFR select segid DHFR end
+
+! Next we build the waters - Read in the Water PDB
+   read sequ TIP3 18750
+   generate WAT noangle nodihedral first none last none
+
+! this water box has 18750 waters (56250 atoms)
+! # of atoms per A**3 (ie "number density") in pure water should be ~0.100
+   read coor card append name watbox655.crd
+
+! align the edges of the water box with the principal axes
+! norotate keyword can be important later when images are present
+
+   COORdinate ORIEnt NOROtate
+
+!  delete waters that have oxygens within 2.5 angstroms
+!  of a heavy atom that is not water (remove overlaps)
+!  diameter of water is approximately 2.8 A
+
+   DELETE ATOM SELECTION .BYRES. ( SEGID WAT .AND. TYPE OH2 .AND. -
+      ( ( .NOT. SEGID WAT .AND. .NOT. ( HYDROGEN .OR. LONE ) -
+                                      ) .AROUND. 2.50 ) ) END
+
+   write coor pdb name initial_structure_from_charmm.pdb
+
+   open unit 1 form write name dhfr_cmap_pbc.psf
+   write psf card unit 1
+   close unit 1
+
+!**********************************************************
+!**********************************************************
+!
+!       Minimization
+!
+!**********************************************************
+!**********************************************************
+
+  coor stat
+  COOR TRANS  XDIR ?XAVE YDIR ?YAVE ZDIR ?ZAVE  FACT -1.0
+  coor stat
+
+  CALC 9 = ?XMAX - ?XMIN
+  CALC 10 = ?YMAX - ?YMIN
+  CALC 11 = ?ZMAX - ?ZMIN
+
+  Crystal define orthorhombic @9 @10 @11 90 90 90
+  crystal build cutoff 15 noper 0
+
+  image byseg xcen 0.0 ycen 0.0 zcen 0.0 select segid DHFR end
+  image byres xcen 0.0 ycen 0.0 zcen 0.0 select segid WAT end
+
+! Run the update to generate the initial image atoms
+! Use bycb list builder
+
+  UPDATE      bycb           vswi           eps      1.0                -
+              INBFRQ    -1   -
+              cutnb     11   ctofnb     9   ctonnb   7.5 -
+              Ewald          kappa   0.340  pmEwald        order      4 -  !PME
+              fftx      96   ffty      80   fftz      64                   !PME
+
+  MINI CONJ NSTEP 500 TOLGRD 0.0001 NPRINT 10 -
+       vswitch cutnb 11 ctofnb 9 ctonnb 8 cutim 11 -
+       inbfrq -1 imgfrq -1
+
+  MINI ABNR NSTEP 100 TOLGRD 0.0001 NPRINT 10 -
+       vswitch cutnb 11 ctofnb 9 ctonnb 8 cutim 11 -
+       inbfrq -1 imgfrq -1
+
+  WRITE COOR card NAME 01_minimize.crd
+  WRITE COOR pdb NAME 01_minimize.pdb
+
+  stop
+ 

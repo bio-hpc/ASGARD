@@ -1,0 +1,13 @@
+file rprm name=(input.prmtop) read
+file rcbd name=(input.restrt) pack=4 read
+file wprm name=(pimd.prmtop) wovr
+file wcrd name=(pimd.restrt) wovr
+
+action
+~ use original mass
+omas
+pimd
+~ make 4 copies of the whole system
+space numc=4 pick #prt 1 323 done
+
+*EOD

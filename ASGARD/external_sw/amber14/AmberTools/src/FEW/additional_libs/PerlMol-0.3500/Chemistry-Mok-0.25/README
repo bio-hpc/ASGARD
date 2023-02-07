@@ -1,0 +1,59 @@
+Chemistry/Mok version 0.25
+==========================
+
+The purpose of mok is to read all the molecules found in the files that are
+given in the command line, and for each molecule execute the CODE that is
+given. The CODE is given in Perl and it has at its disposal all of the methods
+of the PerlMol toolkit (http://www.perlmol.org/).
+
+This mini-language is intended to provide a powerful environment for writing
+"molecular one-liners" for extracting and munging chemical information.  It was
+inspired by the AWK programming language by Aho, Kernighan, and Weinberger,
+the SMARTS molecular pattern description language by Daylight, Inc., and the
+Perl programming language by Larry Wall.
+
+Mok takes its name from Ookla the mok, an unforgettable character from the
+animated TV series "Thundarr the Barbarian", and from shortening "molecular
+awk".  For more details about the mok mini-language, see LANGUAGE SPECIFICATION
+in the man page.
+
+CHANGES SINCE VERSION 0.24
+        - Read one molecule at a time using the Chemistry-Mol-0.30 interface.
+        - New special variable $FH
+        - Added support for Chemistry::3DBuilder (-3 command-line option)
+        - Add #line to the generated code so that errors give more meaninful
+          line numbers.
+        - Fixed parsing bug where the first block used an explicit pattern
+          language
+        - Restructured Chemistry::Mok to be more object-oriented: 
+        - WARNING: the mok object is now a hash reference instead of an array
+          reference. This may affect derived classes.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+        Chemistry::Mol          => 0.30,
+        Chemistry::Pattern      => 0.21,
+        Chemistry::File::SMARTS => 0.11,
+        Chemistry::Bond::Find   => 0.21,
+        Test::Simple            => 0,
+        Scalar::Util            => 1.01,
+        Text::Balanced          => 1.87,
+        Math::VectorReal        => 1.0,
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2005 Ivan Tubert-Brohman <itub@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

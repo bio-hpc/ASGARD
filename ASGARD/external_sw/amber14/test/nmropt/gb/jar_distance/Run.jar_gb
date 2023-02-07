@@ -1,0 +1,57 @@
+#!/bin/sh
+#TEST-PROGRAM sander, pmemd
+#TEST-DESCRIP test steered MD with 1 distance
+#TEST-PURPOSE Regression
+#TEST-STATE   Documented
+
+. ../../../program_error.sh
+
+if [ -z "$TESTsander" ]; then
+   TESTsander="../../../../bin/sander"
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+   export DO_PARALLEL=" "
+fi
+
+cat > mdin <<EOF
+ Test of nmropt on 1 distance
+ &cntrl                                                                        
+   ig=71277,       ! set random seed
+   nstlim = 20,    ! 100 steps
+   igb=5,          ! gb solvent
+   ntb=0,          ! no periodic boundaries
+   ntx=5,          ! restart with velocities
+   irest=1, 
+   ntpr=1,         ! mdout
+   dt=0.001,       ! 1 fs timestep
+   ntt=1,          ! T coupling
+   ntc=2,          ! use shake
+   ntf=2,  
+   tol=0.000001,
+   ntwr = 200,     ! dont write rst
+   jar=1, 
+ /
+ &wt type='DUMPFREQ', istep1=2  /
+ &wt type='END'   /
+DISANG=dist_gb.RST
+DUMPAVE=dist_gb_vs_t
+LISTIN=POUT
+LISTOUT=POUT
+EOF
+
+cat > dist_gb.RST << EOF
+# test jarzyinski on a distance
+ &rst  iat=1177,1217, r2=5.49, rk2 = 100.0, r2a=6.49,   /
+EOF
+$DO_PARALLEL $TESTsander -O -i mdin -c ../myoglobin_gb.inpcrd -p ../myoglobin_gb.prmtop -o mdout < /dev/null || error
+        
+if [ `basename $TESTsander` = "pmemd.mic_offload.MPI" ]; then
+../../../dacdif -r 1.0e-08 mdout.save mdout
+else
+../../../dacdif mdout.save mdout
+fi
+../../../dacdif dist_gb_vs_t.save dist_gb_vs_t
+/bin/rm -f mdin restrt mdinfo dist_gb.RST logfile
+
+exit 0

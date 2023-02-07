@@ -1,0 +1,34 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander, pmemd
+#TEST-DESCRIP canonical ensemble, periodic boundaries, shake, water
+#TEST-PURPOSE regression, basic
+#TEST-STATE   unused
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+    setenv DO_PARALLEL " "
+endif
+
+cat > gbin <<EOF
+ short md, nvt ensemble
+ &cntrl
+   ntx=5, irest=1,
+   ntc=2, ntf=2, tol=0.0000001, 
+   nstlim=5000, ntt=2, 
+   ntpr=50, ntwr=10000, 
+   dt=0.001,  vrand=500, ntave=500,
+ /
+ &ewald
+   nfft1=50, nfft2=50, nfft3=50,
+ /
+EOF
+$DO_PARALLEL $TESTsander -O -i gbin -c eq1.x -o mdout.vrand_long < /dev/null || go to error
+
+# ../dacdif mdout.vrand.save mdout.vrand
+/bin/rm -f gbin restrt mdinfo
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

@@ -1,0 +1,97 @@
+#!/bin/csh -f
+
+echo ""
+echo "Compare leap vs. plep for Weiner et al. ff"
+echo "This is a developer's test."
+echo ""
+echo "  It's assumed that plep progs are in AMBERHOME/bin"
+echo "  and AMBERHOME/dat/db4.dat has been generated"
+echo ""
+
+if ( ! ( $?AMBERHOME ) ) then
+	echo "Error - must define AMBERHOME environment variable"
+	exit(1)
+endif
+
+set err = 0
+
+if ( ! -f $AMBERHOME/dat/db4.dat ) then
+	echo "        No $AMBERHOME/dat/db4.dat"
+	set err = 1
+endif
+
+set SANDER = $AMBERHOME/bin/sander.5.0.1
+if ( ! -e $SANDER ) then
+	echo "        No $SANDER "
+	set err = 1
+endif
+
+set LINK = $AMBERHOME/bin/link
+if ( ! -e $LINK ) then
+	echo "        No $LINK "
+	set err = 1
+endif
+
+set EDIT = $AMBERHOME/bin/edit
+if ( ! -e $EDIT ) then
+	echo "        No $EDIT"
+	set err = 1
+endif
+
+set PARM = $AMBERHOME/bin/parm
+if ( ! -e $PARM ) then
+	echo "        No $PARM"
+	set err = 1
+endif
+
+if ( err == 1 ) then
+	exit(1)
+endif
+
+echo ""
+echo "Nucleic acids - Weiner et al. ff"
+echo ""
+echo "  get 'plep' energies, deleting intermediate files - dna, then rna"
+echo ""
+foreach i ( dna rna )
+	echo "  -- $i :"
+	echo "     link"
+	$LINK	-O \
+		-i link_${i}91.in \
+		-o link_nuc.out \
+		-l link_nuc.bin \
+		-p $AMBERHOME/dat/db4.dat			|| goto error
+
+	echo "     edit"
+	$EDIT	-O \
+		-i edit.in \
+               	-o edit_nuc.out \
+               	-l link_nuc.bin \
+               	-e edit_nuc.bin \
+               	-pi ../../ff91/all_${i}91.p 			|| goto error
+
+	echo "     parm"
+	$PARM	-O \
+		-i parm.in \
+               	-o parm_nuc.out \
+               	-e edit_nuc.bin \
+               	-f $AMBERHOME/dat/parm91.dat \
+               	-c parm_nuc.crd \
+               	-p parm_nuc.top				|| goto error
+
+	echo "     sander"
+	$SANDER	-O \
+		-i ../../ff91/sander_ff91.in \
+		-o sander_${i}91.out \
+		-p parm_nuc.top \
+		-c parm_nuc.crd 			|| goto error
+
+	echo "     (cleaning up all but sander_${i}91.out)"
+	/bin/rm -f restrt mdinfo *.bin link_nuc.out edit_nuc.out parm_nuc.*
+end
+exit(0)
+
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

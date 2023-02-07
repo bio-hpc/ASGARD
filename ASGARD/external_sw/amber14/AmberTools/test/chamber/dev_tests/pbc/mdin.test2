@@ -1,0 +1,29 @@
+Load restart with PBC, but no ewald !seems to work
+&cntrl
+  irest  = 1,           ! trajectory restart
+  ntx    = 5,           !X and V are read formatted; box information will be read if ntb>0.
+                        !Velocity information will only be used if irest=1.
+  ntb    = 2,           !constant pressure perodic boundaries
+  pres0  = 1.0,         !ref pressure of 1 bar
+  ntp    = 1,           !constant pressure with isotropic position scaling
+  cut    = 9,           !9A cut off
+  ntc    = 2,           !SHAKE; bonds involving H are constrainted
+  ntf    = 2,           !all H-atom bonds forces are not evaluated
+  tempi  = 300.0,       !initial temp = 300K
+  temp0  = 300.0,       !final temp = 300K
+  ntt    = 0,           !NVE
+  nstlim = 0,         !run for 0 steps
+  dt = 0.001,           !1fs time step
+  ntpr = 1,             !print details to log every 1 steps
+  ntwx = 1,             !write coordinates to mdcrd every 1 steps
+  ntwr = 1,          !write restart file to restrt every 1 steps
+  scee=1.0,scnb=1.0,    !specific 1-4 scalings for CHARMM
+ &end
+
+ &ewald
+    use_pme=0,
+    eedmeth=4, !No switch is used
+    vdwmeth=0, !No correction for vdw after cut off
+    verbose=3
+ &end
+

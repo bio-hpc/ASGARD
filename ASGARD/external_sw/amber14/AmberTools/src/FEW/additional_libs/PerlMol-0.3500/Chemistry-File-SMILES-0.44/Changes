@@ -1,0 +1,54 @@
+Revision history for Perl extension Chemistry::File::SMILES
+
+0.44  Mar 29 2005
+        - Fixed memory leak that prevented the last atom from being garbage
+          collected.
+
+0.43  Nov 17 2004
+        - Fixed incompatibilities with the Chemistry::File 0.30 interface;
+          renamed the ancient 'new' method to 'new_parser'.
+        - Refactored the writing code to make it more object-oriented.
+        - Added the 'number' option for output.
+        - Read atom names.
+
+0.42  Aug 6 2004
+        - Fixed bug report about element symbols and empty strings (thanks to
+          kila_gani at yahoo.co.jp for noticing this).
+        - Fixed bug where ring closure digits appeared after branches on output.
+        - Fixed bug where non-standard hydrogen count was lost on output.
+
+0.41  Jun 30 2004
+        - Fixed bug for writing SMILES that contain disconnected hydrogen atoms.
+
+0.40  Jun 16 2004
+        - Added canonicalization (unique SMILES) and aromaticity support.
+
+0.33  Jun 10 2004
+        - Added multiline support.
+
+0.32  May 31 2004
+        - Changed the way disconnected structures are handled. Now "bonds" of 
+          type . (dot) don't produce any bond in the molecule object (previous
+          versions added a bond with order=0).
+
+0.31  May 18 2004
+        - Added missing dependency on Chemistry-Mol-0.22 to Makefile.PL
+        - Added support for a name after the SMILES string.
+
+0.30  May 17 2004
+        - Added write_string (smiles output). Aromatic atoms and disconnected
+          structures are still not properly implemented.
+
+0.21  Mar 1 2004
+        - Distribution renamed to Chemistry::File::SMILES
+        - Use Chemistry::File interface
+        - Some changes in the way charges and h-counts are parsed;
+          (e.g., now -- is converted to -1, H is converted to 1).
+
+0.11  Nov 3 2003
+        - Now the default atom and bond handlers call new_atom and new_bond
+            instead of creating the atom and bond themselves.
+        - Fixed a POD error.
+
+0.10  Sep 6 2003
+	- first release as Chemistry::Smiles

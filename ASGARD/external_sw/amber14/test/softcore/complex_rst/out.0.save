@@ -1,0 +1,477 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/21/2014 at 15:07:33
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin.0                                                                
+| MDOUT: out.0                                                                 
+|INPCRD: rst.0                                                                 
+|  PARM: prmtop.0                                                              
+|RESTRT: restrt.0                                                              
+|  REFC: refc                                                                  
+| MDVEL: mdvel.000                                                             
+| MDFRC: mdfrc.000                                                             
+|  MDEN: mden.000                                                              
+| MDCRD: mdcrd.000                                                             
+|MDINFO: mdinfo.000                                                            
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+|    REMLOG: rem.log
+|   REMTYPE: rem.type
+|  REMSTRIP: 
+|   SAVEENE: saveene
+|CLUSTERINF: cluster.info
+| RESERVOIR: reserv/frame
+|   REMDDIM: 
+
+ 
+ Here is the input file:
+ 
+test 0                                                                         
+ &cntrl                                                                        
+  imin = 0, ntx = 5, irest = 1,                                                
+  ntpr = 5, ntwr = 2500, ntwx = 2500,                                          
+  ntf = 1, ntc = 2, cut = 9.0, ntr = 0,                                        
+  icfe = 1, clambda = 0.35,                                                    
+  crgmask = ':BNZ',                                                            
+  scmask = ':BNZ',                                                             
+  ifsc = 1,                                                                    
+  ntb = 2, nstlim = 20, dt = 0.002,                                            
+  temp0 = 300, ntt = 3, gamma_ln = 5,                                          
+  ntp = 1, pres0 = 1.0, taup = 2.0,                                            
+  nmropt=1,                                                                    
+ /                                                                             
+ &wt                                                                           
+  TYPE="END",                                                                  
+ /                                                                             
+DISANG=disang                                                                  
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags: MPI                                                                    
+ getting new box info from bottom of inpcrd
+|  INFO: Old style inpcrd file read
+
+| peek_ewald_inpcrd: Box info found
+|Largest sphere to fit in unit cell has radius =    28.741
+| New format PARM file being parsed.
+| Version =    1.000 Date = 05/18/07 Time = 14:23:40
+ NATOM  =   26836 NTYPES =      17 NBONH =   25532 MBONA  =    1316
+ NTHETH =    2981 MTHETA =    1771 NPHIH =    5677 MPHIA  =    4071
+ NHPARM =       0 NPARM  =       0 NNB   =   46648 NRES   =    8242
+ NBONA  =    1316 NTHETA =    1771 NPHIA =    4071 NUMBND =      44
+ NUMANG =      91 NPTRA  =      47 NATYP =      32 NPHB   =       1
+ IFBOX  =       2 NMXRS  =      24 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real             1507358
+|     Hollerith          88752
+|     Integer          1111302
+|     Max Pairs        5953119
+|     nblistReal        322032
+|     nblist Int        920488
+|       Total            45829 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+     BOX TYPE: TRUNCATED OCTAHEDRON
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       1
+
+Nature and format of input:
+     ntx     =       5, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       5, ntrx    =       1, ntwr    =    2500
+     iwrap   =       0, ntwx    =    2500, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       2, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   9.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        20, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00200, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =   71277
+     temp0   = 300.00000, tempi   =   0.00000, gamma_ln=   5.00000
+
+Pressure regulation:
+     ntp     =       1
+     pres0   =   1.00000, comp    =  44.60000, taup    =   2.00000
+
+SHAKE:
+     ntc     =       2, jfastw  =       0
+     tol     =   0.00001
+
+NMR refinement options:
+     iscale  =       0, noeskp  =       1, ipnlty  =       1, mxsub   =       1
+     scalm   = 100.00000, pencut  =   0.10000, tausw   =   0.10000
+
+Free energy options:
+     icfe    =       1, ifsc    =       1, klambda =       1
+     clambda =  0.3500, scalpha =  0.5000, scbeta  = 12.0000
+     sceeorder =       2 dvdl_norest =       0
+     dynlmb =  0.0000 logdvdl =       0
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       1
+     Box X =   70.402   Box Y =   70.402   Box Z =   70.402
+     Alpha =  109.471   Beta  =  109.471   Gamma =  109.471
+     NFFT1 =   72       NFFT2 =   72       NFFT3 =   72
+     Cutoff=    9.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.30768
+     Interpolation order =    4
+
+| MPI Timing options:
+|      profile_mpi =        0
+Zero-Charge Mask :BNZ; matches    12 atoms
+Removing charge of      -0.1305 from atom  2604
+Removing charge of      -0.1305 from atom  2605
+Removing charge of      -0.1305 from atom  2606
+Removing charge of      -0.1305 from atom  2607
+Removing charge of      -0.1305 from atom  2608
+Removing charge of      -0.1305 from atom  2609
+Removing charge of       0.1305 from atom  2610
+Removing charge of       0.1305 from atom  2611
+Removing charge of       0.1305 from atom  2612
+Removing charge of       0.1305 from atom  2613
+Removing charge of       0.1305 from atom  2614
+Removing charge of       0.1305 from atom  2615
+Total charge of       0.0000 removed
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =  1601.000 ps
+
+
+
+           Begin reading energy term weight changes/NMR restraints
+ WEIGHT CHANGES:
+                         ** No weight changes given **
+
+ RESTRAINTS:
+ Requested file redirections:
+  DISANG    = disang
+ Restraints will be read from file: disang
+Here are comments from the DISANG input file:
+# The distance restraint                                                        
+
+                       Number of restraints read =     6
+
+                  Done reading weight changes/NMR restraints
+
+
+ Number of triangulated 3-point waters found:     8071
+|  Atom division among processors:
+|         0   13420   26836
+       
+     Softcore Mask :BNZ; matches    12 atoms
+     this run corresponds to V0, its softcore atoms interact fully for lambda=0
+     this process:  26836 atoms, partner process:  26824 atoms
+     Checking for mismatched coordinates.
+     Molecule     2 is completely softcore and skipped for C.O.M..
+
+     Sum of charges for TI region  1 =  -0.00000019
+     Forcing neutrality...
+
+
+     Sum of charges for TI region  2 =  -0.00000019
+     Forcing neutrality...
+
+|  Running AMBER/MPI version on    2 nodes
+
+|  MULTISANDER:    2 groups.    2 processors out of    4 total.
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):   54976.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =   54976.     NUM_NOSHAKE =      0     CORRECTED RNDFP =   54976.
+|  TOTAL # of degrees of freedom (RNDF) =   54976.
+   DOF for the SC part of the system:   30 SHAKE constraints in the SC region:    6
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.2738E-14   at   2.422500
+| CHECK d/dx switch(x): max rel err =   0.8314E-11   at   2.736960
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =    3764832
+| TOTAL SIZE OF NONBOND LIST =    7431486
+
+ NSTEP =        5   TIME(PS) =    1601.010  TEMP(K) =   297.01  PRESS =   -78.3
+ Etot   =    -66140.9056  EKtot   =     16223.7394  EPtot      =    -82364.6450
+ BOND   =       514.7195  ANGLE   =      1222.9217  DIHED      =      1762.6402
+ 1-4 NB =       600.3433  1-4 EEL =      6287.1381  VDWAALS    =      9978.5186
+ EELEC  =   -102730.9265  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         5.8536
+ EKCMT  =      7174.0593  VIRIAL  =      7627.9135  VOLUME     =    268609.4204
+                                                    Density    =         1.0145
+ Ewald error estimate:   0.8615E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    12 atoms,         TEMP(K)    =         185.89
+ SC_Etot=        16.7142  SC_EKtot=         5.5411  SC_EPtot   =        11.1730
+ SC_BOND=         1.1928  SC_ANGLE=         3.6267  SC_DIHED   =         2.1840
+ SC_14NB=         4.3398  SC_14EEL=         0.0000  SC_VDW     =        -0.1702
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0205  SC_RES_ANG=       0.0587  SC_RES_TORS=         0.0799
+ SC_RES_PLPT=     0.0000  SC_RES_PLPL=      0.0000  SC_RES_GEN =         0.0000
+ SC_EEL_DER=      0.0000  SC_VDW_DER=      -9.1358  SC_DERIV   =        -9.1358
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       10   TIME(PS) =    1601.020  TEMP(K) =   297.65  PRESS =   -50.9
+ Etot   =    -66032.4759  EKtot   =     16258.7056  EPtot      =    -82291.1816
+ BOND   =       501.8186  ANGLE   =      1217.9174  DIHED      =      1785.9718
+ 1-4 NB =       595.8877  1-4 EEL =      6290.0027  VDWAALS    =      9946.4068
+ EELEC  =   -102629.1865  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         6.4501
+ EKCMT  =      7177.7629  VIRIAL  =      7472.7035  VOLUME     =    268604.4366
+                                                    Density    =         1.0146
+ Ewald error estimate:   0.9337E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    12 atoms,         TEMP(K)    =         277.39
+ SC_Etot=        17.1465  SC_EKtot=         8.2685  SC_EPtot   =         8.8780
+ SC_BOND=         0.9783  SC_ANGLE=         2.8144  SC_DIHED   =         1.1007
+ SC_14NB=         4.1546  SC_14EEL=         0.0000  SC_VDW     =        -0.1699
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0023  SC_RES_ANG=       0.0817  SC_RES_TORS=         0.1522
+ SC_RES_PLPT=     0.0000  SC_RES_PLPL=      0.0000  SC_RES_GEN =         0.0000
+ SC_EEL_DER=      0.0000  SC_VDW_DER=      -8.6042  SC_DERIV   =        -8.6042
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       15   TIME(PS) =    1601.030  TEMP(K) =   297.07  PRESS =   -39.6
+ Etot   =    -66023.9243  EKtot   =     16227.1894  EPtot      =    -82251.1137
+ BOND   =       512.3624  ANGLE   =      1231.8613  DIHED      =      1763.6575
+ 1-4 NB =       589.0820  1-4 EEL =      6282.1422  VDWAALS    =      9929.1265
+ EELEC  =   -102559.3456  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         1.1803
+ EKCMT  =      7195.5078  VIRIAL  =      7425.1575  VOLUME     =    268602.0843
+                                                    Density    =         1.0146
+ Ewald error estimate:   0.2002E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    12 atoms,         TEMP(K)    =         148.89
+ SC_Etot=        15.0519  SC_EKtot=         4.4381  SC_EPtot   =        10.6138
+ SC_BOND=         1.2387  SC_ANGLE=         3.1319  SC_DIHED   =         2.4525
+ SC_14NB=         3.9582  SC_14EEL=         0.0000  SC_VDW     =        -0.1675
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0673  SC_RES_ANG=       0.0270  SC_RES_TORS=         0.1695
+ SC_RES_PLPT=     0.0000  SC_RES_PLPL=      0.0000  SC_RES_GEN =         0.0000
+ SC_EEL_DER=      0.0000  SC_VDW_DER=     -12.5654  SC_DERIV   =       -12.5654
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+ NSTEP =       20   TIME(PS) =    1601.040  TEMP(K) =   300.51  PRESS =  -111.1
+ Etot   =    -65956.0438  EKtot   =     16415.1511  EPtot      =    -82371.1949
+ BOND   =       520.7247  ANGLE   =      1246.5322  DIHED      =      1754.7369
+ 1-4 NB =       586.9494  1-4 EEL =      6294.0458  VDWAALS    =      9961.7319
+ EELEC  =   -102735.9158  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         5.6267
+ EKCMT  =      7224.8392  VIRIAL  =      7869.2490  VOLUME     =    268597.6992
+                                                    Density    =         1.0146
+ Ewald error estimate:   0.1760E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    12 atoms,         TEMP(K)    =         230.28
+ SC_Etot=        15.4248  SC_EKtot=         6.8643  SC_EPtot   =         8.5605
+ SC_BOND=         1.2074  SC_ANGLE=         1.6548  SC_DIHED   =         2.0887
+ SC_14NB=         3.7763  SC_14EEL=         0.0000  SC_VDW     =        -0.1666
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0863  SC_RES_ANG=       0.1727  SC_RES_TORS=         0.2646
+ SC_RES_PLPT=     0.0000  SC_RES_PLPL=      0.0000  SC_RES_GEN =         0.0000
+ SC_EEL_DER=      0.0000  SC_VDW_DER=      -9.1987  SC_DERIV   =        -9.1987
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+      A V E R A G E S   O V E R      20 S T E P S
+
+
+ NSTEP =       20   TIME(PS) =    1601.040  TEMP(K) =   297.73  PRESS =   -63.9
+ Etot   =    -66056.2525  EKtot   =     16262.9422  EPtot      =    -82319.1947
+ BOND   =       508.9372  ANGLE   =      1223.4486  DIHED      =      1768.2847
+ 1-4 NB =       594.2875  1-4 EEL =      6289.7226  VDWAALS    =      9954.4782
+ EELEC  =   -102658.3535  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         4.9245
+ EKCMT  =      7188.0993  VIRIAL  =      7558.7286  VOLUME     =    268604.9677
+                                                    Density    =         1.0146
+ Ewald error estimate:   0.4654E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    12 atoms,         TEMP(K)    =         220.85
+ SC_Etot=        16.2506  SC_EKtot=         6.5829  SC_EPtot   =         9.6676
+ SC_BOND=         1.1164  SC_ANGLE=         2.7607  SC_DIHED   =         1.9258
+ SC_14NB=         4.0329  SC_14EEL=         0.0000  SC_VDW     =        -0.1682
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0382  SC_RES_ANG=       0.0589  SC_RES_TORS=         0.1535
+ SC_RES_PLPT=     0.0000  SC_RES_PLPL=      0.0000  SC_RES_GEN =         0.0000
+ SC_EEL_DER=      0.0000  SC_VDW_DER=      -9.7686  SC_DERIV   =        -9.7686
+ ------------------------------------------------------------------------------
+
+ NMR restraints: Bond =    0.000   Angle =     0.000   Torsion =     0.000
+===============================================================================
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       20   TIME(PS) =    1601.040  TEMP(K) =     0.94  PRESS =    24.1
+ Etot   =        59.9251  EKtot   =        51.1272  EPtot      =        49.3190
+ BOND   =         9.6159  ANGLE   =        16.5724  DIHED      =         9.3182
+ 1-4 NB =         6.8789  1-4 EEL =         7.6958  VDWAALS    =        20.2229
+ EELEC  =        66.8093  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         1.9840
+ EKCMT  =        18.3700  VIRIAL  =       141.2042  VOLUME     =         4.2071
+                                                    Density    =         0.0000
+ Ewald error estimate:   0.3051E-04
+ ------------------------------------------------------------------------------
+
+  Softcore part of the system:    12 atoms,         TEMP(K)    =          47.22
+ SC_Etot=         0.7924  SC_EKtot=         1.4074  SC_EPtot   =         0.9816
+ SC_BOND=         0.4080  SC_ANGLE=         0.5580  SC_DIHED   =         0.7534
+ SC_14NB=         0.2232  SC_14EEL=         0.0000  SC_VDW     =         0.0020
+ SC_EEL =         0.0000
+ SC_RES_DIST=     0.0375  SC_RES_ANG=       0.0372  SC_RES_TORS=         0.0624
+ SC_RES_PLPT=     0.0000  SC_RES_PLPL=      0.0000  SC_RES_GEN =         0.0000
+ SC_EEL_DER=      0.0000  SC_VDW_DER=       1.4725  SC_DERIV   =         1.4725
+ ------------------------------------------------------------------------------
+
+
+      DV/DL, AVERAGES OVER      20 STEPS
+
+
+ NSTEP =       20   TIME(PS) =    1601.040  TEMP(K) =    -0.11  PRESS =     0.0
+ Etot   =        -6.2709  EKtot   =        -6.2709  EPtot      =         4.9245
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         4.9245
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ DV/DL  =         4.9245
+ EKCMT  =         0.0000  VIRIAL  =         0.0000  VOLUME     =         0.0000
+                                                    Density    =        -0.0005
+ Ewald error estimate:   0.0000E+00
+ ------------------------------------------------------------------------------
+
+
+ NMR restraints on final step:
+
+      TI atoms summary
+ 
+ Atom:   2604 - C1   BNZ  163
+ Atom:   2605 - C2   BNZ  163
+ Atom:   2606 - C3   BNZ  163
+ Atom:   2607 - C4   BNZ  163
+ Atom:   2608 - C5   BNZ  163
+ Atom:   2609 - C6   BNZ  163
+ Atom:   2610 - H7   BNZ  163
+ Atom:   2611 - H8   BNZ  163
+ Atom:   2612 - H9   BNZ  163
+ Atom:   2613 - H10  BNZ  163
+ Atom:   2614 - H11  BNZ  163
+ Atom:   2615 - H12  BNZ  163
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|>>>>>>>>PROFILE of Average TIMES>>>>>>>>> 
+|    Read coords time           0.01 ( 0.34% of Total)
+|    Fast Water setup           0.00 ( 0.01% of Total)
+|                Build the list             0.47 (97.66% of List )
+|                Other                      0.01 ( 2.34% of List )
+|             List time                  0.48 (13.97% of Nonbo)
+|                   Short_ene time             2.35 (98.94% of Direc)
+|                   Other                      0.03 ( 1.06% of Direc)
+|                Direct Ewald time          2.38 (79.74% of Ewald)
+|                Adjust Ewald time          0.02 ( 0.63% of Ewald)
+|                   Fill Bspline coeffs        0.02 ( 3.80% of Recip)
+|                   Fill charge grid           0.05 (10.49% of Recip)
+|                   Scalar sum                 0.14 (29.49% of Recip)
+|                   Grad sum                   0.09 (20.06% of Recip)
+|                      FFT back comm time         0.02 (13.67% of FFT t)
+|                      Other                      0.14 (86.33% of FFT t)
+|                   FFT time                   0.16 (35.01% of Recip)
+|                   Other                      0.01 ( 1.16% of Recip)
+|                Recip Ewald time           0.47 (15.72% of Ewald)
+|                Force Adjust               0.11 ( 3.74% of Ewald)
+|                Virial junk                0.00 ( 0.08% of Ewald)
+|                Other                      0.00 ( 0.10% of Ewald)
+|             Ewald time                 2.98 (86.03% of Nonbo)
+|          Nonbond force              3.46 (99.15% of Force)
+|          Bond/Angle/Dihedral        0.02 ( 0.53% of Force)
+|          FRC Collect time           0.01 ( 0.27% of Force)
+|          Other                      0.00 ( 0.06% of Force)
+|       Force time                 3.49 (91.88% of Runmd)
+|       Shake time                 0.02 ( 0.58% of Runmd)
+|       Verlet update time         0.24 ( 6.42% of Runmd)
+|       Ekcmr time                 0.00 ( 0.10% of Runmd)
+|       CRD distribute time        0.02 ( 0.41% of Runmd)
+|       Other                      0.02 ( 0.60% of Runmd)
+|    Runmd Time                 3.80 (91.78% of Total)
+|    Other                      0.33 ( 7.87% of Total)
+| Total time                 4.14 (100.0% of ALL  )
+
+| Number of list builds   :          3
+
+| Highest rstack allocated:    1122849
+| Highest istack allocated:      19381
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       3.85 Per Step(ms) =     192.51
+|         ns/day =       0.90   seconds/ns =   96256.10
+| -----------------------------------------------------
+
+|           Job began  at 15:07:33.536  on 01/21/2014
+|           Setup done at 15:07:33.877  on 01/21/2014
+|           Run   done at 15:07:37.727  on 01/21/2014
+|     wallclock() was called    1203 times

@@ -1,0 +1,45 @@
+Chemistry/File/PDB version 0.21
+===============================
+
+This module reads and writes PDB files. The PDB file format is commonly used to
+describe proteins, particularly those stored in the Protein Data Bank
+(L<http://www.rcsb.org/pdb/>). The current version of this module only uses the
+ATOM and HETATM records, ignoring everything else.
+
+This module automatically registers the 'pdb' format with Chemistry::Mol,
+so that PDB files may be identified and read by Chemistry::Mol->read(). For 
+autodetection purpuses, it assumes that files ending in .pdb or having 
+a line matching /^(ATOM  |HETATM)/ are PDB files.
+
+The PDB reader and writer is designed for dealing with Chemistry::MacroMol
+objects, but it can also create and use Chemistry::Mol objects by throwing some
+information away.
+
+CHANGES SINCE VERSION 0.20
+        - Changed parse_file to read_mol
+        - Read multi-model files (each model read as one molecule)
+        - Read chain id and insertion code
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+  Chemistry::MacroMol   0.05
+  Chemistry::Mol        0.24
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2004 Ivan Tubert
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+

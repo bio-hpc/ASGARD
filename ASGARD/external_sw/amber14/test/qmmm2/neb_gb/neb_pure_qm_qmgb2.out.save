@@ -1,0 +1,700 @@
+
+          -------------------------------------------------------
+          Amber 10 SANDER                              2008
+          -------------------------------------------------------
+
+| Run on 10/03/2006 at 10:33:45
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: neb_pure_qm_qmgb2.out                                                 
+|INPCRD: pimd.inpcrd                                                           
+|  PARM: pimd.prmtop                                                           
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+ 
+ Here is the input file:
+ 
+ test of pure QM neb using alanine dipeptide                                   
+ &cntrl                                                                        
+   pimd_runtype=1,                                                             
+   pimd_use_original_mass = .true.                                             
+   ntx=1, irest = 0,                                                           
+   ntwx=1, ntpr=1, ntwv=0, ntwe=0,                                             
+   ntb = 0, dielc = 1, igb = 1,                                                
+   cut=999.,                                                                   
+   nstlim = 10,dt=0.0005,nscm= 50,t = 0.0,                                     
+   ntt = 3, gamma_ln=100.0                                                     
+   temp0=300,                                                                  
+   ineb = 1,                                                                   
+   skmin = 50,                                                                 
+   skmax = 50,                                                                 
+   ifqnt=1                                                                     
+ /                                                                             
+ &qmmm                                                                         
+   qmmask = ':1-3',                                                            
+   qmtheory=1, qmcharge=0, qmgb=2, adjust_q=0                                  
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+ NATOM  =     440 NTYPES =       7 NBONH =     240 MBONA  =     180
+ NTHETH =     500 MTHETA =     220 NPHIH =     840 MPHIA  =     360
+ NHPARM =       0 NPARM  =       1 NNB   =    1980 NRES   =       3
+ NBONA  =     180 NTHETA =     220 NPHIA =     360 NUMBND =      16
+ NUMANG =      32 NPTRA  =      32 NATYP =       7 NPHB   =       0
+ IFBOX  =       0 NMXRS  =     200 IFCAP =       0 NEXTRA =       0
+ NCOPY  =      20
+
+
+|     Memory Use     Allocated
+|     Real               39687
+|     Hollerith           2645
+|     Integer            38959
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total              472 kbytes
+ LES parameters were found
+       0 LES atom pairs require adjustment
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+LOADING THE QUANTUM ATOMS AS GROUPS
+     Mask :1-3; matches   440 atoms
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       1, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       1, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     = 999.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.00000, gbgamma =   0.00000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000
+     alpb  =        0
+     
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    =        50, nrespa  =         1
+     t       =   0.00000, dt      =   0.00050, vlimit  =  20.00000
+
+Langevin dynamics temperature regulation:
+     ig      =   71277
+     temp0   = 300.00000, tempi   =   0.00000, gamma_ln= 100.00000
+
+QMMM options:
+             ifqnt = True       nquant =     440
+              qmgb =       2  qmcharge =       0   adjust_q =       0
+              spin =       1     qmcut =999.0000    qmshake =       1
+     lnk_atomic_no =       1   lnk_dis =  1.0900
+          qmtheory =     PM3 verbosity =       0
+            qmqmdx = Analytical
+      tight_p_conv = False (converge density to 0.05xSqrt[SCFCRT])
+           scfconv = 0.100E-07  itrmax =    1000
+      printcharges = False      peptide_corr = False
+    qmqmrij_incore = True     qmmmrij_incore = True 
+  qmqm_erep_incore = True 
+       pseudo_diag = True pseudo_diag_criteria =   0.0500
+          qm_ewald =        0 qm_pme = False 
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+THIS IS A PIMD RUN
+ 
+PIMD parameters:
+propagator & thermostat   = Langevin (BBK)      
+number of beads           =   20
+number of classical atoms =   22
+temperature (Kelvin)      =   300.00
+# degrees of freedom in non-LES region:    1320.
+# degrees of freedom in     LES region:       0.
+
+QMMM: Link Atom Information
+QMMM: ------------------------------------------------------------------------
+QMMM: nlink =     0
+QMMM: ------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+  3.1 QM CALCULATION INFO
+--------------------------------------------------------------------------------
+
+QMMM: SINGLET STATE CALCULATION
+QMMM: RHF CALCULATION, NO. OF DOUBLY OCCUPIED LEVELS = 29
+
+| QMMM: Parameter sets in use:
+| QMMM: H : J.J.P.STEWART, JCC, 10, 209 (1989)
+| QMMM: C : J.J.P.STEWART, JCC, 10, 209 (1989)
+| QMMM: O : J.J.P.STEWART, JCC, 10, 209 (1989)
+| QMMM: N : J.J.P.STEWART, JCC, 10, 209 (1989)
+
+| QMMM: Estimated QM Dynamic Memory Usage (per thread)
+| QMMM: ---------------------------------------------------
+| QMMM:              QM Atom Type Info :         4208 bytes
+| QMMM:         QM RESP Charge Storage :         3520 bytes
+| QMMM:            QM Atom Number List :         1760 bytes
+| QMMM:                Link Atom Pairs :            0 bytes
+| QMMM:          QM Atomic Number List :         1760 bytes
+| QMMM:                QM-MM Pair List :            4 bytes
+| QMMM:                   QM Atom Mask :          880 bytes
+| QMMM:           QM Coordinate Arrays :         1232 bytes
+| QMMM:         Scaled MM Charge Array :         3520 bytes
+| QMMM:    SCF Mulliken Charge Storage :         3520 bytes
+| QMMM:                   QM GB Arrays :      2332000 bytes
+| QMMM:                QM Force Arrays :         1056 bytes
+| QMMM:                 Density Matrix :        11024 bytes
+| QMMM:          Density Matrix Copies :        22048 bytes
+| QMMM: Fock2 Density Matrix Workspace :         2816 bytes
+| QMMM:                    Fock Matrix :        11024 bytes
+| QMMM:           Eigen Vector Storage :        21632 bytes
+| QMMM: QM-QM Elec Repulsion Integrals :        40656 bytes
+| QMMM:  QM 2-Elec Repulsion Integrals :        46128 bytes
+| QMMM:              1-Electron Matrix :        11024 bytes
+| QMMM:       _REAL_ parameter storage :        68096 bytes
+| QMMM:      integer parameter storage :          680 bytes
+| QMMM:         QM-QM RIJ Eqns storage :        12936 bytes
+| QMMM:         QM-MM RIJ Eqns storage :            0 bytes
+| QMMM:          _REAL_ Scratch arrays :        11539 bytes
+| QMMM:         Integer Scratch arrays :         5280 bytes
+| QMMM: ---------------------------------------------------
+| QMMM:        Total Dynamic Memory Usage:      2.497 Mb
+
+  QMMM: QM Region Cartesian Coordinates (*=link atom) 
+  QMMM: QM_NO.   MM_NO.  ATOM         X         Y         Z
+  QMMM:     1        1      H       -3.5330    1.5370    0.9790
+  QMMM:     2        2      C       -3.0690    0.5520    0.9770
+  QMMM:     3        3      H       -3.4180   -0.0130    0.1140
+  QMMM:     4        4      H       -3.3380    0.0220    1.8900
+  QMMM:     5        5      C       -1.5650    0.6980    0.9080
+  QMMM:     6        6      O       -1.0530    1.8160    0.8600
+  QMMM:     7        7      N       -0.8580   -0.4330    0.8960
+  QMMM:     8        8      H       -1.3670   -1.3030    0.9520
+  QMMM:     9        9      C        0.6100   -0.4980    0.8610
+  QMMM:    10       10      H        1.0080    0.2450    1.5560
+  QMMM:    11       11      C        1.0240   -1.8910    1.3580
+  QMMM:    12       12      H        2.1130   -1.9540    1.4090
+  QMMM:    13       13      H        0.6570   -2.6590    0.6760
+  QMMM:    14       14      H        0.6190   -2.0680    2.3560
+  QMMM:    15       15      C        1.2290   -0.1870   -0.5230
+  QMMM:    16       16      O        2.4350    0.0580   -0.6140
+  QMMM:    17       17      N        0.4240   -0.1930   -1.5960
+  QMMM:    18       18      H       -0.5510   -0.4050   -1.4360
+  QMMM:    19       19      C        0.8490    0.0760   -2.9700
+  QMMM:    20       20      H        1.4610    0.9800   -3.0050
+  QMMM:    21       21      H        1.4350   -0.7620   -3.3500
+  QMMM:    22       22      H       -0.0230    0.2180   -3.6110
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =     -1931.5594  EKtot   =         0.0000  EPtot      =     -1951.2326
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -585.3945  RESTRAINT  =         0.0000
+ PM3ESCF=     -1365.8382
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =      -99.3191
+Energy for replicate   3 =      -99.3191
+Energy for replicate   4 =      -99.3191
+Energy for replicate   5 =      -99.3191
+Energy for replicate   6 =      -99.3191
+Energy for replicate   7 =      -99.3191
+Energy for replicate   8 =      -99.3191
+Energy for replicate   9 =      -99.3191
+Energy for replicate  10 =      -99.3191
+Energy for replicate  11 =      -95.8041
+Energy for replicate  12 =      -95.8041
+Energy for replicate  13 =      -95.8041
+Energy for replicate  14 =      -95.8041
+Energy for replicate  15 =      -95.8041
+Energy for replicate  16 =      -95.8041
+Energy for replicate  17 =      -95.8041
+Energy for replicate  18 =      -95.8041
+Energy for replicate  19 =      -95.8041
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1951.2326
+NEB RMS =     19.911548
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        1   TIME(PS) =       0.001  TEMP(K) =     7.59  PRESS =     0.0
+ Etot   =     -1941.2794  EKtot   =         9.9533  EPtot      =     -1951.2326
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -585.3945  RESTRAINT  =         0.0000
+ PM3ESCF=     -1365.8382
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =      -99.3191
+Energy for replicate   3 =      -99.3191
+Energy for replicate   4 =      -99.3191
+Energy for replicate   5 =      -99.3191
+Energy for replicate   6 =      -99.3191
+Energy for replicate   7 =      -99.3191
+Energy for replicate   8 =      -99.3191
+Energy for replicate   9 =      -99.3191
+Energy for replicate  10 =      -99.3191
+Energy for replicate  11 =      -95.8041
+Energy for replicate  12 =      -95.8041
+Energy for replicate  13 =      -95.8041
+Energy for replicate  14 =      -95.8041
+Energy for replicate  15 =      -95.8041
+Energy for replicate  16 =      -95.8041
+Energy for replicate  17 =      -95.8041
+Energy for replicate  18 =      -95.8041
+Energy for replicate  19 =      -95.8041
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1951.2326
+NEB RMS =     19.911548
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =       0.001  TEMP(K) =    42.12  PRESS =     0.0
+ Etot   =     -1897.6569  EKtot   =        55.2391  EPtot      =     -1952.8960
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -585.1916  RESTRAINT  =         0.0000
+ PM3ESCF=     -1367.7044
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =      -99.4148
+Energy for replicate   3 =      -99.4784
+Energy for replicate   4 =      -99.3312
+Energy for replicate   5 =      -99.4524
+Energy for replicate   6 =      -99.3874
+Energy for replicate   7 =      -99.5415
+Energy for replicate   8 =      -99.3961
+Energy for replicate   9 =      -99.3063
+Energy for replicate  10 =      -99.0829
+Energy for replicate  11 =      -96.0261
+Energy for replicate  12 =      -95.9415
+Energy for replicate  13 =      -96.1897
+Energy for replicate  14 =      -95.8813
+Energy for replicate  15 =      -95.7667
+Energy for replicate  16 =      -96.0507
+Energy for replicate  17 =      -95.7862
+Energy for replicate  18 =      -95.9837
+Energy for replicate  19 =      -95.7559
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1952.8960
+NEB RMS =     19.683465
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =       0.002  TEMP(K) =    79.79  PRESS =     0.0
+ Etot   =     -1850.9047  EKtot   =       104.6466  EPtot      =     -1955.5513
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -584.5955  RESTRAINT  =         0.0000
+ PM3ESCF=     -1370.9558
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =      -99.8159
+Energy for replicate   3 =      -99.7290
+Energy for replicate   4 =      -99.3461
+Energy for replicate   5 =      -99.5994
+Energy for replicate   6 =      -99.5890
+Energy for replicate   7 =      -99.8504
+Energy for replicate   8 =      -99.3863
+Energy for replicate   9 =      -99.3717
+Energy for replicate  10 =      -97.5591
+Energy for replicate  11 =      -96.5061
+Energy for replicate  12 =      -96.2151
+Energy for replicate  13 =      -96.6841
+Energy for replicate  14 =      -96.4346
+Energy for replicate  15 =      -96.0675
+Energy for replicate  16 =      -96.3046
+Energy for replicate  17 =      -95.8541
+Energy for replicate  18 =      -96.2248
+Energy for replicate  19 =      -95.8902
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1955.5513
+NEB RMS =     19.235741
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) =       0.002  TEMP(K) =   118.57  PRESS =     0.0
+ Etot   =     -1798.9936  EKtot   =       155.5159  EPtot      =     -1954.5096
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -583.7867  RESTRAINT  =         0.0000
+ PM3ESCF=     -1370.7229
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =     -100.2770
+Energy for replicate   3 =     -100.0723
+Energy for replicate   4 =      -99.3791
+Energy for replicate   5 =      -99.6324
+Energy for replicate   6 =      -99.9067
+Energy for replicate   7 =     -100.1972
+Energy for replicate   8 =      -99.1168
+Energy for replicate   9 =      -99.4935
+Energy for replicate  10 =      -92.4313
+Energy for replicate  11 =      -97.0025
+Energy for replicate  12 =      -96.4722
+Energy for replicate  13 =      -96.9874
+Energy for replicate  14 =      -96.8996
+Energy for replicate  15 =      -96.3144
+Energy for replicate  16 =      -96.6351
+Energy for replicate  17 =      -96.0442
+Energy for replicate  18 =      -96.3219
+Energy for replicate  19 =      -96.2027
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1954.5096
+NEB RMS =     21.080516
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =       0.003  TEMP(K) =   164.90  PRESS =     0.0
+ Etot   =     -1730.4254  EKtot   =       216.2799  EPtot      =     -1946.7052
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -581.7763  RESTRAINT  =         0.0000
+ PM3ESCF=     -1364.9290
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =     -100.6790
+Energy for replicate   3 =     -100.3509
+Energy for replicate   4 =      -99.4073
+Energy for replicate   5 =      -99.6423
+Energy for replicate   6 =      -99.9915
+Energy for replicate   7 =     -100.4291
+Energy for replicate   8 =      -98.9612
+Energy for replicate   9 =      -99.5031
+Energy for replicate  10 =      -81.5332
+Energy for replicate  11 =      -96.9975
+Energy for replicate  12 =      -96.7058
+Energy for replicate  13 =      -97.2568
+Energy for replicate  14 =      -97.2453
+Energy for replicate  15 =      -96.7095
+Energy for replicate  16 =      -96.9485
+Energy for replicate  17 =      -96.4366
+Energy for replicate  18 =      -96.3967
+Energy for replicate  19 =      -96.3878
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1946.7052
+NEB RMS =     20.989306
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =       0.003  TEMP(K) =   211.60  PRESS =     0.0
+ Etot   =     -1649.1467  EKtot   =       277.5174  EPtot      =     -1926.6641
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -579.7546  RESTRAINT  =         0.0000
+ PM3ESCF=     -1346.9095
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =     -101.0937
+Energy for replicate   3 =     -100.3662
+Energy for replicate   4 =      -99.4487
+Energy for replicate   5 =      -99.5425
+Energy for replicate   6 =      -99.7677
+Energy for replicate   7 =     -100.7076
+Energy for replicate   8 =      -98.8614
+Energy for replicate   9 =      -99.5548
+Energy for replicate  10 =      -61.5762
+Energy for replicate  11 =      -94.9791
+Energy for replicate  12 =      -96.9148
+Energy for replicate  13 =      -97.4673
+Energy for replicate  14 =      -97.5427
+Energy for replicate  15 =      -96.9439
+Energy for replicate  16 =      -97.0785
+Energy for replicate  17 =      -96.6861
+Energy for replicate  18 =      -96.4890
+Energy for replicate  19 =      -96.5207
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1926.6641
+NEB RMS =     21.718082
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) =       0.004  TEMP(K) =   260.91  PRESS =     0.0
+ Etot   =     -1549.7289  EKtot   =       342.1936  EPtot      =     -1891.9225
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -577.6365  RESTRAINT  =         0.0000
+ PM3ESCF=     -1314.2860
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =     -101.2884
+Energy for replicate   3 =     -100.2208
+Energy for replicate   4 =      -99.5133
+Energy for replicate   5 =      -99.1060
+Energy for replicate   6 =      -99.5827
+Energy for replicate   7 =     -100.9169
+Energy for replicate   8 =      -98.7595
+Energy for replicate   9 =      -99.4465
+Energy for replicate  10 =      -32.9023
+Energy for replicate  11 =      -88.8837
+Energy for replicate  12 =      -97.0433
+Energy for replicate  13 =      -97.5661
+Energy for replicate  14 =      -97.6362
+Energy for replicate  15 =      -97.0605
+Energy for replicate  16 =      -96.9560
+Energy for replicate  17 =      -96.7613
+Energy for replicate  18 =      -96.5067
+Energy for replicate  19 =      -96.6490
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1891.9225
+NEB RMS =     23.656011
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =       0.004  TEMP(K) =   312.93  PRESS =     0.0
+ Etot   =     -1434.8133  EKtot   =       410.4240  EPtot      =     -1845.2374
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -576.1063  RESTRAINT  =         0.0000
+ PM3ESCF=     -1269.1311
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =     -101.3824
+Energy for replicate   3 =     -100.0883
+Energy for replicate   4 =      -99.5267
+Energy for replicate   5 =      -98.9293
+Energy for replicate   6 =      -99.2536
+Energy for replicate   7 =     -101.0330
+Energy for replicate   8 =      -98.5649
+Energy for replicate   9 =      -99.2328
+Energy for replicate  10 =       -0.2854
+Energy for replicate  11 =      -76.7508
+Energy for replicate  12 =      -97.0970
+Energy for replicate  13 =      -97.4607
+Energy for replicate  14 =      -97.4747
+Energy for replicate  15 =      -97.1135
+Energy for replicate  16 =      -96.5173
+Energy for replicate  17 =      -96.4306
+Energy for replicate  18 =      -96.4568
+Energy for replicate  19 =      -96.5163
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1845.2374
+NEB RMS =     26.405670
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =       0.005  TEMP(K) =   363.52  PRESS =     0.0
+ Etot   =     -1326.1571  EKtot   =       476.7683  EPtot      =     -1802.9254
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -574.7255  RESTRAINT  =         0.0000
+ PM3ESCF=     -1228.1999
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =     -101.3514
+Energy for replicate   3 =      -99.9671
+Energy for replicate   4 =      -99.2902
+Energy for replicate   5 =      -98.8331
+Energy for replicate   6 =      -98.9353
+Energy for replicate   7 =     -100.8590
+Energy for replicate   8 =      -97.9988
+Energy for replicate   9 =      -98.9335
+Energy for replicate  10 =       19.6928
+Energy for replicate  11 =      -57.5930
+Energy for replicate  12 =      -97.2120
+Energy for replicate  13 =      -97.1756
+Energy for replicate  14 =      -97.4255
+Energy for replicate  15 =      -97.2229
+Energy for replicate  16 =      -95.9949
+Energy for replicate  17 =      -96.1037
+Energy for replicate  18 =      -96.1624
+Energy for replicate  19 =      -96.4366
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1802.9254
+NEB RMS =     28.359229
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =       0.005  TEMP(K) =   421.49  PRESS =     0.0
+ Etot   =     -1223.7617  EKtot   =       552.8090  EPtot      =     -1776.5707
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -573.8314  RESTRAINT  =         0.0000
+ PM3ESCF=     -1202.7392
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =     -101.1485
+Energy for replicate   3 =      -99.4344
+Energy for replicate   4 =      -99.1299
+Energy for replicate   5 =      -98.6156
+Energy for replicate   6 =      -99.0960
+Energy for replicate   7 =     -100.5108
+Energy for replicate   8 =      -97.3378
+Energy for replicate   9 =      -98.5200
+Energy for replicate  10 =       20.6946
+Energy for replicate  11 =      -36.2919
+Energy for replicate  12 =      -97.2695
+Energy for replicate  13 =      -96.5965
+Energy for replicate  14 =      -97.3596
+Energy for replicate  15 =      -97.2753
+Energy for replicate  16 =      -95.5746
+Energy for replicate  17 =      -95.6755
+Energy for replicate  18 =      -96.1306
+Energy for replicate  19 =      -96.1755
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1776.5707
+NEB RMS =     28.877886
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      10 S T E P S
+
+
+ NSTEP =       10   TIME(PS) =       0.005  TEMP(K) =   198.34  PRESS =     0.0
+ Etot   =     -1640.2868  EKtot   =       260.1347  EPtot      =     -1900.4215
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =      -580.2799  RESTRAINT  =         0.0000
+ PM3ESCF=     -1320.1416
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =     -101.1485
+Energy for replicate   3 =      -99.4344
+Energy for replicate   4 =      -99.1299
+Energy for replicate   5 =      -98.6156
+Energy for replicate   6 =      -99.0960
+Energy for replicate   7 =     -100.5108
+Energy for replicate   8 =      -97.3378
+Energy for replicate   9 =      -98.5200
+Energy for replicate  10 =       20.6946
+Energy for replicate  11 =      -36.2919
+Energy for replicate  12 =      -97.2695
+Energy for replicate  13 =      -96.5965
+Energy for replicate  14 =      -97.3596
+Energy for replicate  15 =      -97.2753
+Energy for replicate  16 =      -95.5746
+Energy for replicate  17 =      -95.6755
+Energy for replicate  18 =      -96.1306
+Energy for replicate  19 =      -96.1755
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1776.5707
+NEB RMS =     28.877886
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       10   TIME(PS) =       0.005  TEMP(K) =   132.90  PRESS =     0.0
+ Etot   =       236.0461  EKtot   =       174.3069  EPtot      =        64.8792
+ BOND   =         0.0000  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EGB     =         4.2493  RESTRAINT  =         0.0000
+ PM3ESCF=        60.8985
+NEB replicate breakdown:
+Energy for replicate   1 =      -99.3191
+Energy for replicate   2 =     -101.1485
+Energy for replicate   3 =      -99.4344
+Energy for replicate   4 =      -99.1299
+Energy for replicate   5 =      -98.6156
+Energy for replicate   6 =      -99.0960
+Energy for replicate   7 =     -100.5108
+Energy for replicate   8 =      -97.3378
+Energy for replicate   9 =      -98.5200
+Energy for replicate  10 =       20.6946
+Energy for replicate  11 =      -36.2919
+Energy for replicate  12 =      -97.2695
+Energy for replicate  13 =      -96.5965
+Energy for replicate  14 =      -97.3596
+Energy for replicate  15 =      -97.2753
+Energy for replicate  16 =      -95.5746
+Energy for replicate  17 =      -95.6755
+Energy for replicate  18 =      -96.1306
+Energy for replicate  19 =      -96.1755
+Energy for replicate  20 =      -95.8041
+Total Energy of replicates =    -1776.5707
+NEB RMS =     28.877886
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.03% of Total)
+|                Calc gb radii              0.01 (24.16% of Gen B)
+|                Calc gb diag               0.01 (36.40% of Gen B)
+|                Calc gb off-diag           0.01 (39.12% of Gen B)
+|                Other                      0.00 ( 0.33% of Gen B)
+|             Gen Born time              0.03 (100.0% of Nonbo)
+|             IPS excludes               0.00 ( 0.02% of Nonbo)
+|          Nonbond force              0.03 ( 0.70% of Force)
+|             QMMM setup                 0.01 ( 0.17% of QMMM )
+|             QMMM list build            0.00 ( 0.01% of QMMM )
+|             QMMM prep coords           0.00 ( 0.01% of QMMM )
+|             QMMM RIJ Eqns Calc         0.01 ( 0.12% of QMMM )
+|                   QMMM hcore QM-QM           0.23 (99.81% of QMMM )
+|                   QMMM hcore QM-MM           0.00 ( 0.11% of QMMM )
+|                   Other                      0.00 ( 0.07% of QMMM )
+|                QMMM hcore calc            0.23 ( 5.61% of QMMM )
+|                      QMMM GB Fock Terms         0.01 ( 4.21% of QMMM )
+|                      Other                      0.33 (95.79% of QMMM )
+|                   QMMM fock build            0.34 ( 9.01% of QMMM )
+|                   QMMM elec-energy cal       0.02 ( 0.53% of QMMM )
+|                   QMMM full matrix dia       2.50 (65.52% of QMMM )
+|                   QMMM pseudo matrix d       0.57 (15.00% of QMMM )
+|                   QMMM density build         0.37 ( 9.61% of QMMM )
+|                   Other                      0.01 ( 0.34% of QMMM )
+|                QMMM scf                   3.82 (94.24% of QMMM )
+|                QMMM GB energy             0.01 ( 0.13% of QMMM )
+|                Other                      0.00 ( 0.02% of QMMM )
+|             QMMM energy                4.05 (90.44% of QMMM )
+|             QMMM QM-QM force           0.41 ( 9.08% of QMMM )
+|             QMMM QM-MM force           0.00 ( 0.01% of QMMM )
+|             Other                      0.01 ( 0.16% of QMMM )
+|          QMMM                       4.48 (99.08% of Force)
+|          Bond/Angle/Dihedral        0.00 ( 0.01% of Force)
+|          Other                      0.01 ( 0.21% of Force)
+|       Force time                 4.52 (99.55% of Runmd)
+|       Verlet update time         0.02 ( 0.43% of Runmd)
+|       Other                      0.00 ( 0.02% of Runmd)
+|    Runmd Time                 4.54 (98.70% of Total)
+|    Other                      0.06 ( 1.28% of Total)
+| Total time                 4.60 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+|           Job began  at 10:33:45.157  on 10/03/2006
+|           Setup done at 10:33:45.217  on 10/03/2006
+|           Run   done at 10:33:49.756  on 10/03/2006
+|     wallclock() was called   66927 times

@@ -1,0 +1,135 @@
+#!/bin/sh 
+#set -xv
+
+# configure script for openmpi
+
+#------------------------------------------------------------------------------
+#  set up usage statement:
+#------------------------------------------------------------------------------
+usage(){
+cat<<EOD
+
+Usage: ./configure_openmpi [flags] compiler
+
+    where compiler is one of:
+
+        gnu (=gcc/gfortran), intel (=icc/ifort), pgi (=pgcc/pgf90)
+
+    Option flags:
+      -static     Create statically linked executables (not recommended for
+                    MacOSX)
+      -np         Number of processes for parallel Make
+    Note: See http://www.open-mpi.org/software/ompi/v1.6/ for information
+          on how to obtain openmpi.
+EOD
+
+exit 1;
+}
+
+static=''
+np=1
+while [ $# -gt 0 ]; do
+    case "$1" in
+
+        -static)       static='--enable-static' ;;
+        -np)           shift; np=$1;;
+        -*) usage ;;
+
+        *) if [ $# -gt 1 ]; then
+             usage
+           fi
+           compiler=$1 ;;
+    esac
+    shift
+done
+
+workdir=`pwd`
+AMBERHOME=`dirname \`dirname $workdir\``
+echo "Setting AMBERHOME to $AMBERHOME"
+echo " "
+
+case "$compiler" in
+
+#################### gcc #######
+gnu)
+    cc=gcc
+    cflags=-fPIC
+    cplusplus=g++
+    fc=gfortran
+    fflags=-fPIC
+    fnooptflags=-O0
+    ;;
+
+#################### icc #######
+intel)
+    cc=icc
+    cflags=-fpic
+    cplusplus=icpc
+    fc=ifort
+    fflags=-fpic
+    fnooptflags=-O0
+    ;;
+
+#################### Portland Group #######
+pgi)
+    cc=pgcc
+    cflags=-fpic
+    cplusplus=pgCC
+    fc=pgf90
+    fflags=-fpic
+    fnooptflags=-O1
+    ;;
+
+#################### unknown choice #######
+*)
+    echo "Architecture/compiler $compiler is not supported" 1>&2
+    usage
+    exit 1
+    ;;
+
+esac
+
+#--------------------------------------------------------------------------
+#  Configure openmpi
+#--------------------------------------------------------------------------
+
+# Get the list of openmpi directories
+mpidirs=`/bin/ls -d openmpi-1.[5-9]*/ 2>/dev/null | tail -n 1`
+
+if [ -z $mpidirs ]; then
+    echo "You must download openmpi and extract it here"
+    echo "   (for example, type 'tar xvfj openmpi-1.8.tar.bz2')"
+    echo "See http://www.open-mpi.org/software/ompi/v1.8/ for more info;"
+    echo "Then, re-run this script."
+    exit 1
+fi
+
+# Take the first directory
+MPIDIR=`echo $mpidirs | tail -n 1`
+
+if [ ! -d $MPIDIR ]; then
+   echo "Strange, $MPIDIR does not appear to be a directory... Try extracting"
+   echo "OpenMPI again and re-running this script"
+   exit 1
+fi
+
+cd $MPIDIR && \
+
+./configure --prefix=$AMBERHOME \
+            $static YACC=$AMBERHOME/bin/yacc FC="$fc" FCFLAGS="$fflags $fnooptflags" \
+            F77="$fc" FFLAGS="$fflags $fnooptflags" F90="$fc" \
+            CC="$cc" CFLAGS="$cflags $cnooptflags" CXX="$cplusplus"
+cerror=$?
+if [ "$cerror" -gt 0 ]; then
+    echo "    openmpi configure failed, returning $cerror"
+    exit 1
+else
+    echo "    openmpi configure succeeded."
+    echo "    (You may need to add $AMBERHOME/lib to your LD_LIBRARY_PATH)"
+fi
+make clean
+make -j $np install
+cd ..
+
+exit
+

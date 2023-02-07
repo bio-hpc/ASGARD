@@ -1,0 +1,363 @@
+
+          -------------------------------------------------------
+          Amber 10 SANDER                              2008
+          -------------------------------------------------------
+
+| Run on 01/16/2007 at 09:45:30
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: cmd.in                                                                
+| MDOUT: cmd.out                                                               
+|INPCRD: h2o_les.crd                                                           
+|  PARM: h2o_les.top                                                           
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+ 
+ Here is the input file:
+ 
+                                                                               
+SPC/Fw water simulation: CMD                                                   
+                                                                               
+&cntrl                                                                         
+                                                                               
+!..................................................                            
+                                                                               
+  ipimd = 2                                                                    
+                                                                               
+  imin = 0                                                                     
+                                                                               
+  irest = 1                                                                    
+                                                                               
+  ntx = 5                                                                      
+                                                                               
+!..................................................                            
+                                                                               
+  ntb = 1                                                                      
+                                                                               
+!..................................................                            
+                                                                               
+  cut = 9.0                                                                    
+                                                                               
+!..................................................                            
+                                                                               
+  temp0  = 298.15                                                              
+  temp0les = -1.0                                                              
+                                                                               
+  ntt = 4   ! flag for Nose'-Hoover chains                                     
+                                                                               
+  nchain = 4   ! number of thermostats in each Nose'-Hoover chain              
+                                                                               
+!..................................................                            
+                                                                               
+  dt = 0.000050                                                                
+                                                                               
+  nstlim = 10                                                                  
+                                                                               
+  nscm = 100000000                                                             
+                                                                               
+!..................................................                            
+                                                                               
+  eq_cmd = .true.                                                              
+                                                                               
+  adiab_param = 0.08                                                           
+                                                                               
+!..................................................                            
+                                                                               
+  ntpr = 1                                                                     
+                                                                               
+!..................................................                            
+                                                                               
+/                                                                              
+&ewald                                                                         
+  skinnb = 0.2d0                                                               
+/                                                                              
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+ getting new box info from bottom of inpcrd
+|  INFO: Old style inpcrd file read
+
+| peek_ewald_inpcrd: Box info found
+|Largest sphere to fit in unit cell has radius =     9.313
+ NATOM  =   10368 NTYPES =       2 NBONH =   10368 MBONA  =       0
+ NTHETH =    3456 MTHETA =       0 NPHIH =       0 MPHIA  =       0
+ NHPARM =       0 NPARM  =       1 NNB   =   13824 NRES   =     216
+ NBONA  =       0 NTHETA =       0 NPHIA =       0 NUMBND =       4
+ NUMANG =       2 NPTRA  =       0 NATYP =       2 NPHB   =       1
+ IFBOX  =       1 NMXRS  =      48 IFCAP =       0 NEXTRA =       0
+ NCOPY  =      16
+
+
+|     Memory Use     Allocated
+|     Real              581148
+|     Hollerith          62426
+|     Integer           251992
+|     Max Pairs        2691145
+|     nblistReal        124416
+|     nblist Int        241733
+|       Total            18196 kbytes
+ LES parameters were found
+       0 LES atom pairs require adjustment
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+     BOX TYPE: RECTILINEAR
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+WATE                                                                            
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       5, irest   =       1, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       1, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =   9.00000, intdiel =   1.00000
+     
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    = 100000000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00005, vlimit  =  20.00000
+
+Nose-Hoover chains
+     gamma_ln=   0.00000
+     number of oscillators=       4
+
+Ewald parameters:
+     verbose =       0, ew_type =       0, nbflag  =       1, use_pme =       1
+     vdwmeth =       1, eedmeth =       1, netfrc  =       1
+     Box X =   18.626   Box Y =   18.626   Box Z =   18.626
+     Alpha =   90.000   Beta  =   90.000   Gamma =   90.000
+     NFFT1 =   18       NFFT2 =   18       NFFT3 =   18
+     Cutoff=    9.000   Tol   =0.100E-04
+     Ewald Coefficient =  0.30768
+     Interpolation order =    4
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+WATE                                                                            
+ begin time read from input coords =     0.610 ps
+
+ Number of triangulated 3-point waters found:        0
+
+     Sum of charges from parm topology file =   0.00000190
+     Forcing neutrality...
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+omega( 1) =      7.63309731
+omega( 2) =      7.63309731
+omega( 3) =      7.63309731
+omega( 4) =      7.63309731
+omega( 5) =      7.63309731
+omega( 6) =      7.63309731
+omega( 7) =      7.63309731
+omega( 8) =      7.63309731
+omega( 9) =      7.63309731
+omega(10) =      7.63309731
+omega(11) =      7.63309731
+omega(12) =      7.63309731
+omega(13) =      7.63309731
+omega(14) =      7.63309731
+omega(15) =      7.63309731
+omega(16) =      7.63309731
+THIS IS A PIMD RUN
+ 
+PIMD parameters:
+number of beads           =   16
+number of classical atoms =  648
+temperature (Kelvin)      =   298.15
+# degrees of freedom in non-LES region:   31104.
+# degrees of freedom in     LES region:       0.
+ Single temperature bath for LES and non-LES
+ ---------------------------------------------------
+ APPROXIMATING switch and d/dx switch using CUBIC SPLINE INTERPOLATION
+ using   5000.0 points per unit in tabled values
+ TESTING RELATIVE ERROR over r ranging from 0.0 to cutoff
+| CHECK switch(x): max rel err =   0.2738E-14   at   2.422500
+| CHECK d/dx switch(x): max rel err =   0.8254E-11   at   2.736960
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =    1675805
+| TOTAL SIZE OF NONBOND LIST =    1675805
+
+ NSTEP =        1   TIME(PS) =       0.610  TEMP(K) =   280.76  PRESS =     0.0
+ Etot   =       576.1481  EKtot   =      1619.8653  EPtot      =     -1043.7171
+ BOND   =      1038.2123  ANGLE   =       266.3748  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.1458
+ EELEC  =     -2719.4500  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.6706E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =       0.610  TEMP(K) =   281.82  PRESS =     0.0
+ Etot   =       581.8617  EKtot   =      1622.6266  EPtot      =     -1040.7649
+ BOND   =      1042.6982  ANGLE   =       265.6408  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.1019
+ EELEC  =     -2720.2059  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.6528E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =       0.610  TEMP(K) =   282.96  PRESS =     0.0
+ Etot   =       580.1654  EKtot   =      1621.6522  EPtot      =     -1041.4868
+ BOND   =      1043.6382  ANGLE   =       264.7035  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.0876
+ EELEC  =     -2720.9161  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.6781E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) =       0.610  TEMP(K) =   284.15  PRESS =     0.0
+ Etot   =       571.5424  EKtot   =      1617.2085  EPtot      =     -1045.6660
+ BOND   =      1041.1681  ANGLE   =       263.6276  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.1115
+ EELEC  =     -2721.5732  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.6914E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =       0.610  TEMP(K) =   285.32  PRESS =     0.0
+ Etot   =       558.4621  EKtot   =      1610.5528  EPtot      =     -1052.0907
+ BOND   =      1036.4012  ANGLE   =       262.4998  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.1746
+ EELEC  =     -2722.1663  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.7490E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =       0.610  TEMP(K) =   286.38  PRESS =     0.0
+ Etot   =       544.5574  EKtot   =      1603.5207  EPtot      =     -1058.9633
+ BOND   =      1031.0422  ANGLE   =       261.4208  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.2753
+ EELEC  =     -2722.7015  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.8340E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) =       0.610  TEMP(K) =   287.26  PRESS =     0.0
+ Etot   =       533.4888  EKtot   =      1597.9447  EPtot      =     -1064.4559
+ BOND   =      1026.8229  ANGLE   =       260.4939  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.4088
+ EELEC  =     -2723.1815  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.9204E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =       0.610  TEMP(K) =   287.88  PRESS =     0.0
+ Etot   =       527.8453  EKtot   =      1595.1025  EPtot      =     -1067.2571
+ BOND   =      1024.9541  ANGLE   =       259.8120  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.5705
+ EELEC  =     -2723.5937  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.9975E-03
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =       0.610  TEMP(K) =   288.22  PRESS =     0.0
+ Etot   =       528.4117  EKtot   =      1595.3706  EPtot      =     -1066.9589
+ BOND   =      1025.7687  ANGLE   =       259.4445  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.7493
+ EELEC  =     -2723.9214  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.1005E-02
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =       0.610  TEMP(K) =   288.31  PRESS =     0.0
+ Etot   =       534.0866  EKtot   =      1598.1764  EPtot      =     -1064.0898
+ BOND   =      1028.6646  ANGLE   =       259.4289  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.9333
+ EELEC  =     -2724.1166  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.1036E-02
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      10 S T E P S
+
+
+ NSTEP =       10   TIME(PS) =       0.610  TEMP(K) =   285.31  PRESS =     0.0
+ Etot   =       553.6570  EKtot   =      1608.2020  EPtot      =     -1054.5451
+ BOND   =      1033.9370  ANGLE   =       262.3447  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =       371.3559
+ EELEC  =     -2722.1826  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.8235E-03
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       10   TIME(PS) =       0.610  TEMP(K) =     2.62  PRESS =     0.0
+ Etot   =        21.2677  EKtot   =        10.8422  EPtot      =        10.4262
+ BOND   =         6.9406  ANGLE   =         2.4889  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.2858
+ EELEC  =         1.5288  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ Ewald error estimate:   0.1464E-03
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.03 ( 0.19% of Total)
+|                Build the list             8.86 (99.50% of List )
+|                Other                      0.04 ( 0.50% of List )
+|             List time                  8.91 (70.16% of Nonbo)
+|                   Short_ene time             1.72 (99.04% of Direc)
+|                   Other                      0.02 ( 0.96% of Direc)
+|                Direct Ewald time          1.73 (45.80% of Ewald)
+|                Adjust Ewald time          0.01 ( 0.36% of Ewald)
+|                Self Ewald time            0.00 ( 0.03% of Ewald)
+|                   Fill Bspline coeffs        0.30 (14.94% of Recip)
+|                   Fill charge grid           0.63 (31.10% of Recip)
+|                   Scalar sum                 0.05 ( 2.29% of Recip)
+|                   Grad sum                   0.92 (45.25% of Recip)
+|                   FFT time                   0.11 ( 5.30% of Recip)
+|                   Other                      0.02 ( 1.11% of Recip)
+|                Recip Ewald time           2.03 (53.67% of Ewald)
+|                Force Adjust               0.00 ( 0.05% of Ewald)
+|                Virial junk                0.00 ( 0.08% of Ewald)
+|             Ewald time                 3.79 (29.84% of Nonbo)
+|          Nonbond force             12.69 (99.65% of Force)
+|          Bond/Angle/Dihedral        0.01 ( 0.10% of Force)
+|          Other                      0.03 ( 0.25% of Force)
+|       Force time                12.74 (93.45% of Runmd)
+|       Verlet update time         0.67 ( 4.92% of Runmd)
+|       Other                      0.22 ( 1.64% of Runmd)
+|    Runmd Time                13.63 (98.65% of Total)
+|    Other                      0.16 ( 1.15% of Total)
+| Total time                13.82 (100.0% of ALL  )
+
+| Highest rstack allocated:     295510
+| Highest istack allocated:      10368
+|           Job began  at 09:45:30.481  on 01/16/2007
+|           Setup done at 09:45:30.664  on 01/16/2007
+|           Run   done at 09:45:44.300  on 01/16/2007
+|     wallclock() was called    1490 times

@@ -1,0 +1,602 @@
+#
+#   Please do not edit the "depend" file directly, since it is created by the
+#   "makedepend" script.  If changes are needed, edit "makedepend" itself.
+#
+
+block.o: \
+		sebomd.dim \
+		se_param1.h \
+		se_param2.h \
+		se_param3.h \
+		se_param4.h \
+		se_param5.h \
+		se_param6.h \
+		se_param7.h \
+		se_block_mndo.h \
+		se_block_am1.h \
+		se_block_pm3.h \
+		se_block_rm1.h \
+		se_block_am1dphot.h \
+		se_block_pm3pddg.h \
+		se_logic.h \
+		se_subpar.h \
+		se_pbcbox.h \
+		se_elemnt.h \
+		se_pmeee.h \
+		se_parproc.h \
+		se_timings.h \
+		se_crit.h \
+		se_scfstuff.h \
+		se_endecomp.h \
+		se_bpairs.h \
+		se_fopen.h \
+		se_funit.h
+
+se_atmchg.o: \
+		sebomd.dim \
+		se_xyzcrd.h \
+		se_fulsys.h \
+		se_bpairs.h \
+		se_logic.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_elemnt.h
+
+se_balance.o: \
+		sebomd.dim \
+		se_parproc.h \
+		se_bal_mpi.h \
+		se_subsys.h
+
+se_bpair.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_fulsys.h \
+		se_glbmat2.h \
+		se_pairij.h \
+		se_sublst.h
+
+se_bspline.o: \
+		sebomd.dim \
+		se_pmeee.h
+
+se_clustsub.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_xyzcrd.h \
+		se_pbcbox.h \
+		se_fulsys.h \
+		se_clst.h \
+		se_subsys.h \
+		se_endecomp.h \
+		se_parproc.h \
+		se_subpar.h \
+		se_elemnt.h \
+		se_resdef.h
+
+se_corrections.o: \
+		se_corrections_module.o \
+		sebomd.dim \
+		se_constants.h \
+		se_elemnt.h \
+		se_fulsys.h \
+		se_logic.h \
+		se_param.h \
+		se_xyzcrd.h
+
+se_corrections_info_from_sander.o: \
+		../sander/sebomd_module.o
+
+se_corrections_module.o: \
+		../sander/sebomd_arrays.o \
+		se_corrections_tools.o
+
+se_corrections_tools.o: \
+		../sander/sebomd_arrays.o \
+		se_corrections_params.o \
+		se_inter.o
+
+se_debug.o: \
+		se_logic.h
+
+se_deeprec.o: \
+		../sander/sebomd_module.o
+
+se_denful.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_electr1.h \
+		se_elemnt.h \
+		se_fulsys.h \
+		se_subsys.h \
+		se_glbmat1.h \
+		se_glbmat2.h
+
+se_densub.o: \
+		sebomd.dim \
+		se_bal_mpi.h \
+		se_bpairs.h \
+		se_elemnt.h \
+		se_electr.h \
+		se_fulsys.h \
+		se_subsys.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_parproc.h
+
+se_diag.o: \
+		sebomd.dim \
+		se_pass1.h
+
+se_diat.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_param7.h
+
+se_dipole.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_elemnt.h \
+		se_fulsys.h \
+		se_xyzcrd.h \
+		se_glbmat1.h \
+		se_parproc.h \
+		se_param.h \
+		se_param1.h \
+		se_param2.h \
+		se_param3.h \
+		se_param4.h \
+		se_param5.h \
+		se_param6.h \
+		se_param7.h
+
+se_dmxinter.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_fulsys.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_glbmat4.h
+
+se_doferm.o: \
+		sebomd.dim \
+		se_electr.h \
+		se_electr1.h \
+		se_subsys.h
+
+se_doscf.o: \
+		sebomd.dim \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_logic.h \
+		se_bpairs.h \
+		se_electr.h \
+		se_electr1.h \
+		se_fulsys.h \
+		se_crit.h \
+		se_scfstuff.h \
+		se_timings.h \
+		se_parproc.h \
+		se_convrg.h \
+		se_constants.h \
+		se_opt.h
+
+se_edriver.o: \
+		se_corrections_module.o \
+		sebomd.dim \
+		se_logic.h \
+		se_esave.h \
+		se_xyzcrd.h \
+		se_fulsys.h \
+		se_parproc.h \
+		se_timings.h \
+		se_frozen.h \
+		se_electr.h \
+		se_electr1.h \
+		se_constants.h \
+		se_gradnt.h
+
+se_elecsr.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_xyzcrd.h \
+		se_constants.h
+
+se_energy.o: \
+		sebomd.dim \
+		se_parproc.h \
+		se_pmeqm.h \
+		se_logic.h \
+		se_gradnt.h \
+		se_esave.h \
+		se_fulsys.h \
+		se_subsys.h \
+		se_frozen.h \
+		se_param.h \
+		se_bal_mpi.h \
+		se_constants.h
+
+se_escf.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_elemnt.h \
+		se_esave.h \
+		se_fulsys.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_logic.h \
+		se_parproc.h \
+		se_pmeqm.h \
+		se_xyzcrd.h
+
+se_esqr.o: \
+		sebomd.dim \
+		se_electr.h \
+		se_elemnt.h \
+		se_fulsys.h \
+		se_subsys.h
+
+se_etimer.o:
+
+se_fock.o: \
+		sebomd.dim \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_fulsys.h \
+		se_subsys.h \
+		se_elemnt.h \
+		se_parproc.h \
+		se_bal_mpi.h \
+		se_bpairs.h \
+		se_xyzcrd.h \
+		se_pbcbox.h \
+		se_logic.h \
+		se_param.h
+
+se_fockpme.o: \
+		sebomd.dim \
+		se_pmeqm.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_parproc.h \
+		se_param.h \
+		se_xyzcrd.h \
+		se_logic.h \
+		se_bal_mpi.h \
+		se_bpairs.h \
+		se_fulsys.h \
+		se_subsys.h \
+		se_elemnt.h \
+		se_esave.h
+
+se_fourier.o: \
+		sebomd.dim
+
+se_fshift.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_elemnt.h \
+		se_fulsys.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_logic.h
+
+se_gcart.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_param.h \
+		se_constants.h \
+		se_parproc.h \
+		se_logic.h \
+		se_pmeqm.h \
+		se_xyzcrd.h \
+		se_esave.h \
+		se_bal_mpi.h \
+		se_fulsys.h \
+		se_subsys.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_elemnt.h
+
+se_gdiat.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_param7.h \
+		se_constants.h
+
+se_gensub.o: \
+		sebomd.dim \
+		se_elemnt.h \
+		se_fulsys.h \
+		se_logic.h \
+		se_subsys.h
+
+se_getpar.o: \
+		sebomd.dim \
+		se_elemnt.h \
+		se_logic.h \
+		se_ovraux.h \
+		se_param.h \
+		se_param1.h \
+		se_param2.h \
+		se_param3.h \
+		se_param4.h \
+		se_param5.h \
+		se_param6.h \
+		se_param7.h
+
+se_glbpnt.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_elemnt.h \
+		se_logic.h \
+		se_fulsys.h \
+		se_glbmat2.h \
+		se_parproc.h
+
+se_goverlp.o: \
+		sebomd.dim \
+		se_ovraux.h \
+		se_constants.h
+
+se_grepul.o: \
+		sebomd.dim \
+		se_constants.h
+
+se_ijpair.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_fulsys.h \
+		se_pairij.h
+
+se_info_from_sander.o: \
+		../sander/sebomd_module.o
+
+se_initp.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_elemnt.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_logic.h \
+		se_fulsys.h \
+		se_pairij.h \
+		se_convrg.h
+
+se_inter.o: \
+		../sander/sebomd_module.o
+
+se_mosub.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_logic.h \
+		se_parproc.h \
+		se_subsys.h \
+		se_fulsys.h \
+		se_electr.h \
+		se_electr1.h \
+		se_frozen.h \
+		se_work.h \
+		se_pass1.h \
+		se_bal_mpi.h \
+		se_elemnt.h \
+		se_opt.h
+
+se_mpi_allreduce.o: \
+		sebomd.dim \
+		se_parproc.h \
+		se_bal_mpi.h
+
+se_mpi_vars.o: \
+		../sander/parallel.h
+
+se_opnfil.o: \
+		sebomd.dim \
+		se_funit.h \
+		se_fopen.h \
+		se_parproc.h
+
+se_overlp.o: \
+		sebomd.dim \
+		se_ovraux.h \
+		se_constants.h
+
+se_pbcgcres.o: \
+		sebomd.dim \
+		se_pbcbox.h
+
+se_pbcxyz.o: \
+		sebomd.dim \
+		se_pbcbox.h \
+		se_xyzcrd.h
+
+se_pme_calcb.o: \
+		sebomd.dim \
+		se_pmeee.h
+
+se_pme_calcchg.o: \
+		sebomd.dim \
+		se_fulsys.h \
+		se_elemnt.h \
+		se_xyzcrd.h \
+		se_glbmat1.h
+
+se_pme_calccm1.o: \
+		sebomd.dim \
+		se_xyzcrd.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_bpairs.h \
+		se_fulsys.h \
+		se_elemnt.h \
+		se_parproc.h
+
+se_pme_calcq.o: \
+		sebomd.dim \
+		se_pmeee.h \
+		se_fulsys.h \
+		se_xyzcrd.h \
+		se_esave.h \
+		se_pbcbox.h
+
+se_pme_calctheta.o: \
+		sebomd.dim \
+		se_pmeee.h \
+		se_pbcbox.h
+
+se_pme_derec.o: \
+		sebomd.dim \
+		se_pmeee.h \
+		se_fulsys.h \
+		se_xyzcrd.h \
+		se_pbcbox.h \
+		se_esave.h \
+		se_constants.h
+
+se_pme_direct2.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_esave.h \
+		se_pmeee.h \
+		se_fulsys.h \
+		se_xyzcrd.h \
+		se_pbcbox.h \
+		se_constants.h
+
+se_pme_qm_direct.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_pmeee.h \
+		se_pbcbox.h \
+		se_xyzcrd.h \
+		se_constants.h
+
+se_pme_qm_recip.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_pbcbox.h \
+		se_pmeee.h \
+		se_xyzcrd.h \
+		se_constants.h
+
+se_pme_recip.o: \
+		sebomd.dim \
+		se_pmeee.h \
+		se_constants.h
+
+se_pme_setup.o: \
+		sebomd.dim \
+		se_pbcbox.h \
+		se_pmeee.h
+
+se_pmix.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_convrg.h \
+		se_elemnt.h \
+		se_fulsys.h \
+		se_glbmat1.h \
+		se_glbmat2.h
+
+se_rdall.o: \
+		sebomd.dim \
+		se_fulsys.h \
+		se_logic.h \
+		se_parproc.h \
+		se_resdef.h
+
+se_rdelem.o: \
+		sebomd.dim \
+		se_fulsys.h
+
+se_rdtail.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_parproc.h \
+		se_resdef.h \
+		se_subpar.h
+
+se_repul.o: \
+		sebomd.dim \
+		se_constants.h
+
+se_resclustsub.o: \
+		sebomd.dim \
+		se_logic.h \
+		se_xyzcrd.h \
+		se_pbcbox.h \
+		se_fulsys.h \
+		se_clst.h \
+		se_subsys.h \
+		se_endecomp.h \
+		se_parproc.h \
+		se_subpar.h \
+		se_elemnt.h \
+		se_resdef.h
+
+se_setbox.o: \
+		sebomd.dim \
+		se_elemnt.h \
+		se_fulsys.h \
+		se_pbcbox.h \
+		se_resdef.h \
+		se_xyzcrd.h
+
+se_setunit.o: \
+		sebomd.dim \
+		se_parproc.h \
+		se_funit.h
+
+se_setup.o: \
+		sebomd.dim \
+		se_electr1.h \
+		se_elemnt.h \
+		se_endecomp.h \
+		se_esave.h \
+		se_fulsys.h \
+		se_parproc.h \
+		se_param.h \
+		se_logic.h
+
+se_sproc.o: \
+		sebomd.dim \
+		se_fulsys.h \
+		se_subsys.h \
+		se_elemnt.h \
+		se_parproc.h \
+		se_sublst.h \
+		se_bpairs.h
+
+se_write_charges.o: \
+		../sander/file_io_dat.o
+
+se_wrtdmx.o: \
+		sebomd.dim \
+		se_bpairs.h \
+		se_elemnt.h \
+		se_fopen.h \
+		se_fulsys.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_parproc.h
+
+sebomd.o: \
+		se_inter.o \
+		sebomd.dim \
+		se_logic.h \
+		se_xyzcrd.h \
+		se_bpairs.h \
+		se_esave.h \
+		se_pbcbox.h \
+		se_subpar.h \
+		se_parproc.h \
+		se_fulsys.h \
+		se_resdef.h \
+		se_glbmat1.h \
+		se_glbmat2.h \
+		se_glbmat4.h \
+		se_constants.h \
+		se_opt.h
+

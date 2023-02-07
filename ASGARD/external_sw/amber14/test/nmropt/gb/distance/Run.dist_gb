@@ -1,0 +1,60 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP restraining 2 distances using nmropt (umbrella sampling)
+#TEST-PURPOSE Regression
+#TEST-STATE   Documented
+
+. ../../../program_error.sh
+
+if [ -z "$TESTsander" ]; then
+   TESTsander="../../../../bin/sander"
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+   export DO_PARALLEL=" "
+fi
+
+cat > mdin <<EOF
+ Test of nmropt on 1 distance
+ &cntrl                                                                        
+   ig=71277,       ! set random seed
+   nstlim = 20,    ! 50 steps
+   igb=5,          ! gb solvent
+   ntb=0,          ! no periodic boundaries
+   ntx=5,          ! restart with velocities
+   irest=1, 
+   ntpr=1,         ! mdout
+   dt=0.001,       ! 1 fs timestep
+   ntt=1,          ! T coupling
+   ntc=2,          ! use shake
+   ntf=2,  
+   tol=0.000001,
+   ntwr = 200,     ! dont write rst
+   nmropt=1, 
+ /
+ &wt type='DUMPFREQ', istep1=2  /
+ &wt type='END'   /
+DISANG=dist_gb.RST
+DUMPAVE=dist_gb_vs_t
+LISTIN=POUT
+LISTOUT=POUT
+EOF
+
+cat > dist_gb.RST << EOF
+# bond restraints for gb
+ &rst  iat=1177,1217, r1=0.49, r2=5.49, r3=5.49, r4=10.49, rk2 = 20.0, rk3 = 20.0,   /
+ &rst  iat=1181,1115, r1=0.16, r2=5.16, r3=5.16, r4=10.16, rk2 = 10.0, rk3 = 10.0,   /
+EOF
+
+$DO_PARALLEL $TESTsander -O -c ../myoglobin_gb.inpcrd -p ../myoglobin_gb.prmtop \
+                         < /dev/null || error
+        
+if [ `basename $TESTsander` = "pmemd.mic_offload.MPI" ]; then
+../../../dacdif -r 1.0e-08 mdout.save mdout
+else
+../../../dacdif mdout.save mdout
+fi
+../../../dacdif dist_gb_vs_t.save dist_gb_vs_t
+/bin/rm -f mdin restrt mdinfo dist_gb.RST logfile profile_mpi
+
+exit 0

@@ -1,0 +1,61 @@
+#!/bin/sh
+
+. ../../program_error.sh
+
+# This is a test file to run the ante-MMPBSA.py prmtop creation
+# utility script.
+
+if [ -z "$AMBERHOME" ]; then
+   echo "Error: AMBERHOME must be set!"
+   exit 1
+fi
+
+# Define executable
+if [ -z "$DO_PARALLEL" ]; then
+   EXE=$AMBERHOME/bin/ante-MMPBSA.py
+else
+   echo "This is not a parallel test."
+   exit 0
+fi
+
+
+$EXE -p sol.top  \
+     -c c.top \
+     -r r.top \
+     -l l.top \
+     --strip-mask=":WAT" \
+     --ligand-mask=":RAL" > log 2>&1 || error
+
+../../dacdif com.top c.top
+../../dacdif rec.top r.top
+../../dacdif lig.top l.top
+
+# Usage: ante-MMPBSA.py [options]
+# 
+# Options:
+#   -h, --help            show this help message and exit
+#   -p PRMTOP, --prmtop=PRMTOP
+#                         Input "dry" complex topology or solvated complex
+#                         topology
+#   -c COMPLEX, --complex-prmtop=COMPLEX
+#                         Complex topology file created by stripping PRMTOP of
+#                         solvent
+#   -r RECEPTOR, --receptor-prmtop=RECEPTOR
+#                         Receptor topology file created by stripping COMPLEX of
+#                         ligand
+#   -l LIGAND, --ligand-prmtop=LIGAND
+#                         Ligand topology file created by stripping COMPLEX of
+#                         receptor
+#   -s STRIP_MASK, --strip-mask=STRIP_MASK
+#                         Amber mask of atoms needed to be stripped from PRMTOP
+#                         to make the COMPLEX topology file
+#   -m RECEPTOR_MASK, --receptor-mask=RECEPTOR_MASK
+#                         Amber mask of atoms needed to be stripped from COMPLEX
+#                         to create RECEPTOR. Cannot specify with -n/--ligand-
+#                         mask
+#   -n LIGAND_MASK, --ligand-mask=LIGAND_MASK
+#                         Amber mask of atoms needed to be stripped from COMPLEX
+#                         to create LIGAND. Cannot specify with -m/--receptor-
+#                         mask
+
+/bin/rm -f log

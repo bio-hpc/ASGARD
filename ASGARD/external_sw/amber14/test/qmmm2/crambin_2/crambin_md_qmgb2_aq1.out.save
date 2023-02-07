@@ -1,0 +1,522 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 01/15/2014 at 09:21:50
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: mdin                                                                  
+| MDOUT: crambin_md_qmgb2_aq1.out                                              
+|INPCRD: crambin.rst                                                           
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+| MDFRC: mdfrc                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+ 
+ Here is the input file:
+ 
+Crambin: 20 cycles md using qm calculation                                     
+ &cntrl                                                                        
+        imin =0, nstlim=20,dt=0.001,                                           
+        ntpr=1, ntb=0, igb=5,                                                  
+        ifqnt=1, ntwx=0,ntwv=0,                                                
+        cut=14.0,tempi=0.0,temp0=300.0,                                        
+        ntt=1                                                                  
+ /                                                                             
+ &qmmm                                                                         
+     iqmatoms= 41,42,43,44,45,46,47,48,49,50,                                  
+               442,443,444,445,446,447,448,                                    
+               449,450,451,                                                    
+     qm_theory='PM3-PDDG',                                                     
+     qmcharge=0,                                                               
+     qmgb=2, adjust_q=1                                                        
+ /                                                                             
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+| New format PARM file being parsed.
+| Version =    1.000 Date = 06/24/03 Time = 11:20:38
+ NATOM  =     642 NTYPES =      12 NBONH =     315 MBONA  =     334
+ NTHETH =     717 MTHETA =     460 NPHIH =    1277 MPHIA  =     844
+ NHPARM =       0 NPARM  =       0 NNB   =    3545 NRES   =      46
+ NBONA  =     334 NTHETA =     460 NPHIA =     844 NUMBND =      23
+ NUMANG =      50 NPTRA  =      21 NATYP =      16 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      24 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real               37076
+|     Hollerith           1974
+|     Integer            52309
+|     Max Pairs              1
+|     nblistReal             0
+|     nblist Int             0
+|       Total              501 kbytes
+
+| Note: 1-4 EEL scale factors were NOT found in the topology file.
+|       Using default value of 1.2.
+
+| Note: 1-4 VDW scale factors were NOT found in the topology file.
+|       Using default value of 2.0.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+                                                                                
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       5, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     =  14.00000, intdiel =   1.00000
+     saltcon =   0.00000, offset  =   0.09000, gbalpha=    1.00000
+     gbbeta  =   0.80000, gbgamma =   4.85000, surften =   0.00500
+     rdt     =   0.00000, rgbmax  =  25.00000  extdiel =  78.50000
+     alpb  =        0
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        20, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+Berendsen (weak-coupling) temperature regulation:
+     temp0   = 300.00000, tempi   =   0.00000, tautp   =   1.00000
+
+QMMM options:
+             ifqnt = True       nquant =       20
+              qmgb =        2  qmcharge =        0   adjust_q =        1
+              spin =        1     qmcut =  14.0000    qmshake =        1
+          qmmm_int =        1
+     lnk_atomic_no =        1   lnk_dis =   1.0900 lnk_method =        1
+          qm_theory = PDDGPM3 verbosity =        0
+            qmqmdx = Analytical
+      tight_p_conv = False (converge density to 0.05xSqrt[SCFCRT])
+           scfconv = 0.100E-07  itrmax =     1000
+      printcharges = False      printdipole = False      peptide_corr = False
+    qmmmrij_incore = True 
+  qmqm_erep_incore = True 
+       pseudo_diag = True pseudo_diag_criteria =   0.0500
+      diag_routine =        0
+          qm_ewald =        0 qm_pme = False 
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+                                                                                
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+QMMM: ADJUSTING CHARGES
+QMMM: ----------------------------------------------------------------------
+QMMM: adjust_q = 1
+QMMM: Adjusting the charge of closest nlink MM atoms to MM link pairs
+QMMM: to conserve total charge.
+QMMM: Atoms being adjusted =     40    61   441   453
+QMMM:                                  qm_charge =    0
+QMMM:      QM atom RESP charge sum (inc MM link) =    0.524
+QMMM: Adjusting selected MM atom resp charges by =    0.131
+QMMM:               Sum of MM + QM region is now =   -0.000
+QMMM: ----------------------------------------------------------------------
+|  # of SOLUTE  degrees of freedom (RNDFP):    1926.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  QMSHAKE_NOSHAKEMASK_OVERLAP =      0
+|  NDFMIN =    1920.     NUM_NOSHAKE =      0     CORRECTED RNDFP =    1920.
+|  TOTAL # of degrees of freedom (RNDF) =    1920.
+
+QMMM: Link Atom Information
+QMMM: ------------------------------------------------------------------------
+QMMM:  nlink =     4                   Link Coords              Resp Charges
+QMMM:    MM(typ)  -  QM(typ)      X         Y         Z         MM        QM
+QMMM:    39 C        41 N       12.180    10.218    10.281     0.597    -0.416
+QMMM:    51 N        49 C        9.774     9.025    13.352    -0.255     0.597
+QMMM:   440 C       442 N        6.305    12.031    10.856     0.597    -0.416
+QMMM:   452 N       450 C        9.430    13.261     9.012    -0.416     0.597
+QMMM: ------------------------------------------------------------------------
+
+  QMMM: QM Region Cartesian Coordinates (*=link atom) 
+  QMMM: QM_NO.   MM_NO.  ATOM         X         Y         Z
+  QMMM:     1       41      N       12.0288    9.2924   10.8370
+  QMMM:     2       42      H       12.7846    8.6533   11.0377
+  QMMM:     3       43      C       10.6907    8.9309   11.3263
+  QMMM:     4       44      H       10.0148    9.7722   11.0894
+  QMMM:     5       45      C       10.1597    7.6999   10.6178
+  QMMM:     6       46      H       10.8932    6.8895   10.7212
+  QMMM:     7       47      H        9.2292    7.3775   11.0978
+  QMMM:     8       48      S        9.8271    7.9332    8.8411
+  QMMM:     9       49      C       10.6892    8.7354   12.8355
+  QMMM:    10       50      O       11.6410    8.2779   13.4171
+  QMMM:    11      442      N        6.6562   11.5022    9.9701
+  QMMM:    12      443      H        6.0317   10.9772    9.3912
+  QMMM:    13      444      C        8.0613   11.5980    9.5542
+  QMMM:    14      445      H        8.6869   11.3458   10.4310
+  QMMM:    15      446      C        8.3773   10.6210    8.4468
+  QMMM:    16      447      H        7.7959   10.9059    7.5640
+  QMMM:    17      448      H        9.4409   10.7028    8.1963
+  QMMM:    18      449      S        8.0142    8.8667    8.8153
+  QMMM:    19      450      C        8.3699   13.0376    9.1270
+  QMMM:    20      451      O        7.5011   13.8513    8.9245
+  QMMM:    21              *H       12.1798   10.2178   10.2813
+  QMMM:    22              *H        9.7741    9.0252   13.3519
+  QMMM:    23              *H        6.3053   12.0311   10.8562
+  QMMM:    24              *H        9.4304   13.2615    9.0118
+
+--------------------------------------------------------------------------------
+  3.1 QM CALCULATION INFO
+--------------------------------------------------------------------------------
+
+| QMMM: Citation for AMBER QMMM Run:
+| QMMM: R.C. Walker, M.F. Crowley and D.A. Case, J. COMP. CHEM. 29:1019, 2008
+
+QMMM: SINGLET STATE CALCULATION
+QMMM: RHF CALCULATION, NO. OF DOUBLY OCCUPIED LEVELS = 35
+
+| QMMM: *** Selected Hamiltonian *** 
+| QMMM: PDDG/PM3    
+
+| QMMM: *** Parameter sets in use ***
+| QMMM: N : REPASKY et al. JCC, 23, 1601, (2002)
+| QMMM: H : REPASKY et al. JCC, 23, 1601, (2002)
+| QMMM: C : REPASKY et al. JCC, 23, 1601, (2002)
+| QMMM: S : TUBERT-BROHMAN et al. JCTC, 1, 817, (2005)
+| QMMM: O : REPASKY et al. JCC, 23, 1601, (2002)
+ 
+| QMMM: *** Diagonalization Routine Information ***
+| QMMM: Pseudo diagonalizations are allowed.
+| QMMM: Auto diagonalization routine selection is disabled.
+| QMMM: Using internal diagonalization routine (diag_routine=1).
+
+| QMMM: Estimated QM Dynamic Memory Usage (per thread)
+| QMMM: ---------------------------------------------------
+| QMMM:              QM Atom Type Info :          880 bytes
+| QMMM:         QM RESP Charge Storage :          160 bytes
+| QMMM:            QM Atom Number List :           96 bytes
+| QMMM:                Link Atom Pairs :          160 bytes
+| QMMM:          QM Atomic Number List :           96 bytes
+| QMMM:                QM-MM Pair List :         2492 bytes
+| QMMM:                   QM Atom Mask :         1284 bytes
+| QMMM:           QM Coordinate Arrays :        21120 bytes
+| QMMM:         Scaled MM Charge Array :         5136 bytes
+| QMMM:    SCF Mulliken Charge Storage :          192 bytes
+| QMMM:                   QM GB Arrays :         7392 bytes
+| QMMM:                QM Force Arrays :        15984 bytes
+| QMMM:                 Density Matrix :        14640 bytes
+| QMMM:          Density Matrix Copies :        15120 bytes
+| QMMM: Fock2 Density Matrix Workspace :         3072 bytes
+| QMMM:                    Fock Matrix :        14640 bytes
+| QMMM:           Eigen Vector Storage :        28800 bytes
+| QMMM: QM-QM Elec Repulsion Integrals :        48576 bytes
+| QMMM:  QM 2-Elec Repulsion Integrals :        64848 bytes
+| QMMM:              1-Electron Matrix :        14640 bytes
+| QMMM:       _REAL_ parameter storage :       106136 bytes
+| QMMM:      integer parameter storage :          768 bytes
+| QMMM:         QM-MM RIJ Eqns storage :      1305216 bytes
+| QMMM:          _REAL_ Scratch arrays :        90024 bytes
+| QMMM:         Integer Scratch arrays :        14704 bytes
+| QMMM: ---------------------------------------------------
+| QMMM:        Total Dynamic Memory Usage:      1.694 Mb
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =     -1571.5017  EKtot   =         0.0000  EPtot      =     -1571.5017
+ BOND   =        18.3712  ANGLE   =        75.9767  DIHED      =       182.3644
+ 1-4 NB =       179.4689  1-4 EEL =      1448.1957  VDWAALS    =      -247.5173
+ EELEC  =     -2631.0463  EGB     =      -609.3333  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      12.0183
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        1   TIME(PS) =       0.001  TEMP(K) =     0.00  PRESS =     0.0
+ Etot   =     -1571.5017  EKtot   =         0.0000  EPtot      =     -1571.5017
+ BOND   =        18.3712  ANGLE   =        75.9767  DIHED      =       182.3644
+ 1-4 NB =       179.4689  1-4 EEL =      1448.1957  VDWAALS    =      -247.5173
+ EELEC  =     -2631.0463  EGB     =      -609.3333  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      12.0183
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =       0.002  TEMP(K) =     2.76  PRESS =     0.0
+ Etot   =     -1570.7340  EKtot   =         5.2723  EPtot      =     -1576.0063
+ BOND   =        17.0340  ANGLE   =        75.4167  DIHED      =       182.2437
+ 1-4 NB =       179.2769  1-4 EEL =      1447.7767  VDWAALS    =      -248.2166
+ EELEC  =     -2634.4979  EGB     =      -606.7017  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      11.6620
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =       0.003  TEMP(K) =     8.47  PRESS =     0.0
+ Etot   =     -1568.8911  EKtot   =        16.1545  EPtot      =     -1585.0456
+ BOND   =        15.2335  ANGLE   =        73.8164  DIHED      =       181.8743
+ 1-4 NB =       178.6918  1-4 EEL =      1446.4386  VDWAALS    =      -250.3521
+ EELEC  =     -2630.9583  EGB     =      -610.5243  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      10.7345
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) =       0.004  TEMP(K) =    14.12  PRESS =     0.0
+ Etot   =     -1567.4462  EKtot   =        26.9316  EPtot      =     -1594.3779
+ BOND   =        16.8511  ANGLE   =        71.7941  DIHED      =       181.3283
+ 1-4 NB =       177.8377  1-4 EEL =      1444.2863  VDWAALS    =      -253.5282
+ EELEC  =     -2629.5370  EGB     =      -612.8838  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=       9.4736
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =       0.005  TEMP(K) =    18.83  PRESS =     0.0
+ Etot   =     -1568.7310  EKtot   =        35.9231  EPtot      =     -1604.6541
+ BOND   =        20.8680  ANGLE   =        70.0258  DIHED      =       180.6818
+ 1-4 NB =       176.8362  1-4 EEL =      1441.3875  VDWAALS    =      -257.4458
+ EELEC  =     -2636.1426  EGB     =      -610.8254  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=       9.9604
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =       0.006  TEMP(K) =    23.91  PRESS =     0.0
+ Etot   =     -1564.9390  EKtot   =        45.6073  EPtot      =     -1610.5463
+ BOND   =        22.6646  ANGLE   =        69.1614  DIHED      =       180.0275
+ 1-4 NB =       175.8103  1-4 EEL =      1437.8510  VDWAALS    =      -261.8535
+ EELEC  =     -2633.9911  EGB     =      -608.2494  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=       8.0328
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) =       0.007  TEMP(K) =    30.08  PRESS =     0.0
+ Etot   =     -1561.8866  EKtot   =        57.3911  EPtot      =     -1619.2777
+ BOND   =        20.0463  ANGLE   =        69.6613  DIHED      =       179.4653
+ 1-4 NB =       174.8568  1-4 EEL =      1433.8240  VDWAALS    =      -266.5476
+ EELEC  =     -2619.4414  EGB     =      -617.9770  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=       6.8345
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =       0.008  TEMP(K) =    36.10  PRESS =     0.0
+ Etot   =     -1561.8591  EKtot   =        68.8772  EPtot      =     -1630.7363
+ BOND   =        15.7625  ANGLE   =        71.6778  DIHED      =       179.0916
+ 1-4 NB =       174.0268  1-4 EEL =      1429.4767  VDWAALS    =      -271.3534
+ EELEC  =     -2622.1168  EGB     =      -614.0921  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=       6.7906
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =       0.009  TEMP(K) =    40.30  PRESS =     0.0
+ Etot   =     -1560.2000  EKtot   =        76.8796  EPtot      =     -1637.0796
+ BOND   =        13.7860  ANGLE   =        74.9951  DIHED      =       178.9908
+ 1-4 NB =       173.3141  1-4 EEL =      1424.9674  VDWAALS    =      -276.1145
+ EELEC  =     -2621.7159  EGB     =      -611.4001  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=       6.0973
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =       0.010  TEMP(K) =    42.43  PRESS =     0.0
+ Etot   =     -1549.3354  EKtot   =        80.9413  EPtot      =     -1630.2767
+ BOND   =        15.2667  ANGLE   =        79.0497  DIHED      =       179.2245
+ 1-4 NB =       172.6561  1-4 EEL =      1420.4254  VDWAALS    =      -280.6990
+ EELEC  =     -2625.2689  EGB     =      -587.7907  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -3.1404
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       11   TIME(PS) =       0.011  TEMP(K) =    43.64  PRESS =     0.0
+ Etot   =     -1542.3929  EKtot   =        83.2492  EPtot      =     -1625.6422
+ BOND   =        18.8221  ANGLE   =        83.0447  DIHED      =       179.8288
+ 1-4 NB =       171.9493  1-4 EEL =      1415.9290  VDWAALS    =      -285.0010
+ EELEC  =     -2653.8838  EGB     =      -550.5375  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -5.7938
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       12   TIME(PS) =       0.012  TEMP(K) =    45.17  PRESS =     0.0
+ Etot   =     -1541.9212  EKtot   =        86.1655  EPtot      =     -1628.0867
+ BOND   =        22.8426  ANGLE   =        86.1749  DIHED      =       180.8086
+ 1-4 NB =       171.0825  1-4 EEL =      1411.5266  VDWAALS    =      -288.9380
+ EELEC  =     -2664.6422  EGB     =      -541.2312  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -5.7105
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       13   TIME(PS) =       0.013  TEMP(K) =    47.59  PRESS =     0.0
+ Etot   =     -1541.5361  EKtot   =        90.7816  EPtot      =     -1632.3177
+ BOND   =        26.2134  ANGLE   =        87.8603  DIHED      =       182.1394
+ 1-4 NB =       169.9770  1-4 EEL =      1407.2427  VDWAALS    =      -292.4387
+ EELEC  =     -2664.2644  EGB     =      -542.9175  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -6.1299
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       14   TIME(PS) =       0.014  TEMP(K) =    50.78  PRESS =     0.0
+ Etot   =     -1540.6782  EKtot   =        96.8716  EPtot      =     -1637.5498
+ BOND   =        28.1875  ANGLE   =        87.9177  DIHED      =       183.7727
+ 1-4 NB =       168.6156  1-4 EEL =      1403.1076  VDWAALS    =      -295.4536
+ EELEC  =     -2619.5521  EGB     =      -587.4511  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -6.6940
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       15   TIME(PS) =       0.015  TEMP(K) =    53.94  PRESS =     0.0
+ Etot   =     -1537.6348  EKtot   =       102.8939  EPtot      =     -1640.5287
+ BOND   =        29.1270  ANGLE   =        86.5945  DIHED      =       185.6421
+ 1-4 NB =       167.0484  1-4 EEL =      1399.1764  VDWAALS    =      -297.9748
+ EELEC  =     -2639.0083  EGB     =      -562.7163  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -8.4176
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       16   TIME(PS) =       0.016  TEMP(K) =    56.05  PRESS =     0.0
+ Etot   =     -1541.4604  EKtot   =       106.9280  EPtot      =     -1648.3884
+ BOND   =        30.5645  ANGLE   =        84.4517  DIHED      =       187.6708
+ 1-4 NB =       165.3730  1-4 EEL =      1395.5295  VDWAALS    =      -300.0409
+ EELEC  =     -2641.6517  EGB     =      -563.6632  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -6.6220
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       17   TIME(PS) =       0.017  TEMP(K) =    57.00  PRESS =     0.0
+ Etot   =     -1539.9567  EKtot   =       108.7356  EPtot      =     -1648.6923
+ BOND   =        33.0851  ANGLE   =        82.1607  DIHED      =       189.7776
+ 1-4 NB =       163.6997  1-4 EEL =      1392.2444  VDWAALS    =      -301.7274
+ EELEC  =     -2653.4223  EGB     =      -550.0873  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -4.4227
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       18   TIME(PS) =       0.018  TEMP(K) =    57.98  PRESS =     0.0
+ Etot   =     -1540.1665  EKtot   =       110.6162  EPtot      =     -1650.7827
+ BOND   =        34.9576  ANGLE   =        80.3026  DIHED      =       191.8808
+ 1-4 NB =       162.1141  1-4 EEL =      1389.3729  VDWAALS    =      -303.1197
+ EELEC  =     -2669.9636  EGB     =      -531.1813  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -5.1461
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       19   TIME(PS) =       0.019  TEMP(K) =    60.09  PRESS =     0.0
+ Etot   =     -1539.9716  EKtot   =       114.6307  EPtot      =     -1654.6024
+ BOND   =        34.4904  ANGLE   =        79.2466  DIHED      =       193.9060
+ 1-4 NB =       160.6561  1-4 EEL =      1386.9088  VDWAALS    =      -304.2984
+ EELEC  =     -2681.3648  EGB     =      -518.2541  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -5.8930
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       20   TIME(PS) =       0.020  TEMP(K) =    62.56  PRESS =     0.0
+ Etot   =     -1543.9984  EKtot   =       119.3530  EPtot      =     -1663.3514
+ BOND   =        33.1753  ANGLE   =        79.1150  DIHED      =       195.7853
+ 1-4 NB =       159.3093  1-4 EEL =      1384.7862  VDWAALS    =      -305.3343
+ EELEC  =     -2704.5035  EGB     =      -505.0690  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=      -0.6156
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      20 S T E P S
+
+
+ NSTEP =       20   TIME(PS) =       0.020  TEMP(K) =    37.59  PRESS =     0.0
+ Etot   =     -1552.7620  EKtot   =        71.7102  EPtot      =     -1624.4722
+ BOND   =        23.3675  ANGLE   =        78.4222  DIHED      =       183.8252
+ 1-4 NB =       171.1300  1-4 EEL =      1418.0227  VDWAALS    =      -279.3977
+ EELEC  =     -2643.8486  EGB     =      -577.1443  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=       1.1509
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       20   TIME(PS) =       0.020  TEMP(K) =    19.43  PRESS =     0.0
+ Etot   =        12.6550  EKtot   =        37.0697  EPtot      =        25.7251
+ BOND   =         7.0450  ANGLE   =         6.1373  DIHED      =         5.0790
+ 1-4 NB =         6.1886  1-4 EEL =        21.7616  VDWAALS    =        20.2597
+ EELEC  =        22.4839  EGB     =        35.9829  RESTRAINT  =         0.0000
+ PDDGPM3-ESCF=       7.4396
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 0.06% of Total)
+|                Calc gb radii              0.18 (22.38% of Gen B)
+|                Calc gb diag               0.31 (38.47% of Gen B)
+|                Calc gb off-diag           0.31 (39.00% of Gen B)
+|                Other                      0.00 ( 0.14% of Gen B)
+|             Gen Born time              0.80 (100.0% of Nonbo)
+|          Nonbond force              0.80 (57.12% of Force)
+|             QMMM setup                 0.00 ( 0.18% of QMMM )
+|             QMMM list build            0.00 ( 0.31% of QMMM )
+|             QMMM prep coords           0.00 ( 0.01% of QMMM )
+|             QMMM RIJ Eqns Calc         0.02 ( 3.91% of QMMM )
+|                   QMMM hcore QM-QM           0.03 (68.91% of QMMM )
+|                   QMMM hcore QM-MM           0.01 (31.09% of QMMM )
+|                   Other                      0.00 ( 0.01% of QMMM )
+|                QMMM hcore calc            0.04 ( 7.95% of QMMM )
+|                      QMMM GB Fock Terms         0.00 ( 0.69% of QMMM )
+|                      Other                      0.13 (99.31% of QMMM )
+|                   QMMM fock build            0.13 (28.77% of QMMM )
+|                   QMMM elec-energy cal       0.00 ( 0.44% of QMMM )
+|                   QMMM full matrix dia       0.21 (47.78% of QMMM )
+|                   QMMM pseudo matrix d       0.06 (13.75% of QMMM )
+|                   QMMM density build         0.04 ( 9.27% of QMMM )
+|                QMMM scf                   0.44 (89.48% of QMMM )
+|                QMMM GB energy             0.01 ( 2.57% of QMMM )
+|             QMMM energy                0.49 (83.55% of QMMM )
+|             QMMM QM-QM force           0.02 ( 4.04% of QMMM )
+|             QMMM QM-MM force           0.05 ( 7.92% of QMMM )
+|             QMMM Collate Forces        0.00 ( 0.08% of QMMM )
+|          QMMM                       0.59 (42.23% of Force)
+|          Bond/Angle/Dihedral        0.01 ( 0.65% of Force)
+|       Force time                 1.40 (99.45% of Runmd)
+|       Verlet update time         0.01 ( 0.55% of Runmd)
+|    Runmd Time                 1.41 (99.34% of Total)
+|    Other                      0.01 ( 0.61% of Total)
+| Total time                 1.42 (100.0% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       1.41 Per Step(ms) =      70.37
+|         ns/day =       1.23   seconds/ns =   70369.70
+| -----------------------------------------------------
+
+|           Job began  at 09:21:50.496  on 01/15/2014
+|           Setup done at 09:21:50.506  on 01/15/2014
+|           Run   done at 09:21:51.913  on 01/15/2014
+|     wallclock() was called    9250 times

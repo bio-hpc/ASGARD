@@ -1,0 +1,81 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+../../check_GAUSSIAN.x
+if( $status > 0) then
+  exit(0)
+endif
+
+set sander = "../../../bin/sander"
+if( $?TESTsander ) then
+    set sander = $TESTsander
+endif
+
+if( ! $?DO_PARALLEL ) then
+    setenv DO_PARALLEL " "
+else
+    echo "This test not set up for parallel"
+    echo "Parallelism handled within GAUSSIAN"
+    exit 0
+endif
+
+# check how many CPU cores Gaussian should use
+if ( $?GAU_NCPUS) then
+    if ( $GAU_NCPUS > 1 ) then
+        echo "Gaussian will run on $GAU_NCPUS CPU cores"
+    endif
+else
+    set GAU_NCPUS = 1
+    echo "GAUSSIAN will run on 1 CPU core"
+    echo "(environment variable GAU_NCPUS not set)"
+endif
+
+cat > mdin <<EOF
+2 steps NVE pure QM MD with Gaussian (dt=0.5fs, no shake)
+ &cntrl
+  imin   = 0,           !no minimization
+  irest  = 1,           !restart
+  ntx    = 5,           !coordinates and velocities are read in
+  cut    = 9999.9       !non-bonded interactions cutoff
+  dt     = 0.0005,      !0.5fs time step
+  ntb    = 0,           !no periodicity and PME off!
+  ntt    = 0,           !turn off thermostat
+  ntpr   = 1,           !print details to log every step (every .5fs)
+  ntwx   = 1,           !write coordinates to mdcrd every step (every .5fs)
+  ntwr   = 2,           !write restart file at last step
+  nstlim = 2,           !run for 2 steps (1 fs at dt=0.5fs)
+  nscm   = 0,           !No removal of COM motion,
+  ioutfm = 1,           !NetCDF MDCRD.
+  ifqnt  = 1,
+ /
+ &qmmm
+  qmmask    = '@*',
+  qmcharge  = 0,
+  qm_theory = 'EXTERN',
+  verbosity = 0,
+ /
+ &gau
+  basis = 'STO-3G',
+  method = 'BLYP',
+  num_threads=$GAU_NCPUS
+ /
+EOF
+
+set output = h2o.blyp_sto-3g_md.out
+
+touch dummy
+$DO_PARALLEL $sander -O -p h2o.prmtop -c h2o.restrt -o $output < dummy || goto error
+# remove info about number of threads from output as this may vary
+grep -v 'num_threads' $output > tmp
+mv tmp $output
+../../dacdif -t 2 $output.save $output
+
+/bin/rm -f mdin mdinfo mdcrd dummy restrt old.gau_job* gau_job.*
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

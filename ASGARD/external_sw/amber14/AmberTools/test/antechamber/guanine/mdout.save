@@ -1,0 +1,178 @@
+
+          -------------------------------------------------------
+          Amber 9  SANDER                 Scripps/UCSF 2004
+          -------------------------------------------------------
+
+| Run on 01/27/2004 at 10:29:34
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: min.in                                                                
+| MDOUT: mdout                                                                 
+|INPCRD: prmcrd                                                                
+|  PARM: prmtop                                                                
+|RESTRT: restrt                                                                
+|  REFC: refc                                                                  
+| MDVEL: mdvel                                                                 
+|  MDEN: mden                                                                  
+| MDCRD: mdcrd                                                                 
+|MDINFO: mdinfo                                                                
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+
+ 
+ Here is the input file:
+ 
+  short vacuum minimzation                                                     
+ &cntrl                                                                        
+   imin=1, maxcyc=3, ntpr=1,                                                   
+   ntb=0, cut=999.,                                                            
+ /   
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|  *** cutoff > system size, list only builds once
+|Largest sphere to fit in unit cell has radius =    32.059
+| New format PARM file being parsed.
+| Version =    1.000 Date = 01/27/04 Time = 10:29:34
+ NATOM  =      32 NTYPES =      12 NBONH =      13 MBONA  =      21
+ NTHETH =      28 MTHETA =      31 NPHIH =      53 MPHIA  =      54
+ NHPARM =       0 NPARM  =       0 NNB   =     172 NRES   =       1
+ NBONA  =      21 NTHETA =      31 NPHIA =      54 NUMBND =      22
+ NUMANG =      40 NPTRA  =      24 NATYP =      18 NPHB   =       0
+ IFBOX  =       0 NMXRS  =      32 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real                3888
+|     Hollerith            195
+|     Integer           592140
+|     Max Pairs            496
+|     Max Rstack         50320
+|     Max Istack           160
+|       Total             2739 kbytes
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+DGN                                                                             
+
+General flags:
+     imin    =       1, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       0, ntwv    =       0, ntwe    =       0
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     = 999.00000, intdiel =   1.00000
+     
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Energy minimization:
+     maxcyc  =       3, ncyc    =      10, ntmin   =       1
+     dx0     =   0.01000, drms    =   0.00010
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+DGN                                                                             
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        0
+
+     Sum of charges from parm topology file =  -0.00000001
+     Forcing neutrality...
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+ ---------------------------------------------------
+
+     eedmeth=4: Setting switch to one everywhere
+
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =        326
+| TOTAL SIZE OF NONBOND LIST =        326
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      1      -7.5385E+01     2.3425E+01     7.9807E+01     C6         23
+
+ BOND    =        4.1185  ANGLE   =       40.6918  DIHED      =       17.3570
+ VDWAALS =       -2.6651  EEL     =      121.5836  HBOND      =        0.0000
+ 1-4 VDW =        9.0680  1-4 EEL =     -265.5384  RESTRAINT  =        0.0000
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      2      -7.8011E+01     2.1281E+01     7.1700E+01     C6         23
+
+ BOND    =        3.2670  ANGLE   =       39.1060  DIHED      =       17.3580
+ VDWAALS =       -2.6770  EEL     =      121.5722  HBOND      =        0.0000
+ 1-4 VDW =        8.9876  1-4 EEL =     -265.6249  RESTRAINT  =        0.0000
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      3      -8.0839E+01     1.8855E+01     6.3791E+01     C1'        16
+
+ BOND    =        2.4896  ANGLE   =       37.2938  DIHED      =       17.3586
+ VDWAALS =       -2.6914  EEL     =      121.5612  HBOND      =        0.0000
+ 1-4 VDW =        8.8893  1-4 EEL =     -265.7404  RESTRAINT  =        0.0000
+
+
+  Maximum number of minimization cycles reached.
+
+
+                    FINAL RESULTS
+
+
+
+   NSTEP       ENERGY          RMS            GMAX         NAME    NUMBER
+      3      -8.0839E+01     1.8855E+01     6.3791E+01     C1'        16
+
+ BOND    =        2.4896  ANGLE   =       37.2938  DIHED      =       17.3586
+ VDWAALS =       -2.6914  EEL     =      121.5612  HBOND      =        0.0000
+ 1-4 VDW =        8.8893  1-4 EEL =     -265.7404  RESTRAINT  =        0.0000
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 1.16% of Total)
+|                Build the list             0.00 (40.91% of List )
+|                Other                      0.00 (59.09% of List )
+|             List time                  0.00 (93.62% of Nonbo)
+|                   Short_ene time             0.00 (100.0% of Direc)
+|                Direct Ewald time          0.00 (100.0% of Ewald)
+|             Ewald time                 0.00 ( 6.38% of Nonbo)
+|          Nonbond force              0.00 (92.16% of Force)
+|          Bond/Angle/Dihedral        0.00 ( 7.84% of Force)
+|       Force time                 0.01 (100.0% of Runmd)
+|    Runmd Time                 0.01 (19.69% of Total)
+|    Other                      0.02 (79.15% of Total)
+| Total time                 0.03 (99.62% of ALL  )
+
+| Highest rstack allocated:      13662
+| Highest istack allocated:         26
+|           Job began  at 10:29:34.809  on 01/27/2004
+|           Setup done at 10:29:34.823  on 01/27/2004
+|           Run   done at 10:29:34.835  on 01/27/2004
+|     wallclock() was called      64 times

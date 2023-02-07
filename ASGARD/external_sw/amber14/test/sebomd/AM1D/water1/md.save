@@ -1,0 +1,341 @@
+
+          -------------------------------------------------------
+          Amber 14 SANDER                              2014
+          -------------------------------------------------------
+
+| Run on 08/09/2014 at 23:21:18
+
+|   Executable path: /home/amber/amber14-git/amber-sebomd/bin/sander
+| Working directory: /home/amber/amber14-git/amber-sebomd/test/sebomd/AM1D/water1
+|          Hostname: Unknown
+  [-O]verwriting output
+
+File Assignments:
+|  MDIN: md.in                                                                 
+| MDOUT: md.out                                                                
+|INPCRD: mol.inpcrd                                                            
+|  PARM: mol.prmtop                                                            
+|RESTRT: md.rst                                                                
+|  REFC: refc                                                                  
+| MDVEL: md.vel                                                                
+| MDFRC: mdfrc                                                                 
+|  MDEN: md.ene                                                                
+| MDCRD: md.crd                                                                
+|MDINFO: md.mdinfo                                                             
+|  MTMD: mtmd                                                                  
+|INPDIP: inpdip                                                                
+|RSTDIP: rstdip                                                                
+|INPTRA: inptraj                                                               
+
+ 
+ Here is the input file:
+ 
+Title                                                                          
+&cntrl                                                                         
+  imin = 0,                                                                    
+  irest = 0,                                                                   
+  ntx = 1,                                                                     
+  ntb = 0,                                                                     
+  tempi = 100.,                                                                
+  temp0 = 100.,                                                                
+  ntpr = 1,                                                                    
+  iwrap = 0,                                                                   
+  ioutfm = 0,                                                                  
+  ntwx = 1,                                                                    
+  ntwe = 1,                                                                    
+  ntwv = 0,                                                                    
+  ntr = 0,                                                                     
+  nstlim = 10,                                                                 
+  nscm = 1000,                                                                 
+  dt = 0.0010,                                                                 
+  cut = 100.00,                                                                
+  ntt = 0,                                                                     
+  ig = 71277,                                                                  
+  vlimit = 20,                                                                 
+  ntc = 1,                                                                     
+  ifqnt = 1,                                                                   
+/                                                                              
+&qmmm                                                                          
+  qm_theory= 'SEBOMD',                                                         
+/                                                                              
+&sebomd                                                                        
+  hamiltonian = 'AM1D',                                                        
+  charge = 0,                                                                  
+  fullscf = 1,                                                                 
+  screen = 0,                                                                  
+  ipolyn = 1,                                                                  
+/                                                                              
+
+--------------------------------------------------------------------------------
+   1.  RESOURCE   USE: 
+--------------------------------------------------------------------------------
+
+| Flags:                                                                        
+|    NONPERIODIC   ntb=0 and igb=0: Setting up nonperiodic simulation
+|  *** cutoff > system size, list only builds once
+|Largest sphere to fit in unit cell has radius =    30.000
+| New format PARM file being parsed.
+| Version =    1.000 Date = 08/07/13 Time = 21:52:44
+ NATOM  =       3 NTYPES =       2 NBONH =       3 MBONA  =       0
+ NTHETH =       0 MTHETA =       0 NPHIH =       0 MPHIA  =       0
+ NHPARM =       0 NPARM  =       0 NNB   =       4 NRES   =       1
+ NBONA  =       0 NTHETA =       0 NPHIA =       0 NUMBND =       2
+ NUMANG =       0 NPTRA  =       0 NATYP =       2 NPHB   =       1
+ IFBOX  =       0 NMXRS  =       3 IFCAP =       0 NEXTRA =       0
+ NCOPY  =       0
+
+
+|     Memory Use     Allocated
+|     Real                1935
+|     Hollerith             12
+|     Integer            20077
+|     Max Pairs              3
+|     nblistReal            36
+|     nblist Int        761613
+|       Total             3068 kbytes
+
+| Note: 1-4 EEL scale factors are being read from the topology file.
+
+| Note: 1-4 VDW scale factors are being read from the topology file.
+| Duplicated    0 dihedrals
+| Duplicated    0 dihedrals
+
+--------------------------------------------------------------------------------
+   2.  CONTROL  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+TP3                                                                             
+
+General flags:
+     imin    =       0, nmropt  =       0
+
+Nature and format of input:
+     ntx     =       1, irest   =       0, ntrx    =       1
+
+Nature and format of output:
+     ntxo    =       1, ntpr    =       1, ntrx    =       1, ntwr    =     500
+     iwrap   =       0, ntwx    =       1, ntwv    =       0, ntwe    =       1
+     ioutfm  =       0, ntwprt  =       0, idecomp =       0, rbornstat=      0
+
+Potential function:
+     ntf     =       1, ntb     =       0, igb     =       0, nsnb    =      25
+     ipol    =       0, gbsa    =       0, iesp    =       0
+     dielc   =   1.00000, cut     = 100.00000, intdiel =   1.00000
+
+Frozen or restrained atoms:
+     ibelly  =       0, ntr     =       0
+
+Molecular dynamics:
+     nstlim  =        10, nscm    =      1000, nrespa  =         1
+     t       =   0.00000, dt      =   0.00100, vlimit  =  20.00000
+
+Initial temperature generation:
+     ig      =   71277
+     tempi   = 100.00000
+
+--------------------------------------------------------------------------------
+   SEBOMD  DATA  FOR  THE  RUN
+--------------------------------------------------------------------------------
+
+     hamiltonian =      AM1D, modif =       none,  longrange   =         0,  method      =         0
+     charge      =         0,  dpmax       = 0.100E-06,  fullscf     =         1
+     ipolyn      =         1,  pdump       =         0,  guess       =         0
+     ntwc        =         0,  screen      =         0,  ntwh        =         0
+     peptcorr    =         0, peptk =    0.0000
+ 
+|  INFO: Old style inpcrd file read
+
+
+--------------------------------------------------------------------------------
+   3.  ATOMIC COORDINATES AND VELOCITIES
+--------------------------------------------------------------------------------
+
+TP3                                                                             
+ begin time read from input coords =     0.000 ps
+
+ Number of triangulated 3-point waters found:        1
+
+     Sum of charges from parm topology file =   0.00000000
+     Forcing neutrality...
+
+--------------------------------------------------------------------------------
+   4.  RESULTS
+--------------------------------------------------------------------------------
+
+|  # of SOLUTE  degrees of freedom (RNDFP):       9.
+|  # of SOLVENT degrees of freedom (RNDFS):       0.
+|  NDFMIN =       3.     NUM_NOSHAKE =      0     CORRECTED RNDFP =       3.
+|  TOTAL # of degrees of freedom (RNDF) =       3.
+ ---------------------------------------------------
+
+     eedmeth=4: Setting switch to one everywhere
+
+ ---------------------------------------------------
+| Local SIZE OF NONBOND LIST =          0
+| TOTAL SIZE OF NONBOND LIST =          0
+
+ NSTEP =        0   TIME(PS) =       0.000  TEMP(K) =   220.07  PRESS =     0.0
+ Etot   =       -55.3105  EKtot   =         0.6560  EPtot      =       -55.9665
+ BOND   =         0.0001  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -55.9665
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        1   TIME(PS) =       0.001  TEMP(K) =   220.07  PRESS =     0.0
+ Etot   =       -55.3105  EKtot   =         0.6560  EPtot      =       -55.9665
+ BOND   =         0.0001  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -55.9665
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        2   TIME(PS) =       0.002  TEMP(K) =   216.74  PRESS =     0.0
+ Etot   =       -55.2977  EKtot   =         0.6460  EPtot      =       -55.9438
+ BOND   =         0.0291  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -55.9438
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        3   TIME(PS) =       0.003  TEMP(K) =   374.71  PRESS =     0.0
+ Etot   =       -55.3496  EKtot   =         1.1169  EPtot      =       -56.4665
+ BOND   =         0.6176  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -56.4665
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        4   TIME(PS) =       0.004  TEMP(K) =   478.70  PRESS =     0.0
+ Etot   =       -55.3804  EKtot   =         1.4269  EPtot      =       -56.8073
+ BOND   =         3.4999  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -56.8073
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        5   TIME(PS) =       0.005  TEMP(K) =   388.78  PRESS =     0.0
+ Etot   =       -55.3488  EKtot   =         1.1589  EPtot      =       -56.5077
+ BOND   =         8.8776  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -56.5077
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        6   TIME(PS) =       0.006  TEMP(K) =   234.51  PRESS =     0.0
+ Etot   =       -55.3057  EKtot   =         0.6990  EPtot      =       -56.0047
+ BOND   =        13.9221  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -56.0047
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        7   TIME(PS) =       0.007  TEMP(K) =   209.87  PRESS =     0.0
+ Etot   =       -55.3051  EKtot   =         0.6256  EPtot      =       -55.9307
+ BOND   =        15.2662  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -55.9307
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        8   TIME(PS) =       0.008  TEMP(K) =   318.61  PRESS =     0.0
+ Etot   =       -55.3461  EKtot   =         0.9497  EPtot      =       -56.2958
+ BOND   =        12.2939  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -56.2958
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =        9   TIME(PS) =       0.009  TEMP(K) =   378.41  PRESS =     0.0
+ Etot   =       -55.3742  EKtot   =         1.1280  EPtot      =       -56.5022
+ BOND   =         7.5533  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -56.5022
+ ------------------------------------------------------------------------------
+
+
+ NSTEP =       10   TIME(PS) =       0.010  TEMP(K) =   278.12  PRESS =     0.0
+ Etot   =       -55.3406  EKtot   =         0.8290  EPtot      =       -56.1696
+ BOND   =         4.0283  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -56.1696
+ ------------------------------------------------------------------------------
+
+
+      A V E R A G E S   O V E R      10 S T E P S
+
+
+ NSTEP =       10   TIME(PS) =       0.010  TEMP(K) =   309.85  PRESS =     0.0
+ Etot   =       -55.3359  EKtot   =         0.9236  EPtot      =       -56.2595
+ BOND   =         6.6088  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -56.1696
+ ------------------------------------------------------------------------------
+
+
+      R M S  F L U C T U A T I O N S
+
+
+ NSTEP =       10   TIME(PS) =       0.010  TEMP(K) =    87.83  PRESS =     0.0
+ Etot   =         0.0281  EKtot   =         0.2618  EPtot      =         0.2883
+ BOND   =         5.5316  ANGLE   =         0.0000  DIHED      =         0.0000
+ 1-4 NB =         0.0000  1-4 EEL =         0.0000  VDWAALS    =         0.0000
+ EELEC  =         0.0000  EHBOND  =         0.0000  RESTRAINT  =         0.0000
+ ESEBOMD =      -56.1696
+|E(PBS) =         0.0027
+ ------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+   5.  TIMINGS
+--------------------------------------------------------------------------------
+
+|    Read coords time           0.00 ( 2.21% of Total)
+|    Fast Water setup           0.00 ( 0.19% of Total)
+|                Build the list             0.00 (84.77% of List )
+|                Other                      0.00 (15.23% of List )
+|             List time                  0.00 (61.74% of Nonbo)
+|                Direct Ewald time          0.00 (81.73% of Ewald)
+|                Force Adjust               0.00 ( 0.92% of Ewald)
+|                Virial junk                0.00 ( 0.92% of Ewald)
+|                Start synchronizatio       0.00 ( 8.18% of Ewald)
+|                Other                      0.00 ( 8.24% of Ewald)
+|             Ewald time                 0.00 (36.90% of Nonbo)
+|             IPS excludes               0.00 ( 0.34% of Nonbo)
+|             Other                      0.00 ( 1.02% of Nonbo)
+|          Nonbond force              0.00 (13.00% of Force)
+|          Bond/Angle/Dihedral        0.00 ( 0.83% of Force)
+|          Other                      0.00 (86.17% of Force)
+|       Force time                 0.00 (54.38% of Runmd)
+|       Verlet update time         0.00 (36.19% of Runmd)
+|       Other                      0.00 ( 9.44% of Runmd)
+|    Runmd Time                 0.00 (45.98% of Total)
+|    Other                      0.00 (51.62% of Total)
+| Total time                 0.01 (99.01% of ALL  )
+
+| Highest rstack allocated:          0
+| Highest istack allocated:          0
+
+| Final Performance Info:
+| -----------------------------------------------------
+| Average timings for all steps:
+|     Elapsed(s) =       0.00 Per Step(ms) =       0.43
+|         ps/day = 199536.308   seconds/ps =       0.43
+| -----------------------------------------------------
+
+|           Job began  at 23:21:18.676  on 08/09/2014
+|           Setup done at 23:21:18.681  on 08/09/2014
+|           Run   done at 23:21:18.686  on 08/09/2014
+|     wallclock() was called     318 times

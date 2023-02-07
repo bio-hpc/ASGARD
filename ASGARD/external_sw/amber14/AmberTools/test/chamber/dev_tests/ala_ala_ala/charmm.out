@@ -1,0 +1,418 @@
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                   (CHARMM) - Developmental Version 34b1     August 15, 2007   
+       Copyright(c) 1984-2001  President and Fellows of Harvard College
+                              All Rights Reserved
+      Current operating system: Linux-2.6.9-78.0.17.ELsmp(x86_64)@bunny.sdsc
+                 Created on  4/22/ 9 at 11: 9:38 by user: mjw         
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+            Current HEAP size:        10240000, and STACK size:  10000000
+
+ RDTITL> **
+ RDTITL> *
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    set name ala_ala_ala
+ Parameter: NAME <- "ALA_ALA_ALA"
+  
+ CHARMM>     
+  
+ CHARMM>    open unit 1 read form name ../../../dat/chamber/top_all22_prot.inp
+ VOPEN> Attempting to open::../../../dat/chamber/top_all22_prot.inp::
+ OPNLGU> Unit  1 opened for READONLY access to /server-home/mjw/code/AMBER/amber11/test/chamber/ala_ala_ala/../../../dat/chamber/top_all22_prot.inp
+  
+ CHARMM>    read rtf card unit 1
+ MAINIO> Residue topology file being read from unit   1.
+ TITLE> *>>>>>>>>CHARMM22 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+  
+ CHARMM>    close unit 1
+ VCLOSE: Closing unit    1 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    open unit 1 read form name ../../../dat/chamber/par_all22_prot.inp
+ VOPEN> Attempting to open::../../../dat/chamber/par_all22_prot.inp::
+ OPNLGU> Unit  1 opened for READONLY access to /server-home/mjw/code/AMBER/amber11/test/chamber/ala_ala_ala/../../../dat/chamber/par_all22_prot.inp
+  
+ CHARMM>    read param card unit 1
+
+          PARAMETER FILE BEING READ FROM UNIT  1
+ TITLE> *>>>>> CHARMM22 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+  
+ CHARMM>    close unit 1
+ VCLOSE: Closing unit    1 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    read sequ card
+ MAINIO> Sequence information being read from unit   5.
+ RDTITL> **
+ RDTITL> *
+  
+ SEQRDR>    3
+  
+ SEQRDR>    ALA ALA ALA
+
+          RESIDUE SEQUENCE --     3 RESIDUES
+          ALA ALA ALA 
+  
+ CHARMM>    !20
+ CHARMM>    !ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA ALA
+ CHARMM>    !8
+ CHARMM>    !ALA GLU PRO GLU ALA ASP ASP ALA
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    generate aal first nter last cter
+ THE PATCH 'NTER' WILL BE USED FOR THE FIRST RESIDUE
+ THE PATCH 'CTER' WILL BE USED FOR THE LAST  RESIDUE
+ GENPSF> Segment   1 has been generated. Its identifier is AAL.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =        3
+         Number of atoms         =       33   Number of groups     =        9
+         Number of bonds         =       32   Number of angles     =       57
+         Number of dihedrals     =       74   Number of impropers  =        5
+         Number of cross-terms   =        1
+         Number of HB acceptors  =        4   Number of HB donors  =        5
+         Number of NB exclusions =        0   Total charge =    0.00000
+  
+ CHARMM>    autogenerate angles dihe
+ AUTOGEN: All angles are removed and regenerated.
+ AUTOGEN: All dihedrals are removed and regenerated.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =        3
+         Number of atoms         =       33   Number of groups     =        9
+         Number of bonds         =       32   Number of angles     =       57
+         Number of dihedrals     =       74   Number of impropers  =        5
+         Number of cross-terms   =        1
+         Number of HB acceptors  =        4   Number of HB donors  =        5
+         Number of NB exclusions =        0   Total charge =    0.00000
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    open unit 1 form write name @name.psf
+ Parameter: NAME -> "ALA_ALA_ALA"
+ VOPEN> Attempting to open::ala_ala_ala.psf::
+ OPNLGU> Unit  1 opened for WRITE access to /server-home/mjw/code/AMBER/amber11/test/chamber/ala_ala_ala/ala_ala_ala.psf
+  
+ CHARMM>    write psf card unit 1
+ RDTITL> CLOSE UNIT 1
+ RDTITL> No title read.
+  
+ CHARMM>    close unit 1
+ VCLOSE: Closing unit    1 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    ic gener
+
+               Generation complete. New IC table entries:
+
+   N     I       J       K       L   R(I(J/K)) T(I(JK/KJ)) PHI   T(JKL)   R(KL)
+
+    1   1 HT1   1 CA    1 *N    1 HT2    0.0000    0.00  120.00    0.00   0.0000
+    2   1 HT1   1 CA    1 *N    1 HT3    0.0000    0.00 -120.00    0.00   0.0000
+    3   1 HT1   1 N     1 CA    1 C      0.0000    0.00  180.00    0.00   0.0000
+    4   1 C     1 N     1 *CA   1 CB     0.0000    0.00  120.00    0.00   0.0000
+    5   1 CB    1 N     1 *CA   1 HA     0.0000    0.00 -120.00    0.00   0.0000
+    6   1 N     1 CA    1 CB    1 HB1    0.0000    0.00  180.00    0.00   0.0000
+    7   1 HB1   1 CA    1 *CB   1 HB2    0.0000    0.00  120.00    0.00   0.0000
+    8   1 HB1   1 CA    1 *CB   1 HB3    0.0000    0.00 -120.00    0.00   0.0000
+    9   1 N     1 CA    1 C     2 N      0.0000    0.00  180.00    0.00   0.0000
+   10   2 N     1 CA    1 *C    1 O      0.0000    0.00  180.00    0.00   0.0000
+   11   1 CA    1 C     2 N     2 CA     0.0000    0.00  180.00    0.00   0.0000
+   12   2 CA    1 C     2 *N    2 HN     0.0000    0.00  180.00    0.00   0.0000
+   13   1 C     2 N     2 CA    2 C      0.0000    0.00  180.00    0.00   0.0000
+   14   2 C     2 N     2 *CA   2 CB     0.0000    0.00  120.00    0.00   0.0000
+   15   2 CB    2 N     2 *CA   2 HA     0.0000    0.00 -120.00    0.00   0.0000
+   16   2 N     2 CA    2 CB    2 HB1    0.0000    0.00  180.00    0.00   0.0000
+   17   2 HB1   2 CA    2 *CB   2 HB2    0.0000    0.00  120.00    0.00   0.0000
+   18   2 HB1   2 CA    2 *CB   2 HB3    0.0000    0.00 -120.00    0.00   0.0000
+   19   2 N     2 CA    2 C     3 N      0.0000    0.00  180.00    0.00   0.0000
+   20   3 N     2 CA    2 *C    2 O      0.0000    0.00  180.00    0.00   0.0000
+   21   2 CA    2 C     3 N     3 CA     0.0000    0.00  180.00    0.00   0.0000
+   22   3 CA    2 C     3 *N    3 HN     0.0000    0.00  180.00    0.00   0.0000
+   23   2 C     3 N     3 CA    3 C      0.0000    0.00  180.00    0.00   0.0000
+   24   3 C     3 N     3 *CA   3 CB     0.0000    0.00  120.00    0.00   0.0000
+   25   3 CB    3 N     3 *CA   3 HA     0.0000    0.00 -120.00    0.00   0.0000
+   26   3 N     3 CA    3 CB    3 HB1    0.0000    0.00  180.00    0.00   0.0000
+   27   3 HB1   3 CA    3 *CB   3 HB2    0.0000    0.00  120.00    0.00   0.0000
+   28   3 HB1   3 CA    3 *CB   3 HB3    0.0000    0.00 -120.00    0.00   0.0000
+   29   3 N     3 CA    3 C     3 OT2    0.0000    0.00  180.00    0.00   0.0000
+   30   3 OT2   3 CA    3 *C    3 OT1    0.0000    0.00  180.00    0.00   0.0000
+  
+ CHARMM>    ic param
+  
+ CHARMM>    ic seed aal 1 N aal 1 CA aal 1 C
+  
+ CHARMM>    ic build
+  
+ CHARMM>    print coor
+
+          COORDINATE FILE MODULE
+ TITLE>  **
+ TITLE>  *  DATE:     4/22/ 9     11: 9:38      CREATED BY USER: mjw
+ TITLE>  *
+   33
+    1    1 ALA  N      0.00000   0.00000   0.00000 AAL  1      0.00000
+    2    1 ALA  HT1   -0.34716  -0.98035   0.00000 AAL  1      0.00000
+    3    1 ALA  HT2   -0.34716   0.49017   0.84901 AAL  1      0.00000
+    4    1 ALA  HT3   -0.34716   0.49017  -0.84901 AAL  1      0.00000
+    5    1 ALA  CA     1.48000   0.00000   0.00000 AAL  1      0.00000
+    6    1 ALA  HA     1.80476   1.03001   0.00000 AAL  1      0.00000
+    7    1 ALA  CB     2.00603  -0.72262   1.25162 AAL  1      0.00000
+    8    1 ALA  HB1    3.11703  -0.72359   1.25330 AAL  1      0.00000
+    9    1 ALA  HB2    1.64641  -0.20872   2.16863 AAL  1      0.00000
+   10    1 ALA  HB3    1.64641  -1.77372   1.26507 AAL  1      0.00000
+   11    1 ALA  C      1.98961   1.40014   0.00000 AAL  1      0.00000
+   12    1 ALA  O      1.21555   2.35603   0.00000 AAL  1      0.00000
+   13    2 ALA  N      3.32596   1.55240   0.00000 AAL  2      0.00000
+   14    2 ALA  HN     3.96013   0.78309   0.00000 AAL  2      0.00000
+   15    2 ALA  CA     3.89618   2.86380   0.00000 AAL  2      0.00000
+   16    2 ALA  HA     4.97120   2.76028   0.00000 AAL  2      0.00000
+   17    2 ALA  CB     3.49399   3.70741  -1.22148 AAL  2      0.00000
+   18    2 ALA  HB1    3.96643   4.71134  -1.16441 AAL  2      0.00000
+   19    2 ALA  HB2    3.82561   3.20757  -2.15663 AAL  2      0.00000
+   20    2 ALA  HB3    2.39041   3.83161  -1.25307 AAL  2      0.00000
+   21    2 ALA  C      5.37660   2.69512   0.00000 AAL  2      0.00000
+   22    2 ALA  O      5.88667   1.57587   0.00000 AAL  2      0.00000
+   23    3 ALA  N      6.10914   3.82314   0.00000 AAL  3      0.00000
+   24    3 ALA  HN     5.70362   4.73394   0.00000 AAL  3      0.00000
+   25    3 ALA  CA     7.53718   3.74829   0.00000 AAL  3      0.00000
+   26    3 ALA  HA     7.92421   4.75656   0.00000 AAL  3      0.00000
+   27    3 ALA  CB     8.11270   3.01195   1.22148 AAL  3      0.00000
+   28    3 ALA  HB1    9.22195   2.98680   1.16441 AAL  3      0.00000
+   29    3 ALA  HB2    7.81334   3.53175   2.15663 AAL  3      0.00000
+   30    3 ALA  HB3    7.73144   1.96889   1.25307 AAL  3      0.00000
+   31    3 ALA  C      8.05773   5.17851   0.00000 AAL  3      0.00000
+   32    3 ALA  OT1    7.21463   6.11487   0.00000 AAL  3      0.00000
+   33    3 ALA  OT2    9.30547   5.35387   0.00000 AAL  3      0.00000
+  
+ CHARMM>    !ener
+ CHARMM>     
+  
+ CHARMM>    !shake bonh fast para
+ CHARMM>    mini sd nstep 100
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SHIFt    VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 14.000 CTEXNB =999.000 CTONNB = 10.000 CTOFNB = 12.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are        0 atom  pairs and        0 atom  exclusions.
+ There are        0 group pairs and        0 group exclusions.
+ <MAKINB> with mode   5 found     89 exclusions and     74 interactions(1-4)
+ <MAKGRP> found     19 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      529 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      439 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        0 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+
+
+ STEEPD> An energy minimization has been requested.
+
+ NSTEP  =          100   NPRINT =           10
+ STEP   =    0.0200000   TOLFUN =    0.0000000
+ TOLGRD =    0.0000000   TOLSTP =    0.0000000
+
+MINI MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+MINI INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+MINI CROSS:           CMAPs     
+MINI EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>        0   1253.39867      0.00000    352.24173      0.02000
+MINI INTERN>        0.00000    533.20340      0.00859      7.53348      0.00000
+MINI CROSS>         0.12679
+MINI EXTERN>      705.65955      6.86687      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       10    402.97344    850.42523     79.61427      0.05160
+MINI INTERN>      150.07260    182.43113      3.96838     12.76356      0.61097
+MINI CROSS>         0.30883
+MINI EXTERN>       20.70037     32.11760      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step        12
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      529 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      439 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        0 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>       20    126.83245    276.14099      8.27958      0.00963
+MINI INTERN>        2.04829     70.36581      0.84544     10.65740      1.26595
+MINI CROSS>         0.28413
+MINI EXTERN>        8.38925     32.97619      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       30     98.19801     28.63445     14.66531      0.01035
+MINI INTERN>        3.19901     44.18646      0.76893     10.72983      0.70153
+MINI CROSS>         0.10864
+MINI EXTERN>        4.93154     33.57207      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       40     82.14942     16.04859      4.88076      0.00464
+MINI INTERN>        1.17051     35.67925      0.55383     11.18480      0.55881
+MINI CROSS>        -0.06229
+MINI EXTERN>        3.45966     29.60484      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step        46
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      529 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      439 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        0 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>       50     74.49475      7.65467      5.76942      0.00498
+MINI INTERN>        1.23936     29.17976      0.47379     11.90941      0.49271
+MINI CROSS>        -0.21960
+MINI EXTERN>        2.48442     28.93489      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       60     69.94499      4.54976      9.50555      0.00536
+MINI INTERN>        2.74605     24.03687      0.42026     12.60521      0.39029
+MINI CROSS>        -0.31678
+MINI EXTERN>        1.78139     28.28170      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       70     65.20007      4.74491      2.67481      0.00240
+MINI INTERN>        1.02091     20.42540      0.43217     13.22441      0.39577
+MINI CROSS>        -0.41562
+MINI EXTERN>        1.46152     28.65550      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       80     62.45033      2.74975      2.56324      0.00258
+MINI INTERN>        1.25032     17.59227      0.40929     13.69455      0.35912
+MINI CROSS>        -0.46509
+MINI EXTERN>        1.16118     28.44868      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       90     60.37494      2.07539      3.00041      0.00277
+MINI INTERN>        1.26713     15.41657      0.39139     14.06320      0.34601
+MINI CROSS>        -0.50514
+MINI EXTERN>        0.97008     28.42570      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      100     58.76442      1.61052      1.31043      0.00124
+MINI INTERN>        1.34604     14.11582      0.36695     14.27201      0.33463
+MINI CROSS>        -0.52200
+MINI EXTERN>        0.76461     28.08638      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ STEEPD> Minimization exiting with number of steps limit (       100) exceeded.
+
+STPD MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+STPD INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+STPD CROSS:           CMAPs     
+STPD EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+STPD>      100     58.76442      1.61052      1.31043      0.00149
+STPD INTERN>        1.34604     14.11582      0.36695     14.27201      0.33463
+STPD CROSS>        -0.52200
+STPD EXTERN>        0.76461     28.08638      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>     
+  
+ CHARMM>    !ener cutnb 999 ctofnb 998 ctonnb 997
+ CHARMM>     
+  
+ CHARMM>    write coor pdb  name @name.pdb
+ Parameter: NAME -> "ALA_ALA_ALA"
+ VOPEN> Attempting to open::ala_ala_ala.pdb::
+ RDTITL> READ COOR PDB  NAME ALA_ALA_ALA.PDB
+ RDTITL> No title read.
+  Write CHARMM-pdb format
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read coor pdb  name @name.pdb
+ Parameter: NAME -> "ALA_ALA_ALA"
+ VOPEN> Attempting to open::ala_ala_ala.pdb::
+  read CHARMM-pdb format
+          SPATIAL COORDINATES BEING READ FROM UNIT 90
+ TITLE>  *
+ TITLE>    DATE:     4/22/ 9     11: 9:38      CREATED BY USER: MJW
+ TITLE>  *
+
+ ** WARNING ** Coordinates were overwritten for    33 atoms.
+ *** LEVEL  2 WARNING *** BOMLEV IS    0
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    ener cutnb 999 ctofnb 998 ctonnb 997 switch
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  =999.000 CTEXNB =999.000 CTONNB =997.000 CTOFNB =998.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5
+ There are      439 atom  pairs and      163 atom  exclusions.
+ There are        0 group pairs and       19 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      529 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      439 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        0 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ENER ENR:  Eval#     ENERgy      Delta-E         GRMS
+ENER INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+ENER CROSS:           CMAPs     
+ENER EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+ENER>        0     39.12661     19.63781      1.63663
+ENER INTERN>        1.33507     14.11575      0.36689     14.27731      0.33444
+ENER CROSS>        -0.52393
+ENER EXTERN>        0.77185      8.44923      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    stop
+$$$$$$  New timer profile $$$$$
+   List time                       0.00 Other:            0.00
+         Electrostatic & VDW             0.00 Other:            0.00
+      Nonbond force                   0.00 Other:            0.00
+         Bond energy                     0.00 Other:            0.00
+         Angle energy                    0.00 Other:            0.00
+         Dihedral energy                 0.00 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.00 Other:            0.00
+   Energy time                     0.01 Other:            0.00
+ Total time                      0.10 Other:            0.10
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    MAXIMUM STACK SPACE USED IS  120240
+                    STACK CURRENTLY IN USE IS         0
+                    MOST SEVERE WARNING WAS AT LEVEL  2
+                    HEAP PRINTOUT-  HEAP SIZE         10240000
+                    SPACE CURRENTLY IN USE IS            13824
+                    MAXIMUM SPACE USED IS                19124
+                    FREE LIST
+  PRINHP> ADDRESS:               1 LENGTH:        10225676 NEXT:        10239501
+  PRINHP> ADDRESS:        10239501 LENGTH:             500 NEXT:               0
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     0.10  SECONDS 
+                         CPU TIME:     0.00  SECONDS 

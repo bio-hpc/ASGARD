@@ -1,0 +1,112 @@
+#!/bin/csh -f
+#TEST-PROGRAM parallel sander
+#TEST-DESCRIP adaptive QM/MM with energy correction
+#TEST-PURPOSE regression, basic
+#TEST-STATE   TO_BE_DEtermined - clean up unused input variables
+
+set sander = "../../../bin/sander"
+if( $?TESTsander ) then
+    set sander = $TESTsander
+endif
+
+if( ! $?DO_PARALLEL ) then
+    echo "This test (adQMMM) can only run in parallel. Exiting."
+    exit 0
+endif
+
+set numprocs = `$DO_PARALLEL ../../numprocs`
+
+if ( $numprocs % 4 == 0 ) then
+    # for multiple of 4 threads run 4 partitionings
+    set npartition = 4
+else if ( $numprocs % 2 == 0 ) then
+    # for multiple of 2 threads run 2 partitionings
+    set npartition = 2
+else
+   echo "This adQMMM test requires a multiple of 2 or 4 processors!"
+   echo "You specified $numprocs"
+   exit 0
+endif
+
+set system = na-28spcfw
+set prmtop = $system.prmtop
+set inpcrd = $system.restrt
+set job = adqmmm-calc_wbk2-6-$npartition
+set mdin = $job.mdin
+set groupfile = $job.groupfile
+set mdout = $job.mdout
+set mdcrd = $job.mdcrd
+set mdinfo = $job.mdinfo
+set restrt = $job.restrt
+
+cat > $mdin <<EOF
+adQMMM NVT run for Na+ surrounded by 6 QM + 3 adQM SPC(fw) waters
+ &cntrl
+  irest    = 1,      ! restart trajectory
+  ntx      = 5,      ! read coordinates and velocities
+  dt       = 0.0005  ! 0.5fs time step
+  cut      = 999.9,  ! non-bonded cutoff
+  ntb      = 0,      ! no periodic boundary conditions
+  ntt      = 3,      ! use Langevin thermostat
+  tempi    = 300.0,  ! initial temp = 300K
+  temp0    = 300.0,  ! final temp = 300K
+  gamma_ln = 5.0,    ! collision frequency 5/ps
+  ig       = 7,      ! use fixed random seed such that all groups have the same seed
+  ntpr     = 1,      ! print every step
+  ntwx     = 1,      ! write coordinates every step
+  ntwr     = 10,     ! write restart file at last step
+  nstlim   = 10,     ! run for 10 steps
+  nscm     = 1000,   ! remove COM motion every 1000 steps
+  jfastw   = 4,      ! do not use routines for fast triangulated water
+  ioutfm   = 1,      ! NetCDF MDCRD.
+  ifqnt    = 1,      ! do QMMM simulation
+ /
+ &qmmm
+  qmmask       = ':1',
+  qm_theory    = 'PM6',
+  qmcharge     = 1,
+  scfconv      = 1.0d-10,
+  tight_p_conv = 1,
+  adjust_q     = 0,
+  vsolv        = 2,
+  verbosity    = 0,
+ /
+ &vsolv
+  nearest_qm_solvent = 6,
+  nearest_qm_solvent_resname = 'WAT',
+  nearest_qm_solvent_fq = 1,
+  nearest_qm_solvent_center_id = 1,
+  qm_center_atom_id = 1,
+  verbosity = 0,
+  debug = 0,
+ /
+ &adqmmm
+  n_partition     = $npartition, ! n partitionings (multiple of n threads needed) = (n-1) molecules in transition region
+  calc_wbk        = 2, ! calculate energy correction
+  debug           = 0,
+  verbosity       = 0,
+  print_qm_coords = 0,
+ /
+EOF
+
+# write GROUPFILE
+rm -f $groupfile
+@ x = 1
+while ($x <= $npartition)
+    set ext = 00$x
+    cat >> $groupfile << EOF
+-O -i $mdin -c $inpcrd -o $mdout.$ext -r $restrt.$ext -x $mdcrd.$ext -inf $mdinfo.$ext -p $prmtop
+EOF
+    @ x += 1
+end
+
+$DO_PARALLEL $sander -rem 0 -ng $npartition -groupfile $groupfile < /dev/null || goto error
+
+../../dacdif $mdout.001.save $mdout.001
+
+/bin/rm -f $groupfile $mdin $mdout.002 $mdout.003 $mdout.004 $restrt.00? $mdcrd.00? $mdinfo.00? QM_coords.00?.xyz
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

@@ -1,0 +1,34 @@
+#!/bin/csh -f
+#TEST-PROGRAM pmemd
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../../bin/pmemd"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+cat > mdin <<EOF
+  test of toluene -> no charge
+ &cntrl
+   nstlim=10, ntpr=1, cut=9.0, ntx=5, irest=1,
+   ntc=2, ntf=2, tol=0.000001,
+ /
+EOF
+
+touch dummy
+$DO_PARALLEL $TESTsander -O -i mdin -p prmtop.0 -o out.0 < dummy || goto error
+
+if ( `basename $TESTsander` == "pmemd.mic_offload.MPI" ) then
+../../dacdif -r 1.0e-07 out.0.save out.0
+else
+../../dacdif out.0.save out.0
+endif
+/bin/rm -f mdin restrt mdinfo dummy
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

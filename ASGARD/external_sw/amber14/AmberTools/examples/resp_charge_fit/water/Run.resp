@@ -1,0 +1,18 @@
+#!/bin/csh -f
+echo " "
+echo "  Amber 5   demo/ RESP on water"
+echo " "
+
+../../../bin/resp -O \
+		-i wat.in \
+		-o wat.out \
+                -p wat.pch \
+                -t wat.chg \
+		-e esp_wat.dat			|| goto error
+
+echo No errors detected
+exit(0)
+
+error:
+echo Problem: check .out and try again
+exit(1)

@@ -1,0 +1,9 @@
+source /home/homeyer/Software/amber14_120214/dat/leap/cmd/oldff/leaprc.ff99SB
+source leaprc.gaff
+set default PBRadii bondi
+loadoff /home/homeyer/work/FEW/examples/test/leap/L51a/L51a_resp.lib
+SYS = loadpdb /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/ligIN.pdb
+loadAmberParams /home/homeyer/work/FEW/examples/test/leap/L51a/L51a.frcmod
+saveAmberParm SYS /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/lig.top /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/lig.crd
+savepdb SYS /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/lig.pdb
+quit

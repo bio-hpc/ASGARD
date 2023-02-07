@@ -1,0 +1,44 @@
+
+CPPTRAJ: Trajectory Analysis. V14.09b
+    ___  ___  ___  ___
+     | \/ | \/ | \/ | 
+    _|_/\_|_/\_|_/\_|_
+	Reading '/home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/tot.top' as Amber Topology
+INPUT: Reading Input from file /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/s_lig/remove_boxinfo_1.cpptraj
+  [trajin /home/homeyer/work/FEW/examples/test/MD_resp/L51a/lig/prod/md_prod_001_img.mdcrd.gz 1 3 1]
+	Reading '/home/homeyer/work/FEW/examples/test/MD_resp/L51a/lig/prod/md_prod_001_img.mdcrd.gz' as Amber Trajectory
+  [strip :WAT]
+    STRIP: Stripping atoms in mask [:WAT]
+  [trajout /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/s_lig/md_prod_001_nobox.mdcrd nobox]
+	Writing '/home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/s_lig/md_prod_001_nobox.mdcrd' as Amber Trajectory
+---------- RUN BEGIN -------------------------------------------------
+
+PARAMETER FILES:
+ 0: '/home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/tot.top', 4678 atoms, 1540 res, box: None, 1540 mol, 1539 solvent, 3 frames
+
+INPUT TRAJECTORIES:
+ 0: 'md_prod_001_img.mdcrd.gz' is an AMBER trajectory, Parm /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/tot.top (reading 3 of 5)
+  Coordinate processing will occur on 3 frames.
+
+OUTPUT TRAJECTORIES:
+  'md_prod_001_nobox.mdcrd' is an AMBER trajectory, Parm /home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/tot.top: Writing 3 frames (1-Last, 1)
+
+BEGIN TRAJECTORY PROCESSING:
+.....................................................
+ACTION SETUP FOR PARM '/home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/tot.top' (1 actions):
+  0: [strip :WAT]
+	Stripping 4617 atoms.
+	Stripped parm: '/home/homeyer/work/FEW/examples/test/lie_resp/L51a/lig/topo/tot.top', 61 atoms, 1 res, box: None, 1 mol
+----- md_prod_001_img.mdcrd.gz (1-3, 1) -----
+ 0% 50% 100% Complete.
+
+Read 3 frames and processed 3 frames.
+
+ACTION OUTPUT:
+---------- RUN END ---------------------------------------------------
+--------------------------------------------------------------------------------
+To cite CPPTRAJ use:
+Daniel R. Roe and Thomas E. Cheatham, III, "PTRAJ and CPPTRAJ: Software for
+  Processing and Analysis of Molecular Dynamics Trajectory Data". J. Chem.
+  Theory Comput., 2013, 9 (7), pp 3084-3095.
+

@@ -1,0 +1,83 @@
+##################################################################################
+#
+# EMIL module for calculation of absolute free energies of biomolecules.
+# By Joshua T Berryman, University of Luxembourg, 2013.
+#
+# This code is covered by the GPL, except when distributed with non-gpl parts of
+# AMBER (when it is covered by the same licence as the rest of that distribution).
+# See licence.txt in the source directory.
+#
+# If you use this module for research, please cite:
+#                         Joshua T Berryman and Tanja Schilling,
+#                         J. Chem. Theory Comput., 2013, 9 (1), 679-686.
+#
+#
+##################################################################################
+# Setting up emil, with fake boxinfo: 45.0079 30.9682 34.0451
+# read parameters:
+# N 444
+# seed 1902 Displ 0.2
+#
+# Setting well types
+# marking 220 of 444 atoms as heavy
+# matching 1 atoms as chain roots
+# mask ACE,CYS,SER,ALA,LEU,ILE,THR,VAL,ASN,ASH,NME sets type of 444 atom wells as 1 of 7
+#
+# Initialising wells
+# Well type Einstein Molecule has parameters:
+#   r s.t. E=0: 1
+#   epsilon:    5
+#   A/well:    -4.30294
+#
+#
+# Reading well positions from wellsIn.dat
+# msd part-well is: 0
+# Finished setting particle well types:
+# Null              0
+# Einstein Molecule 444
+# Conewell Liquid   0
+# Harmonic Liquid   0
+# Wingwell Liquid   0
+# Wobblium          0
+# Relative position 0
+# 444 heavy or solute atoms.
+# Building well neighbour list. 
+# Linking particles to wells. 
+# Linked particles to wells, rms distance (heavies): 0
+# N heavies or roots: 444
+# done setup.
+#
+# Energy units: initial beta  1.67741 == 1.0 / 0.596158
+# Scaling forces using polynomial mixing functions, at lambda = 0.9 :
+# scaling amber forces by 0
+# scaling soft force by   3.69056e-05
+# scaling EMIL forces by  0.81
+# Uncorrected EABS is: -2220
+# With offset of 0 this is: -2220
+#
+# Reporting EMIL abstract Helmholtz free energy,
+# according to equations in supp. data of Berryman & Schilling, JCTC 2013: 
+# Total free energy A of abstract model (units kT): -1.910504e+03
+# A-Solid: -1.910504e+03 A-Liquid: 0.000000e+00 A-degen: 0.000000e+00
+#
+# Total free energy A of abstract model (units of calling program): -1.138962e+03
+# A-Solid: -1.138962e+03 A-Liquid: 0.000000e+00 A-degen: 0.000000e+00
+#
+#
+# Generalised forces will be reported in units of calling program, not in kT/A
+#
+# emil mol_lambda: 0.9 abstract_lambda: 0.9
+#
+# (mixed)  ABS_ENTH(kT) -1798.2 MOL_ENTH 0 TOT      -1798.2
+# (native) ABS_ENTH(kT) -2220 MOL_ENTH 0 TOT      -2220
+#
+nstep:  0 soft_dHdL:  -3.63219795e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.38224539e+03
+nstep:  10 soft_dHdL:  -3.62638271e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.36472746e+03
+nstep:  20 soft_dHdL:  -3.60160205e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.28296548e+03
+nstep:  30 soft_dHdL:  -3.57715856e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.17771261e+03
+nstep:  40 soft_dHdL:  -3.56820754e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.11402753e+03
+nstep:  50 soft_dHdL:  -3.57691092e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.12125862e+03
+nstep:  60 soft_dHdL:  -3.60073029e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.17017603e+03
+nstep:  70 soft_dHdL:  -3.62916828e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.19941172e+03
+nstep:  80 soft_dHdL:  -3.64382359e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.16439739e+03
+nstep:  90 soft_dHdL:  -3.64569601e+02 molec_dHdL:  0.00000000e+00 abstr_dHdL:  -2.06692483e+03

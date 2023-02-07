@@ -1,0 +1,125 @@
+#VRML V2.0 utf8
+
+Transform {
+    children [
+        NavigationInfo { type "EXAMINE" }
+	DEF WIRESHAPE Shape {
+	    appearance DEF WIREAPP Appearance {
+		material Material { diffuseColor 1 1 1 }
+	    }
+	    geometry DEF WIREGEO IndexedLineSet {
+		color DEF WIRECOL Color {
+		    color [
+			1 1 0,
+			0 0 1,
+			1 0 0,
+			1 1 1,
+			.5 .5 .5,
+			1 0 1,
+			1 .5 0,
+			0 1 0,
+		    ]
+		}
+		colorIndex [
+		]
+		colorPerVertex FALSE
+		coord DEF WIRECOO Coordinate {
+		    point [
+			-0.7912 -0.1971 -0.0001,
+			0.5998 -0.1971 -0.0001,
+			1.139 0.7389 -0.0001,
+			0.6868 1.719 -0.0001,
+			0.9108 -0.7361 0.8819,
+			0.9098 -0.7361 -0.8821,
+			-1.152 -0.1971 -1.018,
+			-1.151 -1.079 0.5099,
+			-1.151 0.6849 0.5089,
+		    ]
+		}
+		coordIndex [
+		]
+	    }
+	}
+	DEF ATOM_0 Transform {
+	    translation -0.7912 -0.1971 -0.0001
+	    children [
+		DEF ATOMSHAPE_C Shape {
+		    appearance DEF ATOMAPP_4 Appearance {
+			material Material {
+			    diffuseColor .5 .5 .5
+			    specularColor 1 1 1
+			    shininess 0.75
+			}
+		    }
+		    geometry DEF ATOMGEO_C Sphere { radius 0.308 }
+		}
+	    ]
+	}
+	DEF ATOM_1 Transform {
+	    translation 0.5998 -0.1971 -0.0001
+	    children [
+		USE ATOMSHAPE_C
+	    ]
+	}
+	DEF ATOM_2 Transform {
+	    translation 1.1388 0.7389 -0.0001
+	    children [
+		DEF ATOMSHAPE_O Shape {
+		    appearance DEF ATOMAPP_2 Appearance {
+			material Material {
+			    diffuseColor 1 0 0
+			    specularColor 1 1 1
+			    shininess 0.75
+			}
+		    }
+		    geometry DEF ATOMGEO_O Sphere { radius 0.272 }
+		}
+	    ]
+	}
+	DEF ATOM_3 Transform {
+	    translation 0.6868 1.7189 -0.0001
+	    children [
+		DEF ATOMSHAPE_H Shape {
+		    appearance DEF ATOMAPP_3 Appearance {
+			material Material {
+			    diffuseColor 1 1 1
+			    specularColor 1 1 1
+			    shininess 0.75
+			}
+		    }
+		    geometry DEF ATOMGEO_H Sphere { radius 0.216 }
+		}
+	    ]
+	}
+	DEF ATOM_4 Transform {
+	    translation 0.9108 -0.7361 0.8819
+	    children [
+		USE ATOMSHAPE_H
+	    ]
+	}
+	DEF ATOM_5 Transform {
+	    translation 0.9098 -0.7361 -0.8821
+	    children [
+		USE ATOMSHAPE_H
+	    ]
+	}
+	DEF ATOM_6 Transform {
+	    translation -1.1522 -0.1971 -1.0181
+	    children [
+		USE ATOMSHAPE_H
+	    ]
+	}
+	DEF ATOM_7 Transform {
+	    translation -1.1512 -1.0791 0.5099
+	    children [
+		USE ATOMSHAPE_H
+	    ]
+	}
+	DEF ATOM_8 Transform {
+	    translation -1.1512 0.6849 0.5089
+	    children [
+		USE ATOMSHAPE_H
+	    ]
+	}
+    ]
+}

@@ -1,0 +1,43 @@
+#!/bin/csh -f
+#TEST-PROGRAM nmode
+#TEST-DESCRIP find normal and Langevin modes
+#TEST-PURPOSE regression, basic
+#TEST-STATE   ok
+
+echo " "
+echo NMODE: find normal modes
+../../bin/nmode -O \
+		-i nmode_3.in \
+		-c nmode_0.rst \
+		-p parm.top \
+		-v vecs \
+		-o vibs.out		|| goto error
+
+../dacdif vibs.out.save vibs.out
+
+#    degenerate eigenvectors might not be the same on all machines, so
+#    following test needs some work to be portable:
+#    ../dacdif vecs.save vecs
+
+echo " "
+echo NMODE: find Langevin modes
+../../bin/nmode -O \
+		-i lmode.in \
+		-c nmode_0.rst \
+		-p parm.top \
+		-l lmode \
+		-o lvibs.out        || goto error
+
+../dacdif lvibs.out.save lvibs.out
+head -74 lmode > lmode.head
+../dacdif lmode.head.save lmode.head
+/bin/rm -f lmode
+echo " "
+exit(0)
+
+
+error:
+echo "  ${0}:  Program error"
+echo " "
+exit(1)
+

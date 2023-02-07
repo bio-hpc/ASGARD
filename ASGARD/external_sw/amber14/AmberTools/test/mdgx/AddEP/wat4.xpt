@@ -1,0 +1,40 @@
+% This input file will change TIP3P (or TIP3P-Ew) into TIP4P-Ew
+&rule
+  ResidueName  WAT,
+  ExtraPoint   EPW,
+  EPtype       HW,
+  FrameStyle   2,
+  FrameAtom1   O,
+  FrameAtom2   H1,
+  FrameAtom3   H2,
+  Vector12     0.1066413784,
+  Vector13     0.1066413784,
+  Charge      -1.04844,
+&end
+
+&rule
+  ResidueName  WAT,
+  ExtraPoint   O,  
+  FrameStyle   0,
+  Charge       0.0,
+  Sigma        3.16435,
+  Epsilon      0.16275,
+&end
+
+&rule
+  ResidueName  WAT,
+  ExtraPoint   H1,  
+  FrameStyle   0,
+  Charge       0.52422,
+  Sigma        0.0,
+  Epsilon      0.0,
+&end
+
+&rule
+  ResidueName  WAT,
+  ExtraPoint   H2,
+  FrameStyle   0,
+  Charge       0.52422,
+  Sigma        0.0,
+  Epsilon      0.0,
+&end

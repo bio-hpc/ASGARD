@@ -1,0 +1,44 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+    echo "This test not set up for parallel"
+    echo " cannot run in parallel with #residues < #pes"
+    exit 0
+endif
+
+cat > min.in <<EOF
+  ash -> asp in ACE ASH NME
+ &cntrl
+   nstlim = 5, nscm=20000,
+   cut=25.0, igb=1, saltcon=0.1, 
+   ntx=1, irest=0, ntb=0, ntpr=1, 
+   dt=0.001, nrespa=1,
+   ntt=0, temp0 = 300., tautp=0.5,
+   ntc=1, ntf=1, tol=0.000001, 
+   ntwr = 10000, ntwx=0,
+   icfe=1, clambda=0.5,
+ /
+EOF
+
+set output = mdout.aspash
+
+touch dummy
+$DO_PARALLEL $TESTsander -O -i min.in -p prmtop.pert -c prmcrd -o $output < dummy \
+    || goto error
+
+../dacdif $output.save $output
+/bin/rm -f min.in restrt mdinfo dummy
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+

@@ -1,0 +1,128 @@
+#!/usr/bin/env python
+
+from optparse import OptionParser
+import sys, os
+
+epilog = '<compiler> must be either "gnu" or "intel"'
+
+parser = OptionParser(usage='%prog [Options] <compiler>', epilog=epilog)
+parser.add_option('-d', '--debug', dest='debug', default=False,
+                  action='store_true', help='Trigger the debug flags.')
+parser.add_option('-n', '--no-opt', dest='opt', default=True,
+                  action='store_false', help='Disable compiler optimizations.')
+parser.add_option('-p', '--program', dest='prog', default='cphstats',
+                  help='The name of the resulting program. Default %default.')
+parser.add_option('--prefix', dest='prefix', default=os.path.join(
+                   os.getenv('AMBERHOME'), 'bin'),
+                  help='Installation destination. Default is AMBERHOME/bin')
+
+opt, arg = parser.parse_args()
+
+if len(arg) < 1:
+   sys.stderr.write("No compiler found! Must specify gnu or intel.\n")
+   parser.print_help()
+   sys.exit(1)
+
+if len(arg) > 1:
+   sys.stderr.write("Too many command-line arguments found.\n")
+   parser.print_help()
+   sys.exit(1)
+
+if not arg[0].lower() in ('gnu', 'intel', 'gcc', 'clang'):
+   sys.exit("Unrecognized compiler [%s]. Choose 'gnu' 'intel' or 'clang'.\n" % arg[0])
+
+f = open('config.h', 'w')
+
+if arg[0].lower() in ('gnu', 'gcc'):
+   # GNU compilers
+   cpp = 'g++'
+   f90 = 'gfortran'
+   ld = 'g++'
+   ldflags = ['-lgfortran', '-lz']
+   cppflags = ['-Wall']
+   f90flags = ['-Wall']
+
+   if opt.opt:
+      cppflags.extend(['-O3', '-mtune=native'])
+      f90flags.extend(['-O3', '-mtune=native'])
+      ldflags.extend(['-O3', '-mtune=native'])
+   else:
+      cppflags.append('-O0')
+      f90flags.append('-O0')
+      ldflags.append('-O0')
+
+   if opt.debug:
+      cppflags.append('-g')
+      f90flags.append('-g')
+      ldflags.append('-g')
+
+elif arg[0].lower() == 'clang':
+   # clang compilers
+   cpp = 'clang++'
+   f90 = 'gfortran'
+   ld = 'clang++'
+   ldflags = ['-lgfortran', '-lz']
+
+   cppflags = ['-Wall']
+   f90flags = ['-Wall']
+
+   if opt.opt:
+      cppflags.extend(['-O3'])
+      f90flags.extend(['-O3'])
+      ldflags.extend(['-O3'])
+   else:
+      cppflags.append('-O0')
+      f90flags.append('-O0')
+      ldflags.append('-O0')
+
+   if opt.debug:
+      cppflags.append('-g')
+      f90flags.append('-g')
+      ldflags.append('-g')
+
+else:
+   # Intel compilers
+   cpp = 'icpc'
+   f90 = 'ifort'
+   ld = 'ifort'
+   ldflags = ['-nofor_main', '-lstdc++', '-lz']
+   cppflags = ['-Wall']
+   f90flags = ['-warn', 'all']
+
+   if opt.opt:
+      cppflags.extend(['-O3', '-xHost', '-ipo'])
+      f90flags.extend(['-O3', '-xHost', '-ipo'])
+      ldflags.extend(['-O3', '-xHost', '-ipo'])
+   else:
+      cppflags.append('-O0')
+      f90flags.append('-O0')
+      ldflags.append('-O0')
+
+   if opt.debug:
+      cppflags.extend(['-g', '-debug'])
+      f90flags.extend(['-g', '-debug'])
+      ldflags.extend(['-g', '-debug'])
+
+if opt.zlib:
+   cppflags.append('-DHASGZ')
+
+confighopts = dict(cpp=cpp, f90=f90, ld=ld, ldflags=' '.join(ldflags),
+               cppflags=' '.join(cppflags), f90flags=' '.join(f90flags),
+               confline=' '.join(sys.argv), prog=opt.prog, prefix=opt.prefix)
+f.write("""# configured with [[ %(confline)s ]]
+
+# Compilers
+CXX = %(cpp)s
+F90 = %(f90)s
+LD = %(ld)s
+
+# Flags
+F90FLAGS = %(f90flags)s
+CXXFLAGS = %(cppflags)s
+LDFLAGS = %(ldflags)s
+
+# Name of the program
+PROGNAME = %(prog)s
+PREFIX = %(prefix)s
+""" % confighopts)
+f.close()

@@ -1,0 +1,49 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+  set numprocs=`echo $DO_PARALLEL | awk -f ../numprocs.awk `
+  if ( $numprocs > 25 ) then
+      echo " DO_PARALLEL set to $DO_PARALLEL"
+      goto toomany
+  else if ( $?MP_PROCS)then
+      if ($MP_PROCS > 25)then
+#               --- For IBM AIX ---
+          echo "    MP_PROCS set to "$MP_PROCS
+          goto toomany
+      endif
+  endif
+endif
+
+cat > gbsain <<EOF
+ test of gbsa dynamics
+ &cntrl
+   nstlim=10, cut=99.0, igb=1,
+   ntpr=1, ntwr=1000, ntt=0,
+   ntc=2, ntf=2, tol=0.000001,
+   ntx=5, irest=1, ntb=0, 
+   offset=0.09, gbsa=1,
+ /
+EOF
+$DO_PARALLEL $TESTsander -O -i gbsain -c md7.x -o mdout.gbsa || goto error
+
+../dacdif mdout.gbsa.save mdout.gbsa
+/bin/rm -f gbsain restrt mdinfo
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+toomany:
+    echo " too many processors for this test, exiting (Max = 25)"
+    echo "============================================================"
+    exit(0)
+

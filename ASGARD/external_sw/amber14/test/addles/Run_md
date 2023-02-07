@@ -1,0 +1,20 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander.LES
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+echo " "
+echo "  Amber 5 demo:    run ADDLES on leucine dipeptide"
+echo " "
+
+echo "SANDER: LES MD"
+
+mpirun -np 2 ../../bin/sander.LES \
+-O \
+-i lesmd.in -o lesmd.out \
+-p les.prm \
+-c les.equ.crd \
+-x lesmd.crd -e lesmd.en -v lesmd.vel \
+-inf lesmd.info -r lesmd.restrt
+
+

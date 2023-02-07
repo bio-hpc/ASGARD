@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Check the existence of a test version of the mdgx program
+MDGX="${AMBERHOME}/bin/mdgx"
+if [ -n "${TESTmdgx}" ] ; then
+  MDGX=${TESTmdgx}
+  echo "MDGX set to ${MDGX}"
+fi
+
+# Write a simple input file
+cat > mdgx.in << EOF
+&files
+  -p       ../NVTwat/wat.top    % Use the topology and initial 
+  -c       ../NVTwat/wat.rst    % coordinates from the NVTwat test
+  -xpt     wat4.xpt             % This file modifies TIP3P to become TIP4P
+  -r       wat
+  -o       wat
+  -x       wat
+  -f       wat
+  -osf     .out
+  -rsf     .rst
+  -xsf     .trj
+  -fsf     .frc
+&end
+
+&cntrl
+
+  % Settle is active to keep the water rigid
+  DoSETTLE = 1,     DoRATTLE = 0,
+
+  % Scaling for 1:4 nonbonded interactions
+  Vdw14Fac = 2.0,   Elec14Fac = 1.2,
+
+  % Direct-space cutoff
+  cut = 8.000,
+
+  % 1fs time step
+  dt = 1.0e-3,
+
+  % Run for 40 steps in all
+  nstlim = 40,  nfistep = 0,
+  ntpr = 5,     ntwr = 40,     
+  ntwf = 0,     ntwx = 0,
+
+  % Berendsen barostat
+  ntt  = 1,        tempi = 300.0,   temp0 = 300.0,
+
+  % Higher accuracy in the direct-space lookup table
+  SplnSpc = 0.015625,
+
+  % Constant-pressure dynamics maintained by a Monte-Carlo barostat
+  ntp     = 1,     barostat = 2,     mcbfrq  = 10,
+  mcbtemp = 300.0, mccomp  = 2.0e-3,
+&end
+
+&ewald
+  vdwmeth = 1,
+  dsum_tol = 1.0e-5,
+  ordr1 = 4,
+  ordr2 = 4,
+  ordr3 = 4,
+&end
+EOF
+
+# Run the mdgx program
+${MDGX} -O -i mdgx.in
+
+# Analyze the relevant output
+echo "% Total energy" > etot.dat
+grep "^ Etot:" wat.out >> etot.dat
+
+${AMBERHOME}/AmberTools/test/dacdif etot.dat.save etot.dat
+/bin/rm -f mdgx.in wat.rst wat.out

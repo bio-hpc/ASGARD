@@ -1,0 +1,39 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+cat <<eof >mdin
+  equilbrate apo-dhfr
+ &cntrl
+    ntr=0, nscm=50,
+    ntb=2, nsnb=50, idiel=1, 
+    cut=9.0, ntpr=1, 
+    ntc = 2, 
+    nstlim = 10, tempi=0.0, temp0=300.0,
+    ntt=5, dt=0.001, tautp=1.0, ntx=7, irest=1, vlimit=10.0,
+    ntp=1, taup = 2.0,
+    iewald=1, plevel=2, ntwr=1000,
+ /
+77.3604  66.8482  60.2014 90.00  90.00  90.00
+ 80  64  64  4  0  0  0
+0.000001
+eof
+
+touch dummy
+
+$DO_PARALLEL ../../bin/sander_classic -O -i mdin -c md12.x -o mdout < dummy \
+	|| goto error
+
+../dacdif mdout.dhfr_classic.save mdout
+/bin/rm -f mdin restrt mdinfo
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

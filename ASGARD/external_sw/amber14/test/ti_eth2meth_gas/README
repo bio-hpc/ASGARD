@@ -1,0 +1,23 @@
+March 19, 2006
+
+This test case is to test the icfe=2 option. This particular test case is
+when ethane is transformed into methane (C2H6 -> CH4). The same thing can 
+be done for the opposite way (CH4 -> C2H6). The reason why this particular
+mix. function (icfe=2 option) is used is to allow the use of dummy atoms 
+on both sides; initial and final states. For more information, look at the 
+AMBER 9 manual.
+
+Run.test1: This will create an output file when icfe=1 and klambda=1 (with
+clambda=0.5). The output file should match to out.eth_ic1_k1_c0.5.save.
+
+Run.test2: This will create an output file when icfe=1 and klambda=6 (with
+clambda=0.5). The output file should match to out.eth_ic1_k6_c0.5.save.
+
+Run.test3: This will create an output file when icfe=2 and klambda=6 (with
+clambda=0.5). The output file should match to out.eth_ic2_k6_c0.5.save'.
+
+Run.test4: This will create an output file when icfe=2 and klambda=1 (with
+clambda=0.5). The output file should match to out.eth_ic2_k1_c0.5.save'.
+
+PS: (icfe=1 & klambda=1) == (icfe=2 & klambda=1)
+    So, Run.test1 and Run.test4 should give the same results.

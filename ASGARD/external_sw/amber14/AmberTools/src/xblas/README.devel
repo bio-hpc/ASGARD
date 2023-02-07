@@ -1,0 +1,27 @@
+This document describes how to generate the C files 
+from the M4 templates, mostly intended for developers.
+
+- Appropriate make.inc definition must first be supplied.
+  There are several sample make.incs for various platforms
+  provided.  Or you can try to have autoconf guess them for
+  you; to do this you need to do
+
+    autoconf
+    ./configure
+
+  This will create a make.inc appropriate for the compiler(s) 
+  found.  This will also create a Makefile from Makefile.m4.
+  You can specify which compiler to use by CC and FC environment 
+  variables.  For details, see "./configure --help".
+
+- If make.inc was configured manually, create the top-level 
+  Makefile is generated from Makefile.m4.  Just do 
+  "m4 Makefile.m4 >Makefile"
+  
+- Then run "make makefiles".  This will generate all
+  the makefiles in various directories from m4 template.
+
+- Then run "make sources test-sources".  This will create
+  all the C source files for both XBLAS library code and 
+  testing code.
+

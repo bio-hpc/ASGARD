@@ -1,0 +1,25 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+cat > analin <<EOF
+ test of writing pdb files
+    1    0    0    0    0    1
+    0  0.0  0.0  0.0   0.0
+    1    0    0    0    0    0
+  99.0      2.0       1.2       1.0
+    1 10.0 10.0 10.0 10.0 10.0 10.0 20.0 10.0 10.0
+PDB
+STOP
+EOF
+../../bin/anal -O -i analin -c md4.x  -o analout_pdb || goto error
+
+../dacdif pdb1.save pdb1
+/bin/rm -f analin analout_pdb
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

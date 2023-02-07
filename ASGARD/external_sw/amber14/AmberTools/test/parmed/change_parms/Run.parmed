@@ -1,0 +1,19 @@
+#!/bin/sh
+
+. ../../program_error.sh
+
+if [ -z "$parmed" ]; then
+   parmed="../../../bin/parmed.py"
+fi
+
+output=parmed.out
+prmtop=4ions.parm7
+
+$parmed -O $prmtop parmed.in > $output 2>&1 || error
+
+../../dacdif bonded_ions.parm7.save bonded_ions.parm7
+../../dacdif bonded_ions_changed.parm7.save bonded_ions_changed.parm7
+
+#/bin/rm -f $output
+
+exit 0

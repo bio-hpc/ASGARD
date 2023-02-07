@@ -1,0 +1,51 @@
+#!/bin/csh -f
+#TEST-PROGRAM pmemd
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+ 
+if( ! $?TESTsander ) set TESTsander = "../../../../bin/pmemd"
+ 
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+cat > mdin <<EOF
+NPT test
+ &cntrl
+  imin = 0,	ntx = 5,	irest = 1,
+  ntpr = 5,	ntwr = 0,	ntwx = 0,
+  ntf = 1,	ntc = 2,
+  ntb = 2,	cut = 9.0,
+  nstlim = 20,	dt = 0.001,
+  temp0 = 300.0,	ntt = 3,	gamma_ln = 2,
+  ntp = 1,	pres0 = 1.0,	taup = 2.0,
+  icfe=1,       clambda = 0.6,
+  ifsc=1,       
+  timask1=':BNZ',
+  timask2=':PHN',
+  scmask1=':BNZ@H6',
+  scmask2=':PHN@H6,O1',
+  crgmask=':BNZ@H6 | :PHN@H6,O1', tishake=1,
+ /
+EOF
+
+cat > groupfile <<EOF
+-O -i mdin -o out -p ti.prmtop -c rst -r restrt
+EOF
+
+$DO_PARALLEL $TESTsander `cat groupfile` < /dev/null || goto error
+
+../../../dacdif -t 1 out.save out
+if ( `basename $TESTsander` == "pmemd.mic_offload.MPI" ) then
+../../../dacdif -r 1.e-3 -t 2 restrt.save restrt
+else
+../../../dacdif -r 1.e-5 -t 2 restrt.save restrt
+endif
+
+/bin/rm -f mdin mdinfo groupfile logfile
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

@@ -1,0 +1,29 @@
+echo 'Running the Softcore potential tests'
+echo '=============================================================='
+echo '  Minimization test'
+cd min ; ./Run.min ; cd ..
+echo ' '
+echo '  Protein-Ligand complex test'
+cd complex ; ./Run.complex ; cd ..
+echo ' '
+echo '=============================================================='
+echo '  Solvation free energy test'
+cd short_md ; ./Run.toluene ; ./Run.toluene2 ; cd ..
+echo ' '
+echo '=============================================================='
+echo '  Dynamic lambda test'
+cd dynlmb ; ./Run.dynlmb ; cd ..
+echo ' '
+echo '=============================================================='
+echo '  Restrained complex test'
+cd complex_rst ; ./Run.complex_rst ; cd ..
+echo ' '
+echo '=============================================================='
+echo '  Using softcore electrostatics'
+cd electro ; ./Run.ethanol ; cd ..
+echo ' '
+echo '=============================================================='
+echo 'Soft core test suite complete'
+echo ' '
+echo '=============================================================='
+

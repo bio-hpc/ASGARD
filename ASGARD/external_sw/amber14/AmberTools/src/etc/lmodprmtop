@@ -1,0 +1,23 @@
+#!/bin/sh
+echo "WARNING: lmodprmtop is now deprecated and will be removed in future"
+echo "         versions of AmberTools. Please use the 'lmod' action in ParmEd"
+echo "         instead"
+
+input=$1
+output=$2
+
+if [ ! "$input" ] || [ ! "$output" ]; then echo 'Usage: lmodprmtop input_prmtop output_prmtop'; exit; fi
+
+#sed -e '/LENNARD_JONES_ACOEF/,/LENNARD_JONES_BCOEF/ s/0.00000000E+00/1.00000000E+03/g' $input >$output 
+
+# Go through ParmEd instead, since it is more robust and does not depend on flag
+# ordering in the topology file (and it also works -- I have verified that
+# they give the same topologies). Oh, and it also works on old-style topologies
+
+# This also has safer topology overwriting, if that is desired.
+$AMBERHOME/bin/parmed.py -n -p $1 << EOF
+setOverwrite True
+lmod
+parmout $2
+EOF
+

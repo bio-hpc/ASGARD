@@ -1,0 +1,14 @@
+#!/bin/csh -f
+
+../../bin/ambpdb -p prmtop <restrt >restrt.pdb || goto error
+../../bin/ambpdb -p prmtop -mol2 < restrt > restrt.mol2 || goto error
+../../bin/ambpdb -p prmtop -pqr < restrt > restrt.pqr || goto error
+
+../dacdif restrt.pdb.save restrt.pdb
+../dacdif restrt.mol2.save restrt.mol2
+../dacdif restrt.pqr.save restrt.pqr
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

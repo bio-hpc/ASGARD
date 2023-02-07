@@ -1,0 +1,45 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+set sander = "../../../bin/sander.MPI"
+if( $?TESTsander ) then
+   set sander = $TESTsander
+endif
+
+if( ! $?DO_PARALLEL ) then
+  echo " full pimd can only be run parallel: set env var DO_PARALLEL"
+  echo " Not running test, exiting....."
+  exit(0)
+else
+  set numprocs=`echo $DO_PARALLEL | awk -f ../../numprocs.awk `
+  if ( $numprocs == 4 || $numprocs == 8 || $numprocs == 12 || $numprocs == 16 || $numprocs == 20 || $numprocs == 24 || $numprocs == 28 || $numprocs == 32 ) then
+      goto runtest
+  else if ( $?MP_PROCS)then
+      if ($MP_PROCS == 4 || $MP_PROCS == 8 || $MP_PROCS == 12 || $MP_PROCS == 16 || $MP_PROCS == 20 || $MP_PROCS == 24 || $MP_PROCS == 28 || $MP_PROCS == 32 )then
+        goto runtest
+      endif
+  endif
+endif
+
+echo " This test case requires a least 4 mpi threads."
+echo " The number of mpi threads must also be a multiple of 4 and not more than 32."
+echo " Not running test, exiting....."
+exit(0)
+
+runtest:
+  echo "Testing PIMD with Nose-Hoover-Chain thermostat"
+  /bin/rm -f nhc.out
+  $DO_PARALLEL $sander -ng 4 -groupfile gf_pimd_nhc >  sander.out || goto error
+  ../../dacdif pimd_nhc.out.save pimd_nhc.out
+
+
+
+endif
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

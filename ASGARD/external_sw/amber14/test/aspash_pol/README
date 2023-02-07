@@ -1,0 +1,14 @@
+These scripts run a simple, polarizable, perturbation scheme in sander:
+
+runmd.0   uses a non-pert prmtop file for state 0
+runmd.1   uses a non-pert prmtop file for state 1
+
+runmd.p0  uses a pert prmtop file, with clambda for state 0
+runmd.p1  uses a pert prmtop file, with clambda for state 1
+
+Trajectory for runmd.0 should match runmd.p0;
+Trajectory for runmd.1 should match runmd.p1;
+
+Energy differences (dv/dl) reported in runmd.p0 should match those in
+runmd.p1, and should match the computed differences obtained by looking
+at runmd.0 and runmd.1 separately.

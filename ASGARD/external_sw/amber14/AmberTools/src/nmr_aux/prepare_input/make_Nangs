@@ -1,0 +1,10 @@
+#!/usr/bin/perl -w
+
+while (<>){
+
+	($res, $n ) = split( '\t', $_ );
+	printf STDOUT "# N angles for residue %d\n", $res;
+	printf STDOUT " &rst   iat= %d, %d, %d, 0,  &end\n", $n+1, $n, $n-2;
+	printf STDOUT " &rst   iat= %d, %d, %d, 0,  &end\n\n", $n+1, $n, $n+2;
+
+}

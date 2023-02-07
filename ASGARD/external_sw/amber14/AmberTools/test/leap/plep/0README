@@ -1,0 +1,52 @@
+This test directory is intended for developers who wish to compare
+energies derived from Leap setups to those from the old prep/link/edit/parm
+(aka plep) programs.
+
+
+When comparing sander energies for Leap and plep, the integers at
+the beginning of the file (which describe how information is
+structured in the 'prmtop' files) can be ignored, e.g.:
+
+28c28
+<  NTHETH =     405 MTHETA =     284 NPHIH =     712 MPHIA  =     368
+---
+>  NTHETH =     405 MTHETA =     284 NPHIH =     777 MPHIA  =     368
+30,31c30,31
+<  NBONA  =     209 NTHETA =     284 NPHIA =     368 NUMBND =      53
+<  NUMANG =     124 NPTRA  =      63 NATYP =      26 NPHB   =      24
+---
+>  NBONA  =     209 NTHETA =     284 NPHIA =     368 NUMBND =      45
+>  NUMANG =      97 NPTRA  =      28 NATYP =      26 NPHB   =      24
+
+Further, when comparing energies, it is important to remember:
+
+  - Leap is double precision, while plep is single (except on 'pure'
+    64-bit machines like Cray C90)
+
+  - since atoms can be ordered differently by each 'program',
+    the order of evaluation of terms within sander can be
+    different
+
+  - For nucleic acids in the '91 ff, the terminal oxygen atoms
+    (adjacent to HB and HE hydrogen residues) should technically
+    have their types adjusted to OH in Leap, but this creates
+    problems with missing parameters, and wasn't considered
+    important enough to worry about. This leads to dihedral diffs:
+
+<					DIHED      =      186.7244
+--
+>					DIHED      =      188.2012
+
+Except for these, energy diffs should be on the order of:
+
+-- sander_aminoan91.out.dif
+
+<  BOND    =        6.2012  ANGLE   =      846.8378  DIHED      =       30.6292
+<  VDWAALS =      -50.6483  EEL     =    -1589.1307  HBOND      =       -7.3877
+<  1-4 VDW =      449.4116  1-4 EEL =      878.3101  CONSTRAINT =        0.0000
+---
+>  BOND    =        6.2011  ANGLE   =      846.8372  DIHED      =       30.6335
+>  VDWAALS =      -50.6484  EEL     =    -1589.1307  HBOND      =       -7.3877
+>  1-4 VDW =      449.4125  1-4 EEL =      878.3102  CONSTRAINT =        0.0000
+
+

@@ -1,0 +1,67 @@
+* Poly Proline in Gas Phase
+* By Ross Walker & Mark Williamson (SDSC)
+*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Read in Topology and parameter file for ALL22
+
+    OPEN READ CARD UNIT 1 NAME "../../../../dat/chamber/top_all22_prot.inp"
+    READ RTF CARD UNIT 1
+    CLOSE UNIT 1
+
+    OPEN READ CARD UNIT 2 NAME "../../../../dat/chamber/par_all22_prot.inp"
+    READ PARAM CARD UNIT 2
+    CLOSE UNIT 2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Turn off CMAP - Needed since the default for all22 was changed
+!                 in C35B1 (A dangerous change in my opinion since
+!                 it effectively silently turns on CMAP but oh well.)
+    SKIPE CMAP
+
+! Read in Poly Pro Gas Phase PSF and pdb
+    open unit 3 form read name "poly_pro_gas_all22.psf"
+    read psf card unit 3
+    close unit 3
+
+    open read unit 30 card name 03_equil_crd.rst
+
+!**********************************************************
+!**********************************************************
+!
+!   Do 10 steps of MD NVE
+!
+!**********************************************************
+!**********************************************************
+
+  update bycb  switch vswitch  -
+         cutnb 9999.0   ctofnb 9998.0   ctonnb 9997.0 
+
+  faster on
+
+  open write unit 31 card name 04_nve_crd.rst
+  open write unit 32 file name 04_nve_crd.dcd
+  open write unit 34 card name 04_nve_crd.ene
+
+  DYNA LEAP RESTART -
+  NSTEP     10  TIME    0.001  -
+  FINALT  300.0 -
+  IHTFRQ  0 IEQFRQ   0  -
+  NSAVC       1  NSAVV       0    ISVFRQ   10   -
+  NTRFRQ      0  -
+  NPRINT      1   IPRFRQ      0  -
+  IUNWRI      31  IUNCRD     32  IUNVEL   -1 KUNIT 34 -
+  iunread     30
+
+  close unit 30
+
+  open write unit 41 card name 04_nve_crd.crd
+  write coor unit 41 card
+  * Coordinates after 04 nve
+  *
+  close unit 31
+  close unit 32
+  close unit 34
+  close unit 41
+
+  stop
+ 

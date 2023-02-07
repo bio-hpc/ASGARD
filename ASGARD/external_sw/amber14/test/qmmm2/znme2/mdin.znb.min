@@ -1,0 +1,16 @@
+ZnMe2: 10 steps Min - Pure QM with PM3/ZnB
+ &cntrl                                                  
+   imin =1,
+   irest=0,                                      
+   maxcyc=10,
+   ncyc=5,                                     
+   ntpr=1,                                               
+   ntb=0, 
+   cut=999.,                                      
+   ntt=0,                                                
+   ifqnt=1                                               
+ /                                                       
+ &qmmm                                                   
+   qmmask='@*',                                        
+   qm_theory='ZnB', qmcharge=0                           
+ /                                                       

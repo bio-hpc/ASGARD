@@ -1,0 +1,31 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP vacuum minimization 
+#TEST-PURPOSE regression, basic
+#TEST-STATE   unused
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+endif
+
+cat > min.in <<EOF
+input for sander_classic: vacuum minimization
+ &cntrl
+  cut    = 20.0,  nsnb   = 9999,
+  ntx = 1, irest = 0,  ipol=1,
+  ntb    = 0,
+  imin = 1,  maxcyc = 5,
+  ntpr   = 1, dxm=0.0001, dx0=0.0001
+ /
+EOF
+
+touch dummy
+$DO_PARALLEL ../../bin/sander_classic -O -i min.in < dummy || goto error
+
+../dacdif mdout.dmp_classic.save mdout
+/bin/rm -f min.in restrt mdinfo dummy
+exit(0)
+
+error:
+echo "  ${0}:  Program error"
+exit(1)

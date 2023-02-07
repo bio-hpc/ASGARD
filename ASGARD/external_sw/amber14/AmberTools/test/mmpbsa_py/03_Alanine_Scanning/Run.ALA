@@ -1,0 +1,58 @@
+#!/bin/sh
+
+. ../../program_error.sh
+. ../cannot_run.sh
+
+# This is a test file to run the Alanine scanning test for MMPBSA
+
+if [ -z "$AMBERHOME" ]; then
+   echo "Error: AMBERHOME must be set!"
+   exit 1
+fi
+
+# Define executable
+if [ -z "$DO_PARALLEL" ]; then
+   EXE=$AMBERHOME/bin/MMPBSA.py
+else
+   if [ `$DO_PARALLEL ../../numprocs` -gt 2 ]; then
+      echo "Cannot have more than 2 processors for this test."
+      exit 0
+   fi
+   EXE=$AMBERHOME/bin/MMPBSA.py.MPI
+fi
+
+test -x $EXE || cannot_run $EXE
+
+# Write input file
+cat > mmpbsa.in << EOF
+MMPBSA input file for running GB
+&general
+   startframe=1, endframe=2, interval=1,
+   keep_files=1, debug_printlevel=2
+/
+&gb
+   igb=5, saltcon=0.1
+/
+&alanine_scanning
+/
+EOF
+
+# Execute the program
+$DO_PARALLEL $EXE -O -i mmpbsa.in \
+                     -sp ../EstRAL_Files/sol.top \
+                     -cp ../EstRAL_Files/com.top \
+                     -rp ../EstRAL_Files/rec.top \
+                     -lp ../EstRAL_Files/lig.top \
+                     -mc ../EstRAL_Files/com.mutant.top \
+                     -mr ../EstRAL_Files/rec.mutant.top \
+                     -y ../EstRAL_Files/test.mdcrd > mmpbsa.out 2>&1 || error
+
+../../dacdif -t 3 -a 0.2 FINAL_RESULTS_MMPBSA.dat.save FINAL_RESULTS_MMPBSA.dat
+
+#_MMPBSA_mutant_complex.mdcrd.0 is only valid for serial simulations
+if [ -z "$DO_PARALLEL" ]; then
+   ../../dacdif orig_mutant.mdcrd _MMPBSA_mutant_complex.mdcrd.0
+fi
+
+$EXE --clean > /dev/null 2>&1
+rm -f mmpbsa.in mmpbsa.out

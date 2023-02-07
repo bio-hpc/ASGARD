@@ -1,0 +1,54 @@
+#!/bin/sh
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+. ../program_error.sh
+sander=../../bin/sander.MPI
+
+if [ ! -z "$TESTsander" ]; then
+   sander=$TESTsander
+fi
+
+if [ -z "$DO_PARALLEL" ]; then
+   echo "REM requires a parallel environment!"
+   exit 0
+fi
+
+numprocs=`$DO_PARALLEL ../numprocs`
+
+if [ "`basename $sander`" = 'sander.MPI' ]; then
+   if [ $numprocs -ne 4 -a $numprocs -ne 8 -a $numprocs -ne 12 -a $numprocs -ne 16 ]; then
+      echo "This test case requires a multiple of 4 MPI threads!"
+      echo "Only using $numprocs"
+      exit 0
+   fi
+else
+   if [ $numprocs -ne 8 -a $numprocs -ne 12 -a $numprocs -ne 16 ]; then
+      echo "This test case requires 8, 12, or 16 MPI threads!"
+      exit 0
+   fi
+fi
+
+log=rem.log
+output=rem.out
+/bin/rm -f $log $output.00? groupfile
+
+cat > groupfile << EOF
+#
+#
+-O -rem 1 -remlog $log -i ./rem.in.000 -p ./ala3.top -c ./mdrestrt -o $output.000 -inf reminfo.000 -r ./rem.r.000
+-O -rem 1 -remlog $log -i ./rem.in.001 -p ./ala3.top -c ./mdrestrt -o $output.001 -inf reminfo.001 -r ./rem.r.001
+-O -rem 1 -remlog $log -i ./rem.in.002 -p ./ala3.top -c ./mdrestrt -o $output.002 -inf reminfo.002 -r ./rem.r.002
+-O -rem 1 -remlog $log -i ./rem.in.003 -p ./ala3.top -c ./mdrestrt -o $output.003 -inf reminfo.003 -r ./rem.r.003
+#
+EOF
+
+$DO_PARALLEL $sander -O -ng 4 -groupfile groupfile < /dev/null || error
+
+../dacdif $log.save $log
+../dacdif $output.000.save $output.000
+
+/bin/rm -f rem.r* mdinfo* mdcrd* reminfo.* rem.type $output.001 groupfile logfile.00? $output.002 $output.003
+exit 0

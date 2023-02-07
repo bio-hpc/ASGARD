@@ -1,0 +1,270 @@
+#!/usr/bin/perl -w
+
+#  cycle through fortran files, determine which headers are included;
+#      the "used" array eliminates duplicate enties
+
+#  for LES, PUPIL and APBS programs, add these dependencies as well 
+#      to the list
+
+#  Be sure do to a "make clean" before running this script!
+#      (probably not really needed, but better safe than sorry)
+
+printf <<EOF;
+#
+#   Please do not edit the "depend" file directly, since it is created by the
+#   "makedepend" script.  If changes are needed, edit "makedepend" itself.
+#
+EOF
+
+$LES{"multisander"} = $LES{"rdparm"} = $LES{"mdread"} = $LES{"r6ave"} = $LES{"parallel" } =
+	$LES{"jnrg"} = $LES{"ene"} = $LES{"locmem"} = $LES{"ew_force"} = $LES{"ew_setup"} =
+	$LES{"ew_direct"} = $LES{"enb"} = $LES{"egb"} = $LES{"pimd_verlet"} =
+	$LES{"force"} = $LES{"dynlib"} = $LES{"extra_pts"} = $LES{"short_ene"} =
+	$LES{"degcnt"} = $LES{"sander"} = $LES{"nmr"} = $LES{"runmd"} =
+	$LES{"ew_recip"} = $LES{"egb"} = $LES{"pimd_init"} = $LES{"cmd_init"}= 
+	$LES{"cmd_matrix"} = $LES{"nonbond_list"} = $LES{"evb_input"} =
+	$LES{"evb_alloc"} = $LES{"evb_matrix"} = $LES{"morsify"} =
+	$LES{"mod_vdw"} = $LES{"evb_ntrfc"} = $LES{"evb_force"} =
+	$LES{"evb_umb"} = $LES{"evb_pimd_init"} = $LES{"pimd_force"} = 
+	$LES{"evb_umb_primitive"} = $LES{"out_evb"} = $LES{"remd"} = 
+        $LES{"bintraj"} =  $LES{"binrestart"} =  $LES{"getcor"} =  $LES{"mdfil"} =  
+        $LES{"mdwrit"} =  $LES{"qm2_extern_module"} =  
+        $LES{"lmod"} =  $LES{"ew_box"} =  $LES{"minrit"} =  
+        $LES{"set"} =  $LES{"qm_mm"} = $LES{"cpparm"} = 
+  1;
+
+$PUPIL{"sander"} = $PUPIL{"force"} = $PUPIL{"mexit"} = $PUPIL{"mdfil"} = 
+	$PUPIL{"mdread"} = $PUPIL{"printe"} = $PUPIL{"dynlib"} = 1;
+
+$APBS{"apbs"} = $APBS{"apbs_vars"} = $APBS{"dynlib"} = $APBS{"force"} =
+	$APBS{"mdread"} = $APBS{"printe"} = $APBS{"sander"} = $APBS{"file_io_dat"} = 1;
+
+$API{"rdparm"} = $API{"debug"} = $API{"set"} = $API{"fastwt"} =
+    $API{"ew_setup"} = $API{"nonbond_list"} = $API{"ew_box"} =
+    $API{"new_time"} = $API{"dynlib"} = $API{"qm_mm"} = 
+    $API{"extra_pts"} = $API{"charmm"} = 1;
+
+$LESAPI{"rdparm"} = $LESAPI{"set"} = $LESAPI{"ew_setup"} =
+    $LESAPI{"nonbond_list"} = $LESAPI{"ew_box"} = $LESAPI{"dynlib"} = 
+    $LESAPI{"interface"} = $LESAPI{"qm_mm"} = $LESAPI{"extra_pts"} = 1;
+
+#The following files only appear in SANDER and not any of the special builds
+#$RISM{"../rism/amber_rism_interface.SANDER"} = 1;
+
+#  in order to get a mapping between module names and file names, we have
+#  have to set up the following hash. 
+#  (special cases, since source is elsewhere)
+#  (check also below  (end of this file) for "compilation" rules)
+$modulefile{"netcdf"} = "netcdf";
+$modulefile{"AmberNetcdf_mod"} = "AmberNetcdf";
+$modulefile{"ElementOrbitalIndex"} = "elementOrbitalIndex";
+$modulefile{"qmmm_module"} = "qmmm_module";
+$modulefile{"qmmm_nml_module"} = "qmmm_nml_module";
+$modulefile{"qmmm_qmtheorymodule"} = "qmmm_qmtheorymodule";
+$modulefile{"qmmm_struct_module"} = "qmmm_struct_module";
+$modulefile{"qmmm_vsolv_module"} = "qmmm_vsolv_module";
+$modulefile{"qmmm_read_and_alloc"} = "qm2_read_nm_and_alloc";
+$modulefile{"sander_rism_interface"} = "../rism/amber_rism_interface.SANDER";
+$modulefile{"poisson_boltzmann"} = "poisson_boltzmann";
+$modulefile{"dispersion_cavity"} = "dispersion_cavity";
+$modulefile{"pbtimer_module"} = "pbtimer_module";
+$modulefile{"UtilitiesModule"} = "utilitiesmodule";
+$modulefile{"random"} = "random";
+$modulefile{"constants"} = "constants";
+$modulefile{"SANDER_API_MOD"} = "interface";
+
+foreach $file ( <*.F90> ){
+	next if $file =~ /^_/;
+	($fileroot) = $file =~ /(.+)\.F90$/;
+	$optimized{$fileroot} = 0;
+	open( F, "$file" ) || die "unable to open $file\n";
+	while( <F> ){
+		if( /^ *module /i ){
+			($head,$modulename) = /( *[Mm][Oo][Dd][Uu][Ll][Ee]) +(\w*)/;
+			$modulefile{$modulename} = $fileroot;
+#			printf STDERR "modulefile:  $modulename  $fileroot\n";
+		}
+		if( /compile=optimized/ ){
+			$optimized{$fileroot} = 1;
+		}
+	}
+	close( F );
+}
+
+#  Now, cycle over all source files to create the compilation rules and 
+#  dependencies.  Check for "compile=optimized" comments and do the right 
+#  thing:
+
+foreach $file ( <*.F90> ){
+
+	next if $file =~ /^_/;
+
+	$deps = $depsLES = $depsPUPIL = $depsAPBS = $depsAPI = $depsLESAPI = "";
+
+	($fileroot) = $file =~ /(.+)\.F90$/;
+
+	#  construct the header and module dependency rules:
+
+	open( F, "$file" ) || die "unable to open $file\n";
+	while( <F> ){
+
+		if( /^ *use / ){
+			($head,$usee) = /( *use) +(\w*)/;
+#			printf STDERR "     usee: $usee; modulefile is $modulefile{$usee}\n";
+            
+			if( !defined $modulefile{$usee} ){
+				printf STDERR "No file name associated with module $usee\n";
+				exit(1);
+			}
+			if( !defined $used{ $fileroot,$modulefile{$usee} } ){
+
+				#  remove any circular references:
+				next if $fileroot eq $modulefile{$usee};
+
+                                $deps .= "\\\n                    " . $modulefile{$usee} .  ".o" ;
+                                if( defined $LES{$modulefile{$usee}} ){
+                                  $depsLES .= "\\\n                    " . $modulefile{$usee} .  ".LES.o" ;
+                                } else {
+                                  $depsLES .= "\\\n                    " . $modulefile{$usee} .  ".o" ;
+                                }
+                                
+                                if( defined $PUPIL{$modulefile{$usee}} ){
+                                  $depsPUPIL .= "\\\n                    " . $modulefile{$usee} .  ".PUPIL.o" ;
+                                } else {
+                                  $depsPUPIL .= "\\\n                    " . $modulefile{$usee} .  ".o" ;
+                                }
+                                
+                                if( defined $APBS{$modulefile{$usee}} ){
+                                  $depsAPBS .= "\\\n                    " .  $modulefile{$usee} .  ".APBS.o" ;
+                                } else {
+                                  $depsAPBS .= "\\\n                    " . $modulefile{$usee} .  ".o" ;
+                                }
+
+                                if( defined $API{$modulefile{$usee}} ){
+                                    $depsAPI .= "\\\n                    " .  $modulefile{$usee} .  ".API.o" ;
+                                } else {
+                                    $depsAPI .= "\\\n                    " .  $modulefile{$usee} .  ".o" ;
+                                }
+                                if( defined $LESAPI{$modulefile{$usee}} ){
+                                    $depsLESAPI .= "\\\n                    " .  $modulefile{$usee} .  ".LESAPI.o" ;
+                                } else {
+                                    $depsLESAPI .= "\\\n                    " .  $modulefile{$usee} .  ".o" ;
+                                }
+
+				$used{ $fileroot,$modulefile{$usee} } = 1;
+			}
+		}
+		if (/^# *include/) {
+			($head,$included) = /(# *include) +"(.*)"/;
+			next if $included eq "mpif.h";
+			next if $included eq "timer.h";
+			if( !defined $used{ $fileroot,$included } ){
+				$deps .= "\\\n                    " . $included ;
+				$depsLES .= "\\\n                    " . $included ;
+				$depsPUPIL .= "\\\n                    " . $included ;
+				$depsAPBS .= "\\\n                    " . $included ;
+                $depsAPI .= "\\\n                    " . $included ;
+                $depsLESAPI .= "\\\n                    " . $included ;
+				$used{ $fileroot,$included } = 1;
+			}
+		}
+	}
+        if ($fileroot eq "mdread1" or $fileroot eq "mdread2" or $fileroot eq "isokinetic" or $fileroot eq "oininit" or $fileroot eq "interface_setup") {
+                printf "$fileroot.F90: $deps\n\n" unless $deps eq "";
+                next;
+        } else {
+	        printf "$fileroot.o: $deps\n\n" unless $deps eq "";
+        }
+
+	#  construct the compilation rules:
+
+	printf "\n$fileroot.o:   $fileroot.F90\n";
+	if( $optimized{$fileroot} ){
+		printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -c \$(FOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+	} else {
+		printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -c \$(FNOOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+	}
+	if( defined $LES{$fileroot} ){
+		printf "$fileroot.LES.o: $depsLES\n" unless $depsLES eq "";
+		printf "\n$fileroot.LES.o:   $fileroot.F90\n";
+		if( $optimized{$fileroot} ){
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DLES -c \$(FOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+		} else {
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DLES -c \$(FNOOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+		}
+	}
+	if( defined $PUPIL{$fileroot} ){
+		printf "$fileroot.PUPIL.o: $depsPUPIL\n" unless $depsPUPIL eq "";
+		printf "\n$fileroot.PUPIL.o:   $fileroot.F90\n";
+		if( $optimized{$fileroot} ){
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DPUPIL_SUPPORT -c \$(FOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+		} else {
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DPUPIL_SUPPORT -c \$(FNOOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+		}
+	}
+	if( defined $APBS{$fileroot} ){
+		printf "$fileroot.APBS.o: $depsAPBS\n" unless $depsAPBS eq "";
+		printf "\n$fileroot.APBS.o:   $fileroot.F90\n";
+		if( $optimized{$fileroot} ){
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DAPBS -c \$(FOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+		} else {
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DAPBS -c \$(FNOOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+		}
+	}
+    if( defined $API{$fileroot} ){
+        printf "$fileroot.API.o: $depsAPI\n";
+        printf "\n$fileroot.API.o:   $fileroot.F90\n";
+        if ( $optimized{$fileroot} ) {
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DAPI -c \$(FOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+        } else {
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DAPI -c \$(FNOOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+        }
+    }
+    if( defined $LESAPI{$fileroot} ){
+        printf "$fileroot.LESAPI.o: $depsLESAPI\n";
+        printf "\n$fileroot.LESAPI.o:   $fileroot.F90\n";
+        if ( $optimized{$fileroot} ) {
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DAPI -DLES -c \$(FOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+        } else {
+			printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -DAPI -DLES -c \$(FNOOPTFLAGS) \$(FFLAGS) \$(AMBERFFLAGS) \$(RISMSANDER) -o \$@ $fileroot.F90\n\n";
+        }
+    }
+}
+
+# special "compilation rule" for netcdf.o
+printf "netcdf.o:  \$(NETCDF)\n\ttest -e \$\@ || touch netcdf.o\n\n";
+
+# special compilation rule for AmberNetcdf.o, random.o, and constants.o
+printf "AmberNetcdf.o: ../lib/AmberNetcdf.F90\n";
+printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -c \$(FREEFORMAT_FLAG) \$(FOPTFLAGS) \$(FFLAGS) -o AmberNetcdf.o ../lib/AmberNetcdf.F90\n\n";
+
+printf "random.o: ../lib/random.F90 ../lib/random.h\n";
+printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -c \$(FREEFORMAT_FLAG) \$(FOPTFLAGS) \$(FFLAGS) -o random.o ../lib/random.F90\n\n";
+
+printf "constants.o: ../lib/constants.F90\n";
+printf "\t\$(FC) \$(FWARNFLAGS) \$(FPPFLAGS) -c \$(FREEFORMAT_FLAG) \$(FOPTFLAGS) \$(FFLAGS) -o constants.o ../lib/constants.F90\n\n";
+
+#  special compilation rule for amber_rism_interface
+print "../rism/amber_rism_interface.SANDER.o: ../rism/amber_rism_interface.F90\n"
+  ."\tcd ../rism && \\\n"
+  ."\tif [ -n \"\$(RISMSANDER)\" ]; then \\\n"
+  ."\t\t\$(MAKE) amber_rism_interface.SANDER.o; \\\n"
+  ."\telse \\\n"
+  ."\t\ttest -e amber_rism_interface.SANDER.o || touch amber_rism_interface.SANDER.o; \\\n"
+  ."\tfi\n\n"
+  ;
+
+print "poisson_boltzmann.o:  libpbsa file_io_dat.o \n\ttest -e \$\@ || touch \$\@\n\n";
+print "dispersion_cavity.o:  libpbsa\n\ttest -e \$\@ || touch \$\@\n\n";
+print "pbtimer_module.o:  libpbsa\n\ttest -e \$\@ || touch \$\@\n\n";
+
+
+#  special "compilation" rule for module object files in ../sqm
+print "qmmm_module.o: libsqm \n\ttest -e \$\@ || touch \$\@\n\n";
+print "qmmm_nml_module.o:  libsqm \n\ttest -e \$\@ || touch \$\@\n\n";
+print "qmmm_qmtheorymodule.o:  libsqm \n\ttest -e \$\@ || touch \$\@\n\n";
+print "qmmm_struct_module.o:  libsqm \n\ttest -e \$\@ || touch \$\@\n\n";
+print "qmmm_vsolv_module.o:  libsqm \n\ttest -e \$\@ || touch \$\@\n\n";
+print "qm2_read_nm_and_alloc.o:  libsqm \n\ttest -e \$\@ || touch \$\@\n\n";
+print "elementOrbitalIndex.o:  libsqm \n\ttest -e \$\@ || touch \$\@\n\n";
+print "utilitiesmodule.o:  libsqm \n\ttest -e \$\@ || touch \$\@\n\n";

@@ -1,0 +1,43 @@
+#!/bin/csh -f
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/pbsa"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+    echo "This test not set up for parallel"
+    echo " cannot run in parallel with pbsa"
+    exit 0
+endif
+
+foreach xp (0.5)
+foreach cop ( 5)
+cat > mdin <<EOF
+ test of PB reaction field on protein g solvated in a sphere
+ &cntrl 
+   ntx=1, imin=1, ipb=$cop, inp=0
+ /
+ &pb
+   npbverb=1, epsout=80.0, epsin=1.0, radiopt=0, space=$xp,
+   accept=1e-5, fillratio=4.0, nfocus = 1, dprob=1.4, smoothopt=1,
+   bcopt=6, eneopt=1, arcres=0.0625
+ /
+EOF
+set all = "Cl MG"
+  foreach aa ($all)
+    set output = $aa.out
+
+   $DO_PARALLEL $TESTsander -O -i mdin -p ./prmtop-inpcrd/$aa.prmtop -c ./prmtop-inpcrd/$aa.inpcrd  -o $output < /dev/null || goto error
+   ../dacdif -r 1.e-4 save/$aa.out.save $output
+   /bin/rm -f restrt mdinfo mdcrd
+   goto next
+
+   error:
+   echo "  ${0}:  Program error"
+   exit(1)
+  
+   next:
+end
+end
+end
+/bin/rm -f mdin

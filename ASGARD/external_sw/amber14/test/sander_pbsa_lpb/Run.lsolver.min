@@ -1,0 +1,54 @@
+#!/bin/csh -f
+#TEST-PROGRAM sander
+#TEST-DESCRIP TO_BE_DEtermined
+#TEST-PURPOSE regression, basic
+#TEST-STATE   undocumented
+
+if( ! $?TESTsander ) set TESTsander = "../../bin/sander"
+
+if( ! $?DO_PARALLEL ) then
+        setenv DO_PARALLEL " "
+else
+    echo "This test not set up for parallel"
+    echo " cannot run in parallel with pbsa"
+    exit 0
+endif
+
+foreach bc ( 5 6 )
+foreach solv ( 1 2 3 4 )
+if ( ($bc != 6) || ($solv != 2) ) then
+
+set output = mdout.min_bc${bc}_solv{$solv}
+
+cat > min.in <<EOF
+ test of pbsa
+ &cntrl 
+   ntx=1, imin=1, ntb=0, ipb=1, inp=2
+ /   
+ &pb
+   npbverb=0, istrng=0, epsout=80.0, epsin=1.0, space=.5,
+   accept=0.001, sprob=1.6, radiopt=1, fillratio=4,
+   npbopt=0, bcopt=$bc, solvopt=$solv, maxitn=10000,
+   smoothopt=0, arcres=0.0625, frcopt=1, nfocus=2,
+   dprob=1.6, 
+ /   
+EOF
+
+touch dummy
+$DO_PARALLEL $TESTsander -O -i min.in -o $output < dummy || goto error
+
+echo "bcoption=$bc solvopt=$solv"
+
+../dacdif -r 1e-3 out.save/mdout.min_bc${bc}_solv${solv}.save $output
+/bin/rm -f min.in restrt mdinfo dummy
+goto next
+
+error:
+echo "  ${0}:  Program error"
+exit(1)
+
+next:
+
+endif
+end
+end
