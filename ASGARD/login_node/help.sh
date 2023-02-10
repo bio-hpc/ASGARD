@@ -87,4 +87,5 @@ else
 
 option=`echo "$1" | tr '[:lower:]' '[:upper:]'`
 
-
+exit
+fi
