@@ -1,5 +1,5 @@
 #
-#   Genera Tabla con los datos de la estabilizacion
+#   Generate a table with the stabilization data
 #
 #
 import numpy as np
@@ -71,14 +71,14 @@ class GraphStabilization(object):
         f = open(file)
         for i in f:
             if i.startswith("@    yaxis  label "):
-                i = re.sub(' +', ' ', i).strip()  # eliminamos espacios dobles inicial y final
+                i = re.sub(' +', ' ', i).strip()  # c
                 aux = i.split(" ")
-                label = aux[3].strip()[2:-2]  # todos tienen parentesis y comillas se les queita
+                label = aux[3].strip()[2:-2]  # remove parenthesis and double quotes
                 label = label.replace("^", "\\^")
             if not i.startswith("#") and not i.startswith("@"):
-                i = re.sub(' +', ' ', i).strip()  # eliminamos espacios dobles inicial y final
-                aux = i.split(" ")  # 2 num Atom 3Hydrophobic Hydrophobic Total D Gsolv
-                lst.append(float(aux[1]))  # energia coul
+                i = re.sub(' +', ' ', i).strip()  # remove double spaces at the beginning and end
+                aux = i.split(" ")  
+                lst.append(float(aux[1]))  # Coulomb energy
         f.close()
         return lst, label
 

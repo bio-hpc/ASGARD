@@ -1,7 +1,7 @@
 
 profiles = {
 
-      'DEBUGGING':      # True unicamente la parte a depurar
+      'DEBUGGING':      # Only debbuging part
         {
             'p_graph_hbonds': False,
             'p_graph_mmpbsa': False,
@@ -13,7 +13,7 @@ profiles = {
             'p_graph_rmsd': False,
             'p_graph_rmsdf': False,
             'p_graph_distance': False,
-            'p_graph_helicity': False,  # esta dando violacion de segemento, no se si por que e s muy ocora la md
+            'p_graph_helicity': False,  
             'p_graph_gyrate': False,
             'p_table_multimolecule': False,
             'p_text_in_document': False,
@@ -35,7 +35,7 @@ profiles = {
             'p_graph_rmsd': True,
             'p_graph_rmsdf': True,
             'p_graph_distance': True,
-            'p_graph_helicity': False,  # esta dando violacion de segemento, no se si por que e s muy ocora la md
+            'p_graph_helicity': False,  
             'p_graph_gyrate': True,
             'p_table_multimolecule': True,
             'p_text_in_document': True,
@@ -57,7 +57,7 @@ profiles = {
             'p_graph_rmsd': True,
             'p_graph_rmsdf': True,
             'p_graph_distance': True,
-            'p_graph_helicity': False,  # esta dando violacion de segemento, no se si por que e s muy ocora la md
+            'p_graph_helicity': False,  
             'p_graph_gyrate': True,
             'p_table_multimolecule': True,
             'p_text_in_document': True,
@@ -78,7 +78,7 @@ profiles = {
             'p_graph_rmsd': True,
             'p_graph_rmsdf': True,
             'p_graph_distance': False,
-            'p_graph_helicity': False,  # esta dando violacion de segemento, no se si por que e s muy ocora la md
+            'p_graph_helicity': False, 
             'p_graph_gyrate': True,
             'p_table_multimolecule': False,
             'p_text_in_document': True,
@@ -99,7 +99,7 @@ profiles = {
             'p_graph_rmsd': True,
             'p_graph_rmsdf': True,
             'p_graph_distance': True,
-            'p_graph_helicity': False,  # esta dando violacion de segemento, no se si por que e s muy ocora la md
+            'p_graph_helicity': False,  
             'p_graph_gyrate': True,
             'p_table_multimolecule': True,
             'p_text_in_document': True,
@@ -121,7 +121,7 @@ profiles = {
             'p_graph_rmsd': True,
             'p_graph_rmsdf': True,
             'p_graph_distance': True,
-            'p_graph_helicity': False,  # esta dando violacion de segemento, no se si por que e s muy ocora la md
+            'p_graph_helicity': False,  
             'p_graph_gyrate': False,
             'p_table_multimolecule': True,
             'p_text_in_document': True,
@@ -143,7 +143,7 @@ profiles = {
             'p_graph_rmsd': True,
             'p_graph_rmsdf': True,
             'p_graph_distance': True,
-            'p_graph_helicity': False,  # esta dando violacion de segemento, no se si por que e s muy ocora la md
+            'p_graph_helicity': False,  
             'p_graph_gyrate': False,
             'p_table_multimolecule': True,
             'p_text_in_document': True,
@@ -165,7 +165,7 @@ profiles = {
             'p_graph_rmsd': False,
             'p_graph_rmsdf': False,
             'p_graph_distance': False,
-            'p_graph_helicity': False, #esta dando violacion de segemento, no se si por que e s muy ocora la md
+            'p_graph_helicity': False, 
             'p_graph_gyrate': False,
             'p_table_multimolecule': False,
             'p_text_in_document': False,
@@ -185,7 +185,7 @@ profiles = {
             'p_graph_rmsd': True,
             'p_graph_rmsdf': True,
             'p_graph_distance': True,
-            'p_graph_helicity': False,  # esta dando violacion de segemento, no se si por que e s muy ocora la md
+            'p_graph_helicity': False,  
             'p_graph_gyrate': False,
             'p_table_multimolecule': True,
             'p_text_in_document': True,
@@ -206,7 +206,7 @@ class Profiles(object):
             for k, v in self.profile.items():
                 self.cfg.setattr(k, v)
         else:
-            print ("ERROR con el perfil, los perfiles disponibles son: ")
+            print ("PROFILE ERROR, the available profiles are: ")
             for k, v in profiles.items():
                 print(k)
             exit()

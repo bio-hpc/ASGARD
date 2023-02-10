@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #    version:    1
 #
-#   Genera grafica de rmsd o rmsdf para gromcas y su distribucion
+#   Generate rmsd and rmsf graph and calculate the distribution
 #
 import sys
 import os
@@ -22,7 +22,7 @@ if len(sys.argv) < 4:
     print("n-2 Title")
     print("n-1 Out png")
     print("n distribution true,  flase)")
-    print("Se le pasa 1 o varios ficheros xml y al finalizar el titulo y el output")
+    print("Introduce 1 or more xvg files, and the title and output file")
     exit()
 title = sys.argv[len(sys.argv)-2]
 out_png = sys.argv[len(sys.argv)-1]
@@ -49,7 +49,3 @@ if [ True for i in TOKEN_DISTRIBUTION  if i in sys.argv[1] ]:
     generateGraph.graph_doble_line(legend, lst_y, lst_x, out_png,x_title, y_title, title, "")
 else:
     generateGraph.graph_doble_line(legend, lst_x, lst_y, out_png, x_title, y_title, title, "")
-#if [ True for i in TOKEN_DISTRIBUTION  if i in sys.argv[1] ]:
-#    generateGraph.graph_doble_line(legend, lst_y, lst_x, out_png,x_title, y_title, title, "")
-#else:
-#    generateGraph.graph_doble_line(legend, lst_x, lst_y, out_png, x_title, y_title, title, "")

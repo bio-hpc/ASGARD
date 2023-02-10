@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#   Genera Grafica de fluctuacion paso a paso
+#   Generate a fluctuation step by step graph
 #
 
 N_RESOLUTION_GRAPH = 100
@@ -15,7 +15,7 @@ class GraphStepFluctuation(object):
 
     def generate_graph(self):
         """
-            Genera cada x apsos fichros xvg de fluctuacion para despues graficarlo
+            Generate xvg files with fluctuation data each x steps and create a graph after that
         """
 
         step = int(self.cfg.write_data) / N_RESOLUTION_GRAPH

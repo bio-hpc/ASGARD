@@ -3,26 +3,26 @@
 #
 #    version: 1
 #
-#   Este script generara la graficas de todos los atomos que interaccionan proteina ligando,
-#   1 diagrama cartesiano eje y todos los residuso eje x tiempo
-#   2 histograma con los residuos eje x y la suma de energias eje y
-#   3 histograma con los residuos eje x y las energias desglosadas
-#   4 diagrama poseview
-#   5 tabla latex
+# This script will generate the graphs of all the atoms that interact with protein-ligand complex,
+#   1 Cartesian plot y-axis all residuals or x-axis time
+#   2 histogram with the residues in x-axis and the sum of energies in y-axis
+#   3 Histogram with the residues in x-axis and split energies in y-axis
+#   4 poseview diagram (license required)
+#   5 latex table
 #
 import subprocess
 import sys
 import os
 import numpy as np
-from operator import itemgetter # ordenar lista
-import re #expresion regular
+from operator import itemgetter # sort the list
+import re #regular expression
 
 from GenerateGraph.GenerateGraph import GenerateGraph
 
 generateGraph = GenerateGraph()
 
 solvent = "SOL"
-path_asgard= repr(sys.argv[0])												#busco la ruta de lanzador para aniadir los paquetes de python
+path_asgard= repr(sys.argv[0])												# get the launcher path for the python package
 path_asgard= path_asgard[1:path_asgard.rfind("ASGARD/")+len("/ASGARD")]
 poseview_run = path_asgard + "external_sw/poseview/poseview"
 #babel_run = path_asgard + "external_sw/babel/babel"
@@ -75,8 +75,8 @@ def generate_poseview(pdb):
 
 def read_xvg_energy_file(file):
     """
-    Retorna los valores del fichero xml en una matriz
-    time, Coul-SR, LJ-SR, Coul-14, LJ-14 y se le aÃ±ade un campo que es la suma de los 4 componenetes
+    Obtain an array with the the xvg file values
+    time, Coul-SR, LJ-SR, Coul-14, LJ-14 and the sum of these
     """
     with open(file) as f:
         return [re.sub(' +',' ',line).strip().split(" ") for line in f if not line.startswith("#") and not line.startswith("@")]
@@ -105,7 +105,7 @@ def get_fields_xvg(lst):
     return Energy (sum/cnt_elements, lst_all, (last_coul + last_lj), coul, coul/cnt_elements, last_coul, lst_coul, lj, lj/cnt_elements, last_lj, lst_lj)
 
 #
-#   Devuelve el nomrbe del residuo
+#   Return the residues names 
 #
 avail_resiues= []
 def get_residue(file):
@@ -133,11 +133,11 @@ if len(sys.argv) != 9:
     print("\t 8Âº  media para descartar las energias")
     exit()
 
-folder_xvg      = sys.argv[1]							#directorio donde se encuentran los xvg
-results_prefix  = sys.argv[2]									#salida de la grafica
-mol_target_name = sys.argv[3]								#fichero de proteina para hacer el poseview
+folder_xvg      = sys.argv[1]							#folder where xvg folder is found 
+results_prefix  = sys.argv[2]									#output for the graphs
+mol_target_name = sys.argv[3]								#protein file for the poseview 
 mol_target_original_name = sys.argv[4]
-mol_query_name  = sys.argv[5]								#nom del ligando L1, L2...
+mol_query_name  = sys.argv[5]								#ligand number: L1, L2...
 mol_query_original_name = sys.argv[6]
 system_pdb = sys.argv[7]
 energies_discard = float(sys.argv[8])
@@ -147,13 +147,13 @@ aux_target = []
 
 
 #
-#   Titulo 3 primeras grafcicas
+#   Title for the 3 first graphs
 #
 title = "Gromacs Energies "+mol_target_original_name+" vs "+mol_query_original_name
 x_title = "Time (ps)"
 y_title = "(kJ/mol)"
 #
-#   Salida images
+#   Images output
 #
 n_g_global_line_res = results_prefix + "_line_global_energy_res.png"
 n_g_global_hist_res = results_prefix + "_hist_global_energy_res.png"
@@ -166,9 +166,9 @@ n_g_join_line_pose = results_prefix + "_line_poseview.png"
 
 
 #
-#	Recogemos los datos de la simulacion, no group
+#	Simulation data
 #
-for file in sorted(os.listdir(folder_xvg)): #devuelve los ficheros ordenados
+for file in sorted(os.listdir(folder_xvg)): #sort the files
     if not file.startswith("#") and "no_group" in file:
         name_residue = get_residue(file)
         if name_residue != None:
@@ -185,16 +185,16 @@ for file in sorted(os.listdir(folder_xvg)): #devuelve los ficheros ordenados
 lst_step_md = [float(i[0]) for i in interactions_xvg]
 lst_energies = sorted(lst_energies, key=itemgetter(0))
 #if aux_target:
-#    lst_energies.insert(0, aux_target)      # Aquí añade Protein a la gráfica (Quitar y sustituir unicamente por el valor)
+#    lst_energies.insert(0, aux_target)      # Add protein to the graph
     #lst_energies.append(aux_target)
 #
-#   Grafica 1 energia por atomos en el tiempo
+#   Grafica 1. Graphs which shows the atoms energy for the time
 #
 name_residues = [row[0] for row in lst_energies]
 y = [row[1].lst_all for row in lst_energies]
 generateGraph.line_graph(name_residues, lst_step_md, y, n_g_global_line_res, x_title, y_title, title, "")
 #
-#   Grafica 2 histograma ccon energias global de los residuos
+#   Graph 2. Histogram with the global energy of each residue
 #
 datos = []
 datos.append([i[1].avarage_all for i in lst_energies])
@@ -202,7 +202,7 @@ datos.append([i[1].last_all for i in lst_energies])
 legend = ["Mean","Last Step" ]
 generateGraph.generate_multiple_bar(legend, datos,name_residues, n_g_global_hist_res, y_title ,title)
 #
-#   Grafica 3histograma ccon energias split de los residuos
+#   Graph 3. Histogram with split energies of each residues
 #
 datos = []
 datos.append([i[1].avarage_coul for i in lst_energies])
@@ -213,11 +213,11 @@ legend = ["Coul-SR+Coul-14","Last Steep Coul-SR+Coul-14","LJ-SR+LJ-14","Last Ste
 generateGraph.generate_multiple_bar(legend, datos,name_residues ,n_g_split_hist_res, y_title, title)
 
 #
-#	4 diagrama poseview
+#	 Graph 4. Poseview diagram (required for the license)
 #
 generate_poseview(system_pdb)
 #
-# Tabla latex con energias
+# Latex table with the energies
 #
 f = open(n_t_latex, "w")
 f.write('{}'.format('\\begin{tabular}{ l r l r l r l r } \n') )

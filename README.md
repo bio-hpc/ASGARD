@@ -5,8 +5,7 @@ ASGARD is a tool that allows via an automated MD workflow to analyse performed M
 ### Installation
   1. git clone https://github.com/bio-hpc/ASGARD.git
   2. git clone git@github.com:bio-hpc/ASGARD.git
-  3. gh repo clone bio-hpc/ASGARD 
-  4. Download the .zip and unzip it in the supercomputing centers you are going to use
+  3. Download the .zip and unzip it in the supercomputing centers you are going to use
 
 ### Download singularity image 
 Needed to secure compatibility with all cluster.

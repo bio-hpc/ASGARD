@@ -6,7 +6,7 @@ import fileinput
 
 class GraphsInteractionsTargetQueries(object):
     """
-        Se generan los ficheros de coordenadas xvg para las graficas de outData
+        Generate the coordinates xvg files for the outData graphs
     """
     def __init__(self, cfg):
         self.cfg = cfg
@@ -19,19 +19,18 @@ class GraphsInteractionsTargetQueries(object):
 
     def generate_graph(self):
         """
-            Se hace un indice con los desglosado por residuoes quitando la palabra Protein_
-            tambien un rerun de [ proteina | DNA | .. ] con el resto de moleculas
+            Create an index with all the residues of the protein (without "Protein_" and rerun with the rest of the molecules
         """
         
         if self.cfg.p_interactions_gromacs:
             self.generate_index()
             self.generate_rerun()
         
-        dependencies = 0  # si es en paralelo primero debe terminar el job prot_lig y ontengo su numero de job
+        dependencies = 0  
         if not self.cfg.p_sequential:
             dependencies = self.cfg.lstJobs[len(self.cfg.lstJobs)-1]
 
-        mol_target = self.cfg.lst_molecules[0] #si hay proteina siempre es la 0
+        mol_target = self.cfg.lst_molecules[0] #the protein is always 0
         for i_mol in range(1, len(self.cfg.lst_molecules)):
             mol_query = self.cfg.lst_molecules[i_mol]
             print(mol_query)
@@ -49,8 +48,7 @@ class GraphsInteractionsTargetQueries(object):
                 mpd_file = '{}_{}_{}.mdp'.format(os.path.splitext(self.cfg.config_file_md)[0], mol_target.original_name, mol_query.original_name)
                 self.cfg.tools.cp_file(self.cfg.config_file_md, mpd_file)
 
-
-                # se añade la linea de los grupos que van a checkear enegias en el rerun ojo aqui  mol_target no aparecera es decir no se incluira protein o DNA  
+                # add the group line which check the energies in rerun step
                 f_mdp = open(mpd_file, "a") 
                 f_mdp.write("energygrps\t     =  "+cad_residues +"\n")
                 f_mdp.close()        
@@ -107,9 +105,20 @@ class GraphsInteractionsTargetQueries(object):
                                               self.cfg.gro_md, self.index_all_residues,  self.cfg.index, self.input_file_tmp)
         self.cfg.tools.execute.run(cmd)
         self.cfg.tools.execute.run('rm {}'.format(self.input_file_tmp))
-        cmd = "sed -i 's/" + self.cfg.lst_molecules[0].name + "_//g' " + self.index_all_residues  # eliminamos lo de protein
+        cmd = "sed -i 's/" + self.cfg.lst_molecules[0].name + "_//g' " + self.index_all_residues  # remove the protein 
         self.cfg.tools.execute.run(cmd)
-
+        
+        f = open(self.input_file_tmp,'w')
+        f.write('1 | 13\n')
+        f.write("q\n")
+        f.close()
+        
+        cmd = '{} {} -f {} -o {} -n {} < {}'.format(self.cfg.gromacs, self.cfg.graph + "make_ndx" + self.cfg.mpi,
+                                              self.cfg.gro_md, self.index_all_residues, self.index_all_residues, self.input_file_tmp)
+                                              
+        self.cfg.tools.execute.run(cmd)
+        self.cfg.tools.execute.run('rm {}'.format(self.input_file_tmp))
+        
     def join_van_elect_hbonds(self, mol_target, mol_query):
         if self.cfg.p_graph_mmpbsa and self.cfg.p_graph_hbonds:
             self.cfg.tools.join_image(
@@ -119,9 +128,9 @@ class GraphsInteractionsTargetQueries(object):
 
     def generate_graph_van_elect(self, mol_target, mol_query):
         """
-            Genera Grafica van elec, primero xvg, luego grafica y la junta con hbonds
-            :param n_lig: numero del ligando
-            :param nom_lig: nombre del ligando
+            Generate van elec graph, first xvg, after plot and after join it with the hbonds graph
+            :param n_lig: ligand group number
+            :param nom_lig: ligand name
         """
         if self.cfg.p_graph_mmpbsa:
             xvg_file = self.cfg.format_file_name_g_mmpbsa_xvg.format(self.cfg.prefix_results_xvg, mol_target.original_name, mol_query.original_name)
@@ -146,9 +155,9 @@ class GraphsInteractionsTargetQueries(object):
 
     def generate_graph_hbonds(self, mol_target, mol_query ):
         """
-           Genera Grafica hbonds
-        :param n_lig:   numero del grupo del ligando
-        :param nom_lig: nombre del ligando
+           Generate hydrogen bonds graphs
+        :param n_lig:   ligand group number
+        :param nom_lig: ligand name
         """
         if self.cfg.p_graph_hbonds:
             xvg_file = self.cfg.format_file_name_hbonds_xvg.format(self.cfg.prefix_results_xvg, mol_target.original_name, mol_query.original_name)
@@ -177,8 +186,7 @@ class GraphsInteractionsTargetQueries(object):
 
     def rerun_target_query(self, mol_target, mol_query, mpd_file, out):
         """
-            Si utilizo el trr de la simulacion en vez del xtc elimino warning
-            Ekin, temperature and pressure are incorrect, gromacs
+            rerun for target_query
         """
         lst_cmd = []
 
@@ -207,8 +215,7 @@ class GraphsInteractionsTargetQueries(object):
 
     def def_rerun_md(self):
         """
-            Hace un rerun en secuencial, en gpu no se  generan las enrgias
-            A partir de gromacs 2018 no se puden incluir ficheros de energias en gpu, asi que por defecto ya no se hace en shuttlmol y se añaden aqui
+            Rerun sequentally 
         """
         mpd_file = '{}_{}.mdp'.format(os.path.splitext(self.cfg.config_file_md)[0], self.cfg.lst_molecules[0].name)
         self.cfg.tools.cp_file(self.cfg.config_file_md, mpd_file)

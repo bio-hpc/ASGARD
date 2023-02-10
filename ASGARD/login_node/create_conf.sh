@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-#	Crea un fichero de configuracion a medida para el cluster en shuttlemol/config.conf
-#	Este fichero contiene:
-#		Path de la instalacion de ASGARD
-#		Path del external SW
-#		Directorio scripts/software ASGARD
-#		Python utilizado
-#   Modulos y configuración de GROMACS
+# Create a custom configuration in ASGARD/config.conf
+# This file contains:
+#   ASGARD installation path
+#   External SW path
+#   ASGARD scripts/software directory
+#   Python used
+#   GROMACS modules and configuration
 
 function write_comment()
 {
@@ -23,7 +23,7 @@ function get_python_run()
 	python_run=`which python`
 	python_version=$(${python_run} --version 2>&1)
 	python_version=`echo $python_version | cut -d\  -f 2`
-	python_run="python" #falla al coger el python del nodo login, se queda en python 
+	python_run="python"
 	echo ${python_run} ${python_version}
 
 }

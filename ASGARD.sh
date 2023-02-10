@@ -10,10 +10,10 @@ path_ASGARD="${PWD}/ASGARD/"
 singularity="${PWD}/singularity/"
 bind=$(pwd | cut -d/ -f1-2)/
 
-source ${pathSL}colors.sh                                               #colores del script
-source ${pathSL}parameters.sh                                           #parametros
+source ${pathSL}colors.sh                                               #script colors
+source ${pathSL}parameters.sh                                           #parameters
 if [[ ! -f ${path_ASGARD}/config.cfg ]]; then 
-  source ${pathSL}create_conf.sh  2>/dev/null                           #crea oi carga configuracion global
+  source ${pathSL}create_conf.sh  2>/dev/null                           # create the global config (config.cfg) 
   echo "Config file created"                                  
 fi
                             
@@ -36,28 +36,33 @@ echo 'Profile: '$profile
 
 date
 
-echo "Preparing analysis folder"
+echo "Preparing analysis folder..."
 
-source ${pathSL}input_preparation.sh $folder_analysis    #crea una carpeta con todos los archivos necesarios
+source ${pathSL}check_folder.sh $folder_analysis # check if the folder is already exists
+echo "Generating the working folder..."
+echo "Input preparation" > "$folder_analysis"_"$profile"_"$fecha".err
+source ${pathSL}input_preparation.sh $folder_analysis >> "$folder_analysis"_"$profile"_"$fecha".err 2>&1  #create a folder with all the required files
+
+if [ "$input" == "n" ] || [ "$input" == "N" ];then
+  exit
+fi
 
 folder=$RESULTS
 
 echo "Running analysis..."
 
 prefix=$(ls $RESULTS"/molecules"|grep ".top"|cut -d. -f1-1)
-echo $PWD/$RESULTS"/molecules/"$prefix
 
-#singularity exec --bind $bind singularity/ASGARD.simg python $ASGARD_analysis $folder_analysis $profile gmx > "$folder_analysis"_"profile"_"$fecha".err 2>&1 # Análisis de MD
-#python $ASGARD_analysis $PWD/$RESULTS"/molecules/"$prefix $profile gmx > "$folder_analysis"_"$profile"_"$fecha".err 2>&1 # Análisis de MD
-singularity exec --bind $bind "$singularity"/ASGARD.simg python $ASGARD_analysis $PWD/$RESULTS"/molecules/"$prefix $profile gmx > "$folder_analysis"_"$profile"_"$fecha".err 2>&1 # Análisis de MD
+echo "ASGARD analysis" >> "$folder_analysis"_"$profile"_"$fecha".err
+singularity exec --bind $bind "$singularity"/ASGARD.simg python $ASGARD_analysis $PWD/$RESULTS"/molecules/"$prefix $profile gmx >> "$folder_analysis"_"$profile"_"$fecha".err 2>&1 # MD Analysis
+echo "Generating PDF report"
 rm mdout.mdp area.xvg
-#singularity exec --bind $bind singularity/ASGARD.simg python $ASGARD_analysis"/molecules/(ls $ASGARD_analysis"/molecules/ -top)" $folder_analysis $profile gmx > "$folder_analysis"_"profile"_"$fecha".err 2>&1 # Análisis de MD
 cd $RESULTS/results
 latex=$(ls *documnet.tex) 
 echo $latex
-singularity exec --bind $bind "$singularity"/ASGARD.simg xelatex -interaction nonstopmode -file-line-error $latex
+singularity exec --bind $bind "$singularity"/ASGARD.simg xelatex -interaction nonstopmode -file-line-error $latex >> "$folder_analysis"_"$profile"_"$fecha".err 2>&1 # Report
 cp *.pdf ..
 
-echo "Report "$latex" completed and generated in "$RESULTS"" 
+echo "Report "$latex" completed and generated in "$RESULTS"!" 
 
 date

@@ -3,7 +3,7 @@
 #
 #
 #   version: 	 1
-#   Genera grafica de energias Vdw, Elec y total de una DM
+#   Generate MM-PBSA graph with the Vdw, elec and total energies
 #
 import sys
 import re

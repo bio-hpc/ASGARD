@@ -1,10 +1,10 @@
 #!/usr/bin/env pythoncat
 # -*- coding: utf-8 -*-
 #
-#	Genera grafica DSSP
+#	Generate DSSP graph
 #
 import sys
-import re   # expresion regular
+import re   # regular expression
 from GenerateGraph.GenerateGraph import GenerateGraph
 generateGraph = GenerateGraph()
 if len(sys.argv) != 3:
@@ -15,7 +15,7 @@ if len(sys.argv) != 3:
 file = sys.argv[1]
 out_png = sys.argv[2]
 #
-#   Leyenda de la proteina
+#   Protein graph legend 
 #   
 x, y, title, x_title, y_title, subtitle = generateGraph.read_xvg(file)
 legend = []
@@ -34,8 +34,8 @@ for i in range(6):
 f = open(file)
 for i in f:
     if not i.startswith("#") and not i.startswith("@"):
-        i = re.sub(' +',' ',i).strip() #eliminamos espacios dobles inicial y final
-        aux = i.split(" ")#2 num Atom 3Hydrophobic Hydrophobic Total D Gsolv
+        i = re.sub(' +',' ',i).strip() 
+        aux = i.split(" ")
         time.append(float(aux[0]))
         datos[0].append(float(aux[1]))
         datos[1].append(float(aux[2]))
@@ -47,7 +47,7 @@ for i in f:
             datos[5].append(float(aux[6]))
 f.close()
 lst_remove = []
-for i in range(len(datos)-1,0,-1): #por si no llegan a 6
+for i in range(len(datos)-1,0,-1): 
     if len(datos[i]) == 0:
         datos.remove(datos[i])
 generateGraph.line_graph(legend, time, datos, out_png, x_title, y_title, title, "")

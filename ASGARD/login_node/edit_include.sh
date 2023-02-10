@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$1 # Nombre del directorio donde se encuenta la carpeta de VS_GR
+DIR=$1 # Folder name where VS_GR results folder is found 
 #INPUT=$2 # Nombre de la carpeta donde se encuentran las queries que la topologia redirige
 
 

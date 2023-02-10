@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#   Genera grafica de los numeros de hbonds durante la simulacion
+#   Generate graph with the number of hydrogen bonds for the simulation
 #
 import sys
 from GenerateGraph.GenerateGraph import GenerateGraph
 generateGraph = GenerateGraph()
 if len(sys.argv) !=4:
     print("debe introudir")
-    print("1 nombre del fichero de la graafica")
-    print("2 Titulo")
+    print("1 filename of the graph")
+    print("2 Tittle")
     print ("file_out.png")
     exit()
 file = sys.argv[1]

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DIR=$1 # Nombre del directorio donde se encuenta la carpeta de VS_GR (mas tarde quiza unicamente el nombre de la topologia)
-QUERIES=$2 # Carpeta donde se encuentra la topologia del complejo
+DIR=$1 # Folder name where VS_GR result folder is found
+QUERIES=$2 # Folder where the topology complex is
 
 actual_dir=$(pwd)/ASGARD/external_sw/gromacs/force_field/amber99sb.ff/
 topology_file=$(ls $DIR.top)
@@ -18,9 +18,7 @@ topology_include=${topology_include%%${post}*}
 sed -i "s|"$topology_include"|"$actual_dir"|g" $topology_file
 
 
-# ver que hacer con query y posre query.itp porse.itp. y cambiar de aqui tambien la ruta de query
-
-# Para posre (queries)
+# For posre (queries)
 
 actual_dir=$(pwd)'/'
 

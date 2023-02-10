@@ -1,6 +1,5 @@
 #!/bin/bash
 
-##OJO HAY PARETES DEL INFORME QUE SE GENERAN EN OTROS FICHEROS
 generate_informe()
 {
 	
@@ -20,7 +19,6 @@ generate_informe()
 	informe=${informe}"-- SizeGridZ:\t\t$gridSizeZ\n"
 	title=`cat ${path_login_node}templateParams/template${software}.txt |grep "#LanzNombre" | cut -d : -f 2`
 	informe=${informe}"-- Software:\t\t$title\n"
-	#sinforme=${informe}"-- Software:\t\t$software\n"
 	informe=${informe}"-- Technique:\t\t$option\n"
 	informe=${informe}"-- Cores:\t\t$cores\n"
 	informe=${informe}"-- Mem:\t\t\t$mem\n"
@@ -39,8 +37,8 @@ generate_informe()
 	codVersion=`git rev-list --reverse HEAD 2>/dev/null |tail -1`
 	numVersion=`git rev-list --reverse HEAD 2>/dev/null |wc -l`
 	rama=`git branch -avv 2>/dev/null|grep "\*" |awk '{print $2}'`
-	informe="${informe}-- numVesrion:\t $numVersion codVersion:\t\t$codVersion  \t branch: $rama\n" #fecha para el informe
-	informe="${informe}-- date:\t\t$fecha (Y-m-d)\n" #fecha para el informe
+	informe="${informe}-- numVesrion:\t $numVersion codVersion:\t\t$codVersion  \t branch: $rama\n" 
+	informe="${informe}-- date:\t\t$fecha (Y-m-d)\n" 
 	informe=${informe}"-- Command:\t\t$allComand $optAux"
 	echo -e "${informe}" >>${salidaResume}
 	echo  "--">>${salidaResume}
@@ -65,8 +63,6 @@ getSteemSimulationGR()
 		param=`echo $element | cut -f2 -d' '`
 		case "$aux" in
 			stepSimulacionDM) 
-				#optAux=`echo "$optAux" |sed -e "s,-stepSimulacionDM $param,,g"`
-				#echo $param
 				sSimu=$param;; 
 		esac
 	done
@@ -74,20 +70,13 @@ getSteemSimulationGR()
 	echo $sSimu
 }
 
-#
-#	Para cualquier software que no sea gromacs Next se genera un informe normal
-#
-#	Opciones:
-#	$lanzCreateResume=Y --> se crea un resumen nuevo
-#	$lanzCreateResume=C --> se Continua un resumen y se actualizan datos
-#	$lanzCreateResume=N --> no se toca el reumen
-if [ "$lanzCreateResume" == "Y" ];then #se crea un resumen nuevo
+if [ "$lanzCreateResume" == "Y" ];then 
 	salidaResume=${folder_experiment}Resume_${name_job}_${name_target}_${name_query}.txt
 	generate_informe
-elif [ "$lanzCreateResume" == "C" ];then #se continua un resumen
-	file_resume=`ls -hrt ${folder_experiment}/Resume_*txt |tail -1`				#resumen anterior (Ultimo resumen)
+elif [ "$lanzCreateResume" == "C" ];then 
+	file_resume=`ls -hrt ${folder_experiment}/Resume_*txt |tail -1`				
     num_last_command=`cat ${file_resume} |grep -n Command |tail -1 |awk -F: '{print $1}'`
-    num_last_command=`expr $num_last_command + 1`   #linea siguiente el ultimo command
+    num_last_command=`expr $num_last_command + 1`  
     commnad_n=`cat ${file_resume} | grep Command_ |tail -1 |awk -F: '{print $1}'`
 
     if [[ "" == "$commnad_n" ]];then

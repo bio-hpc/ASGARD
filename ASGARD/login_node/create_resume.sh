@@ -1,6 +1,5 @@
 #!/bin/bash
 
-##OJO HAY PARETES DEL INFORME QUE SE GENERAN EN OTROS FICHEROS
 generate_informe()
 {   
 	echo "___________________________________________Resume________________________________________________________">>${salidaResume}

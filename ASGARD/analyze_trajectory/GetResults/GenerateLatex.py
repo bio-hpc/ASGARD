@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#   Genera las graficas de rmsd proteina y liagndo si existe
+#   G
 #
 #
 import json
@@ -94,7 +94,7 @@ class GenerateLatex(object):
             if self.cfg.p_step_fluctuation:
                 self.put_figure(document, self.cfg.out_graph_fluctuation.format(self.cfg.prefix_results_png), f_4)
             if self.cfg.p_graph_rmsdf:
-                lst_figures_put = []    #hace una lista con las figuras que ya se han puesto
+                lst_figures_put = []    #create a list with the figures obtained
                 for i in range(len(self.cfg.lst_molecules)):
                     if i+1 < len(self.cfg.lst_molecules) and not i in lst_figures_put:
                         lst_figures_put.append(i)
@@ -118,7 +118,7 @@ class GenerateLatex(object):
                               self.cfg.f_distance_distribution_png.format(self.cfg.prefix_results_png), "", "", f_4)
             if self.cfg.p_desglose:
                 mol_target = self.cfg.lst_molecules[0]
-                if len(self.cfg.lst_molecules) > 2:  # si solo son 2 con las graficas anterirores vales
+                if len(self.cfg.lst_molecules) > 2:  # if there are only 2 graphs
                     for i in range(1, len(self.cfg.lst_molecules)):
                         mol_query = self.cfg.lst_molecules[i]
                         img_a = self.cfg.f_molecule_distance_png.format(self.cfg.prefix_results_png, mol_target.original_name, mol_query.original_name)
@@ -153,7 +153,7 @@ class GenerateLatex(object):
         self.dssp(document)
 
     def all_interactions(self, document):
-        mol_target = self.cfg.lst_molecules[0]  # si hay proteina siempre es la 0
+        mol_target = self.cfg.lst_molecules[0]  # if there is a protein, it always is 0
         for i in range(1, len(self.cfg.lst_molecules)):
             mol_query = self.cfg.lst_molecules[i]
             document.write(f_2.format('\subsection{' + mol_target.original_name + ' ' + mol_query.original_name+'}'))
@@ -169,7 +169,7 @@ class GenerateLatex(object):
                                                        mol_query.original_name)
                 results_prefix_png = '{}_{}_{}_rerun'.format(self.cfg.prefix_results_png, mol_target.original_name,
                                                            mol_query.original_name)
-                # OJO estas salids vienene de graph_interactions_gromacs
+                # from graph_interactions_gromacs scripts 
                 n_g_global_hist_res = results_prefix_png + "_hist_global_energy_res.png"
                 n_g_join_hist = results_prefix_png + "_hist_split_energy_res.png"
                 n_g_global_line_res = results_prefix_png + "_line_global_energy_res.png"
@@ -269,15 +269,15 @@ class GenerateLatex(object):
         document.write('\usepackage{color} \n')
         document.write('\usepackage{titlepic} \n')
         document.write('\usepackage {capt - of} \n')
-        document.write('\usepackage{float}  \n') #%para obligar a las figuras a quedarse donde les indicas con [H]
+        document.write('\usepackage{float}  \n') #%for the position of the figures in the document
         document.write('\setlength{\columnseprule}{1pt} \n')
         document.write('\usepackage{fancyhdr} \n')
 
         document.write('\setlength{\headheight}{80pt}  \n')
         document.write('%\usepackage{lastpage}  \n') #%ultima pagina
         document.write('\pagestyle{fancy}                    %Add footer \n')
-        document.write('\\renewcommand{\headrulewidth}{0pt} \n') #%elimina la linea de la cabecera
-        document.write('\\fancyhf{}			\n') #%limpia el texto de la cabecera
+        document.write('\\renewcommand{\headrulewidth}{0pt} \n') #%remove header 
+        document.write('\\fancyhf{}			\n') #%remove header text 
 
         document.write('\\fancyfoot[FR,FR]{\color{blue} \small '+footer+'} \n')
         document.write('\\fancyfoot[C]{\\thepage} %num pagina \n')

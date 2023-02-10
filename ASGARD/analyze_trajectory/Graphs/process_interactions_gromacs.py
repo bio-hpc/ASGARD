@@ -62,7 +62,7 @@ def create_energies_xvg( edr_rerun, tpr_min, g_energy, folder_hbonds, mode):
         subprocess.check_call(cmd, shell=True)
 
 #
-#   Script solo para usar con getResults
+#   Only using GetResults
 #
 if len(sys.argv) != 18:
     print("Parameters: ")
@@ -108,9 +108,9 @@ os.chdir(folder_xvg)
 python_run = "python"
 
 
-#   1º Generamos los ficheros de interacciones entre residuo y target
+#   1º Generate the interactions files between residue and target
 create_energies_xvg(prefix_rerun_query + ".edr", tpr_min, g_energy, folder_xvg, False)
-#   2º Generamos ficheros de interacciones entre grupo Porteina y query
+#   2º Generate the interactions files between protein and query
 create_energies_xvg(prefix_rerun_md + ".edr", tpr_min, g_energy, folder_xvg, True)
 
 cmd = '{} {}\\\n\t {}\\\n\t {}\\\n\t {}\\\n\t {}\\\n\t {}\\\n\t {}\\\n\t {}\\\n\t  {} '.format(

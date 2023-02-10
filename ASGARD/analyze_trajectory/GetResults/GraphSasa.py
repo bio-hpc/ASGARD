@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#   Genera las graficas de rmsd proteina y liagndo si existe
+#   Generate the rmsd graphs for protein and ligand (if it exists)
 #
 #
 

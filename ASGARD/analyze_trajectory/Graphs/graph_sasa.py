@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-#
-#   Genera grafica de SAS, de todo el sistema
+#   Generate SAS graph, for the whole system
 #
 import sys
 from GenerateGraph.GenerateGraph import GenerateGraph

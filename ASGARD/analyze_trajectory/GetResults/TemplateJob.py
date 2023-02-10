@@ -12,10 +12,6 @@ class TemplateJob():
         self.lst_header = []
         self.get_headers()
 
-
-    #
-    # Cabecera malaga
-    #
     def get_headers(self):
         cmd = "whereis qsub |grep bin"
         gst = self.cfg.tools.execute.run_with_fail(cmd)
@@ -24,7 +20,6 @@ class TemplateJob():
             proyecto = "nn2855k"
             self.lst_header.append("#!/bin/sh")
             self.lst_header.append("#PBS -A " + proyecto)
-            # self.lst_template.append("#PBS -q "+ cola)
             self.lst_header.append("#PBS -o " + self.cfg.folder + "jobs_out/" )
             self.lst_header.append("#PBS -e " + self.cfg.folder + "jobs_out/")
             self.lst_header.append("#PBS -N " + self.name_job)
@@ -82,7 +77,7 @@ class TemplateJob():
             cmd = '{} {}'.format(self.run_job, script_template_file)
         file.close()
         out = self.cfg.tools.execute.run(cmd)
-        if not self.cfg.p_sequential:  # dependencias del job que se manda al final
+        if not self.cfg.p_sequential:  # job dependencies
             self.cfg.lstJobs.append(out.split(" ")[3])
 
     def execute_job_with_dependency(self, script_template_file, lst_cmd, dependencias):

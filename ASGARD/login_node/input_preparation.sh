@@ -1,6 +1,6 @@
 #!/bin/bash
 # Inputs: 
-# Carpeta de resultados de MD (xtc, tpr, gro,pdb_protein,mol2_ligand)
+# MD Result folder (xtc, tpr, gro,pdb_protein,mol2_ligand)
 
 DIR=$1
 bind=$(pwd | cut -d/ -f1-2)/
@@ -41,12 +41,34 @@ NAME='VS_GR_'${DIR##*/}
 #fi
 RESULTS=$NAME'_results'-"$(date +%Y-%d-%m)"
 echo $RESULTS
-mkdir -p "$RESULTS"/{molecules,grids,energies,jobs,results} # o mejor mkdir -p "$RESULTS"-"$(date +%Y-%d-%m-%H:%M:%S)"
+
+#if [[ -d $RESULTS ]]; then 
+#                while [ "$input" != "Y" ] && [ "$input" != "y" ] && [ "$input" != "N" ] && [ "$input" != "n" ] && [ "$input" != "zz" ] ; do
+#                        echo "Analysis folder already exists. Do you want to delete it?"
+#                        echo "(Y/y) Delete folder"
+#                        echo "(N/n) Exit"
+#                        read  input
+#                done
+#                if [ "$input" == "Y" ] || [ "$input" == "y" ];then
+#                        rm -r $RESULTS
+#                        echo "Moving files to working folder"
+#                elif [ "$input" == "n" ] || [ "$input" == "N" ];then
+#                        exit
+#                fi  
+#fi
+
+mkdir -p "$RESULTS"/{molecules,grids,energies,jobs,results} # better mkdir -p "$RESULTS"-"$(date +%Y-%d-%m-%H:%M:%S)"
 #cp $NAME/*.xtc $NAME/*.tpr $NAME/*.top  $RESULTS/molecules
 
 for i in $(ls $ORIGIN/* | cut -d'.' -f2); do
       if [ $i  = 'top' ]; then
-            cp $ORIGIN/*.$i $RESULTS/molecules/$NAME'.'$i                
+            cp $ORIGIN/*.$i $RESULTS/molecules/$NAME'.'$i
+      elif [ $i  = 'tpr' ]; then
+            cp $ORIGIN/*.$i $RESULTS/molecules/$NAME'_md.'$i
+      elif [ $i  = 'xtc' ]; then
+            cp $ORIGIN/*.$i $RESULTS/molecules/$NAME'_md.'$i                     
+      elif [ $i =  'edr' ]; then
+            cp $ORIGIN/*.$i $RESULTS/molecules/$NAME'_md.'$i
       elif [ $i  = 'pdb' ]; then
             cp $ORIGIN/*.$i targets/
             PDB=$(ls $ORIGIN/*.pdb | sed s/^.*\\/\// | cut -d'.' -f1)
@@ -64,10 +86,14 @@ for i in $(ls $ORIGIN/* | cut -d'.' -f2); do
               fi
             done
       else
-           cp $ORIGIN/*.$i $RESULTS/molecules/$NAME'_md.'$i
+        #cp $ORIGIN/*.$i $RESULTS/molecules/$NAME'_md.'$i
+        cp $ORIGIN/*.$i $RESULTS/molecules/
       fi
 done
 
+if [ -d $ORIGIN/*'.ff' ]; then
+    cp -r $ORIGIN/*.'ff' $RESULTS/molecules/
+fi
 #cp $NAME/* $RESULTS/molecules
 #cp $NAME/*.top $RESULTS/molecules/$NAME.top
 mkdir targets/$NAME
@@ -88,7 +114,7 @@ echo 4 0 | $gmx trjconv -s $RESULTS/molecules/*.tpr -f $RESULTS/molecules/"$NAME
 echo 'Generating pdb file...'
 ###########################
 
-#echo 0 |$gmx trjconv -f $CENTER -s $RESULTS/molecules/*.tpr -o $RESULTS/molecules/"$NAME".pdb -tu ns -e 100 # ultimo frame
+#echo 0 |$gmx trjconv -f $CENTER -s $RESULTS/molecules/*.tpr -o $RESULTS/molecules/"$NAME".pdb -tu ns -e 100 # last frame
 
 sh ASGARD/login_node/create_pdb.sh $CENTER $RESULTS/molecules/*.tpr $RESULTS/molecules/"$NAME".pdb -1 gmx
 
@@ -99,12 +125,17 @@ echo 'Generating topology'
 
 if [ -z "$(ls -A queries/$NAME)" ]; then
 	singularity exec --bind $bind singularity/ASGARD.simg ASGARD/external_sw/gromacs/topology/generate_topology.py -t targets/$NAME/*.pdb -p TARGET
-	cp targets/$NAME/*.top $RESULTS/molecules/$NAME.top
+#	cp targets/$NAME/*.top $RESULTS/molecules/$NAME.top
 fi
-singularity exec --bind $bind singularity/ASGARD.simg ASGARD/external_sw/gromacs/topology/generate_topology.py -t targets/$NAME/*.pdb -q queries/$NAME/
-#
-sh ASGARD/login_node/edit_topology.sh $RESULTS/molecules/$NAME queries/$NAME #prefijo
-sh ASGARD/login_node/edit_include.sh queries/$NAME
+
+
+if [ -d $RESULTS/molecules/*"ff" ]; then
+  echo "Forcefield included"
+else
+  singularity exec --bind $bind singularity/ASGARD.simg ASGARD/external_sw/gromacs/topology/generate_topology.py -t targets/$NAME/*.pdb -q queries/$NAME/
+  sh ASGARD/login_node/edit_topology.sh $RESULTS/molecules/$NAME queries/$NAME #prefix
+  sh ASGARD/login_node/edit_include.sh queries/$NAME
+fi
 
 ##############################
 echo 'Creating index files'

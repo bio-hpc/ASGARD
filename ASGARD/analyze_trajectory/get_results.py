@@ -4,14 +4,14 @@ from GetResults import *
 import sys
 import os
 os.environ['GMX_MAXBACKUP'] = "-1"
-os.environ['GMXLIB'] = os.getcwd()+"/ASGARD/external_sw/gromacs/force_field/" #necesario para g_mmpbsa
+os.environ['GMXLIB'] = os.getcwd()+"/ASGARD/external_sw/gromacs/force_field/" #required for g_mmpbsa
 
 if len(sys.argv) != 4:
     print("\nDebe introducir:")
-    print("Ruta absoluta de la carpeta de la prueba mas el sufijo")
+    print("Absolute path of the folder with the calculations + the suffix")
     print("Profile: [ TARGET_QUERY | TARGET | TARGET_QUERIES | QUERIES | DNA_QUERY ]  ")
     print ("gromacs_run [ gmx | gmx_mpi ]" )
-    print("Ejemplo:")
+    print("Example:")
     print("python /home/alejandro/ASGARD/VS_GR_mpro_ritonavir_results_2023_01_02/molecules/VS_GR_mpro_ritonavir TARGET_QUERY gmx_mpi\n")
     exit()
 try:
@@ -22,20 +22,20 @@ except ValueError:
     print ("Error con la entra de datos")
     exit()
 #
-# Creamos obj de configuracion
+# Create configuration object
 #
 cfg = ConfigHolder(out_molec, profile, gromacs)
 Resume(cfg)
 
 #
-# JObs en paralalelo
+# parallel JObs
 #
 GraphStepFluctuation(cfg)
 GraphsInteractionsTargetQueries(cfg)
 GraphDssp(cfg)
 GraphSasa(cfg)
 #
-# Fin jobs paralelo
+# End of parallel jobs
 #
 GraphStabilization(cfg)
 GraphRmsd(cfg)
@@ -44,7 +44,7 @@ GraphDistance(cfg)
 GraphGyrate(cfg)
 TableMultiMolecule(cfg)
 #
-# Generar latex
+# Generate latex
 #
 GenerateLatex( cfg)
 

@@ -16,4 +16,3 @@ class GraphGyrate():
             self.cfg.tools.execute.run(cmd)
             cmd = '{} {} {} {}'.format(self.cfg.python_run, self.cfg.graph_gyrate_helicity, self.cfg.out_xvg_gyrate, self.cfg.out_png_gyrate)
             self.cfg.tools.execute.run(cmd)
-

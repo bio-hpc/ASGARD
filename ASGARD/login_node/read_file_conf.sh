@@ -14,19 +14,19 @@ function read_file()
 	queue_name=`cat ${file_conf} |grep "queue_name" |cut -d\  -f 2`
 	queue_manager=`cat ${file_conf} |grep "queue_manager" |cut -d\  -f 2`
 	command_show_jobs=`cat ${file_conf} |grep "command_show_jobs" |cut -d\  -f 2`
-	command_get_id_job=`cat ${file_conf} |grep "command_get_id_job" |cut -d\: -f 2`  #en este uso el delimitador de :
-	command_dependency=`cat ${file_conf} |grep "command_dependency" |cut -d\: -f 2`  #en este uso el delimitador de :
+	command_get_id_job=`cat ${file_conf} |grep "command_get_id_job" |cut -d\: -f 2`  
+	command_dependency=`cat ${file_conf} |grep "command_dependency" |cut -d\: -f 2`  
 
 	commnad_execute=`cat ${file_conf} |grep "commnad_execute" |cut -d\  -f 2`
-	queue_direc_output=`cat ${file_conf} |grep "queue_direc_output" |cut -d\: -f 2`  #en este uso el delimitador de :
-	queue_direc_error=`cat ${file_conf} |grep "queue_direc_error" |cut -d\: -f 2`  #en este uso el delimitador de :
-	queue_direc_queue=`cat ${file_conf} |grep "queue_direc_queue" |cut -d\: -f 2`  #en este uso el delimitador de :
-	queue_direc_project=`cat ${file_conf} |grep "queue_direc_project" |cut -d\: -f 2`  #en este uso el delimitador de :
-	queue_direc_mail_type=`cat ${file_conf} |grep "queue_direc_mail_type" |cut -d\: -f 2`  #en este uso el delimitador de :
-	queue_direc_mail_user=`cat ${file_conf} |grep "queue_direc_mail_user" |cut -d\: -f 2`  #en este uso el delimitador de :
-	queue_direc_job_name=`cat ${file_conf} |grep "queue_direc_job_name" |cut -d\: -f 2`  #en este uso el delimitador de :
-	queue_direc_time=`cat ${file_conf} |grep "queue_direc_time" |cut -d\: -f 2`  #en este uso el delimitador de :
-	queue_direc_cpus=`cat ${file_conf} |grep "queue_direc_cpus" |cut -d\: -f 2`  #en este uso el delimitador de :
+	queue_direc_output=`cat ${file_conf} |grep "queue_direc_output" |cut -d\: -f 2`  
+	queue_direc_error=`cat ${file_conf} |grep "queue_direc_error" |cut -d\: -f 2`  
+	queue_direc_queue=`cat ${file_conf} |grep "queue_direc_queue" |cut -d\: -f 2`  
+	queue_direc_project=`cat ${file_conf} |grep "queue_direc_project" |cut -d\: -f 2`  
+	queue_direc_mail_type=`cat ${file_conf} |grep "queue_direc_mail_type" |cut -d\: -f 2`  
+	queue_direc_mail_user=`cat ${file_conf} |grep "queue_direc_mail_user" |cut -d\: -f 2`  
+	queue_direc_job_name=`cat ${file_conf} |grep "queue_direc_job_name" |cut -d\: -f 2`  
+	queue_direc_time=`cat ${file_conf} |grep "queue_direc_time" |cut -d\: -f 2`  
+	queue_direc_cpus=`cat ${file_conf} |grep "queue_direc_cpus" |cut -d\: -f 2`  
 
 	cluster_project=`cat ${file_conf} |grep "cluster_project" |cut -d\  -f 2`
 	cluster_queue=`cat ${file_conf} |grep "cluster_queue" |cut -d\  -f 2`

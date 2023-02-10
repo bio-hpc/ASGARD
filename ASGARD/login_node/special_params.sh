@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 #
-#	Lee las plantlas de scriptLanzador/templateXX.txt
-#   Lee los posibles parametreos de la plantilla de sofware y los devuelve en un array (file)
 #
 read_template_params()
 {

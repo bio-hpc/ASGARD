@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#   Genera grafica de fluctuacion cada x steps (Heat Map)
+#   Generate the fluctuation graph for each x steps (Heat Map)
 #
 import subprocess
 import sys
@@ -18,13 +18,13 @@ def isfloat(value):
 
 if len(sys.argv) != 8:
     print("El script necesita:")
-    print("1º una carpeta donde almacenar los tmp")
-    print("2º fichero minimizacion.tpr")
-    print("3º fichero simulacion.xtc")
-    print("4º comando gormacs (dependiendo de la  version cambia la forma de llamarlo, ejemplo g_rmsF_mpi)")
-    print("5º paso para generar las graficas")
-    print("6º maximo para generar las graficas")
-    print("7º Output grafica png")
+    print("1º folder with the tmp files")
+    print("2º minimization.tpr")
+    print("3º simulation.xtc")
+    print("4º gromacs command")
+    print("5º step to generate the graphs")
+    print("6º max steps to generate the graphs")
+    print("7º Output png")
     exit()
 folder_fluctuation = sys.argv[1]
 min_tpr = sys.argv[2]
@@ -50,13 +50,13 @@ for i in range(0, max_steps):
     x_ticks.append(fin)
 
 #
-#  matriz de 0s con el tamaño de filas y columan
+#  zeros array with the corresponding size 
 #
 n_res_aux, rms_f, _, _, _, _ = generateGraph.read_xvg(lst_files[0])
 nRes = [int(i) for i in n_res_aux]
 datos = numpy.zeros(shape=(len(nRes), max_steps))
 #
-#   Datos para graficar
+#  Data for the graph
 #
 
 cnt_row = 0
@@ -64,7 +64,7 @@ for i in lst_files:
     n_res_aux, rms_f, _, _, _, _ = generateGraph.read_xvg(i)
     cnt_col = 0
     for j in rms_f:
-        if isfloat(j): #si se encuentra un valor no digito se pone el valor de la columan anterior
+        if isfloat(j): 
             datos[cnt_col][cnt_row] = j
         else:
             if cnt_row > 0:
@@ -75,7 +75,7 @@ for i in lst_files:
     cnt_row += 1
 
 #
-# Generar grafica
+# Generate graph
 #
 titulo = "Rmsd Fluctuation steps"
 y_label= "ResN"

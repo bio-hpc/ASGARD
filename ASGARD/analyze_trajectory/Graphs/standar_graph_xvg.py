@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #    version:    1
-#   Genera grafica estandar de un fichero xvg
+#   Generate a standard graph for a xvg file
 #
 import sys
 import os
@@ -17,7 +17,7 @@ if len(sys.argv) < 4:
     print("4 ...")
     print("n-1 Title")
     print("n Out png")
-    print("Se le pasa 1 o varios ficheros xml y al finalizar el titulo y el output")
+    print("Introduce 1 or more xvg files, and the title and output file")
     exit()
 #file_xvg = sys.argv[1]
 title = sys.argv[len(sys.argv)-2]

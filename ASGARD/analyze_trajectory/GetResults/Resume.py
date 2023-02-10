@@ -52,8 +52,11 @@ class Resume():
         print ("\n config files")
         for i in cfg.config_files.split('\n'):
             if i != "":
+                print(i)
                 aux = os.path.splitext(i)[0]
+                print(aux)
                 name = aux[aux.rfind('_')+1: ]
+                print("prueba",name)
                 if name[0].isdigit():
                     name="npt "+name
                 print(cfg.format_2.format(name, i))

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-#   Se le pasa un nombre (Protein, RNA.. ) y devuelve el numero de grupo
+#   Return the number of the chosen group 
 #
 
 get_num_group( ){
@@ -23,7 +23,8 @@ echo 'q' | $gmx gmx make_ndx -f $gro -o $ndx > ${ndx}.tmp  2>/dev/null
 query=$(cat $query | head -3 | awk '{print $2}' | tail -1)
 
 
-number_query=`get_num_group "$query"`
+number_query=`get_num_group "Other"`
+number_query=$(($number_query + 1))
 number_protein=`get_num_group "Protein"`
 number_dna=`get_num_group "DNA"`
 number_sol=`get_num_group "SOL"`
@@ -39,8 +40,10 @@ if [ "$number_sol" != "" ];then number_all_groups="${number_all_groups} ${number
 if [ "$number_query" != "" ];then number_all_groups="${number_all_groups} ${number_queries} |";fi
 number_all_groups=${number_all_groups%.*}
 
-i=`get_num_group "Water_and_ions"` #antes se hacia [ proteina | DNA | SOL Queries ] ahora solo water_and_ions_lig
+i=`get_num_group "Water_and_ions"` 
 number_all_groups=$i" | "$number_queries
+
+number_ligand_groups="1 | 13"
 
 ejecutar()
 {
@@ -53,6 +56,7 @@ ejecutar()
 generate_index()
 {
     echo "${number_all_groups}" >  $ndx.tmp.tmp
+    echo "${number_ligand_groups}" >> $ndx.tmp.tmp
     echo $ndx.tmp.tmp
     echo  $ndx.tmp.tmp
     echo "q" >>$ndx.tmp.tmp

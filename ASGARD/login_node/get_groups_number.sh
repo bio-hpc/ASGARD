@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-#   Se le pasa un nombre (Protein, RNA.. ) y devuelve el numero de grupo
+#   Return group number
 #
 get_num_group( ){
 
@@ -33,5 +33,5 @@ if [ "$number_sol" != "" ];then number_all_groups="${number_all_groups} ${number
 if [ "$number_queries" != "" ];then number_all_groups="${number_all_groups} ${number_queries} |";fi
 number_all_groups=${number_all_groups::-1}
 
-i=`get_num_group "Water_and_ions"` #antes se hacia [ proteina | DNA | SOL Queries ] ahora solo water_and_ions_lig
+i=`get_num_group "Water_and_ions"` 
 number_all_groups=$i" | "$number_queries

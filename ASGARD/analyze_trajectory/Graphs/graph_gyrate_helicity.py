@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 #     version: 2
-#  		 Genera grafica Gyrate
+#  		 Generate Gyrate graph
 #
 import commands
 import sys
@@ -17,9 +17,7 @@ if len(sys.argv) != 3:
 fichero = sys.argv[1]
 out_png = sys.argv[2]
 x, y, title, x_title, y_title, _ = generateGraph.read_xvg(fichero)
-#
-#	Titurlos que pone en el fichero
-#
+
 comando = 'cat '+fichero+' |grep s0 |awk -F\\"  \'{print $2}\''
 
 legend = []

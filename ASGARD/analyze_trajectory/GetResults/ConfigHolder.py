@@ -10,7 +10,7 @@ class ConfigHolder(object):
     format_2 = '  {:18}{:}'
 
 
-    DISTRIBUTION_STEP = 0.001 # apso para generar las graficas de distribuicion (rmsd, distance)
+    DISTRIBUTION_STEP = 0.001 # to generate the distribution plot (rmsd, distance) 
     MAX_WARNINGS = 5
     DIST_MIN_RES = 20  # empieza por 20 he ira bajando hasta 0 para encontrar los residuos (un maximo de 50 residuos gromacs solo permite 64 grupos)
     NUM_MAX_GROUPS = 52  # numero maximo de grupos que se tienen en cuenta (residuos + grupos gromacs)
@@ -87,13 +87,13 @@ class ConfigHolder(object):
     def __init__(self,prefix_molec,  profile, gromacs):
 
         #
-        #   Directorios entrada salida
+        #   Input-output folders
         #
         self.gromacs = gromacs+" "
 
         tmp = os.path.dirname(prefix_molec)
-        self.folder = tmp[:tmp.rfind("/")] + "/"  # folcer de la prueba
-        self.sufijo = os.path.basename(prefix_molec).strip()  # sufijo de la prueba
+        self.folder = tmp[:tmp.rfind("/")] + "/"  
+        self.sufijo = os.path.basename(prefix_molec).strip() 
 
         self.folder_molec = os.path.join(self.folder, 'molecules/')
         self.folder_grids = os.path.join(self.folder, 'grids/')
@@ -107,13 +107,13 @@ class ConfigHolder(object):
         self.profile = profile
         self.tools = Tools(self)
         self.set_profile_cfg(profile)
-        cmd = "ls " + self.folder_molec + self.sufijo + "_npt_*.gro"  # apanio mas adelante se quita este gro es por si hay que centrrar la simu si no ha acabado
+        cmd = "ls " + self.folder_molec + self.sufijo + "_npt_*.gro" 
         self.gro_md = self.tools.execute.run(cmd).strip()
 
         self.template_job = TemplateJob(self)
         #
         #
-        #   Opciones de diferentes gromcas
+        #   gromacs different options
         #
         self.cmd_check = self.gromacs + " check "
         self.mpi = ""
@@ -121,28 +121,27 @@ class ConfigHolder(object):
         self.gpu = ""
         self.threds = "-ntomp " + self.template_job.cores
         #
-        #	funciones varias para mandar jobs, calcular ditancia...
         #
 
 
 
-        #Generadores de graficas
+        #Plot generation
         self.path = os.getcwd()+"/"
 
         self.script_center_simulation = os.path.join(self.path, "ASGARD/cluster_nodes/execute_scripts/scriptGR/center_simulation.sh")
         self.script_crete_pdb=os.path.join(self.path, "ASGARD/cluster_nodes/execute_scripts/scriptGR/create_pdb.sh")
 
         folder_graphs = self.path + "ASGARD/analyze_trajectory/Graphs/"
-        self.standar_graph_xvg = folder_graphs + "standar_graph_xvg.py"  			#graficas ficheros standar con 21 columnas
+        self.standar_graph_xvg = folder_graphs + "standar_graph_xvg.py"  			#standard graphs
 
         self.graph_gyrate_helicity = folder_graphs + "graph_gyrate_helicity.py"							#
-        self.graph_step_fluctuation = folder_graphs + "graph_step_fluctuation.py"			#grafica rmsd f por pasos de la simulacion
+        self.graph_step_fluctuation = folder_graphs + "graph_step_fluctuation.py"			#rmsd f for simulacion step
 
-        self.process_interactions_gromacs = folder_graphs + "process_interactions_gromacs.py"  # interacciones de energia entre ligando proteina
-        self.graph_interactions_gromacs = folder_graphs + "graph_interactions_gromacs.py"			#Grafica energies sum
-        self.graph_sasa = folder_graphs + "graph_sasa.py"						#Graficas SAS
-        self.dssp = folder_graphs + "dssp-2.0.4-linux-amd64"					#porgrama para dssp
-        self.graph_dssp = folder_graphs + "graph_dssp.py"						#grafica DSSP
+        self.process_interactions_gromacs = folder_graphs + "process_interactions_gromacs.py"  # protein-ligand energy interaction
+        self.graph_interactions_gromacs = folder_graphs + "graph_interactions_gromacs.py"			#energies graph
+        self.graph_sasa = folder_graphs + "graph_sasa.py"						#SASA graph
+        self.dssp = folder_graphs + "dssp-2.0.4-linux-amd64"					#DSSP software
+        self.graph_dssp = folder_graphs + "graph_dssp.py"						#DSSP graph
 
         self.logo_bio_hpc = self.path + "ASGARD/analyze_trajectory/extra/logo_biohpc.png"
         self.md_diagram = self.path + "ASGARD/analyze_trajectory/extra/md_diagram.png"
@@ -158,14 +157,14 @@ class ConfigHolder(object):
         self.json_text_tex = self.path + "ASGARD/analyze_trajectory/extra/text_document_tex.json"
         self.graph_hbonds = folder_graphs + "graph_hbonds.py"
         self.graph_mmpbsa = folder_graphs + "graph_mmpbsa.py"
-        self.grap_rmsd = folder_graphs + "graph_rmsd.py"  # grafica para generar rmsd ligando proteina OJO se usa tambien para distancias
+        self.grap_rmsd = folder_graphs + "graph_rmsd.py"  # rmsd ligand and distance graphs
         self.mdrum = "mdrum"
 
 
         #
         # Directorios utilizados para el analisis
         #
-        self.index = self.folder_grids + self.sufijo + "_index.ndx"  # ojo hay que revisar si no existe prot puedde fallar
+        self.index = self.folder_grids + self.sufijo + "_index.ndx"  
 
         #self.tpr_min = self.checkFile(self.folder_molec+self.sufijo+"_min.tpr")
         self.tpr_min = self.checkFile(self.folder_molec + self.sufijo + "_md.tpr")
@@ -179,7 +178,7 @@ class ConfigHolder(object):
         #
         #	Opciones del target y queries
         #
-        self.name_target = os.path.basename(prefix_molec).split("_")[2]  # nombre mde la proteina obteniado a raiz de la nomenglatura de lanzador
+        self.name_target = os.path.basename(prefix_molec).split("_")[2]  
         self.python_run = "python"
         self.lst_molecules = self.tools.get_groups_target_queries()
 
@@ -187,7 +186,7 @@ class ConfigHolder(object):
         self.grompp = '{} {} '.format(self.gromacs, 'grompp')
         self.mdrun = '{} {} '.format(self.gromacs, 'mdrun')
 
-        if os.path.isfile(self.folder_molec+self.sufijo+"_md_center.xtc"): #si la simulacion  esta centrada
+        if os.path.isfile(self.folder_molec+self.sufijo+"_md_center.xtc"): 
             self.xtc_md = self.checkFile(self.folder_molec+self.sufijo+"_md_center.xtc")
             self.gro_md = self.checkFile(self.folder_molec + self.sufijo + "_md.gro")
             self.pdb = self.checkFile(self.folder_molec + self.sufijo + "_md.pdb")
@@ -268,8 +267,8 @@ class ConfigHolder(object):
         self.format_file_name_g_mmpbsa_xvg = '{}_{}_{}_mmpbsa.xvg'
         self.format_file_name_g_mmpbsa_png = '{}_{}_{}_mmpbsa.png'
         self.format_file_name_hbonds_mmpbsa = '{}_{}_{}_hbond_mmpbsa.png'
-        self.format_folder_interactions = '{}_{}_{}_interactions'  # intaaciones de energias gromacs
-        self.format_folder_dssp = '{}_dssp'  # dsdp
+        self.format_folder_interactions = '{}_{}_{}_interactions'  # gromacs energy interactions
+        self.format_folder_dssp = '{}_dssp'  # dssp
         self.format_script_interactions = '{}_{}_{}_interactions.sh'
 
         self.f_molecule_rmsd_xvg = '{}_{}_rmsd.xvg'
@@ -289,7 +288,7 @@ class ConfigHolder(object):
 
 
         #
-        #	Se buiscan parametros de la rpueba en el fichero de resumen
+        # Search parameters
         #
         f = open(self.resume_file)
         for i in f:
@@ -323,7 +322,6 @@ class ConfigHolder(object):
                     if aux[j] == "-padding_grid":
                         self.padding_grid = aux[j+1]
         f.close()
-        	#Parametros de la prueba/home/jpg/Escritorio/source/ASGARD/VS_GR_queries_test_dm_2018-09-14/grids/VS_GR_queries_GLA-GLA_2_tpr.mdp
         
         self.ph = "9"
         self.integration_step = 0.002
@@ -339,30 +337,8 @@ class ConfigHolder(object):
 
 
 
-        # folder_grids="grids/"
-        # folderOutAux = "out/"
-        # self.folderTxt="txt/"
-        # folderOutUcm="outUcm/"
-        #
-        # self.lst_targets, self.lst_queries = self.tools.get_groups_target_queries()
-        # self.NomDocumento = folder_graphs + "modeloRelarotioDinamica.tex" 	#plantilla latex
-        # self.scriptMdrun=self.path + "lanzador/externalSw/gromacs/scriptsConf/scriptMD.sh"
-        # self.g_energy = "ASGARD/analyze_results/Simulation_gromacs/analyze_trajectory/extra/g_energy"
-        # self.energy2bfac = folder_graphs + "extra/energy2bfac"
-        #self.nombreLigandos=""
-        #exit()
-        #self.firstLig=next(iter(self.ligandos))
-        #
-        #if len(self.ligandos)==1: #si solo es un ligando se busca el nombre
-        #    n=self.sufijo.split("_")
-        #    self.nombreLigandos=n[len(n)-1]
-        #else: #si son varios se buscan los nombres internos
-        #    for nomLig,gnumLig  in self.ligandos.items():
-        #        self.nombreLigandos+=" "+nomLig
-        #
         """
         #
-        #	Mdrun, esta opcion debe estar llena solo si se utiliza el mdrun de lanzador (Esto no siempre se puede, hay en cluster como malaga que no funciona)
         #
         self.ldMrun="export LD_LIBRARY_PATH="+os.environ["LD_LIBRARY_PATH"]+":"+self.path+"lanzador/externalSw/gromacs/analizarResults/mdrunM/"
         comando=self.path+"lanzador/externalSw/gromacs/analizarResults/mdrunM/mdrun  2>&1 |wc -l" #se preuba el mdrun, existen 2 uno falla y malaga y otro en ciemat

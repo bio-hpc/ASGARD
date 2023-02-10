@@ -2,15 +2,15 @@ class GraphDistance():
 
     def __init__(self, cfg):
         self.cfg = cfg
-        if self.cfg.p_graph_distance or self.cfg.p_table_multimolecule:  #si se solicita tabla multiuligand se necesiatarn las distancias
+        if self.cfg.p_graph_distance or self.cfg.p_table_multimolecule:  
             self.mol_target = self.cfg.lst_molecules[0]
             self.distance_molecules_xvg()
             self.distance_molecules_png()
 
     def distance_molecules_xvg(self):
         #
-        #   Siempre se toma como referencia la primera
-        #   Si solo hay una molecula no se calcula su grafica
+        #   The first molecule is always taken as reference
+        #   If there is only a molecule, the graph is not generared 
 
         for i in range(1,  len(self.cfg.lst_molecules)):
             mol_query = self.cfg.lst_molecules[i]
@@ -45,7 +45,7 @@ class GraphDistance():
 
     def distance_molecules_png(self):
         #
-        #   Se genera una grafica con todos los distances de las molecules y se hace su distribucion
+        #   A graph with all the distances of the molecules is created and the distribution is done
         #
         lst_mols = [self.cfg.f_molecule_distance_xvg.format(self.cfg.prefix_results_xvg, self.mol_target.original_name, i.original_name) for i
                     in self.cfg.lst_molecules]
@@ -58,7 +58,7 @@ class GraphDistance():
         lst_names = [i.original_name for i in self.cfg.lst_molecules]
         lst_mols.pop(0)
         self.generate_graph(lst_mols, self.cfg.f_distance_distribution_png.format(self.cfg.prefix_results_png), lst_names)
-        if len(self.cfg.lst_molecules) > 2:  #si solo son 2 con las graficas anterirores vales
+        if len(self.cfg.lst_molecules) > 2:  
             for i in range(1, len(self.cfg.lst_molecules)):
                 mol_query = self.cfg.lst_molecules[i]
                 in_xvg = [self.cfg.f_molecule_distance_xvg.format(self.cfg.prefix_results_xvg, self.mol_target.original_name, mol_query.original_name)]

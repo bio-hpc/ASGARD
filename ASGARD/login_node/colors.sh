@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-###posibles colores para usar
+###colors that we can use
 ##echo -e "${GREEN} .... ${NONE}"
 NONE='\033[00m' #no color
 RED='\033[00;31m'
