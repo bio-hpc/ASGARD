@@ -12,14 +12,14 @@ class ConfigHolder(object):
 
     DISTRIBUTION_STEP = 0.001 # to generate the distribution plot (rmsd, distance) 
     MAX_WARNINGS = 5
-    DIST_MIN_RES = 20  # empieza por 20 he ira bajando hasta 0 para encontrar los residuos (un maximo de 50 residuos gromacs solo permite 64 grupos)
-    NUM_MAX_GROUPS = 52  # numero maximo de grupos que se tienen en cuenta (residuos + grupos gromacs)
+    DIST_MIN_RES = 20  # It starts with 20 and lowers until 0 to find the residues (the maximum number is 50 residues due to you only can include 64 groups in GROMACS)
+    NUM_MAX_GROUPS = 52  # Max number of the groups considered (residues + gromacs groups)
     MAX_TABLE_MULTIMOL_DISTANCE = 7
-    ENERGIES_DISCARD = 1  # Es la media de energias durante la simulacion que se descarta defaul(2) lo us el script proces_interactins_gromacs y graphs interaction gromacs
+    ENERGIES_DISCARD = 1  # Energy average from the simulation that is discarded for the proces_interactins_gromacs y graphs interaction gromacs scripts
 
 
     #
-    # 	Funcion para recibir las varibles de perfiles
+    # 	Receive the profiles variables
     #
 
     def setattr(self, k, v):

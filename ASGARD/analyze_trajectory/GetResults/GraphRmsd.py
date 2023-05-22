@@ -8,7 +8,7 @@ class GraphRmsd():
 
     def rmsd_molecules_xvg(self):
         #
-        #   Generate all the xvg files with rmsd and rmsf data
+        #   Generates all the xvg files with rmsd and rmsf data
         #
         for mol in self.cfg.lst_molecules:
             #   rmsd
@@ -44,7 +44,7 @@ class GraphRmsd():
 
     def rmsd_molecules_png(self):
         #
-        #   Generate a graph with all the rmsd of the molecules and calculate their distributions
+        #   Generates a graph with all the rmsd of the molecules and calculate their distributions
         #
         lst_mols = [self.cfg.f_molecule_rmsd_xvg.format(self.cfg.prefix_results_xvg, i.original_name) for i
                     in self.cfg.lst_molecules]

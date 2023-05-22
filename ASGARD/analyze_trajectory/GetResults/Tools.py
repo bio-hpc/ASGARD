@@ -1,5 +1,5 @@
 #
-#	Clase con varias funciones de distancia comprobacion de datos separar lig prot...
+#	Class with several functions about distance, checking data, split ligand-protein...
 #
 import re, math, os
 import shutil
@@ -84,52 +84,30 @@ class Tools(object):
 
         self.execute.run(cmd)
         if self.cfg.profile != "TARGET":
-            cmd = 'cat {} |grep \#include |grep -v force_field | grep -v _[a-z].itp |grep -v porse |grep -v ^\;'.format(self.cfg.top)
+            cmd = 'cat {} |grep \#include |grep -v force_field | grep -v _[a-z].itp |grep -v porse |grep -v ^\; |grep -v forcefield |grep -v ions |grep -v tip3p'.format(self.cfg.top)
             lst = self.execute.run(cmd).split("\n")
-            print(lst)
-            if "queries" not in lst[0]:
-                #print("relative path") # If files in topology is written in a relative path
-                for i in lst:
-                    if i != "" and ".ff" not in i and "posre" not in i and "itp" in i:
-                        aux = i.split("\"")
-                        aux[1] = self.cfg.folder_molec + aux[1]
-                        print(aux[1])
-                        cmd = 'cat {0} |grep  \"\[ atoms \]\" -A3  |tail -n 1 |awk \'{{print $4}}\''.format(aux[1])
-                        n_query = self.execute.run(cmd).strip()
-                        #print(n_query,"query index name")
-                        cmd = 'cat {} | grep {} | grep -v "non-Protein" | grep -v "non-Water" | head -1 |awk \'{{print $1}}\''.format(index, n_query)  # Looking for the ligand number
-                        g_query = self.execute.run(cmd).strip()                                                                                        # non-Water and non-Protein are removed to avoid problems to find the ligand number
-                        cmd = 'cat {0} |grep  \"\[ moleculetype \]\" -A2  |tail -n 1 |awk \'{{print $1}}\''.format(aux[1])
-                        #print(g_query,"query group number")
-                        name_query = self.execute.run(cmd).strip()  
-                        #print(name_query,"query name")
-                        lst_molecules.append(Molecule(n_query, g_query, name_query ))
-            else:
-                for i in lst:
-                    if "itp" in i:
-                        # print("absolute path")  # If files in topology is written in a absolute path, in that case they are found in queries folder
-                        aux = i.split("\"")
-                        cmd = 'cat {0} |grep  \"\[ atoms \]\" -A3  |tail -n 1 |awk \'{{print $4}}\''.format(aux[1])
-                        n_query = self.execute.run(cmd).strip()
-                        #print(n_query,"query index name")
-                        cmd = 'cat {} | grep {} | grep -v "non-Protein" | grep -v "non-Water" | head -1 |awk \'{{print $1}}\''.format(index, n_query)  # Looking for the ligand number
-                        g_query = self.execute.run(cmd).strip()                                                                                        # non-Water and non-Protein are removed to avoid problems to find the ligand number
-                        #print(g_query,"query group number")
-                        cmd = 'cat {0} |grep  \"\[ moleculetype \]\" -A2  |tail -n 1 |awk \'{{print $1}}\''.format(aux[1])
-                        name_query = self.execute.run(cmd).strip()
-                        #print(name_query,"query name")
-                        if name_query != "":
-                          lst_molecules.append(Molecule(n_query, g_query, name_query ))
-        cmd = 'cat {}  |grep \" DNA \" |tail -1 |awk \'{{print $1}}\''.format(index)  # future feature for ASGARD related to ADN analysis
+            for i in lst:
+                if i != "":
+                    aux = i.split("\"")
+                    cmd = 'cat {0} |grep  \"\[ atoms \]\" -A3  |tail -n 1 |awk \'{{print $4}}\''.format(aux[1])
+                    n_query = self.execute.run(cmd).strip()
+                    cmd = 'cat {} | grep {} | grep -v "non-Protein" | grep -v "non-Water" | head -1 |awk \'{{print $1}}\''.format(index, n_query)  # Buscamos el numquery del ligando (a veces se genera un mol2 con nombre non
+                    g_query = self.execute.run(cmd).strip()                                                                                        # Por eso eliminamos non-Water y non-Protein para que no interfiera
+                    cmd = 'cat {0} |grep  \"\[ moleculetype \]\" -A2  |tail -n 1 |awk \'{{print $1}}\''.format(aux[1])
+                    name_query = self.execute.run(cmd).strip()
+                    if name_query != "":
+                      lst_molecules.append(Molecule(n_query, g_query, name_query ))
+                      #lst_molecules.append(Molecule(13, g_query, 'L01' ))
+        cmd = 'cat {}  |grep \" DNA \" |tail -1 |awk \'{{print $1}}\''.format(index)  # buscamos el numgrupo del ADN
         g_dna = self.execute.run(cmd).strip()
         if g_dna != "":
             lst_molecules.insert(0, Molecule('DNA', g_dna, "DNA"))
 
-        cmd = 'cat {}  |grep \" Protein \" |tail -1 |awk \'{{print $1}}\''.format(index)  # Looking for the protein number
+        cmd = 'cat {}  |grep \" Protein \" |tail -1 |awk \'{{print $1}}\''.format(index)  # buscamos el numgrupo de la proteina
         g_target = self.execute.run(cmd).strip()
         if g_target != "":
             #
-            #   If there is a protein, it will always be the first
+            #   En caso de que existe prtoeina siempre sera la primera
             #
             lst_molecules.insert(0, Molecule('Protein', g_target, self.cfg.name_target ))
 

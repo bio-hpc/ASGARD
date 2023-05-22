@@ -13,7 +13,7 @@ class Execute(object):
     def run (self, command):
         """
 
-            Si falla la ejecucion del comando hace un exit
+            If command fails then exit()
         """
         try:
             if self.cfg.p_debug:

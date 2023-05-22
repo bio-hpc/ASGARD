@@ -6,7 +6,7 @@ import fileinput
 
 class GraphsInteractionsTargetQueries(object):
     """
-        Generate the coordinates xvg files for the outData graphs
+        Generates the coordinates xvg files for the outData graphs
     """
     def __init__(self, cfg):
         self.cfg = cfg
@@ -19,7 +19,7 @@ class GraphsInteractionsTargetQueries(object):
 
     def generate_graph(self):
         """
-            Create an index with all the residues of the protein (without "Protein_" and rerun with the rest of the molecules
+            Creates an index with all the residues of the protein (without "Protein_" and rerun with the rest of the molecules
         """
         
         if self.cfg.p_interactions_gromacs:

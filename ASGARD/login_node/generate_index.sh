@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-#   Return the number of the chosen group 
+#   Se le pasa un nombre (Protein, RNA.. ) y devuelve el numero de grupo
 #
 
 get_num_group( ){
@@ -18,13 +18,7 @@ gmx=$(echo singularity exec --bind $bind "$singularity"/ASGARD.simg)
 
 echo 'q' | $gmx gmx make_ndx -f $gro -o $ndx > ${ndx}.tmp  2>/dev/null
 
-
-#query=$(cat ../../queries/md1/4eje_preprocess_pduev3_pduev3_preprocess_complex_query.gro | head -3 | awk '{print $2}' | tail -1)
-query=$(cat $query | head -3 | awk '{print $2}' | tail -1)
-
-
-number_query=`get_num_group "Other"`
-number_query=$(($number_query + 1))
+number_query=`get_num_group "$query"`
 number_protein=`get_num_group "Protein"`
 number_dna=`get_num_group "DNA"`
 number_sol=`get_num_group "SOL"`
@@ -40,10 +34,9 @@ if [ "$number_sol" != "" ];then number_all_groups="${number_all_groups} ${number
 if [ "$number_query" != "" ];then number_all_groups="${number_all_groups} ${number_queries} |";fi
 number_all_groups=${number_all_groups%.*}
 
-i=`get_num_group "Water_and_ions"` 
-number_all_groups=$i" | "$number_queries
-
-number_ligand_groups="1 | 13"
+i=`get_num_group "Water_and_ions"` #antes se hacia [ proteina | DNA | SOL Queries ] ahora solo water_and_ions_lig
+number_all_groups=$i" | "$number_query
+number_ligand_groups="$number_protein | $number_query"
 
 ejecutar()
 {

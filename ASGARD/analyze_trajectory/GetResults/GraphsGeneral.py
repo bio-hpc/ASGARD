@@ -13,7 +13,7 @@ class GraphsGeneral(object):
         self.cfg=cfg
         self.execute=executeComand
     #
-	#	Se generan los ficheros de coordenadas xvg para las graficas de outData (RAPIDA)
+	#	XVG files are generated for the outData graphs (FAST)
 	#
     def generarXvg(self,num,gr, out):
         comando="echo \""+num+" "+num+"\" | "+self.cfg.gromacs+" "+self.cfg.graph+gr+self.cfg.mpi+" -f "+self.cfg.xtcSimu+" -s "+self.cfg.tprMin+" -o "+out
@@ -22,7 +22,7 @@ class GraphsGeneral(object):
 		comando=self.cfg.gromacs+" "+self.cfg.graph+"analyze"+self.cfg.mpi+" -f "+inp+" -dist "+out +" -bw "+str(step)
 		self.execute.run(comando)
 	#
-	#	Genera el xvg del rmsf por residuo, se le indica el numero de grupo y la salida
+	#	Generating the RMSF xvg files for each residue, indicating the group number and the output
 	#	
 	def gereateRmsdF(self,num, out)	:
 		if self.cfg.perfil!="TWOLIGS":
@@ -32,7 +32,7 @@ class GraphsGeneral(object):
 			comando="echo \""+num+" "+num+"\" | "+self.cfg.gromacs+" "+self.cfg.graph+"rmsf"+self.cfg.mpi+" -f "+self.cfg.xtcSimu+" -s "+self.cfg.tprMin+" -o "+out
 			self.execute.run(comando)
 	#
-	#	Genera Graficas de la proteina y el ligando, rmsd, distribucion, fluctuacion
+	#	Generating protein, ligand, rmsd, distribution and fluctuation graphs
 	#
 	def generateGraphProtinLigand(self, inp1, inp2,out,titulo):
 		comando=self.cfg.python+" "+self.cfg.grapCALig+" "+inp1 +" "+inp2+" "+out+" "+titulo
@@ -48,7 +48,7 @@ class GraphsGeneral(object):
 		self.execute.run(comando)
 
 	#
-	#	Genera grafica de RMSD y RMSDF de la proteina, si 
+	#	Generating Protein RMSD and RMSDF graphs 
 	#	
 	def generateGraphRmsd(self):
 		if self.cfg.graphRmsd:
@@ -83,7 +83,7 @@ class GraphsGeneral(object):
 				self.cfg.tools.joinImage(outData[0]+"R.png",outData[0]+"A.png",self.cfg.outTxt+"_rmsdProt.png")
 							
 	#
-	#	Genera grafica de helices (RAPIDA)
+	#	Helix graph
 	#
 	def generateGraphHelix(self):
 		if self.cfg.getHelix:
@@ -109,7 +109,7 @@ class GraphsGeneral(object):
 			shutil.rmtree(helixfolder)  
 			###################################################################################
 	#
-	#	(RAPIDA)
+	#	(FAST)
 	#
 	def graficaGyrate(self):	
 		if (self.cfg.getGyrate):
@@ -118,7 +118,7 @@ class GraphsGeneral(object):
 			comando=self.cfg.python+" "+self.cfg.graoGR+" "+self.cfg.outTxt+"_Gyrate.xvg"
 			self.execute.run(comando)
 	#
-	#	Grafica de energia proteina ligando (RAPIDA)
+	#	Protein-Ligand energy graph (FAST)
 	#
 	def graficaEnergiaLigProt(self): #no se sua
 		if self.cfg.energiLigProt:#la dejamos para el final
@@ -131,7 +131,7 @@ class GraphsGeneral(object):
 			#	comando=self.cfg.python+" "+self.cfg.graficaStandar+" "+ self.cfg.outTxt+"_EnergyGlobalProtLig.xvg"
 			#	self.execute.run(comando)
 	#
-	#	Grafica centro de masas distancia prot lig , tambien genera la distribucion
+	#	Mass center graph Prot-Ligand and distribution 
 	#
 	def graficaDist(self): 
 
@@ -151,7 +151,7 @@ class GraphsGeneral(object):
 	
 	#
 	#	TableMultiLigand
-	#	Genera una tabla  con los datos de media, varianza del ligando con la proteina, se queda sin guardar por que no estoy seguro que lo usemos mucho
+	#	Generates a table with the average and variance of the ligand about the protein
 	#
 	def generateTableMultiLigand(self,ftmp):
 		f=open(self.cfg.outTxt+"_TableMultiligand.tex","w")
@@ -175,7 +175,7 @@ class GraphsGeneral(object):
 
 
 	#
-	#	Genera una tabla tex para ver la aproximacion de los ligandos con la proteina
+	#	Generates a tex table to show the protein-ligand distance 
 	#	
 	def tableMultiliLiigand(self):
 		if self.cfg.multipleLigand:
@@ -222,7 +222,7 @@ class GraphsGeneral(object):
 			#	print i
 			
 	#
-	#Borra el directorio si existe y lo vuelve a crear y se introduce en el
+	# Remove folder if it exists and creates a new one to introduce the results 
 	#	
 	def checkDirectorio(self, path):
 		if os.path.exists(path):

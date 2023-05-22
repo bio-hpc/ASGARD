@@ -31,6 +31,14 @@ if [[ -z $profile ]]; then
   exit
 fi
 
+if [ $profile == 'TARGET_QUERY' ] && [ -z $ligand]; then 
+  echo $profile
+  source ${pathSL}help.sh
+  echo "Please indicate the ligand that you want to analyze"
+  exit
+fi
+
+
 echo 'Folder: '$folder_analysis
 echo 'Profile: '$profile
 
@@ -41,9 +49,9 @@ echo "Preparing analysis folder..."
 source ${pathSL}check_folder.sh $folder_analysis # check if the folder is already exists
 echo "Generating the working folder..."
 echo "Input preparation" > "$folder_analysis"_"$profile"_"$fecha".err
-source ${pathSL}input_preparation.sh $folder_analysis >> "$folder_analysis"_"$profile"_"$fecha".err 2>&1  #create a folder with all the required files
-
-if [ "$input" == "n" ] || [ "$input" == "N" ];then
+#source ${pathSL}input_preparation.sh $folder_analysis >> "$folder_analysis"_"$profile"_"$fecha".err 2>&1  #create a folder with all the required files
+source ${pathSL}input_preparation.sh $folder_analysis $ligand
+if [ "$input" == "n" ] || [ "$input" == "N" ];then 
   exit
 fi
 

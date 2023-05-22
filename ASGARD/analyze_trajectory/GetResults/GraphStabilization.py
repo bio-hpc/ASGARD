@@ -1,5 +1,5 @@
 #
-#   Generate a table with the stabilization data
+#   Generates a table with the stabilization data
 #
 #
 import numpy as np
@@ -73,10 +73,10 @@ class GraphStabilization(object):
             if i.startswith("@    yaxis  label "):
                 i = re.sub(' +', ' ', i).strip()  # c
                 aux = i.split(" ")
-                label = aux[3].strip()[2:-2]  # remove parenthesis and double quotes
+                label = aux[3].strip()[2:-2]  # removes parenthesis and double quotes
                 label = label.replace("^", "\\^")
             if not i.startswith("#") and not i.startswith("@"):
-                i = re.sub(' +', ' ', i).strip()  # remove double spaces at the beginning and end
+                i = re.sub(' +', ' ', i).strip()  # removes double spaces at the beginning and end
                 aux = i.split(" ")  
                 lst.append(float(aux[1]))  # Coulomb energy
         f.close()

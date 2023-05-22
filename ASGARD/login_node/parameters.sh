@@ -59,10 +59,11 @@ while (( $# )) #browse all the parameters and they are assigned
 	   case `printf "%s" "$1" | tr '[:lower:]' '[:upper:]'`  in
       -F)   folder_analysis=${2%/};; # Folder where MD results are found
       -P)   profile=$2;; # Profile (TARGET, TARGET_PROTEIN, TEST...)
+      -L)   ligand=$2;; # Ligand (Indicate what is the ligand which you want to analyze
       -D )  folder_experiment=${2%/}/;;	#directorio where the data is stored (optional)
 	    esac
 	fi
-  shift #Modificamos $2 a $1, $3 a $2 ....
+  shift #Modify $2 a $1, $3 a $2 ....
 done
 
 if [[ "${profile}" == "" ]];then

@@ -23,7 +23,7 @@ profiles = {
             'p_debug': False,  # False
         },
 
-      'TARGET_QUERY_2':
+      'TARGET_QUERY_NO_HB':
         {
             'p_graph_hbonds': False,
             'p_graph_mmpbsa': True,
