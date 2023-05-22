@@ -25,6 +25,8 @@ wget "https://drive.google.com/uc?export=download&id=1Q9ifMDEaoxhsI9eealvsf_cTvK
 **2. TARGET_QUERY**: for Protein-Ligand Complex MD simulations
   - Same as above (also calculated for the ligand), and Protein-Ligand Interactions analyses: <br />
      - MM-PBSA, interaction energy values, number HBonds during simulation and interactions between ligand and protein in last frame  <br />
+**3. TARGET_QUERY_NO_HB**: for Protein-Ligand Complex MD simulations
+  - Skip Hydrogen bonds analysis for a faster analysis
 
 ### Needed packages
 1. **Singularity**>=3.6.0
@@ -36,13 +38,13 @@ wget "https://drive.google.com/uc?export=download&id=1Q9ifMDEaoxhsI9eealvsf_cTvK
 
 Firstly, you need a folder with all outputs files from GROMACS Molecular Dynamics 
 
-Parameters needed to launch ASGARD are the folder with GROMACS results files (-f) (xtc, tpr, gro, mpd used, files and, pdb target and mol2 query files) and profile which you want (-p) , TARGET (a unique protein simulations) and TARGET_QUERY (protein-ligand simultions)
+Parameters needed to launch ASGARD are the folder with GROMACS results files (-f) (xtc, tpr, gro, mpd used, files and, pdb target and mol2 query files) and profile which you want (-p) , TARGET (a unique protein simulations) and TARGET_QUERY (protein-ligand simultions), and also the group name of the ligand that you want to analyze (-l)
 
 For instance, you can launch ASGARD this way:
 
-sh ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY
+sh ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY -l L01
 
 If there are problems with launching ASGARD.sh:
 
-singularity exec --bind ${PWD} singularity/ASGARD.simg ./ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY
+singularity exec --bind ${PWD} singularity/ASGARD.simg ./ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY -l L01
 
