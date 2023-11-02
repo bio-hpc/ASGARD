@@ -58,6 +58,6 @@ Firstly, you need a folder with all outputs files from GROMACS Molecular Dynamic
 Parameters needed to launch ASGARD are the folder with GROMACS results files (-f) (xtc, tpr, gro, mpd used) and profile which you want (-p): TARGET (a single protein simulations) and TARGET_QUERY (protein-ligand simultions), and also the group name of the ligand that you want to analyze (-l)
 
 For instance, you can launch ASGARD this way:
-
+```bash
 sh ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY
-
+```
