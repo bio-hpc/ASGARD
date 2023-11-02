@@ -6,9 +6,12 @@
 ASGARD is a tool that allows via an automated MD workflow to analyse performed MD protein or protein-ligand complex simulations and to easily generate the corresponding report 
 
 ### Installation
-  1. git clone https://github.com/bio-hpc/ASGARD.git
-  2. git clone git@github.com:bio-hpc/ASGARD.git
-  3. Download the .zip and unzip it in the supercomputing centers you are going to use
+```bash
+  git clone https://github.com/bio-hpc/ASGARD.git 
+  git clone git@github.com:bio-hpc/ASGARD.git
+  Download the .zip and unzip it in the supercomputing centers you are going to use
+```
+
 
 ### Download singularity image 
 Needed to secure compatibility with all cluster.
