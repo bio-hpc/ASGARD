@@ -36,22 +36,20 @@ wget "https://drive.google.com/uc?export=download&id=1Q9ifMDEaoxhsI9eealvsf_cTvK
   - Skip Hydrogen bonds analysis for a faster analysis
 
 ### Needed packages
+The only thing that you need to run ASGARD is the Singularity package installed in your cluster
 1. **Singularity**>=3.6.0
+
 ### Aditional Software (in external_sw folder)
 1. **Poseview [Required License]**:  generates publication-quality 2D structure-diagrams of protein-ligand complexes. To access your free evaluate license, please enter to https://www.biosolveit.de/license/evaluation/ 
 2. **GROMACS**: to use g_mmpbsa (found in ASGARD/analyze_trajectory/extra/) and different type of force fields, and to create topology with topology/generate_topology.
-   
+
 ### Usage instructions
 
 Firstly, you need a folder with all outputs files from GROMACS Molecular Dynamics 
 
-Parameters needed to launch ASGARD are the folder with GROMACS results files (-f) (xtc, tpr, gro, mpd used, files and, pdb target and mol2 query files) and profile which you want (-p) , TARGET (a unique protein simulations) and TARGET_QUERY (protein-ligand simultions), and also the group name of the ligand that you want to analyze (-l)
+Parameters needed to launch ASGARD are the folder with GROMACS results files (-f) (xtc, tpr, gro, mpd used) and profile which you want (-p): TARGET (a single protein simulations) and TARGET_QUERY (protein-ligand simultions), and also the group name of the ligand that you want to analyze (-l)
 
 For instance, you can launch ASGARD this way:
 
-sh ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY -l L01
-
-If there are problems with launching ASGARD.sh:
-
-singularity exec --bind ${PWD} singularity/ASGARD.simg ./ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY -l L01
+sh ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY
 
