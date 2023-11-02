@@ -19,9 +19,11 @@ Download the .zip and unzip it in the supercomputing centers you are going to us
 
 
 ### Download singularity image 
-Needed to secure compatibility with all cluster.
+The singularity image generated for ASGARD and needed to secure compatibility with any cluster.
 
+```bash
 wget "https://drive.google.com/uc?export=download&id=1Q9ifMDEaoxhsI9eealvsf_cTvKCYkJ8H&confirm=t" -O singularity/ASGARD.simg
+```
 
 ### Available Analyses
 
