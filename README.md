@@ -59,5 +59,5 @@ Parameters needed to launch ASGARD are the folder with GROMACS results files (-f
 
 For instance, you can launch ASGARD this way:
 ```bash
-sh ASGARD.sh -f 6b0t_6b0t_lig_MD_100ns/ -p TARGET_QUERY
+sh ASGARD.sh -f StudyCase2/ -p TARGET_QUERY
 ```
