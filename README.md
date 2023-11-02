@@ -40,7 +40,7 @@ wget "https://drive.google.com/uc?export=download&id=1Q9ifMDEaoxhsI9eealvsf_cTvK
      - MM-PBSA <br />
      - Interaction energy values <br />
      - HBonds contacts during simulation <br />
-     - 2D adn 3D Interactions diagrams in last frame  <br />
+     - 2D and 3D Interactions diagrams in last frame  <br />
 
 **3. TARGET_QUERY_NO_HB**: for Protein-Ligand Complex MD simulations
   - Skip Hydrogen bonds analysis for a faster analysis
