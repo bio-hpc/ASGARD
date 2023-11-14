@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import subprocess
@@ -10,64 +10,54 @@ class Execute(object):
     def __init__(self, cfg):
         self.cfg = cfg
 
-    def run (self, command):
+    def run(self, command):
         """
-
-            If command fails then exit()
+        If command fails then exit()
         """
         try:
             if self.cfg.p_debug:
-                print( BColors.WARNING + "Debug: "+command + BColors.ENDC)
-                #out = subprocess.check_output(command+" 2>>"+ self.cfg.log, shell=True in command)
-
-                out = subprocess.check_output(command, shell=' ' in command)
-
+                print(BColors.WARNING + "Debug: " + command + BColors.ENDC)
+                out = subprocess.check_output(command, shell=True)
             else:
-                #out = subprocess.check_output(command+" 2>>"+ self.cfg.log, shell=True in command)
                 out = subprocess.check_output(command, shell=True)
 
-
         except subprocess.CalledProcessError as e:
             ret = e.returncode
             if ret in (1, 2):
-                print ("failed")
+                print("failed")
                 print(command)
                 exit()
 
             elif ret in (3, 4, 5):
-                print ("the command failed very much")
+                print("the command failed very much")
                 print(command)
                 exit()
-
 
         if sys.version_info[0] == 3:
             return str(out, 'utf-8')
         else:
             return str(out)
 
-    def run_with_fail (self, command):
+    def run_with_fail(self, command):
         try:
             if self.cfg.p_debug:
-                print( BColors.WARNING + "Debug: "+command + BColors.ENDC)
-                #out = subprocess.check_output(command+" 2>>"+ self.cfg.log, shell=True in command)
-                out = subprocess.check_output(command, shell=' ' in command)
-                print ("out: ",out)
+                print(BColors.WARNING + "Debug: " + command + BColors.ENDC)
+                out = subprocess.check_output(command, shell=True)
+                print("out: ", out)
             else:
-                #out = subprocess.check_output(command+" 2>>"+ self.cfg.log, shell=True in command)
-                out = subprocess.check_output(command, shell=' ' in command)
+                out = subprocess.check_output(command, shell=True)
         except subprocess.CalledProcessError as e:
             ret = e.returncode
             if ret in (1, 2):
-                return("failed")
+                return "failed"
             elif ret in (3, 4, 5):
-                return ("the command failed very much")
-
+                return "the command failed very much"
 
         if sys.version_info[0] == 3:
             return str(out, 'utf-8')
         else:
             return str(out)
-        
+
 
 class BColors(object):
     HEADER = '\033[95m'

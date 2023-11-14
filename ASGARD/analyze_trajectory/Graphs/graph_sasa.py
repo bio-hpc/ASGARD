@@ -1,20 +1,23 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-#
-#   Generate SAS graph, for the whole system
-#
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Generate SAS graph, for the whole system
+
 import sys
 from GenerateGraph.GenerateGraph import GenerateGraph
+
 generateGraph = GenerateGraph()
 
 if len(sys.argv) != 4:
-    print ("Parameters: ")
-    print ("file xvg sasa o")
+    print("Parameters: ")
+    print("file xvg sasa o")
     print("file xvg sasa odp")
     print("out png")
     exit()
+
 file_o = sys.argv[1]
 file_odp = sys.argv[2]
 out_png = sys.argv[3]
+
 lst = []
 steeps = []
 
@@ -29,5 +32,5 @@ steeps.append(x)
 x_title = "Time ps"
 y_title = "Area"
 legend = ["Total", "DG solv"]
-title = "Solvent Accesible Surface"
+title = "Solvent Accessible Surface"
 generateGraph.line_graph(legend, steeps, lst, out_png, x_title, y_title, title, "")

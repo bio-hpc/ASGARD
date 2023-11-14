@@ -1,40 +1,44 @@
-#!/usr/bin/env pythoncat
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-#	Generate DSSP graph
+# Generate DSSP graph
 #
 import sys
 import re   # regular expression
 from GenerateGraph.GenerateGraph import GenerateGraph
+
 generateGraph = GenerateGraph()
+
 if len(sys.argv) != 3:
     print("Parameters: ")
     print("1º file xvg dssp")
     print("2º out put png")
     exit()
+
 file = sys.argv[1]
 out_png = sys.argv[2]
+
 #
-#   Protein graph legend 
-#   
+# Protein graph legend
+#
 x, y, title, x_title, y_title, subtitle = generateGraph.read_xvg(file)
 legend = []
-legend.append("Structure")           #s0
-legend.append("Coil")                #s1
-legend.append("B-Sheet")             #s2
-legend.append("Bend")                #s3
-legend.append("Turn")                #s4
-legend.append("3-Helix")             #s5
-legend.append("Chain_Separator")     #s6 
+legend.append("Structure")           # s0
+legend.append("Coil")                # s1
+legend.append("B-Sheet")             # s2
+legend.append("Bend")                # s3
+legend.append("Turn")                # s4
+legend.append("3-Helix")             # s5
+legend.append("Chain_Separator")     # s6
 
 time = []
 datos = []
 for i in range(6):
-    datos.append( [] )
+    datos.append([])
 f = open(file)
 for i in f:
     if not i.startswith("#") and not i.startswith("@"):
-        i = re.sub(' +',' ',i).strip() 
+        i = re.sub(' +', ' ', i).strip()
         aux = i.split(" ")
         time.append(float(aux[0]))
         datos[0].append(float(aux[1]))
@@ -47,7 +51,8 @@ for i in f:
             datos[5].append(float(aux[6]))
 f.close()
 lst_remove = []
-for i in range(len(datos)-1,0,-1): 
+for i in range(len(datos) - 1, 0, -1):
     if len(datos[i]) == 0:
         datos.remove(datos[i])
+
 generateGraph.line_graph(legend, time, datos, out_png, x_title, y_title, title, "")

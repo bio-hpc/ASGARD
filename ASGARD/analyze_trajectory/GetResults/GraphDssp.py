@@ -1,9 +1,8 @@
-class GraphDssp():
+class GraphDssp:
     def __init__(self, cfg):
         self.cfg = cfg
         if self.cfg.p_graph_dssp:
-
-            folder_xvg_out = self.cfg.format_folder_dssp.format(self.cfg.prefix_results_xvg )
+            folder_xvg_out = self.cfg.format_folder_dssp.format(self.cfg.prefix_results_xvg)
             self.cfg.tools.check_directory(folder_xvg_out)
             lst_cmd = []
             lst_cmd.append('cd {} '.format(folder_xvg_out))

@@ -1,9 +1,0 @@
-molecule m;
-float area;
-if( argc != 3 ){
-	fprintf( stderr, "Usage: molsurf <pqr-file> <probe-radius>\n" );
-    exit(1);
-}
-m = getpdb( argv[2], "-pqr" );
-area = molsurf( m, NULL, atof(argv[3]) );
-printf( "surface area = %10.3f\n", area );

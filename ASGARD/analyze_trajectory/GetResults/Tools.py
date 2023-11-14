@@ -8,12 +8,12 @@ from .Molecule import Molecule
 from .Execute import Execute
 
 class Tools(object): 
-    def __init__(self,cfg):
+    def __init__(self, cfg):
         self.cfg = cfg
         self.lstTemplate = []
         self.execute = Execute(self.cfg)
 
-    def distancia(self,array_lig, array_prot):
+    def distancia(self, array_lig, array_prot):
         """
             Distance between 2 points
         """
@@ -23,7 +23,7 @@ class Tools(object):
         ret = math.sqrt(x + y + z)
         return ret
 
-    def create_hash(self,residuo, distance, lig_atom,hashCarboHidrato):
+    def create_hash(self, residuo, distance, lig_atom, hashCarboHidrato):
         # A table is generated with the residues which are found less than x A
         if residuo not in hashCarboHidrato:
             hashCarboHidrato[residuo] = [distance, lig_atom]
@@ -32,7 +32,7 @@ class Tools(object):
                 hashCarboHidrato[residuo] = [distance, lig_atom]
         return hashCarboHidrato
 
-    def get_residues(self,mol_target, mol_query, longitud_maxima):
+    def get_residues(self, mol_target, mol_query, longitud_maxima):
         """
             To obtain the residues between a ligand and a protein
         """
@@ -58,7 +58,7 @@ class Tools(object):
         # This function starts with 20 A. After that, the residues closest to the ligand are searched
         # until they are more than 64, which is the maximum group of gromacs
         #
-        print ("Entro")
+        print("Entro")
         cad_residues = ""
 
         for i in range(self.cfg.DIST_MIN_RES):
@@ -70,6 +70,7 @@ class Tools(object):
             if len(cad_residues.split(" ")) < self.cfg.NUM_MAX_GROUPS:
                 break
         return cad_residues
+    
     def cp_file(self, src, dest):
         shutil.copy(src, dest)
 
@@ -79,31 +80,41 @@ class Tools(object):
         """
         lst_molecules = []
 
-        index = self.cfg.prefix_molec+'_index.ndx.tmp'
-        cmd = "echo q | {0} make_ndx{1} -f {2} -o {3} > {4} 2> /dev/null".format(self.cfg.gromacs, self.cfg.mpi, self.cfg.gro_md, index+".tmp.ndx", index)
-
+        index = self.cfg.prefix_molec + '_index.ndx.tmp'
+        cmd = f"echo q | {self.cfg.gromacs} make_ndx{self.cfg.mpi} -f {self.cfg.gro_md} -o {index}.tmp.ndx > {index} 2> /dev/null"
+        
         self.execute.run(cmd)
+        
         if self.cfg.profile != "TARGET":
-            cmd = 'cat {} |grep \#include |grep -v force_field | grep -v _[a-z].itp |grep -v porse |grep -v ^\; |grep -v forcefield |grep -v ions |grep -v tip3p'.format(self.cfg.top)
+            cmd = f'cat {self.cfg.top} | grep \\#include | grep -v force_field | grep -v _[a-z].itp | grep -v porse | grep -v posre | grep -v ^\; | grep -v forcefield | grep -v ions | grep -v tip3p | grep itp'
             lst = self.execute.run(cmd).split("\n")
             for i in lst:
                 if i != "":
                     aux = i.split("\"")
-                    cmd = 'cat {0} |grep  \"\[ atoms \]\" -A3  |tail -n 1 |awk \'{{print $4}}\''.format(aux[1])
+                    print(aux[1])
+                    if os.path.isfile(aux[1]):
+                        aux[1]=aux[1]
+                    else:
+                        print(self.cfg.folder)
+                        print(self.cfg.folder+'molecules/'+aux[1])
+                        aux[1]=self.cfg.folder+'molecules/'+aux[1]
+                
+                    cmd = f'cat {aux[1]} | grep "\\[ atoms \\]" -A3  | tail -n 1 | awk \'{{print $4}}\''
+                    print(cmd)
                     n_query = self.execute.run(cmd).strip()
-                    cmd = 'cat {} | grep {} | grep -v "non-Protein" | grep -v "non-Water" | head -1 |awk \'{{print $1}}\''.format(index, n_query)  # Buscamos el numquery del ligando (a veces se genera un mol2 con nombre non
-                    g_query = self.execute.run(cmd).strip()                                                                                        # Por eso eliminamos non-Water y non-Protein para que no interfiera
-                    cmd = 'cat {0} |grep  \"\[ moleculetype \]\" -A2  |tail -n 1 |awk \'{{print $1}}\''.format(aux[1])
+                    print(n_query)
+                    cmd = f'cat {index} | grep {n_query} | grep -v "non-Protein" | grep -v "non-Water" | head -1 | awk \'{{print $1}}\''
+                    g_query = self.execute.run(cmd).strip()
+                    cmd = f'cat {aux[1]} | grep "\\[ moleculetype \\]" -A2  | tail -n 1 | awk \'{{print $1}}\''
                     name_query = self.execute.run(cmd).strip()
                     if name_query != "":
-                      lst_molecules.append(Molecule(n_query, g_query, name_query ))
-                      #lst_molecules.append(Molecule(13, g_query, 'L01' ))
-        cmd = 'cat {}  |grep \" DNA \" |tail -1 |awk \'{{print $1}}\''.format(index)  # buscamos el numgrupo del ADN
+                        lst_molecules.append(Molecule(n_query, g_query, name_query))
+        cmd = f'cat {index}  | grep " DNA " | tail -1 | awk \'{{print $1}}\''
         g_dna = self.execute.run(cmd).strip()
         if g_dna != "":
             lst_molecules.insert(0, Molecule('DNA', g_dna, "DNA"))
 
-        cmd = 'cat {}  |grep \" Protein \" |tail -1 |awk \'{{print $1}}\''.format(index)  # buscamos el numgrupo de la proteina
+        cmd = f'cat {index}  | grep " Protein " | tail -1 | awk \'{{print $1}}\''
         g_target = self.execute.run(cmd).strip()
         if g_target != "":
             #
@@ -124,7 +135,7 @@ class Tools(object):
             lig = False
             aux = re.sub(' +', ' ', i).strip().split(" ")
 
-            if len(aux) > 0:	# Discarding solvents and ions
+            if len(aux) > 0:    # Discarding solvents and ions
                 if aux[0] == "ATOM" and aux[3] != self.cfg.name_solvent and aux[3] not in self.cfg.name_ions:
                     for mol in self.cfg.lst_molecules:
                         if aux[3] == mol.name:
@@ -134,51 +145,26 @@ class Tools(object):
                     if not lig:
                         target.coords.append(i.strip())
 
-
     def generate_distribution_xvg(self, xvg_in, xvg_out):
-        cmd = '{0} {1}{2}{3} -f {4}  -dist {5} -bw {6}'.format(
-            self.cfg.gromacs,
-            self.cfg.graph,
-            "analyze",
-            self.cfg.mpi,
-            xvg_in,
-            xvg_out,
-            self.cfg.DISTRIBUTION_STEP
-        )
+        cmd = f'{self.cfg.gromacs} {self.cfg.graph}analyze{self.cfg.mpi} -f {xvg_in} -dist {xvg_out} -bw {self.cfg.DISTRIBUTION_STEP}'
         self.cfg.tools.execute.run(cmd)
 
     def generate_xvg(self, n_group_1, n_group_2, type_graph, out_xtc):
-        cmd = 'echo  \"{0} {1}\" | {2} {3}{4}{5} -f {6} -s {7} -o {8} '.format(
-            n_group_1,
-            n_group_2,
-            self.cfg.gromacs,
-            self.cfg.graph,
-            type_graph,
-            self.cfg.mpi,
-            self.cfg.xtc_md,
-            self.cfg.tpr_min,
-            out_xtc
-        )
+        cmd = f'echo  "{n_group_1} {n_group_2}" | {self.cfg.gromacs} {self.cfg.graph}{type_graph}{self.cfg.mpi} -f {self.cfg.xtc_md} -s {self.cfg.tpr_min} -o {out_xtc}'
         self.cfg.tools.execute.run(cmd)
 
     def join_image(self, img_a, img_b, out):
         """
             join 2 images
         """
-        comando="convert -size 2048x1536 "+img_a+" -thumbnail 800x600 "+img_a+".png"
+        comando = f"convert -size 2048x1536 {img_a} -thumbnail 800x600 {img_a}.png"
         self.execute.run(comando)
-        comando="convert -size 2048x1536 "+img_b+" -thumbnail 800x600 "+img_b+".png"
+        comando = f"convert -size 2048x1536 {img_b} -thumbnail 800x600 {img_b}.png"
         self.execute.run(comando)
-        comando="montage  -geometry +3+2  "+img_a+".png "+img_b+".png -tile 2x1 "+out
+        comando = f"montage  -geometry +3+2  {img_a}.png {img_b}.png -tile 2x1 {out}"
         self.execute.run(comando)
-        comando="rm "+img_a+".png "+img_b+".png"
+        comando = f"rm {img_a}.png {img_b}.png"
         self.execute.run(comando)
-
-    #def get_molecule(self, mol):
-    #    for i in self.cfg.lst_molecules:
-    #        if i.name == mol:
-    #            return i
-    #    return None
 
     @staticmethod
     def check_directory(path):
@@ -192,9 +178,3 @@ class Tools(object):
             os.mkdir(path)
         else:
             os.mkdir(path)
-
-
-
-
-
-

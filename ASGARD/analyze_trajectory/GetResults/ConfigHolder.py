@@ -9,32 +9,25 @@ class ConfigHolder(object):
     format_3 = '  {1:18} {2:<20}'
     format_2 = '  {:18}{:}'
 
-
-    DISTRIBUTION_STEP = 0.001 # to generate the distribution plot (rmsd, distance) 
+    DISTRIBUTION_STEP = 0.001  # to generate the distribution plot (rmsd, distance)
     MAX_WARNINGS = 5
     DIST_MIN_RES = 20  # It starts with 20 and lowers until 0 to find the residues (the maximum number is 50 residues due to you only can include 64 groups in GROMACS)
     NUM_MAX_GROUPS = 52  # Max number of the groups considered (residues + gromacs groups)
     MAX_TABLE_MULTIMOL_DISTANCE = 7
     ENERGIES_DISCARD = 1  # Energy average from the simulation that is discarded for the proces_interactins_gromacs y graphs interaction gromacs scripts
 
-
-    #
-    # 	Receive the profiles variables
-    #
-
     def setattr(self, k, v):
         setattr(self, k, v)
 
     def set_profile_cfg(self, profile):
         """
-            Busca el perfil
+        Busca el perfil
         """
         self.profiles = Profiles(self)
         self.profiles.set_profile_cfg(profile)
 
     def check_simulation(self, out_xtc):
-
-        out_check = os.path.splitext(out_xtc)[0]+".chk"
+        out_check = os.path.splitext(out_xtc)[0] + ".chk"
         cmd = '{} check -f {} > {} 2>&1 '.format(
             self.gromacs,
             out_xtc,
@@ -44,8 +37,7 @@ class ConfigHolder(object):
         cmd = "cat {} |grep Step".format(out_check)
         step = self.tools.execute.run(cmd)
         step = re.sub(' +', ' ', step).strip().split(" ")[1]
-        return  int(step)
-
+        return int(step)
 
     def center_simulation(self, xtc):
         self.xtc_md = os.path.splitext(xtc)[0] + "_complex_no_end_center.xtc"
@@ -69,11 +61,10 @@ class ConfigHolder(object):
                 self.folder_molec + self.sufijo + "_no_end.pdb",
                 self.step_md,
                 self.gromacs
-
             )
             self.tools.execute.run(cmd)
 
-    def checkFile(self,file):
+    def checkFile(self, file):
         tmp_file = "/" + file
         if os.path.isfile(tmp_file.strip()):
             return file
@@ -81,19 +72,18 @@ class ConfigHolder(object):
             print("\n")
             print("ERROR: you must enter the absolute path of the file, this usually happens"
                   " because you do not pass the file with the absolute path: ")
-            print("No exsis: "+tmp_file)
+            print("No exsis: " + tmp_file)
             exit("\n")
 
-    def __init__(self,prefix_molec,  profile, gromacs):
-
+    def __init__(self, prefix_molec, profile, gromacs):
         #
         #   Input-output folders
         #
-        self.gromacs = gromacs+" "
+        self.gromacs = gromacs + " "
 
         tmp = os.path.dirname(prefix_molec)
-        self.folder = tmp[:tmp.rfind("/")] + "/"  
-        self.sufijo = os.path.basename(prefix_molec).strip() 
+        self.folder = tmp[:tmp.rfind("/")] + "/"
+        self.sufijo = os.path.basename(prefix_molec).strip()
 
         self.folder_molec = os.path.join(self.folder, 'molecules/')
         self.folder_grids = os.path.join(self.folder, 'grids/')
@@ -107,7 +97,7 @@ class ConfigHolder(object):
         self.profile = profile
         self.tools = Tools(self)
         self.set_profile_cfg(profile)
-        cmd = "ls " + self.folder_molec + self.sufijo + "_npt_*.gro" 
+        cmd = "ls " + self.folder_molec + self.sufijo + "_npt_*.gro"
         self.gro_md = self.tools.execute.run(cmd).strip()
 
         self.template_job = TemplateJob(self)
@@ -123,33 +113,31 @@ class ConfigHolder(object):
         #
         #
 
-
-
-        #Plot generation
-        self.path = os.getcwd()+"/"
+        # Plot generation
+        self.path = os.getcwd() + "/"
 
         self.script_center_simulation = os.path.join(self.path, "ASGARD/cluster_nodes/execute_scripts/scriptGR/center_simulation.sh")
-        self.script_crete_pdb=os.path.join(self.path, "ASGARD/cluster_nodes/execute_scripts/scriptGR/create_pdb.sh")
+        self.script_crete_pdb = os.path.join(self.path, "ASGARD/cluster_nodes/execute_scripts/scriptGR/create_pdb.sh")
 
         folder_graphs = self.path + "ASGARD/analyze_trajectory/Graphs/"
-        self.standar_graph_xvg = folder_graphs + "standar_graph_xvg.py"  			#standard graphs
+        self.standar_graph_xvg = folder_graphs + "standar_graph_xvg.py"  # standard graphs
 
-        self.graph_gyrate_helicity = folder_graphs + "graph_gyrate_helicity.py"							#
-        self.graph_step_fluctuation = folder_graphs + "graph_step_fluctuation.py"			#rmsd f for simulacion step
+        self.graph_gyrate_helicity = folder_graphs + "graph_gyrate_helicity.py"  #
+        self.graph_step_fluctuation = folder_graphs + "graph_step_fluctuation.py"  # rmsd f for simulacion step
 
         self.process_interactions_gromacs = folder_graphs + "process_interactions_gromacs.py"  # protein-ligand energy interaction
-        self.graph_interactions_gromacs = folder_graphs + "graph_interactions_gromacs.py"			#energies graph
-        self.graph_sasa = folder_graphs + "graph_sasa.py"						#SASA graph
-        self.dssp = folder_graphs + "dssp-2.0.4-linux-amd64"					#DSSP software
-        self.graph_dssp = folder_graphs + "graph_dssp.py"						#DSSP graph
+        self.graph_interactions_gromacs = folder_graphs + "graph_interactions_gromacs.py"  # energies graph
+        self.graph_sasa = folder_graphs + "graph_sasa.py"  # SASA graph
+        self.dssp = folder_graphs + "dssp-2.0.4-linux-amd64"  # DSSP software
+        self.graph_dssp = folder_graphs + "graph_dssp.py"  # DSSP graph
 
         self.logo_bio_hpc = self.path + "ASGARD/analyze_trajectory/extra/logo_biohpc.png"
         self.md_diagram = self.path + "ASGARD/analyze_trajectory/extra/md_diagram.png"
 
         try:
             cmd = 'cat {}/config.cfg |grep g_mmpbsa'.format(os.path.join(self.path, "ASGARD"))
-            a_h = subprocess.check_output(cmd, stderr=subprocess.STDOUT, shell=True)
-            self.g_mmpbsa = a_h.split(":")[1].strip() #"ASGARD/analyze_results/Simulation_gromacs/analyze_trajectory/extra/g_mmpbsa"
+            a_h = subprocess.check_output(cmd, stderr=subprocess.STDOUT, shell=True).decode('utf-8')
+            self.g_mmpbsa = a_h.split(":")[1].strip()  # "ASGARD/analyze_results/Simulation_gromacs/analyze_trajectory/extra/g_mmpbsa"
         except:
             print("Error en el fichero de configuracion \"g_mmpbsa\"")
             exit()
@@ -160,14 +148,14 @@ class ConfigHolder(object):
         self.grap_rmsd = folder_graphs + "graph_rmsd.py"  # rmsd ligand and distance graphs
         self.mdrum = "mdrum"
 
-
         #
         # Directorios utilizados para el analisis
         #
-        self.index = self.folder_grids + self.sufijo + "_index.ndx"  
+        self.index = self.folder_grids + self.sufijo + "_index.ndx"
 
-        #self.tpr_min = self.checkFile(self.folder_molec+self.sufijo+"_min.tpr")
+        # self.tpr_min = self.checkFile(self.folder_molec+self.sufijo+"_min.tpr")
         self.tpr_min = self.checkFile(self.folder_molec + self.sufijo + "_md.tpr")
+        self.tpr_pre = self.checkFile(self.folder_molec + self.sufijo + "_pre_md.tpr")
 
         self.prefix_molec = self.folder_molec + self.sufijo
         self.grids = self.folder_grids + self.sufijo
@@ -176,9 +164,9 @@ class ConfigHolder(object):
         self.top = self.checkFile(self.folder_molec + self.sufijo + ".top")
 
         #
-        #	Opciones del target y queries
+        #   Opciones del target y queries
         #
-        self.name_target = os.path.basename(prefix_molec).split("_")[2]  
+        self.name_target = os.path.basename(prefix_molec).split("_")[2]
         self.python_run = "python"
         self.lst_molecules = self.tools.get_groups_target_queries()
 
@@ -186,8 +174,8 @@ class ConfigHolder(object):
         self.grompp = '{} {} '.format(self.gromacs, 'grompp')
         self.mdrun = '{} {} '.format(self.gromacs, 'mdrun')
 
-        if os.path.isfile(self.folder_molec+self.sufijo+"_md_center.xtc"): 
-            self.xtc_md = self.checkFile(self.folder_molec+self.sufijo+"_md_center.xtc")
+        if os.path.isfile(self.folder_molec + self.sufijo + "_md_center.xtc"):
+            self.xtc_md = self.checkFile(self.folder_molec + self.sufijo + "_md_center.xtc")
             self.gro_md = self.checkFile(self.folder_molec + self.sufijo + "_md.gro")
             self.pdb = self.checkFile(self.folder_molec + self.sufijo + "_md.pdb")
         else:
@@ -198,18 +186,12 @@ class ConfigHolder(object):
             self.center_simulation(self.folder_molec + self.sufijo + "_md.xtc")
             self.pdb = self.checkFile(self.folder_molec + self.sufijo + "_no_end.pdb")
 
-
-
-
-
         ##self.trr_md = self.checkFile(self.folder_molec+self.sufijo+"_md.trr")
-        self.edr_md = self.checkFile(self.folder_molec+self.sufijo+"_md.edr")
-
-
+        self.edr_md = self.checkFile(self.folder_molec + self.sufijo + "_md.edr")
 
         cmd = "ls {}Resume_VS_GR_*".format(self.folder)
         self.resume_file = self.checkFile(self.tools.execute.run(cmd).strip())
-        cmd = "ls "+self.folder_molec+self.sufijo+"_npt_*.gro"
+        cmd = "ls " + self.folder_molec + self.sufijo + "_npt_*.gro"
         self.last_equilibration = self.tools.execute.run(cmd).strip()
         cmd = "ls {}*.mdp".format(self.folder_grids)
         self.config_files = self.tools.execute.run(cmd)
@@ -258,8 +240,8 @@ class ConfigHolder(object):
         self.out_png_helicity = self.prefix_results_png + "_helicity.png"
         self.out_xvg_gyrate = self.prefix_results_xvg + "_girate.xvg"
         self.out_png_gyrate = self.prefix_results_png + "_girate.png"
-        self.table_multimolecule = self.folder_results +"/"+ self.sufijo + "_table_multi_molecule.tex"
-        self.document_tex = self.folder_results +"/"+ self.sufijo + "_documnet.tex"
+        self.table_multimolecule = self.folder_results + "/" + self.sufijo + "_table_multi_molecule.tex"
+        self.document_tex = self.folder_results + "/" + self.sufijo + "_documnet.tex"
         self.table_stabilization = self.prefix_results + "_table_stabilization.tex"
 
         self.format_file_name_hbonds_xvg = '{}_{}_{}_hbond.xvg'
@@ -286,7 +268,6 @@ class ConfigHolder(object):
         self.f_distance_png = '{}_distance.png'
         self.f_distance_distribution_png = '{}_distance_distribution.png'
 
-
         #
         # Search parameters
         #
@@ -296,36 +277,33 @@ class ConfigHolder(object):
             if i.find("-- Command:") != -1:
                 aux = i.split(" ")
                 for j in range(len(aux)):
-
-#                    if aux[j] == "-step_md" and not hasattr(self,"step_md"):
-#                        self.step_md = aux[j+1].strip()
                     if aux[j] == "-step_md":
-                        self.step_md = aux[j+1].strip()
+                        self.step_md = aux[j + 1].strip()
                     if aux[j] == "-step_npt":
-                        self.step_npt = aux[j+1]
+                        self.step_npt = aux[j + 1]
                     if aux[j] == "-step_nvt":
                         self.step_nvt = aux[j + 1]
                     if aux[j] == "-step_min":
                         self.step_min = aux[j + 1]
                     if aux[j] == "-force_field":
-                        self.force_field = aux[j+1]
+                        self.force_field = aux[j + 1]
                     if aux[j] == "-solvent":
-                        self.solvent = aux[j+1]
+                        self.solvent = aux[j + 1]
                     if aux[j] == "-temp":
-                        self.temp = aux[j+1]
+                        self.temp = aux[j + 1]
                     if aux[j] == "-bt":
-                        self.type_grid = aux[j+1]
+                        self.type_grid = aux[j + 1]
                     if aux[j] == "typeGrid=":
-                        self.padding = aux[j+1]
+                        self.padding = aux[j + 1]
                     if aux[j] == "-write_data":
-                        self.write_data = aux[j+1]
+                        self.write_data = aux[j + 1]
                     if aux[j] == "-padding_grid":
-                        self.padding_grid = aux[j+1]
+                        self.padding_grid = aux[j + 1]
         f.close()
-        
+
         self.ph = "9"
         self.integration_step = 0.002
-        self.time_simulation = int(int(self.step_md)*self.integration_step)
+        self.time_simulation = int(int(self.step_md) * self.integration_step)
         self.ensemble = "NPT2"
         self.coulomb_type = "PME"
         self.t_coupl = "V-rescale"
@@ -336,32 +314,3 @@ class ConfigHolder(object):
         self.tools.split_queries()
 
 
-
-        """
-        #
-        #
-        self.ldMrun="export LD_LIBRARY_PATH="+os.environ["LD_LIBRARY_PATH"]+":"+self.path+"lanzador/externalSw/gromacs/analizarResults/mdrunM/"
-        comando=self.path+"lanzador/externalSw/gromacs/analizarResults/mdrunM/mdrun  2>&1 |wc -l" #se preuba el mdrun, existen 2 uno falla y malaga y otro en ciemat
-        a=int(commands.getoutput(comando))
-        if a==29:
-            folderMdrun=self.path+"lanzador/externalSw/gromacs/analizarResults/mdrun/"
-        else:
-            folderMdrun=self.path+"lanzador/externalSw/gromacs/analizarResults/mdrunM/"
-        """
-
-        """
-        #self.mdrun=folderMdrun+"mdrun"
-        ##self.grompp=folderMdrun+"grompp"
-        #self.ldMrun="export LD_LIBRARY_PATH="+folderMdrun+":"+os.environ["LD_LIBRARY_PATH"]
-        
-               #self.mdrun="gmx_mpi mdrun "
-        #self.grompp="gmx_mpi grompp "
-        #self.grapGEnergy="gmx_mpi energy "
-        #self.ldMrun=""
-        self.grapDistance=folder_graphs + "DistanceGraph.py"			  	#grafica de distances
-        #self.graphDistanceProtLig=folder_graphs + "DistanceProtLig.py"
-
-        #self.GrapAnalizeDistribution=folder_graphs + "GrapAnalizeDistribution.py"  	#grafica desitribucion de distancia
-        #self.grapAnalizeDistribution2Daata=folder_graphs + "GrapAnalizeDistribution2Daata.py"
-        #self.grapCALig = folder_graphs + "grapCALig.py"  # grafica para generar rmsd ligando proteina
-        """

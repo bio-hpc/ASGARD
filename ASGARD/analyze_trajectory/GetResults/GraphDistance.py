@@ -1,8 +1,8 @@
-class GraphDistance():
+class GraphDistance:
 
     def __init__(self, cfg):
         self.cfg = cfg
-        if self.cfg.p_graph_distance or self.cfg.p_table_multimolecule:  
+        if self.cfg.p_graph_distance or self.cfg.p_table_multimolecule:
             self.mol_target = self.cfg.lst_molecules[0]
             self.distance_molecules_xvg()
             self.distance_molecules_png()
@@ -10,11 +10,13 @@ class GraphDistance():
     def distance_molecules_xvg(self):
         #
         #   The first molecule is always taken as reference
-        #   If there is only a molecule, the graph is not generared 
+        #   If there is only a molecule, the graph is not generated
+        #
 
-        for i in range(1,  len(self.cfg.lst_molecules)):
+        for i in range(1, len(self.cfg.lst_molecules)):
             mol_query = self.cfg.lst_molecules[i]
-            out_xvg = self.cfg.f_molecule_distance_xvg.format(self.cfg.prefix_results_xvg,self.mol_target.original_name, mol_query.original_name)
+            out_xvg = self.cfg.f_molecule_distance_xvg.format(self.cfg.prefix_results_xvg, self.mol_target.original_name,
+                                                             mol_query.original_name)
             out_xvg_distribution = self.cfg.f_molecule_distance_distribution_xvg.format(self.cfg.prefix_results_xvg,
                                                                                         self.mol_target.original_name,
                                                                                         mol_query.original_name)
@@ -32,13 +34,12 @@ class GraphDistance():
             self.cfg.tools.execute.run(cmd)
             self.cfg.tools.generate_distribution_xvg(out_xvg, out_xvg_distribution)
 
-
-    def generate_graph(self, lst, out, lst_names ):
+    def generate_graph(self, lst, out, lst_names):
         cmd = '{} {} {} {} {}'.format(
             self.cfg.python_run,
             self.cfg.grap_rmsd,
             " ".join(lst),
-            '\"Distance '+' '.join(lst_names)+' \"',
+            '\"Distance ' + ' '.join(lst_names) + ' \"',
             out
         )
         self.cfg.tools.execute.run(cmd)
@@ -47,29 +48,37 @@ class GraphDistance():
         #
         #   A graph with all the distances of the molecules is created and the distribution is done
         #
-        lst_mols = [self.cfg.f_molecule_distance_xvg.format(self.cfg.prefix_results_xvg, self.mol_target.original_name, i.original_name) for i
+        lst_mols = [self.cfg.f_molecule_distance_xvg.format(self.cfg.prefix_results_xvg, self.mol_target.original_name,
+                                                           i.original_name) for i
                     in self.cfg.lst_molecules]
-        lst_names = [i.original_name for i in self.cfg.lst_molecules ]
-        lst_mols.pop(0)
-        self.generate_graph(lst_mols, self.cfg.f_distance_png.format(self.cfg.prefix_results_png),lst_names  )
-
-        lst_mols = [self.cfg.f_molecule_distance_distribution_xvg.format(self.cfg.prefix_results_xvg, self.mol_target.original_name, i.original_name)
-                    for i  in self.cfg.lst_molecules]
         lst_names = [i.original_name for i in self.cfg.lst_molecules]
         lst_mols.pop(0)
-        self.generate_graph(lst_mols, self.cfg.f_distance_distribution_png.format(self.cfg.prefix_results_png), lst_names)
-        if len(self.cfg.lst_molecules) > 2:  
+        self.generate_graph(lst_mols, self.cfg.f_distance_png.format(self.cfg.prefix_results_png), lst_names)
+
+        lst_mols = [self.cfg.f_molecule_distance_distribution_xvg.format(self.cfg.prefix_results_xvg,
+                                                                         self.mol_target.original_name, i.original_name)
+                    for i in self.cfg.lst_molecules]
+        lst_names = [i.original_name for i in self.cfg.lst_molecules]
+        lst_mols.pop(0)
+        self.generate_graph(lst_mols, self.cfg.f_distance_distribution_png.format(self.cfg.prefix_results_png),
+                            lst_names)
+        if len(self.cfg.lst_molecules) > 2:
             for i in range(1, len(self.cfg.lst_molecules)):
                 mol_query = self.cfg.lst_molecules[i]
-                in_xvg = [self.cfg.f_molecule_distance_xvg.format(self.cfg.prefix_results_xvg, self.mol_target.original_name, mol_query.original_name)]
+                in_xvg = [self.cfg.f_molecule_distance_xvg.format(self.cfg.prefix_results_xvg,
+                                                                  self.mol_target.original_name,
+                                                                  mol_query.original_name)]
                 lst_names = [self.mol_target.original_name, mol_query.original_name]
                 self.generate_graph(in_xvg,
-                                    self.cfg.f_molecule_distance_png.format(self.cfg.prefix_results_png, self.mol_target.original_name, mol_query.original_name),lst_names )
+                                    self.cfg.f_molecule_distance_png.format(self.cfg.prefix_results_png,
+                                                                              self.mol_target.original_name,
+                                                                              mol_query.original_name), lst_names)
 
-                in_xvg  = [ self.cfg.f_molecule_distance_distribution_xvg.format(self.cfg.prefix_results_xvg, self.mol_target.original_name,
-                                                                     mol_query.original_name) ]
-                self.generate_graph(in_xvg ,
-                    self.cfg.f_molecule_distance_distribution_png.format(self.cfg.prefix_results_png, self.mol_target.original_name,
-                                                                     mol_query.original_name), lst_names)
-
-
+                in_xvg = [self.cfg.f_molecule_distance_distribution_xvg.format(self.cfg.prefix_results_xvg,
+                                                                               self.mol_target.original_name,
+                                                                               mol_query.original_name)]
+                self.generate_graph(in_xvg,
+                                    self.cfg.f_molecule_distance_distribution_png.format(self.cfg.prefix_results_png,
+                                                                                          self.mol_target.original_name,
+                                                                                          mol_query.original_name),
+                                    lst_names)

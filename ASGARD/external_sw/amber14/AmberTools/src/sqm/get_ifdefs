@@ -1,2 +1,0 @@
-#!/bin/sh
-grep '^# *ifdef' *.f *.h | awk '{print $NF}' | sort | uniq 

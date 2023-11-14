@@ -1,1 +1,0 @@
-../AmberTools/src/FEW/FEW.pl

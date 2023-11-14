@@ -3,8 +3,6 @@
 #
 #   Generates the rmsd graphs for protein and ligand (if it exists)
 #
-#
-
 
 class GraphSasa(object):
     def __init__(self, cfg):
@@ -35,13 +33,5 @@ class GraphSasa(object):
             )
             )
 
-            lst_cmd.append('{} {} {} {} {}'.format(self.cfg.python_run, self.cfg.graph_sasa,self.cfg.out_xvg_o_sasa, self.cfg.out_xvg_odg_sasa, self.cfg.out_png_sasa))
+            lst_cmd.append('{} {} {} {} {}'.format(self.cfg.python_run, self.cfg.graph_sasa, self.cfg.out_xvg_o_sasa, self.cfg.out_xvg_odg_sasa, self.cfg.out_png_sasa))
             self.cfg.template_job.execute_job(self.cfg.script_sasa, lst_cmd)
-
-
-
-
-
-
-
-
