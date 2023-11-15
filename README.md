@@ -7,7 +7,7 @@ ASGARD is a tool that allows via an automated MD workflow to analyse performed M
 
 ### Installation
 
-Using git clone
+**1.*** Using git clone
 ```bash
   git clone https://github.com/bio-hpc/ASGARD.git
 ```
@@ -15,14 +15,14 @@ Using git clone
   git clone git@github.com:bio-hpc/ASGARD.git
 ```
 
-Download the .zip and unzip it in the supercomputing centers you are going to use
+**2.*** Download the .zip and unzip it in the supercomputing centers you are going to use
 
 
 ### Download singularity image 
 The singularity image generated for ASGARD and needed to secure compatibility with any cluster.
 
 ```bash
-wget "https://drive.google.com/uc?export=download&id=1Q9ifMDEaoxhsI9eealvsf_cTvKCYkJ8H&confirm=t" -O singularity/ASGARD.simg
+wget "https://drive.google.com/uc?export=download&id=1wHvmtUVhUz9DAzPnqeZPE7MVX5fRERGb&confirm=t" -O singularity/ASGARD.simg
 ```
 
 ### Available Analyses
@@ -57,7 +57,7 @@ The only thing that you need to run ASGARD is the Singularity package installed 
 
 Firstly, you need a folder with all outputs files from GROMACS Molecular Dynamics 
 
-Parameters needed to launch ASGARD are the folder with GROMACS results files (-f) (xtc, tpr, gro, mpd used) and profile which you want (-p): TARGET (a single protein simulations) and TARGET_QUERY (protein-ligand simultions), and also the group name of the ligand that you want to analyze (-l)
+Parameters needed to launch ASGARD are the folder with GROMACS results files (-f) (xtc, tpr, gro, mpd used) and profile which you want (-p): TARGET (a single protein simulations) and TARGET_QUERY (protein-ligand simultions)
 
 For instance, you can launch ASGARD this way:
 ```bash
