@@ -60,7 +60,6 @@ echo "Generating PDF report"
 rm mdout.mdp area.xvg
 cd $RESULTS/results
 latex=$(ls *documnet.tex) 
-echo $latex
 singularity exec --bind $bind "$singularity"/ASGARD.simg xelatex -interaction nonstopmode -file-line-error $latex >> "$folder_analysis"_"$profile"_"$fecha".err 2>&1 # Report
 cp *.pdf ..
 
