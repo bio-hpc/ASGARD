@@ -29,7 +29,7 @@ x, lst_solv, _, _, _, _ = generateGraph.read_xvg(file_odp)
 lst.append(lst_solv)
 steeps.append(x)
 
-x_title = "Time ps"
+x_title = "Time (ps)"
 y_title = "Area"
 legend = ["Total", "DG solv"]
 title = "Solvent Accessible Surface"

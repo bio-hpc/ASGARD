@@ -11,6 +11,7 @@ import matplotlib
 matplotlib.use('Agg')  # Set the backend to 'Agg' for non-GUI environments
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
+from matplotlib.font_manager import FontProperties
 import os
 
 # Set matplotlib to use Agg backend
@@ -75,7 +76,7 @@ class GenerateGraph:
             else:
                 plt.plot(x, y, linestyle="-", linewidth=line_width, color=self.get_color(0))
             if legend != "":
-                self.put_legend(legend)
+                self.put_legend(legend,7)
             self.save_graph(out_png)
 
     def ticsx(self, min, max):
@@ -105,7 +106,7 @@ class GenerateGraph:
                 min_x = 0
                 max_x = max(x)
             if max_x < 50:
-                plt.xticks(x, size='small', rotation=45)
+                plt.xticks(x,size='small', rotation=45)
         # if isinstance(y[0], list):
         #     min_y = np.min(y)
         #     max_y = np.max(y)
@@ -125,12 +126,12 @@ class GenerateGraph:
         plt.title(title)
         plt.ylabel(y_label)
 
-    def put_legend(self, legend):
+    def put_legend(self, legend,size):
         ax = plt.gca()
         if len(legend) > 0:
             for i in np.arange(len(legend)):
                 ax.plot(1, 1.5, color=self.get_color(i), linewidth=2.5, linestyle="-", label=legend[i])
-            ax.legend(loc='upper left', prop={'size': 12})
+            ax.legend(loc='upper left', prop={'size': size})
 
     def graph_doble_line(self, leyenda, datosX, datosY, outPut, x_title, y_title, title, ylabel2):
         self.plot_xy_Line(leyenda, datosX, datosY, outPut, x_title, y_title, title, ylabel2)
@@ -157,7 +158,7 @@ class GenerateGraph:
             #ax.set_xticklabels("")
 
             if legend:
-                self.put_legend(legend)
+                self.put_legend(legend,12)
 
             # Set y-axis ticks to integers
             ax.yaxis.set_major_locator(MaxNLocator(integer=True))
@@ -165,53 +166,68 @@ class GenerateGraph:
             self.save_graph(outPut)
 
     def generate_multiple_bar(self, legend, datos, resName, outPut, yTitulo, titulo):
-        width = 0.2  # the width of the bars
-        fig, ax = plt.subplots()
-        # fig.subplots_adjust(bottom=0.35)
-        fig.set_size_inches(13, 10)  # You can adjust these numbers as needed
-        ax.set_ylabel(yTitulo)
-        ax.set_title(titulo)
-        print("resName is",resName)
-        # linea HORIZONTAL en la coordenada  y 0
-        ax.axhline(y=0, xmin=-1, xmax=len(datos[0]), linewidth=0.2, color='k')
-        mini = []  # sirve para buscar el minimo y el maximo de los datos
-        maxi = []
-        tam_linea_borde_bar = [0.5]
-        #
-        # Cargo bars
-        #
-        for i in range(len(datos)):
-            mini.append(min(datos[i]))
-            maxi.append(max(datos[i]))
-            ind = np.arange(len(datos[i]))  # es una lista de listas
-            ax.bar(ind + (width * i) + (width / 2), datos[i], width, color=self.get_color(i), edgecolor="none")
-        
-        # ax.set_xlim(min(ind) - (len(datos) / 2), max(ind) + (len(datos) / 2))
+            width = 0.2  # the width of the bars
+            fig, ax = plt.subplots()
+            # fig.subplots_adjust(bottom=0.35)
+            
+            fig.set_size_inches(13, 10)  # You can adjust these numbers as needed
+            ax.set_ylabel(yTitulo,fontsize=15)
+            ax.set_title(titulo,fontsize=20)
+            # print("resName is",resName)
+            # linea HORIZONTAL en la coordenada  y 0
+            ax.axhline(y=0, xmin=-1, xmax=len(datos[0]), linewidth=0.2, color='k')
+            mini = []  # sirve para buscar el minimo y el maximo de los datos
+            maxi = []
+            tam_linea_borde_bar = [0.5]
+            #
+            # Cargo bars
+            #
+            for i in range(len(datos)):
+                mini.append(min(datos[i]))
+                maxi.append(max(datos[i]))
+                ind = np.arange(len(datos[i]))  # es una lista de listas
+                ax.bar(ind + (width * i) + (width / 2), datos[i], width, color=self.get_color(i), edgecolor="none")
+            
+            # ax.set_xlim(min(ind) - (len(datos) / 2), max(ind) + (len(datos) / 2))
 
-        min_y = min([min(i) for i in datos])
-        max_y = max([max(i) for i in datos])
-        ax.set_ylim((self.ticsx(min_y, max_y)))
-        # Adjust x-tick positions and set labels
-        # print("ind is",ind)
-        # print(np.arange(len(resName)))
-        # ax.set_xticks(np.arange(len(resName)))
-        # ax.set_xticks(ind + (len(datos) - 1) * width / 2)
-        for i in resName:
-            print(i)
-        ax.set_xticklabels(resName)
-        ax.tick_params(axis='both', which='minor', labelsize=8)
-        legend_fontsize = 10  # Choose a font size that works for your graph
-        legend_columns = 1  # Adjust the number of columns as needed
-        plt.legend(loc='upper right', prop={'size': legend_fontsize,'weight':'bold'}, ncol=legend_columns, fancybox=True, framealpha=1, shadow=True, borderpad=1)
-        # plt.legend(loc='upper left', prop={'size': 6})
-        self.put_legend(legend)
-        self.putLegendBars(ax, resName, ind, width)
-        self.save_graph(outPut)
+            min_y = min([min(i) for i in datos])
+            max_y = max([max(i) for i in datos])
+            ax.set_ylim((self.ticsx(min_y, max_y)))
+            # Adjust x-tick positions and set labels
+            # print("ind is",ind)
+            # print(np.arange(len(resName)))
+            # ax.set_xticks(np.arange(len(resName)))
+            # ax.set_xticks(ind + (len(datos) - 1) * width / 2)
+            # for i in resName:
+            #     print(i)
+            font_prop = FontProperties(size=20)
+            ax.set_xticklabels(resName,fontweight='bold',fontproperties=font_prop)
+            
+            # txt = ax.xaxis.get_offset_text()
+            # txt.set_fontweight('bold')
+            # txt.set_fontsize('large')
+            # txt.set_fontweight('bold')
+            # ax.tick_params(axis='x', labelsize=20)  # Font size for tick labels
+            ax.set_xlabel('Residues', fontsize=14)  # Font size for axis label
+            ax.tick_params(axis='both', which='minor')
+            
+            # plt.xticks(fontsize=20,fontweight='bold')
+
+            legend_fontsize = 10  # Choose a font size that works for your graph
+            legend_columns = 1  # Adjust the number of columns as needed
+            legend_properties = {'weight': 'bold', 'size': 12, 'family': 'sans-serif'}
+            plt.legend(loc='upper right', prop=legend_properties, ncol=legend_columns, fancybox=True, framealpha=1, shadow=True, borderpad=1)
+            plt.yticks(fontsize=12,fontweight='bold')
+            # plt.legend(loc='upper left', prop={'size': 6})
+            self.put_legend(legend,12)
+            self.putLegendBars(ax, resName, ind, width)
+            self.save_graph(outPut)
+
 
     def putLegendBars(self, ax, xSubTitle, ind, width):
         ax.set_xticks(ind + width + (width / 2))
         for tick in ax.xaxis.get_major_ticks():
-            tick.label.set_fontsize(8)
+            tick.label.set_fontsize(12)
             tick.label.set_rotation(90)
 
     def generate_heatmap(self, data, steps, out, title, x_label, y_label, x_ticks, yTicks, max_steps):
