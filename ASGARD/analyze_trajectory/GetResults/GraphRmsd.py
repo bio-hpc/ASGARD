@@ -27,9 +27,16 @@ class GraphRmsd:
         self.cfg.tools.execute.run(cmd)
 
     def rmsd_molecules_png(self):
+        if len(self.cfg.lst_molecules) == 1:
+          for i in self.cfg.lst_molecules:
+            original_name_target=i.original_name
+          lst_mols = [self.cfg.f_molecule_rmsd_xvg.format(self.cfg.prefix_results_xvg, i.original_name) for i in self.cfg.lst_molecules]
+          self.generate_graph(lst_mols, self.cfg.f_molecule_rmsd_png.format(self.cfg.prefix_results_png,original_name_target), '"RMSD All Molecules"')
+          lst_mols = [self.cfg.f_molecule_rmsd_distribution_xvg.format(self.cfg.prefix_results_xvg, i.original_name) for i in self.cfg.lst_molecules]
+          self.generate_graph(lst_mols, self.cfg.f_molecule_rmsd_distribution_png.format(self.cfg.prefix_results_png,original_name_target), '"RMSD All Molecules"')
+          
         lst_mols = [self.cfg.f_molecule_rmsd_xvg.format(self.cfg.prefix_results_xvg, i.original_name) for i in self.cfg.lst_molecules]
         self.generate_graph(lst_mols, self.cfg.f_rmsd_png.format(self.cfg.prefix_results_png), '"RMSD All Molecules"')
-
         lst_mols = [self.cfg.f_molecule_rmsd_distribution_xvg.format(self.cfg.prefix_results_xvg, i.original_name) for i in self.cfg.lst_molecules]
         self.generate_graph(lst_mols, self.cfg.f_rmsd_distribution_png.format(self.cfg.prefix_results_png), '"RMSD All Molecules"')
 

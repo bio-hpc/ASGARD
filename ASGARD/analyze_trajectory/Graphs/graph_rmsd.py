@@ -53,4 +53,4 @@ y_title = str("RMSD (nm)")
 if any(i in sys.argv[1] for i in TOKEN_DISTRIBUTION):
     generateGraph.graph_doble_line(legend, lst_y, lst_x, out_png, x_title, y_title, title, "")
 else:
-    generateGraph.graph_doble_line(legend, lst_x, lst_y, out_png, x_title, y_title, title, "")
+    generateGraph.graph_doble_line(legend, lst_x, lst_y, out_png, 'Time (ps)', y_title, title, "")

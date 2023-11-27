@@ -36,28 +36,43 @@ class GenerateLatex(object):
         document.write(format_x.format('\\begin{figure}[H]'))
         if center:
             document.write(format_x.format('\centering'))
-        document.write(format_x.format('\includegraphics[width=0.5\textwidth] {' + figure + '} '))
+        document.write(format_x.format('\includegraphics[width=0.8\\textwidth] {' + figure + '} '))
         document.write(format_x.format(r'\end{figure}'))
 
-    def put_figure(self, document, figure, format_x, capt=None):
+    def put_figure_0_5_centering(self, document, figure, format_x):
+        document.write(format_x.format('\\begin{figure}[H]'))
+        document.write(format_x.format('\centering'))
+        document.write(format_x.format('\includegraphics[width=0.8\\textwidth] {' + figure + '} '))
+        document.write(format_x.format(r'\end{figure}'))
+
+
+    def put_figure(self, document, figure, format_x, size, capt=None):
         document.write(format_x.format(r'\begin{figure}[H]'))
         document.write(format_x.format('\centering'))
-        document.write(format_x.format('\includegraphics[width=0.8 \\textwidth] {' + figure + '} '))
+        document.write(format_x.format('\includegraphics[width=' + str(size) + '\\textwidth] {' + figure + '} '))
         if capt:
             document.write(format_x.format('\caption{' + capt + '}'))
-        document.write(format_x.format('\\end{figure}'))
+        document.write(format_x.format('\\end{figure}\\''\\'))
 
-    def put_figure_2(self, document, figure_a, figure_b, capt_a, capt_b, format_x):
+    def put_figure_dssp(self, document, figure, format_x, size, capt=None):
+        document.write(format_x.format(r'\begin{figure}[H]'))
+        document.write(format_x.format('\centering'))
+        document.write(format_x.format('\includegraphics[height=' + str(size) + '\\textheight] {' + figure + '} '))
+        if capt:
+            document.write(format_x.format('\caption{' + capt + '}'))
+        document.write(format_x.format('\\end{figure}\\''\\'))
+
+    def put_figure_2(self, document, figure_a, figure_b, capt_a, capt_b, format_x, size):
         document.write(format_x.format(r'\begin{figure}[H]'))
         document.write(format_x.format(r'\begin{minipage}{0.48\textwidth''}'))
         document.write(format_x.format('\centering'))
-        document.write(format_x.format('\includegraphics[width=1\linewidth]{' + figure_a + '}'))
+        document.write(format_x.format('\includegraphics[width='+str(size)+'\linewidth]{' + figure_a + '}''\\''\\'))
         if capt_a != "":
             document.write(format_x.format('\caption{' + capt_a + '}\label{Fig:Data1}'))
         document.write(format_x.format('\end{minipage}\hfill'))
         document.write(format_x.format(r'\begin{minipage}{0.48\textwidth}'))
         document.write(format_x.format(r'\centering'))
-        document.write(format_x.format('\includegraphics[width=1\linewidth]{' + figure_b + '}'))
+        document.write(format_x.format('\includegraphics[width='+str(size)+'\linewidth]{' + figure_b + '}'))
         if capt_b != "":
             document.write(format_x.format('\caption{' + capt_b + '}\label{Fig:Data2}'))
         document.write(format_x.format('\end{minipage}'))
@@ -70,27 +85,27 @@ class GenerateLatex(object):
             document.write(f_4.format('\input ' + self.cfg.table_stabilization))
             document.write(f_4.format(
                 '\captionof{table}{\small{Average physical chemical properties for the simulation time, presented with standard deviation values.}}'))
-            self.put_figure(document, self.cfg.out_png_stabilization_1, f_4)
-            self.put_figure(document, self.cfg.out_png_stabilization_2, f_4)
+            self.put_figure(document, self.cfg.out_png_stabilization_1, f_4,1)
+            self.put_figure(document, self.cfg.out_png_stabilization_2, f_4,1)
 
     def rmsd(self, document):
         if self.cfg.p_graph_rmsd:
             document.write(f_2.format('\subsection{Root Mean Square Deviation}'))
             self.put_text(document, self.cfg.p_graph_stabilization, self.text['rmsd'], f_3)
             self.put_figure_2(document, self.cfg.f_rmsd_png.format(self.cfg.prefix_results_png),
-                              self.cfg.f_rmsd_distribution_png.format(self.cfg.prefix_results_png), "", "", f_4)
+                              self.cfg.f_rmsd_distribution_png.format(self.cfg.prefix_results_png), "", "", f_4,1)
             for mol in self.cfg.lst_molecules:
                 img_a = self.cfg.f_molecule_rmsd_png.format(self.cfg.prefix_results_png, mol.original_name)
                 img_b = self.cfg.f_molecule_rmsd_distribution_png.format(self.cfg.prefix_results_png,
                                                                           mol.original_name)
-                self.put_figure_2(document, img_a, img_b, "", "", f_4)
+                self.put_figure_2(document, img_a, img_b, "", "", f_4,1)
 
     def rmsdf(self, document):
         if self.cfg.p_graph_rmsdf:
             document.write(f_2.format('\subsection{System flexibility}'))
             self.put_text(document, self.cfg.p_graph_stabilization, self.text['rmsdf'], f_3)
             if self.cfg.p_step_fluctuation:
-                self.put_figure(document, self.cfg.out_graph_fluctuation.format(self.cfg.prefix_results_png), f_4)
+                self.put_figure(document, self.cfg.out_graph_fluctuation.format(self.cfg.prefix_results_png), f_4,0.8)
             if self.cfg.p_graph_rmsdf:
                 lst_figures_put = []  # create a list with the figures obtained
                 for i in range(len(self.cfg.lst_molecules)):
@@ -101,21 +116,21 @@ class GenerateLatex(object):
                                                                      self.cfg.lst_molecules[i].original_name)
                         img_b = self.cfg.f_molecule_rmsd_f_png.format(self.cfg.prefix_results_png,
                                                                      self.cfg.lst_molecules[i + 1].original_name)
-                        self.put_figure_2(document, img_a, img_b, "", "", f_4)
+                        self.put_figure_2(document, img_a, img_b, "", "", f_4,1)
 
                     elif i not in lst_figures_put:
                         lst_figures_put.append(i)
                         img_a = self.cfg.f_molecule_rmsd_f_png.format(self.cfg.prefix_results_png,
                                                                      self.cfg.lst_molecules[i].original_name)
-                        self.put_figure_0_5(document, img_a, f_4)
+                        self.put_figure_0_5_centering(document, img_a, f_4)
             if self.cfg.p_graph_gyrate:
-                self.put_figure(document, self.cfg.out_png_gyrate, f_4)
+                self.put_figure(document, self.cfg.out_png_gyrate, f_4,0.8)
 
     def distance(self, document):
         if self.cfg.p_graph_distance:
             document.write(f_2.format('\subsection{Distance center of mass}'))
             self.put_figure_2(document, self.cfg.f_distance_png.format(self.cfg.prefix_results_png),
-                              self.cfg.f_distance_distribution_png.format(self.cfg.prefix_results_png), "", "", f_4)
+                              self.cfg.f_distance_distribution_png.format(self.cfg.prefix_results_png), "", "", f_4,1)
             if self.cfg.p_desglose:
                 mol_target = self.cfg.lst_molecules[0]
                 if len(self.cfg.lst_molecules) > 2:  # if there are only 2 graphs
@@ -127,13 +142,14 @@ class GenerateLatex(object):
                         img_b = self.cfg.f_molecule_distance_distribution_png.format(self.cfg.prefix_results_png,
                                                                                         mol_target.original_name,
                                                                                         mol_query.original_name)
-                        self.put_figure_2(document, img_a, img_b, "", "", f_4)
+                        self.put_figure_2(document, img_a, img_b, "", "", f_4,0.8)
 
     def sasa(self, document):
         if self.cfg.p_graph_sasa:
+            document.write(f_3.format('\\newpage'))
             document.write(f_2.format('\subsection{Solvent Accessible Surface}'))
             self.put_text(document, self.cfg.p_graph_stabilization, self.text['sasa'], f_3)
-            self.put_figure(document, self.cfg.out_png_sasa.format(self.cfg.prefix_results_png), f_4)
+            self.put_figure(document, self.cfg.out_png_sasa.format(self.cfg.prefix_results_png), f_4,0.8)
 
     def generate_stability(self, document):
         if self.cfg.p_step_fluctuation or self.cfg.p_graph_rmsd or self.cfg.p_graph_rmsdf \
@@ -148,9 +164,9 @@ class GenerateLatex(object):
 
     def dssp(self, document):
         if self.cfg.p_graph_dssp:
-            self.put_figure(document, self.cfg.out_png_ddsp.format(self.cfg.prefix_results_png), f_4,
+            self.put_figure(document, self.cfg.out_png_ddsp.format(self.cfg.prefix_results_png), f_4,0.8,
                             "Number of amino acid residues in each secondary structure type, as defined by DSSP, along the simulation time.")
-            self.put_figure(document, self.cfg.out_png_ddsp_ss, f_4,
+            self.put_figure_dssp(document, self.cfg.out_png_ddsp_ss, f_4,0.8,
                             'Evolution of secondary structure, calculated by DSSP, as a function of both simulation time and amino acid residue position on the polypeptidic chain')
 
     def generate_system_dinamics(self, document):
@@ -170,7 +186,9 @@ class GenerateLatex(object):
                 img_b = self.cfg.format_file_name_hbonds_png.format(self.cfg.prefix_results_png,
                                                                     mol_target.original_name, mol_query.original_name)
 
-                self.put_figure_2(document, img_a, img_b, "", "", f_4)
+                # self.put_figure_2(document, img_a, img_b, "", "", f_4,1)
+                self.put_figure(document, img_a, f_4,0.75)
+                self.put_figure(document, img_b, f_4,0.75)
 
             if self.cfg.p_interactions_gromacs:
                 results_prefix_root = '{}_{}_{}_rerun'.format(self.cfg.prefix_results, mol_target.original_name,
@@ -184,8 +202,10 @@ class GenerateLatex(object):
                 n_g_poseview = results_prefix_png + "_poseview.png"
                 n_t_latex = results_prefix_root + "_table_interations.tex"
 
-                self.put_figure_2(document, n_g_global_hist_res, n_g_join_hist, "", "", f_4)
-                self.put_figure_2(document, n_g_global_line_res, n_g_poseview, "", "", f_4)
+                # self.put_figure_2(document, n_g_global_hist_res, n_g_join_hist, "", "", f_4,1.15)
+                self.put_figure(document, n_g_global_hist_res, f_4,0.75)
+                self.put_figure(document, n_g_join_hist, f_4,0.75)
+                self.put_figure_2(document, n_g_global_line_res, n_g_poseview, "", "", f_4,1)
                 document.write(f_4.format('\centering'))
                 document.write(f_5.format('\input ' + n_t_latex))
                 document.write(f_5.format(

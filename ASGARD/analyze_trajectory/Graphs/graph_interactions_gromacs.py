@@ -59,7 +59,7 @@ def generate_poseview(pdb):
     subprocess.check_output(cmd, shell=True)
     cmd = '{} -ipdb {} -omol2 > {} 2> /dev/null'.format(babel_run, prefix + "_query.pdb", prefix + "_query.mol2")
     subprocess.check_output(cmd, shell=True)
-    cmd = 'singularity exec /ASGARD_singularity/ASGARD.simg  {} -p {} -l {} -o {} -t  {}'.format(
+    cmd = 'singularity exec --bind /data4/ /ASGARD_singularity/ASGARD.simg  {} -p {} -l {} -o {} -t  {}'.format(
         poseview_run,
         prefix + "_target.mol2",
         prefix + "_query.mol2",

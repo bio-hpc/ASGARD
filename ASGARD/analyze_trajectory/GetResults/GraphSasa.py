@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#   Generates the rmsd graphs for protein and ligand (if it exists)
+#   Generates the sasa graphs
 #
 
 class GraphSasa(object):

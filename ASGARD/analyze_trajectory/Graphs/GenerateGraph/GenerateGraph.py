@@ -68,6 +68,8 @@ class GenerateGraph:
         self.set_plt(x, y, x_label, y_label, title)
         if len(y) > 0:
             if isinstance(y[0], list):  # si es un tipo lista quiere decir que tendra mas datos
+                ax = plt.gca()
+                ax.xaxis.set_major_locator(plt.MaxNLocator(nbins=7))
                 for i in range(len(y)):
                     if not isinstance(x[0], list):  # si las x no son lista se supone que son lapsos pasos de la simulacion
                         plt.plot(x, y[i], linestyle="-", linewidth=line_width, color=self.get_color(i))
@@ -76,7 +78,7 @@ class GenerateGraph:
             else:
                 plt.plot(x, y, linestyle="-", linewidth=line_width, color=self.get_color(0))
             if legend != "":
-                self.put_legend(legend,7)
+                self.put_legend(legend,6)
             self.save_graph(out_png)
 
     def ticsx(self, min, max):
@@ -126,7 +128,7 @@ class GenerateGraph:
         plt.title(title)
         plt.ylabel(y_label)
 
-    def put_legend(self, legend,size):
+    def put_legend(self, legend, size):
         ax = plt.gca()
         if len(legend) > 0:
             for i in np.arange(len(legend)):
