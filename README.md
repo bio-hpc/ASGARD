@@ -63,3 +63,7 @@ For instance, you can launch ASGARD this way:
 ```bash
 ./ASGARD.sh -f StudyCase2/ -p TARGET_QUERY
 ```
+
+Launching some of the case studies to test the tool and understand its functionality is advisable. The case studies can be found at the following Zenodo link:
+
+https://doi.org/10.5281/zenodo.10213139
