@@ -17,7 +17,7 @@ prefix_gromacs=$5
 bind=$(pwd | cut -d/ -f1-2)/
 singularity="${PWD}/singularity/"
 gmx=$(echo singularity exec --bind $bind "$singularity"/ASGARD.simg)
-echo $gmx
+#echo $gmx
 if [ "$step" == "-1" ];then 
 	##echo "echo 0 |${prefix_gromacs} trjconv${mpi} -f ${xtc} -s ${gro} -o ${out_pdb} -e $step"
 	##echo 0 |${prefix_gromacs} trjconv${mpi} -f ${xtc} -s ${gro} -o ${out_pdb} -e $step #Just for some gromacs versions

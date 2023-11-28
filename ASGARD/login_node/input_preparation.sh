@@ -6,7 +6,7 @@ DIR=$1
 bind=$(pwd | cut -d/ -f1-2)/
 singularity="${PWD}/singularity/"
 gmx=$(echo singularity exec --bind $bind "$singularity"/ASGARD.simg gmx)
-echo $gmx
+#echo $gmx
 #
 #PDB=$2
 #MOL2=$3
@@ -40,7 +40,7 @@ NAME='VS_GR_'${DIR##*/}
 #  NAME=$(echo $TRAJ | cut -f 1 -d '/' | cut -f 1 -d '.')
 #fi
 RESULTS=$NAME'_results'-"$(date +%Y-%d-%m)"
-echo $RESULTS
+#echo $RESULTS
 
 #if [[ -d $RESULTS ]]; then 
 #                while [ "$input" != "Y" ] && [ "$input" != "y" ] && [ "$input" != "N" ] && [ "$input" != "n" ] && [ "$input" != "zz" ] ; do

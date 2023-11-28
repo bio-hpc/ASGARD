@@ -40,7 +40,7 @@ if [ ! -f $file_conf ] ; then
 	#echo "path_cluster_nodes: ${path_ASGARD}cluster_nodes/" >> ${file_conf}
 	echo "path_analize_results: ${path_ASGARD}analyze_results/" >> ${file_conf}
 	echo "path_external_sw: ${path_ASGARD}external_sw/" >> ${file_conf}
-  echo "path_extra_ASGARD: $path_ASGARD}extra_ASGARD/" >> ${file_conf}
+    echo "path_extra_ASGARD: $path_ASGARD}extra_ASGARD/" >> ${file_conf}
 	#echo "path_extra_shuttlemol: ${path_ASGARD}extra_shuttlemol/" >> ${file_conf}
 	write_comment "Python"
 	echo "python_run: ${python_run}" >> ${file_conf}

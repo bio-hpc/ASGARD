@@ -20,6 +20,6 @@ topology_include=${topology_include%%${post}*}"$post"
 
 for i in $(ls "$DIR")
 do 
-echo $i
+#echo $i
 sed -i "s|"$topology_include"|"$actual_dir"|g" "$DIR"/$i
 done 
