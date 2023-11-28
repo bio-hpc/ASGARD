@@ -6,24 +6,7 @@ DIR=$1
 bind=$(pwd | cut -d/ -f1-2)/
 singularity="${PWD}/singularity/"
 gmx=$(echo singularity exec --bind $bind "$singularity"/ASGARD.simg gmx)
-#echo $gmx
-#
-#PDB=$2
-#MOL2=$3
-#
-#TRAJ=$1
-#TOP=$2 # tpr
-#GRO=$3
-#PDB=$4
-#MOL2=$5
-#NAME=$6 # optional
-#
-#
-#
-##PARA ONLY TARGET
-#
-## if NAME is empty
-#
+
 
 ############################
 echo 'Creating analysis folder...'
@@ -36,11 +19,7 @@ fi
 ORIGIN=${DIR##*/}
 NAME='VS_GR_'${DIR##*/}
 
-#NAME="${f%.*}"
-#  NAME=$(echo $TRAJ | cut -f 1 -d '/' | cut -f 1 -d '.')
-#fi
 RESULTS=$NAME'_results'-"$(date +%Y-%d-%m)"
-#echo $RESULTS
 
 if [[ -d $RESULTS ]]; then 
                 while [ "$input" != "Y" ] && [ "$input" != "y" ] && [ "$input" != "N" ] && [ "$input" != "n" ] && [ "$input" != "zz" ] ; do

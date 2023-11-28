@@ -35,5 +35,4 @@ class GraphStepFluctuation:
                                self.cfg.out_graph_fluctuation)
                        )
         lst_cmd.append("cd {}".format(self.cfg.path))
-        # lst_cmd.append("rm -r {}".format(self.cfg.folder_fluctuation))
         self.cfg.template_job.execute_job(self.cfg.script_graph_fluctuation, lst_cmd)

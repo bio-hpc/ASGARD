@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-#   Encuentra el nombre de los queries
+#   Find the query name
 #
 count=0
 for itp in "${itps[@]}"; do

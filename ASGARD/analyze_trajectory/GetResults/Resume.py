@@ -36,8 +36,6 @@ class Resume:
         print("\nPaths:")
         print(cfg.format_2.format('tpr_min', cfg.tpr_min))
         print(cfg.format_2.format('xtc_md', cfg.xtc_md))
-        # print(cfg.format_2.format('edr_md', cfg.edr_md))
-        # print(cfg.format_2.format('trr_md', cfg.trr_md))
         print(cfg.format_2.format('md_gro', cfg.gro_md))
         print(cfg.format_2.format('md_top', cfg.top))
         print(cfg.format_2.format('prefix_molec', cfg.prefix_molec))

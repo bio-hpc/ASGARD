@@ -21,7 +21,7 @@ class ConfigHolder(object):
 
     def set_profile_cfg(self, profile):
         """
-        Busca el perfil
+        Search the profile configuration
         """
         self.profiles = Profiles(self)
         self.profiles.set_profile_cfg(profile)
@@ -149,7 +149,7 @@ class ConfigHolder(object):
         self.mdrum = "mdrum"
 
         #
-        # Directorios utilizados para el analisis
+        # Directories used for the analysis
         #
         self.index = self.folder_grids + self.sufijo + "_index.ndx"
 
@@ -164,7 +164,7 @@ class ConfigHolder(object):
         self.top = self.checkFile(self.folder_molec + self.sufijo + ".top")
 
         #
-        #   Opciones del target y queries
+        #   Target and query options
         #
         self.name_target = os.path.basename(prefix_molec).split("_")[2]
         self.python_run = "python"
@@ -186,7 +186,6 @@ class ConfigHolder(object):
             self.center_simulation(self.folder_molec + self.sufijo + "_md.xtc")
             self.pdb = self.checkFile(self.folder_molec + self.sufijo + "_no_end.pdb")
 
-        ##self.trr_md = self.checkFile(self.folder_molec+self.sufijo+"_md.trr")
         self.edr_md = self.checkFile(self.folder_molec + self.sufijo + "_md.edr")
 
         cmd = "ls {}Resume_VS_GR_*".format(self.folder)

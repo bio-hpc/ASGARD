@@ -6,13 +6,13 @@ fi
 if [ "${GPU}" != "N/A" ];then
 	echo "#SBATCH --gres=gpu:${GPU}" 					>>$name_template_job 
 fi
-if [ "${mem}" != "0" ];then #algun caso no se le puede indicar memoria, al usar la GPU
+if [ "${mem}" != "0" ];then 
 	echo "#SBATCH --mem=${mem}" 						>>$name_template_job
 fi
 if [ "$cluster_queue" != "N/A" ];then
 	echo "#SBATCH -p "${cluster_queue} 							>>$name_template_job
 fi
-#echo "#SBATCH --gres=gpu:2" >> $nomTemplateJob
+
 echo "#SBATCH --output=${folder_out_jobs}${outJob}.out"	>>$name_template_job
 echo "#SBATCH --error=${folder_out_jobs}${outJob}.err"	>>$name_template_job
 echo "#SBATCH -J ${name_job}"							>>$name_template_job
@@ -20,7 +20,6 @@ echo "#SBATCH --time=$time_job"							>>$name_template_job
 echo "#SBATCH --cpus=$cores"							>>$name_template_job
 echo "#SBATCH --nodes=${nodos}"							>>$name_template_job
 source ${path_cluster_nodes}templates_queue/codigo.sh
-#execute="sbatch" #coamndo de ejecucion
 
 
 

@@ -37,8 +37,7 @@ generate_informe()
 	rama=`git branch -avv 2>/dev/null|grep "\*" |awk '{print $2}'`
 	informe="${informe}-- numVesrion:\t $numVersion codVersion:\t\t$codVersion  \t branch: $rama\n" #fecha para el informe
 	informe="${informe}-- date:\t\t$fecha (Y-m-d)\n" #fecha para el informe
-  #allComand=$(echo ./sm.sh -t ./phagedisplay/targets/4eje_pduev3/4eje_preprocess_pduev3.pdb -q ./phagedisplay/queries/pduev3/ -o VS -s GR -j 1 -prp na -prl na -gp 1 -co 24 -td 259200 -el n                -step_min 10000 -write_data 3000 -step_npt 200000 -step_nvt 200000 -step_md 50000000 -solvent tip3p -force_field amber99sb -solvatation SOL -temp 300 -bt dodecahedron -padding_grid 0.9 -seedg 2015 -prefix_gromacs gmx -pressure_npt 1.0)
-  allComand=$(echo -e ./ASGARD.sh -t ./$target -q ./$query -o VS -s GR -j 1 -prp na -prl na -gp 1 -co 1 -td 259200 -el n'                '-step_min 10000 -write_data $(cat $mdp | grep nstlog | awk '{print $3}') -step_npt 200000 -step_nvt 200000 -step_md $(cat $mdp| grep nsteps | awk '{print $3}') -solvent tip3p -force_field amber99sb -solvatation SOL -temp $(cat $mdp | grep ref_t | awk '{print $3}') -bt dodecahedron -padding_grid 0.9 -seedg 2015 -prefix_gromacs gmx -pressure_npt 1.0)
+    allComand=$(echo -e ./ASGARD.sh -t ./$target -q ./$query -o VS -s GR -j 1 -prp na -prl na -gp 1 -co 1 -td 259200 -el n'                '-step_min 10000 -write_data $(cat $mdp | grep nstlog | awk '{print $3}') -step_npt 200000 -step_nvt 200000 -step_md $(cat $mdp| grep nsteps | awk '{print $3}') -solvent tip3p -force_field amber99sb -solvatation SOL -temp $(cat $mdp | grep ref_t | awk '{print $3}') -bt dodecahedron -padding_grid 0.9 -seedg 2015 -prefix_gromacs gmx -pressure_npt 1.0)
 	informe=${informe}"-- Command:\t\t$allComand $optAux"
 	echo -e "${informe}" >>${salidaResume}
 	echo  "--">>${salidaResume}

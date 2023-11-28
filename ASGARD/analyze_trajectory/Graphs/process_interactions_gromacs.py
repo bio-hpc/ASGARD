@@ -44,7 +44,7 @@ def get_interactions_residues(lst_in, mode):
 
 def create_energies_xvg(edr_rerun, tpr_min, g_energy, folder_hbonds, mode):
     """
-    Genera ficheros xvg de energias grupo y global
+    Generates xvg files of group and global energies
     """
     cmd = 'echo 0| {} -f {} -s {}'.format(g_energy, edr_rerun, tpr_min)
     output = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True).stdout.read()

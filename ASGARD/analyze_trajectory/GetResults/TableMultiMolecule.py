@@ -65,4 +65,3 @@ class TableMultiMolecule:
             f.write('\t\hline \n')
             f.write('  \\end{tabular}' + "\n")
             f.write('\\end{center}' + "\n")
-            #print(self.cfg.table_multimolecule)

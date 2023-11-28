@@ -11,21 +11,18 @@ printTitle()
 printTitle1()
 {
   if [ "$option" != "PROTOCOLS" ];then
-   # a=`echo $1 | sed 's/\\\t/\ /g'`
     printf "${PURPLE} %8s ${CYAN}%-30s${NONE}  \n" "${1}º" "$2" 
   fi
 } 
 printTitle2()
 {
  if [ "$option" != "PROTOCOLS" ];then
-    #a=`echo $1 | sed 's/\\\t/\ /g'`
     printf "${DARKGRAY} %10s ${CYAN}%-50s${NONE}  \n" "$1" "$2" 
   fi
 } 
 printTitle3()
 {
  if [ "$option" != "PROTOCOLS" ];then
-    #a=`echo $1 | sed 's/\\\t/\ /g'`
     printf "${DARKGRAY} %13s ${CYAN}%-20s${NONE}  \n" "$1" "$2" 
   fi
 } 
@@ -111,9 +108,3 @@ printTitle "GR_ACEPYPE_NM" "ACepype amberTools topol for gromacs (ambersb)"
 printTitle1 "1" "python ShuttleMol/external_sw/gromacs/topol/generate_topology.py proyectos/3ua0/3UA0-cured.pdb proyectos/3ua0/ligsC/"
 echo ""
 echo ""
-#
-#-LF_RECEPTOR_NM    
-#    1- Abrimos Moe
-#      1.a. 
-#      2.e. "	
-#-FR_LIGAND_NM  Ligand preparation	oe_convert		

@@ -76,7 +76,6 @@ class GraphsInteractionsTargetQueries:
                         self.cfg.ENERGIES_DISCARD
                     )
                 )
-                # lst_cmd.append('rm {}_{}_{}_rerun*'.format(self.cfg.prefix_results, mol_target.original_name, mol_query.original_name))
                 self.cfg.template_job.execute_job_with_dependency(
                     self.cfg.format_script_interactions.format(self.cfg.prefix_templates, mol_target.original_name, mol_query.original_name),
                     lst_cmd, dependencies)
@@ -188,7 +187,6 @@ class GraphsInteractionsTargetQueries:
                 self.cfg.last_equilibration,
                 self.cfg.top,
                 out,
-                # self.cfg.index,
                 self.index_all_residues,
                 self.cfg.MAX_WARNINGS
             )

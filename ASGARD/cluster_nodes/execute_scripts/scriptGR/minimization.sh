@@ -6,7 +6,6 @@ ejecutar()
     execute "echo \"Fin Minimization\""
 }
 #
-#Genera un cubo
 #
 minimizeEnergy()
 {	

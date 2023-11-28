@@ -66,7 +66,7 @@ class Tools(object):
             aux = self.get_residues(mol_target, mol_query, self.cfg.DIST_MIN_RES - i)
             for j in aux:
                 cad_residues += " " + j
-            # hasta que los grupos no sean meores que nomMaximoGrupos (Exite un limite en gromacs de 64 grupos)
+            # There is a limit of 64 groups
             if len(cad_residues.split(" ")) < self.cfg.NUM_MAX_GROUPS:
                 break
         return cad_residues
@@ -76,7 +76,7 @@ class Tools(object):
 
     def get_groups_target_queries(self):
         """
-            Se crea un indice, se busca en el top los itps del ligando y luego con el nombre se buscan en el indice
+            An index is created, the ligand's itps are searched at the top, and then they are searched in the index by name
         """
         lst_molecules = []
 
@@ -118,7 +118,7 @@ class Tools(object):
         g_target = self.execute.run(cmd).strip()
         if g_target != "":
             #
-            #   En caso de que existe prtoeina siempre sera la primera
+            #   When the protein is the first group
             #
             lst_molecules.insert(0, Molecule('Protein', g_target, self.cfg.name_target ))
 
@@ -126,7 +126,7 @@ class Tools(object):
 
     def split_queries(self):
         """
-            generamos un array con la prot y un dict con los ligandos con sus lineas sacadas del ficehro pdv
+            Generates an array with the protein and a dictionary with the ligands with their lines extracted from the pdv file
 
         """
         f = open(self.cfg.pdb)
@@ -168,11 +168,6 @@ class Tools(object):
 
     @staticmethod
     def check_directory(path):
-        """
-            Si existe, Borra el directorio y lo crea
-            si no lo crea
-        :param path: folder
-        """
         if os.path.exists(path):
             shutil.rmtree(path)
             os.mkdir(path)

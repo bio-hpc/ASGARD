@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-#Genera un cubo
+# Generate a box 
 #
 ejecutar()
 {	
@@ -22,7 +22,7 @@ generate_cube()
 
 	execute "${prefix_gromacs} solvate${mpi} -cp ${out_molec}_complex_box.gro -o ${out_molec}_complex_solv.gro -p ${out_molec}_complex.top "   				#rellena la grid  de disolvente
     #
-    #   Movemos los ficheros
+    #   Move the files
     #
     execute "mv ${out_molec}_complex.gro ${folder_out_ucm}"
     execute "mv ${out_molec}_complex_box.gro ${folder_out_ucm}"
@@ -30,7 +30,7 @@ generate_cube()
 generate_biphsic_system()
 {
 
-    boxsize=5               #esto debe podeser cambiar
+    boxsize=5               
     add_mols=1200
     file_gro_disolvent=${itps[0]}
     file_gro_disolvent="${file_gro_disolvent%.*}.gro"
@@ -47,35 +47,19 @@ generate_biphsic_system()
     out_put_editconf_new=${file_gro_disolvent%.*}_editconf_new.gro
     out_solvent=${out_molec}_complex_solv.gro
 
-
-    #
-    #   copio fichero de radios para el carbono
-    #
-    #cp ${file_radius} .
     execute "${prefix_gromacs} insert-molecules -ci ${file_gro_disolvent} -nmol ${add_mols} -box ${boxsize} ${boxsize} ${boxsize} -o ${out_put_i_m} -seed ${seedg}"
     
-    
-    #execute "${prefix_gromacs} genconf -f ${file_gro_disolvent} -nbox ${boxsize} ${boxsize} ${boxsize} -o ${out_put_i_m} -seed ${seedg}"
-    #gmx genconf -f chx.gro -nbox 8 8 8 -o chx_box.gro
-    #
-    #	Aqui a lo mejor hay que hacer minimizazion
-    #
     execute "${prefix_gromacs}  editconf -f ${out_put_i_m} -o ${out_put_editconf_new} -box ${boxsize} ${boxsize} $(($boxsize * 2)) -center $(echo "$boxsize/2" | bc -l) $(echo "$boxsize/2" | bc -l) $(echo "$boxsize/2" | bc -l)"
 
-    #
-    #	Llenamos de solvent
+    # Generate box
     execute "${prefix_gromacs}  editconf -f ${file_gro_mol} -o ${out_file_gro_mol_edit_conf} -box ${boxsize} ${boxsize} $(($boxsize * 2)) -center $(echo "$boxsize/2" | bc -l)  $(echo "$boxsize/2" | bc -l) $(echo "$boxsize*2*0.75" | bc -l)"
     #
-    #	Generamos un cubo e insertamos el sisolvente
+    # Solvate
     #
     ${prefix_gromacs}  solvate -cp ${out_file_gro_mol_edit_conf} -cs ${out_put_editconf_new} -o ${out_file_gro_mol_join}
-    #
-    #	Añadimos aguas
-    #
-    #rm "./vdwradii.dat"
+
     ${prefix_gromacs}  solvate -cp ${out_file_gro_mol_join} -cs ${solvent} -p ${topol} -o ${out_solvent}
 
-    #num_disolvent=`cat ${out_solvent} |grep  L01 |grep CAA |wc -l`
     num_disolvent=`cat ${out_solvent}| grep L01 | awk '{print $(NF-4)}' |sort |uniq -c |head -1 |awk '{print $1}'`
     num_solvent=`cat ${out_solvent} |grep SOL | grep OW |wc -l`
 

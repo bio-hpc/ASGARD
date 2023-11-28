@@ -6,14 +6,14 @@ name_query=`basename ${name_query}`
 
 if [ -f  ${CWD}${path_in}${name_target}"_"${name_query}'_complex.conf' ]; then  # target query/ies
      input_topology_data=${CWD}${path_in}${name_target}"_"${name_query}'_complex'
-elif [ -f ${CWD}${path_target}${name_target}'_target_complex.conf' ];then       # solo target
+elif [ -f ${CWD}${path_target}${name_target}'_target_complex.conf' ];then       # target
     patIn=$(dirname "$target")"/" # queries/test_dm/
     input_topology_data=${CWD}${patIn}${name_target}'_target_complex'
 
 elif [ -f ${CWD}${patIn}$"biphsic_systems_"${name_query}'_complex.conf'  ];then  # biphsic_systems
     input_topology_data=${CWD}${patIn}$"biphsic_systems_"${name_query}'_complex'
 else
-    echo "ERROR: no se enecuentran los ficheros de topologia"
+    echo "ERROR: topology files don't found"
     exit
 fi
 

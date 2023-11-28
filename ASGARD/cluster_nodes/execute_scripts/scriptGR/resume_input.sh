@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 #
-#	Pequeño resumen de los parametros de entrada de la pruebas
 #
 #echo "Output prefix: ${CWD}${patIn}${name_target}"_"${ligOut}"
 
@@ -61,16 +60,6 @@ printf '%-20s %-50s\n' 'system_charge:' ${system_charge}
 printf '%-20s %-50s\n' 'gromacs_version:' ${prefix_gromacs}
 printf '%-20s %-50s\n' 'presure_npt:' ${pressure_npt}
 echo ""
-
-
-#file_conf_tpr
-#printf '%-20s %-50s\n' 'query:' ${query}
-#printf '%-20s %-50s\n' 'target:' ${target}
-#printf '%-20s %-50s\n' 'mode:' ${mode}
-#printf '%-20s %-50s\n' 'ph:' ${ph}
-
-
-
 
 
 
