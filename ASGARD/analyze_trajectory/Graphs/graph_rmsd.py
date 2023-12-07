@@ -11,6 +11,7 @@ from GenerateGraph.GenerateGraph import GenerateGraph
 generateGraph = GenerateGraph()
 ALLOW_EXTENSION = ".xvg"
 TOKEN_DISTRIBUTION = ["rmsd_distribution", "distance_distribution"]
+FLUCT = ["rmsd_fluct"]
 
 TOKEN = ["rmsd", 'distance']
 
@@ -52,5 +53,7 @@ y_title = str("RMSD (nm)")
 
 if any(i in sys.argv[1] for i in TOKEN_DISTRIBUTION):
     generateGraph.graph_doble_line(legend, lst_y, lst_x, out_png, x_title, y_title, title, "")
+elif any(i in sys.argv[1] for i in FLUCT):
+    generateGraph.graph_doble_line(legend, lst_x, lst_y, out_png, "Atom", y_title, title, "")
 else:
     generateGraph.graph_doble_line(legend, lst_x, lst_y, out_png, 'Time (ps)', y_title, title, "")

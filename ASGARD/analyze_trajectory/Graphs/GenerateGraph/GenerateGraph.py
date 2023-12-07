@@ -2,7 +2,7 @@
 # coding: utf-8
 # version: 2
 #
-# Generates the graphs of the dynamics, the arrays, titles, colors, etc., will be passed to it
+# Genera las graficas de las dinamicas, se le pasaran los arrys titulos colores etc
 # _______________________________________________________________________________________________________
 import re
 import sys
@@ -17,11 +17,18 @@ import os
 # Set matplotlib to use Agg backend
 matplotlib.use('Agg')
 
+# # python_packages_path = os.path.join(os.path.dirname(__file__), '../../../../../external_sw/python2-packages/')
+# python_packages_path = os.path.join(os.path.dirname(__file__))
+# python_packages_path = os.path.realpath(python_packages_path)
+# os.environ['PYTHONPATH'] = python_packages_path
+# sys.path.append(python_packages_path)
+
 FONT_SIZE = 10
 EACH_XTICS = 1000  # 1 ps
 PERCENT_MARGIN = 0.1  # 10%
 
 class GenerateGraph:
+    # '/home/jdelapena/lanzador/lanzador/lanzador/externalSw/gromacs/analizarResults/Graph'
     def __init__(self):
         self.dpi = 200  # dpis de las graficas
 
@@ -35,15 +42,15 @@ class GenerateGraph:
         with open(fichero) as f:
             for i in f:
                 if "xaxis" in i:
-                    x_title = re.sub(' +', ' ', i).strip().split("\"")[1]  # remove initial and final double spaces
+                    x_title = re.sub(' +', ' ', i).strip().split("\"")[1]  # eliminamos espacios dobles inicial y final
                 elif "yaxis" in i:
-                    y_title = re.sub(' +', ' ', i).strip().split("\"")[1]  # remove initial and final double spaces
+                    y_title = re.sub(' +', ' ', i).strip().split("\"")[1]  # eliminamos espacios dobles inicial y final
                 elif " title" in i:
-                    title = re.sub(' +', ' ', i).strip().split("\"")[1]  # remove initial and final double spaces
+                    title = re.sub(' +', ' ', i).strip().split("\"")[1]  # eliminamos espacios dobles inicial y final
                 elif "subtitle" in i:
-                    subtitle = re.sub(' +', ' ', i).strip().split("\"")[1]  # remove initial double spacese and finalaux[1]
+                    subtitle = re.sub(' +', ' ', i).strip().split("\"")[1]  # eliminamos espacios dobles inicial y finalaux[1]
                 elif not i.startswith("@") and not i.startswith("#") and i.strip() != "":
-                    aux = re.sub(' +', ' ', i).strip().split(" ")  # remove initial and final double spaces
+                    aux = re.sub(' +', ' ', i).strip().split(" ")  # eliminamos espacios dobles inicial y final
                     x.append(float(aux[0]))
                     y.append(float(aux[1]))
         return x, y, title, x_title, y_title, subtitle
@@ -60,11 +67,11 @@ class GenerateGraph:
         line_width = 1
         self.set_plt(x, y, x_label, y_label, title)
         if len(y) > 0:
-            if isinstance(y[0], list):  # If it is a list type, it means it will have more data
+            if isinstance(y[0], list):  # si es un tipo lista quiere decir que tendra mas datos
                 ax = plt.gca()
                 ax.xaxis.set_major_locator(plt.MaxNLocator(nbins=7))
                 for i in range(len(y)):
-                    if not isinstance(x[0], list):  # If the x's are not a list, it is assumed that they are time steps of the simulation
+                    if not isinstance(x[0], list):  # si las x no son lista se supone que son lapsos pasos de la simulacion
                         plt.plot(x, y[i], linestyle="-", linewidth=line_width, color=self.get_color(i))
                     else:
                         plt.plot(x[i], y[i], linestyle="-", linewidth=line_width, color=self.get_color(i))
@@ -72,6 +79,8 @@ class GenerateGraph:
                 plt.plot(x, y, linestyle="-", linewidth=line_width, color=self.get_color(0))
             if legend != "":
                 self.put_legend(legend,6)
+            else:
+                self.put_legend(legend,9)
             self.save_graph(out_png)
 
     def ticsx(self, min, max):
@@ -102,6 +111,12 @@ class GenerateGraph:
                 max_x = max(x)
             if max_x < 50:
                 plt.xticks(x,size='small', rotation=45)
+        # if isinstance(y[0], list):
+        #     min_y = np.min(y)
+        #     max_y = np.max(y)
+        #     if isinstance(min_y, list):
+        #         min_y = min(min_y)
+        #         max_y = max(max_y)
         if isinstance(y[0], list):
             min_y = min(min(val) for val in y)  # Calculate the minimum across all sublists
             max_y = max(max(val) for val in y)  # Calculate the maximum across all sublists
@@ -135,13 +150,16 @@ class GenerateGraph:
             width = 0.1  # the width of the bars
             for i in np.arange(0, len(y)):
                 ax.bar(ind + i * width, float(y[i]), width, color=self.get_color(0), edgecolor="none")
+            # ax.set_ylim(min(np.array(y, dtype=float)) - mas_menos_graph, max(np.array(y, dtype=float)) + mas_menos_graph)
             ax.set_ylim(0, max(np.array(y, dtype=float)) + mas_menos_graph)
             ax.set_ylabel("Number of hydrogen bonds")
             ax.set_xlabel("MD Steps")
             ax.set_title(titulo)
             xmax = 1 + float(len(x)) / 10
+            # xmax = float(len(x))
             ax.set_xlim(-1, xmax)
             ax.axhline(y=0, xmin=-1, xmax=xmax, linewidth=0.2, color='k')
+            #ax.set_xticklabels("")
 
             if legend:
                 self.put_legend(legend,12)
@@ -160,7 +178,7 @@ class GenerateGraph:
             ax.set_ylabel(yTitulo,fontsize=15)
             ax.set_title(titulo,fontsize=20)
             # print("resName is",resName)
-            # horizontal line at the y coordinate y 0
+            # linea HORIZONTAL en la coordenada  y 0
             ax.axhline(y=0, xmin=-1, xmax=len(datos[0]), linewidth=0.2, color='k')
             mini = []  # sirve para buscar el minimo y el maximo de los datos
             maxi = []
@@ -171,24 +189,44 @@ class GenerateGraph:
             for i in range(len(datos)):
                 mini.append(min(datos[i]))
                 maxi.append(max(datos[i]))
-                ind = np.arange(len(datos[i]))  # list of lists
+                ind = np.arange(len(datos[i]))  # es una lista de listas
                 ax.bar(ind + (width * i) + (width / 2), datos[i], width, color=self.get_color(i), edgecolor="none")
+            
+            # ax.set_xlim(min(ind) - (len(datos) / 2), max(ind) + (len(datos) / 2))
+
             min_y = min([min(i) for i in datos])
             max_y = max([max(i) for i in datos])
             ax.set_ylim((self.ticsx(min_y, max_y)))
+            # Adjust x-tick positions and set labels
+            # print("ind is",ind)
+            # print(np.arange(len(resName)))
+            # ax.set_xticks(np.arange(len(resName)))
+            # ax.set_xticks(ind + (len(datos) - 1) * width / 2)
+            # for i in resName:
+            #     print(i)
             font_prop = FontProperties(size=20)
             ax.set_xticklabels(resName,fontweight='bold',fontproperties=font_prop)
+            
+            # txt = ax.xaxis.get_offset_text()
+            # txt.set_fontweight('bold')
+            # txt.set_fontsize('large')
+            # txt.set_fontweight('bold')
+            # ax.tick_params(axis='x', labelsize=20)  # Font size for tick labels
             ax.set_xlabel('Residues', fontsize=14)  # Font size for axis label
             ax.tick_params(axis='both', which='minor')
             
+            # plt.xticks(fontsize=20,fontweight='bold')
+
             legend_fontsize = 10  # Choose a font size that works for your graph
             legend_columns = 1  # Adjust the number of columns as needed
             legend_properties = {'weight': 'bold', 'size': 12, 'family': 'sans-serif'}
             plt.legend(loc='upper right', prop=legend_properties, ncol=legend_columns, fancybox=True, framealpha=1, shadow=True, borderpad=1)
             plt.yticks(fontsize=12,fontweight='bold')
+            # plt.legend(loc='upper left', prop={'size': 6})
             self.put_legend(legend,12)
             self.putLegendBars(ax, resName, ind, width)
             self.save_graph(outPut)
+
 
     def putLegendBars(self, ax, xSubTitle, ind, width):
         ax.set_xticks(ind + width + (width / 2))
@@ -212,6 +250,7 @@ class GenerateGraph:
         pos_labels = range(0, max_steps, 10)
         rounded_labels = [round(val, 1) for val in put_step]
         plt.xticks(pos_labels, rounded_labels, size='small', rotation=45)
+        # plt.xticks(pos_labels, put_step, size='small', rotation=45)
         self.save_graph(out)
 
     def save_graph(self, out):
