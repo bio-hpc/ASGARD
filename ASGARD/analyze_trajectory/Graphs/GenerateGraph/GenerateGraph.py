@@ -255,6 +255,10 @@ class GenerateGraph:
 
     def save_graph(self, out):
         plt.savefig(out, dpi=self.dpi)
+        out_svg = out.replace(".png", ".svg")
+        plt.savefig(out_svg, format='svg')
+        out_pdf = out.replace(".png",".pdf")
+        plt.savefig(out_pdf, format='pdf')
 
 def main():
     # Example usage of GenerateGraph class
