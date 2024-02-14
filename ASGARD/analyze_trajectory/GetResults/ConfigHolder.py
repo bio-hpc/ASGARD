@@ -75,7 +75,7 @@ class ConfigHolder(object):
             print("No exsis: " + tmp_file)
             exit("\n")
 
-    def __init__(self, prefix_molec, profile, gromacs):
+    def __init__(self, prefix_molec, profile, gromacs,ligand,reference):
         #
         #   Input-output folders
         #
@@ -154,7 +154,11 @@ class ConfigHolder(object):
         self.index = self.folder_grids + self.sufijo + "_index.ndx"
 
         # self.tpr_min = self.checkFile(self.folder_molec+self.sufijo+"_min.tpr")
-        self.tpr_min = self.checkFile(self.folder_molec + self.sufijo + "_md.tpr")
+        
+        if reference is not None:
+            self.tpr_min = reference
+        else:
+            self.tpr_min = self.checkFile(self.folder_molec + self.sufijo + "_md.tpr")
         self.tpr_pre = self.checkFile(self.folder_molec + self.sufijo + "_pre_md.tpr")
 
         self.prefix_molec = self.folder_molec + self.sufijo
@@ -168,7 +172,7 @@ class ConfigHolder(object):
         #
         self.name_target = os.path.basename(prefix_molec).split("_")[2]
         self.python_run = "python"
-        self.lst_molecules = self.tools.get_groups_target_queries()
+        self.lst_molecules = self.tools.get_groups_target_queries(ligand)
 
         self.g_energy = self.gromacs + " energy "
         self.grompp = '{} {} '.format(self.gromacs, 'grompp')

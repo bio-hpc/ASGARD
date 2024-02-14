@@ -59,8 +59,10 @@ while (( $# )) #browse all the parameters and they are assigned
 	   case `printf "%s" "$1" | tr '[:lower:]' '[:upper:]'`  in
       -F)   folder_analysis=${2%/};; # Folder where MD results are found
       -P)   profile=$2;; # Profile (TARGET, TARGET_PROTEIN, TEST...)
-      -D )  folder_experiment=${2%/}/;;	#directorio where the data is stored (optional)
-	    esac
+      -D)   folder_experiment=${2%/};;	#directory where the data is stored (optional)
+	  -LIG) ligand=${2%/};; # name of the group for the ligand you want to analyze (optional)
+	  -REF)	reference_structure=${2%/};; # reference structure for RMSD calculations (optional)
+	   esac
 	fi
   shift #Modificamos $2 a $1, $3 a $2 ....
 done

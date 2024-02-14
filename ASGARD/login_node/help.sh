@@ -61,9 +61,7 @@ if [  -z "$option" ];then
   printFiles "" ".mol2" "" "ligand structure mol2 file "
   printFiles "" ".pdb" "" "target structure pdb file"
   printFiles "" ".edr" "" "Energies file "
-  
-
-  echo ""
+    echo ""
   echo ""
   echo -e "${PURPLE} Profiles${NONE} "
   echo -e "${PURPLE}____________________________________________________${NONE} "
@@ -74,12 +72,25 @@ if [  -z "$option" ];then
   printFiles "" "TARGET_QUERY" "" "Analysis for Protein-Ligand Simulation"
 	printFiles "" "TARGET" "" "Analysis for Protein Simulation"
 	printFiles "" "TEST" "" "Testing"
+  
+  echo ""
+  printf "\t${CYAN}%s${NONE} \n"  "[Optional parameters]"
+  echo -e "${CYAN}____________________________________________________${CYAN} "
+  echo ""
+  echo -e "${PURPLE}In case you need to modify the analysis configuration${NONE} "
+  printGlobalHelp "ref" "reference_structure" "" "Choose the structure taken as a reference in RMSD and RMSF calculations (advisable to place it within the Input directory)"
+  printGlobalHelp "lig" "ligand group" "" "Indicate the name of the ligand group or that group of atoms you want to take as a ligand "
+  echo ""
+  echo ""
+  printf "\t${CYAN}%s${NONE} \n"  "[Output]"
+  echo -e "${CYAN}____________________________________________________${CYAN} "
   echo ""
   echo -e "${PURPLE} Output files${NONE} "
   echo -e "${PURPLE}____________________________________________________${NONE} "
   echo ""
   printFiles "" "folder" "" "Folder with analysis results files and images, and files used by ASGARD"
 	printFiles "" ".pdf" "" "PDF Report generated with the generated files (in the folder)"
+  
 
 	echo ""
 else

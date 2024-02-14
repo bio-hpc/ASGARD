@@ -34,6 +34,25 @@ fi
 echo 'Folder: '$folder_analysis
 echo 'Profile: '$profile
 
+echo 'Optional parameters:'
+
+if [ ! -z "$ligand" ]; then
+  tmp=$ligand
+  ligand=''
+  ligand='ligand='$tmp
+  tmp=''
+fi
+
+if [ ! -z "$reference_structure" ];then
+  tmp=$(realpath $reference_structure)
+  reference_structure=''
+  reference_structure='reference='$tmp
+  tmp=''
+fi
+
+echo $reference_structure
+echo $ligand
+
 date
 
 echo "Preparing analysis folder..."
@@ -54,7 +73,9 @@ echo "Running analysis..."
 prefix=$(ls $RESULTS"/molecules"|grep ".top"|cut -d. -f1-1)
 echo "ASGARD analysis" >> "$folder_analysis"_"$profile"_"$fecha".err
 
-singularity exec --bind $bind "$singularity"/ASGARD.simg python $ASGARD_analysis $PWD/$RESULTS"/molecules/"$prefix $profile gmx >> "$folder_analysis"_"$profile"_"$fecha".err 2>&1 # MD Analysis
+#echo "singularity exec --bind $bind "$singularity"/ASGARD.simg python $ASGARD_analysis $PWD/$RESULTS"/molecules/"$prefix $profile gmx $ligand $reference_structure >> "$folder_analysis"_"$profile"_"$fecha".err 2>&1 # MD Analysis"
+singularity exec --bind $bind "$singularity"/ASGARD.simg python $ASGARD_analysis $PWD/$RESULTS"/molecules/"$prefix $profile gmx $ligand $reference_structure >> "$folder_analysis"_"$profile"_"$fecha".err 2>&1 
+# MD Analysis
 
 echo "Generating PDF report"
 rm mdout.mdp area.xvg

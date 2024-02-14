@@ -74,7 +74,7 @@ class Tools(object):
     def cp_file(self, src, dest):
         shutil.copy(src, dest)
 
-    def get_groups_target_queries(self):
+    def get_groups_target_queries(self,ligand):
         """
             An index is created, the ligand's itps are searched at the top, and then they are searched in the index by name
         """
@@ -91,7 +91,7 @@ class Tools(object):
             for i in lst:
                 if i != "":
                     aux = i.split("\"")
-                    print(aux[1])
+                    #print(aux[1])
                     if os.path.isfile(aux[1]):
                         aux[1]=aux[1]
                     else:
@@ -100,9 +100,12 @@ class Tools(object):
                         aux[1]=self.cfg.folder+'molecules/'+aux[1]
                 
                     cmd = f'cat {aux[1]} | grep "\\[ atoms \\]" -A3  | tail -n 1 | awk \'{{print $4}}\''
-                    print(cmd)
-                    n_query = self.execute.run(cmd).strip()
-                    print(n_query)
+                    #print(cmd)
+                    if ligand is None:
+                        n_query = self.execute.run(cmd).strip()
+                    else:
+                        n_query=ligand
+                    #print(n_query)
                     cmd = f'cat {index} | grep {n_query} | grep -v "non-Protein" | grep -v "non-Water" | head -1 | awk \'{{print $1}}\''
                     g_query = self.execute.run(cmd).strip()
                     cmd = f'cat {aux[1]} | grep "\\[ moleculetype \\]" -A2  | tail -n 1 | awk \'{{print $1}}\''
