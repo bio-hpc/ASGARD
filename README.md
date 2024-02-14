@@ -65,8 +65,8 @@ For instance, you can launch ASGARD this way:
 ```
 
 Also, there is some optional parameters in case you want to modify the default configuration.
-  - Ligand group  [ Name of the group for the atoms you want to designate as the ligand ] <br />
-  - Reference structure  [ Structure used for the RMSD and RMSF calculations (.tpr or .gro formats)  ] <br />
+  - Ligand group (-lig) [ Name of the group for the atoms you want to designate as the ligand ] <br />
+  - Reference structure (-ref) [ Structure used for the RMSD and RMSF calculations (.tpr or .gro formats)  ] <br />
 
 
 Launching some of the case studies to test the tool and understand its functionality is advisable. The case studies can be found at the following Zenodo link:
