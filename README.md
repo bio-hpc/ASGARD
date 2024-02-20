@@ -22,7 +22,7 @@ ASGARD is a tool that allows via an automated MD workflow to analyse performed M
 The singularity image generated for ASGARD and needed to secure compatibility with any cluster.
 
 ```bash
-wget "https://drive.google.com/uc?export=download&id=1wHvmtUVhUz9DAzPnqeZPE7MVX5fRERGb&confirm=t" -O singularity/ASGARD.simg
+wget --no-check-certificate 'https://drive.usercontent.google.com/download?id=1wHvmtUVhUz9DAzPnqeZPE7MVX5fRERGb&export=download&authuser=1&confirm=t&uuid=0c83343d-17fe-4282-bf07-9a2321537a9a&at=APZUnTW_78yhd6klINcZBOjxIU6g:1706872870521' -O singularity/ASGARD.simg
 ```
 
 ### Available Analyses
