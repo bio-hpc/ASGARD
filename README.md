@@ -1,6 +1,6 @@
 ## ASGARD: Automated Scripts for Gromacs to Analyse and Run molecular Dynamics
 
-[![DOI](https://zenodo.org/badge/doi/10.26434/chemrxiv-2023-3m9mk.svg?style=svg)](https://doi.org/10.26434/chemrxiv-2023-3m9mk)
+[![DOI](https://zenodo.org/badge/doi/10.1080/07391102.2024.2349527.svg?style=svg)](https://doi.org/10.1080/07391102.2024.2349527)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10213139.svg)](https://doi.org/10.5281/zenodo.10213139)
 
 ASGARD is a tool that allows via an automated MD workflow to analyse performed MD protein or protein-ligand complex simulations and to easily generate the corresponding report 
@@ -72,3 +72,7 @@ Also, there is some optional parameters in case you want to modify the default c
 Launching some of the case studies to test the tool and understand its functionality is advisable. The case studies can be found at the following Zenodo link:
 
 https://doi.org/10.5281/zenodo.10213139
+
+Also you can read the article about this tool, published in the Journal of Biomolecular Structure and Dynamics: "Enhancing MD simulations: ASGARD’s automated analysis for GROMACS"
+
+https://doi.org/10.1080/07391102.2024.2349527
