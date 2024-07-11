@@ -147,7 +147,7 @@ class GenerateLatex(object):
     def sasa(self, document):
         if self.cfg.p_graph_sasa:
             document.write(f_3.format('\\newpage'))
-            document.write(f_2.format('\subsection{Solvent Accessible Surface}'))
+            document.write(f_2.format('\subsection{Solvent Accessible Surface (SASA)}'))
             self.put_text(document, self.cfg.p_graph_stabilization, self.text['sasa'], f_3)
             self.put_figure(document, self.cfg.out_png_sasa.format(self.cfg.prefix_results_png), f_4,0.8)
 
@@ -306,7 +306,7 @@ class GenerateLatex(object):
         document.write(r'\lhead{\includegraphics[width = 4cm]{' + self.cfg.logo_bio_hpc + '}} \n')
         document.write(r'\title{Simulation Report ' + footer + '} \n')
         # document.write(r'\author{bio-hpc} \n')
-        document.write(r'\author{bio-hpc''} \n')
+        document.write(r'\author{BIO-HPC''} \n')
         document.write(
             r'\titlepic{ \vspace{8cm} \includegraphics[width =\textwidth]{' + self.cfg.md_diagram + '}}\n')
         document.write(r'\begin{document''} \n')

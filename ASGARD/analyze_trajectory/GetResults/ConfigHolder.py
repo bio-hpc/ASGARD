@@ -72,7 +72,7 @@ class ConfigHolder(object):
             print("\n")
             print("ERROR: you must enter the absolute path of the file, this usually happens"
                   " because you do not pass the file with the absolute path: ")
-            print("No exsis: " + tmp_file)
+            print("Couldn't find: " + tmp_file)
             exit("\n")
 
     def __init__(self, prefix_molec, profile, gromacs,ligand,reference):
@@ -132,7 +132,7 @@ class ConfigHolder(object):
         self.graph_dssp = folder_graphs + "graph_dssp.py"  # DSSP graph
 
         self.logo_bio_hpc = self.path + "ASGARD/analyze_trajectory/extra/logo_biohpc.png"
-        self.md_diagram = self.path + "ASGARD/analyze_trajectory/extra/md_diagram.png"
+        self.md_diagram = self.path + "ASGARD/analyze_trajectory/extra/md_diagram_updated.png"
 
         try:
             cmd = 'cat {}/config.cfg |grep g_mmpbsa'.format(os.path.join(self.path, "ASGARD"))
@@ -244,7 +244,7 @@ class ConfigHolder(object):
         self.out_xvg_gyrate = self.prefix_results_xvg + "_girate.xvg"
         self.out_png_gyrate = self.prefix_results_png + "_girate.png"
         self.table_multimolecule = self.folder_results + "/" + self.sufijo + "_table_multi_molecule.tex"
-        self.document_tex = self.folder_results + "/" + self.sufijo + "_documnet.tex"
+        self.document_tex = self.folder_results + "/" + self.sufijo + "_document.tex"
         self.table_stabilization = self.prefix_results + "_table_stabilization.tex"
 
         self.format_file_name_hbonds_xvg = '{}_{}_{}_hbond.xvg'
