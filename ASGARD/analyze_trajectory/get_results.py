@@ -56,5 +56,5 @@ TableMultiMolecule(cfg)
 #
 # Generate latex
 #
-GenerateLatex( cfg)
+GenerateLatex(cfg)
 
